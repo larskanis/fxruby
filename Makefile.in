@@ -1,0 +1,90 @@
+PACKAGE = FXRuby
+VERSION = @@FXRUBY_VERSION@@
+
+distdir = $(PACKAGE)-$(VERSION)
+
+DISTFILES = \
+	ANNOUNCE \
+	LICENSE \
+	README \
+	README.win32.txt \
+	pre-config.rb \
+	install.rb \
+	index.html \
+	doc/*.html \
+	doc/images/*.png \
+	examples/README \
+	examples/*.rb \
+	examples/*.xml \
+	examples/icons/*.png \
+	examples/icons/*.ico \
+	examples/textedit/*.rb \
+	lib/fox12/*.rb \
+	ext/fox12/MANIFEST \
+	ext/fox12/extconf.rb \
+	ext/fox12/*.c \
+	ext/fox12/*.cpp \
+	ext/fox12/include/*.h \
+	swig-interfaces/README \
+	swig-interfaces/Makefile \
+	swig-interfaces/swig.sed \
+	swig-interfaces/*.i \
+	tests/README \
+	tests/*.rb \
+	tests/*.ps
+
+all: config.save
+	ruby install.rb setup
+	-strip ext/fox12/fox12.so
+
+config.save:
+	ruby install.rb config -- --without-fxscintilla
+
+check:
+	cd tests ; ruby -I../ext/fox12 -I../lib TS_All.rb
+
+install: all
+	ruby install.rb install
+
+clean:
+	ruby install.rb clean
+
+dist: distdir
+	-chmod -R a+r $(distdir)
+	tar czf $(distdir).tar.gz $(distdir)
+	-rm -rf $(distdir)
+
+distdir: wrappers docs changelog
+	-rm -rf $(distdir)
+	mkdir $(distdir)
+	-chmod 777 $(distdir)
+	@for file in $(DISTFILES); do \
+	  mkdir -p $(distdir)/`dirname $$file`; \
+	  cp -p $$file $(distdir)/`dirname $$file`; \
+	done
+	-rm -f $(distdir)/lib/fox12/acceltable.rb
+	-rm -f $(distdir)/lib/fox12/canvas.rb
+	-rm -f $(distdir)/lib/fox12/html.rb
+	-rm -f $(distdir)/lib/fox12/tkcompat.rb
+	-rm -f $(distdir)/examples/canvasdemo.rb
+	-rm -f $(distdir)/examples/examples.rb
+	-rm -f $(distdir)/examples/gdchart.rb
+	-rm -f $(distdir)/examples/rapt-gui.rb
+
+wrappers:
+	cd swig-interfaces; make depend; make
+
+docs:
+	cd doc; make
+	cd rdoc-sources; make
+
+changelog:
+	@cvs2cl.pl -F trunk
+
+website:
+	@tar czf website.tar.gz index.html web/*.html web/art/*.gif web/art/*.png doc/*.html doc/images/*.png examples/*.rb doc/api
+	@scp -q website.tar.gz lyle@fxruby.sourceforge.net:/home/groups/f/fx/fxruby/htdocs
+	@rm -f website.tar.gz
+	@ruby scripts/update-website.rb
+
+.PHONY: changelog clean distdir docs website wrappers

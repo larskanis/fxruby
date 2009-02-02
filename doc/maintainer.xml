@@ -1,0 +1,24 @@
+<chapter id="maintainer">
+  <title>Maintainer's Checklists</title>
+  <simplesect>
+    <title>Updating to a new version of FOX</title>
+    <itemizedlist mark="bullet">
+      <listitem><para>Download, build and install the latest version of the FOX library.</para></listitem>
+      <listitem><para>Change to the <filename class=directory>fox-includes</filename> subdirectory of the FXRuby code and modify the <filename>diffs.py</filename> script so that the path1 variable contains the path name for the include files.</para></listitem>
+      <listitem><para>Run the <filename>diffs.py</filename> and redirect its output to a file. This generates a cleaned-up listing of the differences between the FOX include files currently included with FXRuby and those from the latest FOX distribution, including things like lists of include files added to and removed from the distribution.</para></listitem>
+      <listitem><para>If any new include files have been added to FOX, copy those over to FXRuby's <filename class=directory>fox-includes</filename> subdirectory and add them to the Subversion repository using svn add.</para></listitem>
+    </itemizedlist>
+  </simplesect>
+  <simplesect>
+    <title>Integrating a new FOX class into FXRuby</title>
+      <listitem><para>Create a new SWIG interface file for this class in the <filename class=directory>swig-interfaces</filename> subdirectory. It's easiest to start by just copying over the corresponding FOX include file (e.g. copy <filename>fox-includes/FXColorWheel.h</filename> to <filename>swig-interfaces/FXColorWheel.i</filename>.</para></listitem>
+      <listitem><para>Replace all of the FOX copyright information at the top of the file with the FXRuby copyright information (from any of the other SWIG interface files).</para></listitem>
+      <listitem><para>Remove the #ifdef preprocessor protections, the FXDECLARE macro, the FXAPI macro, and any private sections of the class declaration.</para></listitem>
+      <listitem><para>Remove the declarations of any virtual function overrides (e.g. <methodname>create</methodname> or <methodname>getDefaultWidth</methodname>) since they aren't needed.</para></listitem>
+      <listitem><para>Add the declaration for the class' destructor, if it's not already there. This is a signal to SWIG to generate code that destroys the C++ object when it's garbage-collected; if it's not there, you may experience memory leaks.</para></listitem>
+      <listitem><para>Add the required SWIG %rename directives to the <filename>swig-interfaces/renames.i</filename> file. For each class, you'll have two %rename directives; one to rename the original class name (e.g. <classname>FXPicker</classname>) to a mangled name (<classname>FX_Picker</classname>) and another to rename the FXRuby subclass (<classname>FXRbPicker</classname>) to the public name (<classname>FXPicker</classname>).</para></listitem>
+      <listitem><para>Add a new header file to the <filename class=directory>ext/fox/include</filename> directory for the new FXRuby subclass (e.g. <filename>FXRbPicker.h</filename>.</para></listitem>
+      <listitem><para>Add any appropriate aliases for this class' method names to the <filename>lib/fox/aliases.rb</filename> file.</para></listitem>
+    </itemizedlist>
+  </simplesect>
+</chapter>

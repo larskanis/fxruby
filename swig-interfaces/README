@@ -1,0 +1,17 @@
+This directory contains the SWIG interface files used to generate the C++
+"wrapper" code for Ruby/FOX as well as a Makefile to assist in the build
+process.
+
+Ruby/FOX uses a development version of SWIG (version 1.3a5) to automatically
+generate the extension code wrappers. This version of SWIG has some problems
+that will hopefully get worked out in later versions.
+
+Some functions and classes are not yet wrapped. These are currently commented
+out with the following identifiers:
+
+    IDPROB - not sure what to do with the FXID type
+    INPUTPROB - not sure what to do with the FXInputHandle type
+    ENDIANNESS - problems for definition of FXRGB macro
+    OVERLOAD - used for overloaded functions
+    OPERATOR - function is an operator overload (not supported by SWIG yet)
+    FIXME - catchall

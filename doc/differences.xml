@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="differences">
+  <title>Differences between FOX and FXRuby</title>
+
+  <para>The FXRuby API follows the FOX API very closely and for the most part,
+  you should be able to use the standard FOX class documentation as a
+  reference. In some cases, however, fundamental differences between Ruby and
+  C++ necessitated slight changes in the API. For some other cases, FOX
+  classes were enhanced to take advantage of Ruby language features (such as
+  iterators). The purpose of this chapter is to identify some of the
+  differences between the C++ and Ruby interfaces to FOX.</para>
+
+  <para>One difference that should be easy to cope with is the substitution of
+  Ruby Strings for FXStrings. Any function that would normally expect an
+  <type>FXString</type> input argument insteads takes a Ruby String.
+  Similarly, functions that would return an <type>FXString</type> will instead
+  return a Ruby string. For functions that would normally accept a
+  <constant>NULL</constant> or empty string argument, just pass
+  <constant>nil</constant> or an empty string ("").</para>
+
+  <simplesect>
+    <title>Functions that expect arrays of objects</title>
+
+    <para>One common pattern in FOX member function argument lists is to
+    expect a pointer to an array of values, followed by an integer indicating
+    the number of values in the array. This of course isn't necessary in Ruby,
+    where <classname>Array</classname> objects "know" their lengths. As a
+    result, functions such as
+    <methodname>FXWindow::acquireClipboard()</methodname>, whose C++
+    declaration looks like this:</para>
+
+    <programlisting format="linespecific">FXbool acquireClipboard(const FXDragType *types, FXuint numTypes);</programlisting>
+
+    <para>are called from Ruby code by passing in a single
+    <classname>Array</classname> argument, e.g.</para>
+
+    <programlisting format="linespecific">myWindow.acquireClipboard(typesArray)</programlisting>
+  </simplesect>
+
+  <simplesect>
+    <title>Functions that return values by reference</title>
+
+    <para>Many FOX methods take advantage of the C++ language feature of
+    returning values by reference. For example, the
+    <methodname>getCursorPos()</methodname> member function for class
+    <classname>FXWindow</classname> has the declaration:</para>
+
+    <programlisting format="linespecific">FXint getCursorPos(FXint&amp; x, FXint&amp; y, FXint&amp; buttons) const;</programlisting>
+
+    <para>which indicates that the function takes references to three integers
+    (x, y and buttons). To call this function from a C++ program, you'd write
+    code like this:</para>
+
+    <programlisting>FXint x, y;
+FXuint buttons;
+
+if (window-&gt;getCursorPosition(x, y, buttons))
+  fprintf(stderr, "Current position is (%d, %d)\n", x, y);</programlisting>
+
+    <para>Since this idiom doesn't translate well to Ruby, some functions'
+    interfaces have been slightly modified. For example, the FXRuby
+    implementation of <methodname>getCursorPos()</methodname> returns the
+    three values as an <classname>Array</classname>, e.g.:</para>
+
+    <programlisting format="linespecific">x, y, buttons = aWindow.getCursorPos()</programlisting>
+
+    <para>The following table shows how these kinds of functions are
+    implemented in FXRuby:</para>
+
+    <informaltable>
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry align="center">Instance Method</entry>
+
+            <entry align="center">Return Value</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry><methodname>FXDial#range</methodname></entry>
+
+            <entry>Returns a <classname>Range</classname> instance.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXDial#range=(aRange)</methodname></entry>
+
+            <entry>Accepts a <classname>Range</classname> instance as its
+            input.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXFontDialog#fontSelection</methodname></entry>
+
+            <entry>Returns the <classname>FXFontDesc</classname>
+            instance</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXFontSelector#fontSelection</methodname></entry>
+
+            <entry>Returns the <classname>FXFontDesc</classname>
+            instance</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXGLObject#bounds(range)</methodname></entry>
+
+            <entry>Takes an <classname>FXRange</classname> instance as its
+            input and returns a (possibly modified)
+            <classname>FXRange</classname> instance.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXGLViewer#eyeToScreen(eye)</methodname></entry>
+
+            <entry>Takes an array of eye coordinates (floats) as its input and
+            returns the screen point coordinate as an array of integers [sx,
+            sy]</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXGLViewer#getBoreVector(sx,
+            sy)</methodname></entry>
+
+            <entry>Returns the endpoint and direction vector as an array of
+            arrays [point, dir]</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXGLViewer#light</methodname></entry>
+
+            <entry>Returns a <classname>FXLight</classname> instance</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXGLViewer#viewport</methodname></entry>
+
+            <entry>Returns an <classname>FXViewport</classname>
+            instance.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXPrinterDialog#printer</methodname></entry>
+
+            <entry>Returns the <classname>FXPrinter</classname>
+            instance</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXScrollArea#position</methodname></entry>
+
+            <entry>Returns the position as an array of integers [x, y]</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXSlider#range</methodname></entry>
+
+            <entry>Returns a <classname>Range</classname> instance.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXSlider#range=(aRange)</methodname></entry>
+
+            <entry>Accepts a <classname>Range</classname> instance as its
+            input.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXSpinner#range</methodname></entry>
+
+            <entry>Returns a <classname>Range</classname> instance.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXSpinner#range=(aRange)</methodname></entry>
+
+            <entry>Accepts a <classname>Range</classname> instance as its
+            input.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#appendText(text,
+            notify=false)</methodname></entry>
+
+            <entry>Append text to the end of the buffer.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#appendStyledText(text, style=0,
+            notify=false)</methodname></entry>
+
+            <entry>Append styled text to the end of the buffer.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#extractText(pos, n)</methodname></entry>
+
+            <entry>Extracts <emphasis>n</emphasis> characters from the buffer
+            beginning at position <emphasis>pos</emphasis> and returns the
+            result as a String.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#extractStyle(pos,
+            n)</methodname></entry>
+
+            <entry>Extracts <emphasis>n</emphasis> style characters from the
+            buffer beginning at position <emphasis>pos</emphasis> and returns
+            the result as a String.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#insertText(pos, text,
+            notify=false)</methodname></entry>
+
+            <entry>Insert <emphasis>text</emphasis> at position
+            <emphasis>pos</emphasis> in the buffer.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#insertStyledText(pos, text, style=0,
+            notify=false)</methodname></entry>
+
+            <entry>Insert <emphasis>text</emphasis> at position
+            <emphasis>pos</emphasis> in the buffer.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#replaceText(pos, m, text,
+            notify=false)</methodname></entry>
+
+            <entry>Replace <emphasis>m</emphasis> characters at
+            <emphasis>pos</emphasis> by <emphasis>text</emphasis>.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#replaceStyledText(pos, m, text, style=0,
+            notify=false)</methodname></entry>
+
+            <entry>Replace <emphasis>m</emphasis> characters at
+            <emphasis>pos</emphasis> by <emphasis>text</emphasis>.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#setDelimiters(delimiters)</methodname></entry>
+
+            <entry>Change delimiters of words (<emphasis>delimiters</emphasis>
+            is a string).</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXText#getDelimiters()</methodname></entry>
+
+            <entry>Return word delimiters as a string.</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXWindow#cursorPosition</methodname></entry>
+
+            <entry>Returns an array of integers [x, y, buttons]</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXWindow#translateCoordinatesFrom(window, x,
+            y)</methodname></entry>
+
+            <entry>Returns the translated coordinates as an array [x,
+            y]</entry>
+          </row>
+
+          <row>
+            <entry><methodname>FXWindow#translateCoordinatesTo(window, x,
+            y)</methodname></entry>
+
+            <entry>Returns the translated coordinates as an array [x,
+            y]</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+  </simplesect>
+
+  <simplesect>
+    <title>Iterators</title>
+
+    <para>Several classes have been extended with an
+    <methodname>each</methodname> method to provide Ruby-style iterators.
+    These classes include <classname>FXComboBox</classname>,
+    <classname>FXGLGroup</classname>, <classname>FXHeader</classname>,
+    <classname>FXIconList</classname>, <classname>FXList</classname>,
+    <classname>FXListBox</classname>, <classname>FXTreeItem</classname>,
+    <classname>FXTreeList</classname> and
+    <classname>FXTreeListBox</classname>. These classes also mix-in Ruby's
+    <classname>Enumerable</classname> module so that you can take full
+    advantage of the iterators.</para>
+
+    <para>The block parameters passed to your code block vary depending on the
+    class. For example, iterating over an <classname>FXList</classname>
+    instance yields <classname>FXListItem</classname> parameters:</para>
+
+    <programlisting format="linespecific">aList.each { |aListItem|
+    puts "text for this item = #{aListItem.getText()}"
+}</programlisting>
+
+    <para>whereas iterating over an <classname>FXComboBox</classname> instance
+    yields two parameters, the item text (a string) and the item data:</para>
+
+    <programlisting format="linespecific">aComboBox.each { |itemText, itemData|
+    puts "text for this item = #{itemText}"
+}</programlisting>
+
+    <para>The following table shows the block parameters for each of these
+    classes' iterators:</para>
+
+    <informaltable>
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry align="center">Class</entry>
+
+            <entry align="center">Block Parameters</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry><classname>FXComboBox</classname></entry>
+
+            <entry>the item text (a string) and user data</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXGLGroup</classname></entry>
+
+            <entry>an <classname>FXGLObject</classname> instance</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXHeader</classname></entry>
+
+            <entry>an <classname>FXHeaderItem</classname> instance</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXIconList</classname></entry>
+
+            <entry>an <classname>FXIconItem</classname> instance</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXList</classname></entry>
+
+            <entry>an <classname>FXListItem</classname> instance</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXListBox</classname></entry>
+
+            <entry>the item text (a string), icon (an
+            <classname>FXIcon</classname> instance) and user data</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXTreeItem</classname></entry>
+
+            <entry>an <classname>FXTreeItem</classname> instance</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXTreeList</classname></entry>
+
+            <entry>an <classname>FXTreeItem</classname> instance</entry>
+          </row>
+
+          <row>
+            <entry><classname>FXTreeListBox</classname></entry>
+
+            <entry>an <classname>FXTreeItem</classname> instance</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+  </simplesect>
+
+  <simplesect>
+    <title>Attribute Accessors</title>
+
+    <para>FOX strictly handles access to all object attributes through member
+    functions, e.g. <methodname>setBackgroundColor</methodname> and
+    <methodname>getBackgroundColor</methodname> or
+    <methodname>setText</methodname> and <methodname>getText</methodname>.
+    FXRuby exposes all of these functions but also provides aliases that look
+    more like regular Ruby attribute accessors. The names for these accessors
+    are based on the FOX method names; for example,
+    <methodname>setBackgroundColor</methodname> and
+    <methodname>getBackgroundColor</methodname> are aliased to
+    <methodname>backgroundColor=</methodname> and
+    <methodname>backgroundColor</methodname>, respectively.</para>
+
+    <para>In many cases these aliases allow you to write more compact and
+    legible code. For example, consider this code snippet:</para>
+
+    <programlisting format="linespecific">aLabel.setText(aLabel.getText() + " (modified)")</programlisting>
+
+    <para>Now consider a different code snippet, using the aliased accessor
+    method names:</para>
+
+    <programlisting format="linespecific">aLabel.text += " (modified)"</programlisting>
+
+    <para>While these two are functionally equivalent, the latter is a bit
+    easier to read and understand at first glance.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>Message Passing</title>
+
+    <para>FOX message maps are implemented as static C++ class members. With
+    FXRuby, you just associate messages with message handlers in the class
+    <methodname>initialize</methodname> method using the
+    <methodname>FXMAPFUNC()</methodname>,
+    <methodname>FXMAPTYPE()</methodname>,
+    <methodname>FXMAPTYPES()</methodname> or
+    <methodname>FXMAPFUNCS()</methodname> methods. See almost any of the
+    example programs for examples of how this is done.</para>
+
+    <para>As in C++ FOX, the last argument passed to your message handler
+    functions contains message-specific data. For instance, all
+    <constant>SEL_PAINT</constant> messages pass an
+    <classname>FXEvent</classname> object through this argument to give you
+    some information about the size of the exposed rectangle. On the other
+    hand, a <constant>SEL_COMMAND</constant> message from an
+    <classname>FXHeader</classname> object passes the index of the selected
+    header item through this argument. Instead of guessing what's in this last
+    argument, your best bet is to instead invoke a member function on the
+    sending object to find out what you need, instead of relying on the data
+    passed through this pointer. For example, if you get a
+    <constant>SEL_COMMAND</constant> message from an
+    <classname>FXColorWell</classname> object, the data passed through that
+    last argument is supposed to be the new RGB color value. Instead of trying
+    to interpret the argument's contents, just turn around and call the color
+    well's <methodname>getRGBA()</methodname> member function to retrieve its
+    color. Similarly, if you get a <constant>SEL_COMMAND</constant> message
+    from a tree list, call its <methodname>getCurrentItem()</methodname>
+    method to find out which item was selected.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>Catching Operating System Signals</title>
+
+    <para>The <methodname>FXApp#addSignal</methodname> and
+    <methodname>FXApp#removeSignal</methodname> methods have been enhanced to
+    accept either a string or integer as their first argument. If it's a
+    string (e.g. "SIGINT" or just "INT") the code will determine the
+    corresponding signal number for you (similar to the standard Ruby
+    library's <methodname>Process.kill</methodname> module method). For
+    examples of how to use this, see the <filename>datatarget.rb</filename> or
+    <filename>imageviewer.rb</filename> example programs.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>Support for Multithreaded Applications</title>
+
+    <para>There is some support for multithreaded FXRuby applications, but
+    it's not wonderful. The current implementation does what is also done in
+    Ruby/GTK; it turns over some idle processing time to the Ruby thread
+    scheduler to let other threads do their thing. As I learn more about
+    Ruby's threading implementation I may try something different, but this
+    seems to work OK for now. For a simple example, see the
+    <filename>groupbox.rb</filename> example program, in which the clock label
+    that appears in the lower right-hand corner is continuously updated (by a
+    separate thread).</para>
+
+    <para>If you suspect that FXRuby's threads support is interfering with
+    your application's performance, you may want to try tweaking the amount of
+    time that the main application thread "sleeps" during idle processing; do
+    this by setting the <classname>FXApp</classname> object's
+    <structfield>sleepTime</structfield> attribute. The default value for
+    <structfield>FXApp#sleepTime</structfield> is 100 milliseconds. You can
+    also disable the threads support completely by calling
+    <methodname>FXApp#threadsEnabled=false</methodname> (and subsequently
+    re-enable it with
+    <methodname>FXApp#threadsEnabled=true</methodname>).</para>
+  </simplesect>
+
+  <simplesect>
+    <title>Keyword-Style Arguments</title>
+
+    <para>FXRuby 1.6.5 introduced preliminary, experimental support for using
+    keyword-style arguments in FXRuby method calls. The current implementation
+    of this feature only works for class constructors (i.e. the "new" class
+    methods), but the intent is to gradually extend this feature so that it
+    covers all FXRuby methods.</para>
+
+    <para>What this means in practice is that for calls to methods that have
+    one or more optional arguments, you can replace all of the optional
+    arguments with a hash that sets only the values for which the default
+    isn't appropriate. So, for example, consider a typical call to
+    <methodname>FXMainWindow.new</methodname>:</para>
+
+    <programlisting>main = FXMainWindow.new(app, "Title Goes Here", nil, nil, DECOR_ALL, 0, 0, 800, 600)</programlisting>
+
+    <para>In this case, the programmer wants to set the initial window width
+    and height to 800 and 600. In order to do that (with the current release
+    of FXRuby), however, she's required to fill in all of the optional
+    arguments in between the window title string and the width and height
+    values. As anyone who's worked with FXRuby for any amount of time will
+    tell you, it's easy to accidentally leave out one of those intermediate
+    arguments and it can be difficult to figure out what's wrong
+    afterwards.</para>
+
+    <para>Now consider how this method call could be written using the new
+    keyword arguments support. First, the programmer would need to require the
+    keyword arguments library:</para>
+
+    <programlisting>require 'fox16/kwargs'</programlisting>
+
+    <para>Then she would look up the API documentation for the
+    <methodname>FXMainWindow#initialize</methodname> method (e.g. <ulink
+    url="http://www.fxruby.org/doc/api/classes/Fox/FXMainWindow.html">here</ulink>)
+    and see that the names of the width and height arguments are, in fact,
+    "width" and "height". Armed with that information, she would be able to
+    rewrite the previous code as:</para>
+
+    <programlisting>main = FXMainWindow.new(app, "Title Goes Here", :width =&gt; 800, :height =&gt; 600)</programlisting>
+
+    <para>Here, the programmer has omitted the intermediate optional arguments
+    (thus accepting their default values) and specified only the width and
+    height values. This code is obviously a lot more readable and
+    maintainable.</para>
+
+    <para>It is important to observe the difference between required and
+    optional arguments when using this feature. If the API documentation for a
+    particular method doesn't indicate that an argument has a default value,
+    then it is by definition not an optional argument. So one could
+    <emphasis>not</emphasis> write the example as, e.g.</para>
+
+    <programlisting>main = FXMainWindow.new(app, :width =&gt; 800, :title =&gt; "Title Goes Here", :height =&gt; 600)</programlisting>
+
+    <para>This example is incorrect because the title argument is required,
+    and it must be the second argument in the call. Obviously, this means that
+    the optional arguments in a method call (if they're specified) will always
+    follow all of the required arguments.</para>
+
+    <para>Finally, note that the keyword arguments feature has been
+    implemented so that it's backwards-compatible with the original positional
+    arguments scheme (or it's intended to be, at any rate). What that means is
+    that you can immediately start making use of this feature in your existing
+    code, even if you don't have time to update all of the method calls to use
+    keyword arguments.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>Debugging Tricks</title>
+
+    <para>As a debugging tool, you can optionally catch exceptions raised in
+    message handlers. To turn on this feature, call the
+    <methodname>setIgnoreExceptions(true)</methodname> module method. When
+    this is enabled, any exceptions raised in message handler functions will
+    cause a standard stack trace to be dumped to the standard output, but then
+    your application will, for better or worse, proceed normally. Thanks to
+    Ted Meng for this suggestion.</para>
+  </simplesect>
+</appendix>

@@ -1,0 +1,28 @@
+ * What about the existing bug lists and such?
+
+ * Review all docs to purge references to SourceForge.
+
+ * Modify FXGradientBar so that it just stores a reference to the gradients
+   and doesn't own a copy (affects setGradients for example).
+
+ * Need tests and/or examples for all the new widgets; see previous list, plus:
+
+   - FXFoldingList
+   - FXGradientBar
+   - FXImageFrame
+   - FXRealSpinner
+   - FXRuler
+   - FXScrollPane
+   - FXSphered and FXSpheref
+   - FXSpring
+   - FXWizard
+   - FXXBMIcon
+   - FXXBMImage
+
+ * Can we replace all of the aliases (in aliases.rb) with something
+   based on method_missing? that automatically reroutes, for example,
+   a call to SomeClass#tooltip=() to a call to SomeClass#setTooltip()?
+
+ * Make FXDirItem#date (and anything else that deals with FXTime
+   values) return a Ruby Time object instead.
+

@@ -1,0 +1,65 @@
+Summary: FXRuby
+Name: FXRuby
+Version: @@FXRUBY_VERSION@@
+Release: 1
+Copyright: LGPL
+Group: System Environment/Libraries
+Source: @@FXRUBY_SRC_URL@@
+URL: @@FXRUBY_HOME_URL@@
+Packager: Lyle Johnson (lyle@users.sourceforge.net)
+BuildRoot: %{_tmppath}/%{name}-buildroot
+
+%description
+FXRuby is a Ruby extension module that provides an interface to the
+FOX Graphical User Interface toolkit.
+
+%prep
+%setup -q
+
+%build
+ruby install.rb config --prefix=$RPM_BUILD_ROOT/usr -- --with-fxscintilla-include=/usr/include/fxscintilla --with-fxscintilla-lib=/usr/lib
+ruby install.rb setup
+strip ext/fox12/fox12.so
+
+%install
+ruby install.rb install
+
+%clean
+ruby install.rb clean
+
+%files
+%defattr(-,root,root)
+/usr/lib/ruby/site_ruby/1.6/fox12
+/usr/lib/ruby/site_ruby/1.6/i686-linux/fox12.so
+%doc ANNOUNCE README LICENSE index.html doc examples
+
+%changelog
+* Thu May 30 2002 Lyle Johnson <lyle@users.sourceforge.net>
+- Incorporated Laurent Julliard's patches for the new installation directories
+  of FXScintilla.
+
+* Thu May 09 2002 Lyle Johnson <lyle@users.sourceforge.net>
+- Fixed %files section entries for the examples
+- Removed requirements for ruby 1.6
+
+* Thu May 09 2002 Lyle Johnson <lyle@users.sourceforge.net>
+- Updated --prefix value (in %build section) and file installation
+  paths (in %files section) for consistency with Red Hat 7.2's
+  Ruby RPMs.
+- Added the examples to the files list
+
+* Thu May 09 2002 Lyle Johnson <lyle@users.sourceforge.net>
+- Removed the mkdir steps in the %install section. Those don't
+  appear to be necessary after all!
+- Added the Packager tag at the top
+- Filled in the %description section
+
+* Thu May 09 2002 Lyle Johnson <lyle@users.sourceforge.net>
+- Changed the Name field from 'fxruby' to 'FXRuby'
+- Added the --prefix=$RPM_BUILD_ROOT/usr/local option to the config
+  part of the %build step
+- Added the mkdir steps before running install (in %install)
+- Fixed the %files entries for doc and doc/images
+
+* Thu May 09 2002 Lyle Johnson <lyle@users.sourceforge.net>
+- initial package

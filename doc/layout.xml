@@ -1,0 +1,31 @@
+<chapter id="layout">
+  <title>Layout Managers</title>
+  <para>FOX uses special widgets known as <emphasis>layout managers</emphasis> to arrange the widgets in a user interface.</para>
+  <section>
+    <title>FXPacker</title>
+    <para>All widgets derived from <classname>FXFrame</classname> have some amount of internal padding along their sides. The default padding along each side is 2 pixels, but you can specify the amount of padding when the widget is constructed via the <arg>pl</arg>, <arg>pr</arg>, <arg>pt</arg> and <arg>pb</arg> arguments to the widget's constructor. For example, to construct an <classname>FXLabel</classname> widget with 5 pixels padding at its left and right sides, you'd do:</para>
+    <programlisting format="linespecific">aLabel = FXLabel.new(parent, "Label", nil, LABEL_NORMAL, 0, 0, 0, 0, 5, 5)</programlisting>
+    <para>It of course may be easier to set the padding in a code block instead, e.g.</para>
+    <programlisting format="linespecific"><![CDATA[aLabel = FXLabel.new(parent, "Label") do
+  self.padLeft = 5
+  self.padRight = 5
+end]]></programlisting>
+  </section>
+  <section>
+    <title>FXHorizontalFrame and FXVerticalFrame</title>
+    <para>The <classname>FXHorizontalFrame</classname> and <classname>FXVerticalFrame</classname> layout managers aren't as powerful as some of the other layout managers, but they are very easy to use and you'll probably find them adequate for a lot of layout needs. As you might guess from their names, the <classname>FXHorizontalFrame</classname> layout manager lays out its children horizontally and the <classname>FXVerticalFrame</classname> layout manager lays out its children from top to bottom.</para>
+  </section>
+  <section>
+    <title>FXMatrix</title>
+    <para>The <classname>FXMatrix</classname> layout manager lays out its children in rows and columns.</para>
+  </section>
+  <section>
+    <title>FXSplitter and FX4Splitter</title>
+    <para>The <classname>FXSplitter</classname> layout manager is used to display a pair of windows side-by-side. The size of the individual windows' contents can be easily resized by the user.</para>
+    <para>A splitter is either a "horizontal" splitter, meaning that the container is split left-to-right, or a "vertical" splitter, meaning that the container is split top-to-bottom. By default, an <classname>FXSplitter</classname> is created with a horizontal split, but you can change that by specifying the <constant>SPLITTER_VERTICAL</constant> option in the initialization options:</para>
+    <programlisting format="linespecific">aSplitter = FXSplitter.new(parent, SPLITTER_VERTICAL)</programlisting>
+    <para>Although it will probably make for a confusing user interface, you can also change this setting at any time by modifying the <structfield>splitterStyle</structfield> attribute, i.e.</para>
+    <programlisting format="linespecific">aSplitter.splitterStyle = SPLITTER_HORIZONTAL</programlisting>
+    <para>A splitter should contain exactly two child widgets, one for the "left" pane and one for the "right" pane (assuming it's a horizontal splitter).</para>
+  </section>
+</chapter>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="unicode">
+  <title>Unicode and FXRuby</title>
+
+  <para>Beginning with version 1.6, FOX and FXRuby provide support for the
+  display of Unicode strings in FOX widgets. For some excellent discussion
+  about how to use Unicode in Ruby, I recommend Patrick Hall's article, <ulink
+  url="http://ruphus.com/blog/2005/06/11/ruby-and-unicode/">"Ruby and
+  Unicode"</ulink> and why the lucky stiff's follow-up article, <ulink
+  url="http://redhanded.hobix.com/inspect/closingInOnUnicodeWithJcode.html">"Closing
+  in on Unicode with Jcode"</ulink>. Here, we're going to make use of the
+  ideas in those articles to give a quick demonstration of how to use FXRuby's
+  support for Unicode.</para>
+
+  <section>
+    <title>Basic Application</title>
+
+    <para>Here's the original version of our "Hello, World!" program:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+application = FXApp.new("Hello", "FoxTest")
+main = FXMainWindow.new(application, "Hello", nil, nil, DECOR_ALL)
+FXButton.new(main, "&amp;Hello, World!", nil, application, FXApp::ID_QUIT)
+application.create()
+main.show(PLACEMENT_SCREEN)
+application.run()
+</programlisting>
+
+    <para>and here's the modified version:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+<emphasis role="bold">require 'jcode'</emphasis>
+
+<emphasis role="bold">$KCODE = 'u'</emphasis>
+
+<emphasis role="bold">class UString &lt; String
+  # Show u-prefix as in Python
+  def inspect; "u#{ super }" end
+
+  # Count multibyte characters
+  def length; self.scan(/./).length end
+
+  # Reverse the string
+  def reverse; self.scan(/./).reverse.join end
+end
+
+module Kernel
+  def u( str )
+    UString.new str.gsub(/U\+([0-9a-fA-F]{4,4})/u){["#$1".hex ].pack('U*')}
+  end
+end</emphasis> 
+
+include Fox
+
+<emphasis role="bold">question = u'U+00bfHabla espaU+00f1ol?'</emphasis>
+
+application = FXApp.new("Hello", "FoxTest")
+main = FXMainWindow.new(application, "Hello", nil, nil, DECOR_ALL)
+FXButton.new(main, <emphasis role="bold">question</emphasis>, nil, application, FXApp::ID_QUIT)
+application.create()
+main.show(PLACEMENT_SCREEN)
+application.run()
+</programlisting>
+
+    <para>The <emphasis role="bold">jcode</emphasis> library (part of the
+    standard Ruby library) provides a number of extensions to Ruby's
+    <classname>String</classname> class, to ensure that its methods work
+    properly for non-ASCII character encodings. By setting the
+    <varname>$KCODE</varname> global variable to "u", we're telling Ruby which
+    character encoding it is that we're using (UTF-8).</para>
+  </section>
+</chapter>

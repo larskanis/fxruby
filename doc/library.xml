@@ -1,0 +1,61 @@
+<appendix id="library">
+  <title>The FXRuby Standard Library</title>
+  <para>While the majority of FXRuby is in fact implemented by an extension module, some parts are provided instead by "pure Ruby" code. This section describes the classes and modules available in the FXRuby standard library.</para>
+  <simplesect>
+    <title>Undoable Commands</title>
+    <para>The <filename>fox16/undolist.rb</filename> file provides the <classname>FXCommand</classname> and <classname>FXUndoList</classname> classes. These serve the same purpose as the <classname>FXCommand</classname> and <classname>FXUndoList</classname> classes from the standard FOX distribution, but they're implemented entirely in Ruby.</para>
+    <para>For a complete description of these classes and how to use them, see the RD documentation in <filename>fox16/undolist.rb</filename>.</para>
+  </simplesect>
+  <simplesect>
+    <title>Aliases</title>
+    <para>The <filename>fox16/aliases.rb</filename> implements most of the accessor-style aliases for methods. This file is loaded automatically when you <programlisting format="linespecific">require 'fox16'</programlisting> and so you should never need to load it directly.</para>
+  </simplesect>
+  <simplesect>
+    <title>Color Names</title>
+    <para>The <filename>fox16/colors.rb</filename> file, contributed by Jeff
+      Heard, provides a bunch of predefined color values (based on the standard
+      X11 color names). You can use these color constants anywhere that FOX
+      expects an RGB color value, e.g.</para>
+    <programlisting format="linespecific">dc = FXDCWindow.new(drawable, ev)
+dc.foreground = FXColor::MistyRose      # instead of FXRGB(255, 228, 225)
+dc.background = FXColor::MidnightBlue   # instead of FXRGB( 25,  25, 112)</programlisting>
+  </simplesect>
+  <simplesect>
+    <title>OpenGL Shapes</title>
+    <para>The <filename>fox16/glshapes.rb</filename> library provides Ruby
+      implementations of a number of basic 3-D shapes (all derived from the
+      built-in <classname>FXGLShape</classname> class) that can be used with
+      the <classname>FXGLViewer</classname>. Several of these shapes are used
+      in the <filename>glviewer.rb</filename> example program. These shapes
+      were originally implemented in C++ and wrapped using SWIG, but they are
+      straightforward enough to implement in Ruby so they were moved out to
+      this library instead.</para>
+  </simplesect>
+  <simplesect>
+    <title>Iterators</title>
+    <para>The <filename>fox16/iterators.rb</filename> library just adds an
+      <methodname>each</methodname> instance method for the <classname>
+      FXComboBox</classname>, <classname>FXGLGroup</classname>, <classname>
+      FXHeader</classname>, <classname>FXIconList</classname>, <classname>
+      FXList</classname>, <classname>FXListBox</classname>, <classname>
+      FXTable</classname>, <classname>FXTreeItem</classname>, <classname>
+      FXTreeList</classname> and <classname>FXTreeListBox</classname> classes,
+      so that you can iterate over their members in a Ruby-friendly way. It
+      also mixes the <classname>Enumerable</classname> module into each of
+      these classes.</para>
+  </simplesect>
+  <simplesect>
+    <title>Key Codes</title>
+    <para>The <filename>fox16/keys.rb</filename> library file defines all of the
+      key codes (e.g. <constant>KEY_space</constant>) that might show up in the
+      code field of an <classname>FXEvent</classname> instance. This file is
+      loaded automatically when you
+      <programlisting format="linespecific">require 'fox16'</programlisting> and
+      so you should never need to load it
+      directly.</para>
+  </simplesect>
+  <simplesect>
+    <title>Calendar Widget</title>
+    <para>The <filename>fox16/calendar.rb</filename> library file provides the <classname>FXCalendar</classname> widget, contributed by David Naseby.</para>
+  </simplesect>
+</appendix>

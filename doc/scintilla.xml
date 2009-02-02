@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="scintilla">
+  <title>Using Scintilla with FXRuby</title>
+
+  <simplesect>
+    <title>What is Scintilla?</title>
+
+    <para><ulink url="http://www.scintilla.org">Scintilla</ulink> is a free
+    source code editing component developed by Neil Hodgson for the Win32 and
+    GTK+ platforms.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>What is FXScintilla?</title>
+
+    <para><ulink
+    url="http://savannah.gnu.org/projects/fxscintilla">FXScintilla </ulink> is
+    a FOX widget that wraps around the Scintilla component, or, if you wish,
+    the FOX "port" of Scintilla. It is being developed by Gilles Filippini,
+    and as of this writing the latest release is available for download from
+    <ulink
+    url="http://savannah.nongnu.org/download/fxscintilla/fxscintilla-1.63.tar.gz">http://savannah.nongnu.org/download/fxscintilla/fxscintilla-1.63.tar.gz</ulink>.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>Compiling FXScintilla</title>
+
+    <para>The FXScintilla distribution contains everything you need to build
+    the FXScintilla widget and begin using it in your C++-based FOX
+    applications. That is to say, you do not have to separately download the
+    Scintilla source code from the Scintilla home page. When you unpack the
+    FXScintilla tarball, you should get a new <filename class="directory">
+    fxscintilla-1.63</filename> directory containing the source code for the
+    FOX port of the Scintilla widget.</para>
+
+    <para>As of the 1.46 release of FXScintilla, the build process has been
+    "autoconfiscated" and should seem very familiar to you if you've built
+    other open-source software (like FOX) from the source code. The
+    <filename>INSTALL</filename> file in the top-level directory should
+    provide enough instruction for you to build and install FXScintilla for
+    either Unix or Microsoft Windows.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>Enabling FXScintilla Support in FXRuby</title>
+
+    <para>The next step is to build a version of FXRuby (from its source code)
+    with the optional FXScintilla support enabled. If you're working on a Unix
+    or Linux system and have installed FXScintilla in one of the standard
+    installation directories (e.g. under <filename
+    class="directory">/usr/include</filename> or <filename
+    class="directory">/usr/local/include</filename>), the regular FXRuby build
+    process should automatically detect it and enable FXScintilla
+    support.</para>
+
+    <para>If you have installed FXScintilla in some non-standard place, or if
+    you're building the code on Microsoft Windows, you will need to specify a
+    few additional configuration options at the beginning.</para>
+
+    <para>You can configure the build on Unix or Linux systems by
+    typing:</para>
+
+    <screen>
+$ <command>sudo gem install fxruby-1.2.0.gem --force -- --with-fxscintilla-include=/usr/local/include/fxscintilla --with-fxscintilla-lib=/usr/local/lib</command>
+</screen>
+
+    <para>or, when compiling with Microsoft Visual C++, by typing:</para>
+
+    <screen>
+C:\&gt; <command>gem install fxruby-1.2.0.gem --force -- --with-fox-include=C:\fox-1.2.7\include --with-fox-lib=C:\fox-1.2.7\lib --with-fxscintilla-include=C:\fxscintilla-1.63\include --with-fxscintilla-lib=C:\fxscintilla-1.63\lib</command>
+</screen>
+
+    <para>Past this point, the build and installation process for either
+    platform should be the same as for standard builds. To test your new
+    FXScintilla-enabled build of FXRuby, try running the
+    <filename>scintilla-test.rb</filename> example program in the FXRuby
+    <filename class="directory">examples</filename> subdirectory.</para>
+  </simplesect>
+</appendix>

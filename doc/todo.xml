@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="todo">
+  <title>To-do list</title>
+
+  <itemizedlist mark="bullet">
+    <listitem>
+      <para>I haven&#39;t yet paid much attention to some of the more esoteric
+      issues such as multithreaded applications, or interactions with other
+      popular Ruby extensions. FXRuby seems to cooperate well with Ruby&#39;s
+      thread scheduler on all platforms, although threading support for the
+      mswin32 build of Ruby was broken for Ruby versions 1.6.7 and earlier.
+      For best results, use Ruby versions 1.6.8 or later.</para>
+    </listitem>
+
+    <listitem>
+      <para>More examples are always good. Instead of (or in addition to)
+      merely cloning the C++ examples from the standard FOX distribution, it
+      would be nice to have original example programs that demonstrate
+      Ruby&#39;s special strengths.</para>
+    </listitem>
+
+    <listitem>
+      <para>Documentation is of course a big weakness at this point. I am
+      slowly building up a set of &#34;pseudo-sources&#34; with RDoc-style
+      comments that can be used to generate API documentation but this is far
+      from complete (see the <filename class="directory">rdoc-sources</filename>
+      directory in the standard source distribution).</para>
+    </listitem>
+
+    <listitem>
+      <para>Many people have expressed interest in a framework similar to
+      Tk&#39;s <classname>Canvas</classname> widget that allows you to draw
+      and drag 2-D shapes around, etc. Should be able to implement this kind
+      of thing directly in Ruby code (i.e. no need to write it in C++ first
+      and then &#34;wrap&#34; it).</para>
+    </listitem>
+
+    <listitem>
+      <para>There is no native Mac OS X port of FOX, but many people are
+      successfully building and running FOX and FXRuby applications on Mac OS
+      X using Apple&#39;s X11 server implementation. For more information,
+      please see the <ulink
+      url="http://www.fox-toolkit.net/cgi-bin/wiki.pl?Mac_OS_X">Mac OS X</ulink>
+      page at the <ulink url="http://www.fox-toolkit.net">FOX Community Wiki</ulink>
+      site.</para>
+    </listitem>
+
+    <listitem>
+      <para>Need to investigate how well FXRuby-based applications work with
+      <ulink url="http://exerb.sourceforge.jp/index.en.html">exerb</ulink>,
+      and perhaps add a section to the documentation about how to do this.</para>
+    </listitem>
+
+    <listitem>
+      <para>As of this writing, FOX doesn&#39;t provide any support for
+      internationalization (I18N) or Unicode text and so FXRuby doesn&#39;t
+      either. It is possible that FOX 1.2 will include some I18N support (see
+      the <ulink url="http://www.fox-toolkit.net/cgi-bin/wiki.pl?FAQ">FAQ</ulink>
+      at the <ulink url="http://www.fox-toolkit.net">FOX Community Wiki</ulink>
+      site), and if so, appropriate changes will be made to FXRuby at that
+      time.</para>
+    </listitem>
+
+    <listitem>
+      <para>FOX&#39;s list-like widgets (such as <classname>FXList</classname>)
+      behave differently from Ruby container objects (such as
+      <classname>Array</classname>) in the sense that when a list widget is
+      destroyed, it typically destroys all of its contained items at the same
+      time. One consequence of this behavior is that you can end up with Ruby
+      objects that refer to dead C++ objects (a variation of the dangling
+      pointer problem familiar to C/C++ programmers). I would like to see if
+      this behavior can be modified for FXRuby so that it&#39;s impossible to
+      end up with these &#34;dangling references&#34;.</para>
+    </listitem>
+  </itemizedlist>
+</chapter>

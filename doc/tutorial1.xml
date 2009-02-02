@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="tutorial1">
+  <title>Hello, World!</title>
+
+  <para>There are a few things common to all programs that use FXRuby, and the
+  purpose of this chapter is to help you get familiar with those. We'll do
+  this by developing a short program that simply displays a button containing
+  the text, "Hello, World!". For reference, this program is included in the
+  <filename>examples</filename> subdirectory of the standard FXRuby source
+  code distribution.</para>
+
+  <section>
+    <title>First Things First</title>
+
+    <para>All of the code associated with the FXRuby extension is provided by
+    the <classname>fox16 </classname>gem, so we need to start by requiring
+    this gem:</para>
+
+    <programlisting format="linespecific">require 'fox16'</programlisting>
+
+    <para>Since all of the FXRuby classes are defined under the
+    <classname>Fox</classname> module, you'd normally need to refer to them
+    using their "fully qualified" names (i.e. names that begin with the
+    <classname>Fox::</classname> prefix). Because this can get a little
+    tedious, and because there's not really much chance of name conflicts
+    between FXRuby and other Ruby extensions, I usually like to add an
+    <methodname>include Fox</methodname> statement so that all of the names in
+    the <classname>Fox</classname> module are "included" into the global
+    namespace:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+<emphasis role="bold">include Fox</emphasis></programlisting>
+
+    <para>Every FXRuby program begins by creating an
+    <classname>FXApp</classname> instance:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+<emphasis role="bold">theApp = FXApp.new</emphasis></programlisting>
+
+    <para>The <classname>FXApp</classname> instance has a lot of
+    responsibilities in an FXRuby application. One of the most frequent ways
+    you'll use it is to kick off the application's main event loop (which
+    you'll see later in this tutorial). The application is also the object
+    responsible for managing "global" resources like timers and the FOX
+    registry. It is a different approach from some other GUI toolkits for
+    Ruby, where these kinds of global resources are accessed using
+    module-level methods. As you continue to develop programs using FXRuby,
+    you'll learn about other ways that the <classname>FXApp</classname> object
+    is used.</para>
+
+    <para>The next step is to create an <classname>FXMainWindow</classname>
+    instance to serve as the application's main window. If you've used Ruby/Tk
+    before, this is similar to its <classname>TkRoot</classname>
+    window:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+<emphasis role="bold">theMainWindow = FXMainWindow.new(theApp, "Hello")</emphasis></programlisting>
+
+    <para>Here, we pass <parameter>theApp</parameter> as the first argument to
+    <methodname>FXMainWindow.new</methodname> to associate the new
+    <classname>FXMainWindow</classname> instance with this
+    <classname>FXApp</classname>. The second argument to
+    <methodname>FXMainWindow.new</methodname> is a string that will be used
+    for the main window's title.</para>
+
+    <para>So far, all we've done is instantiate the client-side objects.
+    Unlike most other toolkits, FOX makes a distinction between client-side
+    data (such as an <classname>FXMainWindow</classname> object) and
+    server-side data (such as the X window associated with that Ruby object).
+    To create the server-side objects associated with the already-constructed
+    client-side objects, we call <methodname>FXApp#create</methodname>:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+
+<emphasis role="bold">theApp.create</emphasis></programlisting>
+
+    <para>By default, all windows in FXRuby programs are invisible, so we need
+    to call our main window's <methodname>show</methodname> instance
+    method:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+theApp.create
+
+<emphasis role="bold">theMainWindow.show</emphasis></programlisting>
+
+    <para>The last step is to start the program's main loop by calling
+    <parameter>theApp</parameter>'s <methodname>run</methodname> instance
+    method:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+theApp.create
+
+theMainWindow.show
+
+<emphasis role="bold">theApp.run</emphasis></programlisting>
+
+    <para>The <methodname>FXApp#run</methodname> method doesn't return until
+    the program exits. It is similar to the <methodname>mainloop</methodname>
+    method used for Ruby/Tk and Ruby/GTK, and you can in fact use
+    <methodname>FXApp#mainloop</methodname> as an alias for
+    <methodname>run</methodname> if you prefer.</para>
+
+    <para>At this point, we have a working (if not very interesting) program
+    that uses FXRuby. If you run it, you'll see something like this:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/hello-without-button.png"
+                     format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </section>
+
+  <section>
+    <title>Better living through buttons</title>
+
+    <para>Obviously, we need to add a few things to make it more interesting.
+    Let's start by putting a button inside the main window. The
+    <classname>FXButton</classname> class provides a standard push-button
+    widget:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+<emphasis role="bold">FXButton.new(theMainWindow, "Hello, World!")</emphasis>
+theApp.create
+
+theMainWindow.show
+
+theApp.run</programlisting>
+
+    <para>As you might guess, passing <parameter>theMainWindow</parameter> as
+    the first argument to <methodname>FXButton.new</methodname> tells FXRuby
+    that the new button is a child of the main window. The second argument to
+    <methodname>FXButton.new</methodname> is a string that will be displayed
+    on the button. If you run the program <emphasis>now</emphasis>, you should
+    see this:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/hello-with-button.png"
+                     format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </section>
+
+  <section>
+    <title>Messages</title>
+
+    <para>Now we're cookin' with Crisco, but let's press on and see what other
+    things we can do to improve this. You may have noticed by now that the
+    only way to quit the program is to close the window using the window
+    manager's "close window" option, or to just kill the program outright. We
+    can do better than that. Let's add a message handler for the
+    <classname>FXButton</classname> such that when you click the button, it
+    causes the program to exit:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+theButton = FXButton.new(theMainWindow, "Hello, World!")
+<emphasis role="bold">theButton.connect(SEL_COMMAND) do |sender, selector, data|
+  exit
+end</emphasis>
+theApp.create
+
+theMainWindow.show
+
+theApp.run</programlisting>
+
+    <para>Most FOX objects send out messages (also known as
+    <emphasis>events</emphasis>) when something interesting happens. FOX
+    messages have four important elements:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>The message <emphasis>sender</emphasis> is the object that sends
+        the message. In this case, the <classname>FXButton</classname>
+        instance is the sender.</para>
+      </listitem>
+
+      <listitem>
+        <para>The message <emphasis>type</emphasis> is a predefined integer
+        constant that indicates what kind of event has occurred (i.e. why this
+        message is being sent). In this case, the message type is
+        <constant>SEL_COMMAND</constant>, which indicates that the command
+        associated with this widget should be invoked.</para>
+      </listitem>
+
+      <listitem>
+        <para>The message <emphasis>identifier</emphasis> is another integer
+        constant that is used to distinguish between different messages of the
+        same type. For example, the message that tells a FOX window to make
+        itself visible is a <constant>SEL_COMMAND</constant> message with the
+        identifier <constant>FXWindow::ID_SHOW</constant> (where
+        <constant>ID_SHOW</constant> is a constant defined in the
+        <classname>FXWindow</classname> class). A different message
+        identifier, <constant>FXWindow::ID_HIDE</constant>, tells an
+        <classname>FXWindow</classname> instance to make itself
+        invisible.</para>
+      </listitem>
+
+      <listitem>
+        <para>The message <emphasis>data</emphasis> is an object containing
+        message-specific information. For this case (the
+        <classname>FXButton</classname>'s <constant>SEL_COMMAND</constant>
+        message, there is no interesting message data, but we'll see other
+        kinds of messages where the message data is useful.</para>
+      </listitem>
+    </orderedlist>
+
+    <para>For historical reasons, the message type and identifier are usually
+    packed into a single 32-bit unsigned integer known as the
+    <emphasis>selector</emphasis>, and this is the value that is passed into
+    the message handler block. Since we don't actually need to use the
+    <parameter>sender</parameter>, <parameter>selector</parameter> or
+    <parameter>data</parameter> arguments for this particular message handler,
+    we can just ignore them and shorten the code to:</para>
+
+    <programlisting format="linespecific">theButton.connect(SEL_COMMAND) { exit }</programlisting>
+
+    <para>Re-run the program and push the button to convince yourself that it
+    works.</para>
+  </section>
+
+  <section>
+    <title>Adding a tool tip</title>
+
+    <para>To wrap up this introduction, we'd like to add a few finishing
+    touches to the program. The first addition is to add a tool tip to the
+    button, such that when the mouse cursor hovers over the button for a short
+    while, it will pop up a little message describing what the button
+    does:</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+
+theButton = FXButton.new(theMainWindow, "Hello, World!")
+<emphasis role="bold">theButton.tipText = "Push Me!"</emphasis>
+theButton.connect(SEL_COMMAND) { exit }
+
+<emphasis role="bold">FXToolTip.new(theApp)</emphasis>
+
+theApp.create
+
+theMainWindow.show
+
+theApp.run</programlisting>
+
+    <para>There are two changes involved here. The first is to set the tool
+    tip text for the button using the <methodname>tipText</methodname>
+    accessor, and for this example we're setting the button's tip text to
+    "Push Me!". The second change is to create the (single)
+    <classname>FXToolTip</classname> instance for the application. Although
+    this program shows the <classname>FXToolTip</classname> instance being
+    created after the <classname>FXButton</classname>, it doesn't really
+    matter when you do it. You just want to have instantiated the
+    <classname>FXToolTip</classname> before you drop into the main event loop
+    by calling <methodname>FXApp#run</methodname>. If you run this version and
+    hover over the button for a second or so, you should see the tooltip pop
+    up:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/hello-with-tooltip.png"
+                     format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </section>
+
+  <section>
+    <title>Adding an icon</title>
+
+    <para>The final change is to add an icon to the button to make things a
+    little more festive. FOX supports all of the popular image file formats
+    (e.g. BMP, GIF, JPEG, PNG and TIFF) and you can use any of them as icons
+    on buttons and labels. For this example, we'll use the one of the "Powered
+    By Ruby" images created by Hal Fulton (and posted at the <ulink
+    url="http://www.rubygarden.org/ruby?PoweredByRubyButtons">Ruby Garden
+    Wiki</ulink>):</para>
+
+    <programlisting format="linespecific">require 'fox16'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+
+theButton = FXButton.new(theMainWindow, "Hello, World!")
+theButton.tipText = "Push Me!"
+<emphasis role="bold">iconFile = File.open("pbr.jpg", "rb")
+theButton.icon = FXJPGIcon.new(theApp, iconFile.read)
+iconFile.close</emphasis>
+theButton.connect(SEL_COMMAND) { exit }
+
+FXToolTip.new(theApp)
+
+theApp.create
+
+theMainWindow.show
+
+theApp.run</programlisting>
+
+    <para>Here, <filename>pbr.jpg</filename> is the file name of the JPEG
+    image file. You want to be sure to open the file in
+    <emphasis>binary</emphasis> mode (i.e. including the "b" mode flag),
+    because there is a difference on the Windows platform. Since it's a JPEG
+    image, we need to use the <classname>FXJPGIcon</classname> class to
+    instantiate this icon. The first argument to
+    <methodname>FXJPGIcon.new</methodname> is just a reference to the
+    <classname>FXApp</classname> instance, and the second argument is the
+    contents of the image file. We associate this icon object with our button
+    using the button's <methodname>icon</methodname> accessor method. If you
+    run this example, you should see:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/hello-with-icon-1.png"
+                     format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+
+    <para>When you have both text and an icon displayed on a button (or its
+    superclass, <classname>FXLabel</classname>) the default positioning is to
+    display the icon to the left of the text. For this particular example,
+    however, it would probably be more appropriate to display the icon
+    <emphasis>above</emphasis> the text. We can achieve this using the
+    button's <methodname>iconPosition</methodname> accessor method:</para>
+
+    <programlisting format="linespecific">theButton.iconPosition = ICON_ABOVE_TEXT</programlisting>
+
+    <para>If you re-run the program after adding this line, you should
+    see:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/hello-with-icon-2.png"
+                     format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+
+    <para>The last change we're going to make is to make the icon transparent.
+    FOX allows you to specify that some regions of an icon should be treated
+    as "transparent", meaning that whatever's underneath them shows through.
+    FOX distinguishes those transparent regions from the non-transparent ones
+    using a transparency color, and any pixels in the original image that have
+    that color become transparent. In most cases, FOX can determine this
+    transparency color automatically (indeed, for image file formats like GIF
+    it's part of the image information). You can also specify the transparency
+    color explicitly if you like.</para>
+
+    <para>For the icon we've chosen, it's pretty obvious that the transparency
+    color is white, but let's let FOX figure that out for us. We want to
+    activate two options for the icon:</para>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>the <constant>IMAGE_ALPHACOLOR</constant> option, which tells
+        FOX that some regions of this image should be treated as transparent;
+        and,</para>
+      </listitem>
+
+      <listitem>
+        <para>the <constant>IMAGE_ALPHAGUESS</constant> option, which tells
+        FOX to guess the appropriate transparency color using the colors used
+        in the four corners of the image.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>To set these options, add this line to the program:</para>
+
+    <programlisting format="linespecific">theButton.icon.options = IMAGE_ALPHACOLOR | IMAGE_ALPHAGUESS</programlisting>
+
+    <para>and then re-run the program after making this change to see the
+    final result:</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/hello-with-icon-3.png"
+                     format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </section>
+</chapter>

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="examples">
+  <title>Examples</title>
+
+  <simplesect>
+    <para>The <ulink url="../examples/hello.rb"><filename>hello.rb</filename></ulink>
+    example program is about as short as it gets for a working FXRuby program.
+    Use this as a starting point for understanding the basic elements of an
+    FXRuby program, especially if you&#39;re new to GUI programming in
+    general.</para>
+
+    <title>hello</title>
+
+    <screenshot><mediaobject> <imageobject><imagedata align="center"
+    fileref="images/hello.png" format="PNG"></imagedata></imageobject>
+    </mediaobject></screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>hello2</title>
+
+    <para>The <ulink url="../examples/hello2.rb"><filename>hello2.rb</filename></ulink>
+    example kicks it up a notch by adding an icon and tooltip to the button
+    from the <filename>hello.rb</filename> example.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/hello2.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>scribble</title>
+
+    <para>The <ulink url="../examples/scribble.rb"><filename>scribble.rb</filename></ulink>
+    example is a good demonstration of how to obtain a device context for a
+    window (in this case, an <classname>FXCanvas</classname>) and draw into
+    that window. It also provides a basic demonstration of how FOX&#39;s GUI
+    updating mechanism can be used to automatically update the state of
+    widgets based on the application&#39;s state. Observe the &#34;Clear&#34;
+    button becoming enabled and disabled (greyed-out) depending on whether the
+    canvas is currently &#34;dirty&#34; or &#34;clean&#34;, and then see how
+    this updating is actually handled in the code.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/scribble.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>button</title>
+
+    <para>The <ulink url="../examples/button.rb"><filename>button.rb</filename></ulink>
+    example program shows off the various options (or button styles) for
+    <classname>FXButton</classname> widgets.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/button.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>datatarget</title>
+
+    <para>The <ulink url="../examples/datatarget.rb"><filename>datatarget.rb</filename></ulink>
+    example program demonstrates most or all of the widgets that can work with
+    FOX data targets (that is, instances of class <classname>FXDataTarget</classname>).
+    Data targets are special objects that have a a string, float or integer
+    value associated with them, and can interact with widgets to keep the data
+    target&#39;s value in sync with the widget&#39;s setting. For example, you
+    can create a data target with a string value and attach that to a text
+    field widget. When the user types a new value in the text field, the data
+    target&#39;s value is automatically updated; and when the data
+    target&#39;s value is changed, the text field will update its setting.
+    Since a single data targets can be attached to multiple widgets, this can
+    be a useful way to keep multiple controls for the same logical value in
+    sync with each other.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/datatarget.png"
+          format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>dialog</title>
+
+    <para>The <ulink url="../examples/dialog.rb"><filename>dialog.rb</filename></ulink>
+    example is a simple program demonstrating how to construct and display
+    modal and non-modal dialog boxes.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/dialog.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>dirlist</title>
+
+    <para>The <ulink url="../examples/dirlist.rb"><filename>dirlist.rb</filename></ulink>
+    example program demonstrates the <classname>FXDirList</classname> widget.
+    The directory list is a special kind of tree list, where each tree item
+    represents a directory (or folder) in the file system.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/dirlist.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>iconlist</title>
+
+    <para>The <ulink url="../examples/iconlist.rb"><filename>iconlist.rb</filename></ulink>
+    example program demonstrates the <classname>FXIconList</classname> widget.
+    An icon list is a special kind of list widget that can display its
+    contents in one of three basic modes (details mode, small icons mode or
+    large icons mode). The first screenshot below shows an icon list in
+    details mode, while the second shows the same icon list in &#34;big
+    icons&#34; mode.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/iconlist-details.png"
+          format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/iconlist-bigicons.png"
+          format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>mditest</title>
+
+    <para>The <ulink url="../examples/mditest.rb"><filename>mditest.rb</filename></ulink>
+    example program demonstrates FOX&#39;s Multiple Document Interface (MDI)
+    capabilities, specifically the <classname>FXMDIClient</classname> and
+    <classname>FXMDIChild</classname> classes.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/mditest.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>groupbox</title>
+
+    <para>The <ulink url="../examples/groupbox.rb"><filename>groupbox.rb</filename></ulink>
+    example program is a kind of &#34;periodic table of widgets&#34;
+    demonstration, FOX-style. It shows off a lot of the FOX widgets as well as
+    providing a good exercise of FOX&#39;s layout managers.</para>
+
+    <screenshot>
+      <mediaobject>
+         
+
+        <imageobject>
+          <imagedata align="center" fileref="images/groupbox.png" format="PNG" />
+        </imageobject>
+
+         
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>header</title>
+
+    <para>The <ulink url="../examples/header.rb"><filename>header.rb</filename></ulink>
+    example program mainly demonstrates the <classname>FXHeader</classname>
+    widget and the <classname>FXSplitter</classname> layout manager.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/header.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>image</title>
+
+    <para>The <ulink url="../examples/image.rb"><filename>image.rb</filename></ulink>
+    example demonstrates how to draw directly into an <classname>FXImage</classname>
+    object and then &#34;draw&#34; that image into a canvas.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/image.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>splitter</title>
+
+    <para>The <ulink url="../examples/splitter.rb"><filename>splitter.rb</filename></ulink>
+    example demonstrates the <classname>FXSplitter</classname> layout manager.
+    It also provides an example of the <classname>FXTreeList</classname>
+    widget (on the left side of the split) and the <classname>FXMatrix</classname>
+    layout manager (in the middle pane).</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/splitter.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>foursplit</title>
+
+    <para>The <ulink url="../examples/foursplit.rb"><filename>foursplit.rb</filename></ulink>
+    example program demonstrates the <classname>FX4Splitter</classname> layout
+    manager. This four-way split is especially useful for CAD-type programs
+    where it&#39;s necessary to show multiple views of the model
+    simultaneously.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/foursplit.png"
+          format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>shutter</title>
+
+    <para>The <ulink url="../examples/shutter.rb"><filename>shutter.rb</filename></ulink>
+    example provides a simple demonstration of the <classname>FXShutter</classname>
+    widget, with the skeleton of a PIM-type application. The very nice icons
+    used for this program are courtesy of <ulink
+    url="http://www.forrestwalter.com/icons">Gort&#39;s Icons</ulink>.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/shutter.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>tabbook</title>
+
+    <para>The <ulink url="../examples/tabbook.rb"><filename>tabbook.rb</filename></ulink>
+    example exists mainly to demonstrate the <classname>FXTabBook</classname>
+    widget, but shows off a few other features in the process.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/tabbook.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>table</title>
+
+    <para>The <ulink url="../examples/table.rb"><filename>table.rb</filename></ulink>
+    example features the <classname>FXTable</classname> widget, sometimes
+    known as a &#34;grid&#34; or &#34;spreadsheet&#34; widget in other
+    toolkits.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/table.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>gltest</title>
+
+    <para>The <ulink url="../examples/gltest.rb"><filename>gltest.rb</filename></ulink>
+    example program demonstrates how to create a basic OpenGL canvas (i.e. an
+    instance of the <classname>FXGLCanvas</classname> widget) and draw into
+    it. It also demonstrates how to use timers and chores. This example
+    requires the Ruby/OpenGL extension, available from the Ruby Application
+    Archive.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/gltest.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>glviewer</title>
+
+    <para>The <ulink url="../examples/glviewer.rb"><filename>glviewer.rb</filename></ulink>
+    example program demonstrates how to use the <classname>FXGLViewer</classname>
+    widget and draw various kinds of GL objects into it. It can also be used
+    as model for a fairly complicated FXRuby application, since it includes a
+    lot of typical features (like a menu bar, toolbar, status line, etc.).</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/glviewer.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>imageviewer</title>
+
+    <para>Like the <ulink url="../examples/glviewer.rb"><filename>glviewer.rb</filename></ulink>
+    example, the <ulink url="../examples/imageviewer.rb"><filename>imageviewer.rb</filename></ulink>
+    can be used as a model for a typical full-featured GUI application, with a
+    menu bar, toolbar, and so forth. It also features the
+    <classname>FXImageView</classname> widget.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/imageviewer.png"
+          format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>dilbert</title>
+
+    <para>The <ulink url="../examples/dilbert.rb"><filename>dilbert.rb</filename></ulink>
+    example fetches the &#34;Daily Dilbert&#34; cartoon and displays it in a
+    window. This was just a fun little exercise for me, but it does provide a
+    more bare-bones example of the <classname>FXImageView</classname> widget
+    than that provided by the (more complicated) <filename>imageviewer.rb</filename>
+    example.</para>
+
+    <para>This example program requires the html-parser extension, available
+    from the Ruby Application Archive.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/dilbert.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>raabrowser</title>
+
+    <para>The <ulink url="../examples/raabrowser.rb"><filename>raabrowser.rb</filename></ulink>
+    example program shows a treelist view of the current Ruby Application
+    Archive (RAA) contents, and product-specific information for the currently
+    selected product in the panel on the right. This is a good demonstration
+    of the following features:</para>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>the <classname>FXSplitter</classname> layout manager, used to
+        split the left side (containing the tree list) from the right side
+        (containing the information panel). If the panel on the left is too
+        narrow to see all of its contents (especially when you&#39;ve expanded
+        the tree) try resizing the split.</para>
+      </listitem>
+
+      <listitem>
+        <para>the <classname>FXTreeList</classname> widget, used to display
+        the RAA contents.</para>
+      </listitem>
+
+      <listitem>
+        <para>data targets (i.e. instances of class <classname>FXDataTarget</classname>),
+        which are used for the contents of the fields in the information
+        panel.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>This example program requires the <ulink
+    url="http://www.jin.gr.jp/~nahi/Ruby/SOAP4R">SOAP4R</ulink> extension.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/raabrowser.png"
+          format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>babelfish</title>
+
+    <para>The <ulink url="../examples/babelfish.rb"><filename>babelfish.rb</filename></ulink>
+    example program, like the <filename>raabrowser.rb</filename> example,
+    depends on the <ulink url="http://www.jin.gr.jp/~nahi/Ruby/SOAP4R">SOAP4R</ulink>
+    extension. Other than that it doesn&#39;t bring anything new to the table.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/babelfish.png"
+          format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+
+  <simplesect>
+    <title>browser</title>
+
+    <para>The <ulink url="../examples/browser.rb"><filename>browser.rb</filename></ulink>
+    example program is mainly a &#34;me too&#34; for the class browser
+    distributed with Ruby/GTK. It&#39;s hard for me to get excited about it,
+    but here it is.</para>
+
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="images/browser.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </simplesect>
+</chapter>

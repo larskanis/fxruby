@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:doap="http://usefulinc.com/ns/doap#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <doap:Project>
+    <doap:name>FXRuby</doap:name>
+    <doap:shortname>FXRuby</doap:shortname>
+    <doap:homepage rdf:resource="http://www.fxruby.org"/>
+    <doap:old-homepage rdf:resource="http://fxruby.sourceforge.net"/>
+    <doap:created>2001-01-01</doap:created>
+    <doap:description>FXRuby is an extension module for Ruby that provides an interface to the FOX GUI toolkit.</doap:description>
+    <doap:shortdesc>FXRuby is a Ruby interface to the FOX GUI toolkit.</doap:shortdesc>
+    <doap:wiki rdf:resource="http://fxruby.rubyforge.org/wiki/wiki.pl"/>
+    <doap:bug-database rdf:resource="http://rubyforge.org/tracker/?atid=1223&amp;group_id=300&amp;func=browse"/>
+    <doap:mailing-list rdf:resource="http://rubyforge.org/mailman/listinfo/fxruby-users"/>
+    <doap:screenshots rdf:resource="http://www.fxruby.org/doc/examples.html"/>
+    <doap:programming-language>Ruby</doap:programming-language>
+    <doap:license rdf:resource="http://usefulinc.com/doap/licenses/lgpl"/>
+    <doap:download-page rdf:resource="http://rubyforge.org/frs/?group_id=300"/>
+
+    <doap:maintainer>
+      <foaf:Person>
+        <foaf:name>Lyle Johnson</foaf:name>
+        <foaf:nick>lyle</foaf:nick>
+        <foaf:mbox_sha1sum>6a53ac5fe72eaa9e17d14207ed0bbdaa2fb8aed9</foaf:mbox_sha1sum>
+        <rdfs:seeAlso rdf:resource="http://lylejohnson.name/foaf.rdf"/>
+      </foaf:Person>
+    </doap:maintainer>
+
+    <doap:repository>
+      <doap:CVSRepository>
+        <doap:anon-root>:pserver:anonymous@rubyforge.org:/var/cvs/fxruby</doap:anon-root>
+        <doap:module>FXRuby</doap:module>
+        <doap:browse rdf:resource="http://rubyforge.org/cgi-bin/viewcvs/cgi/viewcvs.cgi/?cvsroot=fxruby"/>
+      </doap:CVSRepository>
+    </doap:repository>
+
+    <!-- Software Development :: Libraries :: Ruby Modules -->
+    <doap:category rdf:resource="http://freshmeat.net/browse/955/"/>
+
+    <!-- Software Development :: User Interfaces -->
+    <doap:category rdf:resource="http://freshmeat.net/browse/909/"/>
+
+    <!-- Software Development :: Widget Sets -->
+    <doap:category rdf:resource="http://freshmeat.net/browse/851/"/>
+
+    <!-- current fox release -->
+    <doap:release>
+      <doap:Version>
+        <doap:branch>fox</doap:branch>
+        <doap:created>2004-06-16</doap:created>
+        <doap:revision>1.0.29</doap:revision>
+      </doap:Version>
+    </doap:release>
+
+    <!-- current fox12 release -->
+    <doap:release>
+      <doap:Version>
+        <doap:branch>fox12</doap:branch>
+        <doap:created>2005-04-15</doap:created>
+        <doap:revision>1.2.6</doap:revision>
+      </doap:Version>
+    </doap:release>
+
+    <!-- current fox14 release -->
+    <doap:release>
+      <doap:Version>
+        <doap:branch>fox14</doap:branch>
+        <doap:created>2006-09-13</doap:created>
+        <doap:revision>1.4.7</doap:revision>
+      </doap:Version>
+    </doap:release>
+
+    <!-- current fox16 release -->
+    <doap:release>
+      <doap:Version>
+        <doap:branch>fox16</doap:branch>
+        <doap:created>@@DATE@@</doap:created>
+        <doap:revision>@@FXRUBY_VERSION@@</doap:revision>
+      </doap:Version>
+    </doap:release>
+
+  </doap:Project>
+</rdf:RDF>
+

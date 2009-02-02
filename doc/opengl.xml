@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="opengl">
+  <title>Using OpenGL with FXRuby</title>
+
+  <abstract>
+    <para>FOX provides extensive support for OpenGL through its
+    <classname>FXGLCanvas</classname> and <classname>FXGLViewer</classname>
+    widgets, and FXRuby in turn provides interfaces to those classes. By
+    combining FXRuby with the OpenGL interface for Ruby (described below) you
+    can develop very powerful 3-D graphics applications. This chapter gives
+    you the information you'll need to get started.</para>
+  </abstract>
+
+  <simplesect>
+    <title>What is OpenGL?</title>
+
+    <para>OpenGL is a platform-independent API for 2D and 3D graphics. The
+    home page is <ulink
+    url="http://www.opengl.org">http://www.opengl.org</ulink>. Because it's a
+    fairly open standard, highly optimized OpenGL drivers are available for
+    most operating systems (including Windows and Linux).</para>
+  </simplesect>
+
+  <simplesect>
+    <title>OpenGL Extensions for Ruby</title>
+
+    <para>This extension module, developed by Yoshiyuki Kusano, provides
+    interfaces to not only the basic OpenGL API, but also the GLU and GLUT
+    APIs. As of this writing, the currently released version is 0.32d and is
+    available for download from <ulink
+    url="http://www2.giganet.net/~yoshi/rbogl-0.32b.tgz">http://www2.giganet.net/~yoshi/rbogl-0.32d.tgz</ulink>.
+    Be sure to check the <ulink
+    url="http://www.ruby-lang.org/en/raa.html">Ruby Application
+    Archive</ulink> for the latest version of this extension as it is still
+    under development.</para>
+
+    <para>Once you've downloaded the tarball, you should extract its contents
+    to the working directory of your choice by typing:</para>
+
+    <screen>$ <command>tar xzf rbogl-0.32d.tgz</command></screen>
+
+    <para>After executing this command you should have a new <filename
+    class="directory">opengl</filename> (<emphasis>not</emphasis> <filename
+    class="directory">rbogl-0.32b</filename>) subdirectory. Change to this
+    directory and then type:</para>
+
+    <screen>$ <command>ruby extconf.rb</command></screen>
+
+    <para>This should create a <filename>Makefile</filename> configured
+    appropriately for your local Ruby installation. To now build the OpenGL
+    module, type:</para>
+
+    <screen>$ <command>make</command></screen>
+
+    <para>You can safely ignore the warning(s) about
+    <methodname>glut_KeyboardFunc</methodname> when it's compiling
+    <filename>glut.c</filename>. Well, I ignore them and it hasn't hurt me yet
+    ;) Assuming you get an otherwise clean build, install the OpenGL
+    extensions by typing:</para>
+
+    <screen>$ <command>make site-install</command></screen>
+
+    <para>Please note that I'm not the maintainer of this particular Ruby
+    extension, so I can't really accept bug fixes for it. But if you're having
+    trouble integrating Ruby/OpenGL with FXRuby, let me know and we'll see
+    what we can do.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>The FXGLVisual Class</title>
+
+    <para>An <classname>FXGLVisual</classname> object describes the
+    capabilities of an <classname>FXGLCanvas</classname> or
+    <classname>FXGLViewer</classname> window. Typically, an X server supports
+    many different visuals with varying capabilities, but the ones with
+    greater capabilities require more resources than those with fewer
+    capbilities. To construct an <classname>FXGLVisual</classname> object,
+    just call <methodname>FXGLVisual.new</methodname>:</para>
+
+    <programlisting format="linespecific">aVisual = FXGLVisual.new(theApp, VISUAL_DOUBLEBUFFER)</programlisting>
+
+    <para>The first argument to <methodname>FXGLVisual.new</methodname> is a
+    reference to the application object. The second argument is a set of
+    options indicating the <emphasis>requested</emphasis> capabilities for the
+    visual. If one or more of the requested capabilities aren't available, FOX
+    will try to gracefully degrade to a working GL visual; but if you're
+    counting on a specific capability, be sure to check the returned visual to
+    see if it actually supports that capability. For example, say you request
+    a visual with double-buffering and stereographic capabilities:</para>
+
+    <programlisting format="linespecific">anotherVisual = FXGLVisual.new(theApp, VISUAL_DOUBLEBUFFER | VISUAL_STEREO)</programlisting>
+
+    <para>Double-buffering is pretty commonplace these days, but stereo may
+    not be available on the system. We can check to see whether the visual we
+    got supports these capabilities by calling the
+    <methodname>FXGLVisual#doubleBuffered?</methodname> and
+    <methodname>FXGLVisual#stereo?</methodname> methods:</para>
+
+    <programlisting format="linespecific">anotherVisual = FXGLVisual.new(theApp, VISUAL_DOUBLEBUFFER | VISUAL_STEREO)
+if anotherVisual.doubleBuffered?
+  puts "It's double-buffered."
+else
+  puts "It's single-buffered."
+end
+if anotherVisual.stereo?
+  puts "It's stereo."
+else
+  puts "It isn't stereo."
+end</programlisting>
+
+    <para>Some <classname>FXGLVisual</classname> object must be associated
+    with every <classname>FXGLCanvas</classname> or
+    <classname>FXGLViewer</classname> window, but you don't need to have a
+    separate <classname>FXGLVisual</classname> object for each window. For
+    most applications, you can just construct a single
+    <classname>FXGLVisual</classname> object that's shared among all the
+    OpenGL windows.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>The FXGLCanvas Class</title>
+
+    <para>The <classname>FXGLCanvas</classname> widget provides a very simple
+    OpenGL-capable window with minimal functionality. To construct an
+    <classname>FXGLCanvas</classname>, call
+    <methodname>FXGLCanvas.new</methodname>:</para>
+
+    <programlisting format="linespecific">glCanvas = FXGLCanvas.new(parent, vis)</programlisting>
+
+    <para>The first argument to <methodname>FXGLCanvas.new</methodname> is the
+    parent (container) widget and the second argument is the
+    <classname>FXGLVisual</classname> that should be used for this
+    window.</para>
+  </simplesect>
+
+  <simplesect>
+    <title>OpenGL objects and the FXGLViewer</title>
+
+    <para>The <classname>FXGLViewer</classname> widget provides a higher-level
+    OpenGL-capable window with a lot of built-in functionality. To construct
+    an <classname>FXGLViewer</classname>, call
+    <methodname>FXGLViewer.new</methodname>:</para>
+
+    <programlisting format="linespecific">glViewer = FXGLViewer.new(parent, vis)</programlisting>
+
+    <para>The first argument to <methodname>FXGLViewer.new</methodname> is the
+    parent (container) widget and the second argument is the
+    <classname>FXGLVisual</classname> that should be used for this
+    window.</para>
+  </simplesect>
+</appendix>

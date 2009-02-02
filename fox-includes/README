@@ -1,0 +1,4 @@
+This directory just contains an archived copy of the include files from the
+standard FOX distribution on which this release of FXRuby is based. This
+gives the maintainer a good frame of reference for comparing against newer
+FOX releases, to see what's changed in the API.

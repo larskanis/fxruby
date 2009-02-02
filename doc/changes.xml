@@ -1,0 +1,1523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="changes">
+  <title>Change History</title>
+
+  <simplesect>
+    <title>Changes For Version 1.6.6 (February 10, 2007)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Somewhere along the way, the RAA browser example program got
+        broken due to changes in the SOAP interface to RAA (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=7977&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #7977</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>Some debugging code that was meant to detect errors in FXRuby
+        message data conversion was inadvertently causing some user
+        applications to crash when running under Windows (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=8049&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #8049</ulink>). This debugging code has been changed to avoid the
+        problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Modified the implementations of the each iterator methods for
+        <classname>FXFoldingList</classname>,
+        <classname>FXFoldingItem</classname>,
+        <classname>FXTreeItem</classname>, <classname>FXTreeList</classname>
+        and <classname>FXTreeListBox</classname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=8090&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #8090</ulink>). The new implementation is a bit more robust in
+        terms of modifications (such as deletion) of the iterated-over
+        elements.</para>
+      </listitem>
+
+      <listitem>
+        <para>A bug in the new keyword arguments library (introduced in
+        version 1.6.5) caused the <methodname>initialize</methodname> method
+        for the <classname>FXDCWindow</classname> class to do the wrong thing
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=8441&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #8441</ulink>). This has been corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>A different bug in the keyword arguments library caused the
+        <methodname>initialize</methodname> method for the
+        <classname>FXFont</classname> class to do the wrong thing (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=8517&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #8517</ulink>). This also has been corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>Yet another bug in the keyword arguments library broke the part
+        of the code that used to yield <constant>self</constant> to an
+        optional block attached to the call to <methodname>new</methodname>
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=8518&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #8518</ulink>). This has been corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>Most of the FXRuby example programs have been updated to use the
+        keyword arguments library.</para>
+      </listitem>
+
+      <listitem>
+        <para>Added a new "virtual" keyword argument
+        <constant>:padding</constant> that can be used in place of (or in
+        addition to) the <constant>:padLeft</constant>,
+        <constant>:padRight</constant>, <constant>:padTop</constant> and
+        <constant>:padBottom</constant> arguments for a constructor. When a
+        <constant>:padding</constant> value is passed in to the arguments
+        hash, that value will be used for any of the four regular padding
+        values that aren't otherwise specified. See the example programs for,
+        you know, examples.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.6.20 and
+        FXScintilla version 1.71.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.6.5 (January 20, 2007)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Clicking outside of the visible cells for an
+        <classname>FXTable</classname> when there was no current selection
+        caused the code to raise an exception (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5907&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5907</ulink>). This problem has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>hasTimeout?</methodname> method for the
+        <classname>FXApp</classname> class was implemented incorrectly (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=7564&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #7564</ulink>). This problem has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXFoldingList</classname> and
+        <classname>FXFoldingItem</classname> classes did not have each
+        iterator methods like most of the other list-based widgets (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=7978&amp;group_id=300&amp;atid=1225">RubyForge
+        Patch #7978</ulink>). These have been added.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for <classname>FXMDIClient</classname>
+        claimed that <classname>FXScrollArea</classname> was its base class
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=7979&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #7979</ulink>). This has been corrected; the base class for
+        <classname>FXMDIClient</classname> is
+        <classname>FXComposite</classname>.</para>
+      </listitem>
+
+      <listitem>
+        <para>There was a small typo in the documentation for the
+        <classname>FXFoldingList</classname> class options (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=7981&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #7981</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>Added preliminary support for keyword-style arguments, as
+        described in the <ulink
+        url="http://www.fxruby.org/doc/differences.html">"Differences Between
+        FOX and FXRuby"</ulink> section of the <ulink
+        url="http://www.fxruby.org/doc/book.html">FXRuby User's
+        Guide</ulink>.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.6.20 and
+        FXScintilla version 1.71.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.6.4 (November 30, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>A change made in Ruby 1.8.5 for cyclic requires led to a problem
+        that caused the Ruby interpreter to emit a large number of warnings
+        (see <ulink
+        url="http://rubyforge.org/tracker/?func=detail&amp;aid=5633&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5633</ulink>). This problem has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.6.16 and
+        FXScintilla version 1.71.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.6.3 (October 27, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Widgets of some classes (namely
+        <classname>FXTopWindow</classname> and
+        <classname>FXMDIChild</classname>) weren't properly sending a
+        <constant>SEL_CLOSE</constant> message to their message targets (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5498&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5498</ulink>). Thanks to a change in FOX version 1.6.16, this
+        problem has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>getControlFor</methodname> method for the
+        <classname>FXComboTableItem</classname> class was coded incorrectly
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5906&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5906</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>There was a minor typo in the API documentation for the
+        <application><classname>FXTriStateButton</classname></application>
+        class (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5962&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5962</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>each_row</methodname> and
+        <methodname>each_column</methodname> iterator methods for the
+        <classname>FXTable</classname> class were incorrectly coded (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=6036&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #6036</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>new</methodname> class methods for
+        <classname>FXColorItem</classname>, <classname>FXDirItem</classname>,
+        <classname>FXFileItem</classname>,
+        <classname>FXFoldingItem</classname>,
+        <classname>FXHeaderItem</classname>,
+        <classname>FXIconItem</classname>, <classname>FXListItem</classname>
+        and <classname>FXTreeItem</classname> were all raising exceptions when
+        a non-<constant>nil</constant> value was passed in for the last
+        argument (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=6197&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #6197</ulink>). A similar problem was present for various instance
+        methods in the <classname>FXColorList</classname>,
+        <classname>FXListBox</classname> and
+        <classname>FXMDIClient</classname> classes. These problems have been
+        fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>A few problems were discovered for the
+        <filename>inputs.rb</filename> example program (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=6209&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #6209</ulink>). These problems have been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>Several instance methods for the <classname>FXTable</classname>
+        class were not actually present under their documented names (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=6211&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #6211</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The build script was not compatible with changes made in the
+        recently-released FXScintilla 1.71 (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=6313&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #6313</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.6.16 and
+        FXScintilla version 1.71.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.6.2 (September 13, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The <methodname>expandTree()</methodname> and
+        <methodname>collapseTree()</methodname> methods for the
+        <classname>FXFoldingList</classname> class were incorrectly identified
+        as <methodname>expandFolding()</methodname> and
+        <methodname>collapseFolding()</methodname> in the API documentation
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5354&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5354</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXDockTitle</classname> class was not supported
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5632&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5632</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXGLCanvas</classname>
+        class claimed it had a <methodname>shared?</methodname> method, but it
+        didn't (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5591&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5591</ulink>). Now it does.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXGradientBar</classname> class was not supported
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5746&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5746</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.6.14 and
+        FXScintilla version 1.67 (from CVS).</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.7 (September 13, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The <methodname>children</methodname> instance method for the
+        <classname>FXWindow</classname> class always returned an array of
+        <classname>FXWindow</classname> instances, even if the actual types
+        should have been instances of subclasses of
+        <classname>FXWindow</classname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4342&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4342</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>dilbert.rb</filename> example program was broken
+        due to a change in the Dilbert.com web site structure (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4597&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4597</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>expandTree()</methodname> and
+        <methodname>collapseTree()</methodname> methods for the
+        <classname>FXFoldingList</classname> class were incorrectly identified
+        as <methodname>expandFolding()</methodname> and
+        <methodname>collapseFolding()</methodname> in the API documentation
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5354&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5354</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXDockTitle</classname> class was not supported
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5632&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5632</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXGLCanvas</classname>
+        class claimed it had a <methodname>shared?</methodname> method, but it
+        didn't (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5591&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5591</ulink>). Now it does.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXGradientBar</classname> class was not supported
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5746&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5746</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.4.34 and
+        FXScintilla version 1.63.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.6.1 (July 21, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The message data sent along for the
+        <constant>SEL_INSERTED</constant>, <constant>SEL_DELETED</constant>
+        and <constant>SEL_REPLACED</constant> messages from an a
+        <classname>FXText</classname> widget to its target was not being
+        converted properly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4666&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4666</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The code related to the localization of application messages in
+        FOX wasn't implemented properly in FXRuby, and as a result,
+        constructing certain dialogs (like the color dialog) could cause a
+        program to crash (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5000&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5000</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The "Stop Spin" button in the gltest.rb example program didn't
+        stop the cubes from spinning after either the "Spin Timer" or "Spin
+        Chore" option was selected (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5001&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5001</ulink>). This was actually a symptom of a larger problem,
+        that FXRuby wasn't properly handling timers and chores. These problems
+        have been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>Setting the current item for an
+        <classname>FXComboBox</classname> to -1 (to indicate that there's no
+        current item) would cause FXRuby to erroneously raise an
+        <classname>IndexError</classname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5007&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5007</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The documentation for the <methodname>reparent</methodname>
+        instance method for the <classname>FXWindow</classname> class was
+        incorrect (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=5035&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #5035</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>textedit.rb</filename> example program was not up
+        to date with some of the changes for FOX 1.6. This example has been
+        updated.</para>
+      </listitem>
+
+      <listitem>
+        <para>The new <methodname>font</methodname> method for the
+        <classname>FXFont</classname> class was not documented. This has been
+        fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>dilbert.rb</filename> example program has been
+        modified to use the RubyfulSoup HTML library instead of the
+        html-parser library.</para>
+      </listitem>
+
+      <listitem>
+        <para>As discussed in various forums (see for example <ulink
+        url="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/182827">this
+        post</ulink>), the <methodname>autorequire</methodname> directive for
+        RubyGems specifications is now deprecated. As a result, this has been
+        removed from the FXRuby gem specification. This change will break any
+        code that was using a statement like:<programlisting>require_gem 'fxruby'</programlisting>as
+        the sole means for loading FXRuby. Such programs should instead
+        use:<programlisting>require 'fox16'</programlisting>which will work
+        for either gem based or non-gem based installations.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.6.8 and
+        FXScintilla version 1.67 (from CVS).</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.6.0 (May 29, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>This is the first release of FXRuby compatible with FOX version
+        1.6. One of the most signficant changes for FOX 1.6 has been the
+        addition of Unicode support; all FOX widgets and internal string
+        processing routines are now Unicode aware. For a comprehensive
+        overview of the changes made to FOX since version 1.4 (including those
+        made in the FOX 1.5 development series), please refer to the <ulink
+        url="http://www.fox-toolkit.com/news.html">News archives</ulink> at
+        the FOX web site.</para>
+      </listitem>
+
+      <listitem>
+        <para>Added the <methodname>allowSide</methodname>,
+        <methodname>disallowSide</methodname> and
+        <methodname>allowedSide?</methodname> methods for the
+        <classname>FXDockBar</classname> class, as complements to the
+        <methodname>allowedSides</methodname> accessor methods (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2307&amp;group_id=300&amp;atid=1226">RubyForge
+        Feature Request #2307</ulink>).</para>
+      </listitem>
+
+      <listitem>
+        <para>Added the <methodname>visible=</methodname> and
+        <methodname>visible?</methodname> accessor methods for the
+        <classname>FXWindow</classname> class, as complements to the
+        <methodname>show</methodname>, <methodname>hide</methodname> and
+        <methodname>shown?</methodname> methods (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3579&amp;group_id=300&amp;atid=1226">RubyForge
+        Feature Request #3579</ulink>).</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>browser.rb</filename> example was making use of a
+        deprecated API (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4325&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4325</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>children</methodname> instance method for the
+        <classname>FXWindow</classname> class always returned an array of
+        <classname>FXWindow</classname> instances, even if the actual types
+        should have been instances of subclasses of
+        <classname>FXWindow</classname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4342&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4342</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>dilbert.rb</filename> example program was broken
+        due to a change in the Dilbert.com web site structure (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4597&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4597</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.6.5 and
+        FXScintilla version 1.67 (from CVS).</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.6 (April 26, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>FXRuby would not compile properly on some x86-64 systems (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3729&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3729</ulink>). This error has been corrected. Thanks to Javier
+        Goizueta for initially reporting this problem, and especially to
+        Tobias Peters for providing a patch.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXIconDict</classname> widget was accidentally
+        "lost" in the transition between FXRuby versions 1.2 and 1.4 (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4117&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4117</ulink>). This error has been corrected. Thanks to Manfred
+        Usselmann for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXSwitcher</classname> widget was not sending the
+        appropriate message data to its message target for the
+        <constant>SEL_COMMAND</constant> message type (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4157&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4157</ulink>). This error has been corrected. Thanks to Manfred
+        Usselmann for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXSeparator</classname> class wasn't implemented
+        properly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4158&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4158</ulink>). This error has been corrected. Thanks to Gerard
+        Menochet for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>findItemByData</methodname> method was
+        implemented incorrectly for the <classname>FXComboBox</classname>,
+        <classname>FXFoldingList</classname>,
+        <classname>FXIconList</classname>, <classname>FXList</classname> and
+        <classname>FXListBox</classname> classes (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4172&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4172</ulink>). This error has been corrected. Thanks to Gerard
+        Menochet for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXListBox</classname> widget was not sending the
+        appropriate message data to its message target for the
+        <constant>SEL_COMMAND</constant> message type (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4255&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4255</ulink>). This error has been corrected. Thanks to Gerard
+        Menochet for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.4.29 and
+        FXScintilla version 1.63.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.5 (April 10, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The <classname>FXTextField</classname> class was not properly
+        responding to the <constant>ID_INSERT_STRING</constant> command (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3320&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3320</ulink>). This error has been corrected. Thanks to Uwe Hartl
+        for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>text</methodname> and
+        <methodname>getText</methodname> methods for the
+        <classname>FXMenuCaption</classname> class were returning
+        <constant>nil</constant> instead of the actual value (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3458&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3458</ulink>). This error has been corrected. Thanks to Meinrad
+        Recheis (Henon) for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXMDIChild</classname>
+        class erroneously listed <constant>SEL_CLOSEALL</constant> as one of
+        the message types that an MDI child window might send to its message
+        target (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3508&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3508</ulink>). This error has been corrected. Thanks to Meinrad
+        Recheis (Henon) for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Calling the <methodname>selectRange</methodname> method for
+        class <classname>FXTable</classname> would cause a fatal error instead
+        of merely raising an <classname>IndexError</classname> exception (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3615&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3615</ulink>). This error has been corrected. Thanks to Meinrad
+        Recheis (Henon) for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Due to an error in the SWIG interface files, the
+        <classname>FXChoiceBox</classname> class was basically unusable (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3676&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3676</ulink>). This error has been corrected. Thanks to Uwe Hartl
+        for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the
+        <classname>FXRealSlider</classname> and
+        <classname>FXRealSpinner</classname> classes erroneously claimed that
+        the message data for the <constant>SEL_COMMAND</constant> and
+        <constant>SEL_CHANGED</constant> messages sent by these widgets to
+        their targets were integers (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3749&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3749</ulink>). Along the same lines, the message data for those
+        widgets wasn't being converted correctly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3750&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3750</ulink>). Both of these errors have been corrected. Thanks
+        to Meinrad Recheis (Henon) for reporting these problems.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the Fox module incorrectly listed the
+        names of the <methodname>FXSELTYPE</methodname> and
+        <methodname>FXSELID</methodname> methods as
+        <methodname>SELTYPE</methodname> and <methodname>SELID</methodname>
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3940&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3940</ulink>). This error has been corrected. Thanks to Joel
+        VanderWerf for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <classname>FXTableItem</classname> constructor was supposed
+        to (optionally) accept a reference to an arbitrary Ruby object as its
+        third argument, but this wasn't working properly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=4005&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #4005</ulink>). This error has been corrected. Thanks to Mark
+        Volkman for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.4.29 and
+        FXScintilla version 1.63.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.4 (January 21, 2006)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The build instructions for Unix platforms had not been updated
+        recently and as such contained some errors (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3014&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3014</ulink>). These errors have been corrected. Thanks to Dave
+        Burns for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>extendSelection</methodname> method for the
+        <classname>FXTable</classname> class was raising an exception if an
+        out of bounds row or column index was passed in (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3050&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3050</ulink>). This has been changed so that
+        <methodname>extendSelection</methodname> instead returns false for out
+        of bounds arguments. Thanks to Leonid Moiseichuk for reporting this
+        problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>each_child</methodname> iterator method for the
+        <classname>FXWindow</classname> class would fail if the child window
+        was destroyed in the block (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3134&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3134</ulink>). Thanks to Liam Irish for reporting this problem
+        and providing a patch.</para>
+      </listitem>
+
+      <listitem>
+        <para>The message data for the <constant>SEL_REPLACED</constant>
+        message sent by the <classname>FXTable</classname> class to its target
+        was not being handled properly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=3244&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #3244</ulink>). There were also problems with the message data for
+        the <constant>SEL_SELECTED</constant> and
+        <constant>SEL_DESELECTED</constant> messages. Furthermore, the
+        <constant>SEL_REPLACED</constant> message was not documented in the
+        RDoc documentation for the <classname>FXTable</classname> class. All
+        of these problems have been corrected. Thanks to _blackdog for
+        reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.4.29 and
+        FXScintilla version 1.63.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.3 (November 7, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The <constant>TOGGLEBUTTON_KEEPSTATE</constant> option for the
+        <classname>FXToggleButton</classname> class was not documented (see
+        <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2286&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2286</ulink>). This oversight has been corrected. Thanks to Tim
+        Smith for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>scintilla.rb</filename> library file was not up to
+        date with the latest FXScintilla release, and as a result it was
+        missing some methods (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2479&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2479</ulink>). This oversight has been corrected. Thanks to Maxim
+        Kulkin for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Due to changes in the APIs for timers and chores, the mechanisms
+        for removing chores and timeouts were broken (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2563&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2563</ulink>). This bug has been fixed. Thanks to "moinker" for
+        reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>An error in the test setup caused all of the tests for the
+        <classname>FXList</classname> class to fail (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2564&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2564</ulink>). This bug has been fixed. Thanks to Peter for
+        reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Due to a bug in the test suite runner script, not all test cases
+        were being exercised (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2565&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2565</ulink>). This bug has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>Calling the <methodname>getPixel</methodname> method for the
+        <classname>FXImage</classname> class when the client-side pixel buffer
+        for the image has already been released would cause a program to crash
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2611&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2611</ulink>). Now, <methodname>getPixel</methodname> will raise
+        an exception if it's called after the pixel buffer has been released.
+        The documentation for <methodname>getPixel</methodname> has been
+        updated accordingly. Thanks to Gonzalo Garramuno for reporting this
+        problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>makePositionVisible</methodname> method for the
+        <classname>FXTable</classname> class was raising an exception when
+        passed out-of-bounds values for the row or column index (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2660&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2660</ulink>). This could happen, for example, if you were to
+        click in a table area outside of the regular cells (which indirectly
+        triggers a call to <methodname>makePositionVisible</methodname>). This
+        was actually inconsistent with standard FOX behavior, which simply
+        ignores out of bounds values for that method's arguments. This bug has
+        been fixed, and the documentation for
+        <methodname>makePositionVisible</methodname> has been updated
+        accordingly. Thanks to Ralf Jonas for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.4.21 and
+        FXScintilla version 1.63.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.2 (August 22, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Due to a bug in the implementation, the
+        <methodname>checked?</methodname> method for the
+        <classname>FXCheckButton</classname> class always returned
+        <constant>false</constant> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1852&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1852</ulink>). This bug has been fixed. Thanks to Meinrad Recheis
+        for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXTable</classname>
+        class listed several obsolete attributes (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1928&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1928</ulink>). Those errors have been corrected. Thanks to Pavel
+        Sokolov for reporting these problems.</para>
+      </listitem>
+
+      <listitem>
+        <para>There were a number of bugs in the
+        <filename>textedit.rb</filename> example program (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1979&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1979</ulink>), and those bugs have been fixed. Thanks to Claude
+        Marinier for reporting these problems.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXTreeList</classname>
+        class' <methodname>new</methodname> method still showed the number of
+        visible items (<parameter>nvis</parameter>) as its second argument
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2171&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2171</ulink>). This problem has been corrected. Thanks to Bill
+        Atkins for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXTopWindow</classname>
+        class had a number of errors (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2269&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2269</ulink>). This problem has been corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXTreeList</classname>
+        class still listed the obsolete <methodname>reparentItem</methodname>
+        method (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2270&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2270</ulink>). This problem has been corrected. Thanks to Jacob
+        Hansen for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Due to a bug in how the SWIG typemaps for the
+        <type>FXlong</type> type were defined, some methods for the
+        <classname>FXFileStream</classname> class were broken (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=2275&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #2275</ulink>). This problem has been corrected. Thanks to Gonzalo
+        Garramuno for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Merged in all of the fixes for FXRuby 1.2.6.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.4.17 and
+        FXScintilla version 1.63.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.1 (August 20, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>This is the second release of FXRuby which is compatible with
+        FOX 1.4, and as such should be considered an "unstable" release. For a
+        history of the changes made during the FOX 1.3 and 1.4 development,
+        see the <ulink url="http://www.fox-toolkit.com/news.html">News</ulink>
+        page at the FOX Web site.</para>
+      </listitem>
+
+      <listitem>
+        <para>The unit tests (in the <filename>tests</filename> subdirectory)
+        had not been updated to require the <constant>fox14</constant>
+        feature, and were still looking at <constant>fox12</constant>. This
+        has been corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>A number of minor problems were corrected for the Windows build
+        of FXRuby.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.4.17 and
+        FXScintilla version 1.63.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.4.0 (August 19, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>This is the first release of FXRuby which is compatible with FOX
+        1.4, and as such should be considered an "unstable" release. For a
+        history of the changes made during the FOX 1.3 and 1.4 development,
+        see the <ulink url="http://www.fox-toolkit.com/news.html">News</ulink>
+        page at the FOX Web site.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.2.6 (April 15, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Some additional problems related to calling the
+        <methodname>setTableSize</methodname> method for an
+        <classname>FXTable</classname> were discovered (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1597&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1597</ulink>). This problem has been corrected. Thanks to Joel
+        VanderWerf for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>iconlist.rb</filename> example program had a
+        "Sort" pulldown menu filled with a number of commands that didn't
+        really do anything, including sorting the items (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1654&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1654</ulink>). This pulldown menu has been removed from that
+        example.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXDC</classname> class
+        erroneously referred to the <methodname>font</methodname> attribute as
+        <methodname>textFont</methodname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1667&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1667</ulink>). This problem has been corrected. Thanks to Meinrad
+        Recheis for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>checked?</methodname>,
+        <methodname>unchecked?</methodname> and
+        <methodname>maybe?</methodname> methods for the
+        <classname>FXMenuCheck</classname> class were missing (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1677&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1677</ulink>). This problem has been corrected. Thanks to Oliver
+        Smith for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the
+        <classname>FXScrollArea</classname> class incorrectly spelled the
+        names of the <methodname>horizontalScrollBar</methodname> and
+        <methodname>verticalScrollBar</methodname> methods as
+        <methodname>horizontalScrollbar</methodname> and
+        <methodname>verticalScrollbar</methodname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1678&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1678</ulink>). The documentation has been corrected. Thanks to
+        Jannis Pohlmann for reporting this mistake.</para>
+      </listitem>
+
+      <listitem>
+        <para>Some code in the <filename>groupbox.rb</filename> example
+        program was calling the <methodname>getRootWindow</methodname> method,
+        but that method has been renamed to <methodname>getRoot</methodname>
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1692&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1692</ulink>). This problem has been corrected. Thanks to
+        Jaroslav Stika for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>hasChar?</methodname> method for the
+        <classname>FXFont</classname> class was spelled without a trailing
+        question mark, but it seems more Ruby-like that it should, so we've
+        added an alias for that (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1714&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1714</ulink>). This method also now accepts a string of size 1
+        (i.e. a single character) as its input, as an alternative to an
+        ordinal value. Thanks to Meinrad Recheis for these suggestions.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the <classname>FXImage</classname>
+        class mistakenly listed <constant>IMAGE_ALPHA</constant> as a valid
+        image rendering hint, but this flag is no longer needed since FOX
+        images now always contain an alpha channel (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1715&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1715</ulink>). The documentation has been corrected. Thanks to
+        Meinrad Recheis for reporting this mistake.</para>
+      </listitem>
+
+      <listitem>
+        <para>Due to an error in the SWIG interface files, the
+        <methodname>data</methodname> method for the
+        <classname>FXSettings</classname> class was not being wrapped
+        properly. As a result, this method was unavailable and in turn led to
+        other dependent methods (like <methodname>each_section</methodname>)
+        to be unavailable as well (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1771&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1771</ulink>). This error has been corrected. Thanks to Jannis
+        Pohlmann for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.2.16 and
+        FXScintilla version 1.62.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.2.5 (March 1, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The change made for FXRuby version 1.2.4 regarding garbage
+        collection for table items corrected only one of the problems
+        described in <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1445&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1445</ulink>; There was still a problem related to the
+        "destructive" effects of the <methodname>setTableSize</methodname>
+        method for the <classname>FXTable</classname> class. This problem has
+        now been corrected as well. Thanks to David Peoples, Jamey Cribbs and
+        Joel VanderWerf for their assistance in helping me to track down this
+        problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>extractText</methodname> and
+        <methodname>overlayText</methodname> methods for the
+        <classname>FXTable</classname> class were implemented incorrectly and
+        weren't listed in the API documentation. These problems have been
+        corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>The checks for out-of-bounds indices in the
+        <methodname>getColumnX</methodname>,
+        <methodname>setColumnX</methodname>, <methodname>getRowY</methodname>,
+        <methodname>setRowY</methodname> and
+        <methodname>updateRange</methodname> methods for the
+        <classname>FXTable</classname> class were incorrect. These have been
+        fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>setTableSize</methodname> method for the
+        <classname>FXTable</classname> class now raises
+        <classname>ArgError</classname> if either the number of rows or
+        columns passed in as arguments is less than zero.</para>
+      </listitem>
+
+      <listitem>
+        <para>A typo in one of the source files was causing the build to fail
+        when compiled against Ruby versions 1.8.1 or earlier (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1551&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1551</ulink>). This error has been corrected. Thanks to Alex
+        McGuire for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>selectItem</methodname> method for the
+        <classname>FXTable</classname> class was removed in FOX 1.2, so we've
+        added a convenience method for this that just calls the
+        <methodname>selectRange</methodname> method under the hood (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1562&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1562</ulink>). Thanks to Joel VanderWerf for this
+        suggestion.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.2.13 and
+        FXScintilla version 1.62.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.2.4 (February 23, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Due to a change in some of the internal Ruby C APIs, a
+        compile-time error for FXRuby was introduced in some of the Ruby 1.8.2
+        preview releases (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1039&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1039</ulink>). One should not see any compile-time errors when
+        compiling FXRuby (versions 1.2.3 or later) against the Ruby 1.8.2
+        final release, but I've neverthless made a change to how those
+        internal APIs are used, to avoid any potential problems. Thanks to the
+        many users who pointed out this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Joel VanderWerf suggested some enhancements to the
+        <filename>image.rb</filename> example program in order to improve its
+        startup time (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1281&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1281</ulink>). Those changes have been incorporated. Thanks to
+        Joel for this suggestion.</para>
+      </listitem>
+
+      <listitem>
+        <para>One change for the <classname>FXImage</classname> class between
+        FOX versions 1.0 and 1.2 is the nature of the pixel buffer that's
+        passed to the <classname>FXImage</classname> constructor. Previously,
+        this pixel buffer was expected to be a string of bytes; now it's
+        expected to be an array of <type>FXColor</type> values. This
+        modification was not implemented correctly for FXRuby versions 1.2.3
+        and earlier (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1427&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1427</ulink>). This bug has been corrected, and the example
+        program (<filename>image.rb</filename>) and test cases have been
+        updated as well. Thanks to Oliver Smith and others for reporting this
+        problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>A couple of different problems, reported by Patrick Fernie and
+        David Peoples, exposed a flaw in how FXRuby manages the links between
+        FOX objects and their Ruby peers when the FOX objects are destroyed
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1445&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1445</ulink>). Without going into all the gory details, let's
+        just say that since we have no explicit control over when Ruby's
+        garbage collector decides to "collect" those Ruby peers that point to
+        C++ objects that have been destroyed, we need to take steps to
+        neutralize those Ruby peer objects so that they can't cause your
+        application to crash in the meantime; I've implemented a fix to take
+        care of this situation. Thanks to Patrick and David for reporting
+        these problems.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for FXRuby 1.2 still contained references
+        to the old "spellings" of the <methodname>fxparseAccel</methodname>
+        and <methodname>fxparseHotKey</methodname> method names, which were
+        all lowercase (i.e. <methodname>fxparseaccel</methodname> and
+        <methodname>fxparsehotkey</methodname>). (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1470&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1470</ulink>). These errors have been corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>Added the <methodname>FXScrollArea#scrollCorner</methodname>
+        method, which returns a reference to the scroll corner for any window
+        derived from <classname>FXScrollArea</classname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=843&amp;group_id=300&amp;atid=1226">RubyForge
+        Feature Request #1226</ulink>). Thanks to Brian Sheehan for this
+        suggestion.</para>
+      </listitem>
+
+      <listitem>
+        <para>Added the <methodname>FXMemoryBuffer#to_a</methodname> method,
+        which is just an alias for the <methodname>data</methodname> accessor
+        method that returns a copy of the data buffer as an array (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1295&amp;group_id=300&amp;atid=1226">RubyForge
+        Feature Request #1295</ulink>). Thanks to Meinrad Recheis for this
+        suggestion.</para>
+      </listitem>
+
+      <listitem>
+        <para>Added the <methodname>appendRows</methodname> and
+        <methodname>appendColumns</methodname> methods to the
+        <classname>FXTable</classname> class (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1426&amp;group_id=300&amp;atid=1226">RubyForge
+        Feature Request #1295</ulink>). Thanks to Brett Hallett for this
+        suggestion.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.2.13 and
+        FXScintilla version 1.62.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.2.3 (January 22, 2005)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>Since group boxes containing radio buttons no longer enforce the
+        radio behavior of radio buttons (i.e. keeping only one radio button
+        selected at a time), some of the example programs were no longer
+        working as desired (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=751&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #751</ulink> and <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1280&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1280</ulink>). This problem has been corrected. Thanks to Yuri
+        Leikind and Barry DeZonia for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Bob Sidebotham reported a little typo in the
+        <filename>table.rb</filename> example program (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=990&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #990</ulink>). This has been corrected.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for <classname>FXList</classname> did not
+        reflect the changes for FOX 1.2; the
+        <methodname>retrieveItem()</methodname> has been renamed to
+        <methodname>getItem()</methodname> and
+        <methodname>insertItem()</methodname> has been renamed to
+        <methodname>setItem()</methodname> (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1037&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1037</ulink> and <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1257&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1257</ulink>). This has been corrected. Thanks to Remy Drouilhet
+        and Stephan Kamper for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The Windows installer was missing some of the documentation
+        files (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1139&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1139</ulink>). This has been corrected. Thanks to Curt Hibbs and
+        Mark Smith for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>browser.rb</filename> example program was broken
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1146&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1146</ulink>). This has been corrected. Thanks to Stefan Lang for
+        reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The attribute setter for
+        <methodname>FXHeaderItem#justification</methodname> was defined
+        incorrectly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1276&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1276</ulink>). This has been corrected. Thanks to Joel VanderWerf
+        for reporting this problem (and providing a patch to fix it).</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>filenames</methodname> alias for the
+        <methodname>FXFileDialog#getFilenames()</methodname> instance method
+        was missing (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1277&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1277</ulink>). This error has been corrected. Thanks to Barry
+        DeZonia for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the
+        <classname>FXFileDialog</classname> class methods
+        <methodname>getOpenFilenames()</methodname>,
+        <methodname>getOpenDirectory()</methodname>,
+        <methodname>getOpenFilename()</methodname> and
+        <methodname>getSaveFilename()</methodname> was extremely inadequate
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1279&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1279</ulink>). This documentation has been improved. Thanks to
+        Barry DeZonia for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Brett Hallett contributed a Ruby port of the "ratio" example
+        program from the regular FOX distribution, for demonstrating the use
+        of the new <classname>FXSpring</classname> layout manager (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1282&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1282</ulink>). Many thanks to Brett for this addition!</para>
+      </listitem>
+
+      <listitem>
+        <para>Joel VanderWerf contributed code to simplify how programs
+        interact with modal and non-modal dialog boxes (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1283&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1283</ulink>). See the API documentation for the new
+        <methodname>FXDialogBox#execute_modal</methodname> and
+        <methodname>FXDialogBox#execute_nonmodal</methodname> methods for
+        examples of their use.</para>
+      </listitem>
+
+      <listitem>
+        <para>The attribute setters for
+        <methodname>FXRealSpinner#selBackColor</methodname> and
+        <methodname>FXSpinner#selBackColor</methodname> were defined
+        incorrectly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1297&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1297</ulink>). These have been corrected. Thanks to Meinrad
+        Recheis for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>tooltipPause</methodname> attribute reader for
+        the <classname>FXApp</classname> class was missing (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1306&amp;group_id=300&amp;atid=1225">RubyForge
+        Patch #1306</ulink>). Thanks to Joel VanderWerf for reporting this
+        omission and providing a patch to fix it.</para>
+      </listitem>
+
+      <listitem>
+        <para>The API documentation for the
+        <classname>FXToolBarTab</classname> class was missing (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1322&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1322</ulink>). Thanks to Joel VanderWerf for reporting this
+        omission.</para>
+      </listitem>
+
+      <listitem>
+        <para>The attribute accessors for
+        <methodname>FXText#visibleRows</methodname> and
+        <methodname>FXText#visibleColumns</methodname> were defined and
+        documented incorrectly (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1325&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #1325</ulink>). These have been corrected. Thanks to Karl El-Koura
+        for reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.2.13 and
+        FXScintilla version 1.62.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.2.2 (October 1, 2004)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>In order to avoid versioning problems when dealing with a mix of
+        applications based on either FXRuby 1.0 or 1.2, the feature name for
+        FXRuby has been changed from "fox" to "fox12". For most application
+        developers, this means that you will need to modify the source code
+        for applications targeted at FXRuby 1.2 to begin with the line</para>
+
+        <para><programlisting>require 'fox12'</programlisting>Note that no
+        changes should be required for legacy applications targeted at FXRuby
+        1.0.</para>
+      </listitem>
+
+      <listitem>
+        <para>Made a number of updates to the documentation, to reflect API
+        changes for FXRuby 1.2.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.2.9 and
+        FXScintilla version 1.61.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.2a2 (July 10, 2004)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>This is the second "alpha" release of FXRuby 1.2. This release
+        should be compatible with any FOX library version 1.2; it is not
+        compatible with any previous FOX library versions. As this is an alpha
+        release, users should expect a certain amount of instability, bugs,
+        etc.</para>
+      </listitem>
+
+      <listitem>
+        <para>For this release, all of the FOX 1.2 classes are available with
+        the exception of the <classname>FXBitmapView</classname> class. There
+        is a small problem with how the <classname>FXBitmapView</classname>
+        class is declared in the FOX 1.2 header files, and I'm trying to
+        decide how best to resolve that problem. The goal is to have this
+        problem resolved by the next alpha release of FXRuby.</para>
+      </listitem>
+
+      <listitem>
+        <para>For this release, all of the RDoc-based online documentation has
+        been brought up to date with the new APIs.</para>
+      </listitem>
+
+      <listitem>
+        <para>Portions of the FXRuby User's Guide were still out of date with
+        respect to the new APIs (see <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=988623&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #988623</ulink>). This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>mditest.rb</filename> example program was not up
+        to date with the new APIs. This has been fixed.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>glviewer.rb</filename> example program was not up
+        to date with the new APIs (see <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986479&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #986479</ulink>). This has been fixed. Thanks to Remy Drouilhet
+        for reporting this problem and suggesting the fixes.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <methodname>FXGLGroup#bounds</methodname> method was defined
+        incorrectly (see <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986476&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #986476</ulink>). This has been fixed. Thanks to Remy Drouilhet
+        for reporting this problem and suggesting the fix.</para>
+      </listitem>
+
+      <listitem>
+        <para>The <filename>scintilla-test.rb</filename> example program was
+        not up to date with the new APIs (see <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986172&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #986172</ulink>). This has been fixed. Thanks to Peter Watkins for
+        reporting this problem and submitting a corrected version of the
+        program.</para>
+      </listitem>
+
+      <listitem>
+        <para>There was a small typo in the table.rb example program (see
+        <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=988152&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #988152</ulink>). This has been fixed. Thanks to Jamey Cribbs for
+        reporting this problem and suggesting the fix.</para>
+      </listitem>
+
+      <listitem>
+        <para>Due to an oversight on my part, one of the overloaded
+        constructors for the <classname>FXRegion</classname> class wasn't
+        wrapped properly (see <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986181&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #986181</ulink>). This has been fixed. Thanks to Bil Bas for
+        reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Removed some obsolete aliases for the old leading and trailing
+        rows and columns for the <classname>FXTable</classname> class (see
+        <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986181&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #988038</ulink>). Thanks to Yuri Leikind for reporting this
+        problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>Added <classname>FXTable</classname> instance methods
+        <methodname>horizontalGridShown=()</methodname> and
+        <methodname>verticalGridShown=()</methodname> to complement the
+        already available <methodname>horizontalGridShown?</methodname> and
+        <methodname>verticalGridShown?</methodname> methods.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for the 1.2a1 release on Windows didn't have PNG
+        or JPEG image support built-in (see <ulink
+        url="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986180&amp;group_id=20243&amp;atid=120243">SourceForge
+        Bug #986180</ulink>). This has been fixed. Thanks to Bil Bas for
+        reporting this problem.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.2.7 and
+        FXScintilla version 1.61.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
+    <title>Changes For Version 1.2a1 (June 28, 2004)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>This is the first "alpha" release of FXRuby 1.2. This release
+        should be compatible with any FOX library version 1.2; it is not
+        compatible with any previous FOX library versions. As this is an alpha
+        release, users should expect a certain amount of instability, bugs,
+        etc.</para>
+
+        <para>The intent of this first alpha release is twofold. The primary
+        intent is allow application developers who have current projects based
+        on FXRuby 1.0 to begin the process of updating their applications for
+        compatibility with FXRuby 1.2. For this release, all of the classes
+        that existed in FXRuby 1.0 have been updated for compatibility with
+        FOX 1.2, and so developers should at least be able to begin to "port"
+        their applications forward now. Note that there have been a number of
+        changes for FOX 1.2 and FXRuby 1.2, both in terms of API changes and
+        less obvious "behavioral" changes. For a detailed summary of these
+        changes, please see <ulink
+        url="http://www.knology.net/~lyle/fox/1.2/WhatsNew.html">"What's New
+        in FOX 1.2"</ulink> (also available as a <ulink
+        url="http://www.knology.net/~lyle/fox/1.2/WhatsNew.pdf">PDF</ulink>).
+        Note that few, if any, of the new classes introduced in FOX 1.2 are
+        available in this first alpha release of FXRuby 1.2. Support for those
+        new classes should come along quickly in subsequent alpha releases of
+        FXRuby 1.2.</para>
+
+        <para>The secondary intent of this first alpha release is to introduce
+        the new <ulink
+        url="http://rubygems.rubyforge.org">RubyGems</ulink>-based packaging
+        of FXRuby and to begin to work out the inevitable kinks in that
+        system.</para>
+      </listitem>
+
+      <listitem>
+        <para>The binary gem for Windows was built with FOX version 1.2.4 and
+        FXScintilla version 1.57.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+</chapter>
