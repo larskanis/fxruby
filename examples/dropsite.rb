@@ -1,5 +1,4 @@
 require 'fox16'
-require 'fox16/kwargs'
 
 include Fox
 
@@ -7,7 +6,7 @@ class DropSite < FXMainWindow
   
   def initialize(anApp)
     # Initialize base class
-    super(anApp, "Drop Site",:opts => DECOR_ALL, :width => 400, :height => 300)
+    super(anApp, "Drop Site", :opts => DECOR_ALL, :width => 400, :height => 300)
     
     # Fill main window with canvas
     @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)

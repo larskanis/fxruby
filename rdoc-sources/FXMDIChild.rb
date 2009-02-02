@@ -116,12 +116,6 @@ module Fox
     def initialize(p, name, ic=nil, pup=nil, opts=0, x=0, y=0, width=0, height=0) # :yields: theMDIChild
     end
   
-    # Get next MDI Child
-    def getMDINext(); end
-  
-    # Get previous MDI Child
-    def getMDIPrev(); end
-  
     #
     # Minimize this window.
     # If _notify_ is +true+, ...

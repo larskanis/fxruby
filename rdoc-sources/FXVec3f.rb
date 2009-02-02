@@ -6,9 +6,14 @@ module Fox
     attr_accessor :z
     
     #
-    # Return an initialized FXVec3f instance.
+    # Return an FXVec3f instance with _x_, _y_ and _z_ initialized to zeroes.
     #
-    def initialize(xx, yy, zz); end
+    def initialize; end
+    
+    #
+    # Return an FXVec3f instance initialized with specified component values.
+    #
+    def initialize(xx, yy, zz=1.0); end
   
     #
     # Returns the element at _index_, where _index_ is 0, 1 or 2.

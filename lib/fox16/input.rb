@@ -1,4 +1,5 @@
 module Fox
+  
   class FXApp
 
     alias addInputOrig addInput # :nodoc:
@@ -31,24 +32,28 @@ module Fox
     #
 
     def addInput(fd, mode, *args, &block)
+      params = {}
+      params = args.pop if args.last.is_a? Hash
       tgt, sel = nil, 0
       if args.length > 0
         if args[0].respond_to? :call
           tgt = FXPseudoTarget.new
-	  tgt.pconnect(SEL_IO_READ, args[0], block)
-	  tgt.pconnect(SEL_IO_WRITE, args[0], block)
-	  tgt.pconnect(SEL_IO_EXCEPT, args[0], block)
+          tgt.pconnect(SEL_IO_READ, args[0], params)
+          tgt.pconnect(SEL_IO_WRITE, args[0], params)
+          tgt.pconnect(SEL_IO_EXCEPT, args[0], params)
         else # it's some other kind of object
           tgt = args[0]
           sel = args[1]
         end
       else
         tgt = FXPseudoTarget.new
-	tgt.pconnect(SEL_IO_READ, nil, block)
-	tgt.pconnect(SEL_IO_WRITE, nil, block)
-	tgt.pconnect(SEL_IO_EXCEPT, nil, block)
+        tgt.pconnect(SEL_IO_READ, block, params)
+        tgt.pconnect(SEL_IO_WRITE, block, params)
+        tgt.pconnect(SEL_IO_EXCEPT, block, params)
       end
       addInputOrig(fd, mode, tgt, sel)
     end
-  end
-end
+    
+  end # class FXApp
+  
+end # module Fox

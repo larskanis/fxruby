@@ -86,7 +86,7 @@ DECLARE_FXIMAGE_VIRTUALS(FXXPMIcon)
     
     // Confirm that the input is an array of strings
     Check_Type(strArray,T_ARRAY);
-    len=RARRAY(strArray)->len;
+    len=RARRAY_LEN(strArray);
     for(i=0; i<len; i++){
       str=rb_ary_entry(strArray,i);
       Check_Type(str,T_STRING);

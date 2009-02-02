@@ -180,7 +180,7 @@ class GemBrowserWindow < FXMainWindow
     super(anApp, "Gem Browser", nil, nil, DECOR_ALL)
 
     # Menu bar
-    menubar = FXMenubar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
+    menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
 
     # File menu
     filemenu = FXMenuPane.new(self)

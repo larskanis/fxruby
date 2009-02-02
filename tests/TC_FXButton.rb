@@ -69,4 +69,10 @@ class TC_FXButton < TestCase
     @button.state = STATE_UNCHECKED
     assert_equal(STATE_UNCHECKED, @button.state)
   end
+
+  def test_create_for_non_created_parent_window_raises_runtime_error
+    assert_raise RuntimeError do
+      @button.create
+    end
+  end
 end

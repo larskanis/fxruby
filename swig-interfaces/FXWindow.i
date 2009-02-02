@@ -595,7 +595,7 @@ public:
     bool acquireSelection(VALUE typesArray){
       Check_Type(typesArray,T_ARRAY);
       FXDragType *types=0;
-      FXuint numtypes=RARRAY(typesArray)->len;
+      FXuint numtypes=RARRAY_LEN(typesArray);
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
@@ -619,7 +619,7 @@ public:
     bool acquireClipboard(VALUE typesArray){
       Check_Type(typesArray,T_ARRAY);
       FXDragType *types=0;
-      FXuint numtypes=RARRAY(typesArray)->len;
+      FXuint numtypes=RARRAY_LEN(typesArray);
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
@@ -646,7 +646,7 @@ public:
     bool beginDrag(VALUE typesArray){
       Check_Type(typesArray,T_ARRAY);
       FXDragType *types=0;
-      FXuint numtypes=RARRAY(typesArray)->len;
+      FXuint numtypes=RARRAY_LEN(typesArray);
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
@@ -728,9 +728,9 @@ public:
     void setDNDData(FXDNDOrigin origin, FXDragType type, VALUE str) const {
       Check_Type(str, T_STRING);
       FXuchar* data;
-      FXuint size = RSTRING(str)->len;
+      FXuint size = RSTRING_LEN(str);
       if (FXMALLOC(&data, FXuchar, size)) {
-        memcpy((void *) data, (void *) RSTRING(str)->ptr, size);
+        memcpy((void *) data, (void *) RSTRING_PTR(str), size);
         self->setDNDData(origin, type, data, size);
       } else {
         rb_raise(rb_eNoMemError, "couldn't copy drag-and-drop data");

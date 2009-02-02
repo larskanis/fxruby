@@ -1,4 +1,5 @@
 module Fox
+  
   class FXApp
 
     alias addTimeoutOrig	addTimeout # :nodoc:
@@ -7,8 +8,8 @@ module Fox
     alias remainingTimeoutOrig	remainingTimeout # :nodoc:
 
     #
-    # Add a timeout message to be sent to target object in _ms_ milliseconds;
-    # the timer fires only once after the interval expires.  The last argument
+    # Add a timeout message to be sent to target object in _ms_ milliseconds.
+    # By default, the timer fires only once after the interval expires.  The last argument
     # is optional user data which will be passed along as the _ptr_ argument of
     # the message handler. If a timer with the same target and message already exists,
     # it will be rescheduled.
@@ -34,30 +35,43 @@ module Fox
     #
     # The last form of #addTimeout takes a block:
     #
-    #     timeout = app.addTimeout(delay) { |sender, sel, data|
+    #     timeout = app.addTimeout(delay) do |sender, sel, data|
     #         ... handle the timeout ...
-    #     }
+    #     end
     #
     # All of these return a reference to an opaque object (actually, a hash) that
     # can be passed to #removeTimeout if it is necessary to remove the timeout
     # before it fires.
     #
+    # For the last two forms, you can pass in the optional +:repeat+ parameter to
+    # cause the timeout to be re-registered after it fires, e.g.
+    #
+    #     timeout = app.addTimeout(delay, :repeat => true) do |sender, sel, data|
+    #         ... handle the timeout ...
+    #         ... re-add the timeout with the same delay ...
+    #     end
+    #
     def addTimeout(ms, *args, &block)
+      params = {}
+      params = args.pop if args.last.is_a? Hash
+      params[:delay] = ms
       tgt, sel = nil, 0
       if args.length > 0
         if args[0].respond_to? :call
-          tgt = FXPseudoTarget.new
-	  tgt.pconnect(SEL_TIMEOUT, args[0], nil)
+          tgt = params[:target] || FXPseudoTarget.new
+          tgt.pconnect(SEL_TIMEOUT, args[0], params)
         else # it's some other kind of object
           tgt = args[0]
           sel = args[1]
         end
       else
-        tgt = FXPseudoTarget.new
-	tgt.pconnect(SEL_TIMEOUT, nil, block)
+        tgt = params[:target] || FXPseudoTarget.new
+        tgt.pconnect(SEL_TIMEOUT, block, params)
       end
       addTimeoutOrig(tgt, sel, ms)
-      return { :target => tgt, :selector => sel }
+      params[:target] = tgt
+      params[:selector] = sel
+      params
     end
 
     #
@@ -69,8 +83,8 @@ module Fox
       if args.length == 2
         removeTimeoutOrig(args[0], args[1])
       else
-        hsh = args[0]
-        removeTimeoutOrig(hsh[:target], hsh[:selector])
+        params = args[0]
+        removeTimeoutOrig(params[:target], params[:selector])
       end
     end
 
@@ -116,5 +130,7 @@ module Fox
         remainingTimeoutOrig(hsh[:target], hsh[:selector])
       end
     end
-  end
-end
+    
+  end # class FXApp
+  
+end # module Fox

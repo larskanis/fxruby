@@ -22,7 +22,7 @@ class GroupWindow < FXMainWindow
 
   def initialize(app)
     # Call the base class version of initialize
-    super(app, "Group Box Test", nil, nil, DECOR_ALL, 0, 0, 0, 0)
+    super(app, "Group Box Test", :opts => DECOR_ALL)
 
     # Some icons we'll use here and there
     doc = getIcon("minidoc.png")
@@ -102,8 +102,7 @@ class GroupWindow < FXMainWindow
     FXMenuTitle.new(menubar, "&Help", nil, helpmenu, LAYOUT_RIGHT)
   
     @popupmenu = FXMenuPane.new(self)
-      poptext = FXTextField.new(@popupmenu, 10, nil, 0,
-        FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP, 0, 0, 0, 0)
+      poptext = FXTextField.new(@popupmenu, 10, :opts => FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP)
       poptext.setText("Popup with text")
     
     # Status bar
@@ -129,8 +128,7 @@ class GroupWindow < FXMainWindow
     testlabel.setFont(FXFont.new(getApp(), "helvetica", 24, FONTWEIGHT_BOLD,
                                  FONTSLANT_ITALIC, FONTENCODING_DEFAULT))
     FXButton.new(group1, "Small &Button", nil, nil, 0, FRAME_RAISED|FRAME_THICK)
-    FXButton.new(group1, "Big Fat Wide Button\nComprising\nthree lines", nil,
-      nil, 0, FRAME_RAISED|FRAME_THICK)
+    FXButton.new(group1, "Big Fat Wide Button\nComprising\nthree lines", :opts => FRAME_RAISED|FRAME_THICK)
     FXToggleButton.new(group1,
       "C&losed\tTooltip for closed\tHelp for closed",
       "O&pen\nState\tTooltip for open\tHelp for open",
@@ -138,94 +136,66 @@ class GroupWindow < FXMainWindow
       ICON_BEFORE_TEXT|JUSTIFY_LEFT|FRAME_RAISED|FRAME_THICK)
   
     pop = FXPopup.new(self)
-    
-    FXOption.new(pop, "First\tTip #1\tHelp first", nil, nil, 0,
-      JUSTIFY_HZ_APART|ICON_AFTER_TEXT).connect(SEL_COMMAND) {
-        FXMessageBox.information(self, MBOX_OK, "Option Menu", "Chose option 1")
-    }
-    FXOption.new(pop, "Second\tTip #2\tHelp second", nil, nil, 0,
-      JUSTIFY_HZ_APART|ICON_AFTER_TEXT).connect(SEL_COMMAND) {
-        FXMessageBox.information(self, MBOX_OK, "Option Menu", "Chose option 2")
-    }
-    FXOption.new(pop, "Third\tTip #3\tHelp third", nil, nil, 0,
-      JUSTIFY_HZ_APART|ICON_AFTER_TEXT).connect(SEL_COMMAND) {
-        FXMessageBox.information(self, MBOX_OK, "Option Menu", "Chose option 3")
-    }
-    FXOption.new(pop, "Fourth\tTip #4\tHelp fourth", nil, nil, 0,
-      JUSTIFY_HZ_APART|ICON_AFTER_TEXT).connect(SEL_COMMAND) {
-        FXMessageBox.information(self, MBOX_OK, "Option Menu", "Chose option 4")
-    }
+    numbers =%w{first second third fourth}
+    0.upto(3) do |idx|
+      FXOption.new(pop, "#{numbers[idx].capitalize}\tTip #{idx+1}\tHelp #{numbers[idx]}", :opts => JUSTIFY_HZ_APART|ICON_AFTER_TEXT).connect(SEL_COMMAND) {
+          FXMessageBox.information(self, MBOX_OK, "Option Menu", "Chose option #{idx+1}")
+      }
+    end
     
     FXOptionMenu.new(group1, pop,
       LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|JUSTIFY_HZ_APART|ICON_AFTER_TEXT)
   
     FXLabel.new(group1, "Te&kstje", nil, LAYOUT_TOP|JUSTIFY_LEFT)
     FXButton.new(group1,
-      "Add an `&&' by doubling\tTooltip\tHelp text for status", nil,
-      nil, 0,LAYOUT_TOP|FRAME_RAISED|FRAME_THICK)
-    FXButton.new(group1, "Te&kstje", nil, nil, 0,
-      LAYOUT_TOP|FRAME_RAISED|FRAME_THICK).connect(SEL_COMMAND) {
+      "Add an `&&' by doubling\tTooltip\tHelp text for status", :opts => LAYOUT_TOP|FRAME_RAISED|FRAME_THICK)
+    FXButton.new(group1, "Te&kstje", :opts => LAYOUT_TOP|FRAME_RAISED|FRAME_THICK).connect(SEL_COMMAND) {
       x, y, buttons = getRoot().getCursorPosition()
       @popupmenu.popup(nil, x, y)
     }
     
-    FXMenuButton.new(group1, "&Menu", nil, filemenu,
-      (MENUBUTTON_ATTACH_BOTH|MENUBUTTON_DOWN|JUSTIFY_HZ_APART|LAYOUT_TOP|
-       FRAME_RAISED|FRAME_THICK|ICON_AFTER_TEXT))
-    FXMenuButton.new(group1, "&Menu", nil, filemenu,
-      MENUBUTTON_UP|LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|ICON_AFTER_TEXT)
+    FXMenuButton.new(group1, "&Menu", :opts => MENUBUTTON_ATTACH_BOTH|MENUBUTTON_DOWN|JUSTIFY_HZ_APART|LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|ICON_AFTER_TEXT)
+    FXMenuButton.new(group1, "&Menu", nil, filemenu, MENUBUTTON_UP|LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|ICON_AFTER_TEXT)
   
     coolpop = FXPopup.new(self, POPUP_HORIZONTAL)
-    FXButton.new(coolpop, "A\tTipA", nil, nil, 0,
-      FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, 0, 0, 30, 30)
-    FXButton.new(coolpop, "B\tTipB", nil, nil, 0,
-      FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, 0, 0, 30, 30)
-    FXButton.new(coolpop, "C\tTipC", nil, nil, 0,
-      FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, 0, 0, 30, 30)
-    FXButton.new(coolpop, "D\tTipD", nil, nil, 0,
-      FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, 0, 0, 30, 30)
+    FXButton.new(coolpop, "A\tTipA",
+      :opts => FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, :width => 30, :height => 30)
+    FXButton.new(coolpop, "B\tTipB",
+      :opts => FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, :width => 30, :height => 30)
+    FXButton.new(coolpop, "C\tTipC",
+      :opts => FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, :width => 30, :height => 30)
+    FXButton.new(coolpop, "D\tTipD",
+      :opts => FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, :width => 30, :height => 30)
     FXMenuButton.new(group1, "&S\tSideways", nil, coolpop,
       (MENUBUTTON_ATTACH_BOTH|MENUBUTTON_LEFT|MENUBUTTON_NOARROWS|LAYOUT_TOP|
-       FRAME_RAISED|FRAME_THICK|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT), 0, 0, 30, 30)
+       FRAME_RAISED|FRAME_THICK|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT), :width => 30, :height => 30)
     
     matrix = FXMatrix.new(group1, 3,
       FRAME_RAISED|LAYOUT_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     
-    FXButton.new(matrix, "A", nil, nil, 0,
-      FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW)
-    FXButton.new(matrix, "&Wide button", nil, nil, 0,
-      FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X)
-    FXButton.new(matrix, "A", nil, nil, 0,
-      FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X)
+    FXButton.new(matrix, "A", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW)
+    FXButton.new(matrix, "&Wide button", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X)
+    FXButton.new(matrix, "A", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X)
     
-    FXButton.new(matrix, "BBBB", nil, nil, 0, (FRAME_RAISED|FRAME_THICK|
-      LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW|LAYOUT_FILL_COLUMN))
-    FXButton.new(matrix, "B", nil, nil, 0,
-      FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
-    FXButton.new(matrix, "BB", nil, nil, 0,
-      FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
+    FXButton.new(matrix, "BBBB", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW|LAYOUT_FILL_COLUMN)
+    FXButton.new(matrix, "B", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
+    FXButton.new(matrix, "BB", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
     
-    FXButton.new(matrix, "C", nil, nil, 0,
-      FRAME_RAISED|FRAME_THICK|LAYOUT_CENTER_Y|LAYOUT_CENTER_X|LAYOUT_FILL_ROW)
-    FXButton.new(matrix, "&wide", nil, nil, 0, FRAME_RAISED|FRAME_THICK)
-    FXButton.new(matrix, "CC", nil, nil, 0, FRAME_RAISED|FRAME_THICK|LAYOUT_RIGHT)
+    FXButton.new(matrix, "C", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_CENTER_Y|LAYOUT_CENTER_X|LAYOUT_FILL_ROW)
+    FXButton.new(matrix, "&wide", :opts => FRAME_RAISED|FRAME_THICK)
+    FXButton.new(matrix, "CC", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_RIGHT)
     
     FXLabel.new(group2, "No Arrow")
-    FXSlider.new(group2, nil, 0,
-      LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL,
-      0, 0, 200, 30)
+    FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL, :width => 200, :height => 30)
     
     FXLabel.new(group2, "Up Arrow")
-    FXSlider.new(group2, nil, 0, (LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|
-      SLIDER_HORIZONTAL|SLIDER_ARROW_UP), 0, 0, 200, 30)
+    FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_ARROW_UP, :width => 200, :height => 30)
     
     FXLabel.new(group2, "Down Arrow")
-    FXSlider.new(group2, nil, 0, (LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|
-      SLIDER_HORIZONTAL|SLIDER_ARROW_DOWN), 0, 0, 200, 30)
+    FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_ARROW_DOWN, :width => 200, :height => 30)
     
     FXLabel.new(group2, "Inside Bar")
-    slider = FXSlider.new(group2, nil, 0, (LAYOUT_TOP|LAYOUT_FILL_X|
-      LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_INSIDE_BAR), 0, 0, 200, 20)  
+    slider = FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FILL_X|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_INSIDE_BAR, :width => 200, :height => 20)  
     slider.range = 0..3
     
     frame = FXHorizontalFrame.new(group2, LAYOUT_FILL_X|LAYOUT_FILL_Y)
@@ -252,8 +222,7 @@ class GroupWindow < FXMainWindow
       LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_RAISED|FRAME_THICK|ARROW_RIGHT)
   
     vframe2 = FXVerticalFrame.new(frame, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    FXArrowButton.new(vframe2, nil, 0, (LAYOUT_FILL_X|LAYOUT_FILL_Y|
-      FRAME_RAISED|FRAME_THICK|ARROW_UP|ARROW_TOOLBAR))
+    FXArrowButton.new(vframe2, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_RAISED|FRAME_THICK|ARROW_UP|ARROW_TOOLBAR)
     FXArrowButton.new(vframe2, nil, 0, (LAYOUT_FILL_X|LAYOUT_FILL_Y|
       FRAME_RAISED|FRAME_THICK|ARROW_DOWN|ARROW_TOOLBAR))
     FXArrowButton.new(vframe2, nil, 0, (LAYOUT_FILL_X|LAYOUT_FILL_Y|

@@ -72,10 +72,25 @@ public
     assert_equal(SAMPLE, @text.text)
   end
   
-  def test_findText
+  def test_find_text
     @text.text = "99 bottles of beer"
     startIndex, endIndex = @text.findText("bottles")
     assert_equal([3], startIndex)
     assert_equal([10], endIndex)
   end
+
+  def test_find_text_with_startpos
+    @text.text = "I came, I saw, I conquered"
+    startIndex, endIndex = @text.findText("I ", 5)
+    assert_equal([8], startIndex)
+    assert_equal([10], endIndex)
+  end
+
+  def test_find_text_with_groups
+    @text.text = "I came, I saw, I conquered"
+    startIndex, endIndex = @text.findText("I ([a-z]+)(, )?", 0, SEARCH_REGEX)
+    assert_equal([0, 2, 6], startIndex)
+    assert_equal([8, 6, 8], endIndex)
+  end
+
 end

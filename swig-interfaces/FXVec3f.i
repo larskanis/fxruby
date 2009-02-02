@@ -29,7 +29,11 @@ public:
 public:
 
   /// Default constructor
-  FXVec3f();
+  %extend {
+		FXVec3f() {
+			return new FXVec3f(0.0f, 0.0f, 0.0f);
+		}
+	}
 
   /// Copy constructor
   FXVec3f(const FXVec3f& v);

@@ -2,17 +2,17 @@
 # This makefile is used to generate the wrapper code from the
 # SWIG interface files.
 #
-# $Id: Makefile 2300 2005-12-07 14:05:03Z lyle $
+# $Id: Makefile 2827 2008-03-28 16:04:44Z lyle $
 #
 
 .PHONY: clean
 
-SWIG = swig
+SWIG = /usr/local/bin/swig
 SWIGFLAGS = -fcompact -noruntime -c++ -ruby -no_default -I../fox-includes
 SRCDIR = ../ext/fox16
 SED = sed -f swig.sed
 RUBY = ruby
-SWIGLIB := $(shell swig -swiglib)
+SWIGLIB := $(shell /usr/local/bin/swig -swiglib)
 
 MODULES = \
 	$(SRCDIR)/core_wrap.cpp \

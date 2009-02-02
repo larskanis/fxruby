@@ -201,13 +201,13 @@ public:
     void setPatternList(VALUE ary) {
       FXString patterns;
       if(TYPE(ary)==T_STRING){
-        patterns=FXString(STR2CSTR(ary));
+        patterns=FXString(StringValuePtr(ary));
         }
       else if(TYPE(ary)==T_ARRAY){
-        for(long i=0; i<RARRAY(ary)->len; i++){
+        for(long i=0; i<RARRAY_LEN(ary); i++){
           VALUE obj=rb_ary_entry(ary,i);
           Check_Type(obj,T_STRING);
-          patterns+=FXString(STR2CSTR(obj))+FXString("\n");
+          patterns+=FXString(StringValuePtr(obj))+FXString("\n");
           }
         }
       else{

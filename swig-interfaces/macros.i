@@ -433,8 +433,8 @@
     /// See if font has glyph for ch
     virtual FXbool hasChar(VALUE ch) const {
       if(TYPE(ch)==T_STRING){
-        if(RSTRING(ch)->len==1){
-          return self->hasChar(*(STR2CSTR(ch))); // FIXME: hasChar() expects an FXwchar
+        if(RSTRING_LEN(ch)==1){
+          return self->hasChar(*(StringValuePtr(ch))); // FIXME: hasChar() expects an FXwchar
 	  }
 	else{
 	  rb_raise(rb_eArgError,"expected a string of length one");
@@ -708,7 +708,7 @@
 %extend klass {
   /**
   * Retrieves pixels from the server-side image.  For example, to make
-  * screen snapshots, or to retrieve an image after it has been drawin
+  * screen snapshots, or to retrieve an image after it has been drawn
   * into by various means.
   */
   virtual void restore();

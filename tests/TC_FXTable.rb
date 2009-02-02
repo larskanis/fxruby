@@ -365,4 +365,197 @@ public
     assert_equal("(1, 0)", @table.getItemText(1, 0))
     assert_equal("(1, 1)", @table.getItemText(1, 1))
   end
+  
+  def test_set_column_icon_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnIcon(-1, nil) 
+    }
+  end
+
+  def test_set_column_icon_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnIcon(@table.numColumns, nil) 
+    }
+  end
+
+  def test_get_column_icon_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnIcon(-1) 
+    }
+  end
+
+  def test_get_column_icon_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnIcon(@table.numColumns) 
+    }
+  end
+
+  def test_set_column_icon_position_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnIconPosition(-1, 0) 
+    }
+  end
+
+  def test_set_column_icon_position_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnIconPosition(@table.numColumns, 0) 
+    }
+  end
+
+  def test_get_column_icon_position_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnIconPosition(-1) 
+    }
+  end
+
+  def test_get_column_icon_position_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnIconPosition(@table.numColumns) 
+    }
+  end
+
+  def test_set_column_justify_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnJustify(-1, 0) 
+    }
+  end
+
+  def test_set_column_justify_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnJustify(@table.numColumns, 0) 
+    }
+  end
+
+  def test_get_column_justify_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnJustify(-1) 
+    }
+  end
+
+  def test_get_column_justify_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnJustify(@table.numColumns) 
+    }
+  end
+
+  def test_set_column_text_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnText(-1, "") 
+    }
+  end
+
+  def test_set_column_text_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setColumnText(@table.numColumns, "") 
+    }
+  end
+
+  def test_get_column_text_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnText(-1) 
+    }
+  end
+
+  def test_get_column_text_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getColumnText(@table.numColumns) 
+    }
+  end
+
+  def test_set_row_icon_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowIcon(-1, nil) 
+    }
+  end
+
+  def test_set_row_icon_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowIcon(@table.numRows, nil) 
+    }
+  end
+
+  def test_get_row_icon_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowIcon(-1) 
+    }
+  end
+
+  def test_get_row_icon_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowIcon(@table.numRows) 
+    }
+  end
+
+  def test_set_row_icon_position_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowIconPosition(-1, 0) 
+    }
+  end
+
+  def test_set_row_icon_position_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowIconPosition(@table.numRows, 0) 
+    }
+  end
+
+  def test_get_row_icon_position_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowIconPosition(-1) 
+    }
+  end
+
+  def test_get_row_icon_position_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowIconPosition(@table.numRows) 
+    }
+  end
+
+  def test_set_row_justify_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowJustify(-1, 0) 
+    }
+  end
+
+  def test_set_row_justify_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowJustify(@table.numRows, 0) 
+    }
+  end
+
+  def test_get_row_justify_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowJustify(-1) 
+    }
+  end
+
+  def test_get_row_justify_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowJustify(@table.numRows) 
+    }
+  end
+
+  def test_set_row_text_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowText(-1, "") 
+    }
+  end
+
+  def test_set_row_text_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.setRowText(@table.numRows, "") 
+    }
+  end
+
+  def test_get_row_text_negative_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowText(-1) 
+    }
+  end
+
+  def test_get_row_text_large_index_raises_index_error
+    assert_raises(IndexError) {
+      @table.getRowText(@table.numRows) 
+    }
+  end
+
 end

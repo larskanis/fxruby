@@ -32,5 +32,8 @@ module Fox
 
     # Set the current tip text color
     def textColor=(color); end
+    
+    # Return the tool tip's text
+    def to_s; text; end
   end
 end

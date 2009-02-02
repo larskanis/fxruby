@@ -146,6 +146,10 @@ public:
       }
 
     /// Union of two boxes
+    // This is not a typo.
+    // We're calling this method "onion" to work around a bug in SWIG
+    // that mistakes the method name "union" for the C++ keyword of the same
+    // name.
     FXRanged onion(const FXRanged& other) const {
       return FX::unite(*self,other);
       }

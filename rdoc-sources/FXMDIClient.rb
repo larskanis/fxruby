@@ -38,12 +38,6 @@ module Fox
     def initialize(p, opts=0, x=0, y=0, width=0, height=0) # :yields: theMDIClient
     end
 
-    # Get first MDI Child
-    def getMDIChildFirst(); end
-  
-    # Get last MDI Child
-    def getMDIChildLast(); end
-  
     #
     # Pass message to all MDI windows, stopping when one of
     # the MDI windows fails to handle the message.

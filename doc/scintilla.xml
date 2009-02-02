@@ -16,10 +16,10 @@
     <para><ulink
     url="http://savannah.gnu.org/projects/fxscintilla">FXScintilla </ulink> is
     a FOX widget that wraps around the Scintilla component, or, if you wish,
-    the FOX "port" of Scintilla. It is being developed by Gilles Filippini,
+    the FOX "port" of Scintilla. Until recently it was developed by Gilles Filippini,
     and as of this writing the latest release is available for download from
     <ulink
-    url="http://savannah.nongnu.org/download/fxscintilla/fxscintilla-1.63.tar.gz">http://savannah.nongnu.org/download/fxscintilla/fxscintilla-1.63.tar.gz</ulink>.</para>
+    url="http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-1.71.tar.gz">http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-1.71.tar.gz</ulink>.</para>
   </simplesect>
 
   <simplesect>
@@ -30,7 +30,7 @@
     applications. That is to say, you do not have to separately download the
     Scintilla source code from the Scintilla home page. When you unpack the
     FXScintilla tarball, you should get a new <filename class="directory">
-    fxscintilla-1.63</filename> directory containing the source code for the
+    fxscintilla-1.71</filename> directory containing the source code for the
     FOX port of the Scintilla widget.</para>
 
     <para>As of the 1.46 release of FXScintilla, the build process has been
@@ -61,13 +61,13 @@
     typing:</para>
 
     <screen>
-$ <command>sudo gem install fxruby-1.2.0.gem --force -- --with-fxscintilla-include=/usr/local/include/fxscintilla --with-fxscintilla-lib=/usr/local/lib</command>
+$ <command>sudo gem install fxruby-1.6.7.gem --force -- --with-fxscintilla-include=/usr/local/include/fxscintilla --with-fxscintilla-lib=/usr/local/lib</command>
 </screen>
 
     <para>or, when compiling with Microsoft Visual C++, by typing:</para>
 
     <screen>
-C:\&gt; <command>gem install fxruby-1.2.0.gem --force -- --with-fox-include=C:\fox-1.2.7\include --with-fox-lib=C:\fox-1.2.7\lib --with-fxscintilla-include=C:\fxscintilla-1.63\include --with-fxscintilla-lib=C:\fxscintilla-1.63\lib</command>
+C:\&gt; <command>gem install fxruby-1.6.7.gem --force -- --with-fox-include=C:\fox-1.6.25\include --with-fox-lib=C:\fox-1.6.25\lib --with-fxscintilla-include=C:\fxscintilla-1.71\include --with-fxscintilla-lib=C:\fxscintilla-1.71\lib</command>
 </screen>
 
     <para>Past this point, the build and installation process for either

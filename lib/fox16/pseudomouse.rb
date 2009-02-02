@@ -1,10 +1,15 @@
 module Fox
   #
-  # Based on a suggestion from Hugh Sasse on the fxruby-users mailing list,
-  # an FXPseudoMouse object provides a simple means to operate widgets
+  # An FXPseudoMouse object provides a simple means to operate widgets
   # programmatically, to aid test driven design. An FXPseudoMouse instance
   # can be pointed at an FXObject and will manage the sending of events to
   # it.
+  #
+  # For example:
+  #
+  #   canvas = FXCanvas.new(...)
+  #   pm = FXPseudoMouse.new(canvas)
+  #   pm.doLeftButtonPress # sends a SEL_LEFTBUTTONPRESS message to the canvas
   #
   class FXPseudoMouse < FXObject
 
@@ -18,7 +23,7 @@ module Fox
       unless @target.nil?
         evt = FXEvent.new
         evt.type = Fox::SEL_MOTION
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_MOTION), evt)
+        @target.handle(self, Fox.FXSEL(Fox::SEL_MOTION, 0), evt)
       end
     end
 
@@ -26,7 +31,7 @@ module Fox
       unless @target.nil?
         evt = FXEvent.new
         evt.type = Fox::SEL_MOUSEWHEEL
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_MOUSEWHEEL), evt)
+        @target.handle(self, Fox.FXSEL(Fox::SEL_MOUSEWHEEL, 0), evt)
       end
     end
 
@@ -34,7 +39,7 @@ module Fox
       unless @target.nil?
         evt = FXEvent.new
         evt.type = Fox::SEL_LEFTBUTTONPRESS
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_LEFTBUTTONPRESS), evt)
+        @target.handle(self, Fox.FXSEL(Fox::SEL_LEFTBUTTONPRESS, 0), evt)
       end
     end
 
@@ -42,7 +47,7 @@ module Fox
       unless @target.nil?
        evt = FXEvent.new
         evt.type = Fox::SEL_LEFTBUTTONRELEASE
-       @target.handle(self, Fox.MKUINT(0, Fox::SEL_LEFTBUTTONRELEASE), evt)
+       @target.handle(self, Fox.FXSEL(Fox::SEL_LEFTBUTTONRELEASE, 0), evt)
       end
     end
 
@@ -50,7 +55,7 @@ module Fox
       unless @target.nil?
         evt = FXEvent.new
         evt.type = Fox::SEL_MIDDLEBUTTONPRESS
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_MIDDLEBUTTONPRESS), evt)
+        @target.handle(self, Fox.FXSEL(Fox::SEL_MIDDLEBUTTONPRESS, 0), evt)
       end
     end
 
@@ -58,7 +63,7 @@ module Fox
       unless @target.nil?
         evt = FXEvent.new
         evt.type = Fox::SEL_MIDDLEBUTTONRELEASE
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_MIDDLEBUTTONRELEASE), evt)
+        @target.handle(self, Fox.FXSEL(Fox::SEL_MIDDLEBUTTONRELEASE, 0), evt)
       end
     end
 
@@ -66,7 +71,7 @@ module Fox
       unless @target.nil?
         evt = FXEvent.new
         evt.type = Fox::SEL_RIGHTBUTTONPRESS
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_RIGHTBUTTONPRESS), evt)
+        @target.handle(self, Fox.FXSEL(Fox::SEL_RIGHTBUTTONPRESS, 0), evt)
       end
     end
 
@@ -74,7 +79,7 @@ module Fox
       unless @target.nil?
         evt = FXEvent.new
         evt.type = Fox::SEL_RIGHTBUTTONRELEASE
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_RIGHTBUTTONRELEASE), evt)
+        @target.handle(self, Fox.FXSEL(Fox::SEL_RIGHTBUTTONRELEASE, 0), evt)
       end
     end
   end

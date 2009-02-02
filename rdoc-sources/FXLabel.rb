@@ -65,5 +65,8 @@ module Fox
     # Construct label with given text and icon
     def initialize(parent, text, icon=nil, opts=LABEL_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theLabel
     end
+    
+    # Return the label's text
+    def to_s; text; end
   end
 end

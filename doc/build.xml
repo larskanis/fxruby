@@ -2,9 +2,11 @@
 <chapter id="build">
   <title>Building from Source Code</title>
 
-  <para>A few words of advice, before getting started:</para>
+  <para>This chapter provides instructions for building and installing FXRuby
+  directly from source, and not using some more direct means (such as
+  installing a gem, or via some package manager).</para>
 
-  <itemizedlist mark="bullet">
+  <itemizedlist>
     <listitem>
       <para>If you're planning to use FXRuby on Windows, with the standard
       <ulink url="http://rubyinstaller.rubyforge.org">Ruby Installer for
@@ -14,12 +16,9 @@
     </listitem>
 
     <listitem>
-      <para>If you're planning to use FXRuby on Mac OS X, you may want to
-      consult <ulink
-      url="http://www.fox-toolkit.net/cgi-bin/wiki.pl?Mac_OS_X">this
-      page</ulink> from the <ulink url="http://www.fox-toolkit.net">FOX
-      Community Wiki</ulink>, in addition to the standard build instructions
-      listed below.</para>
+      <para>If you're already using the <ulink
+      url="http://www.macports.org/">MacPorts</ulink> version of ruby, you may
+      wish to just install the <filename>rb-fxruby</filename> port.</para>
     </listitem>
   </itemizedlist>
 
@@ -30,10 +29,10 @@
     and installed FOX. Next, you'll need to download the FXRuby source code
     tarball and unpack it by typing:</para>
 
-    <screen>$ <command>tar xzf FXRuby-1.6.0.tar.gz</command></screen>
+    <screen>$ <command>tar xzf FXRuby-1.6.13.tar.gz</command></screen>
 
     <para>This will create a new directory called <filename
-    class="directory">FXRuby-1.6.0</filename>. Change to the top-level
+    class="directory">FXRuby-1.6.13</filename>. Change to the top-level
     directory and configure the build by typing:</para>
 
     <screen>$ <command>ruby install.rb config</command></screen>
@@ -46,8 +45,8 @@
     <filename>install.rb</filename> during this step, e.g.</para>
 
     <screen>$ <command>ruby install.rb config -- \
-    --with-fox-include=/home/lyle/fox-1.6.3/include \
-    --with-fox-lib=/home/lyle/fox-1.6.3/src/.libs</command></screen>
+    --with-fox-include=/home/lyle/fox-1.6.32/include \
+    --with-fox-lib=/home/lyle/fox-1.6.32/src/.libs</command></screen>
 
     <para>Once the build has been configured, you can start the build by
     typing:</para>
@@ -68,7 +67,7 @@
     probably fire up <filename>irb</filename> and try to import FXRuby:</para>
 
     <screen>$ <command>irb</command>
-irb(main):001:0&gt; <userinput>require 'fox'</userinput>
+irb(main):001:0&gt; <userinput>require 'fox16'</userinput>
 true
 irb(main):002:0&gt;</screen>
 
@@ -91,16 +90,16 @@ irb(main):002:0&gt;</screen>
     instructions and build files distributed with the standard Ruby source
     code. To review, you should have started by unpacking the source code
     tarball, changing into the top-level source code directory (e.g. <filename
-    class="directory">C:\ruby-1.8.4</filename>) and then typing:</para>
+    class="directory">C:\ruby-1.8.6</filename>) and then typing:</para>
 
-    <screen>C:\ruby-1.8.4&gt;<command>win32\configure</command>
+    <screen>C:\ruby-1.8.6&gt;<command>win32\configure</command>
 type 'nmake' to make ruby for mswin32.
-C:\ruby-1.8.4&gt;<command>nmake</command></screen>
+C:\ruby-1.8.6&gt;<command>nmake</command></screen>
 
     <para>After the compilation finished, you installed Ruby somewhere by
     typing, e.g.,</para>
 
-    <screen>C:\ruby-1.8.4&gt;<command>nmake DESTDIR=C:\ruby install</command></screen>
+    <screen>C:\ruby-1.8.6&gt;<command>nmake DESTDIR=C:\ruby install</command></screen>
 
     <para>Similarly, I'm assuming that you built the FOX library using the
     Developer Studio project files distributed with the standard FOX source
@@ -108,14 +107,14 @@ C:\ruby-1.8.4&gt;<command>nmake</command></screen>
 
     <para>Now you can configure the FXRuby build by typing:</para>
 
-    <screen>C:\FXRuby-1.6.0&gt;<command>ruby install.rb config --make-prog=nmake -- \
-    --with-fox-include=C:\fox-1.6.3\include \
-    --with-fox-lib=C:\fox-1.6.3\lib</command></screen>
+    <screen>C:\FXRuby-1.6.13&gt;<command>ruby install.rb config --make-prog=nmake -- \
+    --with-fox-include=C:\fox-1.6.32\include \
+    --with-fox-lib=C:\fox-1.6.32\lib</command></screen>
 
     <para>Once the build has been configured, you can start the build by
     typing:</para>
 
-    <screen>C:\FXRuby-1.6.0&gt; <command>ruby install.rb setup</command></screen>
+    <screen>C:\FXRuby-1.6.13&gt; <command>ruby install.rb setup</command></screen>
 
     <para>It will take quite awhile to build FXRuby, even on a fast machine,
     so this might be a good time to take a coffee break. Because Visual C++ is
@@ -129,12 +128,12 @@ C:\ruby-1.8.4&gt;<command>nmake</command></screen>
 
     <para>Once it's finished compiling, install FXRuby by typing:</para>
 
-    <screen>C:\FXRuby-1.6.0&gt; <command>ruby install.rb install</command></screen>
+    <screen>C:\FXRuby-1.6.13&gt; <command>ruby install.rb install</command></screen>
 
     <para>As a quick sanity check, to make sure that all is well, you should
     probably fire up <filename>irb</filename> and try to import FXRuby:</para>
 
-    <screen>C:\FXRuby-1.6.0&gt; <command>irb</command>
+    <screen>C:\FXRuby-1.6.13&gt; <command>irb</command>
 irb(main):001:0&gt; <userinput>require 'fox16'</userinput>
 true
 irb(main):002:0&gt;</screen>
@@ -232,34 +231,34 @@ core_wrap.cpp:108596: virtual memory exhausted</screen>
 
     <para>On Linux and other Unix systems that support shared libraries, FOX
     is typically installed as a shared library named
-    <filename>libFOX-1.4.so</filename>. After all of the source files for
+    <filename>libFOX-1.6.so</filename>. After all of the source files for
     FXRuby are compiled, the last step is to link all of the FXRuby object
     files together with the FOX library (and possibly other system libraries)
-    to produce a new shared library, named <filename>fox14.so</filename>, that
+    to produce a new shared library, named <filename>fox16.so</filename>, that
     Ruby can import as an extension module.</para>
 
     <para>There are a few things that can go wrong when you try to import this
     extension into Ruby. A common problem is that the operating system cannot
-    locate the FOX shared library (<filename>libFOX-1.4.so</filename>) when it
+    locate the FOX shared library (<filename>libFOX-1.6.so</filename>) when it
     tries to dynamically load the FXRuby extension module; when this happens,
     the error message will look something like:</para>
 
     <screen>$ <command>irb</command>
-irb(main):001:0&gt; <userinput>require 'fox'</userinput>
-LoadError: libFOX-0.99.so.173: cannot open shared object file: No such file or directory - /usr/local/lib/ruby/1.6/i586-linux/fox.so
+irb(main):001:0&gt; <userinput>require 'fox16'</userinput>
+LoadError: libFOX-1.6.so: cannot open shared object file: No such file or directory - /usr/local/lib/ruby/1.8/i686-linux/fox16.so
         from (irb):1:in 'require'
         from (irb):1
     </screen>
 
     <para>One workaround for this problem is to modify the
     <constant>LD_LIBRARY_PATH</constant> environment variable to include the
-    directory where <filename>libFOX.so</filename> is installed. For example,
-    if <filename>libFOX-1.4.so</filename> is installed in <filename
+    directory where <filename>libFOX-1.6.so</filename> is installed. For
+    example, if <filename>libFOX-1.6.so</filename> is installed in <filename
     class="directory">/usr/local/lib</filename>, try setting:</para>
 
     <screen>$ <command>export LD_LIBRARY_PATH=/usr/local/lib</command>
 $ <command>irb</command>
-irb(main):001:0&gt; <userinput>require 'fox'</userinput>
+irb(main):001:0&gt; <userinput>require 'fox16'</userinput>
 </screen>
 
     <para>If this works, you can of course permanently add the
@@ -273,7 +272,7 @@ irb(main):001:0&gt; <userinput>require 'fox'</userinput>
     <orderedlist numeration="arabic" spacing="compact">
       <listitem>
         <para>Edit your <filename>/etc/ld.so.conf</filename> file and add the
-        directory where <filename>libFOX.so</filename> is installed;
+        directory where <filename>libFOX-1.6.so</filename> is installed;
         and,</para>
       </listitem>
 

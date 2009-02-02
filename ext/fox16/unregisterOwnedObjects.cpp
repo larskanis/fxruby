@@ -1,5 +1,5 @@
 /***********************************************************************
- * $Id: unregisterOwnedObjects.cpp 2305 2005-12-09 14:38:22Z lyle $
+ * $Id: unregisterOwnedObjects.cpp 2911 2008-12-11 14:09:45Z lyle $
  ***********************************************************************/
 
 /**
@@ -88,7 +88,7 @@ void FXRbScrollWindow::unregisterOwnedObjects(FXScrollWindow *self)
 
 void FXRbTable::unregisterOwnedObjects(FXTable *self)
 {
-    FXint i,r,c;
+    FXint r,c;
     FXRbScrollArea::unregisterOwnedObjects(self);
     FXRbHeader::unregisterOwnedObjects(self->getRowHeader());
     FXRbHeader::unregisterOwnedObjects(self->getColumnHeader());

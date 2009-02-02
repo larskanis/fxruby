@@ -43,7 +43,20 @@ enum FXTextSelectionMode {
 
 /// Highlight style entry
 struct FXHiliteStyle {
-  FXHiliteStyle();
+  %extend {
+		FXHiliteStyle(){
+			FXHiliteStyle *self = new FXHiliteStyle();
+			self->normalForeColor = 0;
+			self->normalBackColor = 0;
+			self->selectForeColor = 0;
+			self->selectBackColor = 0;
+			self->hiliteForeColor = 0;
+			self->hiliteBackColor = 0;
+			self->activeBackColor = 0;
+			self->style = 0;
+			return self;
+			}
+    }
   FXColor normalForeColor;            /// Normal text foreground color
   FXColor normalBackColor;            /// Normal text background color
   FXColor selectForeColor;            /// Selected text foreground color
@@ -519,29 +532,25 @@ public:
     * both are NULL, internal arrays are used.
     * [This API is still subject to change!!]
     */
-    VALUE findText(const FXString& string,FXint start=0,FXuint flags=SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT,FXint npar=1){
+    VALUE findText(const FXString& string,FXint start=0,FXuint flags=SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT){
       FXint* beg;
       FXint* end;
       VALUE ary=Qnil;
-      
-      if(!FXMALLOC(&beg,FXint,npar)){
+			FXint ngroups=string.contains('(')+1;  // FIXME: is this right?
+      if(!FXMALLOC(&beg,FXint,ngroups)){
         return Qnil;
-	}
-	
-      if(!FXMALLOC(&end,FXint,npar)){
+				}
+      if(!FXMALLOC(&end,FXint,ngroups)){
         FXFREE(&beg);
-	return Qnil;
-	}
-	
-      if(self->findText(string,beg,end,start,flags,npar)){
+				return Qnil;
+				}
+      if(self->findText(string,beg,end,start,flags,ngroups)){
         ary=rb_ary_new();
-	rb_ary_push(ary,FXRbMakeArray(beg,npar));
-	rb_ary_push(ary,FXRbMakeArray(end,npar));
+				rb_ary_push(ary,FXRbMakeArray(beg,ngroups));
+				rb_ary_push(ary,FXRbMakeArray(end,ngroups));
         }
-	
       FXFREE(&beg);
       FXFREE(&end);
-      
       return ary;
       }
   }
@@ -706,7 +715,7 @@ public:
 	  delete [] text->styles;
 	  text->numStyles=0;
 	  }
-	text->numStyles=RARRAY(styles)->len;
+	text->numStyles=RARRAY_LEN(styles);
 	if(text->numStyles>0){
           text->styles=new FXHiliteStyle[text->numStyles];
           for (long i=0; i<text->numStyles; i++){

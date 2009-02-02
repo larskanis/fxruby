@@ -28,6 +28,9 @@ module Fox
     # Constructor
     def initialize(text, bigIcon=nil, miniIcon=nil, data=nil) # :yields: theIconItem
     end
+    
+    # Return the icon item's text
+    def to_s; text; end
 
     # Set the focused state for this item (where _focus_ is either +true+ or +false+)
     def setFocus(focus); end

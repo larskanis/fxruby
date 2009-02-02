@@ -106,6 +106,9 @@ module Fox
     def initialize(p, cols, target=nil, selector=0, opts=COMBOBOX_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theComboBox
     end
 
+    # Return the combo box text
+    def to_s; end
+    
     # Return +true+ if combobox is editable
     def editable?() ; end
 

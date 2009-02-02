@@ -26,6 +26,8 @@ class FXStringDict;
 %ignore FXSettings::operator=(const FXSettings& orig);
 %ignore FXSettings::readFormatEntry(const FXchar *section,const FXchar *key,const FXchar *fmt,...);
 %ignore FXSettings::writeFormatEntry(const FXchar *section,const FXchar *key,const FXchar *fmt,...);
+%ignore FXSettings::readBoolEntry(const FXchar *,const FXchar *,FXbool);
+%ignore FXSettings::writeBoolEntry(const FXchar *,const FXchar *,FXbool);
 
 /**
 * The Settings class manages a key-value database.  This is normally used as

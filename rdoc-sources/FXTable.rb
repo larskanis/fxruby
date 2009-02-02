@@ -155,7 +155,42 @@ module Fox
     def destroy; end
   end
   
-  # Table Widget
+  #
+  # The FXTable widget displays a table of items, each with some text and optional
+  # icon.  A column Header control provide captions for each column, and a row
+  # Header control provides captions for each row.  Columns are resizable by
+  # means of the column Header control if the TABLE_COL_SIZABLE option is passed.
+  # Likewise, rows in the table are resizable if the TABLE_ROW_SIZABLE option is
+  # specified.  An entire row (column) can be selected by clicking on the a button
+  # in the row (column) Header control.  Passing TABLE_NO_COLSELECT disables column
+  # selection, and passing TABLE_NO_ROWSELECT disables column selection.
+  # When TABLE_COL_RENUMBER is specified, columns are automatically renumbered when
+  # columns are added or removed.  Similarly, TABLE_ROW_RENUMBER will cause row numbers
+  # to be recalculated automatically when rows are added or removed.
+  # To disable editing of cells in the table, the TABLE_READONLY can be specified.
+  # Cells in the table may or may not have items in them.  When populating a cell
+  # for the first time, an item will be automatically created if necessary.  Thus,
+  # a cell in the table takes no space unless it has actual contents.
+  # Moreover, a contiguous, rectangular region of cells in the table may refer to
+  # one single item; in that case, the item will be stretched to cover all the
+  # cells in the region, and no grid lines will be drawn interior to the spanning
+  # item.
+  #
+  # The Table widget issues SEL_SELECTED or SEL_DESELECTED when cells are selected
+  # or deselected, respectively.  The table position affected is passed along as the
+  # 3rd parameter of these messages.
+  # Whenever the current (focus) item is changed, a SEL_CHANGED message is sent with
+  # the new table position as a parameter.
+  # When items are added to the table, a SEL_INSERTED message is sent, with the table
+  # range of the newly added cells as the parameter in the message.
+  # When items are removed from the table, a SEL_DELETED message is sent prior to the
+  # removal of the items, and the table range of the removed cells is passed as a parameter.
+  # A SEL_REPLACED message is sent when the contents of a cell are changed, either through
+  # editing or by other means; the parameter is the range of affected cells.  This message
+  # is sent prior to the change.
+  # SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED messages are sent when a cell
+  # is clicked, double-clicked, or triple-clicked, respectively. 
+  # A SEL_COMMAND is sent when an enabled item is clicked inside the table.
   #
   # === Events
   #
@@ -573,18 +608,10 @@ module Fox
     # Raises IndexError if _row_ is out of bounds.
     def getRowHeight(row) ; end
   
-    # Set x-coordinate for column.
-    # Raises IndexError if _column_ is out of bounds.
-    def setColumnX(column, x) ; end
-    
     # Get x-coordinate of column.
     # Raises IndexError if _column_ is out of bounds.
     def getColumnX(column) ; end
   
-    # Set y-coordinate of row.
-    # Raises IndexError if _row_ is out of bounds.
-    def setRowY(row, y) ; end
-    
     # Get y-coordinate of row.
     # Raises IndexError if _row_ is out of bounds.
     def getRowY(row) ; end
@@ -610,51 +637,67 @@ module Fox
     def fitColumnsToContents(col, nc=1); end
     
     # Set column header at _index_ to _text_.
+    # Raises IndexError if _index_ is out of bounds.
     def setColumnText(index, text); end
     
     # Return text of column header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getColumnText(index); end
     
     # Set row header at _index_ to _text_.
+    # Raises IndexError if _index_ is out of bounds.
     def setRowText(index, text); end
     
     # Return text of row header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getRowText(index); end
 
-    # Change column header icon
+    # Change column header icon.
+    # Raises IndexError if _index_ is out of bounds.
     def setColumnIcon(FXint index,FXIcon* icon);
 
-    # Return icon of column header at index
+    # Return icon of column header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getColumnIcon(index); end
 
-    # Change row header icon
+    # Change row header icon.
+    # Raises IndexError if _index_ is out of bounds.
     def setRowIcon(index, icon); end
     
-    # Return icon of row header at index
+    # Return icon of row header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getRowIcon(index); end
 
     # Change column header icon position, e.g. FXHeaderItem::BEFORE, etc.
+    # Raises IndexError if _index_ is out of bounds.
     def setColumnIconPosition(index, mode); end
 
-    # Return icon position of column header at index
+    # Return icon position of column header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getColumnIconPosition(index); end
 
     # Change row header icon position, e.g. FXHeaderItem::BEFORE, etc.
+    # Raises IndexError if _index_ is out of bounds.
     def setRowIconPosition(index, mode); end
 
-    # Return icon position of row header at index
+    # Return icon position of row header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getRowIconPosition(index); end
     
     # Change column header justify, e.g. FXHeaderItem::RIGHT, etc.
+    # Raises IndexError if _index_ is out of bounds.
     def setColumnJustify(index, justify); end
 
-    # Return justify of column header at index
+    # Return justify of column header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getColumnJustify(index); end
 
     # Change row header justify, e.g. FXHeaderItem::RIGHT, etc.
+    # Raises IndexError if _index_ is out of bounds.
     def setRowJustify(index, justify); end
 
-    # Return justify of row header at index
+    # Return justify of row header at _index_.
+    # Raises IndexError if _index_ is out of bounds.
     def getRowJustify(index); end
     
     #

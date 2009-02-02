@@ -113,7 +113,8 @@ module Fox
     def release(); end
 
     #
-    # Rescale pixels image to the specified width and height. Note that this
+    # Rescale pixels image to the specified width and height and then
+    # re-render the server-side image from the client-side pixel buffer. Note that this
     # serves a slightly different purpose than the base class resize() method,
     # which simply resizes the client-side pixel data buffer but doesn't
     # transform the image.
@@ -132,7 +133,8 @@ module Fox
     def scale(w, h, quality=0) ; end
   
     #
-    # Mirror image horizontally and/or vertically.
+    # Mirror image horizontally and/or vertically and then re-render the
+    # server-side image from the client-side pixel buffer.
     #
     # ==== Parameters:
     #
@@ -142,7 +144,8 @@ module Fox
     def mirror(horizontal, vertical) ; end
   
     #
-    # Rotate image counter-clockwise by some number of degrees.
+    # Rotate image counter-clockwise by some number of degrees and then
+    # re-render the server-side image from the client-side pixel buffer.
     #
     # ==== Parameters:
     #
@@ -151,7 +154,8 @@ module Fox
     def rotate(degrees) ; end
   
     #
-    # Crop image to given rectangle; this calls resize() to adjust the client
+    # Crop image to given rectangle and then re-render the server-side image
+    # from the client-side pixel buffer. This method calls resize() to adjust the client
     # and server side representations.  The new image may be smaller or larger
     # than the old one; blank areas are filled with color. There must be at
     # least one pixel of overlap between the old and the new image.
@@ -165,6 +169,88 @@ module Fox
     # +color+::	fill color for blank areas after crop [FXColor]
     #
     def crop(x, y, w, h, color=0) ; end
+    
+    # Fill image with uniform color.
+    def fill(color); end
+    
+    #
+    # Fade an image to a certain color by a certain factor. The _factor_ is
+    # some integer value between 0 and 255 inclusive, where a factor of 255 indicates no fading and a factor
+    # of zero indicates that the image is completely faded to the fade _color_.
+    #
+    # ==== Parameters:
+    #
+    # +color+::   the fade color [FXColor]
+    # +factor+::	fading factor [Integer]
+    #
+    def fade(color, factor=255); end
+
+    #
+    # Shear image horizontally and then re-render the server-side image
+    # from the client-side pixel buffer. The number of pixels is equal to the
+    # _shear_ parameter times 256. The area outside the image is filled
+    # with transparent black, unless another _color_ is specified.
+    #
+    # ==== Parameters:
+    #
+    # +shear+::   how far to shear [Integer]
+    # +color+::	  fill color for areas outside the sheared image [FXColor]
+    #
+    def xshear(shear, color=0); end
+
+    #
+    # Shear image verticallyand then re-render the server-side image
+    # from the client-side pixel buffer. The number of pixels is equal to the
+    # _shear_ parameter times 256. The area outside the image is filled
+    # with transparent black, unless another _color_ is specified.
+    #
+    # ==== Parameters:
+    #
+    # +shear+::   how far to shear [Integer]
+    # +color+::	  fill color for areas outside the sheared image [FXColor]
+    #
+    def yshear(shear, color=0); end
+
+    #
+    # Fill image using a horizontal gradient.
+    #
+    # ==== Parameters:
+    #
+    # +left+::   starting color, for leftmost pixels [FXColor]
+    # +right+::  ending color, for rightmost pixels [FXColor]
+    #
+    def hgradient(left, right); end
+
+    #
+    # Fill image using a vertical gradient.
+    #
+    # ==== Parameters:
+    #
+    # +top+::      starting color, for topmost pixels [FXColor]
+    # +bottom+::	 ending color, for bottommost pixels [FXColor]
+    #
+    def vgradient(top, bottom); end
+
+    #
+    # Fill image using a bilinear gradient.
+    #
+    # ==== Parameters:
+    #
+    # +topleft+::      pixel color for top-left corner [FXColor]
+    # +topright+::	   pixel color for top-right corner [FXColor]
+    # +bottomleft+::   pixel color for bottom-left corner [FXColor]
+    # +bottomright+::  pixel color for bottom-right corner [FXColor]
+    #
+    def gradient(topleft, topright, bottomleft, bottomright); end
+
+    #
+    # Blend image over uniform color.
+    #
+    # ==== Parameters:
+    #
+    # +color+::	  the blended color [FXColor]
+    #
+    def blend(color); end
   
     #
     # Save pixel data to a stream.

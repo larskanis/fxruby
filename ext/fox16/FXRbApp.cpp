@@ -21,14 +21,16 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbApp.cpp 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbApp.cpp 2902 2008-12-11 14:09:20Z lyle $
  ***********************************************************************/
 
 #include "FXRbCommon.h"
 
+#ifndef RUBY_1_9
 extern "C" {
 #include "rubysig.h" /* For CHECK_INTS */
 }
+#endif
 
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h> /* For struct timeval */
@@ -95,9 +97,14 @@ long FXRbApp::onChoreThreads(FXObject*,FXSelector,void*){
   wait.tv_usec=100*sleepTime;
 
   // Confirm that this thread can be interrupted, then go to sleep
+#ifndef RUBY_1_9
   CHECK_INTS;
   if(!rb_thread_critical)
     rb_thread_wait_for(wait);
+#else
+  // if(!rb_thread_critical) rb_thread_wait_for(wait);
+  rb_thread_wait_for(wait);
+#endif /* RUBY_1_9 */
 
   // Re-register this chore for next time
   addChore(this,ID_CHORE_THREADS);

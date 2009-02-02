@@ -59,8 +59,8 @@ public:
       FXColor* pix=0;
       if(!NIL_P(ary)){
         Check_Type(ary,T_ARRAY);
-        if(FXMALLOC(&pix,FXColor,RARRAY(ary)->len)){
-          for(long i=0; i<RARRAY(ary)->len; i++){
+        if(FXMALLOC(&pix,FXColor,RARRAY_LEN(ary))){
+          for(long i=0; i<RARRAY_LEN(ary); i++){
             pix[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry(ary,i)));
 	    }
           }

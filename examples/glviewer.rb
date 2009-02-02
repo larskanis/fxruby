@@ -2,7 +2,6 @@
 
 require 'fox16'
 require 'fox16/responder'
-require 'fox16/kwargs'
 begin
   require 'fox16/glshapes'
 rescue LoadError

@@ -1,5 +1,5 @@
 /***********************************************************************
- * $Id: markfuncs.cpp 2479 2006-09-08 23:20:52Z lyle $
+ * $Id: markfuncs.cpp 2928 2008-12-29 19:16:57Z lyle $
  ***********************************************************************/
 
 #include "FXRbCommon.h"
@@ -49,7 +49,7 @@ void FXRbAccelTable::markfunc(FXAccelTable* accelTable){
 
 // Mark dependencies for the GC
 void FXRbObject::markfunc(FXObject* obj){
-  FXTRACE((100,"%s::markfunc(0x%08x)\n",obj?obj->getClassName():"FXRbObject",obj));
+  FXTRACE((100,"%s::markfunc(%p)\n",obj?obj->getClassName():"FXRbObject",obj));
   }
 
 
@@ -1568,29 +1568,29 @@ void FXRbTGAImage::markfunc(FXTGAImage* self){
 
 
 void FXRbBitmapFrame::markfunc(FXBitmapFrame* self){
-  FXTRACE((100,"start FXRbBitmapFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"start FXRbBitmapFrame::markfunc(%p)\n",self));
   FXRbFrame::markfunc(self);
   if(self!=0){
     FXRbGcMark(self->getBitmap());
     }
-  FXTRACE((100,"end FXRbBitmapFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"end FXRbBitmapFrame::markfunc(%p)\n",self));
   }
 
 
 void FXRbImageFrame::markfunc(FXImageFrame* self){
-  FXTRACE((100,"start FXRbImageFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"start FXRbImageFrame::markfunc(%p)\n",self));
   FXRbFrame::markfunc(self);
   if(self!=0){
     FXRbGcMark(self->getImage());
     }
-  FXTRACE((100,"end FXRbImageFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"end FXRbImageFrame::markfunc(%p)\n",self));
   }
 
 
 void FXRbGradientBar::markfunc(FXGradientBar* self){
-  FXTRACE((100,"start FXRbGradientBar::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"start FXRbGradientBar::markfunc(%p)\n",self));
   FXRbFrame::markfunc(self);
-  FXTRACE((100,"end FXRbGradientBar::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"end FXRbGradientBar::markfunc(%p)\n",self));
   }
 
 #ifdef WITH_FXSCINTILLA

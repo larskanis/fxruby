@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'fox16'
-require 'fox16/kwargs'
 
 include Fox
 
@@ -55,7 +54,7 @@ class InputHandlerWindow < FXMainWindow
     getApp().addInput(@pipe, INPUT_READ|INPUT_EXCEPT) do |sender, sel, ptr|
       case FXSELTYPE(sel)
       when SEL_IO_READ
-        text = @pipe.read
+        text = @pipe.read_nonblock(256)
         if text && text.length > 0
           @cmdOutput.appendText(text)
         else

@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRuby.cpp 2608 2007-02-09 20:34:16Z lyle $
+ * $Id: FXRuby.cpp 2933 2008-12-29 20:19:33Z lyle $
  ***********************************************************************/
 
 #ifdef _MSC_VER
@@ -30,16 +30,18 @@
 
 #include "FXRbCommon.h"
 
+#ifndef RUBY_1_9
 #include "version.h"
 
 #if RUBY_VERSION_CODE < 167
 #define RB_RESCUE2_BROKEN_PROTOTYPE 1
 #endif
 
-/* The prototype for st_foreach() changed at Ruby version 1.8.2 */
+// The prototype for st_foreach() changed at Ruby version 1.8.2
 #if RUBY_VERSION_CODE < 182
 #define ST_BROKEN_PROTOTYPES 1
 #endif
+#endif /* RUBY_1_9 */
 
 #include "impl.h"
 
@@ -51,15 +53,19 @@
 #include <signal.h>	// for definitions of SIGINT, etc.
 #endif
 
+#ifndef RUBY_1_9
 extern "C" {
 #include "rubyio.h"	// for GetOpenFile(), etc.
 }
+#else
+#include "ruby/io.h"
+#endif
 
 // Symbol table functions from Ruby. If we included "st.h" directly
 // we'd be dealing with broken prototypes anyways, so just duplicate
 // the needed declarations here with the correct prototypes.
 
-#ifdef ST_BROKEN_PROTOTYPES
+#if defined(ST_BROKEN_PROTOTYPES)
 
 extern "C" {
 
@@ -78,11 +84,19 @@ void st_foreach(st_table *table, int (*func)(st_data_t, st_data_t, st_data_t), s
 
 #else
 
+#ifdef RUBY_1_9
+
+#include "ruby/st.h"
+
+#else
+
 extern "C" {
 #include "st.h"
 }
 
-#endif
+#endif /* RUBY_1_9 */
+
+#endif /* ST_BROKEN_PROTOTYPES */
 
 // Opaque type declaration from SWIG runtime
 struct swig_type_info;
@@ -136,13 +150,11 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
     FXASSERT(ty!=0);
     VALUE obj;
     FXRubyObjDesc *desc;
-    int result;
     if(FXMALLOC(&desc,FXRubyObjDesc,1)){
       obj=SWIG_Ruby_NewPointerObj(ptr,ty,1);
       desc->obj=obj;
       desc->borrowed=true;
-      result=st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
-      FXASSERT(result==0);
+      st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
       return obj;
       }
     else{
@@ -189,9 +201,15 @@ FXbool FXRbCatchExceptions=FALSE;
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
+#ifdef RUBY_1_9
+  rb_io_t *fptr;
+  GetOpenFile(obj, fptr);
+  FILE *fpr=fptr->stdio_file;
+#else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
   FILE *fpr=GetReadFile(fptr);
+#endif /* RUBY_1_9 */
 #ifdef WIN32
 #ifdef __CYGWIN__
   return (FXInputHandle) get_osfhandle(fileno(fpr));
@@ -206,9 +224,15 @@ FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
+#ifdef RUBY_1_9
+  rb_io_t *fptr;
+  GetOpenFile(obj, fptr);
+  FILE *fpw=fptr->stdio_file;
+#else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
   FILE *fpw=GetWriteFile(fptr);
+#endif /* RUBY_1_9 */
 #ifdef WIN32
 #ifdef __CYGWIN__
   return (FXInputHandle) get_osfhandle(fileno(fpw));
@@ -226,7 +250,7 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
   FXASSERT(!NIL_P(rubyObj));
   FXASSERT(foxObj!=0);
   FXRubyObjDesc* desc;
-  FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%d,foxObj=0x%08x)\n",rubyObj,foxObj));
+  FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%d,foxObj=%p)\n",static_cast<int>(rubyObj),foxObj));
   if(FXMALLOC(&desc,FXRubyObjDesc,1)){
     desc->obj=rubyObj;
     desc->borrowed=false;
@@ -527,6 +551,9 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
   else if(sender->isMemberOf(FXMETACLASS(FXArrowButton))){
     if(type==SEL_COMMAND) return to_ruby(static_cast<FXuint>(reinterpret_cast<FXuval>(ptr)));
     }
+  else if(sender->isMemberOf(FXMETACLASS(FXPicker))){
+    if(type==SEL_COMMAND || type==SEL_CHANGED) return to_ruby(reinterpret_cast<FXPoint*>(ptr));
+    }
   else if(sender->isMemberOf(FXMETACLASS(FXButton))){
     if(type==SEL_CLICKED ||
        type==SEL_DOUBLECLICKED ||
@@ -560,9 +587,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_CLICKED ||
        type==SEL_DOUBLECLICKED ||
        type==SEL_TRIPLECLICKED) {
-	       fprintf(stderr,"ptr=0x%08x\n",ptr);
 	       VALUE v=to_ruby(static_cast<FXColor>(reinterpret_cast<unsigned long>(ptr)));
-	       fprintf(stderr,"v=%d\n",v);
 	       return v;
     }
     }
@@ -654,7 +679,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
             type==SEL_SELECTED ||
             type==SEL_DESELECTED){
       VALUE ary=rb_ary_new();
-      FXGLObject** objlist=reinterpret_cast<FXGLObject**>(ptr);
+      // FXGLObject** objlist=reinterpret_cast<FXGLObject**>(ptr);
       // FIXME: objlist is a NULL-terminated array of pointers to FXGLObject
       return ary;
       }
@@ -735,9 +760,6 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
     }
   else if(sender->isMemberOf(FXMETACLASS(FXOptionMenu))){
     if(type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
-    }
-  else if(sender->isMemberOf(FXMETACLASS(FXPicker))){
-    if(type==SEL_COMMAND || type==SEL_CHANGED) return to_ruby(reinterpret_cast<FXPoint*>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXRadioButton))){
     if(type==SEL_COMMAND) return to_ruby(static_cast<FXuchar>(reinterpret_cast<FXuval>(ptr)));
@@ -901,7 +923,6 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
  * the appropriate C++ objects. That's what this function is for.
  */
 void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
-  FXEvent* ev;
   void *ptr;
   static FXint intValue;
   static FXint intRange[2];
@@ -985,7 +1006,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
     case SEL_QUERY_HELP:
       return NULL;
     case SEL_VERIFY:
-      return reinterpret_cast<void*>(STR2CSTR(value));
+      return reinterpret_cast<void*>(StringValuePtr(value));
     case SEL_CLICKED:
     case SEL_DOUBLECLICKED:
     case SEL_TRIPLECLICKED:
@@ -1004,10 +1025,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
       /* Ignore */
       break;
     }
-  if(type==SEL_DRAGGED){
-    SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
-    return ptr;
-    }
+
   if(type==SEL_COMMAND){
     // Handle FXText-specific messages
     if(obj->isMemberOf(FXMETACLASS(FXText))){
@@ -1025,7 +1043,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
     if(obj->isMemberOf(FXMETACLASS(FXTextField))){
       switch(id){
         case FXTextField::ID_INSERT_STRING:
-          return reinterpret_cast<void*>(STR2CSTR(value));;
+          return reinterpret_cast<void*>(StringValuePtr(value));;
         default:
           break;
         }
@@ -1094,14 +1112,14 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
                   obj->isMemberOf(FXMETACLASS(FXDirList)) ||
                   obj->isMemberOf(FXMETACLASS(FXDriveBox)) ||
                   obj->isMemberOf(FXMETACLASS(FXFileList))){
-            return reinterpret_cast<void*>(STR2CSTR(value));
+            return reinterpret_cast<void*>(StringValuePtr(value));
             }
           else if(obj->isMemberOf(FXMETACLASS(FXMenuCheck))){
             return reinterpret_cast<void*>(static_cast<FXuval>(RTEST(value) ? 1 : 0));
             }
           else if(obj->isMemberOf(FXMETACLASS(FXMenuRadio))){
             return reinterpret_cast<void*>(static_cast<FXuval>(RTEST(value) ? 1 : 0));
-	    }
+				    }
           else if(obj->isMemberOf(FXMETACLASS(FXMenuCommand))){
             return reinterpret_cast<void*>(static_cast<FXuval>(RTEST(value) ? 1 : 0));
             }
@@ -1122,7 +1140,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
           realValue=NUM2DBL(value);
           return reinterpret_cast<void*>(&realValue);
         case FXWindow::ID_SETSTRINGVALUE:
-          stringValue=FXString(STR2CSTR(value));
+          stringValue=FXString(StringValuePtr(value));
           return reinterpret_cast<void*>(&stringValue);
         case FXWindow::ID_SETINTRANGE:
           intRange[0]=NUM2INT(rb_ary_entry(value,0));
@@ -1144,6 +1162,20 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
         }
       }
     }
+
+  if(type==SEL_CHANGED){
+	  if(obj->isMemberOf(FXMETACLASS(FXPicker))){
+			SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXPoint *"),1);
+			return ptr;
+	    }
+		return 0;
+    }
+	
+	if(type==SEL_DRAGGED){
+	    SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
+	    return ptr;
+	    }
+
   // Pass through as-is
   return reinterpret_cast<void*>(value);
   }
@@ -1159,7 +1191,7 @@ static ID id_assocs;
  * message.
  */
 ID FXRbLookupHandler(FXObject* recv,FXSelector key){
-  FXTRACE((100,"FXRbLookupHandler(recv=0x%08x(%s),FXSEL(%d,%d))\n",recv,recv->getClassName(),FXSELTYPE(key),FXSELID(key)));
+  FXTRACE((100,"FXRbLookupHandler(recv=%p(%s),FXSEL(%d,%d))\n",recv,recv->getClassName(),FXSELTYPE(key),FXSELID(key)));
   ID id=0;
   VALUE rubyObj=to_ruby(recv);
   FXASSERT((recv==0 && rubyObj==Qnil) || (recv!=0 && rubyObj!=Qnil));
@@ -1167,7 +1199,7 @@ ID FXRbLookupHandler(FXObject* recv,FXSelector key){
     VALUE assocs=rb_ivar_get(rubyObj,id_assocs);
     VALUE entry;
     FXSelector keylo,keyhi;
-    for(long i=0;i<RARRAY(assocs)->len;i++){
+    for(long i=0;i<RARRAY_LEN(assocs);i++){
       entry=rb_ary_entry(assocs,i);
       keylo=NUM2UINT(rb_ary_entry(entry,0));
       keyhi=NUM2UINT(rb_ary_entry(entry,1));
@@ -1205,14 +1237,14 @@ static ID id_backtrace;
 static VALUE handle_rescue(VALUE args,VALUE error){
   VALUE info=rb_gv_get("$!");
   VALUE errat=rb_funcall(info,id_backtrace,0);
-  VALUE mesg=RARRAY(errat)->ptr[0];
+  VALUE mesg=RARRAY_PTR(errat)[0];
   fprintf(stderr,"%s: %s (%s)\n",
-    STR2CSTR(mesg),
-    STR2CSTR(rb_obj_as_string(info)),
+    StringValuePtr(mesg),
+    RSTRING_PTR(rb_obj_as_string(info)),
     rb_class2name(CLASS_OF(info)));
-  for(int i=1;i<RARRAY(errat)->len;i++){
-    if(TYPE(RARRAY(errat)->ptr[i])==T_STRING){
-      fprintf(stderr,"\tfrom %s\n",STR2CSTR(RARRAY(errat)->ptr[i]));
+  for(int i=1;i<RARRAY_LEN(errat);i++){
+    if(TYPE(RARRAY_PTR(errat)[i])==T_STRING){
+      fprintf(stderr,"\tfrom %s\n",StringValuePtr(RARRAY_PTR(errat)[i]));
       }
     }
   return Qnil;
@@ -1230,7 +1262,7 @@ long FXRbHandleMessage(FXObject* recv,ID func,FXObject* sender,FXSelector key,vo
   hArgs.nargs=3;
   VALUE retval;
 
-  FXTRACE((100,"FXRbHandleMessage(recv=0x%08x(%s),FXSEL(%s,%d)\n",recv,recv->getClassName(),FXDebugTarget::messageTypeName[FXSELTYPE(key)],FXSELID(key)));
+  FXTRACE((100,"FXRbHandleMessage(recv=%p(%s),FXSEL(%s,%d)\n",recv,recv->getClassName(),FXDebugTarget::messageTypeName[FXSELTYPE(key)],FXSELID(key)));
 
   if(FXRbCatchExceptions){
 #ifdef RB_RESCUE2_BROKEN_PROTOTYPE
@@ -1380,11 +1412,11 @@ FXGLObject** FXRbCallGLObjectArrayMethod(FXGLViewer* recv,ID func,FXint x,FXint 
   VALUE result=rb_funcall(obj,func,4,INT2NUM(x),INT2NUM(y),INT2NUM(w),INT2NUM(h));
   if(!NIL_P(result)){
     Check_Type(result,T_ARRAY);
-    if(FXMALLOC(&objects,FXGLObject*,RARRAY(result)->len+1)){
-      for(long i=0; i<RARRAY(result)->len; i++){
+    if(FXMALLOC(&objects,FXGLObject*,RARRAY_LEN(result)+1)){
+      for(long i=0; i<RARRAY_LEN(result); i++){
 	objects[i]=reinterpret_cast<FXGLObject*>(DATA_PTR(rb_ary_entry(result,i)));
         }
-      objects[RARRAY(result)->len]=0;
+      objects[RARRAY_LEN(result)]=0;
       }
     }
   return objects; // caller must free this
@@ -1439,8 +1471,13 @@ FXFileAssoc* FXRbCallFileAssocMethod(const FXFileDict* recv,ID func,const char* 
 FXIcon* FXRbCallIconMethod(const FXTableItem* recv,ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,func,0,NULL);
-  return NIL_P(result) ? 0 : reinterpret_cast<FXIcon*>(DATA_PTR(result));
+	if(!NIL_P(obj)){
+	  VALUE result=rb_funcall(obj,func,0,NULL);
+	  return NIL_P(result) ? 0 : reinterpret_cast<FXIcon*>(DATA_PTR(result));
+		}
+	else{
+		return 0;
+		}
   }
 
 //----------------------------------------------------------------------
@@ -1469,7 +1506,7 @@ FXString FXRbCallStringMethod(const FXObject* recv, ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,0,NULL);
-  return FXString(STR2CSTR(result));
+  return FXString(StringValuePtr(result));
   }
 
 //----------------------------------------------------------------------
@@ -1479,7 +1516,7 @@ const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,to_ruby(message),to_ruby(hint));
-  return NIL_P(result) ? 0 : STR2CSTR(result);
+  return NIL_P(result) ? 0 : StringValuePtr(result);
   }
 
 // Call functions with const FXchar* return value
@@ -1487,7 +1524,7 @@ const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,3,to_ruby(context),to_ruby(message),to_ruby(hint));
-  return NIL_P(result) ? 0 : STR2CSTR(result);
+  return NIL_P(result) ? 0 : StringValuePtr(result);
   }
 //----------------------------------------------------------------------
 
@@ -1674,145 +1711,144 @@ FXbool FXRbGLViewer::sortProc(FXfloat*& buffer,FXint& used,FXint& size){
 
 //----------------------------------------------------------------------
 
-// Copied from the Ruby 1.6.6 sources (signal.c)
+// Copied from the Ruby 1.8.6 sources (signal.c)
 static struct signals {
-  const char* signm;
-  FXint signo;
-  } siglist[]={
+    const char *signm;
+    int  signo;
+} siglist [] = {
+    {"EXIT", 0},
 #ifdef SIGHUP
-    { "HUP", SIGHUP },
+    {"HUP", SIGHUP},
 #endif
-#ifdef SIGINT
-    { "INT", SIGINT },
-#endif
+    {"INT", SIGINT},
 #ifdef SIGQUIT
-    { "QUIT", SIGQUIT },
+    {"QUIT", SIGQUIT},
 #endif
 #ifdef SIGILL
-    { "ILL", SIGILL },
+    {"ILL", SIGILL},
 #endif
 #ifdef SIGTRAP
-    { "TRAP", SIGTRAP },
+    {"TRAP", SIGTRAP},
 #endif
 #ifdef SIGIOT
-    { "IOT", SIGIOT },
+    {"IOT", SIGIOT},
 #endif
 #ifdef SIGABRT
-    { "ABRT", SIGABRT },
+    {"ABRT", SIGABRT},
 #endif
 #ifdef SIGEMT
-    { "EMT", SIGEMT },
+    {"EMT", SIGEMT},
 #endif
 #ifdef SIGFPE
-    { "FPE", SIGFPE },
+    {"FPE", SIGFPE},
 #endif
 #ifdef SIGKILL
-    { "KILL", SIGKILL },
+    {"KILL", SIGKILL},
 #endif
 #ifdef SIGBUS
-    { "BUS", SIGBUS },
+    {"BUS", SIGBUS},
 #endif
 #ifdef SIGSEGV
-    { "SEGV", SIGSEGV },
+    {"SEGV", SIGSEGV},
 #endif
 #ifdef SIGSYS
-    { "SYS", SIGSYS },
+    {"SYS", SIGSYS},
 #endif
 #ifdef SIGPIPE
-    { "PIPE", SIGPIPE },
+    {"PIPE", SIGPIPE},
 #endif
 #ifdef SIGALRM
-    { "ALRM", SIGALRM },
+    {"ALRM", SIGALRM},
 #endif
 #ifdef SIGTERM
-    { "TERM", SIGTERM },
+    {"TERM", SIGTERM},
 #endif
 #ifdef SIGURG
-    { "URG", SIGURG },
+    {"URG", SIGURG},
 #endif
 #ifdef SIGSTOP
-    { "STOP", SIGSTOP },
+    {"STOP", SIGSTOP},
 #endif
 #ifdef SIGTSTP
-    { "TSTP", SIGTSTP },
+    {"TSTP", SIGTSTP},
 #endif
 #ifdef SIGCONT
-    { "CONT", SIGCONT },
+    {"CONT", SIGCONT},
 #endif
 #ifdef SIGCHLD
-    { "CHLD", SIGCHLD },
+    {"CHLD", SIGCHLD},
 #endif
 #ifdef SIGCLD
-    { "CLD", SIGCLD },
+    {"CLD", SIGCLD},
 #else
 # ifdef SIGCHLD
-    { "CLD", SIGCHLD, },
+    {"CLD", SIGCHLD},
 # endif
 #endif
 #ifdef SIGTTIN
-    { "TTIN", SIGTTIN },
+    {"TTIN", SIGTTIN},
 #endif
 #ifdef SIGTTOU
-    { "TTOU", SIGTTOU },
+    {"TTOU", SIGTTOU},
 #endif
 #ifdef SIGIO
-    { "IO", SIGIO },
+    {"IO", SIGIO},
 #endif
 #ifdef SIGXCPU
-    { "XCPU", SIGXCPU },
+    {"XCPU", SIGXCPU},
 #endif
 #ifdef SIGXFSZ
-    { "XFSZ", SIGXFSZ },
+    {"XFSZ", SIGXFSZ},
 #endif
 #ifdef SIGVTALRM
-    { "VTALRM", SIGVTALRM },
+    {"VTALRM", SIGVTALRM},
 #endif
 #ifdef SIGPROF
-    { "PROF", SIGPROF },
+    {"PROF", SIGPROF},
 #endif
 #ifdef SIGWINCH
-    { "WINCH", SIGWINCH },
+    {"WINCH", SIGWINCH},
 #endif
 #ifdef SIGUSR1
-    { "USR1", SIGUSR1 },
+    {"USR1", SIGUSR1},
 #endif
 #ifdef SIGUSR2
-    { "USR2", SIGUSR2 },
+    {"USR2", SIGUSR2},
 #endif
 #ifdef SIGLOST
-    { "LOST", SIGLOST },
+    {"LOST", SIGLOST},
 #endif
 #ifdef SIGMSG
-    { "MSG", SIGMSG },
+    {"MSG", SIGMSG},
 #endif
 #ifdef SIGPWR
-    { "PWR", SIGPWR },
+    {"PWR", SIGPWR},
 #endif
 #ifdef SIGPOLL
-    { "POLL", SIGPOLL },
+    {"POLL", SIGPOLL},
 #endif
 #ifdef SIGDANGER
-    { "DANGER", SIGDANGER },
+    {"DANGER", SIGDANGER},
 #endif
 #ifdef SIGMIGRATE
-    { "MIGRATE", SIGMIGRATE },
+    {"MIGRATE", SIGMIGRATE},
 #endif
 #ifdef SIGPRE
-    { "PRE", SIGPRE },
+    {"PRE", SIGPRE},
 #endif
 #ifdef SIGGRANT
-    { "GRANT", SIGGRANT },
+    {"GRANT", SIGGRANT},
 #endif
 #ifdef SIGRETRACT
-    { "RETRACT", SIGRETRACT },
+    {"RETRACT", SIGRETRACT},
 #endif
 #ifdef SIGSOUND
-    { "SOUND", SIGSOUND },
+    {"SOUND", SIGSOUND},
 #endif
 #ifdef SIGINFO
-    { "INFO", SIGINFO },
+    {"INFO", SIGINFO},
 #endif
-    { NULL, 0 },
+    {NULL, 0}
 };
 
 FXint FXRbSignalNameToNumber(const char* s){
@@ -1849,28 +1885,28 @@ static st_table * appSensitiveDCs;
 
 void FXRbRegisterAppSensitiveObject(FXObject* obj){
   FXASSERT(obj!=0);
-  FXTRACE((100,"%s:%d: FXRbRegisterAppSensitiveObject(obj=0x%08x(%s))\n",__FILE__,__LINE__,obj,obj->getClassName()));
+  FXTRACE((100,"%s:%d: FXRbRegisterAppSensitiveObject(obj=%p(%s))\n",__FILE__,__LINE__,obj,obj->getClassName()));
   st_insert(appSensitiveObjs,reinterpret_cast<st_data_t>(obj),(st_data_t)0);
   FXASSERT(st_lookup(appSensitiveObjs,reinterpret_cast<st_data_t>(obj),reinterpret_cast<st_data_t *>(0))!=0);
   }
 
 void FXRbRegisterAppSensitiveObject(FXDC* dc){
   FXASSERT(dc!=0);
-  FXTRACE((100,"%s:%d: FXRbRegisterAppSensitiveObject(dc=0x%08x)\n",__FILE__,__LINE__,dc));
+  FXTRACE((100,"%s:%d: FXRbRegisterAppSensitiveObject(dc=%p)\n",__FILE__,__LINE__,dc));
   st_insert(appSensitiveDCs,reinterpret_cast<st_data_t>(dc),(st_data_t)0);
   FXASSERT(st_lookup(appSensitiveDCs,reinterpret_cast<st_data_t>(dc),reinterpret_cast<st_data_t *>(0))!=0);
   }
 
 void FXRbUnregisterAppSensitiveObject(FXObject* obj){
   FXASSERT(obj!=0);
-  FXTRACE((100,"%s:%d: FXRbUnregisterAppSensitiveObject(obj=0x%08x(%s))\n",__FILE__,__LINE__,obj,obj->getClassName()));
+  FXTRACE((100,"%s:%d: FXRbUnregisterAppSensitiveObject(obj=%p(%s))\n",__FILE__,__LINE__,obj,obj->getClassName()));
   st_delete(appSensitiveObjs,reinterpret_cast<st_data_t *>(&obj),reinterpret_cast<st_data_t *>(0));
   FXASSERT(st_lookup(appSensitiveObjs,reinterpret_cast<st_data_t>(obj),reinterpret_cast<st_data_t *>(0))==0);
   }
 
 void FXRbUnregisterAppSensitiveObject(FXDC* dc){
   FXASSERT(dc!=0);
-  FXTRACE((100,"%s:%d: FXRbUnregisterAppSensitiveObject(dc=0x%08x)\n",__FILE__,__LINE__,dc));
+  FXTRACE((100,"%s:%d: FXRbUnregisterAppSensitiveObject(dc=%p)\n",__FILE__,__LINE__,dc));
   st_delete(appSensitiveDCs,reinterpret_cast<st_data_t *>(&dc),reinterpret_cast<st_data_t *>(0));
   FXASSERT(st_lookup(appSensitiveDCs,reinterpret_cast<st_data_t>(dc),reinterpret_cast<st_data_t *>(0))==0);
   }
@@ -2011,6 +2047,8 @@ extern "C" void Init_fox16(void) {
   REQUIRE("fox16/glgroup");
   REQUIRE("fox16/execute_nonmodal");
   REQUIRE("fox16/version");
+  REQUIRE("fox16/kwargs");
+  REQUIRE("fox16/exceptions_for_fxerror");
   
   id_assocs=rb_intern("@assocs");
   id_backtrace=rb_intern("backtrace");

@@ -57,6 +57,9 @@ module Fox
     def initialize(text, ic=nil, s=0, ptr=nil) # :yields: theHeaderItem
     end
     
+    # Return the header item's text label
+    def to_s; text; end
+    
     # Return the item's content width in the header.
     def getWidth(header); end
     

@@ -1,6 +1,5 @@
 require 'test/unit'
 require 'fox16'
-require 'ftools'
 require 'tempfile'
 
 include Fox
@@ -84,7 +83,7 @@ class TC_FXFileStream < Test::Unit::TestCase
   
   def teardown
     if File.exists?("goobers")
-      File.rm_f("goobers")
+      FileUtils.rm_f("goobers")
     end
   end
 end

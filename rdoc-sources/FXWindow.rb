@@ -78,6 +78,7 @@ module Fox
   # +LAYOUT_MIN_HEIGHT+::   Minimum height is the default
   # +LAYOUT_FILL_X+::       Stretch or shrink horizontally
   # +LAYOUT_FILL_Y+::       Stretch or shrink vertically
+  # +LAYOUT_FILL::          Stretch or shrink in both directions
   # +LAYOUT_EXPLICIT+::     Explicit placement
   # +LAYOUT_DOCK_SAME+::    Dock on same galley, if it fits
   # +LAYOUT_DOCK_NEXT+::    Dock on next galley

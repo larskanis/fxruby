@@ -1,7 +1,6 @@
 require 'test/unit'
 
 require 'fox16'
-require 'ftools'
 
 include Fox
 
@@ -64,14 +63,14 @@ public
   def test_beginPrint
     @dc.beginPrint(printJob)
     @dc.endPrint
-    assert_same_file_contents("blankpage.ps", printJob.name)
+    assert_same_file_contents(File.join(File.dirname(__FILE__), "blankpage.ps"), printJob.name)
   end
 
   def test_beginPrint_with_block
     @dc.beginPrint(printJob) do |theDC|
       assert_same(@dc, theDC)
     end
-    assert_same_file_contents("blankpage.ps", printJob.name)
+    assert_same_file_contents(File.join(File.dirname(__FILE__), "blankpage.ps"), printJob.name)
   end
 
   def test_beginPage
@@ -96,7 +95,7 @@ public
   
   def teardown
     if File.exists?("output.ps")
-      File.rm_f("output.ps")
+      FileUtils.rm_f("output.ps")
     end
   end
 end

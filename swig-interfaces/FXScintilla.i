@@ -143,7 +143,7 @@ public:
           wp=static_cast<uptr_t>(NUM2UINT(wParam));
           break;
         case T_STRING:
-          wp=static_cast<uptr_t>(reinterpret_cast<long>(RSTRING(wParam)->ptr));
+          wp=static_cast<uptr_t>(reinterpret_cast<long>(RSTRING_PTR(wParam)));
           break;
         case T_TRUE:
         case T_FALSE:
@@ -161,7 +161,7 @@ public:
           lp=static_cast<sptr_t>(NUM2UINT(lParam));
           break;
         case T_STRING:
-          lp=static_cast<sptr_t>(reinterpret_cast<long>(RSTRING(lParam)->ptr));
+          lp=static_cast<sptr_t>(reinterpret_cast<long>(RSTRING_PTR(lParam)));
           break;
         case T_TRUE:
         case T_FALSE:

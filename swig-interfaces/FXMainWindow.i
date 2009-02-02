@@ -20,7 +20,6 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
-
 /**
 * Main application window.  There may be any number of
 * MainWindows in an application.
@@ -36,8 +35,8 @@ protected:
 public:
   %extend {
     /// Construct a main window
-    FXMainWindow(FXApp* a,const FXString& name,FXIcon *ic=NULL,FXIcon *mi=NULL,FXuint opts=DECOR_ALL,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=0,FXint pr=0,FXint pt=0,FXint pb=0,FXint hs=0,FXint vs=0){
-      return new FXRbMainWindow(a,name,ic,mi,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
+    FXMainWindow(FXApp* APP,const FXString& name,FXIcon *ic=NULL,FXIcon *mi=NULL,FXuint opts=DECOR_ALL,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=0,FXint pr=0,FXint pt=0,FXint pb=0,FXint hs=0,FXint vs=0){
+      return new FXRbMainWindow(APP,name,ic,mi,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
     }
 

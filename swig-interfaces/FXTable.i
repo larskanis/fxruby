@@ -554,52 +554,52 @@ public:
   void fitColumnsToContents(FXint col,FXint nc=1);
 
   /// Change column header
-  void setColumnText(FXint index,const FXString& text);
+  void setColumnText(FXint TABLE_COLUMN_INDEX,const FXString& text);
 
   /// Return text of column header at index
-  FXString getColumnText(FXint index) const;
+  FXString getColumnText(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header
-  void setRowText(FXint index,const FXString& text);
+  void setRowText(FXint TABLE_ROW_INDEX,const FXString& text);
 
   /// Return text of row header at index
-  FXString getRowText(FXint index) const;
+  FXString getRowText(FXint TABLE_ROW_INDEX) const;
 
   /// Change column header icon
-  void setColumnIcon(FXint index,FXIcon* icon);
+  void setColumnIcon(FXint TABLE_COLUMN_INDEX,FXIcon* icon);
 
   /// Return icon of column header at index
-  FXIcon* getColumnIcon(FXint index) const;
+  FXIcon* getColumnIcon(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header icon
-  void setRowIcon(FXint index,FXIcon* icon);
+  void setRowIcon(FXint TABLE_ROW_INDEX,FXIcon* icon);
 
   /// Return icon of row header at index
-  FXIcon* getRowIcon(FXint index) const;
+  FXIcon* getRowIcon(FXint TABLE_ROW_INDEX) const;
 
   /// Change column header icon position, e.g. FXHeaderItem::BEFORE, etc.
-  void setColumnIconPosition(FXint index,FXuint mode);
+  void setColumnIconPosition(FXint TABLE_COLUMN_INDEX,FXuint mode);
 
   /// Return icon position of column header at index
-  FXuint getColumnIconPosition(FXint index) const;
+  FXuint getColumnIconPosition(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header icon position, e.g. FXHeaderItem::BEFORE, etc.
-  void setRowIconPosition(FXint index,FXuint mode);
+  void setRowIconPosition(FXint TABLE_ROW_INDEX,FXuint mode);
 
   /// Return icon position of row header at index
-  FXuint getRowIconPosition(FXint index) const;
+  FXuint getRowIconPosition(FXint TABLE_ROW_INDEX) const;
 
   /// Change column header justify, e.g. FXHeaderItem::RIGHT, etc.
-  void setColumnJustify(FXint index,FXuint justify);
+  void setColumnJustify(FXint TABLE_COLUMN_INDEX,FXuint justify);
 
   /// Return justify of column header at index
-  FXuint getColumnJustify(FXint index) const;
+  FXuint getColumnJustify(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header justify, e.g. FXHeaderItem::RIGHT, etc.
-  void setRowJustify(FXint index,FXuint justify);
+  void setRowJustify(FXint TABLE_ROW_INDEX,FXuint justify);
 
   /// Return justify of row header at index
-  FXuint getRowJustify(FXint index) const;
+  FXuint getRowJustify(FXint TABLE_ROW_INDEX) const;
 
   %extend {
     /// Modify cell text
@@ -652,21 +652,19 @@ public:
   %extend {
     /// Extract cells from given range as text.
     VALUE extractText(FXint startrow,FXint endrow,FXint startcol,FXint endcol,const FXchar* cs="\t",const FXchar* rs="\n") const {
-      FXchar* text;
-      FXint size;
+      FXString str;
       VALUE result;
       if(startrow<0 || startcol<0 || self->getNumRows()<=endrow || self->getNumColumns()<=endcol) rb_raise(rb_eIndexError,"index out of bounds");
-      self->extractText(text,size,startrow,endrow,startcol,endcol,cs,rs);
-      result=rb_str_new2(text);
-      FXFREE(&text);
+      self->extractText(str,startrow,endrow,startcol,endcol,cs,rs);
+      result=rb_str_new2(str.text());
       return result;
       }
 
     /// Overlay text over given cell range
     void overlayText(FXint startrow,FXint endrow,FXint startcol,FXint endcol,VALUE str,const FXchar* cs="\t",const FXchar* rs="\n",FXbool notify=FALSE){
       if(startrow<0 || startcol<0 || self->getNumRows()<=endrow || self->getNumColumns()<=endcol) rb_raise(rb_eIndexError,"index out of bounds");
-      const FXchar* text=reinterpret_cast<FXchar*>(STR2CSTR(str));
-      FXint size=RSTRING(str)->len;
+      const FXchar* text=reinterpret_cast<FXchar*>(StringValuePtr(str));
+      FXint size=RSTRING_LEN(str);
       self->overlayText(startrow,endrow,startcol,endcol,text,size,cs,rs,notify);
       }
   }

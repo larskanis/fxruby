@@ -173,7 +173,13 @@ public:
     * as keys into the registry database for this application's settings
     */
     FXApp(const FXchar* name="Application",const FXchar* vendor="FoxDefault"){
-      return FXRbApp::constructAndInit(name,vendor);
+      if(FXApp::instance()){
+        rb_raise(rb_eRuntimeError,"attempted to create more than one FXApp instance");
+        return 0;
+        }
+      else{
+	      return FXRbApp::constructAndInit(name,vendor);
+        }
       }
   }
 
@@ -315,7 +321,7 @@ public:
       FXint sig;
       switch(TYPE(sigObj)){
         case T_STRING:
-          s=STR2CSTR(sigObj);
+          s=StringValuePtr(sigObj);
           sig=FXRbSignalNameToNumber(s);
           if(sig==0) rb_raise(rb_eArgError,"unrecognized signal name `%s'",s);
           break;
@@ -335,7 +341,7 @@ public:
       FXint sig;
       switch(TYPE(sigObj)){
         case T_STRING:
-          s=STR2CSTR(sigObj);
+          s=StringValuePtr(sigObj);
           sig=FXRbSignalNameToNumber(s);
           if(sig==0) rb_raise(rb_eArgError,"unrecognized signal name `%s'",s);
           break;

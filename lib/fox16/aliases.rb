@@ -2849,6 +2849,9 @@ module Fox
     def activeChild(*args) # :nodoc:
       getActiveChild(*args)
     end
+    def activeChild=(*args) # :nodoc:
+      setActiveChild(*args)
+    end
     def cascadeX=(*args) # :nodoc:
       setCascadeX(*args)
     end
@@ -3571,6 +3574,7 @@ module Fox
     def position=(*args) # :nodoc:
       setPosition(*args)
     end
+    undef_method(:position) if defined?(:position)
     def position # :nodoc:
       getPosition
     end
@@ -4382,6 +4386,18 @@ module Fox
     def rowHeaderMode=(hint) # :nodoc:
       setRowHeaderMode(hint)
     end
+    def columnHeaderFont # :nodoc:
+      getColumnHeaderFont
+    end
+    def columnHeaderFont=(f) # :nodoc:
+      setColumnHeaderFont(f)
+    end
+    def rowHeaderFont # :nodoc:
+      getRowHeaderFont
+    end
+    def rowHeaderFont=(f) # :nodoc:
+      setRowHeaderFont(f)
+    end
     def columnHeaderHeight # :nodoc:
       getColumnHeaderHeight()
     end
@@ -4764,6 +4780,7 @@ module Fox
     def editable?(*args) # :nodoc:
       isEditable(*args)
     end
+    alias :editable :editable?
     def editable=(*args) # :nodoc:
       setEditable(*args)
     end

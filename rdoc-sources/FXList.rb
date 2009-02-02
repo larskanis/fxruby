@@ -29,6 +29,9 @@ module Fox
     def initialize(text, icon=nil, data=nil) # :yields: theListItem
     end
     
+    # Return the list item's text
+    def to_s; text; end
+    
     # Returns +true+ if this item has the focus
     def hasFocus?() ; end
     
@@ -288,8 +291,9 @@ module Fox
     def findItem(text, start=-1, flags=SEARCH_FORWARD|SEARCH_WRAP) ; end
 
     #
-    # Search items by associated user _data_, beginning from item _start_. If the
-    # start item is -1 the search will start at the first item in the list.
+    # Search items by associated user _data_, beginning from item _start_.
+    # Returns the integer index of the matching item, or -1 if no match is
+    # found. If the start item is -1 the search will start at the first item in the list.
     # Flags may be +SEARCH_FORWARD+ or +SEARCH_BACKWARD+ to control the
     # search direction; this can be combined with +SEARCH_NOWRAP+ or +SEARCH_WRAP+
     # to control whether the search wraps at the start or end of the list.

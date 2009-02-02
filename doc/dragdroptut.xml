@@ -15,18 +15,17 @@
     of a main window widget (a <classname>DropSite</classname> instance) that
     parents an <classname>FXCanvas</classname> widget:</para>
 
-    <programlisting format="linespecific">require 'rubygems'
-require_gem 'fxruby'
+    <programlisting format="linespecific">require 'fox16'
 
 include Fox
 
 class DropSite &lt; FXMainWindow
   def initialize(anApp)
     # Initialize base class
-    super(anApp, "Drop Site", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+    super(anApp, "Drop Site", :opts => DECOR_ALL, :width => 400, :height => 300)
     
     # Fill main window with canvas
-    @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
   end
 
   def create
@@ -55,26 +54,25 @@ end
     that by adding a handler that clears the canvas to its current background
     color:</para>
 
-    <programlisting format="linespecific">require 'rubygems'
-require_gem 'fxruby'
+    <programlisting format="linespecific">require 'fox16'
 
 include Fox
 
 class DropSite &lt; FXMainWindow
   def initialize(anApp)
     # Initialize base class
-    super(anApp, "Drop Site", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+    super(anApp, "Drop Site", :opts => DECOR_ALL, :width => 400, :height => 300)
     
     # Fill main window with canvas
-    @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     
 <emphasis role="bold">    # Handle expose events on the canvas
-    @canvas.connect(SEL_PAINT) { |sender, sel, event|
-      FXDCWindow.new(@canvas, event) { |dc|
+    @canvas.connect(SEL_PAINT) do |sender, sel, event|
+      FXDCWindow.new(@canvas, event) do |dc|
         dc.foreground = @canvas.backColor
         dc.fillRectangle(event.rect.x, event.rect.y, event.rect.w, event.rect.h)
-      }
-    }</emphasis>
+      end
+    end</emphasis>
   end
 
   def create
@@ -95,23 +93,23 @@ end
     from some other window, such as an <classname>FXColorWell</classname>
     widget, and drop it onto the canvas in order to change the canvas'
     background color. In order for a FOX widget to be able to accept drops at
-    all, we need to first call its <methodname>dropEnable()</methodname>
+    all, we need to first call its <methodname>dropEnable</methodname>
     method:</para>
 
     <programlisting format="linespecific">def initialize(anApp)
   # Initialize base class
-  super(anApp, "Drop Site", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+  super(anApp, "Drop Site", :opts => DECOR_ALL, :width => 400, :height => 300)
   
   # Fill main window with canvas
-  @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+  @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     
   # Handle expose events on the canvas
-  @canvas.connect(SEL_PAINT) { |sender, sel, event|
-    FXDCWindow.new(@canvas, event) { |dc|
+  @canvas.connect(SEL_PAINT) do |sender, sel, event|
+    FXDCWindow.new(@canvas, event) do |dc|
       dc.foreground = @canvas.backColor
       dc.fillRectangle(event.rect.x, event.rect.y, event.rect.w, event.rect.h)
-    }
-  }
+    end
+  end
 
 <emphasis role="bold">  # Enable canvas for drag-and-drop messages
   @canvas.dropEnable
@@ -141,39 +139,39 @@ end
     that the canvas isn't accepting drops of color data yet.</para>
 
     <para>To correct this problem, we need to use the canvas'
-    <methodname>acceptDrop()</methodname> method to indicate whether or not
+    <methodname>acceptDrop</methodname> method to indicate whether or not
     we'll accept certain kinds of drops. You can call
-    <methodname>acceptDrop()</methodname> any time after receiving the initial
+    <methodname>acceptDrop</methodname> any time after receiving the initial
     <constant>SEL_DND_ENTER</constant> message, but it's usually done in
     response to a <constant>SEL_DND_MOTION</constant> message. Let's add a
     handler for <constant>SEL_DND_MOTION</constant> messages from the canvas
-    in DropSite's initialize() method. For now, we'll unconditionally accept
+    in DropSite's <methodname>initialize</methodname> method. For now, we'll unconditionally accept
     drops from any drag source, regardless of what kind of data they're
     offering:</para>
 
     <programlisting format="linespecific">def initialize(anApp)
   # Initialize base class
-  super(anApp, "Drop Site", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+  super(anApp, "Drop Site", :opts => DECOR_ALL, :width => 400, :height => 300)
     
   # Fill main window with canvas
-  @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+  @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     
   # Handle expose events on the canvas
-  @canvas.connect(SEL_PAINT) { |sender, sel, event|
-    FXDCWindow.new(@canvas, event) { |dc|
+  @canvas.connect(SEL_PAINT) do |sender, sel, event|
+    FXDCWindow.new(@canvas, event) do |dc|
       dc.foreground = @canvas.backColor
       dc.fillRectangle(event.rect.x, event.rect.y, event.rect.w, event.rect.h)
-    }
-  }
+    end
+  end
 
   # Enable canvas for drag-and-drop messages
   @canvas.dropEnable
   
 <emphasis role="bold">  # Handle SEL_DND_MOTION messages from the canvas
-  @canvas.connect(SEL_DND_MOTION) {
+  @canvas.connect(SEL_DND_MOTION) do
     # Accept drops unconditionally (for now)
     @canvas.acceptDrop
-  }
+  end
 </emphasis>end
 </programlisting>
 
@@ -195,7 +193,7 @@ end
 
     <para>Drag types (even the standard ones) must be registered before they
     can be used, and so we'll start by adding a few lines to
-    <classname>DropSite</classname>'s <methodname>create()</methodname> method
+    <classname>DropSite</classname>'s <methodname>create</methodname> method
     to register the drag type for color data:</para>
 
     <programlisting format="linespecific">def create
@@ -211,49 +209,49 @@ end
 </programlisting>
 
     <para>Note that the first time that
-    <methodname>registerDragType()</methodname> is called for a particular
+    <methodname>registerDragType</methodname> is called for a particular
     drag type name (such as <methodname>FXWindow.colorTypeName</methodname>)
     it will generate a unique identifier for that drag type. Subsequent calls
-    to <methodname>registerDragType()</methodname> for the same drag type name
+    to <methodname>registerDragType</methodname> for the same drag type name
     will just return the previously-generated drag type. Now, we want to
     modify our <constant>SEL_DND_MOTION</constant> handler so that it's a
     little more picky about which kinds of drops it will accept:</para>
 
     <programlisting format="linespecific"># Handle SEL_DND_MOTION messages from the canvas
-@canvas.connect(SEL_DND_MOTION) {
+@canvas.connect(SEL_DND_MOTION) do
 <emphasis role="bold">  if @canvas.offeredDNDType?(FROM_DRAGNDROP, FXWindow.colorType)
     @canvas.acceptDrop
   end
-</emphasis>}
+</emphasis>end
 </programlisting>
 
     <para>Here, we call the canvas' <methodname>offeredDNDType?</methodname>
     method to ask if the drag source can provide its data in the requested
     format. Only if <methodname>offeredDNDType?</methodname> returns true will
-    we call <methodname>acceptDrop()</methodname> as before.</para>
+    we call <methodname>acceptDrop</methodname> as before.</para>
 
     <para>The last step is to actually handle the drop, and for that we add a
     handler for the <constant>SEL_DND_DROP</constant> message:</para>
 
     <programlisting format="linespecific"><emphasis role="bold"># Handle SEL_DND_DROP message from the canvas
-@canvas.connect(SEL_DND_DROP) {
+@canvas.connect(SEL_DND_DROP) do
   # Try to obtain the data as color values first
   data = @canvas.getDNDData(FROM_DRAGNDROP, FXWindow.colorType)
   unless data.nil?
     # Update canvas background color
     @canvas.backColor = Fox.fxdecodeColorData(data)
   end
-}</emphasis></programlisting>
+end</emphasis></programlisting>
 
     <para>Assuming that the drag source is able to provide its data in the
-    requested format, the <methodname>getDNDData()</methodname> method will
-    return a String (which for our purposes is just a byte buffer). If you've
+    requested format, the <methodname>getDNDData</methodname> method will
+    return a string (which for our purposes is just a byte buffer). If you've
     defined your own application-specific drag types, this data can of course
     be anything, and we'll see examples of this in a later tutorial. But the
     data for standard drag types like
     <methodname>FXWindow.colorType</methodname> can be decoded using the
     appropriate built-in library functions. In this case, we use the
-    <methodname>fxdecodeColorData()</methodname> method to convert the bytes
+    <methodname>fxdecodeColorData</methodname> method to convert the bytes
     into a color value that we can use.</para>
 
     <para>Now comes the moment of truth. Try running your test program again
@@ -265,46 +263,45 @@ end
     <filename class="directory">examples</filename> directory under the file
     name <filename>dropsite.rb</filename>.</para>
 
-    <programlisting format="linespecific">require 'rubygems'
-require_gem 'fxruby'
+    <programlisting format="linespecific">require 'fox16'
 
 include Fox
 
 class DropSite &lt; FXMainWindow
   def initialize(anApp)
     # Initialize base class
-    super(anApp, "Drop Site", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+    super(anApp, "Drop Site", :opts => DECOR_ALL, :width => 400, :height => 300)
     
     # Fill main window with canvas
-    @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     
     # Handle expose events on the canvas
-    @canvas.connect(SEL_PAINT) { |sender, sel, event|
-      FXDCWindow.new(@canvas, event) { |dc|
+    @canvas.connect(SEL_PAINT) do |sender, sel, event|
+      FXDCWindow.new(@canvas, event) do |dc|
         dc.foreground = @canvas.backColor
         dc.fillRectangle(event.rect.x, event.rect.y, event.rect.w, event.rect.h)
-      }
-    }
+      end
+    end
 
     # Enable canvas for drag-and-drop messages
     @canvas.dropEnable
     
     # Handle SEL_DND_MOTION messages from the canvas
-    @canvas.connect(SEL_DND_MOTION) {
+    @canvas.connect(SEL_DND_MOTION) do
       if @canvas.offeredDNDType?(FROM_DRAGNDROP, FXWindow.colorType)
         @canvas.acceptDrop
       end
-    }
+    end
 
     # Handle SEL_DND_DROP message from the canvas
-    @canvas.connect(SEL_DND_DROP) {
+    @canvas.connect(SEL_DND_DROP) do
       # Try to obtain the data as color values first
       data = @canvas.getDNDData(FROM_DRAGNDROP, FXWindow.colorType)
       unless data.nil?
         # Update canvas background color
         @canvas.backColor = Fox.fxdecodeColorData(data)
       end
-    }
+    end
   end
 
   def create
@@ -336,27 +333,26 @@ end
     consisting of a main window widget (a <classname>DragSource</classname>
     instance) that parents an <classname>FXCanvas</classname> widget:</para>
 
-    <programlisting format="linespecific">require 'rubygems'
-require_gem 'fxruby'
+    <programlisting format="linespecific">require 'fox16'
 
 include Fox
 
 class DragSource &lt; FXMainWindow
   def initialize(anApp)
     # Initialize base class
-    super(anApp, "Drag Source", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+    super(anApp, "Drag Source", :opts => DECOR_ALL, :width => 400, :height => 300)
     
     # Fill main window with canvas
-    @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @canvas.backColor = "red"
     
     # Handle expose events on the canvas
-    @canvas.connect(SEL_PAINT) { |sender, sel, event|
-      FXDCWindow.new(@canvas, event) { |dc|
+    @canvas.connect(SEL_PAINT) do |sender, sel, event|
+      FXDCWindow.new(@canvas, event) do |dc|
         dc.foreground = @canvas.backColor
         dc.fillRectangle(event.rect.x, event.rect.y, event.rect.w, event.rect.h)
-      }
-    }
+      end
+    end
   end
 
   def create
@@ -397,7 +393,7 @@ end
       <listitem>
         <para>The drag type for colors
         (<constant>FXWindow.colorType</constant>) is registered in the
-        <classname>DragSource</classname>'s <methodname>create()</methodname>
+        <classname>DragSource</classname>'s <methodname>create</methodname>
         method.</para>
       </listitem>
     </itemizedlist>
@@ -412,7 +408,7 @@ end
     handler for the <constant>SEL_LEFTBUTTONPRESS</constant> message from the
     canvas:</para>
 
-    <programlisting format="linespecific">@canvas.connect(SEL_LEFTBUTTONPRESS) {
+    <programlisting format="linespecific">@canvas.connect(SEL_LEFTBUTTONPRESS) do
   #
   # Capture (grab) the mouse when the button goes down, so that all future
   # mouse events will be reported to this widget, even if those events occur
@@ -423,13 +419,13 @@ end
   # Advertise which drag types we can offer
   dragTypes = [FXWindow.colorType]
   @canvas.beginDrag(dragTypes)
-}
+end
 </programlisting>
 
     <para>Note that there are usually two things you're going to want to do in
     the <constant>SEL_LEFTBUTTONPRESS</constant> handler for a drag source.
-    The first is to call <methodname>grab()</methodname> on the window that
-    acts as the drag source. Calling <methodname>grab()</methodname>
+    The first is to call <methodname>grab</methodname> on the window that
+    acts as the drag source. Calling <methodname>grab</methodname>
     "captures" the mouse in the sense that subsequent mouse motion events will
     be reported as if they occurred inside the grab window. This is important,
     since in our case we're going to be dragging from this window to some
@@ -438,7 +434,7 @@ end
 
     <para>The second thing you'll want to do in the
     <constant>SEL_LEFTBUTTONPRESS</constant> handler for a drag source is to
-    call <methodname>beginDrag()</methodname>. This not only kicks the
+    call <methodname>beginDrag</methodname>. This not only kicks the
     application into drag-and-drop mode, but also provides a way for you to
     inform the system about the formats of data (i.e. the drag types) that
     this drag source is able to provide. For this example, the drag source is
@@ -448,22 +444,22 @@ end
     it's important to also add a handler for the
     <constant>SEL_LEFTBUTTONRELEASE</constant> message:</para>
 
-    <programlisting format="linespecific">@canvas.connect(SEL_LEFTBUTTONRELEASE) {
+    <programlisting format="linespecific">@canvas.connect(SEL_LEFTBUTTONRELEASE) do
   @canvas.ungrab
   @canvas.endDrag
-}
+end
 </programlisting>
 
     <para>This is pretty much the mirror image of our
     <constant>SEL_LEFTBUTTONPRESS</constant> handler. We call
-    <methodname>ungrab()</methodname> to release the mouse capture, and
-    <methodname>endDrag()</methodname> to clean up the drag-and-drop
+    <methodname>ungrab</methodname> to release the mouse capture, and
+    <methodname>endDrag</methodname> to clean up the drag-and-drop
     state.</para>
 
     <para>The next change is to add a <constant>SEL_MOTION</constant> handler,
     to handle mouse motion events during the drag operation:</para>
 
-    <programlisting format="linespecific">@canvas.connect(SEL_MOTION) { |sender, sel, event|
+    <programlisting format="linespecific">@canvas.connect(SEL_MOTION) do |sender, sel, event|
   if @canvas.dragging?
     @canvas.handleDrag(event.root_x, event.root_y)
     unless @canvas.didAccept == DRAG_REJECT
@@ -472,23 +468,23 @@ end
       @canvas.dragCursor = getApp().getDefaultCursor(DEF_DNDSTOP_CURSOR)
     end
   end
-}
+end
 </programlisting>
 
     <para>The <methodname>dragging?</methodname> method returns true if we're
     in the middle of a drag-and-drop operation for the drag source window,
-    i.e. after the call to <methodname>beginDrag()</methodname> but before the
-    call to <methodname>endDrag()</methodname>. If we're not currently
+    i.e. after the call to <methodname>beginDrag</methodname> but before the
+    call to <methodname>endDrag</methodname>. If we're not currently
     processing a drag operation, we're not really interested in mouse motion
     events for the canvas.</para>
 
     <para>If we <emphasis>are</emphasis> processing a drag operation, however,
-    we need to call <methodname>handleDrag()</methodname> on the drag source
+    we need to call <methodname>handleDrag</methodname> on the drag source
     window. FOX uses this information to send drag-and-drop messages (such as
     <constant>SEL_DND_ENTER</constant>, <constant>SEL_DND_MOTION</constant>
     and <constant>SEL_DND_LEAVE</constant>) to the window that the mouse is
     currently over. Note that the coordinates passed to
-    <methodname>handleDrag()</methodname> are root window coordinates, and not
+    <methodname>handleDrag</methodname> are root window coordinates, and not
     window-local coordinates.</para>
 
     <para>Another good thing to consider doing here is to change the shape of
@@ -530,16 +526,16 @@ end
     <para>The last (and most important) step is to actually complete the data
     transfer. At any time during a drag-and-drop operation, a drop site may
     request a copy of the drag-and-drop data by calling the
-    <methodname>getDNDData()</methodname> method (as described in the previous
+    <methodname>getDNDData</methodname> method (as described in the previous
     section). When this happens, FOX sends a
     <constant>SEL_DND_REQUEST</constant> message to the current drag source
     window, and so we now add a handler for that message:</para>
 
-    <programlisting format="linespecific">@canvas.connect(SEL_DND_REQUEST) { |sender, sel, event|
+    <programlisting format="linespecific">@canvas.connect(SEL_DND_REQUEST) do |sender, sel, event|
   if event.target == FXWindow.colorType
     @canvas.setDNDData(FROM_DRAGNDROP, FXWindow.colorType, Fox.fxencodeColorData(@canvas.backColor))
   end
-}
+end
 </programlisting>
 
     <para>The first important thing to note here is that the
@@ -553,8 +549,8 @@ end
 
     <para>Assuming that the drag type is as expected, the last step is send
     the data to the drop site by calling
-    <methodname>setDNDData()</methodname>. As with the call to
-    <methodname>getDNDData()</methodname> for our previous drop site program,
+    <methodname>setDNDData</methodname>. As with the call to
+    <methodname>getDNDData</methodname> for our previous drop site program,
     you want to be sure to specify the origin of the data
     (<constant>FROM_DRAGNDROP</constant>), the drag type
     (<constant>FXWindow.colorType</constant>) and the data itself as a binary
@@ -569,30 +565,29 @@ end
     <filename class="directory">examples</filename> directory under the file
     name <filename>dragsource.rb</filename>.</para>
 
-    <programlisting format="linespecific">require 'rubygems'
-require_gem 'fxruby'
+    <programlisting format="linespecific">require 'fox16'
 
 include Fox
 
 class DragSource &lt; FXMainWindow
   def initialize(anApp)
     # Initialize base class
-    super(anApp, "Drag Source", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+    super(anApp, "Drag Source", :opts => DECOR_ALL, :width => 400, :height => 300)
     
     # Fill main window with canvas
-    @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @canvas.backColor = "red"
     
     # Handle expose events on the canvas
-    @canvas.connect(SEL_PAINT) { |sender, sel, event|
-      FXDCWindow.new(@canvas, event) { |dc|
+    @canvas.connect(SEL_PAINT) do |sender, sel, event|
+      FXDCWindow.new(@canvas, event) do |dc|
         dc.foreground = @canvas.backColor
         dc.fillRectangle(event.rect.x, event.rect.y, event.rect.w, event.rect.h)
-      }
-    }
+      end
+    end
 
     # Handle left button press
-    @canvas.connect(SEL_LEFTBUTTONPRESS) {
+    @canvas.connect(SEL_LEFTBUTTONPRESS) do
       #
       # Capture (grab) the mouse when the button goes down, so that all future
       # mouse events will be reported to this widget, even if those events occur
@@ -603,10 +598,10 @@ class DragSource &lt; FXMainWindow
       # Advertise which drag types we can offer
       dragTypes = [FXWindow.colorType]
       @canvas.beginDrag(dragTypes)
-    }
+    end
     
     # Handle mouse motion events
-    @canvas.connect(SEL_MOTION) { |sender, sel, event|
+    @canvas.connect(SEL_MOTION) do |sender, sel, event|
       if @canvas.dragging?
         @canvas.handleDrag(event.root_x, event.root_y)
         unless @canvas.didAccept == DRAG_REJECT
@@ -615,20 +610,20 @@ class DragSource &lt; FXMainWindow
           @canvas.dragCursor = getApp().getDefaultCursor(DEF_DNDSTOP_CURSOR)
         end
       end
-    }
+    end
 
     # Handle left button release
-    @canvas.connect(SEL_LEFTBUTTONRELEASE) {
+    @canvas.connect(SEL_LEFTBUTTONRELEASE) do
       @canvas.ungrab
       @canvas.endDrag
-    }
+    end
     
     # Handle request for DND data
-    @canvas.connect(SEL_DND_REQUEST) { |sender, sel, event|
+    @canvas.connect(SEL_DND_REQUEST) do |sender, sel, event|
       if event.target == FXWindow.colorType
         @canvas.setDNDData(FROM_DRAGNDROP, FXWindow.colorType, Fox.fxencodeColorData(@canvas.backColor))
       end
-    }
+    end
   end
 
   def create
@@ -671,7 +666,7 @@ end
 
     <itemizedlist>
       <listitem>
-        <para>A call to <methodname>dropEnable()</methodname>, to make
+        <para>A call to <methodname>dropEnable</methodname>, to make
         <classname>DragSource</classname>'s canvas drop-enabled;</para>
       </listitem>
 
@@ -702,33 +697,32 @@ end
     <filename class="directory">examples</filename> directory under the file
     name <filename>dragdrop.rb</filename>.</para>
 
-    <programlisting format="linespecific">require 'rubygems'
-require_gem 'fxruby'
+    <programlisting format="linespecific">require 'fox16'
 
 include Fox
 
 class DragDropWindow &lt; FXMainWindow
   def initialize(anApp)
     # Initialize base class
-    super(anApp, "Drag and Drop", nil, nil, DECOR_ALL, 0, 0, 400, 300)
+    super(anApp, "Drag and Drop", :opts => DECOR_ALL, :width => 400, :height => 300)
     
     # Fill main window with canvas
-    @canvas = FXCanvas.new(self, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @canvas.backColor = "red"
     
     # Enable canvas for drag-and-drop messages
     @canvas.dropEnable
     
     # Handle expose events on the canvas
-    @canvas.connect(SEL_PAINT) { |sender, sel, event|
-      FXDCWindow.new(@canvas, event) { |dc|
+    @canvas.connect(SEL_PAINT) do |sender, sel, event|
+      FXDCWindow.new(@canvas, event) do |dc|
         dc.foreground = @canvas.backColor
         dc.fillRectangle(event.rect.x, event.rect.y, event.rect.w, event.rect.h)
-      }
-    }
+      end
+    end
 
     # Handle left button press
-    @canvas.connect(SEL_LEFTBUTTONPRESS) {
+    @canvas.connect(SEL_LEFTBUTTONPRESS) do
       #
       # Capture (grab) the mouse when the button goes down, so that all future
       # mouse events will be reported to this widget, even if those events occur
@@ -739,10 +733,10 @@ class DragDropWindow &lt; FXMainWindow
       # Advertise which drag types we can offer
       dragTypes = [FXWindow.colorType]
       @canvas.beginDrag(dragTypes)
-    }
+    end
     
     # Handle mouse motion events
-    @canvas.connect(SEL_MOTION) { |sender, sel, event|
+    @canvas.connect(SEL_MOTION) do |sender, sel, event|
       if @canvas.dragging?
         @canvas.handleDrag(event.root_x, event.root_y)
         unless @canvas.didAccept == DRAG_REJECT
@@ -751,37 +745,37 @@ class DragDropWindow &lt; FXMainWindow
           @canvas.dragCursor = getApp().getDefaultCursor(DEF_DNDSTOP_CURSOR)
         end
       end
-    }
+    end
 
     # Handle SEL_DND_MOTION messages from the canvas
-    @canvas.connect(SEL_DND_MOTION) {
+    @canvas.connect(SEL_DND_MOTION) do
       if @canvas.offeredDNDType?(FROM_DRAGNDROP, FXWindow.colorType)
         @canvas.acceptDrop
       end
-    }
+    end
 
     # Handle left button release
-    @canvas.connect(SEL_LEFTBUTTONRELEASE) {
+    @canvas.connect(SEL_LEFTBUTTONRELEASE) do
       @canvas.ungrab
       @canvas.endDrag
-    }
+    end
     
     # Handle SEL_DND_DROP message from the canvas
-    @canvas.connect(SEL_DND_DROP) {
+    @canvas.connect(SEL_DND_DROP) do
       # Try to obtain the data as color values first
       data = @canvas.getDNDData(FROM_DRAGNDROP, FXWindow.colorType)
       unless data.nil?
         # Update canvas background color
         @canvas.backColor = Fox.fxdecodeColorData(data)
       end
-    }
+    end
 
     # Handle request for DND data
-    @canvas.connect(SEL_DND_REQUEST) { |sender, sel, event|
+    @canvas.connect(SEL_DND_REQUEST) do |sender, sel, event|
       if event.target == FXWindow.colorType
         @canvas.setDNDData(FROM_DRAGNDROP, FXWindow.colorType, Fox.fxencodeColorData(@canvas.backColor))
       end
-    }
+    end
   end
 
   def create

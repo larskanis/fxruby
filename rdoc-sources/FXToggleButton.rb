@@ -19,6 +19,7 @@ module Fox
   # +TOGGLEBUTTON_AUTOGRAY+::	Automatically gray out when not updated
   # +TOGGLEBUTTON_AUTOHIDE+::	Automatically hide toggle button when not updated
   # +TOGGLEBUTTON_TOOLBAR+::	Toolbar style toggle button [flat look]
+  # +TOGGLEBUTTON_KEEPSTATE+::  Draw button according to state
   # +TOGGLEBUTTON_NORMAL+::	<tt>FRAME_RAISED|FRAME_THICK|JUSTIFY_NORMAL|ICON_BEFORE_TEXT</tt>
   #
   class FXToggleButton < FXLabel

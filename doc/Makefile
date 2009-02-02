@@ -4,10 +4,12 @@
 #
 ########################################################################
 
-SAXON = java -jar /Users/lyle/saxon-6.5.3/saxon.jar
+#SAXON = java -jar /Users/lyle/saxon-8.9/saxon8.jar
+SAXON = java -jar /Users/lyle/saxon-6.5.5/saxon.jar
 HTML_STYLESHEET = custom-html.xsl
-FO_STYLESHEET = custom-fo.xsl
-FOP = /Users/lyle/fop-0.20.4/fop.sh
+#FO_STYLESHEET = custom-fo.xsl
+FO_STYLESHEET = /Users/lyle/docbook/docbook5-xsl-1.72.0/fo/docbook.xsl
+FOP = /Users/lyle/fop-0.93/fop
 
 all: html
 

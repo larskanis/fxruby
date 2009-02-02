@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbDataTarget.cpp 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbDataTarget.cpp 2713 2007-11-14 15:27:36Z lyle $
  ***********************************************************************/
 
 #include "FXRbCommon.h"
@@ -57,7 +57,7 @@ void FXRbDataTarget::setValue(VALUE value){
       connect(doubleValue);
       break;
     case T_STRING:
-      stringValue=STR2CSTR(value);
+      stringValue=StringValuePtr(value);
       connect(stringValue);
       break;
     case T_TRUE:

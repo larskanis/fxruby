@@ -48,5 +48,16 @@ class TC_FXComboBox < TestCase
     end
   end
 
+  def test_fill_items_returns_num_items_added
+    assert_equal(3, @comboBox.fillItems(%w{one two three}))
+  end
+
+  def test_fill_items
+    @comboBox.fillItems(%w{one two three})
+    items = @comboBox.map { |text, data| text }
+    assert_equal("one", items[0])
+    assert_equal("two", items[1])
+    assert_equal("three", items[2])
+  end
 end
 

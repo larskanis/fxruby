@@ -3,7 +3,8 @@ def search_directories
   dirs = [
           "/usr/include/fox-1.6",
           "/usr/local/include/fox-1.6",
-          "/sw/include/fox-1.6"
+          "/sw/include/fox-1.6",
+	  "/opt/local/include/fox-1.6"
          ]
   ARGV.each do |arg|
     if arg =~ /--with-fox-include/
@@ -19,7 +20,7 @@ end
 def fox_include_files_found?
   search_directories.each do |path|
     filename = File.join(path, "fxver.h")
-    return true if FileTest.exists?(filename)
+    return true if FileTest.exist?(filename)
   end
   false
 end
@@ -43,7 +44,7 @@ end
 def installed_fox_version
   search_directories.each do |path|
     filename = File.join(path, "fxver.h")
-    if FileTest.exists?(filename)
+    if FileTest.exist?(filename)
       foxMajor, foxMinor, foxLevel = read_fox_version(filename)
       return [foxMajor, foxMinor, foxLevel].join('.')
     end

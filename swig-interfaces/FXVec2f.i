@@ -27,17 +27,14 @@ public:
   FXfloat y;
 public:
 
-  /// Default constructor
-  FXVec2f();
+	/// Initialize with components
+	FXVec2f(FXfloat xx=0.0f,FXfloat yy=0.0f);
 
   /// Copy constructor
   FXVec2f(const FXVec2f& v);
 
   // Initialize from array of floats
   FXVec2f(const FXfloat v[]);
-
-  /// Initialize with components
-  FXVec2f(FXfloat xx,FXfloat yy);
 
   /// Length and square of length
   FXfloat length2() const;

@@ -14,13 +14,13 @@ RESTART_FREQUENCY = 20
 # Tree
 # =======================================================================
 class DirTree < FXTreeList
-  def initialize(parent, nvis, tgt = nil, sel = 0, opts = 0, x = 0, y = 0, w = 0, h = 0)
-    super
+  def initialize(p)
+    super(p, :opts => TREELIST_SHOWS_LINES|TREELIST_SHOWS_BOXES|TREELIST_ROOT_BOXES|LAYOUT_FILL_X|LAYOUT_FILL_Y)
   end
 
   def create
     super
-    item = addItemLast(nil, "root")
+    item = appendItem(nil, "root")
     @currentItem = item
     expand
   end
@@ -34,7 +34,7 @@ class DirTree < FXTreeList
   def listSubDir(parentItem)
     entries = (1..NUMBER_OF_ITEMS).collect { |i| i.to_s }
     entries.each do |entry|
-      item = addItemLast(parentItem, entry)
+      item = appendItem(parentItem, entry)
       @currentItem = item if entry == "1"
     end
   end
@@ -57,9 +57,7 @@ class Application < FXApp
     init(ARGV)
 
     @mainWindow = FXMainWindow.new(self, appName, nil, nil, DECOR_ALL, 0, 0, 400, 600)
-    @dirTree = DirTree.new(@mainWindow, 0, nil, 0,
-      (TREELIST_SHOWS_LINES|TREELIST_SHOWS_BOXES|TREELIST_ROOT_BOXES|
-       LAYOUT_FILL_X|LAYOUT_FILL_Y))
+    @dirTree = DirTree.new(@mainWindow) 
 
     @count = 0
   end 

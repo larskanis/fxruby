@@ -21,30 +21,25 @@ module Fox
     #
     def initialize
       super
-      @blocks = {}
+      @context = {}
     end
 
     #
     # Store an association between a message of type
-    # _messageType_ with a callable object or a block.
+    # _message_type_ with a callable object.
     #
-    def pconnect(messageType, callableObject, block)
-      if callableObject.nil?
-	@blocks[messageType] = block
-      else
-	@blocks[messageType] = callableObject
-      end
-      FXMAPTYPE(messageType, :onHandleMsg)
-      
-      case messageType
-        when SEL_TIMEOUT
-	  @@targets_of_pending_timers[self] = self
-        when SEL_CHORE
-	  @@targets_of_pending_chores[self] = self
-        when SEL_SIGNAL
-	  @@targets_of_pending_signals[self] = self
-        when SEL_IO_READ, SEL_IO_WRITE, SEL_IO_EXCEPT
-	  @@targets_of_pending_inputs[self] = self
+    def pconnect(message_type, callable_object, params={})
+      @context[message_type] = { :callable => callable_object, :params => params }
+      FXMAPTYPE(message_type, :onHandleMsg)
+      case message_type
+      when SEL_TIMEOUT
+        @@targets_of_pending_timers[self] = self
+      when SEL_CHORE
+        @@targets_of_pending_chores[self] = self
+      when SEL_SIGNAL
+        @@targets_of_pending_signals[self] = self
+      when SEL_IO_READ, SEL_IO_WRITE, SEL_IO_EXCEPT
+        @@targets_of_pending_inputs[self] = self
       end
     end
 
@@ -53,18 +48,31 @@ module Fox
     # message data _ptr_.
     #
     def onHandleMsg(sender, sel, ptr)
-      messageType = Fox.FXSELTYPE(sel)
-      result = @blocks[messageType].call(sender, sel, ptr)
-      case messageType
-        when SEL_TIMEOUT
-	  @@targets_of_pending_timers.delete(self)
-        when SEL_CHORE
-	  @@targets_of_pending_chores.delete(self)
+      message_type = Fox.FXSELTYPE(sel)
+      ctx = @context[message_type]
+      callable_object = ctx[:callable]
+      params = ctx[:params]
+      result = callable_object.call(sender, sel, ptr)
+      case message_type
+      when SEL_TIMEOUT
+        if params[:repeat]
+          FXApp.instance.addTimeout(params[:delay], callable_object, params)
+        else
+          @@targets_of_pending_timers.delete(self)
+        end
+      when SEL_CHORE
+        if params[:repeat]
+          FXApp.instance.addChore(callable_object, params)
+        else
+          @@targets_of_pending_chores.delete(self)
+        end
       end
       result
     end
-  end
-end
+    
+  end # class FXPseudoTarget
+  
+end # module Fox
 
 #
 # The Responder2 module provides the #connect method,
@@ -95,13 +103,14 @@ module Responder2
   # will be "called" with three arguments (the sender, selector and
   # message data).
   #
-  def connect(messageType, callableObject=nil, &block)
+  def connect(message_type, callable_object=nil, &block)
     unless instance_variables.include?('@pseudoTarget')
       @pseudoTarget = Fox::FXPseudoTarget.new
       self.target = @pseudoTarget
     end
-    @pseudoTarget.pconnect(messageType, callableObject, block)
+    @pseudoTarget.pconnect(message_type, callable_object ? callable_object : block)
   end
+  
 end
 
 module Fox

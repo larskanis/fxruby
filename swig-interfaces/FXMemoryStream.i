@@ -36,8 +36,8 @@ public:
       FXuval size=0;
       FXuchar *data=0;
       if(!NIL_P(str)){
-        size=RSTRING(str)->len;
-        data=reinterpret_cast<FXuchar*>(STR2CSTR(str));
+        size=RSTRING_LEN(str);
+        data=reinterpret_cast<FXuchar*>(StringValuePtr(str));
         return self->open(save_or_load,size,data);
         }
       else{
@@ -59,7 +59,7 @@ public:
     void giveBuffer(VALUE str){
       Check_Type(str,T_STRING);
       FXuchar* buffer=reinterpret_cast<FXuchar*>(StringValuePtr(str));
-      FXuval sp=RSTRING(str)->len;
+      FXuval sp=RSTRING_LEN(str);
       self->giveBuffer(buffer,sp);
       }
   }

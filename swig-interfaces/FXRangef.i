@@ -41,9 +41,6 @@
 /// Range
 class FXRangef {
 public:
-  FXVec3f lower;
-  FXVec3f upper;
-public:
 
   // Default constructor
   FXRangef();
@@ -68,11 +65,20 @@ public:
         }
       return (*self)[i];
       }
+    
     void __setitem__(FXint i,FXVec3f& slice){
       if(i<0||1<i){
         rb_raise(rb_eIndexError,"index %d out of bounds",i);
         }
       (*self)[i]=slice;
+      }
+
+    FXVec3f upper() const {
+      return self->upper;
+      }
+
+    FXVec3f lower() const {
+      return self->lower;
       }
   }
 
@@ -151,6 +157,8 @@ public:
       }
 
     /// Union of two boxes
+    // This is not a typo. We're calling it "onion" here to work around
+    // a bug in SWIG that thinks "union" is the C++ keyword union.
     FXRangef onion(const FXRangef& other) const {
       return FX::unite(*self,other);
       }

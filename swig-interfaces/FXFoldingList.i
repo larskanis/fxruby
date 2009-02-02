@@ -228,11 +228,12 @@ public:
     /// Set headers from array of strings
     void setHeaders(VALUE stringArray,FXint size=1){
       Check_Type(stringArray,T_ARRAY);
-      long len=RARRAY(stringArray)->len;
+      long len=RARRAY_LEN(stringArray);
       const FXchar **strings;
       if(FXMALLOC(&strings,FXchar*,len+1)){
         for(long i=0;i<len;i++){
-	  strings[i]=STR2CSTR(rb_ary_entry(stringArray,i));
+          VALUE s=rb_ary_entry(stringArray,i);
+	  strings[i]=StringValuePtr(s);
           }
 	strings[len]=0;
         self->setHeaders(strings,size);

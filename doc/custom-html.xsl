@@ -4,7 +4,7 @@
                 xmlns="http://www.w3.org/TR/xhtml1/transitional"
                 exclude-result-prefixes="#default">
 
-<xsl:import href="/Users/lyle/docbook/docbook-xsl-1.68.1/html/chunk.xsl"/>
+<xsl:import href="/Users/lyle/docbook/docbook5-xsl-1.72.0/html/chunk.xsl"/>
 
 <xsl:variable name="root.filename">book</xsl:variable>
 <xsl:param name="html.stylesheet.type">text/css</xsl:param>

@@ -32,7 +32,11 @@ public:
 public:
 
   /// Default constructor
-  FXVec4d();
+  %extend {
+		FXVec4d() {
+			return new FXVec4d(0.0, 0.0, 0.0, 0.0);
+		}
+	}
 
   /// Copy constructor
   FXVec4d(const FXVec4d& v);
