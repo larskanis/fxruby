@@ -9,7 +9,7 @@ public:
   virtual void destroy();
 
   // Overrides the base class version of init()
-  virtual void init(int& argc, char** argv,bool connect=true);
+  virtual void init(int& argc, char** argv,FXbool connect=true);
 
   // Overrides the base class version of exit()
   virtual void exit(FXint code=0);

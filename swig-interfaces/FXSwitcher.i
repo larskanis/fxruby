@@ -53,7 +53,7 @@ class FXSwitcher : public FXPacker {
 protected:
   FXint  current;  
 protected:
-  FXSwitcher(){}
+  FXSwitcher();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
@@ -86,7 +86,7 @@ public:
     }
 
   /// Bring the child window at index to the top
-  void setCurrent(FXint index,FXbool notify=FALSE);
+  void setCurrent(FXint index,FXbool notify=false);
   
   /// Return the index of the child window currently on top
   FXint getCurrent() const;

@@ -78,6 +78,7 @@ module Fox
   # +LAYOUT_MIN_HEIGHT+::   Minimum height is the default
   # +LAYOUT_FILL_X+::       Stretch or shrink horizontally
   # +LAYOUT_FILL_Y+::       Stretch or shrink vertically
+  # +LAYOUT_FILL::          Stretch or shrink in both directions
   # +LAYOUT_EXPLICIT+::     Explicit placement
   # +LAYOUT_DOCK_SAME+::    Dock on same galley, if it fits
   # +LAYOUT_DOCK_NEXT+::    Dock on next galley
@@ -333,6 +334,9 @@ module Fox
     # Return height for given width
     def getHeightForWidth(givenWidth); end
   
+    # Return child window with given window key
+    def getChildWithKey(key); end
+  
     #
     # Add this hot key to the closest ancestor's accelerator table.
     #
@@ -405,6 +409,14 @@ module Fox
   
     # Destroy compose context.
     def destroyComposeContext; end
+
+    # Return +true+ if the cursor is shown.
+    def cursorShown?; end
+
+    #
+    # Set the cursor's visibility to +true+ or +false+.
+    #
+    def cursorShown=(flag); end
 
     # Return the cursor position and mouse button-state as a three-element array.
     def cursorPosition() ; end

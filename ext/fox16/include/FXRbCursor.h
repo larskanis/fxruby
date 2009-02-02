@@ -21,26 +21,26 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbCursor.h 2335 2006-01-28 02:33:03Z lyle $
+ * $Id: FXRbCursor.h 2630 2007-04-02 16:25:16Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBCURSOR_H
 #define FXRBCURSOR_H
 
 #define DECLARE_FXCURSOR_STUBS(klass) \
-inline bool klass ## _savePixels(const klass* self,FXStream& store){ \
+inline FXbool klass ## _savePixels(const klass* self,FXStream& store){ \
   return self->klass::savePixels(store); \
   } \
-inline bool klass ## _loadPixels(klass* self,FXStream& store){ \
+inline FXbool klass ## _loadPixels(klass* self,FXStream& store){ \
   return self->klass::loadPixels(store); \
   }
 
 
 #define IMPLEMENT_FXCURSOR_STUBS(cls) \
-  bool cls::savePixels(FXStream& store) const { \
+  FXbool cls::savePixels(FXStream& store) const { \
     return FXRbCallBoolMethod(this,rb_intern("savePixels"),store); \
     } \
-  bool cls::loadPixels(FXStream& store){ \
+  FXbool cls::loadPixels(FXStream& store){ \
     return FXRbCallBoolMethod(this,rb_intern("loadPixels"),store); \
     }
 

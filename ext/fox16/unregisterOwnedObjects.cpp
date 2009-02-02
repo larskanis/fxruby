@@ -1,5 +1,5 @@
 /***********************************************************************
- * $Id: unregisterOwnedObjects.cpp 2305 2005-12-09 14:38:22Z lyle $
+ * $Id: unregisterOwnedObjects.cpp 2946 2009-02-02 21:06:59Z lyle $
  ***********************************************************************/
 
 /**
@@ -22,7 +22,8 @@
  * worry about the C++ objects that aren't subclasses of regular FOX classes,
  * but which have somehow been "exposed" to the Ruby layer.
  */
- 
+
+#include "swigrubyrun.h"
 #include "FXRbCommon.h"
 
 void FXRbHeader::unregisterOwnedObjects(FXHeader *self)
@@ -88,7 +89,7 @@ void FXRbScrollWindow::unregisterOwnedObjects(FXScrollWindow *self)
 
 void FXRbTable::unregisterOwnedObjects(FXTable *self)
 {
-    FXint i,r,c;
+    FXint r,c;
     FXRbScrollArea::unregisterOwnedObjects(self);
     FXRbHeader::unregisterOwnedObjects(self->getRowHeader());
     FXRbHeader::unregisterOwnedObjects(self->getColumnHeader());

@@ -3,23 +3,22 @@
 *                            D a t e   C l a s s                                *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2005 by Jeroen van der Zijp.   All Rights Reserved.             *
+* Copyright (C) 2005,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXDate.h 2335 2006-01-28 02:33:03Z lyle $                             *
+* $Id: FXDate.h 2727 2007-11-16 17:28:42Z lyle $                            *
 ********************************************************************************/
 #ifndef FXDATE_H
 #define FXDATE_H
@@ -29,7 +28,7 @@ namespace FX {
 
 
 /**
-* Gregorian date object.
+* Gregorian date class, which is useful for calendrical calculations.
 */
 class FXAPI FXDate {
 private:
@@ -39,9 +38,6 @@ private:
   static const FXchar longMonthName[12][10];
   static const FXchar shortWeekDay[7][4];
   static const FXchar longWeekDay[7][10];
-protected:
-  static void greg2jul(FXuint& jd,FXint y,FXint m,FXint d);
-  static void jul2greg(FXuint jd,FXint& y,FXint& m,FXint& d);
 public:
 
   /// Names for the months
@@ -62,23 +58,38 @@ public:
   /// Copy constructor
   FXDate(const FXDate& date):julian(date.julian){}
 
-  /// Initialize with year, month, and day
-  FXDate(FXint y,FXint m,FXint d);
-
   /// Initialize with julian day number
-  FXDate(FXuint j):julian(j){}
+  FXDate(FXuint jd):julian(jd){}
+
+  /// Initialize with year and day of year
+  FXDate(FXint yr,FXint dy);
+
+  /// Initialize with year, month, and day of month
+  FXDate(FXint yr,FXint mo,FXint dy);
 
   /// Set julian day number
-  void setJulian(FXuint day){ julian=day; }
+  void setJulian(FXuint jd){ julian=jd; }
 
   /// Get julian day number
   FXuint getJulian() const { return julian; }
 
-  /// Set to year, month, and day
-  void setDate(FXint y,FXint m,FXint d);
+  /// Set date to year and day of year
+  void setDate(FXint yr,FXint dy);
 
-  /// Get year, month, and day
-  void getDate(FXint& y,FXint& m,FXint& d) const;
+  /// Get year and day of year from date
+  void getDate(FXint& yr,FXint& dy) const;
+
+  /// Set date to year, month, and day of month
+  void setDate(FXint yr,FXint mo,FXint dy);
+
+  /// Get year, month, and day of month from date
+  void getDate(FXint& yr,FXint& mo,FXint& dy) const;
+
+  /// Set date from nanoseconds since 1/1/1970
+  void setTime(FXTime ns);
+
+  /// Get nanoseconds since 1/1/1970 from date
+  FXTime getTime() const;
 
   /// Return day of the month
   FXint day() const;
@@ -95,32 +106,53 @@ public:
   /// Return day of year
   FXint dayOfYear() const;
 
+  /// Return ISO8601 week number of this date
+  FXint weekOfYear() const;
+
+  /// Return true if this is a leap year
+  FXbool leapYear() const;
+
+  /// Return number of days in this year
+  FXint daysInYear() const;
+
   /// Return days in this month
   FXint daysInMonth() const;
+  
+  /// Add d days to this date
+  FXDate& addDays(FXint d);
 
-  /// Return true if leap year
-  bool leapYear() const;
+  /// Add m months to this date; day of month is adjusted for leap-years
+  FXDate& addMonths(FXint m);
+
+  /// Add y years to this date; day of month is adjusted for leap-years
+  FXDate& addYears(FXint y);
 
   /// Is the value a leap year
-  static bool leapYear(FXint y);
+  static FXbool leapYear(FXint yr);
+
+  /// Return number of days in a given year
+  static FXint daysInYear(FXint yr);
+
+  /// Return number of days in the month in given year, month
+  static FXint daysInMonth(FXint yr,FXint mo);
 
   /// Get the name of the month
-  static const FXchar *monthName(FXint month){ return longMonthName[month-1]; }
+  static const FXchar *monthName(FXint mo){ return longMonthName[mo-1]; }
 
   /// Get the abbreviated name of the month
-  static const FXchar *monthNameShort(FXint month){ return shortMonthName[month-1]; }
+  static const FXchar *monthNameShort(FXint mo){ return shortMonthName[mo-1]; }
 
   /// Get the name of the day
-  static const FXchar *dayName(FXint day){ return longWeekDay[day]; }
+  static const FXchar *dayName(FXint dy){ return longWeekDay[dy]; }
 
   /// Get the abbreviated name of the day
-  static const FXchar *dayNameShort(FXint day){ return shortWeekDay[day]; }
+  static const FXchar *dayNameShort(FXint dy){ return shortWeekDay[dy]; }
 
   /// Return current local date
   static FXDate localDate();
 
-  /// Return current UTC (Zulu) date
-  static FXDate zuluDate();
+  /// Return current universal (UTC) date
+  static FXDate universalDate();
 
   /// Assignment
   FXDate& operator=(const FXDate& date){julian=date.julian;return *this;}
@@ -129,19 +161,23 @@ public:
   FXDate& operator+=(FXint x){ julian+=x; return *this; }
   FXDate& operator-=(FXint x){ julian-=x; return *this; }
 
-  /// Increment and decrement
-  FXDate& operator++(){ julian++; return *this; }
-  FXDate& operator--(){ julian--; return *this; }
+  /// Pre-Increment and decrement
+  FXDate& operator++(){ ++julian; return *this; }
+  FXDate& operator--(){ --julian; return *this; }
+  
+  /// Post-Increment and decrement
+  FXDate operator++(int){ FXDate t(julian++); return t; }
+  FXDate operator--(int){ FXDate t(julian--); return t; }
 
   /// Equality tests
-  bool operator==(const FXDate& date) const { return julian==date.julian;}
-  bool operator!=(const FXDate& date) const { return julian!=date.julian;}
+  FXbool operator==(const FXDate& date) const { return julian==date.julian;}
+  FXbool operator!=(const FXDate& date) const { return julian!=date.julian;}
 
   /// Inequality tests
-  bool operator<(const FXDate& date) const { return julian<date.julian;}
-  bool operator<=(const FXDate& date) const { return julian<=date.julian;}
-  bool operator>(const FXDate& date) const { return julian>date.julian;}
-  bool operator>=(const FXDate& date) const { return julian>=date.julian;}
+  FXbool operator<(const FXDate& date) const { return julian<date.julian;}
+  FXbool operator<=(const FXDate& date) const { return julian<=date.julian;}
+  FXbool operator>(const FXDate& date) const { return julian>date.julian;}
+  FXbool operator>=(const FXDate& date) const { return julian>=date.julian;}
 
   /// Add days to date yielding another date
   friend inline FXDate operator+(const FXDate& d,FXint x);

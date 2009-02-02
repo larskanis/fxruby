@@ -37,7 +37,7 @@ public:
       }
 
     /// True if format is supported
-    static bool isSupported() { return FXPNGImage::supported; }
+    static FXbool isSupported() { return FXPNGImage::supported; }
     }
 public:
   %extend {

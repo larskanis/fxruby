@@ -3,23 +3,22 @@
 *                         I c o n   D i c t i o n a r y                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXIconDict.h 2344 2006-02-12 21:19:36Z lyle $                         *
+* $Id: FXIconDict.h 2725 2007-11-16 16:57:54Z lyle $                         *
 ********************************************************************************/
 #ifndef FXICONDICT_H
 #define FXICONDICT_H
@@ -54,7 +53,7 @@ private:
   FXString      path;   // Where to search icons
 protected:
   FXIconDict():source(NULL){}
-  virtual void *createData(const void*);
+  virtual void *createData(void*);
   virtual void deleteData(void*);
 private:
   FXIconDict(const FXIconDict&);
@@ -85,13 +84,19 @@ public:
   const FXString& getIconPath() const { return path; }
 
   /// Insert unique icon loaded from filename into dictionary
-  FXIcon* insert(const FXchar* name){ return (FXIcon*)FXDict::insert(name,name); }
+  FXIcon* insert(const FXchar* name){ return (FXIcon*)FXDict::insert(name,(void*)name); }
+
+  /// Replace icon loaded from filename into dictionary
+  FXIcon* replace(const FXchar* name){ return (FXIcon*)FXDict::replace(name,(void*)name); }
 
   /// Remove icon from dictionary
   FXIcon* remove(const FXchar* name){ return (FXIcon*)FXDict::remove(name); }
 
   /// Find icon by name
   FXIcon* find(const FXchar* name){ return (FXIcon*)FXDict::find(name); }
+
+  /// Return icon at position pos
+  FXIcon* data(FXint pos) const { return (FXIcon*)FXDict::data(pos); }
 
   /// Save to stream
   virtual void save(FXStream& store) const;

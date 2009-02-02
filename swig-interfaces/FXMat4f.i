@@ -20,6 +20,10 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
+// Provide aliases for backwards-compatibility with FXRuby 1.6
+%alias FXMat4f::identity() "eye";
+%alias FXMat4f::setOrtho(FXfloat, FXfloat, FXfloat, FXfloat, FXfloat, FXfloat) "ortho";
+%alias FXMat4f::setFrustum(FXfloat, FXfloat, FXfloat, FXfloat, FXfloat, FXfloat) "frustum";
 
 // Single-precision 4x4 matrix
 class FXMat4f {
@@ -83,22 +87,19 @@ public:
     
     // Negation
     FXMat4f operator-() const { return -(*self); }
-
-    // Stringify
-    FXString to_s() const {
-      const FXMat4f& m = *self;
-      return FXStringFormat("[[%g, %g, %g, %g], [%g, %g, %g, %g], [%g, %g, %g, %g], [%g, %g, %g, %g]]",m[0][0],m[0][1],m[0][2],m[0][3],m[1][0],m[1][1],m[1][2],m[1][3],m[2][0],m[2][1],m[2][2],m[2][3],m[3][0],m[3][1],m[3][2],m[3][3]);
-      }
     }
 
   /// Set identity matrix
-  FXMat4f& eye();
+  FXMat4f& identity();
+
+  /// Return true if identity matrix
+  FXbool isIdentity() const;
 
   /// Orthographic projection
-  FXMat4f& ortho(FXfloat left,FXfloat right,FXfloat bottom,FXfloat top,FXfloat hither,FXfloat yon);
+  FXMat4f& setOrtho(FXfloat xlo,FXfloat xhi,FXfloat ylo,FXfloat yhi,FXfloat zlo,FXfloat zhi);
 
   /// Perspective projection
-  FXMat4f& frustum(FXfloat left,FXfloat right,FXfloat bottom,FXfloat top,FXfloat hither,FXfloat yon);
+  FXMat4f& setFrustum(FXfloat xlo,FXfloat xhi,FXfloat ylo,FXfloat yhi,FXfloat zlo,FXfloat zhi);
 
   /// Multiply by left-hand matrix
   FXMat4f& left();
@@ -125,7 +126,7 @@ public:
   FXMat4f& zrot(FXfloat phi);
 
   /// Look at
-  FXMat4f& look(const FXVec3f& eye,const FXVec3f& cntr,const FXVec3f& vup);
+  FXMat4f& look(const FXVec3f& from,const FXVec3f& to,const FXVec3f& up);
 
   /// Multiply by translation
   FXMat4f& trans(FXfloat tx,FXfloat ty,FXfloat tz);

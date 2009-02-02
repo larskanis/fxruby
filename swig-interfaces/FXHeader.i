@@ -35,12 +35,14 @@ enum {
   HEADER_NORMAL     = HEADER_HORIZONTAL|FRAME_NORMAL
   };
   
-
+%rename("tipText=")     FXHeaderItem::setTipText(const FXString&);
+%rename("tipText")      FXHeaderItem::getTipText() const;
 
 /// Header item
 class FXHeaderItem : public FXObject {
 protected:
   FXString  label;      // Text of item
+  FXString  tip;        // Tooltip of item
   FXIcon   *icon;       // Icon of item
   void     *data;       // Item user data pointer
   FXint     size;       // Item size
@@ -48,7 +50,7 @@ protected:
   FXuint    state;      // Item state flags
 protected:
   FXHeaderItem(){}
-  virtual void draw(const FXHeader* header,FXDC& dc,FXint x,FXint y,FXint w,FXint h);
+  virtual void draw(const FXHeader* header,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
 public:
   enum{
     ARROW_NONE = 0,     /// No arrow
@@ -57,7 +59,7 @@ public:
     PRESSED    = 4,     /// Pressed down
     RIGHT      = 8,     /// Align on right
     LEFT       = 16,    /// Align on left
-    CENTER_X   = 0,               /// Aling centered horizontally (default)
+    CENTER_X   = 0,     /// Align centered horizontally (default)
     TOP        = 32,    /// Align on top
     BOTTOM     = 64,    /// Align on bottom
     CENTER_Y   = 0,               /// Aling centered vertically (default)
@@ -77,6 +79,12 @@ public:
   /// Return item's text label
   const FXString& getText() const;
  
+  /// Set the tool tip message for this item
+  void setTipText(const FXString& text);
+  
+  /// Get the tool tip message for this item
+  const FXString& getTipText() const;
+  
   /// Return item's icon
   FXIcon* getIcon() const;
 
@@ -104,10 +112,10 @@ public:
   /// Obtain current position
   FXint getPos() const;
 
-  /// Change sort direction (FALSE, TRUE, MAYBE)
-  void setArrowDir(FXuint dir=MAYBE);
+  /// Change sort direction (ARROW_NONE, ARROW_UP, ARROW_DOWN)
+  void setArrowDir(FXuint dir=ARROW_NONE);
 
-  /// Return sort direction (FALSE, TRUE, MAYBE)
+  /// Return sort direction (ARROW_NONE, ARROW_UP, ARROW_DOWN)
   FXuint getArrowDir() const;
 
   /// Change content justification
@@ -219,7 +227,7 @@ public:
 
   %extend {
     /// Replace the item with a [possibly subclassed] item
-    FXint setItem(FXint index,FXHeaderItem* item,FXbool notify=FALSE){
+    FXint setItem(FXint index,FXHeaderItem* item,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXHeaderItem* oldItem=self->getItem(index);
 
@@ -236,7 +244,7 @@ public:
     }
 
     /// Replace items text, icon, and user-data pointer
-    FXint setItem(FXint index,const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=FALSE){
+    FXint setItem(FXint index,const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXHeaderItem* oldItem=self->getItem(index);
 
@@ -252,11 +260,11 @@ public:
   }
 
   /// Fill header by appending items from array of strings
-  FXint fillItems(const FXchar** strings,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint fillItems(const FXchar** strings,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=false);
   
   %extend {
     /// Insert a new [possibly subclassed] item at the given index
-    FXint insertItem(FXint index,FXHeaderItem* item,FXbool notify=FALSE){
+    FXint insertItem(FXint index,FXHeaderItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbHeaderItem)))
         dynamic_cast<FXRbHeaderItem*>(item)->owned=TRUE;
       return self->insertItem(index,item,notify);
@@ -264,11 +272,11 @@ public:
   }
 
   /// Insert item at index with given text, icon, and user-data pointer
-  FXint insertItem(FXint index,const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint insertItem(FXint index,const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Append a [possibly subclassed] item to the list
-    FXint appendItem(FXHeaderItem* item,FXbool notify=FALSE){
+    FXint appendItem(FXHeaderItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbHeaderItem)))
         dynamic_cast<FXRbHeaderItem*>(item)->owned=TRUE;
       return self->appendItem(item,notify);
@@ -276,11 +284,11 @@ public:
   }
 
   /// Append new item with given text and optional icon, and user-data pointer
-  FXint appendItem(const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint appendItem(const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Prepend a [possibly subclassed] item to the list
-    FXint prependItem(FXHeaderItem* item,FXbool notify=FALSE){
+    FXint prependItem(FXHeaderItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbHeaderItem)))
         dynamic_cast<FXRbHeaderItem*>(item)->owned=TRUE;
       return self->prependItem(item,notify);
@@ -288,14 +296,14 @@ public:
   }
 
   /// Prepend new item with given text and optional icon, and user-data pointer
-  FXint prependItem(const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint prependItem(const FXString& text,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Extract item from list
-  FXHeaderItem* extractItem(FXint index,FXbool notify=FALSE);
+  FXHeaderItem* extractItem(FXint index,FXbool notify=false);
 
   %extend {
     /// Remove item at index
-    void removeItem(FXint index,FXbool notify=FALSE){
+    void removeItem(FXint index,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXHeaderItem* item=self->getItem(index);
 
@@ -307,7 +315,7 @@ public:
       }
 
     /// Remove all items
-    void clearItems(FXbool notify=FALSE){
+    void clearItems(FXbool notify=false){
       // Save pointers to the soon-to-be-destroyed items
       FXObjectListOf<FXHeaderItem> items;
       for (FXint i = 0; i < self->getNumItems(); i++) items.append(self->getItem(i));
@@ -325,6 +333,12 @@ public:
 
   /// Get text of item at index
   FXString getItemText(FXint index) const;
+
+  /// Change tool tip message for item at index
+  void setItemTipText(FXint index,const FXString& text);
+
+  /// Get tool tip message of item at index
+  FXString getItemTipText(FXint index) const;
 
   /// Change icon of item at index
   void setItemIcon(FXint index,FXIcon* icon);
@@ -353,10 +367,10 @@ public:
       }
   }
 
-  /// Change sort direction (FALSE, TRUE, MAYBE)
-  void setArrowDir(FXint index,FXbool dir=MAYBE);
+  /// Change sort direction (ARROW_NONE, ARROW_UP, ARROW_DOWN)
+  void setArrowDir(FXint index,FXuint dir=FXHeaderItem::ARROW_NONE);
   
-  /// Return sort direction (FALSE, TRUE, MAYBE)
+  /// Return sort direction (ARROW_NONE, ARROW_UP, ARROW_DOWN)
   FXuint getArrowDir(FXint index) const;
 
   /**

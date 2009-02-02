@@ -91,8 +91,10 @@ public:
   /// Return the file size for this item
   FXlong getSize() const;
 
-  /// Return the date for this item
+  /// Return the date for this item, in nanoseconds
   FXTime getDate() const;
+
+  // Destructor
   virtual ~FXDirItem();
   };
 
@@ -106,6 +108,8 @@ DECLARE_FXTREEITEM_VIRTUALS(FXDirItem)
 %rename(setShowFiles) FXDirList::showFiles(FXbool showing);
 %rename(getShowHiddenFiles) FXDirList::showHiddenFiles() const;
 %rename(setShowHiddenFiles) FXDirList::showHiddenFiles(FXbool showing);
+%rename("draggableFiles=")	FXDirList::setDraggableFiles(FXbool);
+%rename("draggableFiles")		FXDirList::getDraggableFiles() const;
 
 
 /**
@@ -119,23 +123,25 @@ DECLARE_FXTREEITEM_VIRTUALS(FXDirItem)
 */
 class FXDirList : public FXTreeList {
 protected:
-  FXFileDict   *associations;         // Association table
-  FXDirItem    *list;                 // Root item list
-  FXString      dropdirectory;        // Drop directory
-  FXDragAction  dropaction;           // Drop action
-  FXString      dragfiles;            // Dragged files
-  FXString      pattern;              // Pattern of file names
-  FXuint        matchmode;            // File wildcard match mode
-  FXuint        counter;              // Refresh counter
-  FXIcon       *open_folder;          // Open folder icon
-  FXIcon       *closed_folder;        // Closed folder icon
-  FXIcon       *mini_doc;             // Document icon
-  FXIcon       *mini_app;             // Application icon
-  FXIcon       *cdromicon;
-  FXIcon       *harddiskicon;
-  FXIcon       *networkicon;
-  FXIcon       *floppyicon;
-  FXIcon       *zipdiskicon;
+	FXFileDict   *associations;           // Association table
+	FXDirItem    *list;                   // Root item list
+	FXIcon       *opendiricon;            // Open folder icon
+	FXIcon       *closeddiricon;          // Closed folder icon
+	FXIcon       *documenticon;           // Document icon
+	FXIcon       *applicationicon;        // Application icon
+	FXIcon       *cdromicon;              // CDROM icon
+	FXIcon       *harddiskicon;           // Hard drive icon
+	FXIcon       *networkicon;            // Network icon
+	FXIcon       *floppyicon;             // Floppy icon
+	FXIcon       *zipdiskicon;            // Zip disk icon
+	FXString      pattern;                // Pattern of file names
+	FXString      dropdirectory;          // Drop directory
+	FXString      dragfiles;              // Dragged file names
+	FXString      dropfiles;              // Dropped file names
+	FXDragAction  dropaction;             // Drop action
+	FXuint        matchmode;              // File wildcard match mode
+	FXuint        counter;                // Refresh counter
+	FXbool        draggable;              // Dragable files
 protected:
   FXDirList();
   void listRootItems();
@@ -202,7 +208,7 @@ public:
     }
 
   /// Scan the directories and update the items if needed, or if force is TRUE
-  void scan(FXbool force=TRUE);
+  void scan(FXbool force=true);
 
   /// Return TRUE if item is a directory
   FXbool isItemDirectory(const FXTreeItem* item) const;
@@ -214,13 +220,13 @@ public:
   FXbool isItemExecutable(const FXTreeItem* item) const;
   
   /// Set current file
-  void setCurrentFile(const FXString& file,FXbool notify=FALSE);
+  void setCurrentFile(const FXString& file,FXbool notify=false);
   
   /// Return current file
   FXString getCurrentFile() const;
   
   /// Set current directory
-  void setDirectory(const FXString& path,FXbool notify=FALSE);
+  void setDirectory(const FXString& path,FXbool notify=false);
   
   /// Return current directory
   FXString getDirectory() const;
@@ -247,7 +253,7 @@ public:
   FXbool showFiles() const;
   
   /// Show or hide normal files
-  void showFiles(FXbool showing);
+  void showFiles(FXbool flag);
 
   /// Return TRUE if showing hidden files and directories
   FXbool showHiddenFiles() const;
@@ -255,12 +261,18 @@ public:
   /// Show or hide hidden files and directories
   void showHiddenFiles(FXbool showing);
   
-  /// Change file associations
-  void setAssociations(FXFileDict* assoc);
+  /// Change file associations; delete the old one unless it was shared
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
   
   /// Return file associations
   FXFileDict* getAssociations() const;
   
+  /// Set draggable files
+  void setDraggableFiles(FXbool flag);
+	
+  /// Are files draggable
+  FXbool getDraggableFiles() const;
+	
   /// Destructor
   virtual ~FXDirList();
   };

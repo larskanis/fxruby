@@ -12,6 +12,11 @@ module Fox
   # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
   # +SEL_COMMAND+::		sent when this option is clicked; the message data is an FXEvent instance.
   #
+  # === Style options
+  #
+  # +OPTIONMENU_TOOLBAR+:: Toolbar style button [flat look]
+  # +OPTIONMENU_NOGLYPH+:: Do not display a glyph
+  #
   class FXOption < FXLabel
     # Selection background color [FXColor]
     attr_accessor :selBackColor
@@ -56,6 +61,11 @@ module Fox
     def initialize(p, pup=nil, opts=JUSTIFY_NORMAL|ICON_BEFORE_TEXT, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theOptionMenu
     end
   
+    #
+    # Return the option item (an FXOption instance) at the given index.
+    #
+    def getItem(index); end
+    
     #
     # Set the current option.
     #

@@ -10,7 +10,7 @@ module Fox
     # The file size for this item [Integer]
     attr_reader :size
     
-    # Date for this item [Time]
+    # Date for this item in nanoseconds [Time]
     attr_reader :date
 
     # Returns an initialized FXFileItem instance
@@ -43,6 +43,9 @@ module Fox
   
     # Return +true+ if this is a socket
     def socket?; end
+    
+    # Return +true+ if item is a special navigational item like '.' or '..'.
+    def navigational?; end
   end
 
   #
@@ -66,6 +69,8 @@ module Fox
   #
   # === Message identifiers
   #
+  # +ID_OPENTIMER+:: 		  x
+  # +ID_DROPACTION+::     x
   # +ID_SORT_BY_NAME+::		Sort by name
   # +ID_SORT_BY_TYPE+::		Sort by type
   # +ID_SORT_BY_SIZE+::		Sort by size
@@ -80,8 +85,11 @@ module Fox
   # +ID_HIDE_HIDDEN+::		Hide hidden files
   # +ID_TOGGLE_HIDDEN+::	Toggle visibility of hidden files
   # +ID_REFRESHTIMER+:: 	x
-  # +ID_OPENTIMER+:: 		x
   # +ID_TOGGLE_IMAGES+::	Toggle display of images
+  # +ID_CUT_SEL+::
+  # +ID_COPY_SEL+::
+  # +ID_DELETE_SEL+::
+  # +ID_PASTE_SEL+::
   # +ID_REFRESH+::		Refresh immediately
   #
   class FXFileList < FXIconList
@@ -148,6 +156,12 @@ module Fox
     def itemExecutable?(index); end
   
     #
+    # Return +true+ if item is a navigational item, like '.' or '..'.
+    # Raises IndexError if _index_ is out of bounds.
+    #
+    def itemNavigational?(index); end
+  
+    #
     # Return name of item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
@@ -203,6 +217,12 @@ module Fox
     # Set whether parent directories are shown to +true+ or +false+.
     #
     def parentDirsShown=(shown); end
+    
+    # Set draggable files to +true+ or +false+.
+    def draggableFiles=(flag); end
+    
+    # Return +true+ if draggable files is set.
+    def draggableFiles?; end
   end
 end
 

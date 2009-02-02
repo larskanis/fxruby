@@ -1,5 +1,45 @@
 module Fox
+
+  class FXGLContext
+    # Return +true+ if sharing display lists
+    def shared?
+      not shared.nil?
+    end
+  end
   
+  class FXGLViewer
+    #
+    # Set the top background color to _clr_ (an FXVec4f instance).
+    #
+    def topBackgroundColor=(clr)
+      setBackgroundColor(clr, false)
+    end
+    
+    #
+    # Set the bottom background color to _clr_ (an FXVec4f instance).
+    #
+    def bottomBackgroundColor=(clr)
+      setBackgroundColor(clr, true)
+    end
+
+    #
+    # Return the top background color (an FXVec4f instance).
+    #
+    def topBackgroundColor
+      getBackgroundColor(false)
+    end
+    
+    #
+    # Return the bottom background color (an FXVec4f instance).
+    #
+    def bottomBackgroundColor
+      getBackgroundColor(true)
+    end
+
+    alias backgroundColor   topBackgroundColor
+    alias backgroundColor=  setBackgroundColor
+  end
+
   class FXIconItem
     def <=>(otherItem)
       text <=> otherItem.text
@@ -154,7 +194,7 @@ module Fox
       if index < 0 || index >= numItems 
         raise IndexError, "header item index out of bounds"
       else
-        getArrowDir(index) == Fox::TRUE
+        getArrowDir(index) == FXHeaderItem::ARROW_UP
       end
     end
 
@@ -166,7 +206,7 @@ module Fox
       if index < 0 || index >= numItems 
         raise IndexError, "header item index out of bounds"
       else
-        getArrowDir(index) == Fox::FALSE
+        getArrowDir(index) == FXHeaderItem::ARROW_DOWN
       end
     end
 
@@ -174,12 +214,31 @@ module Fox
     # Returns true if the specified header item does not display
     # any arrow. Raises IndexError if _index_ is out of bounds.
     #
-    def arrowMaybe?(index)
+    def arrowNone?(index)
       if index < 0 || index >= numItems 
         raise IndexError, "header item index out of bounds"
       else
-        getArrowDir(index) == Fox::MAYBE
+        getArrowDir(index) == FXHeaderItem::ARROW_NONE
       end
+    end
+  end
+  
+  class FXHiliteStyle
+    #
+    # Construct a new FXHiliteStyle instance, with fields initialized from
+    # an FXText instance.
+    #
+    def FXHiliteStyle.from_text(textw)
+      hs = new
+      hs.activeBackColor = textw.activeBackColor
+      hs.hiliteBackColor = textw.hiliteBackColor
+      hs.hiliteForeColor = textw.hiliteTextColor
+      hs.normalBackColor = textw.backColor
+      hs.normalForeColor = textw.textColor
+      hs.selectBackColor = textw.selBackColor
+      hs.selectForeColor = textw.selTextColor
+      hs.style = 0
+      hs
     end
   end
 
@@ -218,6 +277,8 @@ module Fox
     def to_s
       to_a.to_s
     end
+    
+    def inspect; to_a.inspect; end
   end
   
   class FXVec2f
@@ -226,6 +287,8 @@ module Fox
     
     # Convert to string
     def to_s; to_a.to_s; end
+    
+    def inspect; to_a.inspect; end
   end
   
   class FXVec3d
@@ -234,6 +297,8 @@ module Fox
     
     # Convert to string
     def to_s; to_a.to_s; end
+    
+    def inspect; to_a.inspect; end
   end
   
   class FXVec3f
@@ -242,6 +307,8 @@ module Fox
     
     # Convert to string
     def to_s; to_a.to_s; end
+    
+    def inspect; to_a.inspect; end
   end
   
   class FXVec4d
@@ -250,6 +317,8 @@ module Fox
     
     # Convert to string
     def to_s; to_a.to_s; end
+    
+    def inspect; to_a.inspect; end
   end
   
   class FXVec4f
@@ -258,20 +327,39 @@ module Fox
     
     # Convert to string
     def to_s; to_a.to_s; end
+    
+    def inspect; to_a.inspect; end
   end
 
   class FXWindow
     #
     # Iterate over the child windows for this window.
+    # Note that this only reaches the direct child windows for this window
+    # and no deeper descendants. To traverse the entire widget tree,
+    # use #each_child_recursive.
     #
-    def each_child
+    def each_child # :yields: child
       child = self.first
       while child
         next_child = child.next
         yield child
-	child = next_child
+        child = next_child
       end
     end
+    
+    #
+    # Traverse the widget tree starting from this window
+    # using depth-first traversal.
+    # 
+    def each_child_recursive # :yields: child
+      each_child do |child|
+        yield child
+        child.each_child_recursive do |subchild|
+          yield subchild
+        end
+      end
+    end
+    
 
     # Returns an array containing all child windows of this window
     def children
@@ -447,9 +535,7 @@ module Fox
 
     # Create input control for editing this item
     def getControlFor(table)
-      combo = FXComboBox.new(table, 1, nil, 0, COMBOBOX_STATIC, 0, 0, 0, 0,
-                             table.marginLeft, table.marginRight,
-			     table.marginTop, table.marginBottom)
+      combo = FXComboBox.new(table, 1, :opts => COMBOBOX_STATIC, :padLeft => table.marginLeft, :padRight => table.marginRight, :padTop => table.marginTop, :padBottom => table.marginBottom)
       combo.create
       justify = 0
       justify |= JUSTIFY_LEFT   if (self.justify & FXTableItem::LEFT) != 0
@@ -539,6 +625,13 @@ module Fox
       self.checkState == MAYBE
     end
   end
+  
+  class FXObject
+    require 'enumerator'
+    def self.subclasses
+      ObjectSpace.enum_for(:each_object, class << self; self; end).to_a
+    end
+  end
 
   class FXDC
     #
@@ -607,6 +700,41 @@ module Fox
     def selectItem(row, col, notify=false)
       selectRange(row, row, col, col, notify)
     end
+
+=begin
+
+    # Deselect cell at (_row_, _col_).
+    # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the table's message target
+    # after the item is deselected.
+    # Raises IndexError if either _row_ or _col_ is out of bounds.
+    #
+    def deselectItem(row, col, notify=false)
+      raise IndexError, "row index out of bounds" if row < 0 || row >= numRows
+      raise IndexError, "column index out of bounds" if col < 0 || col >= numColumns
+      deselectRange(row, row, col, col, notify)
+    end
+
+    # Deselect range.
+    # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the table's message
+    # target for each previously selected cell that becomes deselected as a result of
+    # this operation.
+    # Raises IndexError if _startRow_, _endRow_, _startColumn_ or _endColumn_ is out of bounds.
+    def deselectRange(startRow, endRow, startColumn, endColumn, notify=false)
+      raise IndexError, "starting row index out of bounds"    if startRow < 0 || startRow >= numRows
+      raise IndexError, "ending row index out of bounds"      if endRow < 0 || endRow >= numRows
+      raise IndexError, "starting column index out of bounds" if startColumn < 0 || startColumn >= numColumns
+      raise IndexError, "ending column index out of bounds"   if endColumn < 0 || endColumn >= numColumns
+      changes = false
+      for row in startRow..endRow
+        for col in startColumn..endColumn
+          changes |= deselectItem(row, col, notify)
+        end
+      end
+      changes
+    end
+    
+=end
+
   end
 end
 

@@ -3,23 +3,22 @@
 *                         T a b   B o o k   W i d g e t                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXTabBook.h 2241 2005-11-09 13:51:59Z lyle $                          *
+* $Id: FXTabBook.h 2765 2007-11-19 18:11:18Z lyle $                         *
 ********************************************************************************/
 #ifndef FXTABBOOK_H
 #define FXTABBOOK_H
@@ -44,7 +43,7 @@ namespace FX {
 * in a small space by placing several panels on top of each
 * other and using tab items to select the desired panel.
 * When one of the tab items is pressed, the tab book's setCurrent()
-* is called with notify=TRUE.  Thus causes the tab book to send a
+* is called with notify=true.  Thus causes the tab book to send a
 * SEL_COMMAND message to its target.
 */
 class FXAPI FXTabBook : public FXTabBar {

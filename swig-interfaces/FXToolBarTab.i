@@ -79,7 +79,7 @@ public:
    }
 
   /// Collapse or uncollapse the toolbar
-  void collapse(FXbool fold,FXbool notify=FALSE);
+  void collapse(FXbool fold,FXbool notify=false);
   
   /// Return true if the toolbar is collapsed
   FXbool isCollapsed() const;

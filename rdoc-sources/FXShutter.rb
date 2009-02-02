@@ -11,6 +11,11 @@ module Fox
   #
   class FXShutterItem < FXVerticalFrame
     #
+    # The scroll window for this shutter item [FXScrollWindow]
+    #
+    attr_reader :scrollWindow
+    
+    #
     # The button for this shutter item [FXButton]
     #
     attr_reader :button

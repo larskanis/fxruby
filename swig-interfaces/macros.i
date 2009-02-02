@@ -36,7 +36,7 @@
    * Parses and removes common command line arguments, reads the registry.
    * Finally, if connect is TRUE, it opens the display.
    */
-  virtual void init(VALUE arr,bool connect=true);
+  virtual void init(VALUE arr,FXbool connect=true);
 
   /**
    * Exit application.
@@ -60,10 +60,10 @@
   virtual void release();
 
   /// Save pixel data only
-  virtual bool savePixels(FXStream& store) const;
+  virtual FXbool savePixels(FXStream& store) const;
   
   /// Load pixel data
-  virtual bool loadPixels(FXStream& store);
+  virtual FXbool loadPixels(FXStream& store);
 
   /// Rescale pixels to the specified width and height
   virtual void scale(FXint w,FXint h);
@@ -75,7 +75,7 @@
   virtual void rotate(FXint degrees);
 
   /// Crop bitmap to given rectangle
-  virtual void crop(FXint x,FXint y,FXint w,FXint h,FXbool color=0);
+  virtual void crop(FXint x,FXint y,FXint w,FXint h,FXbool color=false);
 
   /// Fill bitmap with uniform value
   virtual void fill(FXbool color);
@@ -101,10 +101,10 @@
 %define DECLARE_FXCURSOR_VIRTUALS(klass)
 %extend klass {
   /// Save pixel data only
-  virtual bool savePixels(FXStream& store) const;
+  virtual FXbool savePixels(FXStream& store) const;
   
   /// Load pixel data
-  virtual bool loadPixels(FXStream& store);
+  virtual FXbool loadPixels(FXStream& store);
   }
 %enddef
 
@@ -284,25 +284,28 @@
   * However, if after is -1, it will be docked as the innermost bar just before
   * the work-area, while if after is 0, if will be docked as the outermost bar.
   */
-  virtual void dock(FXDockSite* docksite,FXWindow* before=NULL,FXbool notify=FALSE);
+  virtual void dock(FXDockSite* docksite,FXWindow* other=NULL,FXbool notify=false);
 
   /**
   * Dock the bar against the given side, near the given position relative
   * to the toolbar dock's origin.
   */
-  virtual void dock(FXDockSite* docksite,FXint localx,FXint localy,FXbool notify);
+  virtual void dock(FXDockSite* docksite,FXint localx,FXint localy,FXbool notify=false);
 
   /**
   * Undock or float the bar.
   * The initial position of the wet dock is a few pixels
   * below and to the right of the original docked position.
   */
-  virtual void undock(FXint rootx,FXint rooty,FXbool notify=FALSE);
+  virtual void undock(FXint rootx,FXint rooty,FXbool notify=false);
   }
 %enddef
 
 %define DECLARE_FXDOCKSITE_VIRTUALS(klass)
 %extend klass {
+  /// Resize toolbar
+  virtual void resizeToolBar(FXDockBar* bar,FXint barx,FXint bary,FXint barw,FXint barh);
+
   /**
   * Move tool bar, changing its options to suite the new position.
   * Used by the toolbar dragging to rearrange the toolbars inside the
@@ -312,11 +315,11 @@
 
   /**
   * The dock site is notified that the given bar has been added
-  * logically before the given window, and is to placed on a new
+  * logically before the other window, and is to placed on a new
   * galley all by itself.  The default implementation adjusts
   * the layout options of the bars accordingly.
   */
-  virtual void dockToolBar(FXDockBar* bar,FXWindow* before);
+  virtual void dockToolBar(FXDockBar* bar,FXWindow* other);
 
   /**
   * The dock site is informed that the given bar has been docked
@@ -354,8 +357,8 @@
 %define DECLARE_FXFOLDINGITEM_VIRTUALS(klass)
 %extend klass {
   virtual void setText(const FXString& txt);
-  virtual void setOpenIcon(FXIcon* icn,FXbool owned=FALSE);
-  virtual void setClosedIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setOpenIcon(FXIcon* icn,FXbool owned=false);
+  virtual void setClosedIcon(FXIcon* icn,FXbool owned=false);
   virtual void setFocus(FXbool focus);
   virtual void setSelected(FXbool selected);
   virtual void setOpened(FXbool opened);
@@ -382,34 +385,34 @@
   virtual FXbool disableItem(FXFoldingItem* item);
 
   /// Select item
-  virtual FXbool selectItem(FXFoldingItem* item,FXbool notify=FALSE);
+  virtual FXbool selectItem(FXFoldingItem* item,FXbool notify=false);
 
   /// Deselect item
-  virtual FXbool deselectItem(FXFoldingItem* item,FXbool notify=FALSE);
+  virtual FXbool deselectItem(FXFoldingItem* item,FXbool notify=false);
 
   /// Toggle item selection
-  virtual FXbool toggleItem(FXFoldingItem* item,FXbool notify=FALSE);
+  virtual FXbool toggleItem(FXFoldingItem* item,FXbool notify=false);
 
   /// Extend selection from anchor item to item
-  virtual FXbool extendSelection(FXFoldingItem* item,FXbool notify=FALSE);
+  virtual FXbool extendSelection(FXFoldingItem* item,FXbool notify=false);
 
   /// Deselect all items
-  virtual FXbool killSelection(FXbool notify=FALSE);
+  virtual FXbool killSelection(FXbool notify=false);
 
   /// Open item
-  virtual FXbool openItem(FXFoldingItem* item,FXbool notify=FALSE);
+  virtual FXbool openItem(FXFoldingItem* item,FXbool notify=false);
 
   /// Close item
-  virtual FXbool closeItem(FXFoldingItem* item,FXbool notify=FALSE);
+  virtual FXbool closeItem(FXFoldingItem* item,FXbool notify=false);
 
   /// Collapse tree
-  virtual FXbool collapseTree(FXFoldingItem* tree,FXbool notify=FALSE);
+  virtual FXbool collapseTree(FXFoldingItem* tree,FXbool notify=false);
 
   /// Expand tree
-  virtual FXbool expandTree(FXFoldingItem* tree,FXbool notify=FALSE);
+  virtual FXbool expandTree(FXFoldingItem* tree,FXbool notify=false);
 
   /// Change current item
-  virtual void setCurrentItem(FXFoldingItem* item,FXbool notify=FALSE);
+  virtual void setCurrentItem(FXFoldingItem* item,FXbool notify=false);
   }
 %enddef
 
@@ -433,8 +436,8 @@
     /// See if font has glyph for ch
     virtual FXbool hasChar(VALUE ch) const {
       if(TYPE(ch)==T_STRING){
-        if(RSTRING(ch)->len==1){
-          return self->hasChar(*(STR2CSTR(ch))); // FIXME: hasChar() expects an FXwchar
+        if(RSTRING_LEN(ch)==1){
+          return self->hasChar(*(StringValuePtr(ch))); // FIXME: hasChar() expects an FXwchar
 	  }
 	else{
 	  rb_raise(rb_eArgError,"expected a string of length one");
@@ -529,8 +532,12 @@
 %enddef
 
 %define DECLARE_FXGLSHAPE_VIRTUALS(klass)
-%extend klass {
+%extend klass {  
+  // Draw shape into viewer
   virtual void drawshape(FXGLViewer*);
+  
+  // Set the position
+  virtual void setPosition(const FXVec3f& pos);
   }
 %enddef
 
@@ -567,8 +574,8 @@
   virtual void drawMiniIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
   virtual void drawDetails(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
   virtual void setText(const FXString& text);
-  virtual void setBigIcon(FXIcon* icn,FXbool owned=FALSE);
-  virtual void setMiniIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setBigIcon(FXIcon* icn,FXbool owned=false);
+  virtual void setMiniIcon(FXIcon* icn,FXbool owned=false);
   virtual void setFocus(FXbool focus);
   virtual void setSelected(FXbool selected);
   virtual void setEnabled(FXbool enabled);
@@ -584,25 +591,25 @@
 %define DECLARE_FXICONLIST_VIRTUALS(klass)
 %extend klass {
   /// Select item at index
-  virtual FXbool selectItem(FXint index,FXbool notify=FALSE);
+  virtual FXbool selectItem(FXint index,FXbool notify=false);
   
   /// Deselect item at index
-  virtual FXbool deselectItem(FXint index,FXbool notify=FALSE);
+  virtual FXbool deselectItem(FXint index,FXbool notify=false);
   
   /// Toggle item at index
-  virtual FXbool toggleItem(FXint index,FXbool notify=FALSE);
+  virtual FXbool toggleItem(FXint index,FXbool notify=false);
 
   /// Select items in rectangle
-  virtual FXbool selectInRectangle(FXint x,FXint y,FXint w,FXint h,FXbool notify=FALSE);
+  virtual FXbool selectInRectangle(FXint x,FXint y,FXint w,FXint h,FXbool notify=false);
 
   /// Extend selection from anchor index to index
-  virtual FXbool extendSelection(FXint index,FXbool notify=FALSE);
+  virtual FXbool extendSelection(FXint index,FXbool notify=false);
 
   /// Deselect all items
-  virtual FXbool killSelection(FXbool notify=FALSE);
+  virtual FXbool killSelection(FXbool notify=false);
 
   /// Change current item index
-  virtual void setCurrentItem(FXint index,FXbool notify=FALSE);
+  virtual void setCurrentItem(FXint index,FXbool notify=false);
 
   /// Return index of item at x,y, or -1 if none
   virtual FXint getItemAt(FXint x,FXint y) const;
@@ -708,7 +715,7 @@
 %extend klass {
   /**
   * Retrieves pixels from the server-side image.  For example, to make
-  * screen snapshots, or to retrieve an image after it has been drawin
+  * screen snapshots, or to retrieve an image after it has been drawn
   * into by various means.
   */
   virtual void restore();
@@ -747,7 +754,7 @@
   * Crop image to given rectangle; this calls resize() to adjust the client 
   * and server side representations.
   */
-  virtual void crop(FXint x,FXint y,FXint w,FXint h,FXColor color=0);
+  virtual void crop(FXint x,FXint y,FXint w,FXint h,FXColor color=false);
 
   /// Fill image with uniform color
   virtual void fill(FXColor color);
@@ -781,15 +788,15 @@
   /// Blend image over uniform color
   virtual void blend(FXColor color);
 
-  virtual bool savePixels(FXStream& store) const;
-  virtual bool loadPixels(FXStream& store);
+  virtual FXbool savePixels(FXStream& store) const;
+  virtual FXbool loadPixels(FXStream& store);
   }
 %enddef
 
 %define DECLARE_FXLISTITEM_VIRTUALS(klass)
 %extend klass {
   virtual void setText(const FXString& txt);
-  virtual void setIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setIcon(FXIcon* icn,FXbool owned=false);
   virtual void setFocus(FXbool focus);
   virtual void setSelected(FXbool selected);
   virtual void setEnabled(FXbool enabled);
@@ -817,54 +824,54 @@
   virtual FXint getItemAt(FXint x,FXint y) const;
   
   /// Select item
-  virtual FXbool selectItem(FXint index,FXbool notify=FALSE);
+  virtual FXbool selectItem(FXint index,FXbool notify=false);
   
   /// Deselect item
-  virtual FXbool deselectItem(FXint index,FXbool notify=FALSE);
+  virtual FXbool deselectItem(FXint index,FXbool notify=false);
   
   /// Toggle item selection state
-  virtual FXbool toggleItem(FXint index,FXbool notify=FALSE);
+  virtual FXbool toggleItem(FXint index,FXbool notify=false);
 
   /// Extend selection from anchor item to index
-  virtual FXbool extendSelection(FXint index,FXbool notify=FALSE);
+  virtual FXbool extendSelection(FXint index,FXbool notify=false);
   
   /// Deselect all items
-  virtual FXbool killSelection(FXbool notify=FALSE);
+  virtual FXbool killSelection(FXbool notify=false);
 
   /// Change current item
-  virtual void setCurrentItem(FXint index,FXbool notify=FALSE);
+  virtual void setCurrentItem(FXint index,FXbool notify=false);
   }
 %enddef
 
 %define DECLARE_FXLISTBOX_VIRTUALS(klass)
 %extend klass {
   /// Set the current item (index is zero-based)
-  virtual void setCurrentItem(FXint index,FXbool notify=FALSE);
+  virtual void setCurrentItem(FXint index,FXbool notify=false);
 }
 %enddef
 
 %define DECLARE_FXMDICHILD_VIRTUALS(klass)
 %extend klass {
-  virtual FXbool minimize(FXbool notify=FALSE);
-  virtual FXbool maximize(FXbool notify=FALSE);
-  virtual FXbool restore(FXbool notify=FALSE);
-  virtual FXbool close(FXbool notify=FALSE);
+  virtual FXbool minimize(FXbool notify=false);
+  virtual FXbool maximize(FXbool notify=false);
+  virtual FXbool restore(FXbool notify=false);
+  virtual FXbool close(FXbool notify=false);
   }
 %enddef
 
 %define DECLARE_FXMDICLIENT_VIRTUALS(klass)
 %extend klass {
   /// Set active MDI Child
-  virtual FXbool setActiveChild(FXMDIChild* child=NULL,FXbool notify=TRUE);
+  virtual FXbool setActiveChild(FXMDIChild* child=NULL,FXbool notify=true);
 
   // Cascade windows
-  virtual void cascade(FXbool notify=FALSE);
+  virtual void cascade(FXbool notify=false);
 
   // Layout horizontally
-  virtual void horizontal(FXbool notify=FALSE);
+  virtual void horizontal(FXbool notify=false);
 
   // Layout vertically
-  virtual void vertical(FXbool notify=FALSE);
+  virtual void vertical(FXbool notify=false);
   }
 %enddef
 
@@ -887,59 +894,60 @@
 
 %define DECLARE_FXREALSPINNER_VIRTUALS(klass)
 %extend klass {
-  virtual void setValue(FXdouble value,FXbool notify=FALSE);
+  virtual void setValue(FXdouble value,FXbool notify=false);
   }
 %enddef
 
 %define DECLARE_FXSCROLLAREA_VIRTUALS(klass)
+%rename("visibleX")			klass::getVisibleX() const;
+%rename("visibleY")			klass::getVisibleY() const;
+%rename("visibleWidth")		klass::getVisibleWidth() const;
+%rename("visibleHeight")	klass::getVisibleHeight() const;
 %extend klass {
-  virtual FXint getViewportHeight();
-  virtual FXint getViewportWidth();
+	// Return content area width
   virtual FXint getContentHeight();
+
+  // Return content area height
   virtual FXint getContentWidth();
 
-  /**
-   * Get the current position.
-   * Note: This is not a virtual member function in the C++ library,
-   * but we need to redeclare it here so that SWIG's overloading
-   * mechanism will correctly handle both this version and the the
-   * four-argument version of position() declared in class FXWindow.
-   */
-  VALUE position() const {
-    FXint x, y;
-    self->getPosition(x, y);
-    VALUE pos = rb_ary_new();
-    rb_ary_push(pos, INT2NUM(x));
-    rb_ary_push(pos, INT2NUM(y));
-    return pos;
-  }
+  /// Return visible scroll-area x position
+  virtual FXint getVisibleX() const;
+
+  /// Return visible scroll-area y position
+  virtual FXint getVisibleY() const;
+
+  /// Return visible scroll-area width
+  virtual FXint getVisibleWidth() const;
+
+  /// Return visible scroll-area height
+  virtual FXint getVisibleHeight() const;
 }
 %enddef
 
 %define DECLARE_FXSPINNER_VIRTUALS(klass)
 %extend klass {
-  virtual void setValue(FXint value,FXbool notify=FALSE);
+  virtual void setValue(FXint value,FXbool notify=false);
   }
 %enddef
 
 %define DECLARE_FXSHUTTER_VIRTUALS(klass)
 %extend klass {
-  virtual void setCurrent(FXint panel);
+  virtual void setCurrent(FXint panel,FXbool notify=false);
   }
 %enddef
 
 %define DECLARE_FXSTREAM_VIRTUALS(klass)
 %rename("setPosition") klass::position(FXlong offset,FXWhence whence);
 %extend klass {
-  virtual bool close();
-  virtual bool flush();
-  virtual bool position(FXlong offset,FXWhence whence=FXFromStart);
+  virtual FXbool close();
+  virtual FXbool flush();
+  virtual FXbool position(FXlong offset,FXWhence whence=FXFromStart);
   }
 %enddef
 
 %define DECLARE_FXTABBAR_VIRTUALS(klass)
 %extend klass {
-  virtual void setCurrent(FXint panel,FXbool notify=FALSE);
+  virtual void setCurrent(FXint panel,FXbool notify=false);
   }
 %enddef
 
@@ -958,7 +966,7 @@
   virtual FXString getText() const;
 
   /// Change item's icon, deleting the old icon if it was owned
-  virtual void setIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setIcon(FXIcon* icn,FXbool owned=false);
 
   /// Return item's icon
   virtual FXIcon* getIcon() const;
@@ -1020,31 +1028,31 @@
   virtual FXTableItem* createItem(const FXString& text,FXIcon* icon,void* ptr);
   
   /// Set the table size to nr rows and nc columns; all existing items will be removed
-  virtual void setTableSize(FXint nr,FXint nc,FXbool notify=FALSE);
+  virtual void setTableSize(FXint nr,FXint nc,FXbool notify=false);
 
   /// Insert new row
-  virtual void insertRows(FXint TABLE_ROW_ALL,FXint nr=1,FXbool notify=FALSE);
+  virtual void insertRows(FXint TABLE_ROW_ALL,FXint nr=1,FXbool notify=false);
 
   /// Insert new column
-  virtual void insertColumns(FXint TABLE_COLUMN_ALL,FXint nc=1,FXbool notify=FALSE);
+  virtual void insertColumns(FXint TABLE_COLUMN_ALL,FXint nc=1,FXbool notify=false);
 
   /// Remove rows of cells
-  virtual void removeRows(FXint row,FXint nr=1,FXbool notify=FALSE);
+  virtual void removeRows(FXint row,FXint nr=1,FXbool notify=false);
 
   /// Remove column of cells
-  virtual void removeColumns(FXint col,FXint nc=1,FXbool notify=FALSE);
+  virtual void removeColumns(FXint col,FXint nc=1,FXbool notify=false);
 
   /// Extract item from table
-  virtual FXTableItem* extractItem(FXint row,FXint col,FXbool notify=FALSE);
+  virtual FXTableItem* extractItem(FXint row,FXint col,FXbool notify=false);
 
   /// Clear single cell
-  virtual void removeItem(FXint row,FXint col,FXbool notify=FALSE);
+  virtual void removeItem(FXint row,FXint col,FXbool notify=false);
 
   /// Clear all cells in the given range
-  virtual void removeRange(FXint startrow,FXint endrow,FXint startcol,FXint endcol,FXbool notify=FALSE);
+  virtual void removeRange(FXint startrow,FXint endrow,FXint startcol,FXint endcol,FXbool notify=false);
 
   /// Remove all items from table
-  virtual void clearItems(FXbool notify=FALSE);
+  virtual void clearItems(FXbool notify=false);
 
   /// Change column width
   virtual void setColumnWidth(FXint col,FXint cwidth);
@@ -1053,22 +1061,22 @@
   virtual void setRowHeight(FXint row,FXint rheight);
 
   /// Change current item
-  virtual void setCurrentItem(FXint row_unchecked,FXint col_unchecked,FXbool notify=FALSE);
+  virtual void setCurrentItem(FXint row_unchecked,FXint col_unchecked,FXbool notify=false);
 
   /// Select a row
-  virtual FXbool selectRow(FXint row,FXbool notify=FALSE);
+  virtual FXbool selectRow(FXint row,FXbool notify=false);
 
   /// Select a column
-  virtual FXbool selectColumn(FXint col,FXbool notify=FALSE);
+  virtual FXbool selectColumn(FXint col,FXbool notify=false);
 
   /// Select range
-  virtual FXbool selectRange(FXint startrow,FXint endrow,FXint startcol,FXint endcol,FXbool notify=FALSE);
+  virtual FXbool selectRange(FXint startrow,FXint endrow,FXint startcol,FXint endcol,FXbool notify=false);
 
   /// Extend selection
-  virtual FXbool extendSelection(FXint row_unchecked,FXint col_unchecked,FXbool notify=FALSE);
+  virtual FXbool extendSelection(FXint row_unchecked,FXint col_unchecked,FXbool notify=false);
 
   /// Kill selection
-  virtual FXbool killSelection(FXbool notify=FALSE);
+  virtual FXbool killSelection(FXbool notify=false);
   
   /**
   * Start input mode for the cell at the given position.
@@ -1076,15 +1084,17 @@
   * it is filled by the original item's contents if the cell contained
   * an item.  You can enter input mode also by sending the table an
   * ID_START_INPUT message.
+  * Return true if editing of the cell has been started.
   */
-  virtual void startInput(FXint row_unchecked,FXint col_unchecked);
+  virtual FXbool startInput(FXint row_unchecked,FXint col_unchecked);
 
   /**
   * Cancel input mode.  The input control is immediately deleted
   * and the cell will retain its old value.  You can also cancel
   * input mode by sending the table an ID_CANCEL_INPUT message.
+  * Return true if editing of the cell has been cancelled.
   */
-  virtual void cancelInput();
+  virtual FXbool cancelInput();
 
   /**
   * End input mode and accept the new value from the control.
@@ -1093,8 +1103,9 @@
   * callback will be generated to signify to the target that this call
   * has a new value.  You can also accept the input by sending the table
   * an ID_ACCEPT_INPUT message.
+  * Return true if the new value of the cell has been accepted.
   */
-  virtual void acceptInput(FXbool notify=FALSE);
+  virtual FXbool acceptInput(FXbool notify=false);
 
   /// Scroll to make cell at r,c fully visible
   virtual void makePositionVisible(FXint row_unchecked,FXint col_unchecked);
@@ -1109,30 +1120,28 @@
 
 %define DECLARE_FXTEXT_VIRTUALS(klass)
 %extend klass {
-  virtual void setCursorPos(FXint pos,FXbool notify=FALSE);
-  virtual FXbool extendSelection(FXint pos,FXTextSelectionMode mode=SELECT_CHARS,FXbool notify=FALSE);
-  virtual FXbool killSelection(FXbool notify=FALSE);
+  virtual void setCursorPos(FXint pos,FXbool notify=false);
 
   /// Replace m bytes at pos by n characters
-  virtual void replaceText(FXint pos,FXint m,const FXString& text,FXbool notify=FALSE);
+  virtual void replaceText(FXint pos,FXint m,const FXString& text,FXbool notify=false);
 
   /// Replace m bytes at pos by n characters
-  virtual void replaceStyledText(FXint pos,FXint m,const FXString& text,FXint style=0,FXbool notify=FALSE);
+  virtual void replaceStyledText(FXint pos,FXint m,const FXString& text,FXint style=0,FXbool notify=false);
 
   /// Append n bytes of text at the end of the buffer
-  virtual void appendText(const FXString& text,FXbool notify=FALSE);
+  virtual void appendText(const FXString& text,FXbool notify=false);
 
   /// Append n bytes of text at the end of the buffer
-  virtual void appendStyledText(const FXString& text,FXint style=0,FXbool notify=FALSE);
+  virtual void appendStyledText(const FXString& text,FXint style=0,FXbool notify=false);
 
   /// Insert n bytes of text at position pos into the buffer
-  virtual void insertText(FXint pos,const FXString& text,FXbool notify=FALSE);
+  virtual void insertText(FXint pos,const FXString& text,FXbool notify=false);
 
   /// Insert n bytes of text at position pos into the buffer
-  virtual void insertStyledText(FXint pos,const FXString& text,FXint style=0,FXbool notify=FALSE);
+  virtual void insertStyledText(FXint pos,const FXString& text,FXint style=0,FXbool notify=false);
 
   /// Remove n bytes of text at position pos from the buffer
-  virtual void removeText(FXint pos,FXint n,FXbool notify=FALSE);
+  virtual void removeText(FXint pos,FXint n,FXbool notify=false);
 
   /// Change style of text range
   virtual void changeStyle(FXint pos,FXint n,FXint style);
@@ -1141,20 +1150,20 @@
   virtual void changeStyle(FXint pos,const FXString& style);
 
   /// Change the text in the buffer to new text
-  virtual void setText(const FXString& text,FXbool notify=FALSE);
+  virtual void setText(const FXString& text,FXbool notify=false);
  
   /// Change the text in the buffer to new text
-  virtual void setStyledText(const FXString& text,FXint style=0,FXbool notify=FALSE);
+  virtual void setStyledText(const FXString& text,FXint style=0,FXbool notify=false);
   }
 %enddef
 
 %define DECLARE_FXTOPWINDOW_VIRTUALS(klass)
 %extend klass {
   virtual void show(FXuint placement);
-  virtual FXbool maximize(FXbool notify=FALSE);
-  virtual FXbool minimize(FXbool notify=FALSE);
-  virtual FXbool restore(FXbool notify=FALSE);
-
+  virtual FXbool maximize(FXbool notify=false);
+  virtual FXbool minimize(FXbool notify=false);
+  virtual FXbool restore(FXbool notify=false);
+  
   /**
   * Close the window, return TRUE if actually closed.  If notify=TRUE, the target
   * will receive a SEL_CLOSE message to determine if it is OK to close the window.
@@ -1162,14 +1171,23 @@
   * be closed, and subsequently deleted.  When the last main window has been
   * closed, the application will receive an ID_QUIT message and will be closed.
   */
-  virtual FXbool close(FXbool notify=FALSE);
+  virtual FXbool close(FXbool notify=false);
+
+  // Flash the window to get the user's attention
+  virtual void flash(FXbool yes);
+
+  // Make window full screen, return true if success
+  virtual FXbool fullScreen(FXbool notify=false);
+  
+  // Special stacking order level
+  virtual FXbool stackingOrder(FXuint order);
   }
 %enddef
 
 %define DECLARE_FXTRANSLATOR_VIRTUALS(klass)
 %extend klass {
   /// Translate a string
-  virtual const FXchar* tr(const FXchar* context,const FXchar* message,const FXchar* hint=NULL) const;
+  virtual const FXchar* tr(const FXchar* context,const FXchar* message,const FXchar* hint=NULL,FXint count=-1) const;
 }
 %enddef
 
@@ -1179,10 +1197,10 @@
   virtual void setText(const FXString& txt);
   
   // Change open icon, deleting the old one if it was owned
-  virtual void setOpenIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setOpenIcon(FXIcon* icn,FXbool owned=false);
   
   // Change closed icon, deleting the old one if it was owned
-  virtual void setClosedIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setClosedIcon(FXIcon* icn,FXbool owned=false);
   virtual void setFocus(FXbool focus);
   virtual void setSelected(FXbool selected);
   virtual void setOpened(FXbool opened);
@@ -1200,34 +1218,34 @@
 %define DECLARE_FXTREELIST_VIRTUALS(klass)
 %extend klass {
   /// Select item
-  virtual FXbool selectItem(FXTreeItem* item,FXbool notify=FALSE);
+  virtual FXbool selectItem(FXTreeItem* item,FXbool notify=false);
 
   /// Deselect item
-  virtual FXbool deselectItem(FXTreeItem* item,FXbool notify=FALSE);
+  virtual FXbool deselectItem(FXTreeItem* item,FXbool notify=false);
 
   /// Toggle item selection
-  virtual FXbool toggleItem(FXTreeItem* item,FXbool notify=FALSE);
+  virtual FXbool toggleItem(FXTreeItem* item,FXbool notify=false);
 
   /// Extend selection from anchor item to item
-  virtual FXbool extendSelection(FXTreeItem* item,FXbool notify=FALSE);
+  virtual FXbool extendSelection(FXTreeItem* item,FXbool notify=false);
   
   /// Deselect all items
-  virtual FXbool killSelection(FXbool notify=FALSE);
+  virtual FXbool killSelection(FXbool notify=false);
 
   /// Open item
-  virtual FXbool openItem(FXTreeItem* item,FXbool notify=FALSE);
+  virtual FXbool openItem(FXTreeItem* item,FXbool notify=false);
 
   /// Close item
-  virtual FXbool closeItem(FXTreeItem* item,FXbool notify=FALSE);
+  virtual FXbool closeItem(FXTreeItem* item,FXbool notify=false);
 
   /// Collapse tree
-  virtual FXbool collapseTree(FXTreeItem* tree,FXbool notify=FALSE);
+  virtual FXbool collapseTree(FXTreeItem* tree,FXbool notify=false);
 
   /// Expand tree 
-  virtual FXbool expandTree(FXTreeItem* tree,FXbool notify=FALSE);
+  virtual FXbool expandTree(FXTreeItem* tree,FXbool notify=false);
 
   /// Change current item
-  virtual void setCurrentItem(FXTreeItem* item,FXbool notify=FALSE);
+  virtual void setCurrentItem(FXTreeItem* item,FXbool notify=false);
 
   /// Get item at x,y, if any
   virtual FXTreeItem* getItemAt(FXint x,FXint y) const;
@@ -1246,7 +1264,7 @@
 %define DECLARE_FXTREELISTBOX_VIRTUALS(klass)
 %extend klass {
   /// Change current item
-  virtual void setCurrentItem(FXTreeItem* item,FXbool notify=FALSE);
+  virtual void setCurrentItem(FXTreeItem* item,FXbool notify=false);
   }
 %enddef
 
@@ -1257,14 +1275,14 @@
   virtual FXint getDefaultHeight();
   virtual FXint getWidthForHeight(FXint givenheight);
   virtual FXint getHeightForWidth(FXint givenwidth);
-  virtual bool canFocus() const;
+  virtual FXbool canFocus() const;
   virtual void setFocus();
   virtual void killFocus();
 
   /// Notification that focus moved to new child
   virtual void changeFocus(FXWindow *child);
 
-  virtual void setDefault(FXbool enable=TRUE);
+  virtual void setDefault(FXuchar flag=TRUE);
   virtual void enable();
   virtual void disable();
   virtual void raise();
@@ -1289,9 +1307,9 @@
   virtual void reparent(FXWindow* father,FXWindow* other);
   virtual void show();
   virtual void hide();
-  virtual bool isComposite() const;
-  virtual bool contains(FXint parentx,FXint parenty) const;
-  virtual bool doesSaveUnder() const;
+  virtual FXbool isComposite() const;
+  virtual FXbool contains(FXint parentx,FXint parenty) const;
+  virtual FXbool doesSaveUnder() const;
   virtual void setBackColor(FXColor clr);
 
   /**
@@ -1300,9 +1318,9 @@
   * language.  An optional hint may be passed to break any ties in case
   * more than one tranlation is possible for the given message text.
   * In addition, the name of the widget is passed as context name so
-  * that controls in a single dialog may be grouped together.
+  * that translations for a single dialog may be grouped together.
   */
-  virtual const FXchar* tr(const FXchar* message,const FXchar* hint=NULL) const;
+  virtual const FXchar* tr(const FXchar* message,const FXchar* hint=NULL,FXint count=-1) const;
 
   /// Enable this window to receive drops 
   virtual void dropEnable();

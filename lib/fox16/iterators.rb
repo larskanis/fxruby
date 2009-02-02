@@ -5,6 +5,13 @@ module Fox
     include Enumerable
 
     #
+    # Override Enumerable#first with FXWindow#first for backwards compatibility.
+    #
+    def first
+      getFirst
+    end
+    
+    #
     # Calls block once for each item in the list, passing the item's text and
     # user data as parameters.
     #
@@ -25,7 +32,7 @@ module Fox
     # reference to that item as a parameter.
     #
     def each # :yields: aFoldingItem
-      current = first
+      current = firstItem
       while current != nil
         next_current = current.next
         yield current
@@ -57,6 +64,13 @@ module Fox
   class FXHeader
 
     include Enumerable
+
+    #
+    # Override Enumerable#first with FXWindow#first for backwards compatibility.
+    #
+    def first
+      getFirst
+    end
 
     #
     # Calls block once for each item in the list, passing a reference to that
@@ -91,6 +105,13 @@ module Fox
     include Enumerable
 
     #
+    # Override Enumerable#first with FXWindow#first for backwards compatibility.
+    #
+    def first
+      getFirst
+    end
+
+    #
     # Calls block once for each item in the list, passing a reference to that
     # item as a parameter.
     #
@@ -107,6 +128,13 @@ module Fox
     include Enumerable
 
     #
+    # Override Enumerable#first with FXWindow#first for backwards compatibility.
+    #
+    def first
+      getFirst
+    end
+
+    #
     # Calls block once for each item in the list, passing the item's text,
     # icon and user data as parameters.
     #
@@ -121,6 +149,13 @@ module Fox
   class FXTable
 
     include Enumerable
+
+    #
+    # Override Enumerable#first with FXWindow#first for backwards compatibility.
+    #
+    def first
+      getFirst
+    end
 
     #
     # Calls block once for each row in the table, passing an array of
@@ -179,11 +214,18 @@ module Fox
     include Enumerable
 
     #
+    # Override Enumerable#first with FXWindow#first for backwards compatibility.
+    #
+    def first
+      getFirst
+    end
+
+    #
     # Calls block once for each root-level tree item, passing a
     # reference to that item as a parameter.
     #
     def each # :yields: aTreeItem
-      current = first
+      current = firstItem
       while current != nil
         next_current = current.next
         yield current
@@ -198,11 +240,18 @@ module Fox
     include Enumerable
 
     #
+    # Override Enumerable#first with FXWindow#first for backwards compatibility.
+    #
+    def first
+      getFirst
+    end
+
+    #
     # Calls block once for each root-level tree item, passing a
     # reference to that item as a parameter.
     #
     def each # :yields: aTreeItem
-      current = first
+      current = firstItem
       while current != nil
         next_current = current.next
         yield current
@@ -234,18 +283,18 @@ module Fox
     def FXFileStream.open(filename, save_or_load, size=8192, container=nil) # :yields: theFileStream
       fstream = FXFileStream.new(container)
       if fstream.open(filename, save_or_load, size)
-	if block_given?
-	  begin
-	    yield fstream
-	  ensure
-	    fstream.close
-	  end
-	else
-	  fstream
-	end
+      	if block_given?
+      	  begin
+      	    yield fstream
+      	  ensure
+      	    fstream.close
+      	  end
+      	else
+      	  fstream
+      	end
       else
         # FXFileStream#open returned false, so report error
-	raise FXStreamError.makeStreamError(fstream.status)
+      	raise FXStreamError.makeStreamError(fstream.status)
       end
     end
   end
@@ -272,18 +321,18 @@ module Fox
     def FXMemoryStream.open(save_or_load, data, cont=nil) # :yields: theMemoryStream
       stream = FXMemoryStream.new(cont)
       if stream.open(save_or_load, data)
-	if block_given?
-	  begin
-	    yield stream
-	  ensure
-	    stream.close
-	  end
-	else
-	  stream
-	end
+      	if block_given?
+      	  begin
+      	    yield stream
+      	  ensure
+      	    stream.close
+      	  end
+      	else
+      	  stream
+      	end
       else
         # FXFileStream#open returned false, so report error
-	raise FXStreamError.makeStreamError(stream.status)
+      	raise FXStreamError.makeStreamError(stream.status)
       end
     end
   end
@@ -318,10 +367,10 @@ module Fox
       beginWaitCursor0
       if block_given?
         begin
-	  yield
-	ensure
-	  endWaitCursor
-	end
+      	  yield
+      	ensure
+      	  endWaitCursor
+      	end
       end
     end
   end
@@ -339,10 +388,10 @@ module Fox
       result = beginPrint0(job)
       if block_given?
         begin
-	  yield self
-	ensure
-	  endPrint
-	end
+      	  yield self
+      	ensure
+      	  endPrint
+      	end
       else
         result
       end
@@ -359,10 +408,10 @@ module Fox
       result = beginPage0(page)
       if block_given?
         begin
-	  yield self
-	ensure
-	  endPage
-	end
+      	  yield self
+      	ensure
+      	  endPage
+      	end
       else
         result
       end

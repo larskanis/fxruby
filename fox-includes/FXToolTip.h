@@ -3,23 +3,22 @@
 *                           T o o l   T i p   W i d g e t                       *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXToolTip.h 2346 2006-02-14 03:26:11Z lyle $                         *
+* $Id: FXToolTip.h 2767 2007-11-19 18:33:06Z lyle $                         *
 ********************************************************************************/
 #ifndef FXTOOLTIP_H
 #define FXTOOLTIP_H
@@ -52,14 +51,14 @@ protected:
   FXbool    popped;                     // Is currently popped up
 protected:
   FXToolTip();
-  virtual bool doesOverrideRedirect() const;
+  virtual FXbool doesOverrideRedirect() const;
   void place(FXint x,FXint y);
   void autoplace();
 private:
   FXToolTip(const FXToolTip&);
   FXToolTip& operator=(const FXToolTip&);
 #ifdef WIN32
-  virtual const char* GetClass() const;
+  virtual const void* GetClass() const;
 #endif
 public:
   long onPaint(FXObject*,FXSelector,void*);
@@ -111,7 +110,7 @@ public:
   /// Set the current tip text color
   void setTextColor(FXColor clr);
 
-  virtual bool doesSaveUnder() const;
+  virtual FXbool doesSaveUnder() const;
 
   /// Save tip to a stream
   virtual void save(FXStream& store) const;

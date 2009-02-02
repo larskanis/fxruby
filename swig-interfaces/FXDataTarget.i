@@ -29,14 +29,15 @@
 * the data target is automatically updated; conversely, whenever the program
 * changes a variable, all the connected valuator widgets will be updated 
 * to reflect this new value on the display.
-* Data Targets also allow connecting Radio Buttons, Menu Commands, and so on
-* to a variable.  In this case, the new value of the connected variable is computed 
-* by subtracting ID_OPTION from the message ID.
+* A Data Target may be subclassed to handle additional, user-defined data types; to
+* this end, the message handlers return 1 if the type is one of DT_VOID...DT_STRING
+* and 0 otherwise.  Thus subclasses can handle any data types not dealt with in the
+* default implementation. 
 */
 class FXDataTarget : public FXObject {
 protected:
-  FXObject     *target;                 // Target object
   void         *data;                   // Associated data
+  FXObject     *target;                 // Target object
   FXSelector    message;                // Message ID
   FXuint        type;                   // Type of data
 public:
@@ -47,6 +48,7 @@ public:
 public:
   enum {
     DT_VOID=0,
+	DT_BOOL,
     DT_CHAR,
     DT_UCHAR,
     DT_SHORT,

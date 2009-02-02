@@ -28,9 +28,11 @@ enum {
   MBOX_YES_NO_CANCEL    = 0x40000000,   /// Message box has YES, NO, and CANCEL buttons
   MBOX_QUIT_CANCEL      = 0x50000000,   /// Message box has QUIT and CANCEL buttons
   MBOX_QUIT_SAVE_CANCEL   = 0x60000000, /// Message box has QUIT, SAVE, and CANCEL buttons
-  MBOX_SKIP_SKIPALL_CANCEL  = 0x70000000, /// Message box has SKIP, SKIP ALL, and CANCEL buttons
-  MBOX_SAVE_CANCEL_DONTSAVE = 0x80000000  /// Message box has DON'T SAVE,CANCEL and SAVE buttons
+  MBOX_SKIP_SKIPALL_CANCEL  = 0x70000000 /// Message box has SKIP, SKIP ALL, and CANCEL buttons
   };
+
+/* SWIG doesn't wrap this value correctly without a hint */
+%constant FXuint MBOX_SAVE_CANCEL_DONTSAVE = 0x80000000; // Message box has DON'T SAVE,CANCEL and SAVE buttons
 
 
 // Return values
@@ -45,6 +47,8 @@ enum {
   MBOX_CLICKED_SKIPALL  = 8             /// The SKIP ALL button was clicked
   };
 
+/* FOX doesn't define this constant, but we do for consistency */
+%constant MBOX_CLICKED_DONTSAVE = MBOX_CLICKED_NO;
 
 /**
 * A Message Box is a convenience class which provides a dialog for

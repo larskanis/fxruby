@@ -46,11 +46,11 @@ class FXIconList;
 /// Icon item
 class FXIconItem : public FXObject {
 protected:
-  FXString  label;
-  FXIcon   *bigIcon;
-  FXIcon   *miniIcon;
-  void     *data;
-  FXuint    state;
+	FXString  label;      // Text of item
+	FXIcon   *bigIcon;    // Big icon shown in big icon mode
+	FXIcon   *miniIcon;   // Mini icon shown in mini icon mode
+	void     *data;       // User data pointer
+	FXuint    state;      // State flags
 protected:
   FXIconItem():bigIcon(NULL),miniIcon(NULL),data(NULL),state(0){}
   virtual void draw(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
@@ -156,6 +156,11 @@ DYNAMIC_CAST(SWIGTYPE_p_FXIconItem, FXIconItem_dynamic_cast);
 * of the type SEL_INSERTED, SEL_REPLACED, or SEL_DELETED.
 * In each of these cases, the index to the item, if any, is passed in the
 * 3rd argument of the message.
+* The text in each item is a string separated by tabs for each column;
+* in mini- or big-icon mode, only the text before the first tab is shown.  
+* In detail-mode, the text before the first tab is shown in the first column,
+* the text between the first and second tab is shown in the second column, 
+* and so on.
 */
 class FXIconList : public FXScrollArea {
 protected:
@@ -173,9 +178,9 @@ protected:
   FXColor            textColor;         // Text color
   FXColor            selbackColor;      // Selected back color
   FXColor            seltextColor;      // Selected text color
+  FXint              itemSpace;         // Space for item label
   FXint              itemWidth;         // Item width
   FXint              itemHeight;        // Item height
-  FXint              itemSpace;         // Space for item label
   FXint              anchorx;           // Rectangular selection
   FXint              anchory;
   FXint              currentx;
@@ -188,8 +193,10 @@ protected:
 protected:
   FXIconList();
   void recompute();
+  void startLasso(FXint ax,FXint ay);
+  void updateLasso(FXint cx,FXint cy);
+  void endLasso();
   void getrowscols(FXint& nr,FXint& nc,FXint w,FXint h) const;
-  void drawLasso(FXint x0,FXint y0,FXint x1,FXint y1);
   void lassoChanged(FXint ox,FXint oy,FXint ow,FXint oh,FXint nx,FXint ny,FXint nw,FXint nh,FXbool notify);
   virtual void moveContents(FXint x,FXint y);
   virtual FXIconItem *createItem(const FXString& text,FXIcon *big,FXIcon* mini,void* ptr);
@@ -223,8 +230,8 @@ public:
   long onUpdShowBigIcons(FXObject*,FXSelector,void* PTR_NULL);
   long onCmdShowMiniIcons(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdShowMiniIcons(FXObject*,FXSelector,void* PTR_NULL);
-  long onHeaderChanged(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onHeaderResize(FXObject*,FXSelector,void* PTR_INT);
+  long onChgHeader(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onClkHeader(FXObject*,FXSelector,void* PTR_INT);
   long onFocusIn(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusOut(FXObject*,FXSelector,void* PTR_EVENT);
   long onClicked(FXObject*,FXSelector,void* PTR_INT);
@@ -243,13 +250,13 @@ public:
   static FXint descendingCase(const FXIconItem* a,const FXIconItem* b);
 public:
   enum {
-    ID_SHOW_DETAILS=FXScrollArea::ID_LAST,
+    ID_LOOKUPTIMER=FXScrollArea::ID_LAST,
+    ID_HEADER,
+    ID_SHOW_DETAILS,
     ID_SHOW_MINI_ICONS,
     ID_SHOW_BIG_ICONS,
     ID_ARRANGE_BY_ROWS,
     ID_ARRANGE_BY_COLUMNS,
-    ID_HEADER_CHANGE,
-    ID_LOOKUPTIMER,
     ID_SELECT_ALL,
     ID_DESELECT_ALL,
     ID_SELECT_INVERSE,
@@ -313,7 +320,7 @@ public:
   
   %extend {
     /// Replace the item with a [possibly subclassed] item
-    FXint setItem(FXint index,FXIconItem* item,FXbool notify=FALSE){
+    FXint setItem(FXint index,FXIconItem* item,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXIconItem* oldItem=self->getItem(index);
 
@@ -330,7 +337,7 @@ public:
       }
 
     /// Replace items text, icons, and user-data pointer
-    FXint setItem(FXint index,const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
+    FXint setItem(FXint index,const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXIconItem* oldItem=self->getItem(index);
 
@@ -347,11 +354,11 @@ public:
   
 
   /// Fill list by appending items from array of strings
-  FXint fillItems(const FXchar** strings,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint fillItems(const FXchar** strings,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Insert a new [possibly subclassed] item at the give index
-    FXint insertItem(FXint index,FXIconItem* item,FXbool notify=FALSE){
+    FXint insertItem(FXint index,FXIconItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbIconItem)))
         dynamic_cast<FXRbIconItem*>(item)->owned=TRUE;
       return self->insertItem(index,item,notify);
@@ -359,11 +366,11 @@ public:
   }
   
   /// Insert item at index with given text, icons, and user-data pointer
-  FXint insertItem(FXint index,const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint insertItem(FXint index,const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=false);
   
   %extend {
     /// Append a [possibly subclassed] item to the end of the list
-    FXint appendItem(FXIconItem* item,FXbool notify=FALSE){
+    FXint appendItem(FXIconItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbIconItem)))
         dynamic_cast<FXRbIconItem*>(item)->owned=TRUE;
       return self->appendItem(item,notify);
@@ -371,11 +378,11 @@ public:
   }
   
   /// Append new item with given text and optional icons, and user-data pointer
-  FXint appendItem(const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint appendItem(const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Append a [possibly subclassed] item to the end of the list
-    FXint prependItem(FXIconItem* item,FXbool notify=FALSE){
+    FXint prependItem(FXIconItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbIconItem)))
         dynamic_cast<FXRbIconItem*>(item)->owned=TRUE;
       return self->prependItem(item,notify);
@@ -383,17 +390,17 @@ public:
   }
   
   /// Append new item with given text and optional icons, and user-data pointer
-  FXint prependItem(const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint prependItem(const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Move item from oldindex to newindex
-  FXint moveItem(FXint newindex,FXint oldindex,FXbool notify=FALSE);
+  FXint moveItem(FXint newindex,FXint oldindex,FXbool notify=false);
 
   /// Extract item from list
-  FXIconItem* extractItem(FXint index,FXbool notify=FALSE);
+  FXIconItem* extractItem(FXint index,FXbool notify=false);
 
   %extend {
     /// Remove item from list
-    void removeItem(FXint index,FXbool notify=FALSE){
+    void removeItem(FXint index,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXIconItem* item=self->getItem(index);
 
@@ -405,7 +412,7 @@ public:
       }
   
     /// Remove all items from list
-    void clearItems(FXbool notify=FALSE){
+    void clearItems(FXbool notify=false){
       // Save pointers to the soon-to-be-destroyed items
       FXObjectListOf<FXIconItem> items;
       FXint numItems = self->getNumItems();
@@ -466,13 +473,13 @@ public:
   FXString getItemText(FXint index) const;
   
   /// Change item big icon
-  void setItemBigIcon(FXint index,FXIcon* icon,FXbool owned=FALSE);
+  void setItemBigIcon(FXint index,FXIcon* icon,FXbool owned=false);
   
   /// Return big icon of item at index
   FXIcon* getItemBigIcon(FXint index) const;
   
   /// Change item mini icon
-  void setItemMiniIcon(FXint index,FXIcon* icon,FXbool owned=FALSE);
+  void setItemMiniIcon(FXint index,FXIcon* icon,FXbool owned=false);
   
   /// Return mini icon of item at index
   FXIcon* getItemMiniIcon(FXint index) const;

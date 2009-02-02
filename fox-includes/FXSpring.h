@@ -3,23 +3,22 @@
 *                S p r i n g   C o n t a i n e r   W i d g e t                  *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2003 by Jeroen van der Zijp.   All Rights Reserved.             *
+* Copyright (C) 2003,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXSpring.h 1829 2003-12-18 16:40:13Z lyle $                           *
+* $Id: FXSpring.h 2765 2007-11-19 18:11:18Z lyle $                          *
 ********************************************************************************/
 #ifndef FXSPRING_H
 #define FXSPRING_H
@@ -42,7 +41,7 @@ namespace FX {
 * to cause the spring to calculate its default width (height) normally,
 * just like the Packer base class does.
 * In a typical scenario, either the relative width or height is set to
-* zero, an the flag LAYOUT_FILL_X or LAYOUT_FILL_Y is passed. When
+* zero, and the flag LAYOUT_FILL_X or LAYOUT_FILL_Y is passed. When
 * placed inside a horizontal frame, the LAYOUT_FILL_X together with
 * the relative widths of the springs will cause a fixed width-ratio
 * between the springs.
@@ -77,7 +76,7 @@ public:
   void setRelativeWidth(FXint relw);
 
   /// Return relative width
-  FXint  getRelativeWidth() const { return relWidth; }
+  FXint getRelativeWidth() const { return relWidth; }
 
   /// Change relative height
   void setRelativeHeight(FXint relh);

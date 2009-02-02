@@ -82,10 +82,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXPCXIcon)
 /**
  * Save an PCX (PC Paintbrush) file to a stream.
  */
-bool fxsavePCX(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
+FXbool fxsavePCX(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
 
 /**
  * Check if stream contains a bitmap, return TRUE if so.
  */
-bool fxcheckPCX(FXStream& store);
+FXbool fxcheckPCX(FXStream& store);
 

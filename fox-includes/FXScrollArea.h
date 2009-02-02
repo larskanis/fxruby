@@ -3,23 +3,22 @@
 *                       S c r o l l A r e a   W i d g e t                       *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2003 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXScrollArea.h 1788 2003-11-11 21:10:44Z lyle $                      *
+* $Id: FXScrollArea.h 2725 2007-11-16 16:57:54Z lyle $                      *
 ********************************************************************************/
 #ifndef FXSCROLLAREA_H
 #define FXSCROLLAREA_H
@@ -71,16 +70,15 @@ protected:
   FXScrollBar    *horizontal;   // Horizontal scroll bar
   FXScrollBar    *vertical;     // Vertical scroll bar
   FXScrollCorner *corner;       // Scroll corner
-  FXint           viewport_w;   // Viewport width
-  FXint           viewport_h;   // Viewport height
   FXint           pos_x;        // X scroll position (pos_x<=0)
   FXint           pos_y;        // Y scroll position (pos_y<=0)
 protected:
   FXScrollArea();
-  FXbool startAutoScroll(FXEvent *event,FXbool onlywheninside=FALSE);
-  void stopAutoScroll();
   FXScrollArea(FXComposite* p,FXuint opts,FXint x,FXint y,FXint w,FXint h);
   virtual void moveContents(FXint x,FXint y);
+  FXbool startAutoScroll(FXEvent *event,FXbool onlywheninside=false);
+  void stopAutoScroll();
+  void placeScrollBars(FXint vw,FXint vh);
 private:
   FXScrollArea(const FXScrollArea&);
   FXScrollArea &operator=(const FXScrollArea&);
@@ -103,17 +101,35 @@ public:
   /// Perform layout
   virtual void layout();
 
-  /// Return viewport height
-  virtual FXint getViewportHeight();
+  /// Return content area x position
+  FXint getContentX() const { return pos_x; }
 
-  /// Return viewport width
-  virtual FXint getViewportWidth();
+  /// Return content area y position
+  FXint getContentY() const { return pos_y; }
 
-  /// Return content width
+  /// Return content area width
   virtual FXint getContentWidth();
 
-  /// Return content height
+  /// Return content area height
   virtual FXint getContentHeight();
+
+  /// Return visible scroll-area x position
+  virtual FXint getVisibleX() const;
+
+  /// Return visible scroll-area y position
+  virtual FXint getVisibleY() const;
+
+  /// Return visible scroll-area width
+  virtual FXint getVisibleWidth() const;
+
+  /// Return visible scroll-area height
+  virtual FXint getVisibleHeight() const;
+
+  /// Return true if horizontally scrollable
+  FXbool isHorizontalScrollable() const;
+
+  /// Return true if vertically scrollable
+  FXbool isVerticalScrollable() const;
 
   /// Change scroll style
   void setScrollStyle(FXuint style);
@@ -121,29 +137,23 @@ public:
   /// Return scroll style
   FXuint getScrollStyle() const;
 
-  /// Return TRUE if horizontally scrollable
-  FXbool isHorizontalScrollable() const;
-
-  /// Return TRUE if vertically scrollable
-  FXbool isVerticalScrollable() const;
-
   /// Return a pointer to the horizontal scrollbar
   FXScrollBar* horizontalScrollBar() const { return horizontal; }
 
   /// Return a pointer to the vertical scrollbar
   FXScrollBar* verticalScrollBar() const { return vertical; }
 
-  /// Return the current x-position
-  FXint getXPosition() const { return pos_x; }
-
-  /// Return the current y-position
-  FXint getYPosition() const { return pos_y; }
-
   /// Set the current position
   void setPosition(FXint x,FXint y);
 
   /// Get the current position
   void getPosition(FXint& x,FXint& y) const { x=pos_x; y=pos_y; }
+
+  /// Save to a stream
+  virtual void save(FXStream& store) const;
+
+  /// Load from a stream
+  virtual void load(FXStream& store);
 
   /// Destructor
   virtual ~FXScrollArea();

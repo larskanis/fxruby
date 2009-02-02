@@ -13,6 +13,9 @@ module Fox
     # Directory list style [Integer]
     attr_accessor :dirBoxStyle
     
+    # File associations [FXFileDict]
+    attr_accessor :associations
+
     # Returns an initialized FXDirDialog instance.
     def initialize(owner, name, opts=0, x=0, y=0, width=500, height=300) # :yields: theDirDialog
     end
@@ -35,6 +38,13 @@ module Fox
     #
     def hiddenFilesShown=(state); end
 
+    #
+    # Change file associations, where _assoc_ is an FXFileDict instance.
+    # If _owned_ is +true+, the FXDirDialog takes ownership of the file associations instance,
+    # which means that it will destroy it if you replace it.
+    #
+    def setAssociations(assoc, owned=false); end
+    
     #
     # Display a directory dialog with the specified owner window, caption
     # string and initial path string.

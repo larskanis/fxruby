@@ -22,8 +22,13 @@
 
 
 /**
-* The menu separator is a simple decorative groove
-* used to delineate items in a popup menu.
+* The menu separator is a simple decorative groove used to delineate items in a 
+* popup menu.  When a target/message is given, the menu separator is usually 
+* connected to an instance of the recent files class using the ID_ANYFILES
+* message.  This automatically hides the menu separator when no files are listed
+* in the recent files section.  Another possible target is the MDI client using
+* the ID_MDI_ANY message: in this case, the menu separator will be automatically
+* hidden when no MDI child windows are present.
 */
 class FXMenuSeparator : public FXWindow {
 protected:
@@ -36,8 +41,8 @@ public:
 public:
   %extend {
     /// Construct a menu separator
-    FXMenuSeparator(FXComposite* p,FXuint opts=0){
-      return new FXRbMenuSeparator(p,opts);
+    FXMenuSeparator(FXComposite* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0){
+      return new FXRbMenuSeparator(p,tgt,sel,opts);
       }
     }
 

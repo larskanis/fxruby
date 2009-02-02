@@ -1,0 +1,50 @@
+Changes in FOX 1.7.x
+====================
+
+[CHANGED] The timeout value for FXApp::addTimeout() now expects nanoseconds instead of millseconds.
+[NEW] Added the FXApp:addDeadline() method
+[CHANGED] The FXApp::remainingTimeout() method now returns an FXTime value, representing the number of nanoseconds left
+[REMOVED] The FXApp::handleTimeouts() method is gone
+[CHANGED] FXApp::addInput() changed
+[CHANGED] FXApp::removeInput() added an optional second argument
+[CHANGED] Added optional "blocking" arguments to FXApp::runWhileEvents() and FXApp::runModalWhileEvents()
+[CHANGED] Application-wide time settings (like typingSpeed) are now expressed in nanoseconds instead of milliseconds
+[CHANGED] Several of the FXComboBox member functions now accept an (optional) notify argument
+[NEW] Added setDraggableFiles() and getDraggableFiles() for FXDirList, FXFileDialog, FXFileList, FXFileSelector
+[NEW] Added set() methods for FXExtentd and FXExtentf
+[CHANGED] FXGLContext
+[CHANGED] Removed FXGLVisual::supported() method, replaced with hasOpenGL()
+[CHANGED]	Argument (and return value) for FXHeaderItem::setArrowDir() and FXHeader::setArrowDir() is now an FXuint, and values are ARROW_NONE, ARROW_UP and ARROW_DOWN. Also applies to the accessor methods in FXHeader.
+[NEW]	Added replace() and data() methods to the FXIconDict class.
+[NEW] Added the OPTIONMENU_TOOLBAR and OPTIONMENU_NOGLYPH style options for FXOptionMenu
+[NEW] Added granularity property for FXRealSlider
+[NEW] Added the getSelectionWindow() and getClipboardWindow() methods for the FXApp class. These complement the existing getDragWindow() method.
+[NEW] Added the getShrinkWrap() and setShrinkWrap() methods for FXComboBox, FXListBox and FXTreeListBox
+[CHANGED] Added an optional "owned" parameter to the setAssociations() method for FXDirBox, FXDirList and FXFileList.
+[NEW] Added the getAssociations() and setAssociations() methods for FXDirDialog, FXDirSelector, FXFileDialog and FXFileSelector.
+[NEW] Initialize or set the value of an FXExtentd or FXExtentf from a single point (either an FXVec2[df] or explicit xy coordinates)
+[NEW] Added an optional argument to the fxloadGIF() function to indicate whether the background color should be considered transparent.
+[NEW] Added getters and setters for the FXGradientBar bar size and control size.
+[NEW] Added tool tips for FXHeader items. Can access using the getTipText() and setTipText() methods for FXHeaderItem, or the getItemTipText() and setItemTipText() methods for FXHeader.
+[CHANGED] Added target and selector arguments to the FXMenuSeparator constructor
+[NEW] Added the getItem() method to the FXOptionMenu class
+[NEW] Added unary +() operator for FXPoint class
+[NEW] FXRangeSlider widget
+[NEW] Added the getThresholdValue() and setThresholdValue() methods for FXIcon
+[NEW] New overloaded coonstructors and set() methods for FXMat3d and FXMat3f
+[NEW] Renamed eye() method for FXMat3d, FXMat3f, FXMat4d and FXMat4f to identity()
+[NEW] Renamed ortho() method for FXMat4d and FXMat4f to setOrtho()
+[NEW] Lots of new methods for FXMat3d, FXMat3f, FXMat4d and FXMat4f
+[NEW] Lots of new stuff for FXRanged and FXRangef
+[NEW] Added the readLongEntry(), writeLongEntry(), readULongEntry() and writeULongEntry() methods for the FXSettings class
+[CHANGED] Renamed readUnsignedEntry() and writeUnsignedEntry() to readUIntEntry() and writeUIntEntry(), for FXSettings class.
+[CHANGED] FXSplashWindow delay time is now expressed in nanonseconds instead of milliseconds
+[NEW] Added the flash(), fullScreen(), isFullScreen() and stackingOrder() methods for FXTopWindow
+[NEW] Added getColumnTipText(), setColumnTipText(), getRowTipText() and setRowTipText() for FXTable
+[CHANGED] The selection modes for the FXText widget are now class constants
+[CHANGED] A lot of the message identifiers and messages understood by FXText have changed
+[NEW] Added getSelectedText() for FXText
+[CHANGED] Methods that modify the FXTreeList for an FXTreeListBox (e.g. insertItem) now take an optional notify argument, like their counterparts in FXTreeList
+[NEW] Added the VISUAL_FORCE flag for FXVisual
+[NEW] Added the copySelection(), replaceSelection(), cutSelection(), deleteSelection(), getSelectedText(), pasteSelection() and pasteClipboard() methods for FXTextField
+[NEW] Added the cursorShown() and cursorShown(FXbool) methods for FXWindow

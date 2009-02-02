@@ -19,98 +19,90 @@
  * For further information please contact the author by e-mail
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
-
-/// Construction options for FXVisual class
-enum FXVisualOptions {
-  VISUAL_DEFAULT      = 0,            /// Default visual
-  VISUAL_MONOCHROME   = 1,            /// Must be monochrome visual
-  VISUAL_BEST         = 2,            /// Best (deepest) visual
-  VISUAL_INDEXCOLOR   = 4,            /// Palette visual
-  VISUAL_GRAYSCALE    = 8,            /// Gray scale visual
-  VISUAL_TRUECOLOR    = 16,           /// Must be true color visual
-  VISUAL_OWNCOLORMAP  = 32,           /// Allocate private colormap
-  VISUAL_DOUBLEBUFFER = 64,           /// Double-buffered [FXGLVisual]
-  VISUAL_STEREO       = 128,          /// Stereo [FXGLVisual]
-  VISUAL_NOACCEL      = 256,          /// No hardware acceleration [for broken h/w]
-  VISUAL_SWAP_COPY    = 512           /// Buffer swap by copying [FXGLVisual]
-  };
-
-
-/// Visual type
-enum FXVisualType {
-  VISUALTYPE_UNKNOWN,                 /// Undetermined visual type
-  VISUALTYPE_MONO,                    /// Visual for drawing into 1-bpp surfaces
-  VISUALTYPE_TRUE,                    /// True color
-  VISUALTYPE_INDEX,                   /// Index [palette] color
-  VISUALTYPE_GRAY                     /// Gray scale
-  };
   
 %rename("visualType") FXVisual::getType() const;
+%rename("flags=")     FXVisual::setFlags(FXuint);
+%rename("flags")      FXVisual::getFlags() const;
+%rename("hints=")     FXVisual::setHint(FXuint);
+%rename("hints")      FXVisual::getHint() const;
 
-%ignore FXVisual::getInfo() const;
 %ignore FXVisual::getVisual() const;
+
+/// Construction options for FXVisual class
+enum {
+  VISUAL_DEFAULT       = 0,     /// Default visual
+  VISUAL_MONO          = 1,     /// Must be monochrome visual
+  VISUAL_GRAY          = 2,     /// Gray scale visual
+  VISUAL_INDEX         = 4,     /// Palette visual
+  VISUAL_COLOR         = 8,     /// Must be true color visual
+  VISUAL_BEST          = 16,    /// Best (deepest) visual
+  VISUAL_FORCE         = 32,    /// Force given visual id (X11)
+  VISUAL_OWN_COLORMAP  = 64,    /// Allocate private colormap
+  VISUAL_WINDOW        = 128,   /// Draw to window [GL Visual]
+  VISUAL_IMAGE         = 256,   /// Draw to image [GL Visual]
+  VISUAL_BUFFER        = 512,   /// Draw to buffer [GL Visual]
+  VISUAL_DOUBLE_BUFFER = 1024,  /// Double buffered [GL Visual]
+  VISUAL_STEREO        = 2048,  /// Stereo buffered [GL Visual]
+  VISUAL_NO_ACCEL      = 4096,  /// No hardware acceleration [GL Visual]
+  VISUAL_SWAP_COPY     = 8192,  /// Buffer swap by copying [GL Visual]
+  VISUAL_FLOAT         = 16384  /// Floating point buffers [GL Visual]
+  };
+
+// Backwards compatibility with FXRuby 1.6
+%constant FXuint VISUAL_MONOCHROME = VISUAL_MONO;
+%constant FXuint VISUAL_GRAYSCALE = VISUAL_GRAY;
+%constant FXuint VISUAL_INDEXCOLOR = VISUAL_INDEX;
+%constant FXuint VISUAL_TRUECOLOR = VISUAL_COLOR;
+%constant FXuint VISUAL_OWNCOLORMAP = VISUAL_OWN_COLORMAP;
+%constant FXuint VISUAL_DOUBLEBUFFER = VISUAL_DOUBLE_BUFFER;
+%constant FXuint VISUAL_NOACCEL = VISUAL_NO_ACCEL;
+
+%constant FXuint VISUALTYPE_UNKNOWN = FXVisual::Unknown;
+%constant FXuint VISUALTYPE_MONO = FXVisual::Mono;
+%constant FXuint VISUALTYPE_TRUE = FXVisual::Color;
+%constant FXuint VISUALTYPE_INDEX = FXVisual::Index;
+%constant FXuint VISUALTYPE_GRAY = FXVisual::Gray;
+
 
 /// Visual describes pixel format of a drawable
 class FXVisual : public FXId {
-protected:
-  FXuint        flags;                  // Visual flags
-  FXuint        hint;                   // Depth Hint
-  FXuint        depth;                  // Visual depth, significant bits/pixel
-  FXuint        numred;                 // Number of reds
-  FXuint        numgreen;               // Number of greens
-  FXuint        numblue;                // Number of blues
-  FXuint        numcolors;              // Total number of colors
-  FXuint        maxcolors;              // Maximum number of colors
-  FXVisualType  type;                   // Visual type
-  void         *info;                   // Opaque data
-  FXID          colormap;               // Color map, if any
-  FXbool        freemap;                // We allocated the map
-#ifndef WIN32
-protected:
-  void         *visual;                 // Application visual [Visual]
-  void*         gc;                     // Drawing GC
-  void*         scrollgc;               // Scrolling GC
-  FXPixel       rpix[16][256];          // Mapping from red -> pixel
-  FXPixel       gpix[16][256];          // Mapping from green -> pixel
-  FXPixel       bpix[16][256];          // Mapping from blue -> pixel
-  FXPixel       lut[256];               // Color lookup table
-protected:
-  void* setupgc(FXbool);
-  void setuptruecolor();
-  void setupdirectcolor();
-  void setuppseudocolor();
-  void setupstaticcolor();
-  void setupgrayscale();
-  void setupstaticgray();
-  void setuppixmapmono();
-  void setupcolormap();
-#else
-protected:
-  int           pixelformat;            // PIXELFORMAT number
-#endif
-protected:
-  FXVisual();
+public:
+  /// Visual types
+  enum {
+    Unknown,    /// Undetermined visual type
+    Mono,       /// Monochrome 1 bit/pixel
+    Gray,       /// Gray scale color
+    Index,      /// Index color
+    Color       /// True color
+    };
+
 public:
 
   /// Construct default visual
   %extend {
-    FXVisual(FXApp* a,FXuint flgs,FXuint d=32){
-      return new FXRbVisual(a,flgs,d);
+    FXVisual(FXApp* a,FXuint flgs=VISUAL_DEFAULT,FXuint hnt=32){
+      return new FXRbVisual(a,flgs,hnt);
       }
     }
 
   /// Get visual type
-  FXVisualType getType() const;
-
-  /// Get visual info
-  void* getInfo() const;
+  FXuchar getType() const;
 
   /// Get visual or pixel format
   void* getVisual() const;
 
+  /// Change flags
+  void setFlags(FXuint flgs);
+  
   /// Get flags (see FXVisualOptions)
   FXuint getFlags() const;
 
+  /// Change hints
+  void setHint(FXuint hnt);
+  
+  /// Get hints
+  FXuint getHint() const;
+  
   /// Get depth, i.e. number of significant bits in color representation
   FXuint getDepth() const;
 

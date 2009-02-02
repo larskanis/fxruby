@@ -20,7 +20,6 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
-
 /**
 * DialogBox window.
 * When receiving ID_CANCEL or ID_ACCEPT, the DialogBox breaks out of the 
@@ -44,13 +43,13 @@ public:
 public:
   %extend {
     /// Construct free-floating dialog
-    FXDialogBox(FXApp* a,const FXString& name,FXuint opts=DECOR_TITLE|DECOR_BORDER,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=10,FXint pr=10,FXint pt=10,FXint pb=10,FXint hs=4,FXint vs=4){
-      return new FXRbDialogBox(a,name,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
+    FXDialogBox(FXApp* APP,const FXString& name,FXuint opts=DECOR_TITLE|DECOR_BORDER,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=10,FXint pr=10,FXint pt=10,FXint pb=10,FXint hs=4,FXint vs=4){
+      return new FXRbDialogBox(APP,name,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
   
     /// Construct dialog which will always float over the owner window
-    FXDialogBox(FXWindow* owner,const FXString& name,FXuint opts=DECOR_TITLE|DECOR_BORDER,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=10,FXint pr=10,FXint pt=10,FXint pb=10,FXint hs=4,FXint vs=4){
-      return new FXRbDialogBox(owner,name,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
+    FXDialogBox(FXWindow* OWNER,const FXString& name,FXuint opts=DECOR_TITLE|DECOR_BORDER,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=10,FXint pr=10,FXint pt=10,FXint pb=10,FXint hs=4,FXint vs=4){
+      return new FXRbDialogBox(OWNER,name,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
     }
   

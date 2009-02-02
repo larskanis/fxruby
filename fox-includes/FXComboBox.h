@@ -3,23 +3,22 @@
 *                       C o m b o   B o x   W i d g e t                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXComboBox.h 2342 2006-02-10 14:24:44Z lyle $                        *
+* $Id: FXComboBox.h 2867 2008-05-29 21:50:28Z lyle $                        *
 ********************************************************************************/
 #ifndef FXCOMBOBOX_H
 #define FXCOMBOBOX_H
@@ -86,6 +85,7 @@ public:
   long onTextChanged(FXObject*,FXSelector,void*);
   long onTextCommand(FXObject*,FXSelector,void*);
   long onListClicked(FXObject*,FXSelector,void*);
+  long onListCommand(FXObject*,FXSelector,void*);
   long onFwdToText(FXObject*,FXSelector,void*);
   long onUpdFmText(FXObject*,FXSelector,void*);
 public:
@@ -127,10 +127,10 @@ public:
   FXbool isEditable() const;
 
   /// Set editable state
-  void setEditable(FXbool edit=TRUE);
+  void setEditable(FXbool edit=true);
 
-  /// Set the text
-  void setText(const FXString& text);
+  /// Set the text; selects the matching item
+  void setText(const FXString& text,FXbool notify=false);
 
   /// Get the text
   FXString getText() const;
@@ -160,7 +160,7 @@ public:
   FXbool isItemCurrent(FXint index) const;
 
   /// Set the current item (index is zero-based)
-  void setCurrentItem(FXint index,FXbool notify=FALSE);
+  void setCurrentItem(FXint index,FXbool notify=false);
 
   /// Get the current item's index
   FXint getCurrentItem() const;
@@ -169,31 +169,31 @@ public:
   FXString getItem(FXint index) const;
 
   /// Replace the item at index
-  FXint setItem(FXint index,const FXString& text,void* ptr=NULL);
+  FXint setItem(FXint index,const FXString& text,void* ptr=NULL,FXbool notify=false);
 
   /// Fill combo box by appending items from array of strings
-  FXint fillItems(const FXchar** strings);
+  FXint fillItems(const FXchar** strings,FXbool notify=false);
 
   /// Fill combo box by appending items from newline separated strings
-  FXint fillItems(const FXString& strings);
+  FXint fillItems(const FXString& strings,FXbool notify=false);
 
   /// Insert a new item at index
-  FXint insertItem(FXint index,const FXString& text,void* ptr=NULL);
+  FXint insertItem(FXint index,const FXString& text,void* ptr=NULL,FXbool notify=false);
 
   /// Append an item to the list
-  FXint appendItem(const FXString& text,void* ptr=NULL);
+  FXint appendItem(const FXString& text,void* ptr=NULL,FXbool notify=false);
 
   /// Prepend an item to the list
-  FXint prependItem(const FXString& text,void* ptr=NULL);
+  FXint prependItem(const FXString& text,void* ptr=NULL,FXbool notify=false);
 
   /// Move item from oldindex to newindex
-  FXint moveItem(FXint newindex,FXint oldindex);
+  FXint moveItem(FXint newindex,FXint oldindex,FXbool notify=false);
 
   /// Remove this item from the list
-  void removeItem(FXint index);
+  void removeItem(FXint index,FXbool notify=false);
 
   /// Remove all items from the list
-  void clearItems();
+  void clearItems(FXbool notify=false);
 
   /**
   * Search items by name, beginning from item start.  If the start item
@@ -228,8 +228,11 @@ public:
   /// Get data pointer for specified item
   void* getItemData(FXint index) const;
 
-  /// Is the pane shown
-  FXbool isPaneShown() const;
+  /// Show or hide menu
+  void showMenu(FXbool shw);
+
+  /// Is the menu pane shown
+  FXbool isMenuShown() const;
 
   /// Sort items using current sort function
   void sortItems();
@@ -245,6 +248,12 @@ public:
 
   /// Get the combobox style.
   FXuint getComboStyle() const;
+
+  /// Change popup pane shrinkwrap mode
+  void setShrinkWrap(FXbool flag);
+
+  /// Return popup pane shrinkwrap mode
+  FXbool getShrinkWrap() const;
 
   /// Set window background color
   virtual void setBackColor(FXColor clr);

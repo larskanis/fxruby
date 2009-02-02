@@ -14,7 +14,7 @@ module Fox
   # The option <tt>BUTTON_AUTOGRAY</tt> (<tt>BUTTON_AUTOHIDE</tt>) causes the button to be grayed
   # out (hidden) if its handler does not respond to the <tt>SEL_UPDATE</tt> message.
   # This is useful when messages are delegated, for example when using a
-  # multiple document interface, where the ultimaye destination of a message
+  # multiple document interface, where the ultimate destination of a message
   # can be changed.
   #
   # === Events

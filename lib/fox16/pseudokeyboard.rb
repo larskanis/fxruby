@@ -1,10 +1,16 @@
 module Fox
   #
-  # Based on a suggestion from Hugh Sasse on the fxruby-users mailing list,
-  # an FXPseudoKeyboard object provides a simple means to operate widgets
+  # An FXPseudoKeyboard object provides a simple means to operate widgets
   # programmatically, to aid test driven design. An FXPseudoKeyboard instance
   # can be pointed at an FXObject and will manage the sending of events to
   # it.
+  #
+  # For example:
+  #
+  #   textfield = FXTextField.new(...)
+  #   pk = FXPseudoKeyboard.new(textfield)
+  #   pk.doKeyPress     # sends a SEL_KEYPRESS message to the textfield
+  #   pk.doKeyRelease   # sends a SEL_KEYRELEASE message to the textfield
   #
   class FXPseudoKeyboard
 
@@ -17,16 +23,16 @@ module Fox
     def doKeyPress
       unless @target.nil?
         evt = FXEvent.new
-	evt.type = Fox::SEL_KEYPRESS
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_KEYPRESS), evt)
+        evt.type = Fox::SEL_KEYPRESS
+        @target.handle(self, Fox.FXSEL(Fox::SEL_KEYPRESS, 0), evt)
       end
     end
 
     def doKeyRelease
       unless @target.nil?
         evt = FXEvent.new
-	evt.type = Fox::SEL_KEYRELEASE
-        @target.handle(self, Fox.MKUINT(0, Fox::SEL_KEYRELEASE), evt)
+        evt.type = Fox::SEL_KEYRELEASE
+        @target.handle(self, Fox.FXSEL(Fox::SEL_KEYRELEASE, 0), evt)
       end
     end
   end

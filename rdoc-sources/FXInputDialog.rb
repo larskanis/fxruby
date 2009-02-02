@@ -26,6 +26,9 @@ module Fox
     #
     def initialize(owner, caption, label, icon=nil, opts=INPUTDIALOG_STRING, x=0, y=0, width=0, height=0) # :yields: theInputDialog
     end
+    
+    # Return the input dialog's input string text
+    def to_s; text; end
   
     #
     # Change limits (where _lo_ and _hi_ are numbers).

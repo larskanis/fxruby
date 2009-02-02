@@ -74,8 +74,8 @@ public:
   long onFocusOut(FXObject*,FXSelector,void* PTR_EVENT);
   long onUngrabbed(FXObject*,FXSelector,void* PTR_EVENT);
   long onMotion(FXObject*,FXSelector,void* PTR_EVENT);
-  long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
-  long onLeftBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
+  long onButtonPress(FXObject*,FXSelector,void* PTR_EVENT);
+  long onButtonRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onHotKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
@@ -95,6 +95,12 @@ public:
 
   /// Return current popup menu
   FXPopup* getMenu() const;
+
+	/// Show or hide menu
+	void showMenu(FXbool shw);
+
+	/// Is the pane shown
+	FXbool isMenuShown() const;
 
   /// Set X offset where menu pops up relative to button
   void setXOffset(FXint offx);

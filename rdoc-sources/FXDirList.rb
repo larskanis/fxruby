@@ -144,6 +144,23 @@ module Fox
     # directories; otherwise, it won't.
     #
     def hiddenFilesShown=(state); end
+    
+    #
+    # Set draggable files
+    #
+    def draggableFiles=(flag); end
+    
+    #
+    # Return +true+ if draggable files is set.
+    #
+    def draggableFiles?; end
+
+    #
+    # Change file associations, where _assoc_ is an FXFileDict instance.
+    # If _owned_ is +true+, the FXDirList takes ownership of the FXFileDict instance,
+    # which means that it will destroy it if you replace it.
+    #
+    def setAssociations(assoc, owned=false); end
   end
 end
 

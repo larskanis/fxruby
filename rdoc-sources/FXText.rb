@@ -2,7 +2,7 @@ module Fox
   #
   # Highlight style entry
   #
-  class FXHiliteStyle
+  class FXHiliteStyle 
     # Normal text foreground color [FXColor]
     attr_accessor	:normalForeColor
 
@@ -94,6 +94,14 @@ module Fox
   #   indicating the starting position of the deselected text and the number
   #   of characters deselected.
   #
+  # === Selection modes
+  #
+  # +FXText::SelectNone+::  Select nothing
+  # +FXText::SelectChars+:: Select characters
+  # +FXText::SelectWords+:: Select words
+  # +FXText::SelectRows+::  Select rows
+  # +FXText::SelectLines+:: Select lines
+  #
   # === Text widget options
   #
   # +TEXT_READONLY+::	Text is _not_ editable
@@ -104,12 +112,6 @@ module Fox
   # +TEXT_AUTOINDENT+::	Autoindent
   # +TEXT_SHOWACTIVE+::	Show active line
   # +TEXT_AUTOSCROLL+::	Logging mode, keeping last line visible
-  #
-  # === Selection modes
-  #
-  # +SELECT_CHARS+
-  # +SELECT_WORDS+
-  # +SELECT_LINES+
   #
   # === Text styles
   #
@@ -268,6 +270,9 @@ module Fox
     # The text buffer [String]
     attr_accessor	:text
 
+    # The selected text [String]
+    attr_accessor	:selectedText
+
     # The length of the text buffer [Integer]
     attr_reader		:length
 
@@ -315,7 +320,7 @@ module Fox
     # +p+::	the parent window for this text widget [FXComposite]
     # +target+::	the message target, if any, for this text widget [FXObject]
     # +selector+::	the message identifier for this text widget [Integer]
-    # +opts+::	tree list options [Integer]
+    # +opts+::	text options [Integer]
     # +x+::	initial x-position [Integer]
     # +y+::	initial y-position [Integer]
     # +width+::	initial width [Integer]
@@ -323,6 +328,9 @@ module Fox
     #
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2) # :yields: theText
     end
+    
+    # Return the text buffer's value
+    def to_s; text; end
     
     # Return +true+ if text was modified
     def modified? ; end
@@ -430,18 +438,19 @@ module Fox
     # text is inserted.
     def shiftText(startPos, endPos, amount, notify=false); end
 
-    # Search for _string_ in text buffer, returning the extent of
-    # the string in _beg_ and _end_.  The search starts from the given
+    #
+    # Search for _string_ in text buffer, and return the extent of
+    # the string as a two-element array of arrays.
+    # The first array contains the beginning index (or indices)
+    # and the second array contains the ending index (or indices).
+    # The search starts from the given
     # _start_ position, scans forward (+SEARCH_FORWARD+) or backward
     # (+SEARCH_BACKWARD+), and wraps around if +SEARCH_WRAP+ has been
     # specified.  The search type is either a plain search (+SEARCH_EXACT+),
     # case insensitive search (+SEARCH_IGNORECASE+), or regular expression
     # search (+SEARCH_REGEX+).
-    # For regular expression searches, capturing parentheses are used if
-    # _npar_ is greater than 1; in this case, the number of entries in the
-    # _beg_ and _end_ arrays must be _npar_ also.  If either _beg_ or _end_ or
-    # both are nil, internal arrays are used.
-    def findText(string, beg=nil, end=nil, start=0, flags=SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT, npar=1); end
+    #
+    def findText(string, start=0, flags=SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT); end
 
     # Return +true+ if position _pos_ is selected
     def positionSelected?(pos); end
@@ -449,9 +458,18 @@ module Fox
     # Return +true+ if position _pos_ is fully visible
     def positionVisible?(pos); end
   
+    # Return text position containing x, y coordinate
+    def getPosContaining(x, y); end
+
     # Return text position at given visible (_x_, _y_) coordinate
     def getPosAt(x, y); end
   
+    # Return y coordinate of pos
+    def getYOfPos(pos); end
+
+    # Return x coordinate of pos
+    def getXOfPos(pos); end
+    
     # Count number of rows; _start_ should be on a row start
     def countRows(start, end); end
 

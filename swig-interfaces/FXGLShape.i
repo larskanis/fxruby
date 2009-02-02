@@ -114,19 +114,10 @@ public:
   /// Set the material for specified side (where side = 0 or 1)
   void setMaterial(FXint side,const FXMaterial &mtl);
 
-  %extend {
-    // Get position
-    FXVec3f getPosition() const {
-      FXASSERT(self->isMemberOf(FXMETACLASS(FXRbGLShape)));
-      return dynamic_cast<const FXRbGLShape*>(self)->getPosition();
-      }
+  /// Return position
+  const FXVec3f& getPosition() const;
 
-    // Set position
-    void setPosition(const FXVec3f& pos) {
-      FXASSERT(self->isMemberOf(FXMETACLASS(FXRbGLShape)));
-      dynamic_cast<FXRbGLShape*>(self)->setPosition(pos);
-      }
-    
+  %extend {
     // Get the material for specified side (where side = 0 or 1)
     FXMaterial getMaterial(FXint side) const {
       FXMaterial mtl;

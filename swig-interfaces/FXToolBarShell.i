@@ -21,19 +21,33 @@
  ***********************************************************************/
 
 /**
- * A Tool bar shell is a widget floating around over the Main Window.
- * It typically contains an undocked tool bar.
+* A Toolbar shell is a widget floating around over the Main Window.
+* It typically contains an undocked tool bar.  The Toolbar shell can
+* be resized horizontally by grabbing its sides if the widget contained
+* in the Toolbar shell has the LAYOUT_FIX_WIDTH option.  Likewise, it
+* can be resized vertically if the LAYOUT_FIX_HEIGHT option is passed
+* to the widget contained in the Toolbar shell.  If both LAYOUT_FIX_WIDTH
+* and LAYOUT_FIX_HEIGHT are passed to the contained widget, Toolbar shell
+* can also be resized by grabbing the corners.
+* Normally, the Toolbar shell tries to accomodate changes in its contained
+* widget by shrink-wrapping around it, i.e. if the contained widget changes,
+* the Toolbar shell will change to fit narrowly around it.
  */
 
 class FXToolBarShell : public FXTopWindow {
 protected:
-  FXColor   baseColor;
-  FXColor   hiliteColor;
-  FXColor   shadowColor;
-  FXColor   borderColor;
-  FXint     border;
+  FXColor   baseColor;          // Base color
+  FXColor   hiliteColor;        // Highlight color
+  FXColor   shadowColor;        // Shadow color
+  FXColor   borderColor;        // Border color
+  FXint     border;             // Border width
+  FXint     gripx;              // Grip offset x
+  FXint     gripy;              // Grip offset y
+  FXint     xopp;               // Opposite x
+  FXint     yopp;               // Opposite y
+  FXuchar   mode;               // Dragging mode
 protected:
-  FXToolBarShell(){}
+  FXToolBarShell();
   void drawBorderRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
@@ -42,6 +56,19 @@ protected:
   void drawDoubleRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawDoubleSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawFrame(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
+protected:
+  enum {
+    DRAG_NONE        = 0,
+    DRAG_TOP         = 1,
+    DRAG_BOTTOM      = 2,
+    DRAG_LEFT        = 4,
+    DRAG_RIGHT       = 8,
+    DRAG_TOPLEFT     = (DRAG_TOP|DRAG_LEFT),
+    DRAG_TOPRIGHT    = (DRAG_TOP|DRAG_RIGHT),
+    DRAG_BOTTOMLEFT  = (DRAG_BOTTOM|DRAG_LEFT),
+    DRAG_BOTTOMRIGHT = (DRAG_BOTTOM|DRAG_RIGHT),
+    DRAG_WHOLE       = (DRAG_TOP|DRAG_BOTTOM|DRAG_LEFT|DRAG_RIGHT)
+    };
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:

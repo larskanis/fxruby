@@ -11,7 +11,6 @@
 #
 
 require 'fox16'
-require 'fox16/kwargs'
 require 'open-uri'
 
 begin

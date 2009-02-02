@@ -166,6 +166,11 @@ DECLARE_FXFOLDINGITEM_VIRTUALS(FXFoldingItem)
 * type SEL_INSERTED or SEL_DELETED.
 * In each of these cases, a pointer to the item, if any, is passed in the
 * 3rd argument of the message.
+* The text in each item is a string separated by tabs for each column;
+* in mini- or big-icon mode, only the text before the first tab is shown.  
+* In detail-mode, the text before the first tab is shown in the first column,
+* the text between the first and second tab is shown in the second column, 
+* and so on.
 */
 class FXFoldingList : public FXScrollArea {
 protected:
@@ -178,29 +183,29 @@ protected:
   static FXint compareSection(const FXchar *p,const FXchar* q,FXint s);
   static FXint compareSectionCase(const FXchar *p,const FXchar* q,FXint s);
 public:
-  long onPaint(FXObject*,FXSelector,void*);
-  long onEnter(FXObject*,FXSelector,void*);
-  long onLeave(FXObject*,FXSelector,void*);
-  long onUngrabbed(FXObject*,FXSelector,void*);
-  long onMotion(FXObject*,FXSelector,void*);
-  long onKeyPress(FXObject*,FXSelector,void*);
-  long onKeyRelease(FXObject*,FXSelector,void*);
-  long onLeftBtnPress(FXObject*,FXSelector,void*);
-  long onLeftBtnRelease(FXObject*,FXSelector,void*);
-  long onRightBtnPress(FXObject*,FXSelector,void*);
-  long onRightBtnRelease(FXObject*,FXSelector,void*);
-  long onHeaderChanged(FXObject*,FXSelector,void*);
-  long onQueryTip(FXObject*,FXSelector,void*);
-  long onQueryHelp(FXObject*,FXSelector,void*);
-  long onTipTimer(FXObject*,FXSelector,void*);
-  long onFocusIn(FXObject*,FXSelector,void*);
-  long onFocusOut(FXObject*,FXSelector,void*);
-  long onAutoScroll(FXObject*,FXSelector,void*);
-  long onClicked(FXObject*,FXSelector,void*);
-  long onDoubleClicked(FXObject*,FXSelector,void*);
-  long onTripleClicked(FXObject*,FXSelector,void*);
-  long onCommand(FXObject*,FXSelector,void*);
-  long onLookupTimer(FXObject*,FXSelector,void*);
+  long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
+  long onEnter(FXObject*,FXSelector,void* PTR_EVENT);
+  long onLeave(FXObject*,FXSelector,void* PTR_EVENT);
+  long onUngrabbed(FXObject*,FXSelector,void* PTR_EVENT);
+  long onMotion(FXObject*,FXSelector,void* PTR_EVENT);
+  long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
+  long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
+  long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
+  long onLeftBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
+  long onRightBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
+  long onRightBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
+  long onChgHeader(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onQueryTip(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onQueryHelp(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onTipTimer(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onFocusIn(FXObject*,FXSelector,void* PTR_EVENT);
+  long onFocusOut(FXObject*,FXSelector,void* PTR_EVENT);
+  long onAutoScroll(FXObject*,FXSelector,void* PTR_EVENT);
+  long onClicked(FXObject*,FXSelector,void* PTR_FOLDINGITEM);
+  long onDoubleClicked(FXObject*,FXSelector,void* PTR_FOLDINGITEM);
+  long onTripleClicked(FXObject*,FXSelector,void* PTR_FOLDINGITEM);
+  long onCommand(FXObject*,FXSelector,void* PTR_FOLDINGITEM);
+  long onLookupTimer(FXObject*,FXSelector,void* PTR_IGNORE);
 public:
   static FXint ascending(const FXFoldingItem*,const FXFoldingItem*);
   static FXint descending(const FXFoldingItem*,const FXFoldingItem*);
@@ -209,7 +214,7 @@ public:
 public:
   enum {
     ID_LOOKUPTIMER=FXScrollArea::ID_LAST,
-    ID_HEADER_CHANGE,
+    ID_HEADER,
     ID_LAST
     };
 public:
@@ -228,11 +233,12 @@ public:
     /// Set headers from array of strings
     void setHeaders(VALUE stringArray,FXint size=1){
       Check_Type(stringArray,T_ARRAY);
-      long len=RARRAY(stringArray)->len;
+      long len=RARRAY_LEN(stringArray);
       const FXchar **strings;
       if(FXMALLOC(&strings,FXchar*,len+1)){
         for(long i=0;i<len;i++){
-	  strings[i]=STR2CSTR(rb_ary_entry(stringArray,i));
+          VALUE s=rb_ary_entry(stringArray,i);
+	  strings[i]=StringValuePtr(s);
           }
 	strings[len]=0;
         self->setHeaders(strings,size);
@@ -285,14 +291,14 @@ public:
 
   %extend {
     /// Fill list by appending items from array of strings
-    FXint fillItems(FXFoldingItem* father,const FXchar** strings,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
+    FXint fillItems(FXFoldingItem* father,const FXchar** strings,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       return self->fillItems(father,strings,oi,ci,ITEMDATA,notify);
       }
   }
 
   %extend {
     /// Insert [possibly subclassed] item under father before other item
-    FXFoldingItem* insertItem(FXFoldingItem* other,FXFoldingItem* father,FXFoldingItem* item,FXbool notify=FALSE){
+    FXFoldingItem* insertItem(FXFoldingItem* other,FXFoldingItem* father,FXFoldingItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbFoldingItem))){
         dynamic_cast<FXRbFoldingItem*>(item)->owned=TRUE;
 	}
@@ -301,11 +307,11 @@ public:
   }
 
   /// Insert item with given text and optional icons, and user-data pointer under father before other item
-  FXFoldingItem* insertItem(FXFoldingItem* other,FXFoldingItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXFoldingItem* insertItem(FXFoldingItem* other,FXFoldingItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Append new [possibly subclassed] item after to other item
-    FXFoldingItem* appendItem(FXFoldingItem* father,FXFoldingItem* item,FXbool notify=FALSE){
+    FXFoldingItem* appendItem(FXFoldingItem* father,FXFoldingItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbFoldingItem))){
         dynamic_cast<FXRbFoldingItem*>(item)->owned=TRUE;
 	}
@@ -314,11 +320,11 @@ public:
   }
 
   /// Append item with given text and optional icons, and user-data pointer as last child of father
-  FXFoldingItem* appendItem(FXFoldingItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXFoldingItem* appendItem(FXFoldingItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Prepend [possibly subclassed] item as first child of father 
-    FXFoldingItem* prependItem(FXFoldingItem* father,FXFoldingItem* item,FXbool notify=FALSE){
+    FXFoldingItem* prependItem(FXFoldingItem* father,FXFoldingItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbFoldingItem))){
         dynamic_cast<FXRbFoldingItem*>(item)->owned=TRUE;
 	}
@@ -327,17 +333,17 @@ public:
   }
 
   /// Prepend new item with given text and optional icon, and user-data pointer prior to other item
-  FXFoldingItem* prependItem(FXFoldingItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXFoldingItem* prependItem(FXFoldingItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Move item under father before other item
   FXFoldingItem *moveItem(FXFoldingItem* other,FXFoldingItem* father,FXFoldingItem* item);
 
   /// Extract item
-  FXFoldingItem* extractItem(FXFoldingItem* item,FXbool notify=FALSE);
+  FXFoldingItem* extractItem(FXFoldingItem* item,FXbool notify=false);
 
   %extend {
     /// Remove item
-    void removeItem(FXFoldingItem* item,FXbool notify=FALSE){
+    void removeItem(FXFoldingItem* item,FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXFoldingItem> items;
       FXRbFoldingList::enumerateItem(item,items);
@@ -352,7 +358,7 @@ public:
       }
 
     /// Remove items in range [fm, to] inclusively
-    void removeItems(FXFoldingItem* fm,FXFoldingItem* to,FXbool notify=FALSE){
+    void removeItems(FXFoldingItem* fm,FXFoldingItem* to,FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXFoldingItem> items;
       FXRbFoldingList::enumerateItems(fm,to,items);
@@ -367,7 +373,7 @@ public:
       }
 
     /// Remove all items from list
-    void clearItems(FXbool notify=FALSE){
+    void clearItems(FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXFoldingItem> items;
       FXRbFoldingList::enumerateItems(self->getFirstItem(),self->getLastItem(),items);
@@ -416,13 +422,13 @@ public:
   FXString getItemText(const FXFoldingItem* item) const;
 
   /// Change item's open icon
-  void setItemOpenIcon(FXFoldingItem* item,FXIcon* icon,FXbool owned=FALSE);
+  void setItemOpenIcon(FXFoldingItem* item,FXIcon* icon,FXbool owned=false);
 
   /// Return item's open icon
   FXIcon* getItemOpenIcon(const FXFoldingItem* item) const;
 
   /// Chance item's closed icon
-  void setItemClosedIcon(FXFoldingItem* item,FXIcon* icon,FXbool owned=FALSE);
+  void setItemClosedIcon(FXFoldingItem* item,FXIcon* icon,FXbool owned=false);
 
   /// Return item's closed icon
   FXIcon* getItemClosedIcon(const FXFoldingItem* item) const;

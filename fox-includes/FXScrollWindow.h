@@ -3,23 +3,22 @@
 *                     S c r o l l W i n d o w   W i d g e t                     *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2003 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXScrollWindow.h 1788 2003-11-11 21:10:44Z lyle $                    *
+* $Id: FXScrollWindow.h 2763 2007-11-19 17:37:52Z lyle $                    *
 ********************************************************************************/
 #ifndef FXSCROLLWINDOW_H
 #define FXSCROLLWINDOW_H
@@ -32,18 +31,23 @@ namespace FX {
 
 
 /**
-* The scroll window widget scrolls an arbitrary child window.
-* Use the scroll window when parts of the user interface itself
-* need to be scrolled, for example when applications need to run
-* on small screens.  The scroll window observes some layout hints of 
-* its content-window; it observes LAYOUT_FIX_WIDTH, LAYOUT_FIX_HEIGHT 
-* at all times.  The hints LAYOUT_FILL_X, LAYOUT_LEFT, LAYOUT_RIGHT, 
-* LAYOUT_CENTER_X, as well as LAYOUT_FILL_Y, LAYOUT_TOP, LAYOUT_BOTTOM, 
-* LAYOUT_CENTER_Y are however only interpreted if the content size
-* is smaller than the viewport size, because if the content size is
-* larger than the viewport size, then content must be scrolled.
-* Note that this means that the content window's position is not 
-* necessarily equal to the scroll position of the scroll window!
+* The ScrollWindow widget manages one single child window and
+* scrolls it when the child is larger than the available area.
+* You can use ScrollWindow when parts of your user interface need to be
+* scrollable, for example when applications may need to run on small screens.
+* ScrollWindow normally contains only one single child window, which could
+* be a VerticalFrame or any other widget.  It will measure this widget using
+* getDefaultWidth() and getDefaultHeight() and place the scrollbars when needed,
+* based on options like  HSCROLLING_ALWAYS, etc., and the options of the child
+* window.
+* ScrollWindow observes some layout hints of its child window: LAYOUT_FIX_WIDTH,
+* LAYOUT_FIX_HEIGHT are observed at all times, while LAYOUT_FILL_X, LAYOUT_LEFT,
+* LAYOUT_RIGHT, LAYOUT_CENTER_X, as well as LAYOUT_FILL_Y, LAYOUT_TOP, LAYOUT_BOTTOM,
+* LAYOUT_CENTER_Y are only observed if the child window size is smaller than the
+* ScrollWindow's viewport size.  If the content size is larger than the viewport size,
+* the content must be scrolled normally.
+* Note that this means that the child window's position is not necessarily equal to
+* the scroll position of the scroll window!
 */
 class FXAPI FXScrollWindow : public FXScrollArea {
   FXDECLARE(FXScrollWindow)

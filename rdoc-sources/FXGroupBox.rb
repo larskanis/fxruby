@@ -28,6 +28,9 @@ module Fox
     # Construct group box layout manager
     def initialize(parent, text, opts=GROUPBOX_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theGroupBox
     end
+    
+    # Return the group box's title text
+    def to_s; text; end
   end
 end
 

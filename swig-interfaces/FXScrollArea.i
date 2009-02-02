@@ -39,6 +39,8 @@ enum {
 class FXScrollBar;
 class FXScrollCorner;
 
+%rename("contentX")			FXScrollArea::getContentX() const;
+%rename("contentY")			FXScrollArea::getContentY() const;
 
 /**
 * The scroll area widget manages a content area and a viewport
@@ -59,16 +61,15 @@ protected:
   FXScrollBar    *horizontal;   // Horizontal scroll bar
   FXScrollBar    *vertical;     // Vertical scroll bar
   FXScrollCorner *corner;       // Scroll corner
-  FXint           viewport_w;   // Viewport width
-  FXint           viewport_h;   // Viewport height
   FXint           pos_x;        // X scroll position (pos_x<=0)
   FXint           pos_y;        // Y scroll position (pos_y<=0)
 protected:
   FXScrollArea();
-  FXbool startAutoScroll(FXEvent* event,FXbool onlywheninside=FALSE);
-  void stopAutoScroll();
-  FXScrollArea(FXComposite* p,FXuint opts,FXint x,FXint y,FXint w,FXint h);
+  // FXScrollArea(FXComposite* p,FXuint opts,FXint x,FXint y,FXint w,FXint h);
   virtual void moveContents(FXint x,FXint y);
+  FXbool startAutoScroll(FXEvent *event,FXbool onlywheninside=false);
+  void stopAutoScroll();
+  void placeScrollBars(FXint vw,FXint vh);
 public:
   long onHMouseWheel(FXObject*,FXSelector,void* PTR_EVENT);
   long onVMouseWheel(FXObject*,FXSelector,void* PTR_EVENT);
@@ -84,6 +85,12 @@ public:
       return new FXRbScrollArea(p,opts,x,y,w,h);
       }
     }
+
+  /// Return content area x position
+  FXint getContentX() const;
+
+  /// Return content area y position
+  FXint getContentY() const;
 
   /// Change scroll style
   void setScrollStyle(FXuint style);
@@ -103,41 +110,8 @@ public:
   /// Return a pointer to the vertical scrollbar
   FXScrollBar* verticalScrollBar() const;
 
-  /// Return the current x-position
-  FXint getXPosition() const;
-
-  /// Return the current y-position
-  FXint getYPosition() const;
-
   /// Set the current position
   void setPosition(FXint x,FXint y);
-
-#ifdef SWIGPYTHON
-  %extend {
-    PyObject* getPosition() const {
-      FXint x, y;
-      self->getPosition(x, y);
-      FXbool doSave = FXPyRestoreThread();
-      PyObject* tuple = PyTuple_New(2);
-      if (tuple) {
-	PyObject *obj1 = PyInt_FromLong(x);
-	if (!obj1 || PyTuple_SetItem(tuple, 0, obj1) < 0) {
-	  Py_DECREF(tuple);
-          FXPySaveThread(doSave);
-	  return NULL;
-	}
-	PyObject *obj2 = PyInt_FromLong(y);
-	if (!obj2 || PyTuple_SetItem(tuple, 1, obj2) < 0) {
-	  Py_DECREF(tuple);
-          FXPySaveThread(doSave);
-	  return NULL;
-	}
-      }
-      FXPySaveThread(doSave);
-      return tuple;
-    }
-  }
-#endif
 
   /// Destructor
   virtual ~FXScrollArea();

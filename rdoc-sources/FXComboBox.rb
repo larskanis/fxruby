@@ -83,6 +83,9 @@ module Fox
     
     # Tool tip message [String]
     attr_accessor :tipText
+    
+    # Popup pane shrinkwrap mode [Boolean]
+    attr_accessor :shrinkWrap
 
     #
     # Return an initialized FXComboBox instance, with room to display _cols_ columns of text.
@@ -106,6 +109,9 @@ module Fox
     def initialize(p, cols, target=nil, selector=0, opts=COMBOBOX_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theComboBox
     end
 
+    # Return the combo box text
+    def to_s; end
+    
     # Return +true+ if combobox is editable
     def editable?() ; end
 
@@ -118,37 +124,51 @@ module Fox
     def retrieveItem(index) ; end
 
     # Replace the item at _index_ with a new item with the specified _text_ and user _data_.
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
     # Raises IndexError if _index_ is out of bounds.
     def setItem(index, text, data=nil) ; end
 
     #
     # Fill combo box by appending items from _strings_, where _strings_ is
     # an array of strings. Return the number of items added.
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
     #
-    def fillItems(strings); end
+    def fillItems(strings, notify=false); end
 
     # Insert a new item at _index_, with the specified _text_ and user _data_.
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
     # Raises IndexError if _index_ is out of bounds.
-    def insertItem(index, text, data=nil) ; end
+    def insertItem(index, text, data=nil, notify=false) ; end
 
+    #
     # Append a new item to the list with the specified _text_ and user _data_.
-    def appendItem(text, data=nil) ; end
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
+    #
+    def appendItem(text, data=nil, notify=false) ; end
 
-    # Prepend an item to the list with the specified _text_ and user _data_
-    def prependItem(text, data=nil) ; end
+    #
+    # Prepend an item to the list with the specified _text_ and user _data_.
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
+    #
+    def prependItem(text, data=nil, notify=false) ; end
     
     #
     # Move item from _oldIndex_ to _newIndex_ and return the new index of the item.
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
     # Raises IndexError if either _oldIndex_ or _newIndex_ is out of bounds.
     #
-    def moveItem(newIndex, oldIndex); end
+    def moveItem(newIndex, oldIndex, notify=false); end
 
     # Remove the item at _index_ from the list.
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
     # Raises IndexError if _index_ is out of bounds.
-    def removeItem(index) ; end
+    def removeItem(index, notify=false) ; end
 
+    #
     # Remove all items from the list
-    def clearItems() ; end
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
+    #
+    def clearItems(notify=false) ; end
 
     #
     # Search for items by name, beginning from the item with index _start_.
@@ -195,11 +215,17 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     def getItemData(index) ; end
 
-    # Return +true+ if the pane is shown.
-    def paneShown?() ; end
+    # Return +true+ if the menu pane is shown
+    def menuShown?; end
+    
+    # Set the menu's visibility to shown (+true+) or hidden (+false+)
+    def menuShown=(shown); end
+    
+    # paneShown? is an alias for menuShown?
+    alias paneShown? menuShown?
 
     # Sort items using current sort function
-    def sortItems() ; end
+    def sortItems; end
     
     #
     # Set current item to _index_, where _index_ is the zero-based index of

@@ -20,48 +20,47 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
+// GL Canvas options
+enum {
+  GLCANVAS_OWN_CONTEXT = 0x00008000  /// Context is owned
+  };
+
 %rename("shared?") FXGLCanvas::isShared() const;
 
 /// GLCanvas, an area drawn by another object
 class FXGLCanvas : public FXCanvas {
-protected:
-  void        *ctx;     // GL Context
-protected:
-  FXGLCanvas();
 public:
   %extend {
     /**
-    * Construct an OpenGL-capable canvas, with its own private display list.
+    * Construct a GL canvas with its private context and private display lists.
     */
     FXGLCanvas(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbGLCanvas(p,vis,tgt,sel,opts,x,y,w,h);
       }
   
     /**
-    * Construct an OpenGL-capable canvas, sharing display
-    * list with another GL canvas.  This canvas becomes a member
-    * of a display list share group.  All members of the display
-    * list share group have to have the same visual.
+    * Construct a GL canvas with its private context but shared display lists.
     */
     FXGLCanvas(FXComposite* p,FXGLVisual *vis,FXGLCanvas* sharegroup,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbGLCanvas(p,vis,sharegroup,tgt,sel,opts,x,y,w,h);
       }
+
+		/**
+		* Construct a GL canvas with a shared context.
+		*/
+		FXGLCanvas(FXComposite* p,FXGLContext* ctx,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
+		  return new FXRbGLCanvas(p,ctx,tgt,sel,opts,x,y,w,h);
+		  }
     }
+
+	/// Change context
+	void setContext(FXGLContext *ctx,FXbool owned=false);
+
+	/// Get context
+	FXGLContext* getContext() const;
 
   /// Return TRUE if it is sharing display lists
   FXbool isShared() const;
-  
-  %extend {
-    /// Return current context, if any
-    static unsigned long getCurrentContext(){
-      return reinterpret_cast<unsigned long>(FXGLCanvas::getCurrentContext());
-      }
-
-    /// Get GL context handle
-    unsigned long getContext() const {
-      return reinterpret_cast<unsigned long>(self->getContext());
-      }
-    }
   
   /// Destructor
   virtual ~FXGLCanvas();

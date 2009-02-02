@@ -12,6 +12,12 @@ module Fox
     #
     def initialize # :yields: theSettings
     end
+    
+    # Return +true+ if modified.
+    def modified? ; end
+    
+    # Set modified state to +true+ or +false+.
+    def modified=(m); end
 
     #
     # Parse a file containing a settings database.
@@ -85,8 +91,16 @@ module Fox
     # +key+::		the key for the setting of interest [String]
     # +default+::	the default value to return if _key_ is not found [Integer]
     #
-    def readUnsignedEntry(section, key, default=0) ; end
+    def readUIntEntry(section, key, default=0) ; end
 
+    alias :readUIntEntry :readUnsignedEntry
+    
+    # Read a 64-bit long integer registry entry; if no value is found, the default value def is returned
+    def readLongEntry(section, name, default=0); end
+
+    # Read a 64-bit unsigned long integer registry entry; if no value is found, the default value def is returned
+    def readULongEntry(section, name, default=0); end
+    
     #
     # Read a double-precision floating point registry entry from the specified _section_ and _key_.
     # If no value is found, the _default_ value is returned.
@@ -157,7 +171,15 @@ module Fox
     # +key+::		the key for this setting [String]
     # +value+::		the value for this setting [Integer]
     #
-    def writeUnsignedEntry(section, key, value) ; end
+    def writeUIntEntry(section, name, value); end
+
+    alias :writeUIntEntry :writeUnsignedEntry
+    
+    # Write a 64-bit long integer registry entry
+    def writeLongEntry(section, name, value); end
+
+    # Write a 64-bit unsigned long integer registry entry
+    def writeULongEntry(section, name, value); end
 
     #
     # Write a double-precision floating point registry _value_ to the specified _section_ and _key_.

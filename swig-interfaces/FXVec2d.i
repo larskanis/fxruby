@@ -27,14 +27,11 @@ public:
   FXdouble y;
 public:
 
-  /// Default constructor
-  FXVec2d();
+	/// Initialize with components
+	FXVec2d(FXdouble xx=0.0,FXdouble yy=0.0);
 
   /// Copy constructor
   FXVec2d(const FXVec2d& v);
-
-  /// Initialize with components
-  FXVec2d(FXdouble xx,FXdouble yy);
 
   /// Length and square of length
   FXdouble length2() const;
@@ -74,7 +71,7 @@ public:
     FXdouble dot(const FXVec2d& other) const { return (*self)*other; }
 
     /// Equality tests
-    bool operator==(const FXVec2d& other) const { return (*self)==other; }
+    FXbool operator==(const FXVec2d& other) const { return (*self)==other; }
 
     /// Normalize vector
     FXVec2d normalize() const { return normalize(*self); }

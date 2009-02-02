@@ -1,3 +1,3 @@
 public:
   // Overrides the base class version of setCurrent()
-  virtual void setCurrent(FXint panel);
+  virtual void setCurrent(FXint panel,FXbool notify=false);

@@ -51,14 +51,17 @@ public:
   long onCmdIncrement(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdDecrement(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDecrement(FXObject*,FXSelector,void* PTR_EVENT);
-  long onCmdEntry(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onUpdEntry(FXObject*,FXSelector,void* PTR_IGNORE);
   long onChgEntry(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdEntry(FXObject*,FXSelector,void* PTR_IGNORE);
   long onWheelEntry(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onCmdSetLongValue(FXObject*,FXSelector,void* PTR_PLONG);
+  long onCmdGetLongValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdSetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_IN);
   long onCmdGetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_OUT);
   long onFocusSelf(FXObject*,FXSelector,void* PTR_EVENT);
@@ -79,16 +82,16 @@ public:
     }
 
   /// Increment spinner
-  void increment(FXbool notify=FALSE);
+  void increment(FXbool notify=false);
   
   /// Increment spinner by certain amount
-  void incrementByAmount(FXint amount,FXbool notify=FALSE);
+  void incrementByAmount(FXint amount,FXbool notify=false);
 
   /// Decrement spinner
-  void decrement(FXbool notify=FALSE);
+  void decrement(FXbool notify=false);
   
   /// Decrement spinner by certain amount
-  void decrementByAmount(FXint amount, FXbool notify=FALSE);
+  void decrementByAmount(FXint amount, FXbool notify=false);
 
   /// Return TRUE if in cyclic mode
   FXbool isCyclic() const;
@@ -107,7 +110,7 @@ public:
 
   %extend {
     /// Change the spinner's range
-    void setRange(VALUE range,FXbool notify=FALSE){
+    void setRange(VALUE range,FXbool notify=false){
       FXint lo,hi;
       FXRbRange2LoHi(range,lo,hi);
       self->setRange(lo,hi);
@@ -152,7 +155,7 @@ public:
   FXuint getSpinnerStyle() const;
 
   /// Allow editing of the text field
-  void setEditable(FXbool edit=TRUE);
+  void setEditable(FXbool edit=true);
   
   /// Return TRUE if text field is editable
   FXbool isEditable() const;

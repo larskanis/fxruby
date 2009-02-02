@@ -118,9 +118,9 @@ module Fox
   # 
   # === FXGLViewer options
   #
-  # +VIEWER_LIGHTING+::	Lighting is on
-  # +VIEWER_FOG+::	Fog mode on
-  # +VIEWER_DITHER+::	Dithering
+  # +GLVIEWER_LIGHTING+::   Lighting is on
+  # +GLVIEWER_FOG+::        Fog mode on
+  # +GLVIEWER_DITHER+::     Dithering
   #
   # === Projection modes (class constants)
   #
@@ -256,11 +256,17 @@ module Fox
     end
     
     #
-    # Construct GL viewer widget sharing display list with another GL viewer
+    # Construct GL viewer widget sharing display lists with another GL viewer
     #
-    def initialize(p, vis, sharegroup, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLViewer
+    def initialize(p, vis, share, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLViewer
     end
   
+    #
+    # Construct GL viewer widget sharing context
+    #
+    def initialize(p, ctx, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLViewer
+    end
+
     # Return an array of all objects in the given rectangle
     def lasso(x1, y1, x2, y2); end
   
@@ -321,12 +327,23 @@ module Fox
     def turboMode?; end
 
     #
-    # Change top, bottom or both background colors.
+    # Set bottom background color to _clr_ (an FXVec4f value) if _bottom_ is +true+;
+    # otherwise, set top background color to _clr_. For example:
     #
-    def setBackgroundColor(clr, bottom=MAYBE); end
+    #     setBackgroundColor(FXVec4f.new(1.0, 0.0, 0.0), false) # => Set top background color to red
+    #     setBackgroundColor(FXVec4f.new(0.0, 0.0, 1.0), true)  # => Set bottom background color to blue
+    #
+    # If the second argument is left off, both the top and bottom colors are set to _clr_:
+    #
+    #     setBackgroundColor(FXVec4f.new(0.0, 1.0, 0.0))        # => Set top and bottom background colors to green
+    #
+    def setBackgroundColor(clr, *args); end
 
-    # Return top or bottom window background color.
-    def getBackgroundColor(bottom=false); end
+    #
+    # If _bottom_ is +true+, return bottom background color (an FXVec4 instance);
+    # otherwise, return top background color.
+    #
+    def getBackgroundColor(bottom); end
   end
 end
 

@@ -7,7 +7,7 @@ module Fox
     #
     # Return an initialized FXVec2d instance.
     #
-    def initialize(xx, yy); end
+    def initialize(xx=0.0, yy=0.0); end
   
     #
     # Returns the element at _index_, where _index_ is 0 or 1.

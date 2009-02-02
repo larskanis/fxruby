@@ -72,13 +72,20 @@ module Fox
     # Popup style [Integer]
     attr_accessor :popupStyle
     
-    # Attachment [Integer]
+    # Attachment settings [Integer]
     attr_accessor :attachment
 
     #
     # Constructor
     #
     def initialize(parent, text, icon=nil, popupMenu=nil, opts=JUSTIFY_NORMAL|ICON_BEFORE_TEXT|MENUBUTTON_DOWN, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING) # :yields: theMenuButton
+    end
+    
+    # Set menu pane visibility to shown (+true+) or hidden (+false+)
+    def menuShown=(vis); end
+    
+    # Return +true+ if menu pane is shown
+    def menuShown?; end
   end
 end
 

@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbMenuSeparator.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbMenuSeparator.h 2776 2007-11-27 21:29:58Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBMENUSEPARATOR_H
@@ -37,7 +37,7 @@ protected:
 #include "FXRbWindowVirtuals.h"
 public:
   /// Construct a menu separator
-  FXRbMenuSeparator(FXComposite* p,FXuint opts=0) : FXMenuSeparator(p,opts){}
+  FXRbMenuSeparator(FXComposite* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0) : FXMenuSeparator(p,tgt,sel,opts){}
 
   // Destructor
   virtual ~FXRbMenuSeparator(){

@@ -22,31 +22,20 @@
 
 class FXFont;
 
+%predicate FXGLVisual::hasOpenGL(FXApp*);
 
 /// Visual describes pixel format of a drawable
 class FXGLVisual : public FXVisual {
 public:
   %extend {
     /// Construct default visual
-    FXGLVisual(FXApp* a,FXuint flags){
-      return new FXRbGLVisual(a,flags);
+    FXGLVisual(FXApp* a,FXuint flgs=VISUAL_DOUBLE_BUFFER|VISUAL_WINDOW){
+      return new FXRbGLVisual(a,flgs);
       }
     }
 
-  /**
-   * Test if OpenGL is possible, and what level is supported.
-   * Because of remote display capability, the display server may
-   * support a different level of OpenGL than the client; it may
-   * even support no OpenGL at all!  This function returns the lesser
-   * of the client support level and the display server support level.
-   */
-  %extend {
-    static FXbool supported(FXApp* application){
-      int major,minor;
-      FXbool answer=FXGLVisual::supported(application,major,minor);
-      return rb_ary_new3(3,answer?Qtrue:Qfalse,INT2NUM(major),INT2NUM(minor));
-      }
-  }
+	// Test if if OpenGL is supported.
+	static FXbool hasOpenGL(FXApp* application);
 
   /// Get sizes for bit-planes
   FXint getRedSize() const;
@@ -62,6 +51,8 @@ public:
   FXint getStencilSize() const;
 
   FXint getAccumRedSize() const;
+
+	FXint getMultiSamples() const;
 
   FXint getAccumGreenSize() const;
 
@@ -81,7 +72,7 @@ public:
   void setDepthSize(FXint ds);
 
   void setStencilSize(FXint ss);
-
+  void setMultiSamples(FXint ms);
   void setAccumRedSize(FXint rs);
 
   void setAccumGreenSize(FXint gs);
@@ -102,7 +93,7 @@ public:
   FXint getActualDepthSize() const;
 
   FXint getActualStencilSize() const;
-
+  FXint getActualMultiSamples() const;
   FXint getActualAccumRedSize() const;
 
   FXint getActualAccumGreenSize() const;
@@ -133,4 +124,4 @@ DECLARE_FXID_VIRTUALS(FXGLVisual)
 
   
 /// Create a display list of bitmaps from font glyphs in a font
-void glUseFXFont(FXFont* font,int first,int count,int list);
+FXbool glUseFXFont(FXFont* font,int first,int count,int list);

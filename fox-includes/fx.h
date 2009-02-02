@@ -3,7 +3,7 @@
 *                   M a i n   F O X   I n c l u d e   F i l e                   *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or                 *
 * modify it under the terms of the GNU Lesser General Public                    *
@@ -19,7 +19,7 @@
 * License along with this library; if not, write to the Free Software           *
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
 *********************************************************************************
-* $Id: fx.h 2344 2006-02-12 21:19:36Z lyle $                               *
+* $Id: fx.h 2760 2007-11-19 16:46:04Z lyle $                               *
 ********************************************************************************/
 #ifndef FX_H
 #define FX_H
@@ -40,6 +40,9 @@
 // FOX classes
 #include "FXHash.h"
 #include "FXException.h"
+#include "FXAutoPtr.h"
+#include "FXElement.h"
+#include "FXArray.h"
 #include "FXThread.h"
 #include "FXStream.h"
 #include "FXIO.h"
@@ -49,6 +52,7 @@
 #include "FXFileStream.h"
 #include "FXMemoryStream.h"
 #include "FXString.h"
+#include "FXDLL.h"
 #include "FXSize.h"
 #include "FXPoint.h"
 #include "FXRectangle.h"
@@ -72,35 +76,41 @@
 #include "FXVisual.h"
 #include "FXFont.h"
 #include "FXCursor.h"
-#include "FXGUISignal.h"
+#include "FXMessageChannel.h"
 #include "FXCURCursor.h"
 #include "FXGIFCursor.h"
 #include "FXDrawable.h"
 #include "FXBitmap.h"
 #include "FXImage.h"
 #include "FXIcon.h"
-#include "FXGIFImage.h"
-#include "FXIFFImage.h"
 #include "FXBMPImage.h"
+#include "FXGIFImage.h"
 #include "FXICOImage.h"
-#include "FXXBMImage.h"
-#include "FXXPMImage.h"
+#include "FXIFFImage.h"
+#include "FXJPGImage.h"
 #include "FXPCXImage.h"
-#include "FXTGAImage.h"
-#include "FXRGBImage.h"
+#include "FXPNGImage.h"
 #include "FXPPMImage.h"
 #include "FXRASImage.h"
-#include "FXGIFIcon.h"
-#include "FXIFFIcon.h"
+#include "FXRGBImage.h"
+#include "FXTGAImage.h"
+#include "FXTIFImage.h"
+#include "FXXBMImage.h"
+#include "FXXPMImage.h"
 #include "FXBMPIcon.h"
+#include "FXGIFIcon.h"
 #include "FXICOIcon.h"
-#include "FXXBMIcon.h"
-#include "FXXPMIcon.h"
+#include "FXIFFIcon.h"
+#include "FXJPGIcon.h"
 #include "FXPCXIcon.h"
-#include "FXTGAIcon.h"
-#include "FXRGBIcon.h"
+#include "FXPNGIcon.h"
 #include "FXPPMIcon.h"
 #include "FXRASIcon.h"
+#include "FXRGBIcon.h"
+#include "FXTGAIcon.h"
+#include "FXTIFIcon.h"
+#include "FXXBMIcon.h"
+#include "FXXPMIcon.h"
 #include "FXRegion.h"
 #include "FXDC.h"
 #include "FXDCWindow.h"
@@ -182,6 +192,7 @@
 #include "FXDirList.h"
 #include "FXSlider.h"
 #include "FXRealSlider.h"
+#include "FXRangeSlider.h"
 #include "FXSplitter.h"
 #include "FX4Splitter.h"
 #include "FXHeader.h"
@@ -224,6 +235,10 @@
 #include "FXToolBarTab.h"
 #include "FXPrintDialog.h"
 #include "FXDebugTarget.h"
+#include "FXCalendarView.h"
+#include "FXCalendar.h"
+#include "FXGradientBar.h"
+#include "FXConsole.h"
 #include "FXSplashWindow.h"
 
 

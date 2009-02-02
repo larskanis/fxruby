@@ -3,23 +3,22 @@
 *                              D i a l   W i d g e t                            *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXDial.h 2335 2006-01-28 02:33:03Z lyle $                            *
+* $Id: FXDial.h 2760 2007-11-19 16:46:04Z lyle $                            *
 ********************************************************************************/
 #ifndef FXDIAL_H
 #define FXDIAL_H
@@ -54,13 +53,13 @@ enum {
 class FXAPI FXDial : public FXFrame {
   FXDECLARE(FXDial)
 protected:
-  FXint         range[2];       // Reported data range
+  FXint         notchAngle;     // Angle of main notch
+  FXint         notchSpacing;   // Angle between notches
+  FXint         notchOffset;    // Notch offset
   FXColor       notchColor;     // Main notch color
-  FXint         notchangle;     // Angle of main notch
-  FXint         notchspacing;   // Angle between notches
-  FXint         notchoffset;    // Notch offset
-  FXint         dragpoint;      // Place where clicked
-  FXint         dragpos;        // Value where clicked
+  FXint         dragPoint;      // Place where clicked
+  FXint         dragPos;        // Value where clicked
+  FXint         range[2];       // Reported data range
   FXint         incr;           // Rate of change/revolution
   FXint         pos;            // Reported data position
   FXString      help;           // Help string
@@ -82,6 +81,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void*);
   long onCmdSetIntValue(FXObject*,FXSelector,void*);
   long onCmdGetIntValue(FXObject*,FXSelector,void*);
+  long onCmdSetLongValue(FXObject*,FXSelector,void*);
+  long onCmdGetLongValue(FXObject*,FXSelector,void*);
   long onCmdSetRealValue(FXObject*,FXSelector,void*);
   long onCmdGetRealValue(FXObject*,FXSelector,void*);
   long onCmdSetIntRange(FXObject*,FXSelector,void*);
@@ -106,16 +107,16 @@ public:
   virtual FXint getDefaultHeight();
 
   /// Returns true because a dial can receive focus
-  virtual bool canFocus() const;
+  virtual FXbool canFocus() const;
 
   /// Set the dial value
-  void setValue(FXint value,FXbool notify=FALSE);
+  void setValue(FXint value,FXbool notify=false);
 
   /// Return the dial value
   FXint getValue() const { return pos; }
 
   /// Change the dial's range
-  void setRange(FXint lo,FXint hi,FXbool notify=FALSE);
+  void setRange(FXint lo,FXint hi,FXbool notify=false);
 
   /// Obtain the current range of the dial
   void getRange(FXint& lo,FXint& hi) const { lo=range[0]; hi=range[1]; }
@@ -140,7 +141,7 @@ public:
   void setNotchSpacing(FXint spacing);
 
   /// Get the current notch spacing
-  FXint getNotchSpacing() const { return notchspacing; }
+  FXint getNotchSpacing() const { return notchSpacing; }
 
   /**
   * Change the notch offset, which is the position of the
@@ -150,7 +151,7 @@ public:
   void setNotchOffset(FXint offset);
 
   /// Get the current center notch offset
-  FXint getNotchOffset() const { return notchoffset; }
+  FXint getNotchOffset() const { return notchOffset; }
 
   /// Changes the dial style.
   void setDialStyle(FXuint opts);

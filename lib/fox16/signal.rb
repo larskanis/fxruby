@@ -1,4 +1,5 @@
 module Fox
+  
   class FXApp
 
     alias addSignalOrig addSignal # :nodoc:
@@ -18,7 +19,7 @@ module Fox
     # the message to be sent when this signal is raised.
     # If _sendImmediately_ is +true+, the message will be sent to the target right away;
     # this should be used with extreme care as the application is interrupted
-    # at an unknown point it its execution.
+    # at an unknown point in its execution.
     # The _flags_ are to be set as per POSIX definitions.
     #
     # A second form of #addSignal takes a Method instance as its second argument:
@@ -38,16 +39,18 @@ module Fox
     #
 
     def addSignal(sig, *args, &block)
+      params = {}
+      params = args.pop if args.last.is_a? Hash
       tgt, sel, immediate, flags = nil, 0, false, 0
       if args.length > 0
         if args[0].respond_to? :call
           tgt = FXPseudoTarget.new
-          tgt.pconnect(SEL_SIGNAL, args[0], block)
+          tgt.pconnect(SEL_SIGNAL, args[0], params)
           immediate = (args.length > 1) ? args[1] : false
           flags = (args.length > 2) ? args[2] : 0
         elsif (args[0].kind_of? TrueClass) || (args[0].kind_of? FalseClass)
           tgt = FXPseudoTarget.new
-          tgt.pconnect(SEL_SIGNAL, nil, block)
+          tgt.pconnect(SEL_SIGNAL, block, params)
           immediate = args[0]
           flags = (args.length > 1) ? args[1] : 0
         else # it's some other kind of object
@@ -58,9 +61,11 @@ module Fox
         end
       else
         tgt = FXPseudoTarget.new
-        tgt.pconnect(SEL_SIGNAL, nil, block)
+        tgt.pconnect(SEL_SIGNAL, block, params)
       end
       addSignalOrig(sig, tgt, sel, immediate, flags)
     end
-  end
-end
+    
+  end # class FXApp
+  
+end # module Fox

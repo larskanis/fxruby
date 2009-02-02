@@ -3,10 +3,10 @@ public:
   virtual void setText(const FXString& txt);
 
   // Overrides the base class version of setOpenIcon()
-  virtual void setOpenIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setOpenIcon(FXIcon* icn,FXbool owned=false);
 
   // Overrides the base class version of setClosedIcon()
-  virtual void setClosedIcon(FXIcon* icn,FXbool owned=FALSE);
+  virtual void setClosedIcon(FXIcon* icn,FXbool owned=false);
 
   // Overrides the base class version of setFocus()
   virtual void setFocus(FXbool focus);

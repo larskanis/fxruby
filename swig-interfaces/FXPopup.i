@@ -123,18 +123,18 @@ public:
   /// Return current grab owner
   FXWindow* getGrabOwner() const;
   
-  /// Return popup orientation
-  FXuint getOrientation() const;
-  
   /// Change popup orientation
   void setOrientation(FXuint orient);
 
-  /// Return shrinkwrap mode
-  FXbool getShrinkWrap() const;
+  /// Return popup orientation
+  FXuint getOrientation() const;
   
   /// Change shrinkwrap mode
   void setShrinkWrap(FXbool sw);
 
+  /// Return shrinkwrap mode
+  FXbool getShrinkWrap() const;
+  
   /// Destructor
   virtual ~FXPopup();
   };

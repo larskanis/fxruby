@@ -3,23 +3,22 @@
 *                           R e g i s t r y   C l a s s                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXRegistry.h 2344 2006-02-12 21:19:36Z lyle $                        *
+* $Id: FXRegistry.h 2725 2007-11-16 16:57:54Z lyle $                        *
 ********************************************************************************/
 #ifndef FXREGISTRY_H
 #define FXREGISTRY_H
@@ -57,14 +56,14 @@ class FXAPI FXRegistry : public FXSettings {
 protected:
   FXString applicationkey;  // Application key
   FXString vendorkey;       // Vendor key
-  bool     ascii;           // ASCII file-based registry
+  FXbool   ascii;           // ASCII file-based registry
 protected:
-  bool readFromDir(const FXString& dirname,bool mark);
+  FXbool readFromDir(const FXString& dirname,FXbool mark);
 #ifdef WIN32
-  bool readFromRegistry(void* hRootKey,bool mark);
-  bool writeToRegistry(void* hRootKey);
-  bool readFromRegistryGroup(void* org,const char* groupname,bool mark=false);
-  bool writeToRegistryGroup(void* org,const char* groupname);
+  FXbool readFromRegistry(void* hRootKey,FXbool mark);
+  FXbool writeToRegistry(void* hRootKey);
+  FXbool readFromRegistryGroup(void* org,const char* groupname,FXbool mark=false);
+  FXbool writeToRegistryGroup(void* org,const char* groupname);
 #endif
 private:
   FXRegistry(const FXRegistry&);
@@ -78,10 +77,10 @@ public:
   FXRegistry(const FXString& akey=FXString::null,const FXString& vkey=FXString::null);
 
   /// Read registry
-  bool read();
+  FXbool read();
 
   /// Write registry
-  bool write();
+  FXbool write();
 
   /// Return application key
   const FXString& getAppKey() const { return applicationkey; }
@@ -93,10 +92,10 @@ public:
   * Set ASCII mode; under MS-Windows, this will switch the system to a
   * file-based registry system, instead of using the System Registry API.
   */
-  void setAsciiMode(bool asciiMode){ ascii=asciiMode; }
+  void setAsciiMode(FXbool asciiMode){ ascii=asciiMode; }
 
   /// Get ASCII mode
-  bool getAsciiMode() const { return ascii; }
+  FXbool getAsciiMode() const { return ascii; }
   };
 
 }

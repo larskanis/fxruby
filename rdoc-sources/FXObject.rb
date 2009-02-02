@@ -15,6 +15,9 @@ module Fox
     #
     def handle(sender, selector, data); end
 
+    # Try handle message safely, catching certain exceptions
+    def tryHandle(sender, sel, ptr); end
+    
     #
     # Save object to stream.
     #

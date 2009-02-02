@@ -1,17 +1,22 @@
 module Fox
   #
-  # The FXScrollWindow widget scrolls an arbitrary child window.
-  # Use the scroll window when parts of the user interface itself
-  # need to be scrolled, for example when applications need to run
-  # on small screens.  The scroll window observes some layout hints of 
-  # its content-window; it observes +LAYOUT_FIX_WIDTH+, +LAYOUT_FIX_HEIGHT+
-  # at all times.  The hints +LAYOUT_FILL_X+, +LAYOUT_LEFT+, +LAYOUT_RIGHT+, 
-  # +LAYOUT_CENTER_X+, as well as +LAYOUT_FILL_Y+, +LAYOUT_TOP+, +LAYOUT_BOTTOM+, 
-  # +LAYOUT_CENTER_Y+ are however only interpreted if the content size
-  # is smaller than the viewport size, because if the content size is
-  # larger than the viewport size, then content must be scrolled.
-  # Note that this means that the content window's position is not 
-  # necessarily equal to the scroll position of the scroll window!
+  # The ScrollWindow widget manages one single child window and
+  # scrolls it when the child is larger than the available area.
+  # You can use ScrollWindow when parts of your user interface need to be
+  # scrollable, for example when applications may need to run on small screens.
+  # ScrollWindow normally contains only one single child window, which could
+  # be a VerticalFrame or any other widget.  It will measure this widget using
+  # getDefaultWidth() and getDefaultHeight() and place the scrollbars when needed,
+  # based on options like  HSCROLLING_ALWAYS, etc., and the options of the child
+  # window.
+  # ScrollWindow observes some layout hints of its child window: LAYOUT_FIX_WIDTH,
+  # LAYOUT_FIX_HEIGHT are observed at all times, while LAYOUT_FILL_X, LAYOUT_LEFT,
+  # LAYOUT_RIGHT, LAYOUT_CENTER_X, as well as LAYOUT_FILL_Y, LAYOUT_TOP, LAYOUT_BOTTOM,
+  # LAYOUT_CENTER_Y are only observed if the child window size is smaller than the
+  # ScrollWindow's viewport size.  If the content size is larger than the viewport size,
+  # the content must be scrolled normally.
+  # Note that this means that the child window's position is not necessarily equal to
+  # the scroll position of the scroll window!
   #
   class FXScrollWindow < FXScrollArea
     #

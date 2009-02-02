@@ -28,10 +28,6 @@ class FXApp;
 
 /// Encapsulates server side resource
 class FXId : public FXObject {
-protected:
-  FXID xid;
-protected:
-  FXId(FXApp* a);
 public:
 
   /// Get application
@@ -39,6 +35,9 @@ public:
 
   /// Get XID handle
   FXID id() const;
+
+	/// Get resource handle
+	FXID res() const;
 
   /// Returns true if this resource has been create-ed (i.e. it's ID is non-NULL)
   %extend {

@@ -20,6 +20,13 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
+/// Special stacking orders
+enum {
+  STACK_NORMAL,                 /// Stack normally (default) 
+  STACK_BOTTOM,                 /// Stack below other windows
+  STACK_TOP                     /// Stack above other windows
+  };
+
 /// Title and border decorations
 enum {
   DECOR_NONE        = 0,                                  /// Borderless window
@@ -49,6 +56,7 @@ enum {
   
 class FXToolBar;
 
+%rename("fullScreen?")  FXTopWindow::isFullScreen() const;
 
 /**
 * Abstract base class for all top-level windows.
@@ -66,7 +74,7 @@ class FXToolBar;
 * data to the disk.  If the target returns 0, then the system will proceed
 * to close the session.  Subsequently a SEL_SESSION_CLOSED will be received
 * which causes the window to be closed with prejudice by calling the
-* function close(FALSE).
+* function close(false).
 * When receiving a SEL_UPDATE, the target can update the title string
 * of the window, so that the title of the window reflects the name
 * of the document, for example.
@@ -102,9 +110,13 @@ public:
   long onFocusRight(FXObject*,FXSelector,void* PTR_EVENT);
   long onSessionNotify(FXObject*,FXSelector,void* PTR_EVENT);
   long onSessionClosed(FXObject*,FXSelector,void* PTR_EVENT);
+	long onRestore(FXObject*,FXSelector,void* PTR_EVENT);
+	long onMaximize(FXObject*,FXSelector,void* PTR_EVENT);
+	long onMinimize(FXObject*,FXSelector,void* PTR_EVENT);
+  long onCmdRestore(FXObject*,FXSelector,void*); // FIXME
   long onCmdMaximize(FXObject*,FXSelector,void*); // FIXME
   long onCmdMinimize(FXObject*,FXSelector,void*); // FIXME
-  long onCmdRestore(FXObject*,FXSelector,void*); // FIXME
+  long onCmdFullScreen(FXObject*,FXSelector,void*); // FIXME
   long onCmdClose(FXObject*,FXSelector,void*); // FIXME
   long onCmdSetStringValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdGetStringValue(FXObject*,FXSelector,void*); // FIXME
@@ -112,9 +124,10 @@ public:
   long onCmdGetIconValue(FXObject*,FXSelector,void*); // FIXME
 public:
   enum {
-    ID_MAXIMIZE=FXShell::ID_LAST,       /// Maximize the window
+    ID_RESTORE=FXShell::ID_LAST,        /// Restore the window
+    ID_MAXIMIZE,                        /// Maximize the window
     ID_MINIMIZE,                        /// Minimize the window
-    ID_RESTORE,                         /// Restore the window
+    ID_FULLSCREEN,                      /// Make the window fullscreen
     ID_CLOSE,                           /// Close the window
     ID_QUERY_DOCK,                      /// Toolbar asks to dock
     ID_LAST
@@ -155,6 +168,9 @@ public:
   /// Return TRUE if minimized
   FXbool isMinimized() const;
 
+  /// Return true if full screen
+  FXbool isFullScreen() const;
+  
   /// Change window title
   void setTitle(const FXString& name);
   

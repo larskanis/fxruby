@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbGLViewer.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbGLViewer.h 2873 2008-05-30 21:38:58Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBGLVIEWER_H
@@ -66,10 +66,16 @@ protected:
   virtual FXGLObject* processHits(FXuint *pickbuffer,FXint nhits);
 public:
   /// Construct GL viewer widget
-  FXRbGLViewer(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) : FXGLViewer(p,vis,tgt,sel,opts,x,y,w,h){}
+  FXRbGLViewer(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) :
+		FXGLViewer(p,vis,tgt,sel,opts,x,y,w,h){}
 
-  /// Construct GL viewer widget sharing display list with another GL viewer
-  FXRbGLViewer(FXComposite* p,FXGLVisual *vis,FXGLViewer* sharegroup,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) : FXGLViewer(p,vis,sharegroup,tgt,sel,opts,x,y,w,h){}
+  /// Construct GL viewer widget sharing display lists with another GL viewer
+  FXRbGLViewer(FXComposite* p,FXGLVisual *vis,FXGLViewer* share,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) :
+		FXGLViewer(p,vis,share,tgt,sel,opts,x,y,w,h){}
+
+	/// Construct GL viewer widget sharing context
+	FXRbGLViewer(FXComposite* p,FXGLContext* ctx,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) :
+		FXGLViewer(p,ctx,tgt,sel,opts,x,y,w,h){}
 
   // Overrides the base class version of select()
   FXGLObject** _select(FXint x,FXint y,FXint w,FXint h);

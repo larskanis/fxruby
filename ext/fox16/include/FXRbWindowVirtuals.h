@@ -15,7 +15,7 @@ public:
   virtual FXint getHeightForWidth(FXint givenwidth);
 
   // Overrides the base class version of canFocus()
-  virtual bool canFocus() const;
+  virtual FXbool canFocus() const;
 
   // Overrides the base class version of setFocus()
   virtual void setFocus();
@@ -27,7 +27,7 @@ public:
   virtual void changeFocus(FXWindow *child);
 
   // Overrides the base class version of setDefault()
-  virtual void setDefault(FXbool enable);
+  virtual void setDefault(FXuchar flag);
 
   // Overrides the base class version of enable()
   virtual void enable();
@@ -60,19 +60,19 @@ public:
   virtual void hide();
 
   // Overrides the base class version of isComposite()
-  virtual bool isComposite() const;
+  virtual FXbool isComposite() const;
 
   // Overrides the base class version of contains()
-  virtual bool contains(FXint parentx,FXint parenty) const;
+  virtual FXbool contains(FXint parentx,FXint parenty) const;
 
   // Overrides the base class version of doesSaveUnder()
-  virtual bool doesSaveUnder() const;
+  virtual FXbool doesSaveUnder() const;
 
   // Overrides the base class version of setBackColor()
   virtual void setBackColor(FXColor clr);
 
   // Overrides the base class version of tr()
-  virtual const FXchar* tr(const FXchar* message,const FXchar* hint=NULL) const;
+  virtual const FXchar* tr(const FXchar* message,const FXchar* hint=NULL,FXint count=-1) const;
 
   /// Overrides the base class version of dropEnable()
   virtual void dropEnable();

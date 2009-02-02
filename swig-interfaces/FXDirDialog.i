@@ -80,6 +80,12 @@ public:
   /// Return Directory List style
   FXuint getDirBoxStyle() const;
 
+  /// Change file associations; delete old ones if owned
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
+
+  /// Return file associations
+  FXFileDict* getAssociations() const;
+
   /// Open directory name
   static FXString getOpenDirectory(FXWindow* owner,const FXString& caption,const FXString& path);
 

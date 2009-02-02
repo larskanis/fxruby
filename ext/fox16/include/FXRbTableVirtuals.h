@@ -69,13 +69,13 @@ public:
   virtual FXbool killSelection(FXbool notify=FALSE);
   
   // Overrides base class version of startInput()
-  virtual void startInput(FXint row,FXint col);
+  virtual FXbool startInput(FXint row,FXint col);
   
   // Overrides base class version of cancelInput()
-  virtual void cancelInput();
+  virtual FXbool cancelInput();
   
   // Overrides base class version of acceptInput()
-  virtual void acceptInput(FXbool notify=FALSE);
+  virtual FXbool acceptInput(FXbool notify=FALSE);
   
   // Overrides the base class version of makePositionVisible()
   virtual void makePositionVisible(FXint r,FXint c);

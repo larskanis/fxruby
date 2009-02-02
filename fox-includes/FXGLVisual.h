@@ -3,23 +3,22 @@
 *                            V i s u a l   C l a s s                            *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1999,2004 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1999,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXGLVisual.h 1889 2004-05-26 03:13:01Z lyle $                        *
+* $Id: FXGLVisual.h 2869 2008-05-30 20:08:44Z lyle $                        *
 ********************************************************************************/
 #ifndef FXGLVISUAL_H
 #define FXGLVISUAL_H
@@ -50,16 +49,32 @@ class FXAPI FXGLVisual : public FXVisual {
   friend class FXDCWindow;
   friend class FXGLCanvas;
 protected:
-  FXint        redSize;             // Desired #bits for red
-  FXint        greenSize;           // Desired #bits for green
-  FXint        blueSize;            // Desired #bits for blue
-  FXint        alphaSize;           // Desired #bits for alpha
-  FXint        depthSize;           // Desired #bits for Z
-  FXint        stencilSize;         // Desired #bits for stencil
-  FXint        accumRedSize;        // Desired #bits for accum red
-  FXint        accumGreenSize;      // Desired #bits for accum green
-  FXint        accumBlueSize;       // Desired #bits for accum blue
-  FXint        accumAlphaSize;      // Desired #bits for accum alpha
+  FXuchar redSize;              // Red bits
+  FXuchar greenSize;            // Green depth
+  FXuchar blueSize;             // Blue bits
+  FXuchar alphaSize;            // Alpha bits
+  FXuchar depthSize;            // Depth bits
+  FXuchar stencilSize;          // Stencil bits
+  FXuchar multiSamples;         // Multi-sampling
+  FXuchar accumRedSize;         // Red accu buffer bits
+  FXuchar accumGreenSize;       // Green accu buffer bits
+  FXuchar accumBlueSize;        // Blue accu buffer bits
+  FXuchar accumAlphaSize;       // Alpha accu buffer bits
+  FXuchar actualRedSize;        // Actual Red bits
+  FXuchar actualGreenSize;      // Actual Green depth
+  FXuchar actualBlueSize;       // Actual Blue bits
+  FXuchar actualAlphaSize;      // Actual Alpha bits
+  FXuchar actualDepthSize;      // Actual Depth bits
+  FXuchar actualStencilSize;    // Actual Stencil bits
+  FXuchar actualMultiSamples;   // Actual multi-sampling
+  FXuchar actualAccumRedSize;   // Actual Red accu buffer bits
+  FXuchar actualAccumGreenSize; // Actual Green accu buffer bits
+  FXuchar actualAccumBlueSize;  // Actual Blue accu buffer bits
+  FXuchar actualAccumAlphaSize; // Actual Alpha accu buffer bits
+  FXbool  doubleBuffer;
+  FXbool  stereoBuffer;
+  FXbool  accelerated;
+  FXbool  copying;
 protected:
   FXGLVisual();
 private:
@@ -68,16 +83,7 @@ private:
 public:
 
   /// Construct default visual
-  FXGLVisual(FXApp* a,FXuint flags);
-
-  /**
-  * Test if OpenGL is possible, and what level is supported.
-  * Because of remote display capability, the display server may
-  * support a different level of OpenGL than the client; it may
-  * even support no OpenGL at all!  This function returns the lesser
-  * of the client support level and the display server support level.
-  */
-  static FXbool supported(FXApp* application,int& major,int& minor);
+  FXGLVisual(FXApp* a,FXuint flgs=VISUAL_DOUBLE_BUFFER|VISUAL_WINDOW);
 
   /// Create visual
   virtual void create();
@@ -95,6 +101,7 @@ public:
   FXint getAlphaSize() const { return alphaSize; }
   FXint getDepthSize() const { return depthSize; }
   FXint getStencilSize() const { return stencilSize; }
+  FXint getMultiSamples() const { return multiSamples; }
   FXint getAccumRedSize() const { return accumRedSize; }
   FXint getAccumGreenSize() const { return accumGreenSize; }
   FXint getAccumBlueSize() const { return accumBlueSize; }
@@ -107,34 +114,39 @@ public:
   void setAlphaSize(FXint as){ alphaSize=as; }
   void setDepthSize(FXint ds){ depthSize=ds; }
   void setStencilSize(FXint ss){ stencilSize=ss; }
+  void setMultiSamples(FXint ms){ multiSamples=ms; }
   void setAccumRedSize(FXint rs){ accumRedSize=rs; }
   void setAccumGreenSize(FXint gs){ accumGreenSize=gs; }
   void setAccumBlueSize(FXint bs){ accumBlueSize=bs; }
   void setAccumAlphaSize(FXint as){ accumAlphaSize=as; }
 
   /// Get ACTUAL sizes for bit-planes
-  FXint getActualRedSize() const;
-  FXint getActualGreenSize() const;
-  FXint getActualBlueSize() const;
-  FXint getActualAlphaSize() const;
-  FXint getActualDepthSize() const;
-  FXint getActualStencilSize() const;
-  FXint getActualAccumRedSize() const;
-  FXint getActualAccumGreenSize() const;
-  FXint getActualAccumBlueSize() const;
-  FXint getActualAccumAlphaSize() const;
+  FXint getActualRedSize() const { return actualRedSize; }
+  FXint getActualGreenSize() const { return actualGreenSize; }
+  FXint getActualBlueSize() const { return actualBlueSize; }
+  FXint getActualAlphaSize() const { return actualAlphaSize; }
+  FXint getActualDepthSize() const { return actualDepthSize; }
+  FXint getActualStencilSize() const { return actualStencilSize; }
+  FXint getActualMultiSamples() const { return actualMultiSamples; }
+  FXint getActualAccumRedSize() const { return actualAccumRedSize; }
+  FXint getActualAccumGreenSize() const { return actualAccumGreenSize; }
+  FXint getActualAccumBlueSize() const { return actualAccumBlueSize; }
+  FXint getActualAccumAlphaSize() const { return actualAccumAlphaSize; }
 
   /// Is it double buffered?
-  FXbool isDoubleBuffer() const;
+  FXbool isDoubleBuffer() const { return doubleBuffer; }
 
   /// Is it stereo?
-  FXbool isStereo() const;
+  FXbool isStereo() const { return stereoBuffer; }
 
   /// Is it hardware-accelerated?
-  FXbool isAccelerated() const;
+  FXbool isAccelerated() const { return accelerated; }
 
   /// Does it swap by copying instead of flipping buffers
-  FXbool isBufferSwapCopy() const;
+  FXbool isBufferSwapCopy() const { return copying; }
+
+  /// Test if if OpenGL is supported.
+  static FXbool hasOpenGL(FXApp* application);
 
   /// Save visual info to a stream
   virtual void save(FXStream& store) const;
@@ -145,10 +157,6 @@ public:
   /// Destructor
   virtual ~FXGLVisual();
   };
-
-
-/// Create a display list of bitmaps from font glyphs in a font
-extern FXAPI void glUseFXFont(FXFont* font,int first,int count,int list);
 
 }
 

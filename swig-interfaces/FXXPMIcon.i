@@ -86,7 +86,7 @@ DECLARE_FXIMAGE_VIRTUALS(FXXPMIcon)
     
     // Confirm that the input is an array of strings
     Check_Type(strArray,T_ARRAY);
-    len=RARRAY(strArray)->len;
+    len=RARRAY_LEN(strArray);
     for(i=0; i<len; i++){
       str=rb_ary_entry(strArray,i);
       Check_Type(str,T_STRING);
@@ -113,10 +113,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXXPMIcon)
 
 
 /// Save an X Pixmap file to a stream
-bool fxsaveXPM(FXStream& store,const FXColor *PIXELS,FXint width,FXint height,bool fast=true);
+FXbool fxsaveXPM(FXStream& store,const FXColor *PIXELS,FXint width,FXint height,FXbool fast=true);
 
 /**
  * Check if stream contains a XPM, return TRUE if so.
  */
-bool fxcheckXPM(FXStream& store);
+FXbool fxcheckXPM(FXStream& store);
 

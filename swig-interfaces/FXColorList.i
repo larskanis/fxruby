@@ -29,7 +29,7 @@ protected:
   FXColor  color;
 protected:
   FXColorItem();
-  virtual void draw(const FXList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h);
+  virtual void draw(const FXList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
   virtual FXint hitItem(const FXList* list,FXint x,FXint y) const;
 public:
   %extend {
@@ -68,16 +68,16 @@ public:
   }
   
   /// Fill list by appending color items from array of strings and array of colors
-  FXint fillItems(const FXchar** strings,FXColor *colors=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint fillItems(const FXchar** strings,FXColor *colors=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Insert item at index with given text, color, and user-data pointer
-  FXint insertItem(FXint index,const FXString& text,FXColor color=0,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint insertItem(FXint index,const FXString& text,FXColor color=0,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Append new item with given text, color, and user-data pointer
-  FXint appendItem(const FXString& text,FXColor color=0,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint appendItem(const FXString& text,FXColor color=0,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Prepend new item with given text, color, and user-data pointer
-  FXint prependItem(const FXString& text,FXColor color=0,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint prependItem(const FXString& text,FXColor color=0,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Change item color
   void setItemColor(FXint index,FXColor color);

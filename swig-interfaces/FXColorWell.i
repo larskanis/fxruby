@@ -98,7 +98,7 @@ public:
     }
 
   /// Set color
-  void setRGBA(FXColor clr,FXbool notify=FALSE);
+  void setRGBA(FXColor clr,FXbool notify=false);
 
   /// Get color
   FXColor getRGBA() const;

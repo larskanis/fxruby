@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbShutter.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbShutter.h 2764 2007-11-19 17:57:29Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBSHUTTER_H
@@ -50,14 +50,14 @@ public:
 
 
 #define DECLARE_FXSHUTTER_STUBS(klass) \
-inline void klass ## _setCurrent(klass* self,FXint panel){ \
-  self->klass::setCurrent(panel); \
+inline void klass ## _setCurrent(klass* self,FXint panel,FXbool notify){ \
+  self->klass::setCurrent(panel,notify); \
   }
 
 
 #define IMPLEMENT_FXSHUTTER_STUBS(cls) \
-  void cls::setCurrent(FXint panel){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrent"),panel); \
+  void cls::setCurrent(FXint panel,FXbool notify){ \
+    FXRbCallVoidMethod(this,rb_intern("setCurrent"),panel,notify); \
     }
 
 

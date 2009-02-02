@@ -52,20 +52,24 @@ DECLARE_FXID_VIRTUALS(FXGIFCursor)
 DECLARE_FXCURSOR_VIRTUALS(FXGIFCursor)
 
 
-/// Save a gif file to a stream
-bool fxsaveGIF(FXStream& store,const FXColor *data,FXint width,FXint height,FXbool fast=TRUE);
+/**
+ * Save an GIF (Graphics Interchange Format) file to a stream.  If flag
+ * is true, the faster Floyd-Steinberg dither method instead of the slower Wu 
+ * quantization algorithm.
+ */
+FXbool fxsaveGIF(FXStream& store,const FXColor *data,FXint width,FXint height,FXbool fast=true);
 
 %inline %{
   /**
-   * Load an GIF (Graphics Interchange Format) file from a stream.
-   * Upon successful return, the pixel array and size are returned.
-   * If an error occurred, the pixel array is set to NULL.
+   * Load an GIF (Graphics Interchange Format) file from a stream; if the flag 
+   * flag is true, the background color is considered transparent.  Upon successful return, 
+   * the pixel array and size are returned.  If an error occurred, the pixel array is set to NULL.
    */
-  VALUE fxloadGIF(FXStream& store){
+  VALUE fxloadGIF(FXStream& store,FXbool flag=true){
     FXColor* data;
     FXint width;
     FXint height;
-    if(fxloadGIF(store,data,width,height)){
+    if(fxloadGIF(store,data,width,height,flag)){
       VALUE ary=rb_ary_new();
       rb_ary_push(ary,FXRbMakeColorArray(data,width,height));
       FXFREE(&data);
@@ -82,5 +86,5 @@ bool fxsaveGIF(FXStream& store,const FXColor *data,FXint width,FXint height,FXbo
 /**
  * Check if stream contains a GIF, return TRUE if so.
  */
-bool fxcheckGIF(FXStream& store);
+FXbool fxcheckGIF(FXStream& store);
 

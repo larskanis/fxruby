@@ -494,7 +494,6 @@ rdoc-sources/FXXPMImage.rb
 rdoc-sources/README.rdoc
 ext/fox16/MANIFEST
 ext/fox16/extconf.rb
-ext/fox16/librb.c
 ext/fox16/FXRbApp.cpp
 ext/fox16/FXRbDataTarget.cpp
 ext/fox16/FXRbGLViewer.cpp
@@ -520,6 +519,7 @@ ext/fox16/text_wrap.cpp
 ext/fox16/treelist_wrap.cpp
 ext/fox16/ui_wrap.cpp
 ext/fox16/unregisterOwnedObjects.cpp
+ext/fox16/include/swigrubyrun.h
 ext/fox16/include/FXMemoryBuffer.h
 ext/fox16/include/FXRb4Splitter.h
 ext/fox16/include/FXRb7Segment.h

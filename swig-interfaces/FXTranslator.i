@@ -21,30 +21,19 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXTranslator.i 2303 2005-12-09 03:17:28Z lyle $
+ * $Id: FXTranslator.i 2873 2008-05-30 21:38:58Z lyle $
  ***********************************************************************/
 
 /**
 * The translator class translates a message to another language.
 */
 class FXTranslator : public FXObject {
-protected:
-  FXTranslator();
 public:
 
   %extend {
     /// Construct translator
-    FXTranslator(FXApp* a) { return new FXRbTranslator(a); }
+    FXTranslator() { return new FXRbTranslator(); }
   }
-
-  /// Get application
-  FXApp* getApp() const;
-
-  /// Change text codec used to decode the messages embedded in the source
-  void setTextCodec(FXTextCodec *cdc);
-
-  /// Return text codec
-  FXTextCodec *getTextCodec() const;
 
   /// Destructor
   virtual ~FXTranslator();

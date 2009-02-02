@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbTable.h 2303 2005-12-09 03:17:28Z lyle $
+ * $Id: FXRbTable.h 2869 2008-05-30 20:08:44Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBTABLE_H
@@ -349,14 +349,14 @@ inline FXbool klass ## _extendSelection(klass* self,FXint r,FXint c,FXbool notif
 inline FXbool klass ## _killSelection(klass* self,FXbool notify){ \
   return self->klass::killSelection(notify); \
   } \
-inline void klass ## _startInput(klass* self,FXint row,FXint col){ \
-  self->klass::startInput(row,col); \
+inline FXbool klass ## _startInput(klass* self,FXint row,FXint col){ \
+  return self->klass::startInput(row,col); \
   } \
-inline void klass ## _cancelInput(klass* self){ \
-  self->klass::cancelInput(); \
+inline FXbool klass ## _cancelInput(klass* self){ \
+  return self->klass::cancelInput(); \
   } \
-inline void klass ## _acceptInput(klass* self,FXbool notify){ \
-  self->klass::acceptInput(notify); \
+inline FXbool klass ## _acceptInput(klass* self,FXbool notify){ \
+  return self->klass::acceptInput(notify); \
   } \
 inline void klass ## _makePositionVisible(klass* self,FXint r,FXint c){ \
   self->klass::makePositionVisible(r,c); \
@@ -457,14 +457,14 @@ inline FXbool klass ## _disableItem(klass* self,FXint r,FXint c){ \
   FXbool klass::killSelection(FXbool notify){ \
     return FXRbCallBoolMethod(this,rb_intern("killSelection"),notify); \
     } \
-  void klass::startInput(FXint row,FXint col){ \
-    FXRbCallVoidMethod(this,rb_intern("startInput"),row,col); \
+  FXbool klass::startInput(FXint row,FXint col){ \
+    FXRbCallBoolMethod(this,rb_intern("startInput"),row,col); \
     } \
-  void klass::cancelInput(){ \
-    FXRbCallVoidMethod(this,rb_intern("cancelInput")); \
+  FXbool klass::cancelInput(){ \
+    FXRbCallBoolMethod(this,rb_intern("cancelInput")); \
     } \
-  void klass::acceptInput(FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("acceptInput"),notify); \
+  FXbool klass::acceptInput(FXbool notify){ \
+    FXRbCallBoolMethod(this,rb_intern("acceptInput"),notify); \
     } \
   void klass::makePositionVisible(FXint r,FXint c){ \
     FXRbCallVoidMethod(this,rb_intern("makePositionVisible"),r,c); \

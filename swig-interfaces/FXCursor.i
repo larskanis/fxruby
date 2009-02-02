@@ -88,7 +88,7 @@ public:
   FXint getHotY() const;
   
   /// Check if there is color in the cursor
-  bool isColor() const;
+  FXbool isColor() const;
 
   /// Destructor
   virtual ~FXCursor();

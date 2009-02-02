@@ -3,23 +3,22 @@
 *                     FOX Definitions, Types, and Macros                        *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: fxdefs.h 2360 2006-03-29 04:10:56Z lyle $                           *
+* $Id: fxdefs.h 2868 2008-05-30 17:03:51Z lyle $                           *
 ********************************************************************************/
 #ifndef FXDEFS_H
 #define FXDEFS_H
@@ -41,28 +40,13 @@
 #define NULL 0
 #endif
 
-/// Pi
-#ifndef PI
-#define PI      3.1415926535897932384626433833
-#endif
-
-/// Euler constant
-#define EULER   2.7182818284590452353602874713
-
-/// Multiplier for degrees to radians
-#define DTOR    0.0174532925199432957692369077
-
-/// Multiplier for radians to degrees
-#define RTOD    57.295779513082320876798154814
-
-
 // Path separator
 #ifdef WIN32
 #define PATHSEP '\\'
 #define PATHSEPSTRING "\\"
 #define PATHLISTSEP ';'
 #define PATHLISTSEPSTRING ";"
-#define ISPATHSEP(c) ((c)=='/' || (c)=='\\')
+#define ISPATHSEP(c) ((c)=='\\' || (c)=='/')
 #else
 #define PATHSEP '/'
 #define PATHSEPSTRING "/"
@@ -113,11 +97,14 @@
 #ifdef FOXDLL
 #ifdef FOXDLL_EXPORTS
 #define FXAPI FXEXPORT
+#define FXTEMPLATE_EXTERN
 #else
 #define FXAPI FXIMPORT
+#define FXTEMPLATE_EXTERN extern
 #endif
 #else
 #define FXAPI
+#define FXTEMPLATE_EXTERN
 #endif
 
 // Callback
@@ -128,10 +115,13 @@
 #endif
 
 
-// Templates with DLL linkage
+// Disable some warnings in VC++
 #ifdef _MSC_VER
 #pragma warning(disable: 4251)
+#pragma warning(disable: 4231)
+#pragma warning(disable: 4244)
 #endif
+
 
 // Checking printf and scanf format strings
 #if defined(_CC_GNU_) || defined(__GNUG__) || defined(__GNUC__)
@@ -141,6 +131,7 @@
 #define FX_PRINTF(fmt,arg)
 #define FX_SCANF(fmt,arg)
 #endif
+
 
 // Raw event type
 #ifndef WIN32
@@ -234,8 +225,13 @@ enum FXSelType {
   SEL_QUERY_HELP,                       /// Message inquiring about statusline help
   SEL_DOCKED,                           /// Toolbar docked
   SEL_FLOATED,                          /// Toolbar floated
+  SEL_SPACEBALLMOTION,                  /// Moved space ball puck
+  SEL_SPACEBALLBUTTONPRESS,             /// Pressed space ball button
+  SEL_SPACEBALLBUTTONRELEASE,           /// Released space ball button
   SEL_SESSION_NOTIFY,                   /// Session is about to close
   SEL_SESSION_CLOSED,                   /// Session is closed
+  SEL_IME_START,                        /// IME mode
+  SEL_IME_END,                          /// IME mode
   SEL_LAST
   };
 
@@ -345,7 +341,7 @@ class                          FXString;
 // Streamable types; these are fixed size!
 typedef char                   FXchar;
 typedef unsigned char          FXuchar;
-typedef FXuchar                FXbool;
+typedef bool                   FXbool;
 typedef unsigned short         FXushort;
 typedef short                  FXshort;
 typedef unsigned int           FXuint;
@@ -397,7 +393,7 @@ typedef void*                  FXID;
 #endif
 
 // Time since January 1, 1970 (UTC)
-typedef long                   FXTime;
+typedef FXlong                 FXTime;
 
 // Pixel type (could be color index)
 typedef unsigned long          FXPixel;
@@ -427,6 +423,27 @@ typedef void*                  FXInputHandle;
 typedef _XEvent                FXRawEvent;
 #else
 typedef tagMSG                 FXRawEvent;
+#endif
+
+
+/// Pi
+const FXdouble PI=3.1415926535897932384626433833;
+
+/// Euler constant
+const FXdouble EULER=2.7182818284590452353602874713;
+
+/// Multiplier for degrees to radians
+const FXdouble DTOR=0.0174532925199432957692369077;
+
+/// Multiplier for radians to degrees
+const FXdouble RTOD=57.295779513082320876798154814;
+
+#if !defined(WIN32) || defined(__CYGWIN__) || defined(__MINGW32__) || defined(__SC__) || defined(__BCPLUSPLUS__)
+/// A time in the far, far future
+const FXTime forever=9223372036854775807LL;
+#else
+/// A time in the far, far future
+const FXTime forever=9223372036854775807L;
 #endif
 
 
@@ -563,6 +580,20 @@ typedef tagMSG                 FXRawEvent;
 
 
 /**
+* FXVERIFY prints out a message when the expression fails,
+* and nothing otherwise.
+* When compiling your application for release, these messages
+* are compiled out, but unlike FXASSERT, FXVERIFY will still execute
+* the expression.
+*/
+#ifndef NDEBUG
+#define FXVERIFY(exp) ((exp)?((void)0):(void)FX::fxverify(#exp,__FILE__,__LINE__))
+#else
+#define FXVERIFY(exp) ((void)(exp))
+#endif
+
+
+/**
 * FXTRACE() allows you to trace the execution of your application
 * with increasing levels of detail the higher the trace level.
 * The trace level is determined by variable fxTraceLevel, which
@@ -579,7 +610,6 @@ typedef tagMSG                 FXRawEvent;
 #else
 #define FXTRACE(arguments) ((void)0)
 #endif
-
 
 /**
 * Allocate a memory block of no elements of type and store a pointer
@@ -667,16 +697,16 @@ typedef tagMSG                 FXRawEvent;
 extern FXAPI FXuint fxrandom(FXuint& seed);
 
 /// Allocate memory
-extern FXAPI FXint fxmalloc(void** ptr,unsigned long size);
+extern FXAPI FXbool fxmalloc(void** ptr,unsigned long size);
 
 /// Allocate cleaned memory
-extern FXAPI FXint fxcalloc(void** ptr,unsigned long size);
+extern FXAPI FXbool fxcalloc(void** ptr,unsigned long size);
 
 /// Resize memory
-extern FXAPI FXint fxresize(void** ptr,unsigned long size);
+extern FXAPI FXbool fxresize(void** ptr,unsigned long size);
 
 /// Duplicate memory
-extern FXAPI FXint fxmemdup(void** ptr,const void* src,unsigned long size);
+extern FXAPI FXbool fxmemdup(void** ptr,const void* src,unsigned long size);
 
 /// Free memory, resets ptr to NULL afterward
 extern FXAPI void fxfree(void** ptr);
@@ -693,6 +723,9 @@ extern FXAPI void fxmessage(const char* format,...) FX_PRINTF(1,2) ;
 /// Assert failed routine:- usually not called directly but called through FXASSERT
 extern FXAPI void fxassert(const char* expression,const char* filename,unsigned int lineno);
 
+/// Verify failed routine:- usually not called directly but called through FXVERIFY
+extern FXAPI void fxverify(const char* expression,const char* filename,unsigned int lineno);
+
 /// Trace printout routine:- usually not called directly but called through FXTRACE
 extern FXAPI void fxtrace(unsigned int level,const char* format,...) FX_PRINTF(2,3) ;
 
@@ -700,7 +733,7 @@ extern FXAPI void fxtrace(unsigned int level,const char* format,...) FX_PRINTF(2
 extern FXAPI void fxsleep(unsigned int n);
 
 /// Match a file name with a pattern
-extern FXAPI bool fxfilematch(const char *pattern,const char *string,FXuint flags=(FILEMATCH_NOESCAPE|FILEMATCH_FILE_NAME));
+extern FXAPI FXbool fxfilematch(const char *pattern,const char *string,FXuint flags=(FILEMATCH_NOESCAPE|FILEMATCH_FILE_NAME));
 
 /// Get highlight color
 extern FXAPI FXColor makeHiliteColor(FXColor clr);
@@ -712,10 +745,10 @@ extern FXAPI FXColor makeShadowColor(FXColor clr);
 extern FXAPI FXint fxgetpid();
 
 /// Convert string of length len to MSDOS; return new string and new length
-extern FXAPI bool fxtoDOS(FXchar*& string,FXint& len);
+extern FXAPI FXbool fxtoDOS(FXchar*& string,FXint& len);
 
 /// Convert string of length len from MSDOS; return new string and new length
-extern FXAPI bool fxfromDOS(FXchar*& string,FXint& len);
+extern FXAPI FXbool fxfromDOS(FXchar*& string,FXint& len);
 
 /// Duplicate string
 extern FXAPI FXchar *fxstrdup(const FXchar* str);
@@ -735,9 +768,29 @@ extern FXAPI void fxrgb_to_hsv(FXfloat& h,FXfloat& s,FXfloat& v,FXfloat r,FXfloa
 /// Convert HSV to RGB
 extern FXAPI void fxhsv_to_rgb(FXfloat& r,FXfloat& g,FXfloat& b,FXfloat h,FXfloat s,FXfloat v);
 
-/// Floating point number classification: 0=OK, +/-1=Inf, +/-2=NaN
+/// Float number classification: 0=OK, +/-1=Inf, +/-2=NaN
 extern FXAPI FXint fxieeefloatclass(FXfloat number);
+
+/// Double number classification: 0=OK, +/-1=Inf, +/-2=NaN
 extern FXAPI FXint fxieeedoubleclass(FXdouble number);
+
+/// Test for finite float
+extern FXAPI FXbool fxIsFinite(FXfloat number);
+
+/// Test for finite double
+extern FXAPI FXbool fxIsFinite(FXdouble number);
+
+/// Test for infinite float
+extern FXAPI FXbool fxIsInf(FXfloat number);
+
+/// Test for infinite double
+extern FXAPI FXbool fxIsInf(FXdouble number);
+
+/// Text for not-a-number float
+extern FXAPI FXbool fxIsNan(FXfloat number);
+
+/// Text for not-a-number double
+extern FXAPI FXbool fxIsNan(FXdouble number);
 
 /// Convert keysym to unicode character
 extern FXAPI FXwchar fxkeysym2ucs(FXwchar sym);
@@ -755,7 +808,7 @@ extern FXAPI FXbool fxisconsole(const FXchar *path);
 extern FXAPI const FXuchar fxversion[3];
 
 /// Controls tracing level
-extern FXAPI unsigned int fxTraceLevel;
+extern FXAPI FXuint fxTraceLevel;
 
 /// Return wide character from utf8 string at ptr
 extern FXAPI FXwchar wc(const FXchar *ptr);
@@ -835,6 +888,8 @@ extern FXAPI FXint nc2utfs(FXchar* dst,const FXnchar *src,FXint n);
 /// Copy narrow character string to dst
 extern FXAPI FXint nc2utfs(FXchar* dst,const FXnchar *src);
 
+/// Return clock ticks from cpu tick-counter
+extern FXAPI FXTime fxgetticks();
 
 }
 

@@ -1,3 +1,4 @@
+#include "swigrubyrun.h"
 #include "FXRbCommon.h"
 /* Start stub implementations for class FXMemoryBuffer */
 

@@ -40,15 +40,15 @@ enum {
 /// Slider Control
 class FXSlider : public FXFrame {
 protected:
-  FXint         range[2];                 // Reported data range
-  FXint         pos;                      // Reported data position
-  FXint         incr;                     // Increment when auto-sliding
-  FXint         delta;                    // Interval between ticks
-  FXint         headpos;                  // Head position
-  FXint         headsize;                 // Head size
-  FXint         slotsize;                 // Slot size
+  FXint         headPos;                  // Head position
+  FXint         headSize;                 // Head size
+  FXint         slotSize;                 // Slot size
   FXColor       slotColor;                // Color of slot the head moves in
-  FXint         dragpoint;                // Where the head is grabbed
+  FXint         dragPoint;                // Where the head is grabbed
+  FXint         range[2];                 // Reported data range
+  FXint         delta;                    // Interval between ticks
+  FXint         incr;                     // Increment when auto-sliding
+  FXint         pos;                      // Reported data position
   FXString      help;                     // Help string
   FXString      tip;                      // Tip string
 protected:
@@ -73,6 +73,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onCmdSetLongValue(FXObject*,FXSelector,void* PTR_PLONG);
+  long onCmdGetLongValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdSetRealValue(FXObject*,FXSelector,void* PTR_PDOUBLE);
   long onCmdGetRealValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdSetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_IN);
@@ -100,14 +102,14 @@ public:
     }
 
   /// Change slider value
-  void setValue(FXint value,FXbool notify=FALSE);
+  void setValue(FXint value,FXbool notify=false);
   
   /// Return slider value
   FXint getValue() const;
 
   %extend {
     /// Change the slider's range
-    void setRange(VALUE range,FXbool notify=FALSE){
+    void setRange(VALUE range,FXbool notify=false){
       FXint lo,hi;
       FXRbRange2LoHi(range,lo,hi);
       self->setRange(lo,hi,notify);

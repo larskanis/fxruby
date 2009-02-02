@@ -3,23 +3,22 @@
 *                  S t r i n g   D i c t i o n a r y    C l a s s               *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXDict.h 2335 2006-01-28 02:33:03Z lyle $                            *
+* $Id: FXDict.h 2725 2007-11-16 16:57:54Z lyle $                            *
 ********************************************************************************/
 #ifndef FXDICT_H
 #define FXDICT_H
@@ -45,7 +44,7 @@ protected:
     FXchar *key;              // Key string
     void   *data;             // Data
     FXint   hash;             // Hash value of key
-    bool    mark;             // Entry is marked
+    FXbool  mark;             // Entry is marked
     };
 protected:
   FXDictEntry *dict;          // Dictionary
@@ -60,7 +59,7 @@ protected:
   * data pointer given an input pointer; the default implementation
   * just returns the input pointer.
   */
-  virtual void *createData(const void*);
+  virtual void *createData(void*);
 
   /**
   * Overload this function in a derived class to delete the pointer
@@ -101,14 +100,14 @@ public:
   * If there is already an entry with that key, leave it unchanged,
   * otherwise insert the new entry.
   */
-  void* insert(const FXchar* ky,const void* ptr,bool mrk=false);
+  void* insert(const FXchar* ky,void* ptr,FXbool mrk=false);
 
   /**
   * Replace data at key, if the entry's mark is less than
   * or equal to the given mark.  If there was no existing entry,
   * a new entry is inserted with the given mark.
   */
-  void* replace(const FXchar* ky,const void* ptr,bool mrk=false);
+  void* replace(const FXchar* ky,void* ptr,FXbool mrk=false);
 
   /**
   * Remove data given key.
@@ -123,22 +122,22 @@ public:
   /**
   * Return true if slot is empty.
   */
-  bool empty(FXint pos) const { return dict[pos].hash<0; }
+  FXbool empty(FXint pos) const { return dict[pos].hash<0; }
 
   /**
   * Return key at position pos.
   */
-  const FXchar* key(FXuint pos) const { return dict[pos].key; }
+  const FXchar* key(FXint pos) const { return dict[pos].key; }
 
   /**
-  * return data pointer at position pos.
+  * Return data pointer at position pos.
   */
-  void* data(FXuint pos) const { return dict[pos].data; }
+  void* data(FXint pos) const { return dict[pos].data; }
 
   /**
   * Return mark flag of entry at position pos.
   */
-  bool mark(FXuint pos) const { return dict[pos].mark; }
+  FXbool mark(FXint pos) const { return dict[pos].mark; }
 
   /**
   * Return position of first filled slot, or >= total

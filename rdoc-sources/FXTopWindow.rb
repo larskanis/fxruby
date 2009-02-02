@@ -48,6 +48,12 @@ module Fox
   # +SEL_SESSION_CLOSED+::
   #   sent after the session is closed.
   #
+  # === Special stacking orders
+  #
+  # +STACK_NORMAL+::  Stack normally (default) 
+  # +STACK_BOTTOM+::  Stack below other windows
+  # +STACK_TOP+::     Stack above other windows
+  #
   # === Title and border decorations
   #
   # +DECOR_NONE+::            Borderless window
@@ -159,5 +165,20 @@ module Fox
     # closed, the application will receive an +ID_QUIT+ message and will be closed.
     #
     def close(notify=false); end
+    
+    # Flash the window to get the user's attention.
+    def flash(yes); end
+    
+    # Make the window fullscreen, return +true+ on success.
+    def fullScreen(notify=false); end
+    
+    # Return +true+ if window is in fullscreen mode.
+    def fullScreen?; end
+    
+    #
+    # Set a special stacking order level for this window; _order_ is one of +STACK_NORMAL+, +STACK_BOTTOM+ or +STACK_TOP+.
+    # Return +true+ if successful.
+    #
+    def stackingOrder(order); end
   end
 end

@@ -37,33 +37,6 @@
 * be indexed by strings.
 */
 class FXDict : public FXObject {
-protected:
-  struct FXDictEntry {
-    FXchar *key;              // Key string
-    void   *data;             // Data
-    FXint   hash;             // Hash value of key
-    bool  mark;             // Entry is marked
-    };
-protected:
-  FXDictEntry *dict;          // Dictionary
-  FXint        total;         // Dictionary size
-  FXint        number;        // Number of entries
-protected:
-  
-  /**
-  * Overload this function in a derived class to return the
-  * data pointer given an input pointer; the default implementation
-  * just returns the input pointer.
-  */
-  virtual void *createData(const void*);
-
-  /**
-  * Overload this function in a derived class to delete the pointer
-  * previously returned by createData(); the default implementation
-  * does nothing.
-  */
-  virtual void deleteData(void*);
-
 public:
   %extend {
     /**
@@ -94,14 +67,14 @@ public:
   * If there is already an entry with that key, leave it unchanged,
   * otherwise insert the new entry.
   */
-  // void* insert(const FXchar* ky,const void* ptr,bool mrk=false);
+  // void* insert(const FXchar* ky,const void* ptr,FXbool mrk=false);
   
   /**
   * Replace data at key, if the entry's mark is less than
   * or equal to the given mark.  If there was no existing entry,
   * a new entry is inserted with the given mark.
   */
-  // void* replace(const FXchar* ky,const void* ptr,bool mrk=false);
+  // void* replace(const FXchar* ky,const void* ptr,FXbool mrk=false);
   
   /**
   * Remove data given key.
@@ -116,17 +89,17 @@ public:
   /**
   * Return key at position pos.
   */
-  const FXchar* key(FXuint pos) const;
+  const FXchar* key(FXint pos) const;
 
   /**
   * return data pointer at position pos.
   */
-  // void* data(FXuint pos) const;
+  // void* data(FXint pos) const;
 
   /**
   * Return mark flag of entry at position pos.
   */
-  bool mark(FXuint pos) const;
+  FXbool mark(FXint pos) const;
 
   /**
   * Return position of first filled slot, or >= total

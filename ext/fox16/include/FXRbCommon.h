@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbCommon.h 2303 2005-12-09 03:17:28Z lyle $
+ * $Id: FXRbCommon.h 2797 2007-12-11 21:59:11Z lyle $
  ***********************************************************************/
 
 #include "ruby.h"
@@ -91,3 +91,7 @@
 #include "FXScintilla.h"
 #endif
 #include "FXRuby.h"
+
+#ifndef NUM2USHRT
+#define NUM2USHRT(n) ((0 <= NUM2UINT(n) && NUM2UINT(n) <= USHRT_MAX) ? (unsigned short) NUM2UINT(n) : (rb_raise(rb_eArgError, "integer %d out of range of `unsigned short'", NUM2UINT(n)), (short)0))
+#endif

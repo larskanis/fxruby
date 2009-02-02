@@ -36,6 +36,19 @@ module Fox
     end
 
     #
+    # Resize tool bar
+    #
+    # ==== Parameters:
+    #
+    # +bar+::     a reference to the dockbar that's being resized [FXDockBar]
+    # +barx+::	  x-coordinate of the dockbar [Integer]
+    # +bary+::    y-coordinate of the dockbar [Integer]
+    # +barw+::    width of the dockbar [Integer]
+    # +barh+::    height of the dockbar [Integer]
+    #
+    def resizeToolBar(bar, barx, bary, barw, barh); end
+
+    #
     # Move tool bar, changing its options to suit the new position.
     # Used by the toolbar dragging to rearrange the toolbars inside the
     # toolbar dock.
@@ -50,16 +63,16 @@ module Fox
 
     #
     # The dock site is notified that the given bar has been added
-    # logically before the given window, and is to placed on a new
+    # logically before the other window, and is to placed on a new
     # galley all by itself.  The default implementation adjusts
     # the layout options of the bars accordingly.
     #
     # ==== Parameters:
     #
     # +bar+::		a reference to the newly docked dockbar [FXDockBar]
-    # +before+::	a reference to the window that the dockbar was added before [FXWindow]
+    # +other+::	a reference to the window that the dockbar was added before [FXWindow]
     #
-    def dockToolBar(bar, before); end
+    def dockToolBar(bar, other); end
 
     #
     # The dock site is informed that the given bar has been docked

@@ -1,100 +1,96 @@
 /********************************************************************************
 *                                                                               *
-*                        G L  C o n t e x t   C l a s s                         *
+*                     G L  R e n d e r i n g   C o n t e x t                    *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2000,2002 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2000,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXGLContext.h 809 2002-07-11 17:28:15Z lyle $                        *
+* $Id: FXGLContext.h 2868 2008-05-30 17:03:51Z lyle $                       *
 ********************************************************************************/
 #ifndef FXGLCONTEXT_H
 #define FXGLCONTEXT_H
 
-//////////////////////////////  UNDER DEVELOPMENT  //////////////////////////////
+#ifndef FXID_H
+#include "FXId.h"
+#endif
 
 namespace FX {
 
-class FXApp;
-class FXDrawable;
-class FXGLVisual;
 
-
-/**
-* A GL context is an object representing the OpenGL state information.
-* Multiple GL context may share display lists to conserve memory.
-* When drawing multiple windows, it may be advantageous to share not only
-* display lists, but also GL contexts.  Since the GL context is created
-* for a certain frame-buffer configuration, sharing of GL contexts is
-* only possible if the windows sharing the GL context all have the same
-* GL visual.
-* However, display lists may be shared between different GL contexts.
-*/
+/// OpenGL context
 class FXAPI FXGLContext : public FXId {
   FXDECLARE(FXGLContext)
 private:
-  FXGLVisual     *visual;     // Visual for this context
-  FXDrawable     *surface;    // Drawable context is locked on
-  FXGLContext    *sgnext;     // Share group next in share list
-  FXGLContext    *sgprev;     // Share group previous in share list
-protected:
-  void           *ctx;        // GL Context
-protected:
-  FXGLContext():visual(NULL),surface(NULL),sgnext(NULL),sgprev(NULL),ctx(NULL){}
+  FXDrawable  *surface;         // Drawable surface
+  FXGLVisual  *visual;          // Visual for this window
+  FXGLContext *shared;          // Shared with other
 private:
   FXGLContext(const FXGLContext&);
   FXGLContext &operator=(const FXGLContext&);
+protected:
+  FXGLContext();
 public:
 
   /**
-  * Construct an OpenGL context with its own private display list.
+  * Construct an GL Context with given GL Visual.  Optionally
+  * share a display list with another GL Context shr.
   */
-  FXGLContext(FXApp* a,FXGLVisual *vis);
-
-  /**
-  * Construct an OpenGL context sharing display lists with an existing GL context.
-  */
-  FXGLContext(FXApp* a,FXGLVisual *vis,FXGLContext *shared);
-
-  /// Return TRUE if it is sharing display lists
-  FXbool isShared() const;
-
-  /// Get the visual
-  FXGLVisual* getVisual() const { return visual; }
+  FXGLContext(FXApp *a,FXGLVisual *vis,FXGLContext* shr=NULL);
 
   /// Create context
   virtual void create();
 
-  /// Detach the server-side resources for this window
+  /// Detach context
   virtual void detach();
 
-  /// Destroy the server-side resources for this window
+  /// Destroy context
   virtual void destroy();
 
-  /// Make OpenGL context current prior to performing OpenGL commands
-  FXbool begin(FXDrawable *drawable);
+  /// Change visual
+  void setVisual(FXGLVisual* vis);
 
-  /// Make OpenGL context non current
+  /// Get the visual
+  FXGLVisual* getVisual() const { return visual; }
+
+  /// Change share context
+  void setShared(FXGLContext *ctx);
+
+  /// Get share context
+  FXGLContext* getShared() const { return shared; }
+
+  /// Return active drawable
+  FXDrawable *drawable() const { return surface; }
+
+  /// Make context current on drawable
+  FXbool begin(FXDrawable *draw);
+
+  /// Make context non current
   FXbool end();
 
   /// Swap front and back buffer
   void swapBuffers();
 
-  /// Copy part of backbuffer to front buffer [Mesa]
-  void swapSubBuffers(FXint x,FXint y,FXint w,FXint h);
+  /// Return true if this window's context is current
+  FXbool isCurrent() const;
+
+  /// Has double buffering
+  FXbool isDoubleBuffer() const;
+
+  /// Has stereo buffering
+  FXbool isStereo() const;
 
   /// Save object to stream
   virtual void save(FXStream& store) const;
@@ -105,6 +101,11 @@ public:
   /// Destructor
   virtual ~FXGLContext();
   };
+
+
+
+/// Create a display list of bitmaps from font glyphs in a font
+extern FXAPI FXbool glUseFXFont(FXFont* font,int first,int count,int list);
 
 }
 

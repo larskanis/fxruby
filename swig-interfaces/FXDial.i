@@ -33,17 +33,17 @@ enum {
 /// Dial
 class FXDial : public FXFrame {
 protected:
-  FXint         range[2];                         // Reported data range
-  FXColor       notchColor;                       // Main notch color
-  FXint         notchangle;                       // Angle of main notch
-  FXint         notchspacing;                     // Angle between notches
-  FXint         notchoffset;                      // Notch offset
-  FXint         dragpoint;                        // Place where clicked
-  FXint         dragpos;                          // Value where clicked
-  FXint         incr;                             // Rate of change/revolution
-  FXint         pos;                              // Reported data position
-  FXString      help;                             // Help string
-  FXString      tip;                              // Tip string
+  FXint         notchAngle;     // Angle of main notch
+  FXint         notchSpacing;   // Angle between notches
+  FXint         notchOffset;    // Notch offset
+  FXColor       notchColor;     // Main notch color
+  FXint         dragPoint;      // Place where clicked
+  FXint         dragPos;        // Value where clicked
+  FXint         range[2];       // Reported data range
+  FXint         incr;           // Rate of change/revolution
+  FXint         pos;            // Reported data position
+  FXString      help;           // Help string
+  FXString      tip;            // Tip string
 protected:
   FXDial(){}
 public:
@@ -58,6 +58,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_NULL); // FIXME
+  long onCmdSetLongValue(FXObject*,FXSelector,void*); // FIXME
+  long onCmdGetLongValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdSetRealValue(FXObject*,FXSelector,void* PTR_PDOUBLE);
   long onCmdGetRealValue(FXObject*,FXSelector,void* PTR_NULL); // FIXME
   long onCmdSetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_IN);
@@ -79,14 +81,14 @@ public:
     }
 
   /// Set the dial value
-  void setValue(FXint value,FXbool notify=FALSE);
+  void setValue(FXint value,FXbool notify=false);
   
   /// Return the dial value
   FXint getValue() const;
 
   %extend {
     /// Change the dial's range
-    void setRange(VALUE range, FXbool notify=FALSE){
+    void setRange(VALUE range, FXbool notify=false){
       FXint lo,hi;
       FXRbRange2LoHi(range,lo,hi);
       self->setRange(lo,hi,notify);

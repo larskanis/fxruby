@@ -1,7 +1,8 @@
 /***********************************************************************
- * $Id: markfuncs.cpp 2479 2006-09-08 23:20:52Z lyle $
+ * $Id: markfuncs.cpp 2946 2009-02-02 21:06:59Z lyle $
  ***********************************************************************/
 
+#include "swigrubyrun.h"
 #include "FXRbCommon.h"
 
 #ifdef MARK
@@ -49,7 +50,7 @@ void FXRbAccelTable::markfunc(FXAccelTable* accelTable){
 
 // Mark dependencies for the GC
 void FXRbObject::markfunc(FXObject* obj){
-  FXTRACE((100,"%s::markfunc(0x%08x)\n",obj?obj->getClassName():"FXRbObject",obj));
+  FXTRACE((100,"%s::markfunc(%p)\n",obj?obj->getClassName():"FXRbObject",obj));
   }
 
 
@@ -79,10 +80,6 @@ void FXRbIconSource::markfunc(FXIconSource* iconSource){
   
 void FXRbTranslator::markfunc(FXTranslator* translator){
   FXRbObject::markfunc(translator);
-  if(translator){
-    FXRbGcMark(translator->getApp());
-    FXRbGcMark(translator->getTextCodec());
-    }
   }
 
 void FXRbBMPIcon::markfunc(FXBMPIcon *icon){
@@ -666,7 +663,7 @@ void FXRbDocument::markfunc(FXDocument* self){
 void FXRbGLContext::markfunc(FXGLContext* self){
   FXRbObject::markfunc(self);
   if(self){
-    FXRbGcMark(self->getVisual());
+    FXRbGcMark(self->getShared());
     }
   }
 
@@ -1568,29 +1565,29 @@ void FXRbTGAImage::markfunc(FXTGAImage* self){
 
 
 void FXRbBitmapFrame::markfunc(FXBitmapFrame* self){
-  FXTRACE((100,"start FXRbBitmapFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"start FXRbBitmapFrame::markfunc(%p)\n",self));
   FXRbFrame::markfunc(self);
   if(self!=0){
     FXRbGcMark(self->getBitmap());
     }
-  FXTRACE((100,"end FXRbBitmapFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"end FXRbBitmapFrame::markfunc(%p)\n",self));
   }
 
 
 void FXRbImageFrame::markfunc(FXImageFrame* self){
-  FXTRACE((100,"start FXRbImageFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"start FXRbImageFrame::markfunc(%p)\n",self));
   FXRbFrame::markfunc(self);
   if(self!=0){
     FXRbGcMark(self->getImage());
     }
-  FXTRACE((100,"end FXRbImageFrame::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"end FXRbImageFrame::markfunc(%p)\n",self));
   }
 
 
 void FXRbGradientBar::markfunc(FXGradientBar* self){
-  FXTRACE((100,"start FXRbGradientBar::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"start FXRbGradientBar::markfunc(%p)\n",self));
   FXRbFrame::markfunc(self);
-  FXTRACE((100,"end FXRbGradientBar::markfunc(0x%08x)\n",self));
+  FXTRACE((100,"end FXRbGradientBar::markfunc(%p)\n",self));
   }
 
 #ifdef WITH_FXSCINTILLA

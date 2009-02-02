@@ -28,6 +28,13 @@ class FXPopup;
 %rename("selTextColor=") FXOption::setSelTextColor(FXColor);
 %rename("selTextColor")  FXOption::getSelTextColor() const;
 
+/// Option Menu Button flags
+enum {
+  OPTIONMENU_TOOLBAR   = 0x00800000,  /// Toolbar style button [flat look]
+  OPTIONMENU_NOGLYPH   = 0x01000000,  /// Do not display a glyph
+  };
+
+
 /// Option Menu Button
 class FXOption : public FXLabel {
 protected:
@@ -82,6 +89,8 @@ protected:
   FXOptionMenu();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
+  long onEnter(FXObject*,FXSelector,void* PTR_EVENT);
+  long onLeave(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusIn(FXObject*,FXSelector,void* PTR_EVENT);
@@ -104,14 +113,17 @@ public:
       }
     }
 
+  /// Return the option item at the given index
+  FXOption *getItem(FXint index) const;
+
   /// Set the current option
-  void setCurrent(FXOption *win,FXbool notify=FALSE);
+  void setCurrent(FXOption *win,FXbool notify=false);
   
   /// Return the current option
   FXOption* getCurrent() const;
 
   /// Set the current option number
-  void setCurrentNo(FXint no,FXbool notify=FALSE);
+  void setCurrentNo(FXint no,FXbool notify=false);
   
   /// Get the current option number
   FXint getCurrentNo() const;

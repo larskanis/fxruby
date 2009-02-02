@@ -49,66 +49,86 @@ class FXTextField : public FXFrame {
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
-  long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
+  long onBlink(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onFocusIn(FXObject*,FXSelector,void* PTR_EVENT);
+  long onFocusOut(FXObject*,FXSelector,void* PTR_EVENT);
+  long onFocusSelf(FXObject*,FXSelector,void* PTR_EVENT);
+  long onMotion(FXObject*,FXSelector,void* PTR_EVENT);
+  long onAutoScroll(FXObject*,FXSelector,void* PTR_IGNORE);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onMiddleBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onMiddleBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
+  long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
+  long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onVerify(FXObject*,FXSelector,void* PTR_CSTRING);
-  long onMotion(FXObject*,FXSelector,void* PTR_EVENT);
   long onSelectionLost(FXObject*,FXSelector,void* PTR_EVENT);
   long onSelectionGained(FXObject*,FXSelector,void* PTR_EVENT);
   long onSelectionRequest(FXObject*,FXSelector,void* ptr);
   long onClipboardLost(FXObject*,FXSelector,void* PTR_EVENT);
   long onClipboardGained(FXObject*,FXSelector,void* PTR_EVENT);
   long onClipboardRequest(FXObject*,FXSelector,void* PTR_EVENT);
-  long onFocusSelf(FXObject*,FXSelector,void* PTR_EVENT);
-  long onFocusIn(FXObject*,FXSelector,void* PTR_EVENT);
-  long onFocusOut(FXObject*,FXSelector,void* PTR_EVENT);
-  long onBlink(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onAutoScroll(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdSetTip(FXObject*,FXSelector,void* PTR_STRING);
+  long onCmdGetTip(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onCmdSetHelp(FXObject*,FXSelector,void* PTR_STRING);
+  long onCmdGetHelp(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onQueryTip(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onQueryHelp(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onUpdHaveSelection(FXObject*,FXSelector,void* PTR_IGNORE);
+
+  // Value access
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_CSTRING);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
+  long onCmdSetLongValue(FXObject*,FXSelector,void* PTR_PLONG);
   long onCmdSetRealValue(FXObject*,FXSelector,void* PTR_PDOUBLE);
   long onCmdSetStringValue(FXObject*,FXSelector,void* PTR_STRING);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onCmdGetLongValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdGetRealValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdGetStringValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+
+  // Cursor movement
   long onCmdCursorHome(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCursorEnd(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCursorRight(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCursorLeft(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCursorWordLeft(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCursorWordRight(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdCursorWordStart(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdCursorWordEnd(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdMark(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdExtend(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdSelectAll(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdDeselectAll(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdCursorShiftHome(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdCursorShiftEnd(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdCursorShiftRight(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdCursorShiftLeft(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdCursorShiftWordLeft(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdCursorShiftWordRight(FXObject*,FXSelector,void* PTR_IGNORE);
+
+  // Inserting
+  long onCmdInsertString(FXObject*,FXSelector,void* PTR_CSTRING);
+  long onIMEStart(FXObject*,FXSelector,void* PTR_IGNORE);
+
+  // Manipulation Selection
   long onCmdCutSel(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCopySel(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdPasteSel(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdPasteMiddle(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDeleteSel(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdDeleteAll(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdOverstString(FXObject*,FXSelector,void* PTR_CHAR);
-  long onCmdInsertString(FXObject*,FXSelector,void* PTR_CSTRING);
+  long onCmdReplaceSel(FXObject*,FXSelector,void* PTR_CSTRING);
+  long onCmdPasteMiddle(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdSelectAll(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdDeselectAll(FXObject*,FXSelector,void* PTR_IGNORE);
+
+  // Deletion
   long onCmdBackspace(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdBackspaceWord(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdBackspaceBol(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDelete(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdDeleteWord(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdDeleteEol(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdDeleteAll(FXObject*,FXSelector,void* PTR_IGNORE);
+
+  // Control commands
   long onCmdToggleEditable(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdToggleEditable(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdToggleOverstrike(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdToggleOverstrike(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onUpdHaveSelection(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onUpdSelectAll(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdSetHelp(FXObject*,FXSelector,void* PTR_STRING);
-  long onCmdGetHelp(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
-  long onCmdSetTip(FXObject*,FXSelector,void* PTR_STRING);
-  long onCmdGetTip(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
-  long onQueryHelp(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onQueryTip(FXObject*,FXSelector,void* PTR_IGNORE);
 public:
 
   /// Default text delimiters
@@ -123,26 +143,34 @@ public:
     ID_CURSOR_LEFT,
     ID_CURSOR_WORD_LEFT,
     ID_CURSOR_WORD_RIGHT,
-    ID_CURSOR_WORD_START,
-    ID_CURSOR_WORD_END,
-    ID_MARK,
-    ID_EXTEND,
+    ID_CURSOR_SHIFT_HOME,
+    ID_CURSOR_SHIFT_END,
+    ID_CURSOR_SHIFT_LEFT,
+    ID_CURSOR_SHIFT_RIGHT,
+    ID_CURSOR_SHIFT_WORD_LEFT,
+    ID_CURSOR_SHIFT_WORD_RIGHT,
     ID_SELECT_ALL,
     ID_DESELECT_ALL,
     ID_CUT_SEL,
     ID_COPY_SEL,
-    ID_PASTE_SEL,
     ID_DELETE_SEL,
-    ID_DELETE_ALL,
-    ID_OVERST_STRING,
+    ID_REPLACE_SEL,
+    ID_PASTE_SEL,
+    ID_PASTE_MIDDLE,
     ID_INSERT_STRING,
     ID_BACKSPACE,
+    ID_BACKSPACE_WORD,
+    ID_BACKSPACE_BOL,
     ID_DELETE,
+    ID_DELETE_WORD,
+    ID_DELETE_EOL,
+    ID_DELETE_ALL,
     ID_TOGGLE_EDITABLE,
     ID_TOGGLE_OVERSTRIKE,
     ID_BLINK,
     ID_LAST
     };
+
 public:
 
   /// Construct text field wide enough to display ncols columns
@@ -152,17 +180,74 @@ public:
       }
     }
 
-  /// Change text field editability 
-  void setEditable(FXbool edit=TRUE);
+  /**
+   * Change the default width of the text field in terms of a number
+   * of columns times the width of the numeral '8'.
+   */
+  void setNumColumns(FXint cols);
 
-  /// Return TRUE if text field may be edited
-  FXbool isEditable() const;
+  /// Return number of columns
+  FXint getNumColumns() const;
 
-  /// Set overstrike mode
-  void setOverstrike(FXbool over=TRUE);
+  /// Get the text for this label
+  FXString getText() const;
 
-  /// Return TRUE if overstrike mode in effect
-  FXbool isOverstrike() const;
+  /// Get selected text
+  FXString getSelectedText() const;
+
+  /// Set the text for this label
+  void setText(const FXString& text,FXbool notify=FALSE);
+
+  /// Replace range of bytes with text
+  void replaceText(FXint pos,FXint m,const FXString& text,FXbool notify=false);
+
+  /// Append text at the end
+  void appendText(const FXString& text,FXbool notify=false);
+
+  /// Insert text at position
+  void insertText(FXint pos,const FXString& text,FXbool notify=false);
+
+  /// Remove range of text
+  void removeText(FXint pos,FXint m,FXbool notify=false);
+
+  /// Select all text
+  FXbool selectAll();
+
+  /// Select len characters starting at given position pos
+  FXbool setSelection(FXint pos,FXint len);
+
+  /// Extend the selection from the anchor to the given position
+  FXbool extendSelection(FXint pos);
+
+  /// Copy primary selection to clipboard
+  FXbool copySelection();
+
+  /// Cut primary selection to clipboard
+  FXbool cutSelection(FXbool notify=false);
+
+  /// Delete primary selection
+  FXbool deleteSelection(FXbool notify=false);
+
+  /// Replace primary selection by other text
+  FXbool replaceSelection(const FXString& text,FXbool notify=false);
+
+  /// Paste primary selection
+  FXbool pasteSelection(FXbool notify=false);
+
+  /// Paste clipboard
+  FXbool pasteClipboard(FXbool notify=false);
+
+  /// Unselect the text
+  FXbool killSelection();
+
+  /// Return TRUE if position pos is selected
+  FXbool isPosSelected(FXint pos) const;
+
+  /// Return TRUE if position is fully visible
+  FXbool isPosVisible(FXint pos) const;
+
+  /// Scroll text to make the given position visible
+  void makePositionVisible(FXint pos);
 
   /// Set cursor position
   void setCursorPos(FXint pos);
@@ -176,11 +261,41 @@ public:
   /// Return anchor position
   FXint getAnchorPos() const;
 
-  /// Set the text for this label
-  void setText(const FXString& text,FXbool notify=FALSE);
+  /// Change text field editability 
+  void setEditable(FXbool edit=TRUE);
 
-  /// Get the text for this label
-  FXString getText() const;
+  /// Return TRUE if text field may be edited
+  FXbool isEditable() const;
+
+  /// Set overstrike mode
+  void setOverstrike(FXbool over=TRUE);
+
+  /// Return TRUE if overstrike mode in effect
+  FXbool isOverstrike() const;
+
+  /**
+   * Change text justification mode. The justify mode is a combination of
+   * horizontal justification (JUSTIFY_LEFT, JUSTIFY_RIGHT, or JUSTIFY_CENTER_X),
+   * and vertical justification (JUSTIFY_TOP, JUSTIFY_BOTTOM, JUSTIFY_CENTER_Y).
+   * Note that JUSTIFY_CENTER_X can not be set from the constructor since by
+   * default text fields are left-justified.
+   */
+  void setJustify(FXuint mode);
+
+  /// Return text justification mode
+  FXuint getJustify() const;
+
+  /// Change word delimiters
+  void setDelimiters(const FXchar* delims=textDelimiters);
+
+  /// Return word delimiters
+  const FXchar* getDelimiters() const;
+
+  /// Change text style
+  void setTextStyle(FXuint style);
+
+  /// Return text style
+  FXuint getTextStyle() const;
 
   /// Set the text font
   void setFont(FXFont* fnt);
@@ -212,33 +327,6 @@ public:
   /// Return the cursor color
   FXColor getCursorColor() const;
 
-  /**
-   * Change the default width of the text field in terms of a number
-   * of columns times the width of the numeral '8'.
-   */
-  void setNumColumns(FXint cols);
-
-  /// Return number of columns
-  FXint getNumColumns() const;
-
-  /**
-   * Change text justification mode. The justify mode is a combination of
-   * horizontal justification (JUSTIFY_LEFT, JUSTIFY_RIGHT, or JUSTIFY_CENTER_X),
-   * and vertical justification (JUSTIFY_TOP, JUSTIFY_BOTTOM, JUSTIFY_CENTER_Y).
-   * Note that JUSTIFY_CENTER_X can not be set from the constructor since by
-   * default text fields are left-justified.
-   */
-  void setJustify(FXuint mode);
-
-  /// Return text justification mode
-  FXuint getJustify() const;
-
-  /// Change word delimiters
-  void setDelimiters(const FXchar* delims=textDelimiters);
-
-  /// Return word delimiters
-  const FXchar* getDelimiters() const;
-
   /// Set the status line help text for this label
   void setHelpText(const FXString& text);
 
@@ -250,33 +338,6 @@ public:
 
   /// Get the tool tip message for this text field
   const FXString& getTipText() const;
-
-  /// Change text style
-  void setTextStyle(FXuint style);
-
-  /// Return text style
-  FXuint getTextStyle() const;
-
-  /// Select all text
-  FXbool selectAll();
-
-  /// Select len characters starting at given position pos
-  FXbool setSelection(FXint pos,FXint len);
-
-  /// Extend the selection from the anchor to the given position
-  FXbool extendSelection(FXint pos);
-
-  /// Unselect the text
-  FXbool killSelection();
-
-  /// Return TRUE if position pos is selected
-  FXbool isPosSelected(FXint pos) const;
-
-  /// Return TRUE if position is fully visible
-  FXbool isPosVisible(FXint pos) const;
-
-  /// Scroll text to make the given position visible
-  void makePositionVisible(FXint pos);
 
   /// Destructor
   virtual ~FXTextField();

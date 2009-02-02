@@ -79,7 +79,7 @@ class TC_FXDC < Test::Unit::TestCase
     @dc.fillRectangle(x, y, w, h)
   end
   
-  def testFillRectangles(rectangles)
+  def testFillRectangles
     rectangles = [ FXRectangle.new, FXRectangle.new ]
     @dc.fillRectangles(rectangles)
   end

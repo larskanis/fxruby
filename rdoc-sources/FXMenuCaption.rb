@@ -45,6 +45,9 @@ module Fox
     #
     def initialize(parent, text, icon=nil, opts=0) # :yields: theMenuCaption
     end
+    
+    # Return the menu caption's text
+    def to_s; text; end
   end
 end
 

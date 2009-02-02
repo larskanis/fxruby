@@ -48,7 +48,7 @@ module Fox
     #
     # Make cursor from FXColor pixels; cursor size should be 32x32 for portability!
     #
-    def initialize(a, src, msk, width=32, height=32, hotX=-1, hotY=-1) # :yields: theCursor
+    def initialize(a, pixels, width=32, height=32, hotX=-1, hotY=-1) # :yields: theCursor
     end
 
     #

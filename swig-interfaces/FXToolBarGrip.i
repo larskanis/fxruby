@@ -59,7 +59,7 @@ public:
     }
 
   /// Change toolbar grip to double
-  void setDoubleBar(FXbool dbl=TRUE);
+  void setDoubleBar(FXbool dbl=true);
 
   /// Return TRUE if toolbar grip is displayed as a double bar
   FXbool isDoubleBar() const;

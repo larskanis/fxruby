@@ -3,23 +3,22 @@
 *                               I c o n - O b j e c t                           *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXIcon.h 2127 2005-08-07 20:21:35Z lyle $                            *
+* $Id: FXIcon.h 2760 2007-11-19 16:46:04Z lyle $                            *
 ********************************************************************************/
 #ifndef FXICON_H
 #define FXICON_H
@@ -53,8 +52,9 @@ protected:
   FXID     shape;             // Shape pixmap
   FXID     etch;              // Etch pixmap
   FXColor  transp;            // Transparency color
+  FXshort  thresh;            // Treshold for etch mask 
 protected:
-  FXIcon(){}
+  FXIcon();
   FXColor guesstransp();
 private:
   FXIcon(const FXIcon&);
@@ -111,12 +111,18 @@ public:
   */
   virtual void resize(FXint w,FXint h);
 
-  /// Obtain transparency color
+  /// Get transparency color
   FXColor getTransparentColor() const { return transp; }
 
   /// Change transparency color
   void setTransparentColor(FXColor color){ transp=color; }
 
+  /// Get threshold value
+  FXshort getThresholdValue() const { return thresh; }
+  
+  /// Change threshold value
+  void setThresholdValue(FXshort value){ thresh=value; }
+  
   /// Destructor
   virtual ~FXIcon();
   };

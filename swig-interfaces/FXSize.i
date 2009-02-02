@@ -41,11 +41,11 @@ public:
   FXSize(FXshort ww,FXshort hh);
 
   /// Test if empty
-  bool empty() const;
+  FXbool empty() const;
 
   %extend {
     /// Equality
-    bool operator==(const FXSize& s) const { return (*self == s); }
+    FXbool operator==(const FXSize& s) const { return (*self == s); }
     }
 
   /// Negation

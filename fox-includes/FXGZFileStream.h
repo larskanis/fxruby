@@ -3,23 +3,22 @@
 *                     G Z F i l e S t r e a m   C l a s s e s                   *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2002,2005 by Sander Jansen.   All Rights Reserved.              *
+* Copyright (C) 2002,2007 by Sander Jansen.   All Rights Reserved.              *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXGZFileStream.h 2336 2006-02-04 15:20:33Z lyle $                     *
+* $Id: FXGZFileStream.h 2726 2007-11-16 17:27:20Z lyle $                    *
 ********************************************************************************/
 #ifdef HAVE_ZLIB_H
 #ifndef FXGZFILESTREAM_H
@@ -39,8 +38,8 @@ struct ZBlock;
 /// GZIP compressed stream
 class FXAPI FXGZFileStream : public FXFileStream {
 private:
-  ZBlock *z;
-  int     f;
+  ZBlock *gz;
+  int     ac;
 protected:
   virtual FXuval writeBuffer(FXuval count);
   virtual FXuval readBuffer(FXuval count);
@@ -50,20 +49,24 @@ public:
   FXGZFileStream(const FXObject* cont=NULL);
 
   /// Open file stream
-  bool open(const FXString& filename,FXStreamDirection save_or_load,FXuval size=8192);
+  FXbool open(const FXString& filename,FXStreamDirection save_or_load,FXuval size=8192);
+
+  /// Flush buffer
+  virtual FXbool flush();
 
   /// Close file stream
-  virtual bool close();
+  virtual FXbool close();
 
   /// Get position
   FXlong position() const { return FXStream::position(); }
 
   /// Move to position
-  virtual bool position(FXlong,FXWhence){ return FALSE; }
+  virtual FXbool position(FXlong,FXWhence){ return false; }
 
   /// Save single items to stream
   FXGZFileStream& operator<<(const FXuchar& v){ FXStream::operator<<(v); return *this; }
   FXGZFileStream& operator<<(const FXchar& v){ FXStream::operator<<(v); return *this; }
+  FXGZFileStream& operator<<(const FXbool& v){ FXStream::operator<<(v); return *this; }
   FXGZFileStream& operator<<(const FXushort& v){ FXStream::operator<<(v); return *this; }
   FXGZFileStream& operator<<(const FXshort& v){ FXStream::operator<<(v); return *this; }
   FXGZFileStream& operator<<(const FXuint& v){ FXStream::operator<<(v); return *this; }
@@ -76,6 +79,7 @@ public:
   /// Save arrays of items to stream
   FXGZFileStream& save(const FXuchar* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXGZFileStream& save(const FXchar* p,FXuval n){ FXStream::save(p,n); return *this; }
+  FXGZFileStream& save(const FXbool* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXGZFileStream& save(const FXushort* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXGZFileStream& save(const FXshort* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXGZFileStream& save(const FXuint* p,FXuval n){ FXStream::save(p,n); return *this; }
@@ -88,6 +92,7 @@ public:
   /// Load single items from stream
   FXGZFileStream& operator>>(FXuchar& v){ FXStream::operator>>(v); return *this; }
   FXGZFileStream& operator>>(FXchar& v){ FXStream::operator>>(v); return *this; }
+  FXGZFileStream& operator>>(FXbool& v){ FXStream::operator>>(v); return *this; }
   FXGZFileStream& operator>>(FXushort& v){ FXStream::operator>>(v); return *this; }
   FXGZFileStream& operator>>(FXshort& v){ FXStream::operator>>(v); return *this; }
   FXGZFileStream& operator>>(FXuint& v){ FXStream::operator>>(v); return *this; }
@@ -100,6 +105,7 @@ public:
   /// Load arrays of items from stream
   FXGZFileStream& load(FXuchar* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXGZFileStream& load(FXchar* p,FXuval n){ FXStream::load(p,n); return *this; }
+  FXGZFileStream& load(FXbool* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXGZFileStream& load(FXushort* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXGZFileStream& load(FXshort* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXGZFileStream& load(FXuint* p,FXuval n){ FXStream::load(p,n); return *this; }

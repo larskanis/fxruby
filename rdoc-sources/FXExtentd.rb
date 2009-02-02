@@ -12,15 +12,30 @@ module Fox
     # Copy constructor
     def initialize(ext); end
 
-    # Initialize from two vectors (where _lo_ and _hi_ are two
+    # Initialize with a single point (where _p_ is an FXVec2d instance).
+    def initialize(p); end
+    
+    # Initialize from corner points (where _lo_ and _hi_ are two
     # FXVec2d instances).
     def initialize(lo, hi); end
 
-    # Initialize from four numbers
+    # Initialize with a single point, where _x_ and _y_ are Float values.
+    def initialize(x, y); end
+    
+    # Initialize with explicit values
     def initialize(xlo, xhi, ylo, yhi); end
 
     # Indexing with 0..1 (returns an FXVec2d instance).
     def [](i); end
+
+    # Set value from another FXExtentd value and return a reference to _self_.
+    def set(other); end
+
+    # Set value from _lo_ and _hi_ (both FXVec2d instances) and return a reference to _self_.
+    def set(lo, hi); end
+
+    # Set value from four floats and return a reference to _self_.
+    def set(xlo, xhi, ylo, yhi); end
 
     # Return width of box
     def width; end

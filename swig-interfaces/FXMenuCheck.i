@@ -30,8 +30,8 @@
 */
 class FXMenuCheck : public FXMenuCommand {
 protected:
-  FXuchar check;        // State of menu
   FXColor boxColor;     // Box color
+  FXuchar check;        // State of menu
 protected:
   FXMenuCheck();
 private:
@@ -62,11 +62,11 @@ public:
     }
 
   /// Set check button state (TRUE, FALSE or MAYBE)
-  void setCheck(FXbool state=TRUE);
+  void setCheck(FXuchar s=TRUE);
 
   /// Get check button state (TRUE, FALSE or MAYBE)
   %extend {
-    FXbool getCheck() const {
+    FXuchar getCheck() const {
       rb_warning("FXMenuCheck#getCheck is deprecated; use checked?, unchecked? or maybe?");
       return self->getCheck();
       }

@@ -33,6 +33,7 @@ module Fox
   
   #
   # Load a GIF file from a stream.
+  # If _flag_ is +true+, the background color is considered transparent.
   # If successful, returns an array containing the image pixel data (as a
   # String), the transparency color, the image width and the image height.
   # If it fails, the function returns +nil+.
@@ -41,7 +42,7 @@ module Fox
   #
   # +store+::	stream from which to read the file data [FXStream]
   #
-  def Fox.fxloadGIF(store); end
+  def Fox.fxloadGIF(store, flag=true); end
 
   #
   # Return +true+ if _store_ (an FXStream instance) contains a GIF image.

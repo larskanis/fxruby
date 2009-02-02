@@ -3,23 +3,22 @@
 *                         I F F   I m a g e   O b j e c t                       *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2004,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2004,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXIFFImage.h 2401 2006-04-27 00:46:49Z lyle $                         *
+* $Id: FXIFFImage.h 2725 2007-11-16 16:57:54Z lyle $                        *
 ********************************************************************************/
 #ifndef FXIFFIMAGE_H
 #define FXIFFIMAGE_H
@@ -50,10 +49,10 @@ public:
   FXIFFImage(FXApp* a,const void *pix=NULL,FXuint opts=0,FXint w=1,FXint h=1);
 
   /// Save pixels into stream in IFF format
-  virtual bool savePixels(FXStream& store) const;
+  virtual FXbool savePixels(FXStream& store) const;
 
   /// Load pixels from stream in IFF format
-  virtual bool loadPixels(FXStream& store);
+  virtual FXbool loadPixels(FXStream& store);
 
   /// Destroy
   virtual ~FXIFFImage();
@@ -65,9 +64,9 @@ public:
 #define FXLOADIFF
 
 /**
-* Check if stream contains a IFF, return TRUE if so.
+* Check if stream contains a IFF, return true if so.
 */
-extern FXAPI bool fxcheckIFF(FXStream& store);
+extern FXAPI FXbool fxcheckIFF(FXStream& store);
 
 
 /**
@@ -75,7 +74,7 @@ extern FXAPI bool fxcheckIFF(FXStream& store);
 * Upon successful return, the pixel array and size are returned.
 * If an error occurred, the pixel array is set to NULL.
 */
-extern FXAPI bool fxloadIFF(FXStream& store,FXColor*& data,FXint& width,FXint& height);
+extern FXAPI FXbool fxloadIFF(FXStream& store,FXColor*& data,FXint& width,FXint& height);
 
 
 #endif

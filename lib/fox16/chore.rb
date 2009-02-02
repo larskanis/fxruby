@@ -1,4 +1,5 @@
 module Fox
+  
   class FXApp
 
     alias addChoreOrig		addChore # :nodoc:
@@ -26,29 +27,41 @@ module Fox
     #
     # The last form takes a block:
     #
-    #     app.addChore() { |sender, sel, data|
+    #     app.addChore() do |sender, sel, data|
     #         ... handle the chore ...
-    #     }
+    #     end
     #
     # All of these return a reference to an opaque FXChore instance that
     # can be passed to #removeChore if it is necessary to remove the chore
     # before it fires.
     #
+    # For the last two forms, you can pass in the optional +:repeat+ parameter to
+    # cause the chore to be re-registered after it fires, e.g.
+    #
+    #     chore = app.addChore(:repeat => true) do |sender, sel, data|
+    #         ... handle the chore ...
+    #         ... re-add the chore ...
+    #     end
+    #
     def addChore(*args, &block)
+      params = {}
+      params = args.pop if args.last.is_a? Hash
       tgt, sel = nil, 0
       if args.length > 0
         if args[0].respond_to? :call
-          tgt = FXPseudoTarget.new
-	  tgt.pconnect(SEL_CHORE, args[0], block)
+          tgt = params[:target] || FXPseudoTarget.new
+          tgt.pconnect(SEL_CHORE, args[0], params)
         else
-	  tgt, sel = args[0], args[1]
+          tgt, sel = args[0], args[1]
         end
       else
-        tgt = FXPseudoTarget.new
-	tgt.pconnect(SEL_CHORE, nil, block)
+        tgt = params[:target] || FXPseudoTarget.new
+        tgt.pconnect(SEL_CHORE, block, params)
       end
       addChoreOrig(tgt, sel)
-      return { :target => tgt, :selector => sel }
+      params[:target] = tgt
+      params[:selector] = sel
+      params
     end
 
     #
@@ -60,8 +73,8 @@ module Fox
       if args.length == 2
         removeChoreOrig(args[0], args[1])
       else
-        hsh = args[0]
-        removeChoreOrig(hsh[:target], hsh[:selector])
+        params = args[0]
+        removeChoreOrig(params[:target], params[:selector])
       end
     end
 
@@ -87,5 +100,6 @@ module Fox
       end
     end
 
-  end
-end
+  end # class FXApp
+  
+end # module Fox

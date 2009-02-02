@@ -32,7 +32,11 @@ public:
 public:
 
   /// Default constructor
-  FXVec4f();
+  %extend {
+		FXVec4f() {
+			return new FXVec4f(0.0f, 0.0f, 0.0f, 0.0f);
+		}
+	}
 
   /// Copy constructor
   FXVec4f(const FXVec4f& w);
@@ -50,7 +54,7 @@ public:
   FXfloat distance(const FXVec3f& p) const;
 
   /// Return true if edge a-b crosses plane
-  bool crosses(const FXVec3f& a,const FXVec3f& b) const;
+  FXbool crosses(const FXVec3f& a,const FXVec3f& b) const;
   
   FXfloat length() const;
   FXfloat length2() const;
@@ -90,8 +94,8 @@ public:
     FXfloat dot(const FXVec4f& a) const { return (*self)*a; }
     
     /// Equality tests
-    bool operator==(const FXVec4f& b) const { return (*self == b); }
-    bool operator==(FXfloat n) const { return (*self == n); }
+    FXbool operator==(const FXVec4f& b) const { return (*self == b); }
+    FXbool operator==(FXfloat n) const { return (*self == n); }
     
     // Other functions
     FXVec4f normalize() const { return normalize(*self); }

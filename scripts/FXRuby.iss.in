@@ -20,14 +20,9 @@ OutputBaseFilename=FXRuby-@@FXRUBY_VERSION@@-@@RUBYVER@@
 Source: "LICENSE"; DestDir: "{app}\doc\FXRuby"; Flags: ignoreversion
 Source: "README.win32.txt"; DestDir: "{app}\doc\FXRuby"; Flags: ignoreversion
 Source: "README"; DestDir: "{app}\doc\FXRuby"; Flags: ignoreversion
-Source: "index.html"; DestDir: "{app}\doc\FXRuby"; Flags: ignoreversion
 ; HTML documentation files
 Source: "doc\*.html"; DestDir: "{app}\doc\FXRuby\doc"; Flags: ignoreversion
 Source: "doc\images\*.png"; DestDir: "{app}\doc\FXRuby\doc\images"; Flags: ignoreversion
-Source: "web\*.html"; DestDir: "{app}\doc\FXRuby\doc\web"; Flags: ignoreversion
-Source: "web\*.css"; DestDir: "{app}\doc\FXRuby\doc\web"; Flags: ignoreversion
-Source: "web\art\*.gif"; DestDir: "{app}\doc\FXRuby\doc\web\art"; Flags: ignoreversion
-Source: "web\art\*.png"; DestDir: "{app}\doc\FXRuby\doc\web\art"; Flags: ignoreversion
 ; unit tests
 Source: "tests\README"; DestDir: "{app}\doc\FXRuby\tests"; Flags: ignoreversion
 Source: "tests\*.rb"; DestDir: "{app}\doc\FXRuby\tests"; Flags: ignoreversion

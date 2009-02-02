@@ -21,15 +21,15 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbDockBar.h 2225 2005-11-08 13:51:28Z lyle $
+ * $Id: FXRbDockBar.h 2631 2007-04-03 05:51:01Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBDOCKBAR_H
 #define FXRBDOCKBAR_H
 
 #define DECLARE_FXDOCKBAR_STUBS(klass) \
-  inline void klass ## _dock(klass* self,FXDockSite* docksite,FXWindow* before,FXbool notify){ \
-    self->klass::dock(docksite,before,notify); \
+  inline void klass ## _dock(klass* self,FXDockSite* docksite,FXWindow* other,FXbool notify){ \
+    self->klass::dock(docksite,other,notify); \
     } \
   inline void klass ## _dock(klass* self,FXDockSite* docksite,FXint localx,FXint localy,FXbool notify){ \
     self->klass::dock(docksite,localx,localy,notify); \
@@ -39,8 +39,8 @@
     }
 
 #define IMPLEMENT_FXDOCKBAR_STUBS(cls) \
-  void cls::dock(FXDockSite* docksite,FXWindow* before,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("dock"),docksite,before,notify); \
+  void cls::dock(FXDockSite* docksite,FXWindow* other,FXbool notify){ \
+    FXRbCallVoidMethod(this,rb_intern("dock"),docksite,other,notify); \
     } \
   void cls::dock(FXDockSite* docksite,FXint localx,FXint localy,FXbool notify){ \
     FXRbCallVoidMethod(this,rb_intern("dock"),docksite,localx,localy,notify); \

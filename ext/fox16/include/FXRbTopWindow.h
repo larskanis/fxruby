@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbTopWindow.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbTopWindow.h 2768 2007-11-19 18:55:19Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBTOPWINDOW_H
@@ -42,6 +42,15 @@ inline FXbool klass ## _restore(klass* self,FXbool notify){ \
   } \
 inline FXbool klass ## _close(klass* self,FXbool notify){ \
   return self->klass::close(notify); \
+  } \
+inline void klass ## _flash(klass* self,FXbool yes){ \
+  self->klass::flash(yes); \
+  } \
+inline FXbool klass ## _fullScreen(klass* self,FXbool notify){ \
+  return self->klass::fullScreen(notify); \
+  } \
+inline FXbool klass ## _stackingOrder(klass* self,FXuint order){ \
+  return self->klass::stackingOrder(order); \
   }
 
 
@@ -60,6 +69,15 @@ inline FXbool klass ## _close(klass* self,FXbool notify){ \
     } \
   FXbool cls::close(FXbool notify){ \
     return FXRbCallBoolMethod(this,rb_intern("close"),notify); \
+    } \
+  void cls::flash(FXbool yes){ \
+    FXRbCallVoidMethod(this,rb_intern("flash"),yes); \
+    } \
+  FXbool cls::fullScreen(FXbool notify){ \
+    return FXRbCallBoolMethod(this,rb_intern("fullScreen"),notify); \
+    } \
+  FXbool cls::stackingOrder(FXuint order){ \
+    return FXRbCallBoolMethod(this,rb_intern("stackingOrder"),order); \
     }
 
 

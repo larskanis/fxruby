@@ -33,8 +33,8 @@
 */
 class FXMenuRadio : public FXMenuCommand {
 protected:
-  FXuchar check;        // State of menu
   FXColor radioColor;   // Color of the radio
+  FXuchar check;        // State of menu
 protected:
   FXMenuRadio();
 private:
@@ -65,11 +65,11 @@ public:
     }
 
   /// Set radio button state (TRUE, FALSE or MAYBE)
-  void setCheck(FXbool s=TRUE);
+  void setCheck(FXuchar s=TRUE);
 
   /// Get radio button state (TRUE, FALSE or MAYBE)
   %extend {
-    FXbool getCheck() const {
+    FXuchar getCheck() const {
       rb_warning("FXMenuRadio#getCheck is deprecated; use checked?, unchecked? or maybe?");
       return self->getCheck();
       }

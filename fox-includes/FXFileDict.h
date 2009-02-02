@@ -3,23 +3,22 @@
 *                  F i l e - A s s o c i a t i o n   T a b l e                  *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXFileDict.h 2335 2006-01-28 02:33:03Z lyle $                        *
+* $Id: FXFileDict.h 2725 2007-11-16 16:57:54Z lyle $                        *
 ********************************************************************************/
 #ifndef FXFILEDICT_H
 #define FXFILEDICT_H
@@ -63,7 +62,7 @@ struct FXFileAssoc {
 *
 * For example, the binding for "jpg" could be:
 *
-*   xv %s &;JPEG Image;bigimage.xpm;miniimage.xpm;image/jpeg;term 
+*   xv %s &;JPEG Image;bigimage.xpm;miniimage.xpm;image/jpeg;term
 *
 * The association for a file name is determined by first looking at the entire
 * file name, then at the whole extension, and then at sub-extensions.
@@ -89,7 +88,7 @@ private:
   FXIconDict *icons;    // Icon dictionary which keeps track of loaded icons
 protected:
   FXFileDict(){}
-  virtual void *createData(const void*);
+  virtual void *createData(void*);
   virtual void deleteData(void*);
 private:
   FXFileDict(const FXFileDict&);
@@ -171,6 +170,9 @@ public:
 
   /// Find file association from registry
   FXFileAssoc* find(const FXchar* ext);
+
+  /// Return file association at position pos
+  FXFileAssoc* data(FXint pos) const { return (FXFileAssoc*)FXDict::data(pos); }
 
   /**
   * Determine binding for the given file.

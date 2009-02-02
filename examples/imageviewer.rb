@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'fox16'
-require 'fox16/kwargs'
 
 include Fox
 
@@ -87,7 +86,7 @@ class ImageWindow < FXMainWindow
     # Make file list
     fileframe = FXHorizontalFrame.new(@filebox,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y,
-      :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0. :hSpacing => 0, :vSpacing => 0)
+      :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0, :hSpacing => 0, :vSpacing => 0)
     @filelist = FXFileList.new(fileframe,
       :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y|ICONLIST_MINI_ICONS|ICONLIST_AUTOSIZE)
     @filelist.connect(SEL_DOUBLECLICKED, method(:onCmdFileList))

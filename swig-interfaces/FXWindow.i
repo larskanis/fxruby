@@ -91,6 +91,8 @@ class FXComposite;
 %rename("after?") FXWindow::after(const FXWindow* b);
 %rename("composeContext") FXWindow::getComposeContext() const;
 %rename("inFocusChain?") FXWindow::inFocusChain() const;
+%rename("cursorShown=")   FXWindow::showCursor(FXbool);
+%rename("cursorShown?")   FXWindow::cursorShown() const;
 
 %alias FXWindow::shown() const "visible?";
 
@@ -118,10 +120,10 @@ public:
   static FXDragType octetType;          // Raw octet stream
   static FXDragType deleteType;         // Delete request
   static FXDragType textType;           // Ascii text request
-  static FXDragType utf8Type;           // UTF-8 text request
-  static FXDragType utf16Type;          // UTF-16 text request
   static FXDragType colorType;          // Color
   static FXDragType urilistType;        // URI List
+  static FXDragType utf8Type;           // UTF-8 text request
+  static FXDragType utf16Type;          // UTF-16 text request
   static const FXDragType stringType;   // Clipboard text type (pre-registered)
   static const FXDragType imageType;    // Clipboard image type (pre-registered)
 
@@ -159,7 +161,8 @@ protected:
     FLAG_DODRAG       = 0x00080000,     // Doing drag mode
     FLAG_SCROLLINSIDE = 0x00100000,     // Scroll only when inside
     FLAG_SCROLLING    = 0x00200000,     // Right mouse scrolling
-    FLAG_OWNED        = 0x00400000
+    FLAG_OWNED        = 0x00400000,     // Owned window handle
+    FLAG_CURSOR       = 0x00800000      // Showing cursor
     };
 
 public:
@@ -180,6 +183,9 @@ public:
   long onMiddleBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onRightBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onRightBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
+	long onSpaceBallMotion(FXObject*,FXSelector,void* PTR_EVENT);
+	long onSpaceBallButtonPress(FXObject*,FXSelector,void* PTR_EVENT);
+	long onSpaceBallButtonRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onBeginDrag(FXObject*,FXSelector,void* PTR_EVENT);
   long onEndDrag(FXObject*,FXSelector,void* PTR_EVENT);
   long onDragged(FXObject*,FXSelector,void* PTR_EVENT);
@@ -241,12 +247,14 @@ public:
     ID_VSCROLLED,
     ID_SETVALUE,
     ID_SETINTVALUE,
+    ID_SETLONGVALUE,
     ID_SETREALVALUE,
     ID_SETSTRINGVALUE,
     ID_SETICONVALUE,
     ID_SETINTRANGE,
     ID_SETREALRANGE,
     ID_GETINTVALUE,
+    ID_GETLONGVALUE,
     ID_GETREALVALUE,
     ID_GETSTRINGVALUE,
     ID_GETICONVALUE,
@@ -364,6 +372,9 @@ public:
   /// Return window key
   FXuint getKey() const;
 
+  /// Return child window with given window key
+  FXWindow* getChildWithKey(FXuint k) const;
+
   /// Set the message target object for this window
   void setTarget(FXObject *t);
 
@@ -427,16 +438,16 @@ public:
   const FXString& getHelpTag() const;
 
   /// Return true if window is a shell window
-  bool isShell() const;
+  FXbool isShell() const;
 
   /// Return true if specified window is owned by this window
-  bool isOwnerOf(const FXWindow* window) const;
+  FXbool isOwnerOf(const FXWindow* window) const;
 
   /// Return true if specified window is ancestor of this window.
-  bool isChildOf(const FXWindow* window) const;
+  FXbool isChildOf(const FXWindow* window) const;
 
   /// Return true if this window contains child in its subtree.
-  bool containsChild(const FXWindow* child) const;
+  FXbool containsChild(const FXWindow* child) const;
 
   /// Return the child window at specified coordinates
   FXWindow* getChildAt(FXint x,FXint y) const;
@@ -473,14 +484,14 @@ public:
   static FXWindow* commonAncestor(FXWindow* a,FXWindow* b);
 
   /// Return TRUE if sibling a <= sibling b in list
-  static bool before(const FXWindow *a,const FXWindow* b);
+  static FXbool before(const FXWindow *a,const FXWindow* b);
 
   /// Return TRUE if sibling a >= sibling b in list
-  static bool after(const FXWindow *a,const FXWindow* b);
+  static FXbool after(const FXWindow *a,const FXWindow* b);
 
   %extend {
-    bool before(const FXWindow *other) const { return FXWindow::before(self, other); }
-    bool after(const FXWindow *other) const { return FXWindow::after(self, other); }
+    FXbool before(const FXWindow *other) const { return FXWindow::before(self, other); }
+    FXbool after(const FXWindow *other) const { return FXWindow::after(self, other); }
   }
   
   /// Return compose context
@@ -491,6 +502,12 @@ public:
   
   /// Destroy compose context
   void destroyComposeContext();
+
+  /// Is cursor shown
+  FXbool cursorShown() const;
+
+  /// Show or hide the cursor
+  void showCursor(FXbool flag=true);
 
   /// Set the default cursor for this window
   void setDefaultCursor(FXCursor* cur);
@@ -519,28 +536,28 @@ public:
   }
 
   /// Warp the cursor to the new position
-  FXint setCursorPosition(FXint x,FXint y);
+  FXbool setCursorPosition(FXint x,FXint y);
 
   /// Return true if this window is able to receive mouse and keyboard events
-  bool isEnabled() const;
+  FXbool isEnabled() const;
 
   /// Return true if the window is active
-  bool isActive() const;
+  FXbool isActive() const;
 
   /// Return true if this window has the focus
-  bool hasFocus() const;
+  FXbool hasFocus() const;
 
   /// Return true if this window is in focus chain
-  bool inFocusChain() const;
+  FXbool inFocusChain() const;
 
   /// Return true if this is the default window
-  bool isDefault() const;
+  FXbool isDefault() const;
   
   /// Make this window the initial default window
-  void setInitial(bool enable=true);
+  void setInitial(FXbool enable=true);
   
   /// Return true if this is the initial default window
-  bool isInitial() const;
+  FXbool isInitial() const;
 
   /// Generate a SEL_UPDATE message for the window and its children 
   void forceRefresh();
@@ -570,7 +587,7 @@ public:
   void ungrab();
 
   /// Return true if the window has been grabbed
-  bool grabbed() const;
+  FXbool grabbed() const;
 
   /// Grab keyboard device
   void grabKeyboard();
@@ -579,81 +596,81 @@ public:
   void ungrabKeyboard();
 
   /// Return true if active grab is in effect
-  bool grabbedKeyboard() const;
+  FXbool grabbedKeyboard() const;
 
   /// Return true if the window is shown
-  bool shown() const;
+  FXbool shown() const;
 
   /// Return true if the window is under the cursor
-  bool underCursor() const;
+  FXbool underCursor() const;
 
   /// Return true if this window owns the primary selection
-  bool hasSelection() const;
+  FXbool hasSelection() const;
 
   %extend {
     /// Try to acquire the primary selection, given a list of drag types
-    bool acquireSelection(VALUE typesArray){
+    FXbool acquireSelection(VALUE typesArray){
       Check_Type(typesArray,T_ARRAY);
       FXDragType *types=0;
-      FXuint numtypes=RARRAY(typesArray)->len;
+      FXuint numtypes=RARRAY_LEN(typesArray);
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
           types[i]=(FXDragType) NUM2USHRT(rb_ary_entry(typesArray,i));
           }
       }
-      bool result=self->acquireSelection(types,numtypes);
+      FXbool result=self->acquireSelection(types,numtypes);
       delete [] types;
       return result;
       }
   }
 
   /// Release the primary selection
-  bool releaseSelection();
+  FXbool releaseSelection();
 
   /// Return true if this window owns the clipboard
-  bool hasClipboard() const;
+  FXbool hasClipboard() const;
 
   %extend {
     /// Try to acquire the clipboard, given a list of drag types
-    bool acquireClipboard(VALUE typesArray){
+    FXbool acquireClipboard(VALUE typesArray){
       Check_Type(typesArray,T_ARRAY);
       FXDragType *types=0;
-      FXuint numtypes=RARRAY(typesArray)->len;
+      FXuint numtypes=RARRAY_LEN(typesArray);
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
           types[i]=(FXDragType) NUM2USHRT(rb_ary_entry(typesArray,i));
           }
       }
-      bool result=self->acquireClipboard(types,numtypes);
+      FXbool result=self->acquireClipboard(types,numtypes);
       delete [] types;
       return result;
       }
   }
 
   /// Release the clipboard
-  bool releaseClipboard();
+  FXbool releaseClipboard();
 
   /// Return true if this window is able to receive drops
-  bool isDropEnabled() const;
+  FXbool isDropEnabled() const;
 
   /// Return true if a drag operaion has been initiated from this window
-  bool isDragging() const;
+  FXbool isDragging() const;
   
   %extend {
     /// Initiate a drag operation with a list of previously registered drag types
-    bool beginDrag(VALUE typesArray){
+    FXbool beginDrag(VALUE typesArray){
       Check_Type(typesArray,T_ARRAY);
       FXDragType *types=0;
-      FXuint numtypes=RARRAY(typesArray)->len;
+      FXuint numtypes=RARRAY_LEN(typesArray);
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
           types[i]=(FXDragType) NUM2USHRT(rb_ary_entry(typesArray,i));
           }
       }
-      bool result=self->beginDrag(types,numtypes);
+      FXbool result=self->beginDrag(types,numtypes);
       delete [] types;
       return result;
       }
@@ -663,19 +680,19 @@ public:
   * When dragging, inform the drop-target of the new position and
   * the drag action
   */
-  bool handleDrag(FXint x,FXint y,FXDragAction action=DRAG_COPY);
+  FXbool handleDrag(FXint x,FXint y,FXDragAction action=DRAG_COPY);
   
   /// Terminate the drag operation with or without actually dropping the data
-  FXDragAction endDrag(bool drop=true);
+  FXDragAction endDrag(FXbool drop=true);
   
   /// Return true if this window is the target of a drop
-  bool isDropTarget() const;
+  FXbool isDropTarget() const;
   
   /**
   * When being dragged over, indicate that no further SEL_DND_MOTION messages
   * are required while the cursor is inside the given rectangle
   */
-  void setDragRectangle(FXint x,FXint y,FXint w,FXint h,bool wantupdates=true) const;
+  void setDragRectangle(FXint x,FXint y,FXint w,FXint h,FXbool wantupdates=true) const;
   
   /**
   * When being dragged over, indicate we want to receive SEL_DND_MOTION messages
@@ -718,7 +735,7 @@ public:
   }
 
   /// When being dragged over, return true if we are offered the given drag type
-  bool offeredDNDType(FXDNDOrigin origin,FXDragType type) const;
+  FXbool offeredDNDType(FXDNDOrigin origin,FXDragType type) const;
   
   /// When being dragged over, return the drag action
   FXDragAction inquireDNDAction() const;
@@ -728,9 +745,9 @@ public:
     void setDNDData(FXDNDOrigin origin, FXDragType type, VALUE str) const {
       Check_Type(str, T_STRING);
       FXuchar* data;
-      FXuint size = RSTRING(str)->len;
+      FXuint size = RSTRING_LEN(str);
       if (FXMALLOC(&data, FXuchar, size)) {
-        memcpy((void *) data, (void *) RSTRING(str)->ptr, size);
+        memcpy((void *) data, (void *) RSTRING_PTR(str), size);
         self->setDNDData(origin, type, data, size);
       } else {
         rb_raise(rb_eNoMemError, "couldn't copy drag-and-drop data");
@@ -753,12 +770,12 @@ public:
   /**
   * Set DND data from string value.
   */
-  bool setDNDData(FXDNDOrigin origin,FXDragType type,const FXString& string) const;
+  FXbool setDNDData(FXDNDOrigin origin,FXDragType type,const FXString& string) const;
 
   /**
   * Get DND data into string value.
   */
-  bool getDNDData(FXDNDOrigin origin,FXDragType type,FXString& string) const;
+  FXbool getDNDData(FXDNDOrigin origin,FXDragType type,FXString& string) const;
 
   %extend {
     // Translate coordinates from fromwindow's coordinate space

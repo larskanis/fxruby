@@ -118,6 +118,9 @@ module Fox
     #
     def find(ext); end
 
+    # Return file association at position _pos_.
+    def data(pos); end
+    
     # Returns a reference to the FXFileAssoc instance...
     def findFileBinding(pathname); end
 

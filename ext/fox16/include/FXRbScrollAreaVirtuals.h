@@ -5,9 +5,14 @@ public:
   // Overrides the base class version of getContentHeight()
   virtual FXint getContentHeight();
 
-  // Overrides the base class version of getViewportWidth()
-  virtual FXint getViewportWidth();
+  // Overrides the base class version of getVisibleX()
+  virtual FXint getVisibleX() const;
 
-  // Overrides the base class version of getViewportHeight()
-  virtual FXint getViewportHeight();
+  // Overrides the base class version of getVisibleY()
+  virtual FXint getVisibleY() const;
 
+  // Overrides the base class version of getVisibleWidth()
+  virtual FXint getVisibleWidth() const;
+
+  // Overrides the base class version of getVisibleHeight()
+  virtual FXint getVisibleHeight() const;

@@ -3,23 +3,22 @@
 *                        S p i n   B u t t o n   W i d g e t                    *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2006 by Lyle Johnson.   All Rights Reserved.               *
+* Copyright (C) 1998,2007 by Lyle Johnson.   All Rights Reserved.               *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXSpinner.h 2343 2006-02-12 20:26:26Z lyle $                         *
+* $Id: FXSpinner.h 2764 2007-11-19 17:57:29Z lyle $                         *
 ********************************************************************************/
 #ifndef FXSPINNER_H
 #define FXSPINNER_H
@@ -65,14 +64,17 @@ public:
   long onCmdIncrement(FXObject*,FXSelector,void*);
   long onUpdDecrement(FXObject*,FXSelector,void*);
   long onCmdDecrement(FXObject*,FXSelector,void*);
-  long onCmdEntry(FXObject*,FXSelector,void*);
+  long onUpdEntry(FXObject*,FXSelector,void*);
   long onChgEntry(FXObject*,FXSelector,void*);
+  long onCmdEntry(FXObject*,FXSelector,void*);
   long onWheelEntry(FXObject*,FXSelector,void*);
   long onKeyPress(FXObject*,FXSelector,void*);
   long onKeyRelease(FXObject*,FXSelector,void*);
   long onCmdSetValue(FXObject*,FXSelector,void*);
   long onCmdSetIntValue(FXObject*,FXSelector,void*);
   long onCmdGetIntValue(FXObject*,FXSelector,void*);
+  long onCmdSetLongValue(FXObject*,FXSelector,void*);
+  long onCmdGetLongValue(FXObject*,FXSelector,void*);
   long onCmdSetIntRange(FXObject*,FXSelector,void*);
   long onCmdGetIntRange(FXObject*,FXSelector,void*);
   long onFocusSelf(FXObject*,FXSelector,void*);
@@ -104,37 +106,37 @@ public:
   virtual FXint getDefaultHeight();
 
   /// Increment spinner
-  void increment(FXbool notify=FALSE);
+  void increment(FXbool notify=false);
 
   /// Increment spinner by certain amount
-  void incrementByAmount(FXint amount,FXbool notify=FALSE);
+  void incrementByAmount(FXint amount,FXbool notify=false);
 
   /// Decrement spinner
-  void decrement(FXbool notify=FALSE);
+  void decrement(FXbool notify=false);
 
   /// Decrement spinner by certain amount
-  void decrementByAmount(FXint amount, FXbool notify=FALSE);
+  void decrementByAmount(FXint amount,FXbool notify=false);
 
-  /// Return TRUE if in cyclic mode
+  /// Return true if in cyclic mode
   FXbool isCyclic() const;
 
   /// Set to cyclic mode, i.e. wrap around at maximum/minimum
   void setCyclic(FXbool cyclic);
 
-  /// Return TRUE if text is visible
+  /// Return true if text is visible
   FXbool isTextVisible() const;
 
   /// Set text visible flag
-  void setTextVisible(FXbool shown);
+  void setTextVisible(FXbool flag);
 
   /// Change current value
-  virtual void setValue(FXint value,FXbool notify=FALSE);
+  virtual void setValue(FXint value,FXbool notify=false);
 
   /// Return current value
   FXint getValue() const { return pos; }
 
   /// Change the spinner's range
-  void setRange(FXint lo,FXint hi,FXbool notify=FALSE);
+  void setRange(FXint lo,FXint hi,FXbool notify=false);
 
   /// Get the spinner's current range
   void getRange(FXint& lo,FXint& hi) const { lo=range[0]; hi=range[1]; }
@@ -170,9 +172,9 @@ public:
   FXuint getSpinnerStyle() const;
 
   /// Allow editing of the text field
-  void setEditable(FXbool edit=TRUE);
+  void setEditable(FXbool edit=true);
 
-  /// Return TRUE if text field is editable
+  /// Return true if text field is editable
   FXbool isEditable() const;
 
   /// Change color of the up arrow

@@ -3,23 +3,22 @@
 *                7 - S e g m e n t   D i s p l a y   W i d g e t                *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2004,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2004,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FX7Segment.h 2360 2006-03-29 04:10:56Z lyle $                        *
+* $Id: FX7Segment.h 2725 2007-11-16 16:57:54Z lyle $                        *
 ********************************************************************************/
 #ifndef FX7SEGMENT_H
 #define FX7SEGMENT_H
@@ -64,10 +63,12 @@ public:
   long onPaint(FXObject*,FXSelector,void*);
   long onCmdSetValue(FXObject*,FXSelector,void*);
   long onCmdSetIntValue(FXObject*,FXSelector,void*);
-  long onCmdSetRealValue(FXObject*,FXSelector,void*);
-  long onCmdSetStringValue(FXObject*,FXSelector,void*);
   long onCmdGetIntValue(FXObject*,FXSelector,void*);
+  long onCmdSetLongValue(FXObject*,FXSelector,void*);
+  long onCmdGetLongValue(FXObject*,FXSelector,void*);
+  long onCmdSetRealValue(FXObject*,FXSelector,void*);
   long onCmdGetRealValue(FXObject*,FXSelector,void*);
+  long onCmdSetStringValue(FXObject*,FXSelector,void*);
   long onCmdGetStringValue(FXObject*,FXSelector,void*);
   long onCmdSetHelp(FXObject*,FXSelector,void*);
   long onCmdGetHelp(FXObject*,FXSelector,void*);

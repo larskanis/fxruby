@@ -11,7 +11,7 @@ class TC_FXScrollArea < TestCase
   end
 
   def test_position_get
-    pos = @scrollArea.position
+    pos = @scrollArea.getPosition()
     assert_instance_of(Array, pos)
     assert_equal(2, pos.size)
     assert_kind_of(Integer, pos[0])

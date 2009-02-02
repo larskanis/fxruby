@@ -20,21 +20,25 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
-/***********************************************************************
- * $Id: ruby-typemaps.i 2460 2006-07-09 23:38:59Z lyle $
- ***********************************************************************/
+%include constraints.i
+
+%apply Pointer NONNULL {
+  FXApp* APP,
+	FXComposite* PARENT,
+	FXWindow* OWNER
+}
 
 /* Type-checking rules */
 %typecheck(SWIG_TYPECHECK_STRING) const FXString&, FXuchar *data {
   $1 = (NIL_P($input) || TYPE($input) == T_STRING) ? 1 : 0;
 }
 
-%typecheck(SWIG_TYPECHECK_POINTER) void *ITEMDATA {
+%typecheck(SWIG_TYPECHECK_POINTER) void *ITEMDATA, void *ptr, const void *pix {
   $1 = 1;
 }
 
 %typecheck(SWIG_TYPECHECK_BOOL) FXbool {
-  $1 = ($input == Qtrue || $input == Qfalse) ? 1 : 0;
+  $1 = ($input == Qtrue || $input == Qfalse) ? true : false;
 }
 
 /* Convert Ruby object to FXColor */
@@ -61,7 +65,7 @@ inline FXColor to_FXColor(VALUE obj){
 inline FXString to_FXString(VALUE obj){
   if(!NIL_P(obj)){
     Check_Type(obj,T_STRING);
-    return FXString(STR2CSTR(obj));
+    return FXString(StringValuePtr(obj));
     }
   else{
     return FXString::null;
@@ -82,7 +86,7 @@ inline FXString to_FXString(VALUE obj){
 %{
 inline FXbool to_FXbool(VALUE obj){
   if (obj == Qtrue || obj == Qfalse){
-    return (obj == Qtrue) ? TRUE : FALSE;
+    return (obj == Qtrue) ? true : false;
     }
   else{
     return static_cast<FXbool>(NUM2UINT(obj));
@@ -112,7 +116,7 @@ inline FXbool to_FXbool(VALUE obj){
 %typemap(in) const void* pix {
   if ($input != Qnil) {
     Check_Type($input, T_STRING);
-    $1 = reinterpret_cast<$1_ltype>(RSTRING($input)->ptr);
+    $1 = reinterpret_cast<$1_ltype>(RSTRING_PTR($input));
   } else {
     $1 = NULL;
   }
@@ -127,8 +131,8 @@ inline FXbool to_FXbool(VALUE obj){
   $1=NULL;
   if($input!=Qnil){
     Check_Type($input,T_ARRAY);
-    if(FXMALLOC(&$1,FXColor,RARRAY($input)->len)){
-      for(long i=0; i<RARRAY($input)->len; i++){
+    if(FXMALLOC(&$1,FXColor,RARRAY_LEN($input))){
+      for(long i=0; i<RARRAY_LEN($input); i++){
         $1[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry($input,i)));
 	}
       }
@@ -149,9 +153,10 @@ inline FXbool to_FXbool(VALUE obj){
   $1 = NULL;
   if ($input != Qnil) {
     Check_Type($input, T_ARRAY);
-    if (FXMALLOC(&$1, FXchar *, RARRAY($input)->len)) {
-      for (long i = 0; i < RARRAY($input)->len; i++) {
-        $1[i] = (FXchar *) STR2CSTR(rb_ary_entry($input, i));
+    if (FXMALLOC(&$1, FXchar *, RARRAY_LEN($input))) {
+      for (long i = 0; i < RARRAY_LEN($input); i++) {
+        VALUE e = rb_ary_entry($input, i);
+        $1[i] = (FXchar *) StringValuePtr(e);
       }
     }
   }
@@ -166,7 +171,7 @@ inline FXbool to_FXbool(VALUE obj){
 %typecheck(SWIG_TYPECHECK_STRING_ARRAY) const FXchar** strings {
   $1 = (TYPE($input) == T_ARRAY) ? 1 : 0;
   if ($1 != 0) {
-    for (long i = 0; i < RARRAY($input)->len; i++) {
+    for (long i = 0; i < RARRAY_LEN($input); i++) {
       if (TYPE(rb_ary_entry($input, i)) != T_STRING) {
         $1 = 0;
 	break;
@@ -179,11 +184,12 @@ inline FXbool to_FXbool(VALUE obj){
   $1 = NULL;
   if(!NIL_P($input)){
     Check_Type($input, T_ARRAY);
-    if (FXMALLOC(&$1, FXchar *, RARRAY($input)->len)+1) {
-      for (long i = 0; i < RARRAY($input)->len; i++) {
-        $1[i] = (FXchar *) STR2CSTR(rb_ary_entry($input, i));
+    if (FXMALLOC(&$1, FXchar *, RARRAY_LEN($input))+1) {
+      for (long i = 0; i < RARRAY_LEN($input); i++) {
+        VALUE e = rb_ary_entry($input, i);
+        $1[i] = (FXchar *) StringValuePtr(e);
       }
-      $1[RARRAY($input)->len] = 0;
+      $1[RARRAY_LEN($input)] = 0;
     }
   }
 }
@@ -195,11 +201,11 @@ inline FXbool to_FXbool(VALUE obj){
   $1 = NULL;
   if(!NIL_P($input)){
     Check_Type($input, T_ARRAY);
-    if (FXMALLOC(&$1, FXColor, RARRAY($input)->len)+1) {
-      for (long i = 0; i < RARRAY($input)->len; i++) {
+    if (FXMALLOC(&$1, FXColor, RARRAY_LEN($input))+1) {
+      for (long i = 0; i < RARRAY_LEN($input); i++) {
         $1[i] = static_cast<FXColor>(NUM2ULONG(rb_ary_entry($input, i)));
       }
-      $1[RARRAY($input)->len] = 0;
+      $1[RARRAY_LEN($input)] = 0;
     }
   }
 }
@@ -207,7 +213,7 @@ inline FXbool to_FXbool(VALUE obj){
 %typemap(freearg) FXColor* colors "FXFREE(&$1);";
 
 /* Convert a Ruby object into a void pointer (for list item data) */
-%typemap(in) void* ITEMDATA "$1 = ($input == Qnil) ? NULL : (void *) $input;";
+%typemap(in) void *ITEMDATA, void *ptr "$1 = ($input == Qnil) ? NULL : (void *) $input;";
 
 /* Convert a Ruby FXEvent instance into a pointer to a C++ FXEvent */
 %{
@@ -231,7 +237,7 @@ inline void* to_FXEvent(VALUE obj){
 %typemap(in) void* PTR_COLOR "$1 = reinterpret_cast<void*>(NUM2UINT($input));";
 
 /* Convert a Ruby string to a C string */
-%typemap(in) void* PTR_CSTRING "$1 = static_cast<void*>(STR2CSTR($input));";
+%typemap(in) void* PTR_CSTRING "$1 = static_cast<void*>(StringValuePtr($input));";
 
 /* Convert a Ruby array (of size 2) into an FXdouble array */
 %typemap(in) void* PTR_DBLRANGE_IN(FXdouble values[2]) {
@@ -318,14 +324,23 @@ inline void* to_FXEvent(VALUE obj){
   $1 = static_cast<void*>(&value);
 }
 
+/* Convert a Ruby number into a pointer to an FXlong */
+%typemap(in) void* PTR_PLONG(FXlong value) {
+  value = (FXlong) NUM2LONG($input);
+  $1 = static_cast<void*>(&value);
+}
+
 /* Convert a Ruby string to a pointer to an FXString */
 %typemap(in) void* PTR_STRING(FXString value) {
-  value = FXString(STR2CSTR($input));
+  value = FXString(StringValuePtr($input));
   $1 = (void *) &value;
 }
 
 /* Convert a Ruby FXTreeItem instance into a pointer to a C++ FXTreeItem */
 %typemap(in) void* PTR_TREEITEM "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXTreeItem,1);";
+
+/* Convert a Ruby FXFoldingItem instance into a pointer to a C++ FXFoldingItem */
+%typemap(in) void* PTR_FOLDINGITEM "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXFoldingItem,1);";
 
 /* Convert a Ruby number into an FXuchar */
 %typemap(in) void* PTR_UCHAR "$1 = reinterpret_cast<void*>(NUM2UINT($input));";
@@ -455,6 +470,14 @@ inline void* to_FXEvent(VALUE obj){
     $result = FXRbGetRubyObj(resultptr, "FXMat4f *");
 }
 %typemap(out) FXMat4f& "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+
+/* Output typemap for FXVec2d instances */
+%typemap(out) FXVec2d* "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+%typemap(out) FXVec2d& "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+
+/* Output typemap for FXVec2f instances */
+%typemap(out) FXVec2f* "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+%typemap(out) FXVec2f& "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
 
 /* Output typemap for FXVec4f instances */
 %typemap(out) FXVec4f {
@@ -604,8 +627,8 @@ inline void* to_FXEvent(VALUE obj){
 }
 %typemap(in) (const FXPoint* points, FXuint npoints) {
     Check_Type($input, T_ARRAY);
-    $1 = new FXPoint[RARRAY($input)->len];
-    $2 = static_cast<FXuint>( RARRAY($input)->len );
+    $1 = new FXPoint[RARRAY_LEN($input)];
+    $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
         FXPoint *pPoint;
         Data_Get_Struct(rb_ary_entry($input, i), FXPoint, pPoint);
@@ -619,8 +642,8 @@ inline void* to_FXEvent(VALUE obj){
 // Extract a C array (segments) and its length (nsegments) from a Ruby array of FXSegment instances
 %typemap(in) (const FXSegment* segments, FXuint nsegments) {
     Check_Type($input, T_ARRAY);
-    $1 = new FXSegment[RARRAY($input)->len];
-    $2 = static_cast<FXuint>( RARRAY($input)->len );
+    $1 = new FXSegment[RARRAY_LEN($input)];
+    $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
         FXSegment *pSeg;
         Data_Get_Struct(rb_ary_entry($input, i), FXSegment, pSeg);
@@ -635,8 +658,8 @@ inline void* to_FXEvent(VALUE obj){
 // Extract a C array (rectangles) and its length (nrectangles) from a Ruby array of FXRectangle instances
 %typemap(in) (const FXRectangle* rectangles, FXuint nrectangles) {
     Check_Type($input, T_ARRAY);
-    $1 = new FXRectangle[RARRAY($input)->len];
-    $2 = static_cast<FXuint>( RARRAY($input)->len );
+    $1 = new FXRectangle[RARRAY_LEN($input)];
+    $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
         FXRectangle *pRect;
         Data_Get_Struct(rb_ary_entry($input, i), FXRectangle, pRect);
@@ -651,8 +674,8 @@ inline void* to_FXEvent(VALUE obj){
 // Extract a C array (arcs) and its length (narcs) from a Ruby array of FXArc instances
 %typemap(in) (const FXArc* arcs, FXuint narcs) {
     Check_Type($input, T_ARRAY);
-    $1 = new FXArc[RARRAY($input)->len];
-    $2 = static_cast<FXuint>( RARRAY($input)->len );
+    $1 = new FXArc[RARRAY_LEN($input)];
+    $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
         FXArc *pArc;
         Data_Get_Struct(rb_ary_entry($input, i), FXArc, pArc);
@@ -667,15 +690,15 @@ inline void* to_FXEvent(VALUE obj){
 // Extract the C string pointer and string length from a Ruby string
 %typemap(in) (const FXchar* string, FXuint length) {
     Check_Type($input, T_STRING);
-    $1 = STR2CSTR($input);
-    $2 = RSTRING($input)->len;
+    $1 = StringValuePtr($input);
+    $2 = RSTRING_LEN($input);
 }
 
 // Extract a C array (dashpattern) and its length (dashlength) from a Ruby array of Fixnums
 %typemap(in) (const FXchar* dashpattern, FXuint dashlength) {
     Check_Type($input, T_ARRAY);
-    $1 = new FXchar[RARRAY($input)->len];
-    $2 = static_cast<FXuint>( RARRAY($input)->len );
+    $1 = new FXchar[RARRAY_LEN($input)];
+    $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
         $1[i] = NUM2INT(rb_ary_entry($input, i));
     }
@@ -687,8 +710,8 @@ inline void* to_FXEvent(VALUE obj){
 
 %typemap(in) (FXuint* path, FXint n) {
   Check_Type($input, T_ARRAY);
-  FXMALLOC(&$1,FXuint,RARRAY($input)->len);
-  $2=static_cast<FXint>(RARRAY($input)->len);
+  FXMALLOC(&$1,FXuint,RARRAY_LEN($input));
+  $2=static_cast<FXint>(RARRAY_LEN($input));
   for(FXint i=0; i<$2; i++){
     $1[i]=NUM2UINT(rb_ary_entry($input,i));
     }
@@ -701,8 +724,8 @@ inline void* to_FXEvent(VALUE obj){
 /* Convert an array of FXColor values (see constructor for FXMemoryBuffer) */
 %typemap(in) (FXColor *data,FXuint size) {
   Check_Type($input, T_ARRAY);
-  FXMALLOC(&$1,FXColor,RARRAY($input)->len);
-  $2=static_cast<FXuint>(RARRAY($input)->len);
+  FXMALLOC(&$1,FXColor,RARRAY_LEN($input));
+  $2=static_cast<FXuint>(RARRAY_LEN($input));
   for(FXint i=0; i<$2; i++){
     $1[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry($input,i)));
     }
@@ -746,7 +769,7 @@ inline void* to_FXEvent(VALUE obj){
 /* Convert an FXID to a Ruby Integer (fxid_to_int() is defined in FXRuby.h) */
 %typemap(out) FXID "$result = fxid_to_int($1);";
 
-%typemap(in) FXuchar *data "$1 = NIL_P($input) ? 0 : reinterpret_cast<FXuchar*>(STR2CSTR($input));";
+%typemap(in) FXuchar *data "$1 = NIL_P($input) ? 0 : reinterpret_cast<FXuchar*>(StringValuePtr($input));";
 
 // FXlong values
 %typemap(in)  FXlong "$1 = static_cast<FXlong>(NUM2LONG($input));";

@@ -2,137 +2,143 @@
 # This makefile is used to generate the wrapper code from the
 # SWIG interface files.
 #
-# $Id: Makefile 2300 2005-12-07 14:05:03Z lyle $
+# $Id: Makefile 2837 2008-03-28 21:30:30Z lyle $
 #
 
 .PHONY: clean
 
-SWIG = swig
-SWIGFLAGS = -fcompact -noruntime -c++ -ruby -no_default -I../fox-includes
+SWIG = /opt/local/bin/swig
+
+#
+#  Using the following command-line flags:
+#
+# -nodefaultctor don't generate default constructors for classes that don't declare them
+# -nodefaultdtor don't generate default destructors for classes that don't declare them
+# -w302 seems to be required to suppress bogus SWIG warnings about redefined identifiers
+# -features compactdefaultargs causes SWIG to default to the old code generation method for functions with default arguments
+#
+
+SWIGFLAGS = -fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes
 SRCDIR = ../ext/fox16
 SED = sed -f swig.sed
 RUBY = ruby
-SWIGLIB := $(shell swig -swiglib)
 
 MODULES = \
-	$(SRCDIR)/core_wrap.cpp \
-	$(SRCDIR)/dc_wrap.cpp \
-	$(SRCDIR)/dialogs_wrap.cpp \
-	$(SRCDIR)/frames_wrap.cpp \
-	$(SRCDIR)/iconlist_wrap.cpp \
-	$(SRCDIR)/icons_wrap.cpp \
-	$(SRCDIR)/image_wrap.cpp \
-	$(SRCDIR)/label_wrap.cpp \
-	$(SRCDIR)/layout_wrap.cpp \
-	$(SRCDIR)/list_wrap.cpp \
-	$(SRCDIR)/mdi_wrap.cpp \
-	$(SRCDIR)/menu_wrap.cpp \
-	$(SRCDIR)/fx3d_wrap.cpp \
-	$(SRCDIR)/scintilla_wrap.cpp \
-	$(SRCDIR)/table_wrap.cpp \
-	$(SRCDIR)/text_wrap.cpp \
-	$(SRCDIR)/treelist_wrap.cpp \
-	$(SRCDIR)/ui_wrap.cpp
+	core_wrap.cxx \
+	dc_wrap.cxx \
+	dialogs_wrap.cxx \
+	frames_wrap.cxx \
+	iconlist_wrap.cxx \
+	icons_wrap.cxx \
+	image_wrap.cxx \
+	label_wrap.cxx \
+	layout_wrap.cxx \
+	list_wrap.cxx \
+	mdi_wrap.cxx \
+	menu_wrap.cxx \
+	fx3d_wrap.cxx \
+	scintilla_wrap.cxx \
+	table_wrap.cxx \
+	text_wrap.cxx \
+	treelist_wrap.cxx \
+	ui_wrap.cxx
 
-all: $(SRCDIR)/librb.c $(MODULES)
+all: $(SRCDIR)/include/swigrubyrun.h $(MODULES)
 
-$(SRCDIR)/core_wrap.cpp: core.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/core_wrap.cpp core.i
-	$(SED) $(SRCDIR)/core_wrap.cpp > junk; mv junk $(SRCDIR)/core_wrap.cpp
+core_wrap.cxx: core.i
+	$(SWIG) $(SWIGFLAGS) -o core_wrap.cxx core.i
+	$(SWIG) $(SWIGFLAGS) -MM core.i > core_wrap.d
+	$(SED) core_wrap.cxx > junk; mv junk $(SRCDIR)/core_wrap.cpp
 
-$(SRCDIR)/dc_wrap.cpp: dcmodule.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/dc_wrap.cpp dcmodule.i
-	$(SED) $(SRCDIR)/dc_wrap.cpp > junk; mv junk $(SRCDIR)/dc_wrap.cpp
+dc_wrap.cxx: dcmodule.i
+	$(SWIG) $(SWIGFLAGS) -o dc_wrap.cxx dcmodule.i
+	$(SWIG) $(SWIGFLAGS) -MM dcmodule.i > dcmodule_wrap.d
+	$(SED) dc_wrap.cxx > junk; mv junk $(SRCDIR)/dc_wrap.cpp
 
-$(SRCDIR)/dialogs_wrap.cpp: dialogs.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/dialogs_wrap.cpp dialogs.i
-	$(SED) $(SRCDIR)/dialogs_wrap.cpp > junk; mv junk $(SRCDIR)/dialogs_wrap.cpp
+dialogs_wrap.cxx: dialogs.i
+	$(SWIG) $(SWIGFLAGS) -o dialogs_wrap.cxx dialogs.i
+	$(SWIG) $(SWIGFLAGS) -MM dialogs.i > dialogs_wrap.d
+	$(SED) dialogs_wrap.cxx > junk; mv junk $(SRCDIR)/dialogs_wrap.cpp
 
-$(SRCDIR)/frames_wrap.cpp: framesmodule.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/frames_wrap.cpp framesmodule.i
-	$(SED) $(SRCDIR)/frames_wrap.cpp > junk; mv junk $(SRCDIR)/frames_wrap.cpp
+frames_wrap.cxx: framesmodule.i
+	$(SWIG) $(SWIGFLAGS) -o frames_wrap.cxx framesmodule.i
+	$(SWIG) $(SWIGFLAGS) -MM framesmodule.i > framesmodule_wrap.d
+	$(SED) frames_wrap.cxx > junk; mv junk $(SRCDIR)/frames_wrap.cpp
 
-$(SRCDIR)/iconlist_wrap.cpp: iconlistmodule.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/iconlist_wrap.cpp iconlistmodule.i
-	$(SED) $(SRCDIR)/iconlist_wrap.cpp > junk; mv junk $(SRCDIR)/iconlist_wrap.cpp
+iconlist_wrap.cxx: iconlistmodule.i
+	$(SWIG) $(SWIGFLAGS) -o iconlist_wrap.cxx iconlistmodule.i
+	$(SWIG) $(SWIGFLAGS) -MM iconlistmodule.i > iconlistmodule_wrap.d
+	$(SED) iconlist_wrap.cxx > junk; mv junk $(SRCDIR)/iconlist_wrap.cpp
 
-$(SRCDIR)/icons_wrap.cpp: icons.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/icons_wrap.cpp icons.i
-	$(SED) $(SRCDIR)/icons_wrap.cpp > junk; mv junk $(SRCDIR)/icons_wrap.cpp
+icons_wrap.cxx: icons.i
+	$(SWIG) $(SWIGFLAGS) -o icons_wrap.cxx icons.i
+	$(SWIG) $(SWIGFLAGS) -MM icons.i > icons_wrap.d
+	$(SED) icons_wrap.cxx > junk; mv junk $(SRCDIR)/icons_wrap.cpp
 
-$(SRCDIR)/image_wrap.cpp: image.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/image_wrap.cpp image.i
-	$(SED) $(SRCDIR)/image_wrap.cpp > junk; mv junk $(SRCDIR)/image_wrap.cpp
+image_wrap.cxx: image.i
+	$(SWIG) $(SWIGFLAGS) -o image_wrap.cxx image.i
+	$(SWIG) $(SWIGFLAGS) -MM image.i > image_wrap.d
+	$(SED) image_wrap.cxx > junk; mv junk $(SRCDIR)/image_wrap.cpp
 
-$(SRCDIR)/label_wrap.cpp: labelmodule.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/label_wrap.cpp labelmodule.i
-	$(SED) $(SRCDIR)/label_wrap.cpp > junk; mv junk $(SRCDIR)/label_wrap.cpp
+label_wrap.cxx: labelmodule.i
+	$(SWIG) $(SWIGFLAGS) -o label_wrap.cxx labelmodule.i
+	$(SWIG) $(SWIGFLAGS) -MM labelmodule.i > labelmodule_wrap.d
+	$(SED) label_wrap.cxx > junk; mv junk $(SRCDIR)/label_wrap.cpp
 
-$(SRCDIR)/layout_wrap.cpp: layout.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/layout_wrap.cpp layout.i
-	$(SED) $(SRCDIR)/layout_wrap.cpp > junk; mv junk $(SRCDIR)/layout_wrap.cpp
+layout_wrap.cxx: layout.i
+	$(SWIG) $(SWIGFLAGS) -o layout_wrap.cxx layout.i
+	$(SWIG) $(SWIGFLAGS) -MM layout.i > layout_wrap.d
+	$(SED) layout_wrap.cxx > junk; mv junk $(SRCDIR)/layout_wrap.cpp
 
-$(SRCDIR)/list_wrap.cpp: listmodule.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/list_wrap.cpp listmodule.i
-	$(SED) $(SRCDIR)/list_wrap.cpp > junk; mv junk $(SRCDIR)/list_wrap.cpp
+list_wrap.cxx: listmodule.i
+	$(SWIG) $(SWIGFLAGS) -o list_wrap.cxx listmodule.i
+	$(SWIG) $(SWIGFLAGS) -MM listmodule.i > listmodule_wrap.d
+	$(SED) list_wrap.cxx > junk; mv junk $(SRCDIR)/list_wrap.cpp
 
-$(SRCDIR)/mdi_wrap.cpp: mdi.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/mdi_wrap.cpp mdi.i
-	$(SED) $(SRCDIR)/mdi_wrap.cpp > junk; mv junk $(SRCDIR)/mdi_wrap.cpp
+mdi_wrap.cxx: mdi.i
+	$(SWIG) $(SWIGFLAGS) -o mdi_wrap.cxx mdi.i
+	$(SWIG) $(SWIGFLAGS) -MM mdi.i > mdi_wrap.d
+	$(SED) mdi_wrap.cxx > junk; mv junk $(SRCDIR)/mdi_wrap.cpp
 
-$(SRCDIR)/menu_wrap.cpp: menumodule.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/menu_wrap.cpp menumodule.i
-	$(SED) $(SRCDIR)/menu_wrap.cpp > junk; mv junk $(SRCDIR)/menu_wrap.cpp
+menu_wrap.cxx: menumodule.i
+	$(SWIG) $(SWIGFLAGS) -o menu_wrap.cxx menumodule.i
+	$(SWIG) $(SWIGFLAGS) -MM menumodule.i > menumodule_wrap.d
+	$(SED) menu_wrap.cxx > junk; mv junk $(SRCDIR)/menu_wrap.cpp
 
-$(SRCDIR)/fx3d_wrap.cpp: fx3d.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/fx3d_wrap.cpp fx3d.i
-	$(SED) $(SRCDIR)/fx3d_wrap.cpp > junk; mv junk $(SRCDIR)/fx3d_wrap.cpp
+fx3d_wrap.cxx: fx3d.i
+	$(SWIG) $(SWIGFLAGS) -o fx3d_wrap.cxx fx3d.i
+	$(SWIG) $(SWIGFLAGS) -MM fx3d.i > fx3d_wrap.d
+	$(SED) fx3d_wrap.cxx > junk; mv junk $(SRCDIR)/fx3d_wrap.cpp
 
-$(SRCDIR)/scintilla_wrap.cpp: scintilla.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/scintilla_wrap.cpp scintilla.i
-	$(SED) $(SRCDIR)/scintilla_wrap.cpp > junk; mv junk $(SRCDIR)/scintilla_wrap.cpp
+scintilla_wrap.cxx: scintilla.i
+	$(SWIG) $(SWIGFLAGS) -o scintilla_wrap.cxx scintilla.i
+	$(SWIG) $(SWIGFLAGS) -MM scintilla.i > scintilla_wrap.d
+	$(SED) scintilla_wrap.cxx > junk; mv junk $(SRCDIR)/scintilla_wrap.cpp
 
-$(SRCDIR)/table_wrap.cpp: table-module.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/table_wrap.cpp table-module.i
-	$(SED) $(SRCDIR)/table_wrap.cpp > junk; mv junk $(SRCDIR)/table_wrap.cpp
+table_wrap.cxx: table-module.i
+	$(SWIG) $(SWIGFLAGS) -o table_wrap.cxx table-module.i
+	$(SWIG) $(SWIGFLAGS) -MM table-module.i > table-module_wrap.d
+	$(SED) table_wrap.cxx > junk; mv junk $(SRCDIR)/table_wrap.cpp
 
-$(SRCDIR)/text_wrap.cpp: text-module.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/text_wrap.cpp text-module.i
-	$(SED) $(SRCDIR)/text_wrap.cpp > junk; mv junk $(SRCDIR)/text_wrap.cpp
+text_wrap.cxx: text-module.i
+	$(SWIG) $(SWIGFLAGS) -o text_wrap.cxx text-module.i
+	$(SWIG) $(SWIGFLAGS) -MM text-module.i > text-module_wrap.d
+	$(SED) text_wrap.cxx > junk; mv junk $(SRCDIR)/text_wrap.cpp
 
-$(SRCDIR)/treelist_wrap.cpp: treelist-module.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/treelist_wrap.cpp treelist-module.i
-	$(SED) $(SRCDIR)/treelist_wrap.cpp > junk; mv junk $(SRCDIR)/treelist_wrap.cpp
+treelist_wrap.cxx: treelist-module.i
+	$(SWIG) $(SWIGFLAGS) -o treelist_wrap.cxx treelist-module.i
+	$(SWIG) $(SWIGFLAGS) -MM treelist-module.i > treelist-module_wrap.d
+	$(SED) treelist_wrap.cxx > junk; mv junk $(SRCDIR)/treelist_wrap.cpp
 
-$(SRCDIR)/ui_wrap.cpp: ui.i
-	$(SWIG) $(SWIGFLAGS) -o $(SRCDIR)/ui_wrap.cpp ui.i
-	$(SED) $(SRCDIR)/ui_wrap.cpp > junk; mv junk $(SRCDIR)/ui_wrap.cpp
+ui_wrap.cxx: ui.i
+	$(SWIG) $(SWIGFLAGS) -o ui_wrap.cxx ui.i
+	$(SWIG) $(SWIGFLAGS) -MM ui.i > ui_wrap.d
+	$(SED) ui_wrap.cxx > junk; mv junk $(SRCDIR)/ui_wrap.cpp
 
-$(SRCDIR)/librb.c: $(SWIGLIB)/ruby/precommon.swg $(SWIGLIB)/common.swg $(SWIGLIB)/ruby/rubyhead.swg $(SWIGLIB)/ruby/rubydef.swg
-	@echo "#define SWIG_GLOBAL 1" > $(SRCDIR)/librb.c
-	@cat $(SWIGLIB)/ruby/precommon.swg $(SWIGLIB)/common.swg $(SWIGLIB)/ruby/rubyhead.swg $(SWIGLIB)/ruby/rubydef.swg >> $(SRCDIR)/librb.c
+$(SRCDIR)/include/swigrubyrun.h:
+	$(SWIG) -ruby -external-runtime $(SRCDIR)/include/swigrubyrun.h
 
 clean:
-	@rm -f $(SRCDIR)/librb.c $(MODULES)
+	@rm -f $(SRCDIR)/include/swigrubyrun.h $(MODULES) *.d
 
-depend:
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/core_wrap.cpp core.i > dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/dc_wrap.cpp dcmodule.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/dialogs_wrap.cpp dialogs.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/frames_wrap.cpp framesmodule.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/iconlist_wrap.cpp iconlistmodule.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/icons_wrap.cpp icons.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/image_wrap.cpp image.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/label_wrap.cpp labelmodule.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/layout_wrap.cpp layout.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/list_wrap.cpp listmodule.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/mdi_wrap.cpp mdi.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/menu_wrap.cpp menumodule.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/fx3d_wrap.cpp fx3d.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/scintilla_wrap.cpp scintilla.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/table_wrap.cpp table-module.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/text_wrap.cpp text-module.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/treelist_wrap.cpp treelist-module.i >> dependencies
-	$(SWIG) $(SWIGFLAGS) -MM -o $(SRCDIR)/ui_wrap.cpp ui.i >> dependencies
-
-include dependencies
+-include $(MODULES:.cxx=.d)

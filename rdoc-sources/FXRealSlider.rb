@@ -58,6 +58,9 @@ module Fox
     # Slider auto-increment (or decrement) value [Float]
     attr_accessor :increment
     
+    # Granularity [Float]
+    attr_accessor :granularity
+    
     # Delta between ticks [Float]
     attr_accessor :tickDelta
     

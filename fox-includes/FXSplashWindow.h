@@ -3,23 +3,22 @@
 *                            S p l a s h    W i n d o w                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2004,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2004,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXSplashWindow.h 2135 2005-08-14 00:32:54Z lyle $                     *
+* $Id: FXSplashWindow.h 2765 2007-11-19 18:11:18Z lyle $                    *
 ********************************************************************************/
 #ifndef FXSPLASHWINDOW_H
 #define FXSPLASHWINDOW_H
@@ -50,7 +49,7 @@ class FXAPI FXSplashWindow : public FXTopWindow {
   FXDECLARE(FXSplashWindow)
 protected:
   FXIcon *icon;         // Really big icon
-  FXuint  delay;        // Delay before hiding
+  FXTime  delay;        // Delay before hiding
 protected:
   FXSplashWindow();
 private:
@@ -60,11 +59,21 @@ public:
   long onPaint(FXObject*,FXSelector,void*);
 public:
 
-  /// Construct splash window
-  FXSplashWindow(FXApp* ap,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+  /**
+  * Construct splash window; the window will be automatically hidden (or deleted
+  * if SPLASH_DESTROY is passed) after a given delay, specified in nanoseconds).
+  * The splash window is free floating.  Use this constructor when the splash window
+  * is to be displayed before the main window appears.
+  */
+  FXSplashWindow(FXApp* ap,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXTime ns=2000000000);
 
-  /// Construct splash window
-  FXSplashWindow(FXWindow* ow,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+  /**
+  * Construct splash window; the window will be automatically hidden (or deleted
+  * if SPLASH_DESTROY is passed) after a given delay, specified in nanoseconds).
+  * The splash window stays on top of its owner window, which must already have been
+  * created previously.
+  */
+  FXSplashWindow(FXWindow* ow,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXTime ns=2000000000);
 
   /// Create
   virtual void create();
@@ -93,11 +102,11 @@ public:
   /// Get the icon for this splash window
   FXIcon* getIcon() const { return icon; }
 
-  /// Set or change delay
-  void setDelay(FXuint ms);
+  /// Set or change delay in nanoseconds
+  void setDelay(FXTime ns);
 
   /// Return delay
-  FXuint getDelay() const { return delay; }
+  FXTime getDelay() const { return delay; }
 
   /// Save label to a stream
   virtual void save(FXStream& store) const;

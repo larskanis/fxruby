@@ -68,6 +68,9 @@ module Fox
     # Text [String]
     attr_accessor	:text
 
+    # Selected text [String]
+    attr_accessor	:selectedText
+
     # Text font [FXFont]
     attr_accessor	:font
 
@@ -118,14 +121,35 @@ module Fox
     def initialize(p, ncols, target=nil, selector=0, opts=TEXTFIELD_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theTextField
     end
   
-    # Return +true+ if text field may be edited
-    def editable?() ; end
-  
-    # Set overstrike mode to +true+ or +false+.
-    def overstrike=(os); end
-    
-    # Return +true+ if overstrike mode is set.
-    def overstrike?; end
+    #
+    # Set the text for this field to _text_.
+    # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the text field's target after the text is changed.
+    #
+    def setText(text, notify=false); end
+
+    #
+    # Replace range of bytes with text.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is replaced.
+    #
+    def replaceText(pos, m, text, notify=false); end
+
+    #
+    # Append _text_ to the end of the text buffer.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is appended.
+    #
+    def appendText(text, notify=false); end
+
+    #
+    # Insert _text_ at position _pos_.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is inserted.
+    #
+    def insertText(pos, text, notify=false); end
+
+    #
+    # Remove _m_ characters starting at position _pos_.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is removed.
+    #
+    def removeText(pos, m, notify=false); end
 
     # Select all text
     def selectAll(); end
@@ -136,6 +160,49 @@ module Fox
     # Extend the selection from the anchor to the given position _pos_.
     def extendSelection(pos) ; end
   
+    #
+    # Copy the primary selection to the clipboard, using the stringType, textType, utf8Type and utf16Type drag types.
+    # Returns +false+ if there is no text selected, or if the text field can't acquire the clipboard; otherwise
+    # returns +true+.
+    #
+    def copySelection(); end
+
+    #
+    # Copy the selected text to the clipboard and then delete it.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is removed.
+    # Returns +false+ if there is no text selected, or if the text field can't acquire the clipboard; otherwise
+    # returns +true+.
+    #
+    def cutSelection(notify=false); end
+
+    #
+    # Delete the selected text (without first copying it to the clipboard).
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is removed.
+    # Returns +false+ if there is no text selected, otherwise returns +true+.
+    #
+    def deleteSelection(notify=false); end
+
+    #
+    # Replace the currently selected text with _text_.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is replaced.
+    # Returns +false+ if there is no text selected, otherwise returns +true+.
+    #
+    def replaceSelection(text, notify=false); end
+
+    #
+    # Paste the selected text (the primary selection) into the text field.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is replaced.
+    # Returns +false+ if we can't get the primary selection in a suitable text format, otherwise returns +true+.
+    #
+    def pasteSelection(notify=false); end
+
+    #
+    # Paste the clipboard contents into the text field.
+    # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text field's target after the text is replaced.
+    # Returns +false+ if we can't get the clipboard contents in a suitable text format, otherwise returns +true+.
+    #
+    def pasteClipboard(notify=false); end
+
     # Unselect the text
     def killSelection() ; end
   
@@ -147,5 +214,14 @@ module Fox
   
     # Scroll text to make the given position _pos_ visible.
     def makePositionVisible(pos) ; end
+
+    # Return +true+ if text field may be edited
+    def editable?() ; end
+  
+    # Set overstrike mode to +true+ or +false+.
+    def overstrike=(os); end
+    
+    # Return +true+ if overstrike mode is set.
+    def overstrike?; end
   end
 end

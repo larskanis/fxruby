@@ -3,23 +3,22 @@
 *                        B M P   I c o n   O b j e c t                          *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXBMPIcon.h 2342 2006-02-10 14:24:44Z lyle $                         *
+* $Id: FXBMPIcon.h 2725 2007-11-16 16:57:54Z lyle $                         *
 ********************************************************************************/
 #ifndef FXBMPICON_H
 #define FXBMPICON_H
@@ -55,10 +54,10 @@ public:
   FXBMPIcon(FXApp* a,const void *pix=NULL,FXColor clr=FXRGB(192,192,192),FXuint opts=0,FXint w=1,FXint h=1);
 
   /// Save pixels into stream in Microsoft bitmap format
-  virtual bool savePixels(FXStream& store) const;
+  virtual FXbool savePixels(FXStream& store) const;
 
   /// Load pixels from stream in Microsoft bitmap format
-  virtual bool loadPixels(FXStream& store);
+  virtual FXbool loadPixels(FXStream& store);
 
   /// Destroy icon
   virtual ~FXBMPIcon();
@@ -66,9 +65,9 @@ public:
 
 
 /**
-* Check if stream contains a bitmap, return TRUE if so.
+* Check if stream contains a bitmap, return true if so.
 */
-extern FXAPI bool fxcheckBMP(FXStream& store);
+extern FXAPI FXbool fxcheckBMP(FXStream& store);
 
 
 /**
@@ -76,13 +75,13 @@ extern FXAPI bool fxcheckBMP(FXStream& store);
 * Upon successful return, the pixel array and size are returned.
 * If an error occurred, the pixel array is set to NULL.
 */
-extern FXAPI bool fxloadBMP(FXStream& store,FXColor*& data,FXint& width,FXint& height);
+extern FXAPI FXbool fxloadBMP(FXStream& store,FXColor*& data,FXint& width,FXint& height);
 
 
 /**
 * Save an BMP (Microsoft Bitmap) file to a stream.
 */
-extern FXAPI bool fxsaveBMP(FXStream& store,const FXColor *data,FXint width,FXint height);
+extern FXAPI FXbool fxsaveBMP(FXStream& store,const FXColor *data,FXint width,FXint height);
 
 }
 

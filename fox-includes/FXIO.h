@@ -3,23 +3,22 @@
 *                        I / O   D e v i c e   C l a s s                        *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2005,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2005,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXIO.h 2344 2006-02-12 21:19:36Z lyle $                               *
+* $Id: FXIO.h 2867 2008-05-29 21:50:28Z lyle $                              *
 ********************************************************************************/
 #ifndef FXIO_H
 #define FXIO_H
@@ -47,23 +46,29 @@ public:
   enum {
 
     /// Permissions
-    OtherRead      = 0x00004,   /// Others have read permission
-    OtherWrite     = 0x00002,   /// Others have write permisson
-    OtherExec      = 0x00001,   /// Others have execute permission
-    OtherReadWrite = 0x00006,   /// Others have read and write permission
-    OtherFull      = 0x00007,   /// Others have full access
+    OtherRead      = 0x00004,                   /// Others have read permission
+    OtherWrite     = 0x00002,                   /// Others have write permisson
+    OtherExec      = 0x00001,                   /// Others have execute permission
+    OtherReadWrite = OtherRead|OtherWrite,      /// Others have read and write permission
+    OtherFull      = OtherReadWrite|OtherExec,  /// Others have full access
 
-    GroupRead      = 0x00020,   /// Group has read permission
-    GroupWrite     = 0x00010,   /// Group has write permission
-    GroupExec      = 0x00008,   /// Group has execute permission
-    GroupReadWrite = 0x00030,   /// Group has read and write permission
-    GroupFull      = 0x00038,   /// Group has full access
+    GroupRead      = 0x00020,                   /// Group has read permission
+    GroupWrite     = 0x00010,                   /// Group has write permission
+    GroupExec      = 0x00008,                   /// Group has execute permission
+    GroupReadWrite = GroupRead|GroupWrite,      /// Group has read and write permission
+    GroupFull      = GroupReadWrite|GroupExec,  /// Group has full access
 
-    OwnerRead      = 0x00100,   /// Owner has read permission
-    OwnerWrite     = 0x00080,   /// Owner has write permission
-    OwnerExec      = 0x00040,   /// Owner has execute permission
-    OwnerReadWrite = 0x00180,   /// Owner has read and write permission
-    OwnerFull      = 0x001C0,   /// Owner has full access
+    OwnerRead      = 0x00100,                   /// Owner has read permission
+    OwnerWrite     = 0x00080,                   /// Owner has write permission
+    OwnerExec      = 0x00040,                   /// Owner has execute permission
+    OwnerReadWrite = OwnerRead|OwnerWrite,      /// Owner has read and write permission
+    OwnerFull      = OwnerReadWrite|OwnerExec,  /// Owner has full access
+
+    AllRead        = OtherRead|GroupRead|OwnerRead,     /// Read permission for all
+    AllWrite       = OtherWrite|GroupWrite|OwnerWrite,  /// Write permisson for all
+    AllExec        = OtherExec|GroupExec|OwnerExec,     /// Execute permission for all
+    AllReadWrite   = AllRead|AllWrite,                  /// Read and write permission for all
+    AllFull        = AllReadWrite|AllExec,              /// Full access for all
 
     /// Other flags
     Hidden         = 0x00200,   /// Hidden file
@@ -87,19 +92,22 @@ public:
   enum {
 
     /// Basic access options
-    NoAccess    =  0,                           /// No access
-    ReadOnly    =  1,                           /// Open for reading
-    WriteOnly   =  2,                           /// Open for writing
-    ReadWrite   =  3,                           /// Open for read and write
-    Append      =  4,                           /// Open for append
-    Truncate    =  8,                           /// Truncate to zero when writing
-    Create      = 16,                           /// Create if it doesn't exist
-    Exclusive   = 32,                           /// Fail if trying to create a file which already exists
-    NonBlocking = 64,                           /// Non-blocking i/o
+    NoAccess     = 0,                    /// No access
+    ReadOnly     = 1,                    /// Open for reading
+    WriteOnly    = 2,                    /// Open for writing
+    ReadWrite    = ReadOnly|WriteOnly,   /// Open for both read and write
+    Append       = 4,                    /// Open for append
+    Truncate     = 8,                    /// Truncate to zero when writing
+    Create       = 16,                   /// Create if it doesn't exist
+    Exclusive    = 32,                   /// Fail if trying to create a file which already exists
+    NonBlocking  = 64,                   /// Non-blocking i/o
+    Executable   = 128,                  /// Executable (memory map)
+    OwnHandle    = 256,                  /// File handle is ours
+    NoAccessTime = 512,                  /// Don't change access time of file
 
     /// Convenience access options
-    Reading     = ReadOnly,                     /// Normal options for reading
-    Writing     = ReadWrite|Create|Truncate     /// Normal options for writing
+    Reading      = ReadOnly,                    /// Normal options for reading
+    Writing      = ReadWrite|Create|Truncate    /// Normal options for writing
     };
 
   /// Positioning modes
@@ -114,11 +122,14 @@ public:
   /// Construct
   FXIO();
 
-  /// Open device with access mode and handle
-  virtual bool open(FXInputHandle handle,FXuint mode);
+  /// Open device with access mode m and handle h
+  virtual FXbool open(FXInputHandle h,FXuint m);
 
-  /// Return true if open
-  virtual bool isOpen() const;
+  /// Is readable
+  FXbool isReadable() const;
+
+  /// Is writable
+  FXbool isWritable() const;
 
   /// Return access mode
   FXuint mode() const { return access; }
@@ -126,10 +137,16 @@ public:
   /// Return handle
   FXInputHandle handle() const { return device; }
 
-  /// Attach existing device handle
-  virtual void attach(FXInputHandle handle,FXuint mode);
+  /// Return true if open
+  virtual FXbool isOpen() const;
 
-  /// Detach device handle
+  /// Return true if serial access only
+  virtual FXbool isSerial() const;
+
+  /// Attach existing device handle, taking ownership of the handle
+  virtual void attach(FXInputHandle h,FXuint m);
+
+  /// Detach device handle, disowning the handle
   virtual void detach();
 
   /// Get current file position
@@ -148,16 +165,16 @@ public:
   virtual FXlong truncate(FXlong size);
 
   /// Flush to disk
-  virtual bool flush();
+  virtual FXbool flush();
 
   /// Test if we're at the end
-  virtual bool eof();
+  virtual FXbool eof();
 
   /// Return size of i/o device
   virtual FXlong size();
 
   /// Close handle
-  virtual bool close();
+  virtual FXbool close();
 
   /// Destroy and close
   virtual ~FXIO();

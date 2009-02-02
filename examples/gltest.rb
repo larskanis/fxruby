@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'fox16'
-require 'fox16/kwargs'
 begin
   require 'opengl'
 rescue LoadError
@@ -21,26 +20,6 @@ class GLTestWindow < FXMainWindow
 
   # How often our timer will fire (in milliseconds)
   TIMER_INTERVAL = 100
-
-  # Rotate the boxes when a timer message is received
-  def onTimeout(sender, sel, ptr)
-    @angle += 2.0
-    if @angle > 360.0
-      @angle -= 360.0
-    end
-    drawScene()
-    @timer = getApp().addTimeout(TIMER_INTERVAL, method(:onTimeout))
-  end
-
-  # Rotate the boxes when a chore message is received
-  def onChore(sender, sel, ptr)
-    @angle += 2.0
-    if @angle > 360.0
-      @angle -= 360.0
-    end
-    drawScene()
-    @chore = getApp().addChore(method(:onChore))
-  end
 
   # Draws a simple box using the given corners
   def drawBox(xmin, ymin, zmin, xmax, ymax, zmax)
@@ -251,7 +230,13 @@ class GLTestWindow < FXMainWindow
     spinTimerBtn.padTop, spinTimerBtn.padBottom = 5, 5
     spinTimerBtn.connect(SEL_COMMAND) do
       @spinning = true
-      @timer = getApp().addTimeout(TIMER_INTERVAL, method(:onTimeout))
+      @timer = getApp().addTimeout(TIMER_INTERVAL, :repeat => true) do
+        @angle += 2.0
+        if @angle > 360.0
+          @angle -= 360.0
+        end
+        drawScene()
+      end
     end
     spinTimerBtn.connect(SEL_UPDATE) do |sender, sel, ptr|
       @spinning ? sender.disable : sender.enable
@@ -266,7 +251,13 @@ class GLTestWindow < FXMainWindow
     spinChoreBtn.padTop, spinChoreBtn.padBottom = 5, 5
     spinChoreBtn.connect(SEL_COMMAND) do
       @spinning = true
-      @chore = getApp().addChore(method(:onChore))
+      @chore = getApp().addChore(:repeat => true) do
+        @angle += 2.0
+        if @angle > 360.0
+          @angle -= 360.0
+        end
+        drawScene()
+      end
     end
     spinChoreBtn.connect(SEL_UPDATE) do |sender, sel, ptr|
       @spinning ? sender.disable : sender.enable

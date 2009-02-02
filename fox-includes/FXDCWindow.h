@@ -3,23 +3,22 @@
 *  D e v i c e   C o n t e x t   F o r   W i n d o w s   a n d   I m a g e s    *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1999,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1999,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXDCWindow.h 2194 2005-08-24 12:58:14Z lyle $                        *
+* $Id: FXDCWindow.h 2867 2008-05-29 21:50:28Z lyle $                        *
 ********************************************************************************/
 #ifndef FXDCWINDOW_H
 #define FXDCWINDOW_H
@@ -37,7 +36,6 @@ class FXImage;
 class FXBitmap;
 class FXIcon;
 class FXFont;
-class FXVisual;
 
 
 /**
@@ -53,23 +51,20 @@ class FXAPI FXDCWindow : public FXDC {
   friend class FXFont;
 protected:
   FXDrawable *surface;        // Drawable surface
-  FXVisual   *visual;         // Visual of drawable
   FXRectangle rect;           // Paint rectangle inside drawable
-#ifndef WIN32
-  FXuint      flags;          // GC Flags
   FXPixel     devfg;          // Device foreground pixel value
   FXPixel     devbg;          // Device background pixel value
-  void       *xftDraw;        // Hook used only for XFT support
-#else
+#ifdef WIN32
   FXID        oldpalette;
   FXID        oldbrush;
   FXID        oldpen;
-  FXPixel     devfg;          // Device foreground pixel value
-  FXPixel     devbg;          // Device background pixel value
   FXbool      needsNewBrush;
   FXbool      needsNewPen;
   FXbool      needsPath;
   FXbool      needsClipReset;
+#else
+  void       *xftDraw;
+  FXuint      flags;
 #endif
 private:
 #ifdef WIN32
@@ -84,14 +79,17 @@ public:
 
   /// Construct for painting in response to expose;
   /// This sets the clip rectangle to the exposed rectangle
-  FXDCWindow(FXDrawable* drawable,FXEvent* event);
+  FXDCWindow(FXDrawable* draw,FXEvent* event);
 
   /// Construct for normal drawing;
   /// This sets clip rectangle to the whole drawable
-  FXDCWindow(FXDrawable* drawable);
+  FXDCWindow(FXDrawable* draw);
+
+  /// Return active drawable
+  FXDrawable *drawable() const { return surface; }
 
   /// Begin locks in a drawable surface
-  void begin(FXDrawable *drawable);
+  void begin(FXDrawable *draw);
 
   /// End unlock the drawable surface
   void end();
@@ -161,7 +159,7 @@ public:
   /// Draw area from source
   virtual void drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy);
 
-  /// Draw area stretched area from source 
+  /// Draw area stretched area from source
   virtual void drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy,FXint dw,FXint dh);
 
   /// Draw image

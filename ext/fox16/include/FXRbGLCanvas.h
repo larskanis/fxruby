@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbGLCanvas.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbGLCanvas.h 2873 2008-05-30 21:38:58Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBGLCANVAS_H
@@ -68,17 +68,22 @@ protected:
 #include "FXRbGLCanvasVirtuals.h"
 public:
   /**
-  * Construct an OpenGL-capable canvas, with its own private display list.
+  * Construct a GL canvas with its private context and private display lists.
   */
-  FXRbGLCanvas(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) : FXGLCanvas(p,vis,tgt,sel,opts,x,y,w,h){}
+  FXRbGLCanvas(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) :
+		FXGLCanvas(p,vis,tgt,sel,opts,x,y,w,h){}
 
   /**
-  * Construct an OpenGL-capable canvas, sharing display
-  * list with another GL canvas.  This canvas becomes a member
-  * of a display list share group.  All members of the display
-  * list share group have to have the same visual.
+  * Construct a GL canvas with its private context but shared display lists.
   */
-  FXRbGLCanvas(FXComposite* p,FXGLVisual *vis,FXGLCanvas* sharegroup,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) : FXGLCanvas(p,vis,sharegroup,tgt,sel,opts,x,y,w,h){}
+  FXRbGLCanvas(FXComposite* p,FXGLVisual *vis,FXGLCanvas* sharegroup,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) :
+		FXGLCanvas(p,vis,sharegroup,tgt,sel,opts,x,y,w,h){}
+
+	/**
+	* Construct a GL canvas with a shared context.
+	*/
+	FXRbGLCanvas(FXComposite* p,FXGLContext* ctx,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) :
+	  FXGLCanvas(p,ctx,tgt,sel,opts,x,y,w,h){}
 
   // Mark dependencies for the GC
   static void markfunc(FXGLCanvas* self);

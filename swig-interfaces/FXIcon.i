@@ -20,6 +20,8 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
+%rename("thresholdValue=")      FXIcon::setThresholdValue(FXshort);
+%rename("thresholdValue")       FXIcon::getThresholdValue() const;
 
 /// Icon class 
 class FXIcon : public FXImage {
@@ -27,8 +29,9 @@ protected:
   FXID     shape;             // Shape pixmap
   FXID     etch;              // Etch pixmap
   FXColor  transp;            // Transparency color
+  FXshort  thresh;            // Treshold for etch mask 
 protected:
-  FXIcon(){}
+  FXIcon();
   FXColor guesstransp(); 
 public:
   %extend {
@@ -41,12 +44,18 @@ public:
       }
     }
 
-  /// Obtain transparency color
+  /// Get transparency color
   FXColor getTransparentColor() const;
   
   /// Change transparency color
   void setTransparentColor(FXColor color);
  
+  /// Get threshold value
+  FXshort getThresholdValue() const;
+  
+  /// Change threshold value
+  void setThresholdValue(FXshort value);
+  
   /// Destructor
   virtual ~FXIcon();
   };

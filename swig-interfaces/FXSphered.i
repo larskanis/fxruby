@@ -68,19 +68,19 @@ public:
   FXdouble diameter() const;
 
   /// Test if empty
-  bool empty() const;
+  FXbool empty() const;
 
   /// Test if sphere contains point x,y,z
-  bool contains(FXdouble x,FXdouble y,FXdouble z) const;
+  FXbool contains(FXdouble x,FXdouble y,FXdouble z) const;
 
   /// Test if sphere contains point p
-  bool contains(const FXVec3d& p) const;
+  FXbool contains(const FXVec3d& p) const;
 
   /// Test if sphere properly contains another box
-  bool contains(const FXRanged& box) const;
+  FXbool contains(const FXRanged& box) const;
 
   /// Test if sphere properly contains another sphere
-  bool contains(const FXSphered& sphere) const;
+  FXbool contains(const FXSphered& sphere) const;
 
   /// Include point
   FXSphered& include(FXdouble x,FXdouble y,FXdouble z);
@@ -110,16 +110,16 @@ public:
   FXint intersect(const FXVec4d& plane) const;
 
   /// Intersect sphere with ray u-v
-  bool intersect(const FXVec3d& u,const FXVec3d& v) const;
+  FXbool intersect(const FXVec3d& u,const FXVec3d& v) const;
 
   %extend {
     /// Test if sphere overlaps with box
-    bool overlap(const FXRanged& other) const {
+    FXbool overlap(const FXRanged& other) const {
       return overlap(*self,other);
       }
 
     /// Test if spheres overlap
-    bool overlap(const FXSphered& other) const {
+    FXbool overlap(const FXSphered& other) const {
       return overlap(*self,other);
       }
     }

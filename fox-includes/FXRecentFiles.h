@@ -3,23 +3,22 @@
 *                     R e c e n t   F i l e s   L i s t                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXRecentFiles.h 2272 2005-12-02 02:11:23Z lyle $                     *
+* $Id: FXRecentFiles.h 2759 2007-11-16 23:11:10Z lyle $                     *
 ********************************************************************************/
 #ifndef FXRECENTFILES_H
 #define FXRECENTFILES_H
@@ -44,6 +43,8 @@ class FXApp;
 * of the type const char*.
 * When adding or removing file names, the recent files object automatically
 * updates the system registry to record these changes.
+* The ID_ANYFILES may be connected to a menu separator to cause automatic
+* hiding of the menu separator when there are no recent files.
 */
 class FXAPI FXRecentFiles : public FXObject {
   FXDECLARE(FXRecentFiles)

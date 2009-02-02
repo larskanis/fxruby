@@ -41,58 +41,24 @@ enum {
 
 
 // Rename these methods
-%rename(setReadOnlyShown) FXFileSelector::showReadOnly(FXbool show);
-%rename(getReadOnlyShown) FXFileSelector::shownReadOnly() const;
-
-%rename(setAllowPatternEntry) FXFileSelector::allowPatternEntry(FXbool);
-%rename(getAllowPatternEntry) FXFileSelector::allowPatternEntry() const;
-
-%rename(getShowHiddenFiles) FXFileSelector::showHiddenFiles() const;
-%rename(setShowHiddenFiles) FXFileSelector::showHiddenFiles(FXbool showing);
-
-%rename(getShowImages) FXFileSelector::showImages() const;
-%rename(setShowImages) FXFileSelector::showImages(FXbool showing);
-
-%rename("numPatterns") FXFileSelector::getNumPatterns() const;
-
-%rename("navigationAllowed=") FXFileSelector::allowNavigation(FXbool navigable);
-%rename("navigationAllowed?") FXFileSelector::allowNavigation() const;
+%rename("associations=")		FXFileSelector::setAssociations(FXFileDict*,FXbool);
+%rename("associations")		    FXFileSelector::getAssociations() const;
+%rename("draggableFiles=")		FXFileSelector::setDraggableFiles(FXbool);
+%rename("draggableFiles?")		FXFileSelector::getDraggableFiles() const;
+%rename(setReadOnlyShown)		FXFileSelector::showReadOnly(FXbool show);
+%rename(getReadOnlyShown)		FXFileSelector::shownReadOnly() const;
+%rename(setAllowPatternEntry)	FXFileSelector::allowPatternEntry(FXbool);
+%rename(getAllowPatternEntry)   FXFileSelector::allowPatternEntry() const;
+%rename(getShowHiddenFiles)		FXFileSelector::showHiddenFiles() const;
+%rename(setShowHiddenFiles)		FXFileSelector::showHiddenFiles(FXbool showing);
+%rename(getShowImages)			FXFileSelector::showImages() const;
+%rename(setShowImages)			FXFileSelector::showImages(FXbool showing);
+%rename("navigationAllowed=")   FXFileSelector::allowNavigation(FXbool navigable);
+%rename("navigationAllowed?")   FXFileSelector::allowNavigation() const;
+%rename("numPatterns")			FXFileSelector::getNumPatterns() const;
 
 /// File selection widget
 class FXFileSelector : public FXPacker {
-protected:
-  FXFileList    *filebox;         // File list widget
-  FXTextField   *filename;        // File name entry field
-  FXComboBox    *filefilter;      // Combobox for pattern list
-  FXMenuPane    *bookmarkmenu;       // Menu for bookmarks
-  FXHorizontalFrame *navbuttons;        // Navigation buttons
-  FXHorizontalFrame *fileboxframe;      // Frame around file list
-  FXMatrix          *entryblock;        // Entry block
-  FXCheckButton *readonly;        // Open file as read only
-  FXDirBox      *dirbox;          // Directory hierarchy list
-  FXButton      *accept;          // Accept button
-  FXButton      *cancel;          // Cancel button
-  FXIcon        *updiricon;       // Up directory icon
-  FXIcon        *listicon;        // List mode icon
-  FXIcon        *detailicon;      // Detail mode icon
-  FXIcon        *iconsicon;       // Icon mode icon
-  FXIcon        *homeicon;        // Go home icon
-  FXIcon        *workicon;        // Go home icon
-  FXIcon        *shownicon;       // Files shown icon
-  FXIcon        *hiddenicon;      // Files hidden icon
-  FXIcon        *markicon;        // Book mark icon
-  FXIcon        *clearicon;       // Book clear icon
-  FXIcon            *newicon;           // New directory icon
-  FXIcon        *deleteicon;      // Delete file icon
-  FXIcon        *moveicon;        // Rename file icon
-  FXIcon        *copyicon;        // Copy file icon
-  FXIcon        *linkicon;        // Link file icon
-  FXRecentFiles      bookmarks;         // Bookmarked places
-  FXuint         selectmode;      // Select mode
-protected:
-  FXFileSelector(){}
-  FXString *getSelectedFiles() const;
-  FXString *getSelectedFilesOnly() const;
 public:
   long onCmdAccept(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdFilter(FXObject*,FXSelector,void* PTR_CSTRING);
@@ -108,10 +74,11 @@ public:
   long onCmdVisit(FXObject*,FXSelector,void* PTR_CSTRING);
   long onCmdNew(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdNew(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdMove(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdRename(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCopy(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdMove(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdLink(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdDelete(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdRemove(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdSelected(FXObject*,FXSelector,void* PTR_IGNORE);
   long onPopupMenu(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdImageSize(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -133,10 +100,11 @@ public:
     ID_BOOKMENU,
     ID_VISIT,
     ID_NEW,
-    ID_DELETE,
-    ID_MOVE,
+    ID_RENAME,
     ID_COPY,
+    ID_MOVE,
     ID_LINK,
+    ID_REMOVE,
     ID_LAST
     };
 public:
@@ -201,13 +169,13 @@ public:
     void setPatternList(VALUE ary) {
       FXString patterns;
       if(TYPE(ary)==T_STRING){
-        patterns=FXString(STR2CSTR(ary));
+        patterns=FXString(StringValuePtr(ary));
         }
       else if(TYPE(ary)==T_ARRAY){
-        for(long i=0; i<RARRAY(ary)->len; i++){
+        for(long i=0; i<RARRAY_LEN(ary); i++){
           VALUE obj=rb_ary_entry(ary,i);
           Check_Type(obj,T_STRING);
-          patterns+=FXString(STR2CSTR(obj))+FXString("\n");
+          patterns+=FXString(StringValuePtr(obj))+FXString("\n");
           }
         }
       else{
@@ -334,6 +302,18 @@ public:
   
   /// Is navigation allowed?
   FXbool allowNavigation() const;
+
+  /// Set draggable files
+  void setDraggableFiles(FXbool flag);
+
+  /// Are draggable files
+  FXbool getDraggableFiles() const;
+
+  /// Change file associations; delete old ones if owned
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
+
+  /// Return file associations
+  FXFileDict* getAssociations() const;
 
   /// Destructor
   virtual ~FXFileSelector();

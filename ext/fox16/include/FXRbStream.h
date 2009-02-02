@@ -21,32 +21,32 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbStream.h 2344 2006-02-12 21:19:36Z lyle $
+ * $Id: FXRbStream.h 2629 2007-04-02 02:04:08Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBSTREAM_H
 #define FXRBSTREAM_H
 
 #define DECLARE_FXSTREAM_STUBS(klass) \
-inline bool klass ## _close(klass* self){ \
+inline FXbool klass ## _close(klass* self){ \
   return self->klass::close(); \
   } \
-inline bool klass ## _flush(klass* self){ \
+inline FXbool klass ## _flush(klass* self){ \
   return self->klass::flush(); \
   } \
-inline bool klass ## _position(klass* self,FXlong p,FXWhence whence){ \
+inline FXbool klass ## _position(klass* self,FXlong p,FXWhence whence){ \
   return self->klass::position(p,whence); \
   }
 
 
 #define IMPLEMENT_FXSTREAM_STUBS(cls) \
-  bool cls::close(){ \
+  FXbool cls::close(){ \
     return FXRbCallBoolMethod(this,rb_intern("close")); \
     } \
-  bool cls::flush(){ \
+  FXbool cls::flush(){ \
     return FXRbCallBoolMethod(this,rb_intern("flush")); \
     } \
-  bool cls::position(FXlong p,FXWhence whence){ \
+  FXbool cls::position(FXlong p,FXWhence whence){ \
     return FXRbCallBoolMethod(this,rb_intern("setPosition"),p,whence); \
     }
 

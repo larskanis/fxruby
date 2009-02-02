@@ -21,18 +21,21 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbDockSite.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbDockSite.h 2642 2007-04-04 01:43:34Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBDOCKSITE_H
 #define FXRBDOCKSITE_H
 
 #define DECLARE_FXDOCKSITE_STUBS(klass) \
+	inline void klass ## _resizeToolBar(klass* self,FXDockBar* bar,FXint barx,FXint bary,FXint barw,FXint barh){ \
+	  self->klass::resizeToolBar(bar,barx,bary,barw,barh); \
+	  } \
   inline void klass ## _moveToolBar(klass* self,FXDockBar* bar,FXint barx,FXint bary){ \
     self->klass::moveToolBar(bar,barx,bary); \
     } \
-  inline void klass ## _dockToolBar(klass* self,FXDockBar* bar,FXWindow* before){ \
-    self->klass::dockToolBar(bar,before); \
+  inline void klass ## _dockToolBar(klass* self,FXDockBar* bar,FXWindow* other){ \
+    self->klass::dockToolBar(bar,other); \
     } \
   inline void klass ## _dockToolBar(klass* self,FXDockBar* bar,FXint barx,FXint bary){ \
     self->klass::dockToolBar(bar,barx,bary); \
@@ -42,11 +45,14 @@
     }
 
 #define IMPLEMENT_FXDOCKSITE_STUBS(cls) \
+  void cls::resizeToolBar(FXDockBar* bar,FXint barx,FXint bary,FXint barw,FXint barh){ \
+    FXRbCallVoidMethod(this,rb_intern("resizeToolBar"),bar,barx,bary,barw,barh); \
+    } \
   void cls::moveToolBar(FXDockBar* bar,FXint barx,FXint bary){ \
     FXRbCallVoidMethod(this,rb_intern("moveToolBar"),bar,barx,bary); \
     } \
-  void cls::dockToolBar(FXDockBar* bar,FXWindow* before){ \
-    FXRbCallVoidMethod(this,rb_intern("dockToolBar"),bar,before); \
+  void cls::dockToolBar(FXDockBar* bar,FXWindow* other){ \
+    FXRbCallVoidMethod(this,rb_intern("dockToolBar"),bar,other); \
     } \
   void cls::dockToolBar(FXDockBar* bar,FXint barx,FXint bary){ \
     FXRbCallVoidMethod(this,rb_intern("dockToolBar"),bar,barx,bary); \

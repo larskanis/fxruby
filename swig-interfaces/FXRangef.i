@@ -22,27 +22,24 @@
 
 %ignore FXRangef::operator=(const FXRangef& bounds);
 
-%rename("empty?") FXRangef::empty() const;
-%rename("overlaps?") FXRangef::overlaps(const FXRangef& box) const;
+%rename("empty?")       FXRangef::empty() const;
+%rename("overlaps?")    FXRangef::overlaps(const FXRangef& box) const;
 
-%rename("contains?") FXRangef::contains(FXfloat x,FXfloat y,FXfloat z) const;
-%rename("contains?") FXRangef::contains(const FXVec3f& p) const;
-%rename("contains?") FXRangef::contains(const FXRangef& bounds) const;
-%rename("contains?") FXRangef::contains(const FXSpheref& sphere) const;
+%rename("contains?")    FXRangef::contains(FXfloat x,FXfloat y,FXfloat z) const;
+%rename("contains?")    FXRangef::contains(const FXVec3f& p) const;
+%rename("contains?")    FXRangef::contains(const FXRangef& bounds) const;
+%rename("contains?")    FXRangef::contains(const FXSpheref& sphere) const;
 
-%rename("include!") FXRangef::include(FXfloat x,FXfloat y,FXfloat z);
-%rename("include!") FXRangef::include(const FXVec3f& v);
-%rename("include!") FXRangef::include(const FXRangef& box);
-%rename("include!") FXRangef::include(const FXSpheref& sphere);
+%rename("include!")     FXRangef::include(FXfloat x,FXfloat y,FXfloat z);
+%rename("include!")     FXRangef::include(const FXVec3f& v);
+%rename("include!")     FXRangef::include(const FXRangef& box);
+%rename("include!")     FXRangef::include(const FXSpheref& sphere);
 
-%rename("intersects?") FXRangef::intersect(const FXVec3f& u,const FXVec3f& v) const;
-%rename("union") FXRangef::onion(const FXRangef& other) const;
+%rename("intersects?")  FXRangef::intersect(const FXVec3f& u,const FXVec3f& v) const;
+%rename("union")        FXRangef::onion(const FXRangef& other) const;
 
 /// Range
 class FXRangef {
-public:
-  FXVec3f lower;
-  FXVec3f upper;
 public:
 
   // Default constructor
@@ -68,11 +65,20 @@ public:
         }
       return (*self)[i];
       }
+    
     void __setitem__(FXint i,FXVec3f& slice){
       if(i<0||1<i){
         rb_raise(rb_eIndexError,"index %d out of bounds",i);
         }
       (*self)[i]=slice;
+      }
+
+    FXVec3f upper() const {
+      return self->upper;
+      }
+
+    FXVec3f lower() const {
+      return self->lower;
       }
   }
 
@@ -104,19 +110,19 @@ public:
   FXVec3f center() const;
 
   // Test if empty
-  bool empty() const;
+  FXbool empty() const;
 
   // Test if box contains point x,y,z
-  bool contains(FXfloat x,FXfloat y,FXfloat z) const;
+  FXbool contains(FXfloat x,FXfloat y,FXfloat z) const;
 
   /// Test if box contains point p
-  bool contains(const FXVec3f& p) const;
+  FXbool contains(const FXVec3f& p) const;
 
   /// Test if box properly contains another box
-  bool contains(const FXRangef& bounds) const;
+  FXbool contains(const FXRangef& bounds) const;
 
   /// Test if box properly contains sphere
-  bool contains(const FXSpheref& sphere) const;
+  FXbool contains(const FXSpheref& sphere) const;
 
   // Include point 
   FXRangef& include(FXfloat x,FXfloat y,FXfloat z);
@@ -134,11 +140,11 @@ public:
   FXint intersect(const FXVec4f& plane) const;
 
   /// Intersect box with ray u-v
-  bool intersect(const FXVec3f& u,const FXVec3f& v);
+  FXbool intersect(const FXVec3f& u,const FXVec3f& v);
 
   %extend {
     // Test if this box overlaps with other
-    bool overlaps(const FXRangef& other) const {
+    FXbool overlaps(const FXRangef& other) const {
       return FX::overlap(*self,other);
       }
 
@@ -151,6 +157,8 @@ public:
       }
 
     /// Union of two boxes
+    // This is not a typo. We're calling it "onion" here to work around
+    // a bug in SWIG that thinks "union" is the C++ keyword union.
     FXRangef onion(const FXRangef& other) const {
       return FX::unite(*self,other);
       }

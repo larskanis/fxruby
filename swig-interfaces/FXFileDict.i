@@ -38,11 +38,6 @@ struct FXFileAssoc {
 
 /// File Association dictionary
 class FXFileDict : public FXDict {
-protected:
-  FXFileDict(){}
-  virtual void *createData(const void*);
-  virtual void deleteData(void*);
-
 public:
   %extend {
     /// Registry key used to find fallback executable icons
@@ -111,6 +106,9 @@ public:
   /// Find file association from registry
   FXFileAssoc* find(const FXchar* ext);
   
+  /// Return file association at position pos
+  FXFileAssoc* data(FXint pos) const;
+
   /// Destructor
   virtual ~FXFileDict();
   };

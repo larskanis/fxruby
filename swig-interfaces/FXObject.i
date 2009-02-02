@@ -65,9 +65,9 @@ public:
   const FXchar* getClassName() const;
 
   /// Check if object is member of metaclass
-  bool isMemberOf(const FXMetaClass* metaclass) const;
+  FXbool isMemberOf(const FXMetaClass* metaclass) const;
 
-  /// Try handle message safely
+  /// Try handle message safely, catching certain exceptions
   virtual long tryHandle(FXObject* sender,FXSelector sel,void* ptr);
 
   /// Virtual destructor

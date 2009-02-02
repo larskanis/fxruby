@@ -29,7 +29,7 @@ enum {
   };
 
 %rename("delay")  FXSplashWindow::getDelay() const;
-%rename("delay=") FXSplashWindow::setDelay(FXuint);
+%rename("delay=") FXSplashWindow::setDelay(FXTime);
 %rename("icon")   FXSplashWindow::getIcon() const;
 %rename("icon=")  FXSplashWindow::setIcon(FXIcon*);
 
@@ -42,7 +42,7 @@ enum {
 class FXSplashWindow : public FXTopWindow {
 protected:
   FXIcon *icon;         // Really big icon
-  FXuint  delay;        // Delay before hiding
+  FXTime  delay;        // Delay before hiding
 protected:
   FXSplashWindow();
 private:
@@ -52,11 +52,25 @@ public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
 
-  /// Construct splash window
-  FXSplashWindow(FXApp* ap,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+  /**
+   * Construct splash window; the window will be automatically hidden (or deleted
+   * if SPLASH_DESTROY is passed) after a given delay, specified in nanoseconds).
+   * The splash window is free floating.  Use this constructor when the splash window
+   * is to be displayed before the main window appears.
+   */
+  FXSplashWindow(FXApp* ap,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXTime ns=2000000000){
+    return new FXRbSplashWindow(ap,ic,opts,ns);
+    }
 
-  /// Construct splash window
-  FXSplashWindow(FXWindow* ow,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+  /**
+   * Construct splash window; the window will be automatically hidden (or deleted
+   * if SPLASH_DESTROY is passed) after a given delay, specified in nanoseconds).
+   * The splash window stays on top of its owner window, which must already have been
+   * created previously.
+   */
+  FXSplashWindow(FXWindow* ow,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXTime ns=2000000000){
+    return new FXRbSplashWindow(ow,ic,opts,ns);
+    }
 
   /// Set the icon for the splash window
   void setIcon(FXIcon* ic);
@@ -64,11 +78,11 @@ public:
   /// Get the icon for this splash window
   FXIcon* getIcon() const;
 
-  /// Set or change delay
-  void setDelay(FXuint ms);
+  /// Set or change delay in nanoseconds
+  void setDelay(FXTime ns);
 
   /// Return delay
-  FXuint getDelay() const;
+  FXTime getDelay() const;
 
   /// Destroy splash window
   virtual ~FXSplashWindow();

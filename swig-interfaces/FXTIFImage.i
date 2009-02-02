@@ -39,7 +39,7 @@ public:
       }
 
     /// True if format is supported
-    static bool isSupported() { return FXTIFImage::supported; }
+    static FXbool isSupported() { return FXTIFImage::supported; }
     }
 public:
 
@@ -90,4 +90,4 @@ DECLARE_FXIMAGE_VIRTUALS(FXTIFImage)
 %}
 
 /// Save a tiff to a stream
-bool fxsaveTIF(FXStream& store,const FXColor* PIXELS,FXint width,FXint height,FXushort codec);
+FXbool fxsaveTIF(FXStream& store,const FXColor* PIXELS,FXint width,FXint height,FXushort codec);

@@ -27,8 +27,8 @@ enum {
   SEVENSEGMENT_SHADOW   = 0x00080000    /// Draw shadow under the segments
   };
 
-%rename("text=")	FX7Segment::setText(const FXString&);
-%rename("text")		FX7Segment::getText() const;
+%rename("text=")		FX7Segment::setText(const FXString&);
+%rename("text")			FX7Segment::getText() const;
 %rename("textColor=")	FX7Segment::setTextColor(FXColor);
 %rename("textColor")	FX7Segment::getTextColor() const;
 %rename("cellWidth=")	FX7Segment::setCellWidth(FXint);
@@ -37,12 +37,12 @@ enum {
 %rename("cellHeight")	FX7Segment::getCellHeight() const;
 %rename("thickness=")	FX7Segment::setThickness(FXint);
 %rename("thickness")	FX7Segment::getThickness() const;
-%rename("justify=")	FX7Segment::setJustify(FXuint);
-%rename("justify")	FX7Segment::getJustify() const;
+%rename("justify=")		FX7Segment::setJustify(FXuint);
+%rename("justify")		FX7Segment::getJustify() const;
 %rename("helpText=")	FX7Segment::setHelpText(const FXString&);
-%rename("helpText")	FX7Segment::getHelpText() const;
-%rename("tipText=")	FX7Segment::setTipText(const FXString&);
-%rename("tipText")	FX7Segment::getTipText() const;
+%rename("helpText")		FX7Segment::getHelpText() const;
+%rename("tipText=")		FX7Segment::setTipText(const FXString&);
+%rename("tipText")		FX7Segment::getTipText() const;
 
 /**
 * Seven-segment (eg LCD/watch style) widget, useful for making
@@ -62,10 +62,12 @@ public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdSetIntValue(FXObject*,FXSelector,void*); // FIXME
-  long onCmdSetRealValue(FXObject*,FXSelector,void*); // FIXME
-  long onCmdSetStringValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdGetIntValue(FXObject*,FXSelector,void*); // FIXME
+  long onCmdSetLongValue(FXObject*,FXSelector,void*); // FIXME
+  long onCmdGetLongValue(FXObject*,FXSelector,void*); // FIXME
+  long onCmdSetRealValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdGetRealValue(FXObject*,FXSelector,void*); // FIXME
+  long onCmdSetStringValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdGetStringValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdSetHelp(FXObject*,FXSelector,void*); // FIXME
   long onCmdGetHelp(FXObject*,FXSelector,void*); // FIXME

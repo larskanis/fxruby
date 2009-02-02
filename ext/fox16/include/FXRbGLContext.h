@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbGLContext.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbGLContext.h 2873 2008-05-30 21:38:58Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBGLCONTEXT_H
@@ -35,16 +35,10 @@ protected:
 #include "FXRbIdVirtuals.h"
 public:
   /**
-   * Construct an OpenGL context with its own private display list.
+   * Construct an OpenGL context with default configuration properties;
+   * it shares a display list with another context shr.
    */
-  FXRbGLContext(FXApp* a,FXGLVisual *vis) : FXGLContext(a,vis){}
-
-  /**
-   * Construct an OpenGL context sharing display lists with an
-   * existing GL context.
-   */
-  FXRbGLContext(FXApp* a,FXGLVisual *vis,FXGLContext *shared) :
-    FXGLContext(a,vis,shared){}
+  FXRbGLContext(FXApp* a,FXGLVisual* vis,FXGLContext *shr=NULL) : FXGLContext(a,vis,shr){}
 
   // Mark dependencies for the GC
   static void markfunc(FXGLContext* self);

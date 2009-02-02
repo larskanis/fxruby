@@ -49,6 +49,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_UINT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onCmdSetLongValue(FXObject*,FXSelector,void* PTR_PINT); // FIXME
+  long onCmdGetLongValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
 public:
 
   /// Construct progress bar

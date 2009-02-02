@@ -3,23 +3,22 @@
 *                  F i l e   S e l e c t i o n   W i d g e t                    *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXFileSelector.h 2342 2006-02-10 14:24:44Z lyle $                    *
+* $Id: FXFileSelector.h 2868 2008-05-30 17:03:51Z lyle $                    *
 ********************************************************************************/
 #ifndef FXFILESELECTOR_H
 #define FXFILESELECTOR_H
@@ -30,6 +29,7 @@
 
 namespace FX {
 
+class FXFileDict;
 class FXFileList;
 class FXTextField;
 class FXComboBox;
@@ -79,10 +79,11 @@ protected:
   FXIcon            *markicon;          // Book mark icon
   FXIcon            *clearicon;         // Book clear icon
   FXIcon            *newicon;           // New directory icon
-  FXIcon            *deleteicon;        // Delete file icon
-  FXIcon            *moveicon;          // Rename file icon
+  FXIcon            *renameicon;        // Rename file icon
   FXIcon            *copyicon;          // Copy file icon
+  FXIcon            *moveicon;          // Rename file icon
   FXIcon            *linkicon;          // Link file icon
+  FXIcon            *deleteicon;        // Delete file icon
   FXRecentFiles      bookmarks;         // Bookmarked places
   FXuint             selectmode;        // Select mode
   FXbool             navigable;         // May navigate
@@ -108,10 +109,11 @@ public:
   long onCmdVisit(FXObject*,FXSelector,void*);
   long onCmdNew(FXObject*,FXSelector,void*);
   long onUpdNew(FXObject*,FXSelector,void*);
-  long onCmdMove(FXObject*,FXSelector,void*);
+  long onCmdRename(FXObject*,FXSelector,void*);
   long onCmdCopy(FXObject*,FXSelector,void*);
+  long onCmdMove(FXObject*,FXSelector,void*);
   long onCmdLink(FXObject*,FXSelector,void*);
-  long onCmdDelete(FXObject*,FXSelector,void*);
+  long onCmdRemove(FXObject*,FXSelector,void*);
   long onUpdSelected(FXObject*,FXSelector,void*);
   long onPopupMenu(FXObject*,FXSelector,void*);
   long onCmdImageSize(FXObject*,FXSelector,void*);
@@ -133,10 +135,11 @@ public:
     ID_BOOKMENU,
     ID_VISIT,
     ID_NEW,
-    ID_DELETE,
-    ID_MOVE,
+    ID_RENAME,
     ID_COPY,
+    ID_MOVE,
     ID_LINK,
+    ID_REMOVE,
     ID_LAST
     };
 public:
@@ -207,9 +210,9 @@ public:
   FXint getNumPatterns() const;
 
   /// Allow pattern entry
-  void allowPatternEntry(FXbool allow);
+  void allowPatternEntry(FXbool flag);
 
-  /// Return TRUE if pattern entry is allowed
+  /// Return true if pattern entry is allowed
   FXbool allowPatternEntry() const;
 
   /**
@@ -257,17 +260,17 @@ public:
   /// Return wildcard matching mode
   FXuint getMatchMode() const;
 
-  /// Return TRUE if showing hidden files
+  /// Return true if showing hidden files
   FXbool showHiddenFiles() const;
 
   /// Show or hide hidden files
-  void showHiddenFiles(FXbool showing);
+  void showHiddenFiles(FXbool flag);
 
-  /// Return TRUE if image preview on
+  /// Return true if image preview on
   FXbool showImages() const;
 
   /// Show or hide preview images
-  void showImages(FXbool showing);
+  void showImages(FXbool flag);
 
   /// Return images preview size
   FXint getImageSize() const;
@@ -276,13 +279,13 @@ public:
   void setImageSize(FXint size);
 
   /// Show readonly button
-  void showReadOnly(FXbool show);
+  void showReadOnly(FXbool flag);
 
-  /// Return TRUE if readonly is shown
+  /// Return true if readonly is shown
   FXbool shownReadOnly() const;
 
   /// Set initial state of readonly button
-  void setReadOnly(FXbool state);
+  void setReadOnly(FXbool flag);
 
   /// Get readonly state
   FXbool getReadOnly() const;
@@ -290,8 +293,20 @@ public:
   /// Allow or disallow navigation
   void allowNavigation(FXbool flag){ navigable=flag; }
 
+  /// Change file associations; delete old ones if owned
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
+
+  /// Return file associations
+  FXFileDict* getAssociations() const;
+
   /// Is navigation allowed?
   FXbool allowNavigation() const { return navigable; }
+
+  /// Set draggable files
+  void setDraggableFiles(FXbool flag);
+
+  /// Are draggable files
+  FXbool getDraggableFiles() const;
 
   /// Save object to a stream
   virtual void save(FXStream& store) const;

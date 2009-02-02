@@ -39,7 +39,7 @@ public:
       }
 
     /// True if format is supported
-    static bool isSupported() { return FXJPGIcon::supported; }
+    static FXbool isSupported() { return FXJPGIcon::supported; }
     }
 public:
   %extend {  
@@ -92,10 +92,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXJPGIcon)
 /**
  * Save an JPEG (Joint Photographics Experts Group) file to a stream.
  */
-bool fxsaveJPG(FXStream& store,const FXColor *PIXELS,FXint width,FXint height,FXint quality);
+FXbool fxsaveJPG(FXStream& store,const FXColor *PIXELS,FXint width,FXint height,FXint quality);
 
 /**
  * Check if stream contains a JPEG image, return TRUE if so.
  */
-bool fxcheckJPG(FXStream& store);
+FXbool fxcheckJPG(FXStream& store);
 

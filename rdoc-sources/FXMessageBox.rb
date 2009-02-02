@@ -29,6 +29,7 @@ module Fox
   # +MBOX_CLICKED_SAVE+::	The *Save* button was clicked
   # +MBOX_CLICKED_SKIP+::	The *Skip* button was clicked
   # +MBOX_CLICKED_SKIPALL+::	The *Skip All* button was clicked
+  # +MBOX_CLICKED_DONTSAVE+:: The *Don't Save* button was clicked (same as +MBOX_CLICKED_NO+)
   #
   class FXMessageBox < FXDialogBox
     #

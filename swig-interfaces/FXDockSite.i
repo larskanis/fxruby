@@ -54,12 +54,38 @@ enum {
 */
 class FXDockSite : public FXPacker {
 protected:
-  FXDockSite(){}
+//  FXuchar      mode;            // Dragging mode
 protected:
-  void moveVerBar(FXWindow* bar,FXWindow *begin,FXWindow* end,FXint bx,FXint by);
-  void moveHorBar(FXWindow* bar,FXWindow *begin,FXWindow* end,FXint bx,FXint by);
-  FXint galleyWidth(FXWindow *begin,FXWindow*& end,FXint space,FXint& require,FXint& expand) const;
-  FXint galleyHeight(FXWindow *begin,FXWindow*& end,FXint space,FXint& require,FXint& expand) const;
+//  static const FXDefaultCursor cursorType[16];
+private:
+  FXDockSite(const FXDockSite&);
+  FXDockSite &operator=(const FXDockSite&);
+protected:
+  FXDockSite(){}
+  void moveVerBar(FXWindow*& begin,FXWindow*& end,FXWindow* bar,FXint barx,FXint bary,FXint barw,FXint barh,FXbool hop);
+  void moveHorBar(FXWindow*& begin,FXWindow*& end,FXWindow* bar,FXint barx,FXint bary,FXint barw,FXint barh,FXbool hop);
+  void galleyOfHorzBar(FXWindow *bar,FXWindow*& begin,FXWindow*& end) const;
+  void galleyOfVertBar(FXWindow *bar,FXWindow*& begin,FXWindow*& end) const;
+  FXint galleyWidth(FXWindow* begin,FXWindow*& end,FXint space,FXint& require,FXint& expand) const;
+  FXint galleyHeight(FXWindow* begin,FXWindow*& end,FXint space,FXint& require,FXint& expand) const;
+protected:
+  enum {
+    DRAG_NONE        = 0,
+    DRAG_TOP         = 1,
+    DRAG_BOTTOM      = 2,
+    DRAG_LEFT        = 4,
+    DRAG_RIGHT       = 8,
+    DRAG_TOPLEFT     = (DRAG_TOP|DRAG_LEFT),
+    DRAG_TOPRIGHT    = (DRAG_TOP|DRAG_RIGHT),
+    DRAG_BOTTOMLEFT  = (DRAG_BOTTOM|DRAG_LEFT),
+    DRAG_BOTTOMRIGHT = (DRAG_BOTTOM|DRAG_RIGHT)
+    };
+public:
+//  long onEnter(FXObject*,FXSelector,void*);
+//  long onLeave(FXObject*,FXSelector,void*);
+//  long onMotion(FXObject*,FXSelector,void*);
+//  long onLeftBtnPress(FXObject*,FXSelector,void*);
+//  long onLeftBtnRelease(FXObject*,FXSelector,void*);
 public:
 
   %extend {

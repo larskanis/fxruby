@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbWindow.h 2344 2006-02-12 21:19:36Z lyle $
+ * $Id: FXRbWindow.h 2869 2008-05-30 20:08:44Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBWINDOW_H
@@ -43,7 +43,7 @@ inline FXint klass ## _getWidthForHeight(klass* self,FXint givenheight){ \
 inline FXint klass ## _getHeightForWidth(klass* self,FXint givenwidth){ \
   return self->klass::getHeightForWidth(givenwidth); \
   } \
-inline bool klass ## _canFocus(const klass* self){ \
+inline FXbool klass ## _canFocus(const klass* self){ \
   return self->klass::canFocus(); \
   } \
 inline void klass ## _setFocus(klass* self){ \
@@ -55,8 +55,8 @@ inline void klass ## _killFocus(klass* self){ \
 inline void klass ## _changeFocus(klass* self,FXWindow* child){ \
   self->klass::changeFocus(child); \
   } \
-inline void klass ## _setDefault(klass* self,FXbool enable){ \
-  self->klass::setDefault(enable); \
+inline void klass ## _setDefault(klass* self,FXuchar flag){ \
+  self->klass::setDefault(flag); \
   } \
 inline void klass ## _enable(klass* self){ \
   self->klass::enable(); \
@@ -88,20 +88,20 @@ inline void klass ## _show(klass* self){ \
 inline void klass ## _hide(klass* self){ \
   self->klass::hide(); \
   } \
-inline bool klass ## _isComposite(const klass* self) { \
+inline FXbool klass ## _isComposite(const klass* self) { \
   return self->klass::isComposite(); \
   } \
-inline bool klass ## _contains(const klass* self,FXint parentx,FXint parenty) { \
+inline FXbool klass ## _contains(const klass* self,FXint parentx,FXint parenty) { \
   return self->klass::contains(parentx,parenty); \
   } \
-inline bool klass ## _doesSaveUnder(const klass* self) { \
+inline FXbool klass ## _doesSaveUnder(const klass* self) { \
   return self->klass::doesSaveUnder(); \
   } \
 inline void klass ## _setBackColor(klass* self,FXColor clr){ \
   self->klass::setBackColor(clr); \
   } \
-inline const FXchar* klass ## _tr(const klass* self,const FXchar* message,const FXchar* hint) { \
-  return self->klass::tr(message,hint); \
+inline const FXchar* klass ## _tr(const klass* self,const FXchar* message,const FXchar* hint,FXint count) { \
+  return self->klass::tr(message,hint,count); \
   } \
 inline void klass ## _setShape(klass* self,const FXRegion& region){ \
   self->klass::setShape(region); \
@@ -139,7 +139,7 @@ inline void klass ## _dropDisable(klass* self){ \
   FXint cls::getHeightForWidth(FXint givenwidth){ \
     return FXRbCallIntMethod(this,rb_intern("getHeightForWidth"),givenwidth); \
     } \
-  bool cls::canFocus() const { \
+  FXbool cls::canFocus() const { \
     return FXRbCallBoolMethod(this,rb_intern("canFocus")); \
     } \
   void cls::setFocus(){ \
@@ -151,8 +151,8 @@ inline void klass ## _dropDisable(klass* self){ \
   void cls::changeFocus(FXWindow* child){ \
     FXRbCallVoidMethod(this,rb_intern("changeFocus"),child); \
     } \
-  void cls::setDefault(FXbool enable){ \
-    FXRbCallVoidMethod(this,rb_intern("setDefault"),enable); \
+  void cls::setDefault(FXuchar flag){ \
+    FXRbCallVoidMethod(this,rb_intern("setDefault"),flag); \
     } \
   void cls::enable(){ \
     FXRbCallVoidMethod(this,rb_intern("enable")); \
@@ -184,20 +184,20 @@ inline void klass ## _dropDisable(klass* self){ \
   void cls::hide(){ \
     FXRbCallVoidMethod(this,rb_intern("hide")); \
     } \
-  bool cls::isComposite() const { \
+  FXbool cls::isComposite() const { \
     return FXRbCallBoolMethod(this,rb_intern("isComposite")); \
     } \
-  bool cls::contains(FXint parentx,FXint parenty) const{ \
+  FXbool cls::contains(FXint parentx,FXint parenty) const{ \
     return FXRbCallBoolMethod(this,rb_intern("contains"),parentx,parenty); \
     } \
-  bool cls::doesSaveUnder() const { \
+  FXbool cls::doesSaveUnder() const { \
     return FXRbCallBoolMethod(this,rb_intern("doesSaveUnder")); \
     } \
   void cls::setBackColor(FXColor clr) { \
     FXRbCallVoidMethod(this,rb_intern("setBackColor"),clr); \
     } \
-  const FXchar* cls::tr(const FXchar* message,const FXchar* hint) const { \
-    return FXRbCallCStringMethod(this,rb_intern("tr"),message,hint); \
+  const FXchar* cls::tr(const FXchar* message,const FXchar* hint,FXint count) const { \
+    return FXRbCallCStringMethod(this,rb_intern("tr"),message,hint,count); \
     } \
   void cls::setShape(const FXRegion& region) { \
     FXRbCallVoidMethod(this,rb_intern("setShape"),region); \

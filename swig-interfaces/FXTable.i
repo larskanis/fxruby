@@ -217,13 +217,50 @@ DECLARE_FXTABLEITEM_VIRTUALS(FXTableItem)
 %rename("rowRenumbering=")    FXTable::setRowRenumbering(FXbool flag);
 %rename("rowRenumbering?")    FXTable::getRowRenumbering() const;
 
-/// Table Widget
+/**
+* The Table widget displays a table of items, each with a text and optional
+* icon.  A column Header control provide captions for each column, and a row
+* Header control provides captions for each row.  Columns are resizable by
+* means of the column Header control if the TABLE_COL_SIZABLE option is passed.
+* Likewise, rows in the table are resizable if the TABLE_ROW_SIZABLE option is
+* specified.  An entire row (column) can be selected by clicking on the a button
+* in the row (column) Header control.  Passing TABLE_NO_COLSELECT disables column
+* selection, and passing TABLE_NO_ROWSELECT disables column selection.
+* When TABLE_COL_RENUMBER is specified, columns are automatically renumbered when
+* columns are added or removed.  Similarly, TABLE_ROW_RENUMBER will cause row numbers
+* to be recalculated automatically when rows are added or removed.
+* To disable editing of cells in the table, the TABLE_READONLY can be specified.
+* Cells in the table may or may not have items in them.  When populating a cell
+* for the first time, an item will be automatically created if necessary.  Thus,
+* a cell in the table takes no space unless it has actual contents.
+* Moreover, a contiguous, rectangular region of cells in the table may refer to
+* one single item; in that case, the item will be stretched to cover all the
+* cells in the region, and no grid lines will be drawn interior to the spanning
+* item.
+* The Table widget issues SEL_SELECTED or SEL_DESELECTED when cells are selected
+* or deselected, respectively.  The table position affected is passed along as the
+* 3rd parameter of these messages.
+* Whenever the current (focus) item is changed, a SEL_CHANGED message is sent with
+* the new table position as a parameter.
+* When items are added to the table, a SEL_INSERTED message is sent, with the table
+* range of the newly added cells as the parameter in the message.
+* When items are removed from the table, a SEL_DELETED message is sent prior to the
+* removal of the items, and the table range of the removed cells is passed as a parameter.
+* A SEL_REPLACED message is sent when the contents of a cell are changed, either through
+* editing or by other means; the parameter is the range of affected cells.  This message
+* is sent prior to the change.
+* SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED messages are sent when a cell
+* is clicked, double-clicked, or triple-clicked, respectively.
+* A SEL_COMMAND is sent when an enabled item is clicked inside the table.
+*/
 class FXTable : public FXScrollArea {
 public:
   static FXDragType csvType;
   static const FXchar csvTypeName[];
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
+  long onEnter(FXObject*,FXSelector,void* PTR_EVENT);
+  long onLeave(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusIn(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusOut(FXObject*,FXSelector,void* PTR_EVENT);
   long onMotion(FXObject*,FXSelector,void* PTR_EVENT);
@@ -245,6 +282,9 @@ public:
   long onClicked(FXObject*,FXSelector,void* PTR_EVENT);
   long onDoubleClicked(FXObject*,FXSelector,void* PTR_EVENT);
   long onTripleClicked(FXObject*,FXSelector,void* PTR_EVENT);
+  long onQueryTip(FXObject*,FXSelector,void* PTR_NULL);
+  long onQueryHelp(FXObject*,FXSelector,void* PTR_NULL);
+  long onTipTimer(FXObject*,FXSelector,void* PTR_IGNORE);
   
   long onCmdToggleEditable(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdToggleEditable(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -386,16 +426,16 @@ public:
   FXbool isEditable() const;
 
   /// Set editable flag
-  void setEditable(FXbool edit=TRUE);
+  void setEditable(FXbool edit=true);
 
   /// Show or hide horizontal grid
-  void showHorzGrid(FXbool on=TRUE);
+  void showHorzGrid(FXbool on=true);
 
   /// Is horizontal grid shown
   FXbool isHorzGridShown() const;
 
   /// Show or hide vertical grid
-  void showVertGrid(FXbool on=TRUE);
+  void showVertGrid(FXbool on=true);
   
   /// Is vertical grid shown
   FXbool isVertGridShown() const;
@@ -449,7 +489,7 @@ public:
 
   %extend {
     /// Replace the item with a [possibly subclassed] item
-    void setItem(FXint row,FXint col,FXTableItem* item,FXbool notify=FALSE){
+    void setItem(FXint row,FXint col,FXTableItem* item,FXbool notify=false){
       if(item!=0 && item->isMemberOf(FXMETACLASS(FXRbTableItem))){
         dynamic_cast<FXRbTableItem*>(item)->owned=TRUE;
         }
@@ -465,6 +505,8 @@ public:
   * In variable height mode, the column header will size to
   * fit the contents in it.  In fixed mode, the size is
   * explicitly set using setColumnHeaderHeight().
+  * The default is to determine the column header height
+  * based on the contents, using the LAYOUT_MIN_HEIGHT option.
   */
   void setColumnHeaderMode(FXuint hint=LAYOUT_FIX_HEIGHT);
 
@@ -554,56 +596,68 @@ public:
   void fitColumnsToContents(FXint col,FXint nc=1);
 
   /// Change column header
-  void setColumnText(FXint index,const FXString& text);
+  void setColumnText(FXint TABLE_COLUMN_INDEX,const FXString& text);
 
   /// Return text of column header at index
-  FXString getColumnText(FXint index) const;
+  FXString getColumnText(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header
-  void setRowText(FXint index,const FXString& text);
+  void setRowText(FXint TABLE_ROW_INDEX,const FXString& text);
 
   /// Return text of row header at index
-  FXString getRowText(FXint index) const;
+  FXString getRowText(FXint TABLE_ROW_INDEX) const;
 
   /// Change column header icon
-  void setColumnIcon(FXint index,FXIcon* icon);
+  void setColumnIcon(FXint TABLE_COLUMN_INDEX,FXIcon* icon);
 
   /// Return icon of column header at index
-  FXIcon* getColumnIcon(FXint index) const;
+  FXIcon* getColumnIcon(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header icon
-  void setRowIcon(FXint index,FXIcon* icon);
+  void setRowIcon(FXint TABLE_ROW_INDEX,FXIcon* icon);
 
   /// Return icon of row header at index
-  FXIcon* getRowIcon(FXint index) const;
+  FXIcon* getRowIcon(FXint TABLE_ROW_INDEX) const;
+
+  /// Change column header tip text
+  void setColumnTipText(FXint index,const FXString& text);
+
+  /// Return tip text of column header at index
+  FXString getColumnTipText(FXint index) const;
+
+  /// Change row header tip text
+  void setRowTipText(FXint index,const FXString& text);
+
+  /// Return tip text of row header at index
+  FXString getRowTipText(FXint index) const;
 
   /// Change column header icon position, e.g. FXHeaderItem::BEFORE, etc.
-  void setColumnIconPosition(FXint index,FXuint mode);
+  void setColumnIconPosition(FXint TABLE_COLUMN_INDEX,FXuint mode);
 
   /// Return icon position of column header at index
-  FXuint getColumnIconPosition(FXint index) const;
+  FXuint getColumnIconPosition(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header icon position, e.g. FXHeaderItem::BEFORE, etc.
-  void setRowIconPosition(FXint index,FXuint mode);
+  void setRowIconPosition(FXint TABLE_ROW_INDEX,FXuint mode);
 
   /// Return icon position of row header at index
-  FXuint getRowIconPosition(FXint index) const;
+  FXuint getRowIconPosition(FXint TABLE_ROW_INDEX) const;
 
   /// Change column header justify, e.g. FXHeaderItem::RIGHT, etc.
-  void setColumnJustify(FXint index,FXuint justify);
+  void setColumnJustify(FXint TABLE_COLUMN_INDEX,FXuint justify);
 
   /// Return justify of column header at index
-  FXuint getColumnJustify(FXint index) const;
+  FXuint getColumnJustify(FXint TABLE_COLUMN_INDEX) const;
 
   /// Change row header justify, e.g. FXHeaderItem::RIGHT, etc.
-  void setRowJustify(FXint index,FXuint justify);
+  void setRowJustify(FXint TABLE_ROW_INDEX,FXuint justify);
 
   /// Return justify of row header at index
-  FXuint getRowJustify(FXint index) const;
+  FXuint getRowJustify(FXint TABLE_ROW_INDEX) const;
 
   %extend {
     /// Modify cell text
-    void setItemText(FXint r,FXint c,const FXString& text,FXbool notify=FALSE){
+    void setItemText(FXint r,FXint c,const FXString& text,FXbool notify=false){
       FXRbTableItem* item;
       self->setItemText(r,c,text,notify);
       item=dynamic_cast<FXRbTableItem*>(self->getItem(r,c));
@@ -618,7 +672,7 @@ public:
 
   %extend {  
     /// Modify cell icon, deleting the old icon if it was owned
-    void setItemIcon(FXint r,FXint c,FXIcon* icon,FXbool notify=FALSE){
+    void setItemIcon(FXint r,FXint c,FXIcon* icon,FXbool notify=false){
       FXRbTableItem* item;
       self->setItemIcon(r,c,icon,notify);
       item=dynamic_cast<FXRbTableItem*>(self->getItem(r,c));
@@ -652,21 +706,19 @@ public:
   %extend {
     /// Extract cells from given range as text.
     VALUE extractText(FXint startrow,FXint endrow,FXint startcol,FXint endcol,const FXchar* cs="\t",const FXchar* rs="\n") const {
-      FXchar* text;
-      FXint size;
+      FXString str;
       VALUE result;
       if(startrow<0 || startcol<0 || self->getNumRows()<=endrow || self->getNumColumns()<=endcol) rb_raise(rb_eIndexError,"index out of bounds");
-      self->extractText(text,size,startrow,endrow,startcol,endcol,cs,rs);
-      result=rb_str_new2(text);
-      FXFREE(&text);
+      self->extractText(str,startrow,endrow,startcol,endcol,cs,rs);
+      result=rb_str_new2(str.text());
       return result;
       }
 
     /// Overlay text over given cell range
-    void overlayText(FXint startrow,FXint endrow,FXint startcol,FXint endcol,VALUE str,const FXchar* cs="\t",const FXchar* rs="\n",FXbool notify=FALSE){
+    void overlayText(FXint startrow,FXint endrow,FXint startcol,FXint endcol,VALUE str,const FXchar* cs="\t",const FXchar* rs="\n",FXbool notify=false){
       if(startrow<0 || startcol<0 || self->getNumRows()<=endrow || self->getNumColumns()<=endcol) rb_raise(rb_eIndexError,"index out of bounds");
-      const FXchar* text=reinterpret_cast<FXchar*>(STR2CSTR(str));
-      FXint size=RSTRING(str)->len;
+      const FXchar* text=reinterpret_cast<FXchar*>(StringValuePtr(str));
+      FXint size=RSTRING_LEN(str);
       self->overlayText(startrow,endrow,startcol,endcol,text,size,cs,rs,notify);
       }
   }

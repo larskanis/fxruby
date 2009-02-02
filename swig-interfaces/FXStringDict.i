@@ -26,9 +26,6 @@
 * The inserted strings are copied when they're inserted.
 */
 class FXStringDict : public FXDict {
-protected:
-  virtual void *createData(const void*);
-  virtual void deleteData(void*);
 public:
   %extend {
     /// Construct a string dictionary
@@ -38,10 +35,10 @@ public:
     }
 
   /// Insert a new string indexed by key, with given mark flag
-  const FXchar* insert(const FXchar* ky,const FXchar* str,bool mrk=false);
+  const FXchar* insert(const FXchar* ky,const FXchar* str,FXbool mrk=false);
 
   /// Replace or insert a new string indexed by key, unless given mark is lower that the existing mark
-  const FXchar* replace(const FXchar* ky,const FXchar* str,bool mrk=false);
+  const FXchar* replace(const FXchar* ky,const FXchar* str,FXbool mrk=false);
 
   /// Remove entry indexed by key
   const FXchar* remove(const FXchar* ky);
@@ -50,7 +47,7 @@ public:
   const FXchar* find(const FXchar* ky) const;
 
   /// Return the string at position pos
-  const FXchar* data(FXuint pos) const;
+  const FXchar* data(FXint pos) const;
 
   /// Destructor
   virtual ~FXStringDict();

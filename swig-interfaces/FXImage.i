@@ -42,6 +42,15 @@ enum {
 * compatible with the screen, for fast drawing onto the device.
 * The server-side representation is not directly accessible from the current
 * process as it lives in the process of the X Server or GDI.
+* Before the image can be used in drawing operations, the server-side representation
+* of the image must be realized by calling create(); until this is done, only the
+* client-side pixel buffer exists.
+* Usually the client-side pixel buffer is released when the server-side representation
+* is generated [thus saving substantial amounts of memory when only the server-resident
+* part of the image is of interest].  But if further manipulation of the client-side
+* pixel buffer is needed, the IMAGE_KEEP option can be passed.  In that case, the
+* client-side buffer can be modified, and the server-side pixmap can be updated by
+* calling render().
 */
 class FXImage : public FXDrawable {
 public:
@@ -59,8 +68,8 @@ public:
       FXColor* pix=0;
       if(!NIL_P(ary)){
         Check_Type(ary,T_ARRAY);
-        if(FXMALLOC(&pix,FXColor,RARRAY(ary)->len)){
-          for(long i=0; i<RARRAY(ary)->len; i++){
+        if(FXMALLOC(&pix,FXColor,RARRAY_LEN(ary))){
+          for(long i=0; i<RARRAY_LEN(ary); i++){
             pix[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry(ary,i)));
 	    }
           }
@@ -109,7 +118,7 @@ public:
   void setPixel(FXint x,FXint y,FXColor color);
   
   /// Scan the image and return FALSE if fully opaque
-  bool hasAlpha() const;
+  FXbool hasAlpha() const;
 
   /// Destructor
   virtual ~FXImage();

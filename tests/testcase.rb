@@ -10,13 +10,13 @@ module Fox
     def setup(*args)
       unless args.empty?
         appName = args[0]
-	if FXApp.instance.nil?
-	  @theApp = FXApp.new(appName, 'FXRuby')
-	  @theApp.init([])
-	else
-	  @theApp = FXApp.instance
-	end
-	@theMainWindow = FXMainWindow.new(@theApp, appName)
+      	if FXApp.instance.nil?
+      	  @theApp = FXApp.new(appName, 'FXRuby')
+      	  @theApp.init([])
+      	else
+      	  @theApp = FXApp.instance
+      	end
+      	@theMainWindow = FXMainWindow.new(@theApp, appName)
       end      
     end
     

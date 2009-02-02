@@ -29,17 +29,11 @@ module Fox
   #
   class FXScrollArea < FXComposite
 
-    # Viewport width, in pixels [Integer]
-    attr_reader	:viewportWidth
+    # Content area x-position [Integer]
+    attr_reader :contextX
     
-    # Viewport height, in pixels [Integer]
-    attr_reader	:viewportHeight
-    
-    # Content width, in pixels [Integer]
-    attr_reader	:contentWidth
-    
-    # Content height, in pixels [Integer]
-    attr_reader	:contentHeight
+    # Content area y-position [Integer]
+    attr_reader :contentY
     
     # Scroll style [Integer]
     attr_accessor :scrollStyle
@@ -50,12 +44,6 @@ module Fox
     # Vertical scrollbar [FXScrollBar]
     attr_reader	:verticalScrollBar
     
-    # Current x-position [Integer]
-    attr_reader	:xPosition
-    
-    # Current y-position [Integer]
-    attr_reader	:yPosition
-
     #
     # Return an initialized FXScrollArea instance.
     #
@@ -71,6 +59,24 @@ module Fox
     def initialize(parent, opts=0, x=0, y=0, width=0, height=0) # :yields: theScrollArea
     end
     
+    # Return the content width, in pixels.
+    def contentWidth; end
+    
+    # Return the content height, in pixels.
+    def contentHeight; end
+    
+    # Return visible scroll area x-position.
+    def visibleX; end
+    
+    # Return visible scroll area y-position.
+    def visibleY; end
+    
+    # Return visible scroll area width.
+    def visibleWidth; end
+    
+    # Return visible scroll area height.
+    def visibleHeight; end
+    
     # Return +true+ if horizontally scrollable
     def horizontalScrollable?() ; end
 
@@ -81,6 +87,6 @@ module Fox
     def setPosition(x, y) ; end
 
     # Get the current position as an array [x, y]
-    def position() ; end
+    def getPosition() ; end
   end
 end

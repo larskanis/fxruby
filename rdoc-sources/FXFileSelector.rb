@@ -36,10 +36,11 @@ module Fox
   # +ID_BOOKMENU+::		x
   # +ID_VISIT+::		x
   # +ID_NEW+::			x
-  # +ID_DELETE+::		x
-  # +ID_MOVE+::			x
+  # +ID_RENAME+:: x
   # +ID_COPY+::			x
+  # +ID_MOVE+::			x
   # +ID_LINK+::			x
+  # +ID_REMOVE+::		x
   #
   class FXFileSelector < FXPacker
   
@@ -75,6 +76,9 @@ module Fox
   
     # Image size for preview images [Integer]
     attr_accessor :imageSize
+
+    # File associations [FXFileDict]
+    attr_accessor :associations
 
     #
     # Return an initialized FXFileSelector instance.
@@ -164,6 +168,12 @@ module Fox
 
     # Set navigation to allowed (+true+) or disallowed (+false+)
     def navigationAllowed=(allowed); end
+    
+    # Set draggable files state to +true+ or +false+.
+    def draggableFiles=(flag); end
+    
+    # Return +true+ if draggable files is set.
+    def draggableFiles?; end
 
     #
     # Given filename pattern of the form "GIF Format (*.gif)",

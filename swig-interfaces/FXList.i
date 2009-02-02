@@ -47,7 +47,7 @@ protected:
   FXint     x,y;
 protected:
   FXListItem();
-  virtual void draw(const FXList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h);
+  virtual void draw(const FXList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
   virtual FXint hitItem(const FXList* list,FXint x,FXint y) const;
 public:
   enum {
@@ -208,7 +208,7 @@ public:
   
   %extend {
     /// Replace the item with a [possibly subclassed] item
-    FXint setItem(FXint index,FXListItem* item,FXbool notify=FALSE){
+    FXint setItem(FXint index,FXListItem* item,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXListItem* oldItem=self->getItem(index);
 
@@ -225,7 +225,7 @@ public:
       }
 
     /// Replace item's text, icon, and user-data pointer
-    FXint setItem(FXint index,const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
+    FXint setItem(FXint index,const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXListItem* oldItem=self->getItem(index);
 
@@ -241,11 +241,11 @@ public:
   }
 
   /// Fill list by appending items from array of strings
-  FXint fillItems(const FXchar** strings,FXIcon *icon=NULL,void* ptr=NULL,FXbool notify=FALSE);
+  FXint fillItems(const FXchar** strings,FXIcon *icon=NULL,void* ptr=NULL,FXbool notify=false);
 
   %extend {
     /// Insert a new [possibly subclassed] item at the given index
-    FXint insertItem(FXint index,FXListItem* item,FXbool notify=FALSE){
+    FXint insertItem(FXint index,FXListItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbListItem)))
         dynamic_cast<FXRbListItem*>(item)->owned=TRUE;
       return self->insertItem(index,item,notify);
@@ -253,11 +253,11 @@ public:
   }
 
   /// Insert item at index with given text, icon, and user-data pointer
-  FXint insertItem(FXint index,const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint insertItem(FXint index,const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Append a [possibly subclassed] item to the list
-    FXint appendItem(FXListItem* item,FXbool notify=FALSE){
+    FXint appendItem(FXListItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbListItem)))
         dynamic_cast<FXRbListItem*>(item)->owned=TRUE;
       return self->appendItem(item,notify);
@@ -265,7 +265,7 @@ public:
   }
   
   /// Append new item with given text and optional icon, and user-data pointer
-  FXint appendItem(const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint appendItem(const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Prepend a [possibly subclassed] item to the list
@@ -277,17 +277,17 @@ public:
   }
   
   /// Prepend new item with given text and optional icon, and user-data pointer
-  FXint prependItem(const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint prependItem(const FXString& text,FXIcon *icon=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Move item from oldindex to newindex
-  FXint moveItem(FXint newindex,FXint oldindex,FXbool notify=FALSE);
+  FXint moveItem(FXint newindex,FXint oldindex,FXbool notify=false);
 
   /// Extract item from list
-  FXListItem* extractItem(FXint index,FXbool notify=FALSE);
+  FXListItem* extractItem(FXint index,FXbool notify=false);
 
   %extend {
     /// Remove item from list
-    void removeItem(FXint index,FXbool notify=FALSE){
+    void removeItem(FXint index,FXbool notify=false){
       // Save pointer to the soon-to-be-destroyed item
       FXListItem* item=self->getItem(index);
 
@@ -299,7 +299,7 @@ public:
       }
   
     /// Remove all items from list
-    void clearItems(FXbool notify=FALSE){
+    void clearItems(FXbool notify=false){
       // Save pointers to the soon-to-be-destroyed items
       FXObjectListOf<FXListItem> items;
       for(FXint i=0; i<self->getNumItems(); i++) items.append(self->getItem(i));
@@ -362,7 +362,7 @@ public:
   FXString getItemText(FXint index) const;
   
   /// Change item icon
-  void setItemIcon(FXint index,FXIcon* icon,FXbool owned=FALSE);
+  void setItemIcon(FXint index,FXIcon* icon,FXbool owned=false);
   
   /// Return item icon, if any
   FXIcon* getItemIcon(FXint index) const;

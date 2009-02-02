@@ -3,23 +3,22 @@
 *                           S l i d e r   W i d g e t                           *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXSlider.h 2343 2006-02-12 20:26:26Z lyle $                          *
+* $Id: FXSlider.h 2764 2007-11-19 17:57:29Z lyle $                          *
 ********************************************************************************/
 #ifndef FXSLIDER_H
 #define FXSLIDER_H
@@ -60,15 +59,15 @@ enum {
 class FXAPI FXSlider : public FXFrame {
   FXDECLARE(FXSlider)
 protected:
-  FXint         range[2];                 // Reported data range
-  FXint         pos;                      // Reported data position
-  FXint         incr;                     // Increment when auto-sliding
-  FXint         delta;                    // Interval between ticks
-  FXint         headpos;                  // Head position
-  FXint         headsize;                 // Head size
-  FXint         slotsize;                 // Slot size
+  FXint         headPos;                  // Head position
+  FXint         headSize;                 // Head size
+  FXint         slotSize;                 // Slot size
   FXColor       slotColor;                // Color of slot the head moves in
-  FXint         dragpoint;                // Where the head is grabbed
+  FXint         dragPoint;                // Where the head is grabbed
+  FXint         range[2];                 // Reported data range
+  FXint         delta;                    // Interval between ticks
+  FXint         incr;                     // Increment when auto-sliding
+  FXint         pos;                      // Reported data position
   FXString      help;                     // Help string
   FXString      tip;                      // Tip string
 protected:
@@ -94,6 +93,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void*);
   long onCmdSetIntValue(FXObject*,FXSelector,void*);
   long onCmdGetIntValue(FXObject*,FXSelector,void*);
+  long onCmdSetLongValue(FXObject*,FXSelector,void*);
+  long onCmdGetLongValue(FXObject*,FXSelector,void*);
   long onCmdSetRealValue(FXObject*,FXSelector,void*);
   long onCmdGetRealValue(FXObject*,FXSelector,void*);
   long onCmdSetIntRange(FXObject*,FXSelector,void*);
@@ -123,7 +124,7 @@ public:
   virtual FXint getDefaultHeight();
 
   /// Returns true because a slider can receive focus
-  virtual bool canFocus() const;
+  virtual FXbool canFocus() const;
 
   /// Perform layout
   virtual void layout();
@@ -135,13 +136,13 @@ public:
   virtual void disable();
 
   /// Change slider value
-  void setValue(FXint value,FXbool notify=FALSE);
+  void setValue(FXint value,FXbool notify=false);
 
   /// Return slider value
   FXint getValue() const { return pos; }
 
   /// Change the slider's range
-  void setRange(FXint lo,FXint hi,FXbool notify=FALSE);
+  void setRange(FXint lo,FXint hi,FXbool notify=false);
 
   /// Get the slider's current range
   void getRange(FXint& lo,FXint& hi) const { lo=range[0]; hi=range[1]; }
@@ -153,13 +154,13 @@ public:
   void setSliderStyle(FXuint style);
 
   /// Get the slider's head size
-  FXint getHeadSize() const { return headsize; }
+  FXint getHeadSize() const { return headSize; }
 
   /// Change the slider's head size
   void setHeadSize(FXint hs);
 
   /// Get the slider's current slot size
-  FXint getSlotSize() const { return slotsize; }
+  FXint getSlotSize() const { return slotSize; }
 
   /// Change the slider's slot size
   void setSlotSize(FXint bs);

@@ -67,7 +67,7 @@
         <para>The fxruby-users@rubyforge.org mailing list is a
         higher-volume list for FXRuby-related discussions. To subscribe to
         this list, follow the instructions at <ulink
-        url="http://rubyforge.org/mailman/listinfo/fxruby-announce">http://rubyforge.org/mailman/listinfo/fxruby-announce</ulink></para>
+        url="http://rubyforge.org/mailman/listinfo/fxruby-users">http://rubyforge.org/mailman/listinfo/fxruby-users</ulink></para>
       </listitem>
 
       <listitem>
@@ -85,10 +85,10 @@
       </listitem>
 
       <listitem>
-        <para>The ruby-talk@ruby-lang.org mailing list (or its mirror, the
+        <para>The Ruby-Talk mailing list (or its mirror, the
         comp.lang.ruby newsgroup) is a high-volume list for Ruby-related
         discussions. To subscribe to this list, follow the instructions at
-        <ulink url="http://www.ruby-lang.org/en/ml.html">http://www.ruby-lang.org/en/ml.html</ulink></para>
+        <ulink url="http://www.ruby-lang.org/en/community/mailing-lists/">http://www.ruby-lang.org/en/community/mailing-lists/</ulink></para>
       </listitem>
     </itemizedlist>
   </simplesect>

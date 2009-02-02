@@ -3,23 +3,22 @@
 *            S i n g l e - P r e c i s i o n   4 x 4   M a t r i x              *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1994,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1994,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXMat4f.h 2344 2006-02-12 21:19:36Z lyle $                            *
+* $Id: FXMat4f.h 2761 2007-11-19 17:03:32Z lyle $                           *
 ********************************************************************************/
 #ifndef FXMAT4F_H
 #define FXMAT4F_H
@@ -28,30 +27,55 @@
 namespace FX {
 
 
+class FXMat3f;
+
+
 /// Single-precision 4x4 matrix
 class FXAPI FXMat4f {
 protected:
   FXVec4f m[4];
 public:
-  /// Constructors
+
+  /// Default constructor
   FXMat4f(){}
+
+  /// Initialize matrix from another matrix
+  FXMat4f(const FXMat4f& other);
+
+  /// Initialize with 3x3 rotation and scaling matrix
+  FXMat4f(const FXMat3f& other);
+
+  /// Initialize matrix from scalar
   FXMat4f(FXfloat w);
+  
+  /// Initialize diagonal matrix 
+  FXMat4f(FXfloat a,FXfloat b,FXfloat c,FXfloat d);
+
+  /// Initialize matrix from components
   FXMat4f(FXfloat a00,FXfloat a01,FXfloat a02,FXfloat a03,
           FXfloat a10,FXfloat a11,FXfloat a12,FXfloat a13,
           FXfloat a20,FXfloat a21,FXfloat a22,FXfloat a23,
           FXfloat a30,FXfloat a31,FXfloat a32,FXfloat a33);
+
+  /// Initialize matrix from four vectors
   FXMat4f(const FXVec4f& a,const FXVec4f& b,const FXVec4f& c,const FXVec4f& d);
-  FXMat4f(const FXMat4f& other);
 
   /// Assignment
   FXMat4f& operator=(const FXMat4f& other);
+  FXMat4f& operator=(const FXMat3f& other);
   FXMat4f& operator=(FXfloat w);
 
   /// Set value from another matrix
   FXMat4f& set(const FXMat4f& other);
 
+  /// Set value from 3x3 rotation and scaling matrix
+  FXMat4f& set(const FXMat3f& other);
+
   /// Set value from scalar
   FXMat4f& set(FXfloat w);
+
+  /// Set diagonal matrix 
+  FXMat4f& set(FXfloat a,FXfloat b,FXfloat c,FXfloat d);
 
   /// Set value from components
   FXMat4f& set(FXfloat a00,FXfloat a01,FXfloat a02,FXfloat a03,
@@ -65,8 +89,8 @@ public:
   /// Assignment operators
   FXMat4f& operator+=(const FXMat4f& w);
   FXMat4f& operator-=(const FXMat4f& w);
-  FXMat4f& operator*=(FXfloat w);
   FXMat4f& operator*=(const FXMat4f& w);
+  FXMat4f& operator*=(FXfloat w);
   FXMat4f& operator/=(FXfloat w);
 
   /// Indexing
@@ -85,27 +109,55 @@ public:
   FXMat4f operator-(const FXMat4f& w) const;
   FXMat4f operator*(const FXMat4f& w) const;
 
-  /// Other operators
+  /// Multiply matrix and vector
+  FXVec4f operator*(const FXVec4f& v) const;
+  FXVec3f operator*(const FXVec3f& v) const;
+
+  /// Equality tests
+  FXbool operator==(const FXMat4f& a) const;
+  FXbool operator!=(const FXMat4f& a) const;
+
+  friend FXAPI FXbool operator==(const FXMat4f& a,FXfloat n);
+  friend FXAPI FXbool operator==(FXfloat n,const FXMat4f& a);
+
+  friend FXAPI FXbool operator!=(const FXMat4f& a,FXfloat n);
+  friend FXAPI FXbool operator!=(FXfloat n,const FXMat4f& a);
+
+  /// Matrix and scalar
   friend FXAPI FXMat4f operator*(FXfloat x,const FXMat4f& a);
   friend FXAPI FXMat4f operator*(const FXMat4f& a,FXfloat x);
   friend FXAPI FXMat4f operator/(const FXMat4f& a,FXfloat x);
   friend FXAPI FXMat4f operator/(FXfloat x,const FXMat4f& a);
 
-  /// Multiply matrix and vector
-  FXVec4f operator*(const FXVec4f& v) const;
-  FXVec3f operator*(const FXVec3f& v) const;
+  /// Set to identity matrix
+  FXMat4f& identity();
 
-  /// Set identity matrix
-  FXMat4f& eye();
+  /// Return true if identity matrix
+  FXbool isIdentity() const;
 
-  /// Orthographic projection
-  FXMat4f& ortho(FXfloat left,FXfloat right,FXfloat bottom,FXfloat top,FXfloat hither,FXfloat yon);
+  /// Set orthographic projection from view volume
+  FXMat4f& setOrtho(FXfloat xlo,FXfloat xhi,FXfloat ylo,FXfloat yhi,FXfloat zlo,FXfloat zhi);
 
-  /// Perspective projection
-  FXMat4f& frustum(FXfloat left,FXfloat right,FXfloat bottom,FXfloat top,FXfloat hither,FXfloat yon);
+  /// Get view volume from orthographic projection
+  void getOrtho(FXfloat& xlo,FXfloat& xhi,FXfloat& ylo,FXfloat& yhi,FXfloat& zlo,FXfloat& zhi) const;
+
+  /// Set to inverse orthographic projection
+  FXMat4f& setInverseOrtho(FXfloat xlo,FXfloat xhi,FXfloat ylo,FXfloat yhi,FXfloat zlo,FXfloat zhi);
+
+  /// Set to perspective projection from view volume
+  FXMat4f& setFrustum(FXfloat xlo,FXfloat xhi,FXfloat ylo,FXfloat yhi,FXfloat zlo,FXfloat zhi);
+
+  /// Get view volume from perspective projection
+  void getFrustum(FXfloat& xlo,FXfloat& xhi,FXfloat& ylo,FXfloat& yhi,FXfloat& zlo,FXfloat& zhi) const;
+
+  /// Set to inverse perspective projection from view volume
+  FXMat4f& setInverseFrustum(FXfloat xlo,FXfloat xhi,FXfloat ylo,FXfloat yhi,FXfloat zlo,FXfloat zhi);
 
   /// Multiply by left-hand matrix
   FXMat4f& left();
+
+  /// Multiply by rotation matrix
+  FXMat4f& rot(const FXMat3f& r);
 
   /// Multiply by rotation about unit-quaternion
   FXMat4f& rot(const FXQuatf& q);
@@ -129,7 +181,7 @@ public:
   FXMat4f& zrot(FXfloat phi);
 
   /// Look at
-  FXMat4f& look(const FXVec3f& eye,const FXVec3f& cntr,const FXVec3f& vup);
+  FXMat4f& look(const FXVec3f& from,const FXVec3f& to,const FXVec3f& up);
 
   /// Multiply by translation
   FXMat4f& trans(FXfloat tx,FXfloat ty,FXfloat tz);
@@ -158,8 +210,15 @@ public:
 
 extern FXAPI FXMat4f operator*(FXfloat x,const FXMat4f& a);
 extern FXAPI FXMat4f operator*(const FXMat4f& a,FXfloat x);
+
 extern FXAPI FXMat4f operator/(const FXMat4f& a,FXfloat x);
 extern FXAPI FXMat4f operator/(FXfloat x,const FXMat4f& a);
+
+extern FXAPI FXbool operator==(const FXMat4f& a,FXfloat n);
+extern FXAPI FXbool operator==(FXfloat n,const FXMat4f& a);
+
+extern FXAPI FXbool operator!=(const FXMat4f& a,FXfloat n);
+extern FXAPI FXbool operator!=(FXfloat n,const FXMat4f& a);
 
 extern FXAPI FXStream& operator<<(FXStream& store,const FXMat4f& m);
 extern FXAPI FXStream& operator>>(FXStream& store,FXMat4f& m);

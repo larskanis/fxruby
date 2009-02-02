@@ -12,7 +12,7 @@ class TC_FXCheckButton < TestCase
 
   def test_setCheck_TRUE
     @checkButton.check = Fox::TRUE
-    assert_equal(true, @checkButton.check)
+    assert_equal(Fox::TRUE, @checkButton.check)
     assert_equal(Fox::TRUE, @checkButton.checkState)
     assert(@checkButton.checked?)
     assert(!@checkButton.unchecked?)
@@ -21,7 +21,7 @@ class TC_FXCheckButton < TestCase
   
   def test_setCheck_FALSE
     @checkButton.check = Fox::FALSE
-    assert_equal(false, @checkButton.check)
+    assert_equal(Fox::FALSE, @checkButton.check)
     assert_equal(Fox::FALSE, @checkButton.checkState)
     assert(!@checkButton.checked?)
     assert(@checkButton.unchecked?)
@@ -30,7 +30,7 @@ class TC_FXCheckButton < TestCase
   
   def test_setCheck_MAYBE
     @checkButton.check = Fox::MAYBE
-    assert_equal(true, @checkButton.check) # this is not a typo!
+    assert_equal(Fox::MAYBE, @checkButton.check)
     assert_equal(Fox::MAYBE, @checkButton.checkState)
     assert(!@checkButton.checked?)
     assert(!@checkButton.unchecked?)
@@ -39,7 +39,7 @@ class TC_FXCheckButton < TestCase
   
   def test_setCheck_true
     @checkButton.check = true
-    assert_equal(true, @checkButton.check)
+    assert_equal(Fox::TRUE, @checkButton.check)
     assert_equal(Fox::TRUE, @checkButton.checkState)
     assert(@checkButton.checked?)
     assert(!@checkButton.unchecked?)
@@ -48,7 +48,7 @@ class TC_FXCheckButton < TestCase
   
   def test_setCheck_false
     @checkButton.check = false
-    assert_equal(false, @checkButton.check)
+    assert_equal(Fox::FALSE, @checkButton.check)
     assert_equal(Fox::FALSE, @checkButton.checkState)
     assert(!@checkButton.checked?)
     assert(@checkButton.unchecked?)

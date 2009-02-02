@@ -42,8 +42,8 @@ class FXRadioButton : public FXLabel {
 protected:
   FXColor  radioColor;  // Color of radio ball
   FXColor  diskColor;   // Color of radio disk
-  FXbool   check;       // Radio state
-  FXbool   oldcheck;    // Old radio state
+  FXuchar  check;       // Radio state
+  FXuchar  oldcheck;    // Old radio state
 protected:
   FXRadioButton();
 public:
@@ -76,11 +76,11 @@ public:
     }
 
   /// Set radio button state (TRUE, FALSE or MAYBE)
-  void setCheck(FXbool s=TRUE,FXbool notify=FALSE);
+  void setCheck(FXuchar s=TRUE,FXbool notify=false);
 
   /// Get radio button state (TRUE, FALSE or MAYBE)
   %extend {
-    FXbool getCheck() const {
+    FXuchar getCheck() const {
       rb_warning("FXRadioButton#getCheck is deprecated; use checked?, unchecked? or maybe?");
       return self->getCheck();
       }

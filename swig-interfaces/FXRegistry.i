@@ -46,14 +46,14 @@ class FXRegistry : public FXSettings {
 protected:
   FXString       applicationkey;  // Application key
   FXString       vendorkey;       // Vendor key
-  bool	 ascii;		  // ASCII file-based registry
+  FXbool         ascii;		  // ASCII file-based registry
 protected:
-  bool readFromDir(const FXchar* dirname,FXbool mark);
+  FXbool readFromDir(const FXchar* dirname,FXbool mark);
 #ifdef WIN32
-  bool readFromRegistry(void* hRootKey,FXbool mark);
-  bool writeToRegistry(void* hRootKey);
-  bool readFromRegistryGroup(void* org,const char* groupname,FXbool mark=FALSE);
-  bool writeToRegistryGroup(void* org,const char* groupname);
+  FXbool readFromRegistry(void* hRootKey,FXbool mark);
+  FXbool writeToRegistry(void* hRootKey);
+  FXbool readFromRegistryGroup(void* org,const char* groupname,FXbool mark=false);
+  FXbool writeToRegistryGroup(void* org,const char* groupname);
 #endif
 public:
   
@@ -68,10 +68,10 @@ public:
     }
 
   /// Read registry
-  bool read();
+  FXbool read();
   
   /// Write registry
-  bool write();
+  FXbool write();
 
   /// Return application key  
   const FXString& getAppKey() const;
@@ -83,10 +83,10 @@ public:
   * Set ASCII mode; under MS-Windows, this will switch the system to a
   * file-based registry system, instead of using the System Registry API.
   */
-  void setAsciiMode(bool asciiMode);
+  void setAsciiMode(FXbool asciiMode);
 
   /// Get ASCII mode
-  bool getAsciiMode() const;
+  FXbool getAsciiMode() const;
 
   /// Destructor
   virtual ~FXRegistry();

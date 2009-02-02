@@ -39,6 +39,8 @@ class FXMDIChild;
 * A MDI Window selection dialog can be brought up through the ID_MDI_OVER_X messages;
 * a menu button connected to the MDI client with the ID_MDI_OVER_X message will be
 * automatically grayed out if there are less than X MDI child windows.
+* The ID_MDI_ANY may be connected to a menu separator to cause automatic hiding of the
+* menu separator when no MDI child windows are present.
 */
 class FXMDIClient : public FXComposite {
 protected:

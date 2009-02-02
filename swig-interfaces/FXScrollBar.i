@@ -33,9 +33,9 @@ enum {
 
 /**
 * The scroll bar is used when a document has a larger content than may be made
-* visible.  The range is the total size of the document, the page is the part
-* of the document which is visible.  The size of the scrollbar thumb is adjusted
-* to give feedback of the relative sizes of each.
+* visible.  The range is the total size of the document, the page size is the viewable
+* space available for the document.  The size of the scrollbar thumb is adjusted to give
+* feedback of the relative sizes of each.
 * The scroll bar may be manipulated by the left mouse button (normal scrolling), by the
 * middle mouse button (same as the left mouse only the scroll position can jump to the 
 * place where the click is made), or by the right mouse button (vernier- or fine-scrolling).
@@ -67,6 +67,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onCmdSetLongValue(FXObject*,FXSelector,void* PTR_PLONG);
+  long onCmdGetLongValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdSetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_IN);
   long onCmdGetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_OUT);
 public:
@@ -83,16 +85,22 @@ public:
       }
     }
 
-  /// Set content size range
-  void setRange(FXint r);
+  /**
+   * Set content size range.  The range must be at least 1,
+   * but may be smaller than the viewable page size.
+   */
+  void setRange(FXint r,FXbool notify=false);
 
   /// Return content size range
   FXint getRange() const;
 
-  /// Set viewport page size
-  void setPage(FXint p);
+  /**
+   * Set the viewable page size. The page size must be at least 1,
+   * but may be larger than the range.
+   */
+  void setPage(FXint p,FXbool notify=false);
 
-  /// Return page size
+  /// Return viewable page size
   FXint getPage() const;
 
   /// Set scroll increment for line
@@ -101,11 +109,15 @@ public:
   /// Return line increment
   FXint getLine() const;
 
-  /// Change current scroll position
-  void setPosition(FXint p);
-
+  /**
+   * Change scroll position.  The position is always greater or equal
+   * to 0, up to the range less the page size.  If the range is less
+   * than the page size, the position will simply be equal to zero.
+   */
+  void setPosition(FXint p,FXbool notify=false);
+  
   %extend {
-    /// Return scroll position
+    /// Return current scroll position
     FXint position() const {
       return self->getPosition();
       }

@@ -117,8 +117,13 @@ enum FXSelType {
   SEL_QUERY_HELP,                       /// Message inquiring about statusline help
   SEL_DOCKED,                           /// Toolbar docked
   SEL_FLOATED,                          /// Toolbar floated
+	SEL_SPACEBALLMOTION,                  /// Moved space ball puck
+	SEL_SPACEBALLBUTTONPRESS,             /// Pressed space ball button
+	SEL_SPACEBALLBUTTONRELEASE,           /// Released space ball button
   SEL_SESSION_NOTIFY,                   /// Session is about to close
   SEL_SESSION_CLOSED,                   /// Session is closed
+	SEL_IME_START,                        /// IME mode
+	SEL_IME_END,                          /// IME mode
   SEL_LAST
   };
 
@@ -222,7 +227,7 @@ class FXStream;
 // Streamable types; these are fixed size!
 typedef char                   FXchar;
 typedef unsigned char          FXuchar;
-typedef FXuchar                FXbool;
+typedef bool                   FXbool;
 typedef unsigned short         FXushort;
 typedef short                  FXshort;
 typedef unsigned int           FXuint;
@@ -234,7 +239,7 @@ typedef unsigned long          FXuval;
 typedef unsigned int           FXwchar;
 
 // Time since January 1, 1970 (UTC)
-typedef long                   FXTime;
+typedef FXlong                 FXTime;
 
 // Pixel type (could be color index)
 typedef unsigned long          FXPixel;
@@ -254,7 +259,19 @@ typedef FXint                  FXInputHandle;
 
 /**********************************  Macros  ***********************************/
 
-%{
+/// Make int out of two shorts 
+%rename(MKUINT) _MKUINT(FXushort l,FXushort h);
+
+/// Make selector from message type and message id
+%rename(FXSEL) _FXSEL(FXushort type,FXushort id);
+
+/// Get type from selector
+%rename(FXSELTYPE) _FXSELTYPE(FXuint s);
+
+/// Get ID from selector
+%rename(FXSELID) _FXSELID(FXuint s);
+
+%inline %{
 static FXuint _MKUINT(FXushort l,FXushort h){
   return MKUINT(l,h);
   }
@@ -272,20 +289,29 @@ static FXushort _FXSELID(FXuint s){
   }
 %}
 
-/// Make int out of two shorts 
-%name(MKUINT) FXuint _MKUINT(FXushort l,FXushort h);
+/// Make RGB color
+%rename(FXRGB) _FXRGB(FXuchar r,FXuchar g,FXuchar b);
 
-/// Make selector from message type and message id
-%name(FXSEL) FXuint _FXSEL(FXushort type,FXushort id);
+/// Make RGBA color
+%rename(FXRGBA) _FXRGBA(FXuchar r,FXuchar g,FXuchar b,FXuchar a);
 
-/// Get type from selector
-%name(FXSELTYPE) FXushort _FXSELTYPE(FXuint s);
+/// Get red value from RGBA color
+%rename(FXREDVAL) _FXREDVAL(FXuint rgba);
 
-/// Get ID from selector
-%name(FXSELID) FXushort _FXSELID(FXuint s);
+/// Get green value from RGBA color
+%rename(FXGREENVAL) _FXGREENVAL(FXuint rgba);
+
+/// Get blue value from RGBA color
+%rename(FXBLUEVAL) _FXBLUEVAL(FXuint rgba);
+
+/// Get alpha value from RGBA color
+%rename(FXALPHAVAL) _FXALPHAVAL(FXuint rgba);
+
+/// Get component value of RGBA color
+%rename(FXRGBACOMPVAL) _FXRGBACOMPVAL(FXuint rgba,FXuchar comp);
 
 // The order in memory is [R G B A] matches that in FXColor
-%{
+%inline %{
 static FXuint _FXRGB(FXuchar r,FXuchar g,FXuchar b){
   return FXRGB(r,g,b);
   }
@@ -315,26 +341,6 @@ static FXuchar _FXRGBACOMPVAL(FXuint rgba,FXuchar comp){
   }
 %}
 
-/// Make RGB color
-%name(FXRGB) FXuint _FXRGB(FXuchar r,FXuchar g,FXuchar b);
-
-/// Make RGBA color
-%name(FXRGBA) FXuint _FXRGBA(FXuchar r,FXuchar g,FXuchar b,FXuchar a);
-
-/// Get red value from RGBA color
-%name(FXREDVAL) FXuchar _FXREDVAL(FXuint rgba);
-
-/// Get green value from RGBA color
-%name(FXGREENVAL) FXuchar _FXGREENVAL(FXuint rgba);
-
-/// Get blue value from RGBA color
-%name(FXBLUEVAL) FXuchar _FXBLUEVAL(FXuint rgba);
-
-/// Get alpha value from RGBA color
-%name(FXALPHAVAL) FXuchar _FXALPHAVAL(FXuint rgba);
-
-/// Get component value of RGBA color
-%name(FXRGBACOMPVAL) FXuchar _FXRGBACOMPVAL(FXuint rgba,FXuchar comp);
 
 /**********************************  Globals  **********************************/
 
@@ -343,7 +349,7 @@ static FXuchar _FXRGBACOMPVAL(FXuint rgba,FXuchar comp){
 void fxsleep(unsigned int n);
 
 /// Match a file name with a pattern
-FXint fxfilematch(const char *pattern,const char *string,FXuint flags=(FILEMATCH_NOESCAPE|FILEMATCH_FILE_NAME));
+FXbool fxfilematch(const char *pattern,const char *string,FXuint flags=(FILEMATCH_NOESCAPE|FILEMATCH_FILE_NAME));
 
 /// Get highlight color
 FXColor makeHiliteColor(FXColor clr);
@@ -387,7 +393,7 @@ VALUE fxhsv_to_rgb(FXfloat h,FXfloat s,FXfloat v){
 %}
 
 /// Parse geometry, a-la X11 geometry specification
-%{
+%inline %{
 VALUE fxparsegeometry(const FXchar *string){
   FXint x,y,w,h;
   FXint result=fxparsegeometry(string,x,y,w,h);
@@ -404,16 +410,16 @@ VALUE fxparsegeometry(const FXchar *string){
 /// True if executable with given path is a console application
 FXbool fxisconsole(const FXchar *path);
 
-%{
+%rename(fxversion) _fxversion();
+
+%inline %{
 /// Version number that the library has been compiled with
 VALUE _fxversion(){
-  FXString version=FXStringFormat("%d.%d.%d",fxversion[0],fxversion[1],fxversion[2]);
-  return rb_str_new2(version.text());
+  FXString version;
+  return rb_str_new2(version.format("%d.%d.%d",fxversion[0],fxversion[1],fxversion[2]).text());
   }
 %}
 
-%name(fxversion) VALUE _fxversion();
-
 /// Controls tracing level
-unsigned int fxTraceLevel;
+FXuint fxTraceLevel;
 

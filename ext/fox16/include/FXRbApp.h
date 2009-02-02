@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbApp.h 2335 2006-01-28 02:33:03Z lyle $
+ * $Id: FXRbApp.h 2946 2009-02-02 21:06:59Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBAPP_H
@@ -38,18 +38,19 @@ inline void cls ## _detach(cls *self){ \
 inline void cls ## _create(cls *self){ \
   self->cls::create(); \
   } \
-static void cls ## _init(cls* self,VALUE ary,bool connect){ \
+static void cls ## _init(cls* self,VALUE ary,FXbool connect){ \
   int i; \
   char **argv; \
-  int argc=1+RARRAY(ary)->len; \
+  int argc=1+RARRAY_LEN(ary); \
   if(FXMALLOC(&argv,char*,argc+1)){ \
-    argv[0]="foo"; \
+    argv[0]=const_cast<char *>("foo"); \
     for(i=1;i<argc;i++){ \
-      argv[i]=STR2CSTR(RSTRING(rb_ary_entry(ary,i-1))); \
+      VALUE e=rb_ary_entry(ary,i-1); \
+      argv[i]=StringValuePtr(e); \
       } \
     argv[argc]=0; \
     self->cls::init(argc,argv,connect); \
-    while(RARRAY(ary)->len!=0){ \
+    while(RARRAY_LEN(ary)!=0){ \
       rb_ary_pop(ary); \
       } \
     for(i=1;i<argc;i++){ \
@@ -90,16 +91,17 @@ inline void cls ## _exit(cls *self,FXint code){ \
   void cls::destroy(){ \
     FXRbCallVoidMethod(this,rb_intern("destroy")); \
     } \
-  void cls::init(int& argc,char** argv,bool connect){ \
+  void cls::init(int& argc,char** argv,FXbool connect){ \
     int i; \
     VALUE ary=rb_ary_new(); \
     for(i=1; i<argc; i++){ \
       rb_ary_push(ary,rb_str_new2(argv[i])); \
       } \
     FXRbCallVoidMethod(this,rb_intern("init"),ary,connect); \
-    argc=RARRAY(ary)->len+1; \
+    argc=RARRAY_LEN(ary)+1; \
     for(i=1; i<argc; i++){ \
-      argv[i]=STR2CSTR(rb_ary_entry(ary,i-1)); \
+      VALUE e=rb_ary_entry(ary,i-1); \
+      argv[i]=StringValuePtr(e); \
       } \
     } \
   void cls::exit(FXint code){ \

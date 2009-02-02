@@ -1,57 +1,41 @@
 #!/usr/bin/env ruby
 
 require 'fox16'
-require 'fox16/kwargs'
-require 'soap/rpc/driver'
+require 'tranexp'
 
 include Fox
 
 TRANSLATIONS = {
-  "English to French" => "en_fr",
-  "English to German" => "en_de",
-  "English to Italian" => "en_it",
-  "English to Japanese" => "en_jp",
-  "English to Korean" => "en_kr",
-  "English to Portugese" => "en_pt",
-  "English to Spanish" => "en_es",
-  "French to English" => "fr_en",
-  "German to English" => "de_en",
-  "Italian to English" => "it_en",
-  "Japanese to English" => "jp_en",
-  "Korean to English" => "kr_en",
-  "Portugese to English" => "pt_en",
-  "Spanish to English" => "es_en",
-  "Russian to English" => "ru_en",
-  "German to French" => "de_fr",
-  "French to German" => "fr_de"
+  "x" => "y"
 }
 
 class Babelfish < FXMainWindow
 
   def initialize(app)
     # Invoke base class initialize first
-    super(app, "Babelfish", nil, nil, DECOR_ALL,
-      0, 0, 600, 400, 0, 0)
+    super(app, "Babelfish", :opts => DECOR_ALL, :width => 600, :height => 400)
 
-    # Initialize the SOAP driver
-    @drv = SOAP::RPC::Driver.new('http://services.xmethods.net/perl/soaplite.cgi', 'urn:xmethodsBabelFish')
-    @drv.add_rpc_method_with_soapaction('BabelFish',
-      'urn:xmethodsBabelFish#BabelFish', 'translationmode', 'sourcedata')
-
+    @translator = Tranexp::Http.new
+    
     # Controls area along the bottom
     controlsFrame = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X)
     FXLabel.new(controlsFrame, "Translate from:")
-    @transModeCombo = FXComboBox.new(controlsFrame, 15, :opts => COMBOBOX_STATIC|FRAME_SUNKEN|FRAME_THICK)
-    @transModeCombo.numVisible = 6
-    TRANSLATIONS.keys.each do |key|
-      @transModeCombo.appendItem(key, TRANSLATIONS[key])
+    @fromCombo = FXComboBox.new(controlsFrame, 15, :opts => COMBOBOX_STATIC|FRAME_SUNKEN|FRAME_THICK)
+    @fromCombo.numVisible = 6
+    FXLabel.new(controlsFrame, " to:")
+    @toCombo = FXComboBox.new(controlsFrame, 15, :opts => COMBOBOX_STATIC|FRAME_SUNKEN|FRAME_THICK)
+    @toCombo.numVisible = 6
+    Tranexp::Codes.constants.each do |lang|
+      @fromCombo.appendItem(lang)
+      @toCombo.appendItem(lang)
     end
-    btn = FXButton.new(controlsFrame, "Translate", :opts => BUTTON_NORMAL|LAYOUT_SIDE_RIGHT)
+    btn = FXButton.new(controlsFrame, "Translate", :opts => BUTTON_NORMAL|LAYOUT_RIGHT)
     btn.connect(SEL_COMMAND) do
-      transMode = @transModeCombo.getItemData(@transModeCombo.currentItem)
+      from = @fromCombo.getItemText(@fromCombo.currentItem)
+      to = @toCombo.getItemText(@toCombo.currentItem)
       getApp().beginWaitCursor() do
-        @translatedText.text = @drv.BabelFish(transMode, @sourceText.text)
+        @translatedText.text = @translator.translate(@sourceText.text, from, to)
       end
     end
 
@@ -80,15 +64,9 @@ class Babelfish < FXMainWindow
 end
 
 if __FILE__ == $0
-  # Make application
-  application = FXApp.new("Babelfish", "FoxTest")
-
-  # Make window
-  window = Babelfish.new(application)
-
-  # Create it
-  application.create
-
-  # Run
-  application.run
+  FXApp.new("Babelfish", "FoxTest") do |app|
+    Babelfish.new(app)
+    app.create
+    app.run
+  end
 end

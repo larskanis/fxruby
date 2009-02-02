@@ -42,11 +42,17 @@ public:
   /// Copy constructor
   FXExtentd(const FXExtentd& ext);
 
-  /// Initialize from two vectors
+  /// Initialize with a single point
+  FXExtentd(const FXVec2d& p);
+
+  /// Initialize from corner points
   FXExtentd(const FXVec2d& lo,const FXVec2d& hi);
 
-  /// Initialize from six numbers
-  FXExtentd(FXdouble xlo,FXdouble xhi,FXdouble ylo,FXdouble yhi);
+  /// Initialize with a single point
+  FXExtentd(FXdouble x,FXdouble y);
+
+  /// Initialize with explicit values
+  FXExtentd(FXdouble xl,FXdouble xh,FXdouble yl,FXdouble yh);
 
   %extend {
     /// Indexing with 0..1
@@ -62,6 +68,21 @@ public:
       return (*self)[i];
       }
   }
+
+  /// Set value from another range
+  FXExtentd& set(const FXExtentd& ext);
+
+  /// Set value from single point
+  FXExtentd& set(const FXVec2d& p);
+
+  /// Set value from corner points
+  FXExtentd& set(const FXVec2d& lo,const FXVec2d& hi);
+
+  /// Set value from single point
+  FXExtentd& set(FXdouble x,FXdouble y);
+
+  /// Set value from explicit values
+  FXExtentd& set(FXdouble xl,FXdouble xh,FXdouble yl,FXdouble yh);
 
   /// Width of box
   FXdouble width() const;
@@ -88,16 +109,16 @@ public:
   FXVec2d center() const;
 
   /// Test if empty
-  bool empty() const;
+  FXbool empty() const;
 
   /// Test if box contains point x,y
-  bool contains(FXdouble x,FXdouble y) const;
+  FXbool contains(FXdouble x,FXdouble y) const;
 
   /// Test if box contains point p
-  bool contains(const FXVec2d& p) const;
+  FXbool contains(const FXVec2d& p) const;
 
   /// Test if box properly contains another box
-  bool contains(const FXExtentd& ext) const;
+  FXbool contains(const FXExtentd& ext) const;
 
   /// Include point
   FXExtentd& include(FXdouble x,FXdouble y);
@@ -113,7 +134,7 @@ public:
 
   %extend {
     /// Test if bounds overlap
-    bool overlap(const FXExtentd& other) const {
+    FXbool overlap(const FXExtentd& other) const {
       return overlap(*self,other);
       }
 

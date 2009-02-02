@@ -1,15 +1,16 @@
 require 'test/unit'
 require 'fox16'
-require 'testcase'
 
 include Fox
 
-class TC_FXApp < TestCase
-  def setup
-    super(self.class.name)
-  end
-  def test_initialized
-    assert(app.initialized?)
+class TC_FXApp < Test::Unit::TestCase
+  def test_exception_for_second_app
+    app = FXApp.new
+    mainWindow = FXMainWindow.new(app, "")
+    app.create
+    assert_raise RuntimeError do
+      app2 = FXApp.new
+    end
   end
 end
 

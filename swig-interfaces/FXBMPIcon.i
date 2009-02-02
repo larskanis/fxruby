@@ -79,10 +79,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXBMPIcon)
 
 
 /// Save a bmp file to a stream
-bool fxsaveBMP(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
+FXbool fxsaveBMP(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
 
 /**
  * Check if stream contains a bitmap, return TRUE if so.
  */
-bool fxcheckBMP(FXStream& store);
+FXbool fxcheckBMP(FXStream& store);
 

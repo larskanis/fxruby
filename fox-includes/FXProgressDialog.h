@@ -3,23 +3,22 @@
 *                      P r o g r e s s   D i a l o g   B o x                    *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2001,2003 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2001,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXProgressDialog.h 1536 2003-05-14 21:41:00Z lyle $                  *
+* $Id: FXProgressDialog.h 2867 2008-05-29 21:50:28Z lyle $                  *
 ********************************************************************************/
 #ifndef FXPROGRESSDIALOG_H
 #define FXPROGRESSDIALOG_H
@@ -33,8 +32,8 @@ namespace FX {
 
 enum {
   PROGRESSDIALOG_NOCANCEL = 0,                        /// Default is no cancel button
-  PROGRESSDIALOG_CANCEL   = 0x01000000,               /// Enable the cancel button
-  PROGRESSDIALOG_NORMAL   = (DECOR_TITLE|DECOR_BORDER)
+  PROGRESSDIALOG_CANCEL   = 0x02000000,               /// Enable the cancel button
+  PROGRESSDIALOG_NORMAL   = (DECOR_TITLE|DECOR_BORDER)/// Normally with title and border
   };
 
 
@@ -47,6 +46,8 @@ class FXLabel;
 * A Progress Dialog is a simple dialog which is used to
 * keep a user informed of the progress of a lengthy operation
 * in a program and that the program is in fact still working.
+* The PROGRESSDIALOG_CANCEL option enables the display of the
+* cancel button in the Progress Dialog.
 */
 class FXAPI FXProgressDialog : public FXDialogBox {
   FXDECLARE(FXProgressDialog)
@@ -65,6 +66,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void*);
   long onCmdSetIntValue(FXObject*,FXSelector,void*);
   long onCmdGetIntValue(FXObject*,FXSelector,void*);
+  long onCmdSetLongValue(FXObject*,FXSelector,void*);
+  long onCmdGetLongValue(FXObject*,FXSelector,void*);
   long onCmdSetStringValue(FXObject*,FXSelector,void*);
   long onCmdGetStringValue(FXObject*,FXSelector,void*);
   long onCmdCancel(FXObject*,FXSelector,void*);
@@ -81,7 +84,7 @@ public:
 
   /// Change style of the progress bar widget
   void setBarStyle(FXuint style);
-  
+
   /// Get style of the progress bar widget
   FXuint getBarStyle() const;
 

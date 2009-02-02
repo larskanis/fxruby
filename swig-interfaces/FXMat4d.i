@@ -20,6 +20,11 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
+// Provide aliases for backwards-compatibility with FXRuby 1.6
+%alias FXMat4d::identity() "eye";
+%alias FXMat4d::setOrtho(FXdouble, FXdouble, FXdouble, FXdouble, FXdouble, FXdouble) "ortho";
+%alias FXMat4d::setFrustum(FXdouble, FXdouble, FXdouble, FXdouble, FXdouble, FXdouble) "frustum";
+
 /// Double-precision 4x4 matrix
 class FXMat4d {
 protected:
@@ -66,13 +71,13 @@ public:
     }
 
   /// Set identity matrix
-  FXMat4d& eye();
+  FXMat4d& identity();
 
   /// Orthographic projection
-  FXMat4d& ortho(FXdouble left,FXdouble right,FXdouble bottom,FXdouble top,FXdouble hither,FXdouble yon);
+  FXMat4d& setOrtho(FXdouble xlo,FXdouble xhi,FXdouble ylo,FXdouble yhi,FXdouble zlo,FXdouble zhi);
 
   /// Perspective projection
-  FXMat4d& frustum(FXdouble left,FXdouble right,FXdouble bottom,FXdouble top,FXdouble hither,FXdouble yon);
+  FXMat4d& setFrustum(FXdouble xlo,FXdouble xhi,FXdouble ylo,FXdouble yhi,FXdouble zlo,FXdouble zhi);
 
   /// Multiply by left-hand matrix
   FXMat4d& left();
@@ -99,7 +104,7 @@ public:
   FXMat4d& zrot(FXdouble phi);
 
   /// Look at
-  FXMat4d& look(const FXVec3d& eye,const FXVec3d& cntr,const FXVec3d& vup);
+  FXMat4d& look(const FXVec3d& from,const FXVec3d& to,const FXVec3d& up);
 
   /// Multiply by translation
   FXMat4d& trans(FXdouble tx,FXdouble ty,FXdouble tz);

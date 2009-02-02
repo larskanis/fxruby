@@ -3,23 +3,22 @@
 *                                  X - O b j e c t                              *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2004 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXId.h 1889 2004-05-26 03:13:01Z lyle $                              *
+* $Id: FXId.h 2867 2008-05-29 21:50:28Z lyle $                              *
 ********************************************************************************/
 #ifndef FXID_H
 #define FXID_H
@@ -41,12 +40,13 @@ private:
   void  *data;            // User data
 protected:
   FXID   xid;
+  FXID   rsc;
 private:
   FXId(const FXId&);
   FXId &operator=(const FXId&);
 protected:
-  FXId():app((FXApp*)-1L),data(NULL),xid(0){}
-  FXId(FXApp* a):app(a),data(NULL),xid(0){}
+  FXId():app((FXApp*)-1L),data(NULL),xid(0),rsc(0){}
+  FXId(FXApp* a):app(a),data(NULL),xid(0),rsc(0){}
 public:
 
   /// Get application
@@ -55,6 +55,9 @@ public:
   /// Get XID handle
   FXID id() const { return xid; }
 
+  /// Get resource handle
+  FXID res() const { return rsc; }
+  
   /// Create resource
   virtual void create(){}
 
@@ -77,7 +80,7 @@ public:
   virtual void load(FXStream& store);
 
   /// Destructor
-  virtual ~FXId(){app=(FXApp*)-1L;}
+  virtual ~FXId();
   };
 
 }

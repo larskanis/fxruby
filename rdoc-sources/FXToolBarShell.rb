@@ -1,7 +1,16 @@
 module Fox
   #
-  # An FXToolBarShell is a widget floating around over the main window.
-  # It typically contains an undocked tool bar.
+  # A Toolbar shell is a widget floating around over the Main Window.
+  # It typically contains an undocked tool bar.  The Toolbar shell can
+  # be resized horizontally by grabbing its sides if the widget contained
+  # in the Toolbar shell has the LAYOUT_FIX_WIDTH option.  Likewise, it
+  # can be resized vertically if the LAYOUT_FIX_HEIGHT option is passed
+  # to the widget contained in the Toolbar shell.  If both LAYOUT_FIX_WIDTH
+  # and LAYOUT_FIX_HEIGHT are passed to the contained widget, Toolbar shell
+  # can also be resized by grabbing the corners.
+  # Normally, the Toolbar shell tries to accomodate changes in its contained
+  # widget by shrink-wrapping around it, i.e. if the contained widget changes,
+  # the Toolbar shell will change to fit narrowly around it.
   #
   class FXToolBarShell < FXTopWindow
   

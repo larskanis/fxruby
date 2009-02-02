@@ -7,18 +7,26 @@ module Fox
   # and if not handled there, to its target object.
   # When the MDI child is maximized, it sends a SEL_MAXIMIZE message; when the MDI
   # child is minimized, it sends a SEL_MINIMIZE message.  When it is restored, it
-  # sends a SEL_RESTORE message to its target.  The MDI child also notifies its
-  # target when it becomes the active MDI child, via the SEL_SELECTED message.
-  # The void* in the SEL_SELECTED message refers to the previously active MDI child,
-  # if any.  When an MDI child ceases to be the active one, a SEL_DESELECTED message
-  # is sent.  The void* in the SEL_DESELECTED message refers to the newly activated
-  # MDI child, if any.  Thus, interception of SEL_SELECTED and SEL_DESELECTED allows
-  # the target object to determine whether the user switched between MDI windows of
-  # the same document (target) or between MDI windows belonging to the same document.
-  # When the MDI child is closed, it sends a SEL_CLOSE message to its target.
-  # The target has an opportunity to object to the closing; if the MDI child should
-  # not be closed, it should return 1 (objection). If the MDI child should be closed,
-  # the target can either just return 0 or simply not handle the SEL_CLOSE message.
+  # sends a SEL_RESTORE message to its target.
+  # The MDI child also notifies its target when it becomes the active MDI child, via the
+  # SEL_SELECTED message.  The void* in the SEL_SELECTED message refers to the previously
+  # active MDI child, if any.
+  # When an MDI child ceases to be the active window, a SEL_DESELECTED message
+  # is sent to its target, and the void* in the SEL_DESELECTED message refers to the newly
+  # activated MDI child, if any.
+  # Thus, interception of SEL_SELECTED and SEL_DESELECTED allows the target object to determine
+  # whether the user switched between MDI windows of the same document (target) or merely between
+  # two MDI windows belonging to the same document.
+  # When the MDI child is closed, it first sends a SEL_DESELECTED to its target to
+  # notify it that it is no longer the active window; next, it sends a SEL_CLOSE message
+  # to its target to allow the target to clean up (for example, destroy the document
+  # if this was the last window of the document).
+  # The target can prevent the MDI child window from being closed by returning 1 from
+  # the SEL_CLOSE message handler (objection).  If the target returns 0 or does not
+  # handle the SEL_CLOSE message, the MDI child will be closed.
+  # If the MDI child windows was not closed, the child window will be reselected
+  # as the currently active MDI child widget, and a SEL_SELECTED will be sent to
+  # its target to notify it of this fact.
   # The SEL_UPDATE message can be used to modify the MDI child's title (via
   # ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).
   #
@@ -115,12 +123,6 @@ module Fox
     # Construct MDI Child window with given name and icon
     def initialize(p, name, ic=nil, pup=nil, opts=0, x=0, y=0, width=0, height=0) # :yields: theMDIChild
     end
-  
-    # Get next MDI Child
-    def getMDINext(); end
-  
-    # Get previous MDI Child
-    def getMDIPrev(); end
   
     #
     # Minimize this window.

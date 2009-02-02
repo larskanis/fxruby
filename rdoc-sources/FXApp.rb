@@ -70,7 +70,27 @@ module Fox
   end
 
   #
-  # Application Object
+  # The Application object is the central point of a FOX user-interface.
+  # It manages the event queue, timers, signals, chores, and input sources.
+  # Each FOX application should have exactly one Application object, which
+  # is the ultimate owner of the entire widget tree; when the application
+  # object is deleted, all the widgets and other reachable resources of
+  # the widget tree are also deleted.
+  # When the Application is initialized using init(), it parses the
+  # command line arguments meant for it, and opens the display.
+  # The run() function is used to run the application; this function
+  # does not return until the user is ready to quit the application.
+  # During run(), the application processes events from the various
+  # windows and dispatches them to the appropriate handlers.
+  # Finally, a call to exit() terminates the application.
+  # The Application object also manages a registry of configuration
+  # data, which is read during init() and written back at the exit();
+  # thus, all configurations changed by the user normally persist to
+  # the next invocation of the application.
+  # Since different organizations and different applications each need
+  # to keep their own set of configuration data, an application name
+  # and vendor name can be passed in the Application object's constructor
+  # to identify a particular application's configuration data.
   #
   # === Events
   #
@@ -139,6 +159,7 @@ module Fox
   # +DEF_HELP_CURSOR+::	      Help arrow cursor
   # +DEF_HAND_CURSOR+::	      Hand cursor
   # +DEF_ROTATE_CURSOR+::     Rotate cursor
+  # +DEF_BLANK_CURSOR+::      Blank cursor 
   # +DEF_WAIT_CURSOR+::       Wait cursor
   #
   # === Messages identifiers
@@ -233,32 +254,35 @@ module Fox
     attr_reader :modalModality
 
     # Typing speed used for the FXIconList, FXList and FXTreeList widgets' lookup features,
-    # in milliseconds. Default value is 1000 milliseconds.
+    # in nanoseconds. Default value is 1000 nanoseconds.
     attr_accessor :typingSpeed
 
-    # Click speed, in milliseconds [Integer]
+    # Click speed, in nanoseconds [Integer]
     attr_accessor :clickSpeed
 
-    # Scroll speed, in milliseconds [Integer]
+    # Scroll speed, in nanoseconds [Integer]
     attr_accessor :scrollSpeed
 
-    # Scroll delay time, in milliseconds [Integer]
+    # Scroll delay time, in nanoseconds [Integer]
     attr_accessor :scrollDelay
 
-    # Blink speed, in milliseconds [Integer]
+    # Blink speed, in nanoseconds [Integer]
     attr_accessor :blinkSpeed
 
-    # Animation speed, in milliseconds [Integer]
+    # Animation speed, in nanoseconds [Integer]
     attr_accessor :animSpeed
 
-    # Menu pause, in milliseconds [Integer]
+    # Menu pause, in nanoseconds [Integer]
     attr_accessor :menuPause
 
-    # Tooltip pause, in milliseconds [Integer]
+    # Tooltip pause, in nanoseconds [Integer]
     attr_accessor :tooltipPause
 
-    # Tooltip time, in milliseconds [Integer]
+    # Tooltip time, in nanoseconds [Integer]
     attr_accessor :tooltipTime
+    
+    # Autohide time, in nanoseconds [Integer]
+    attr_accessor :autoHideDelay
 
     # Drag delta, in pixels [Integer]
     attr_accessor :dragDelta
@@ -274,6 +298,15 @@ module Fox
     
     # Message translator [FXTranslator]
     attr_accessor :translator
+    
+    # Window that currently owns the primary selection [FXWindow]
+    attr_reader :selectionWindow
+    
+    # Window that currently owns the clipboard [FXWindow]
+    attr_reader :clipboardWindow
+    
+    # Drag window, if a drag operation is in progress [FXWindow]
+    attr_reader :dragWindow
 
     # Copyright notice for library
     def FXApp.copyright() ; end
@@ -300,11 +333,6 @@ module Fox
     # Return +true+ if input methods are supported.
     def hasInputMethod?; end
 
-    #
-    # Process any timeouts due at this time.
-    #
-    def handleTimeouts(); end
-    
     #
     # Add signal processing message to be sent to target object when 
     # the signal _sig_ is raised; flags are to be set as per POSIX definitions.
@@ -358,22 +386,25 @@ module Fox
     def runUntil(condition); end
 
     #
-    # Run event loop while events are available, non-modally.
-    # Return when no more events, timers, or chores are outstanding.
+    # Run non-modal event loop while events arrive within _blocking_ nanoseconds.
+    # Returns when no new events arrive in this time, and no timers, or chores
+    # are outstanding.
     #
-    def runWhileEvents(); end
+    def runWhileEvents(blocking=0); end
 
     #
-    # Run event loop while there are events are available in the queue.
+    # Run modal event loop while events arrive within _blocking_ nanoseconds.
     # Returns 1 when all events in the queue have been handled, and 0 when
     # the event loop was terminated due to #stop or #stopModal.
     # Except for the modal window and its children, user input to all windows 
     # is blocked; if the modal window is +nil+, all user input is blocked.
     #
-    def runModalWhileEvents(window=nil); end
+    def runModalWhileEvents(window=nil, blocking=0); end
 
+    #
     # Run modal event loop, blocking keyboard and mouse events to all windows
     # until #stopModal is called.
+    #
     def runModal(); end
 
     # Run a modal event loop for the given window, until #stop or #stopModal is 

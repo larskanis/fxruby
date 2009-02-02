@@ -81,6 +81,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_IVAL);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+	long onCmdSetLongValue(FXObject*,FXSelector,void*); // FIXME
+	long onCmdGetLongValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdSetRealValue(FXObject*,FXSelector,void* PTR_PDOUBLE);
   long onCmdGetRealValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdSetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_IN);
@@ -108,11 +110,11 @@ public:
   }
 
   /// Change knob value
-  void setValue(FXint value,FXbool notify=FALSE);
+  void setValue(FXint value,FXbool notify=false);
 
   %extend {
     /// Change the knob's range
-    void setRange(VALUE range,FXbool notify=FALSE){
+    void setRange(VALUE range,FXbool notify=false){
       FXint lo,hi;
       FXRbRange2LoHi(range,lo,hi);
       self->setRange(lo,hi,notify);
@@ -130,7 +132,7 @@ public:
   * Change the knob's movement limits (start and ending angles)
   * accept values in degrees from 0 (south) to 360.
   */
-  void setLimits(FXint start,FXint end,FXbool notify=FALSE);
+  void setLimits(FXint start,FXint end,FXbool notify=false);
 
   /// Get the knob's current limits
   void getLimits(FXint& start,FXint& end);

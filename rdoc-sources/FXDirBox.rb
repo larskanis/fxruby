@@ -43,8 +43,10 @@ module Fox
     
     #
     # Change file associations, where _assoc_ is an FXFileDict instance.
+    # If _owned_ is +true+, the FXDirBox takes ownership of the FXFileDict instance,
+    # which means that it will destroy it if you replace it.
     #
-    def setAssociations(assoc); end
+    def setAssociations(assoc, owned=false); end
     
     #
     # Return file associations (an FXFileDict instance).

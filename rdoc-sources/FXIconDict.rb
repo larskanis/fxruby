@@ -21,7 +21,7 @@ module Fox
     # Construct icon dictionary, and set initial search path; also
     # creates a default icon source object.
     #
-    def initialize(app, path=defaultIconPath);
+    def initialize(app, path=FXIconDict.defaultIconPath);
 
     # Change icon source to _src_ (an FXIconSource instance).
     def iconSource=(src); end
@@ -37,12 +37,21 @@ module Fox
 
     # Insert unique icon loaded from _filename_ into dictionary, and return a reference to the icon (an FXIcon instance).
     def insert(filename); end
+    
+    #
+    # Replace icon loaded from _filename_ into dictionary and
+    # return a reference to the icon.
+    #
+    def replace(filename); end
 
     # Remove icon from dictionary; returns a reference to the icon.
     def remove(name); end
 
     # Find icon by name and return a reference to it.
     def find(name); end
+    
+    # Return icon at position _pos_.
+    def data(pos); end
   end
 end
 

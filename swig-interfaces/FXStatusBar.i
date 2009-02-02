@@ -45,9 +45,9 @@ public:
     }
 
   /// Show or hide the drag corner
-  void setCornerStyle(FXbool withcorner=TRUE);
+  void setCornerStyle(FXbool withcorner=true);
   
-  /// Return TRUE if drag corner shown
+  /// Return true if drag corner shown
   FXbool getCornerStyle() const;
   
   /// Acess the status line widget

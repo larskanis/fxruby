@@ -68,7 +68,7 @@ public:
   long onCmdMove(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCopy(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdLink(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onCmdDelete(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onCmdRemove(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdSelected(FXObject*,FXSelector,void* PTR_IGNORE);
 public:
   enum {
@@ -80,7 +80,7 @@ public:
     ID_BOOKMARK,
     ID_VISIT,
     ID_NEW,
-    ID_DELETE,
+    ID_REMOVE,
     ID_MOVE,
     ID_COPY,
     ID_LINK,
@@ -129,6 +129,12 @@ public:
 
   /// Return Directory List style
   FXuint getDirBoxStyle() const;
+
+  /// Change file associations; delete old ones if owned
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
+
+  /// Return file associations
+  FXFileDict* getAssociations() const;
 
   /// Destructor
   virtual ~FXDirSelector();

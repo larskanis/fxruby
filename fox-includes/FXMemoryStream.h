@@ -3,23 +3,22 @@
 *                   M e m o r y   S t r e a m   C l a s s e s                   *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXMemoryStream.h 2344 2006-02-12 21:19:36Z lyle $                    *
+* $Id: FXMemoryStream.h 2725 2007-11-16 16:57:54Z lyle $                    *
 ********************************************************************************/
 #ifndef FXMEMORYSTREAM_H
 #define FXMEMORYSTREAM_H
@@ -42,10 +41,10 @@ public:
   FXMemoryStream(const FXObject* cont=NULL);
 
   /// Open file store
-  bool open(FXStreamDirection save_or_load,FXuchar* data);
+  FXbool open(FXStreamDirection save_or_load,FXuchar* data);
 
   /// Open memory store
-  bool open(FXStreamDirection save_or_load,FXuval size,FXuchar* data);
+  FXbool open(FXStreamDirection save_or_load,FXuval size,FXuchar* data);
 
   /// Take buffer away from stream
   void takeBuffer(FXuchar*& data,FXuval& size);
@@ -54,17 +53,18 @@ public:
   void giveBuffer(FXuchar *data,FXuval size);
 
   /// Close memory store
-  virtual bool close();
+  virtual FXbool close();
 
   /// Get position
   FXlong position() const { return FXStream::position(); }
 
   /// Move to position
-  virtual bool position(FXlong offset,FXWhence whence=FXFromStart);
+  virtual FXbool position(FXlong offset,FXWhence whence=FXFromStart);
 
   /// Save single items to stream
   FXMemoryStream& operator<<(const FXuchar& v){ FXStream::operator<<(v); return *this; }
   FXMemoryStream& operator<<(const FXchar& v){ FXStream::operator<<(v); return *this; }
+  FXMemoryStream& operator<<(const FXbool& v){ FXStream::operator<<(v); return *this; }
   FXMemoryStream& operator<<(const FXushort& v){ FXStream::operator<<(v); return *this; }
   FXMemoryStream& operator<<(const FXshort& v){ FXStream::operator<<(v); return *this; }
   FXMemoryStream& operator<<(const FXuint& v){ FXStream::operator<<(v); return *this; }
@@ -77,6 +77,7 @@ public:
   /// Save arrays of items to stream
   FXMemoryStream& save(const FXuchar* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXMemoryStream& save(const FXchar* p,FXuval n){ FXStream::save(p,n); return *this; }
+  FXMemoryStream& save(const FXbool* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXMemoryStream& save(const FXushort* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXMemoryStream& save(const FXshort* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXMemoryStream& save(const FXuint* p,FXuval n){ FXStream::save(p,n); return *this; }
@@ -89,6 +90,7 @@ public:
   /// Load single items from stream
   FXMemoryStream& operator>>(FXuchar& v){ FXStream::operator>>(v); return *this; }
   FXMemoryStream& operator>>(FXchar& v){ FXStream::operator>>(v); return *this; }
+  FXMemoryStream& operator>>(FXbool& v){ FXStream::operator>>(v); return *this; }
   FXMemoryStream& operator>>(FXushort& v){ FXStream::operator>>(v); return *this; }
   FXMemoryStream& operator>>(FXshort& v){ FXStream::operator>>(v); return *this; }
   FXMemoryStream& operator>>(FXuint& v){ FXStream::operator>>(v); return *this; }
@@ -101,6 +103,7 @@ public:
   /// Load arrays of items from stream
   FXMemoryStream& load(FXuchar* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXMemoryStream& load(FXchar* p,FXuval n){ FXStream::load(p,n); return *this; }
+  FXMemoryStream& load(FXbool* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXMemoryStream& load(FXushort* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXMemoryStream& load(FXshort* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXMemoryStream& load(FXuint* p,FXuval n){ FXStream::load(p,n); return *this; }

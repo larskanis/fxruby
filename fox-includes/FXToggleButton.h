@@ -3,23 +3,22 @@
 *                   T o g g l e    B u t t o n    W i d g e t                   *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXToggleButton.h 2343 2006-02-12 20:26:26Z lyle $                    *
+* $Id: FXToggleButton.h 2767 2007-11-19 18:33:06Z lyle $                    *
 ********************************************************************************/
 #ifndef FXTOGGLEBUTTON_H
 #define FXTOGGLEBUTTON_H
@@ -57,11 +56,11 @@ protected:
   FXint     althotoff;
   FXString  alttip;
   FXString  althelp;
-  FXbool    state;
-  FXbool    down;
+  FXuchar   state;
+  FXuchar   down;
 protected:
   FXToggleButton();
-  void press(FXbool dn);
+  void press(FXuchar dn);
 private:
   FXToggleButton(const FXToggleButton&);
   FXToggleButton& operator=(const FXToggleButton&);
@@ -98,7 +97,7 @@ public:
   virtual void detach();
 
   /// Returns true because a toggle button can receive focus
-  virtual bool canFocus() const;
+  virtual FXbool canFocus() const;
 
   /// Get default width
   virtual FXint getDefaultWidth();
@@ -119,10 +118,10 @@ public:
   FXIcon* getAltIcon() const { return alticon; }
 
   /// Change toggled state
-  void setState(FXbool s=TRUE,FXbool notify=FALSE);
+  void setState(FXuchar s=TRUE,FXbool notify=false);
 
-  /// return toggled state
-  FXbool getState() const { return state; }
+  /// Return toggled state
+  FXuchar getState() const { return state; }
 
   /// Change alternate help text shown when toggled
   void setAltHelpText(const FXString& text);

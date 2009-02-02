@@ -1,9 +1,9 @@
 public:
   /// Overrides the base class version of close()
-  virtual bool close();
+  virtual FXbool close();
 
   /// Overrides the base class version of flush()
-  virtual bool flush();
+  virtual FXbool flush();
 
   // Overrides the base class version of position()
-  virtual bool position(FXlong p,FXWhence whence=FXFromStart);
+  virtual FXbool position(FXlong p,FXWhence whence=FXFromStart);

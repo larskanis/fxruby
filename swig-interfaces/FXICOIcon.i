@@ -83,10 +83,10 @@ VALUE fxloadICO(FXStream& store){
 
 
 /// Save a ICO file to a stream
-bool fxsaveICO(FXStream& store,const FXColor *PIXELS,FXint width,FXint height,FXint xspot=-1,FXint yspot=-1);
+FXbool fxsaveICO(FXStream& store,const FXColor *PIXELS,FXint width,FXint height,FXint xspot=-1,FXint yspot=-1);
 
 /**
  * Check if stream contains a ICO, return TRUE if so.
  */
-bool fxcheckICO(FXStream& store);
+FXbool fxcheckICO(FXStream& store);
 

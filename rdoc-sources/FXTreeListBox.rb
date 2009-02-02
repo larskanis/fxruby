@@ -5,6 +5,9 @@ module Fox
   # When an item is selected it issues a +SEL_COMMAND+ message with the
   # pointer to the item. While manipulating the tree list, it may send
   # +SEL_CHANGED+ messages to indicate which item the cursor is hovering over.
+  # When items are added, replaced, or removed, the list sends messages of
+  # the type SEL_INSERTED, SEL_REPLACED, or SEL_DELETED, with the pointer to
+  # the affected item as argument.
   #
   # === Events
   #
@@ -44,8 +47,11 @@ module Fox
     # Text font [FXFont]
     attr_accessor :font
     
-    # Tree list box style
+    # Tree list box style [Integer]
     attr_accessor :listStyle
+    
+    # Shrinkwrap mode for popup pane [Boolean]
+    attr_accessor :shrinkWrap
 
     # Status line help text for this tree list box [String]
     attr_accessor :helpText
@@ -80,7 +86,7 @@ module Fox
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list box's
     # message target after each item is added.
     #
-    def fillItems(father, strings, oi=nil, ci=nil, ptr=nil); end
+    def fillItems(father, strings, oi=nil, ci=nil, ptr=nil, notify=false); end
 
     # Insert a new (possibly subclassed) _item_ under _father_ before _other_ item.
     # Returns a reference to the newly added item (an FXTreeItem instance).
@@ -142,7 +148,7 @@ module Fox
     #
     # Extract item from list and return a reference to the item.
     #
-    def extractItem(item); end
+    def extractItem(item, notify=false); end
 
     #
     # Search items by _text_, beginning from item _start_.  If the
@@ -212,8 +218,14 @@ module Fox
     # Return item's user data
     def getItemData(item); end
   
-    # Return +true+ if the pane is shown.
-    def paneShown?; end
+    # Return +true+ if the menu pane is shown
+    def menuShown?; end
+    
+    # Set the menu's visibility to shown (+true+) or hidden (+false+)
+    def menuShown=(shown); end
+    
+    # paneShown? is an alias for menuShown?
+    alias paneShown? menuShown?
   end
 end
 

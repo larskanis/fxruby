@@ -76,10 +76,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXTGAIcon)
 %}
 
 /// Save a Targa image to a stream
-bool fxsaveTGA(FXStream& store,const FXColor* PIXELS,FXint width,FXint height);
+FXbool fxsaveTGA(FXStream& store,const FXColor* PIXELS,FXint width,FXint height);
 
 /**
  * Check if stream contains a bitmap, return TRUE if so.
  */
-bool fxcheckTGA(FXStream& store);
+FXbool fxcheckTGA(FXStream& store);
 

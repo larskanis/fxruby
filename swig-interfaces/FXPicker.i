@@ -22,18 +22,26 @@
 
 
 /**
-* A picker button allows you to identify an arbitrary
-* location on the screen.
+* A Picker button allows you to identify an arbitrary location on the screen.
+* It generates SEL_CHANGED callbacks while the user is moving the mouse, and
+* a final SEL_COMMAND when a location has been identified.  The void* parameter
+* in the callback is a pointer to FXPoint, the location, in root-coordinates, of
+* the place where the click took place.
 */
 class FXPicker : public FXButton {
 protected:
-  FXPicker(){}
+  FXPoint location;     // Location
+  FXbool  picked;       // Clicked
+protected:
+  FXPicker();
 public:
   long onMotion(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
-  long onEnter(FXObject*,FXSelector,void* PTR_EVENT);
-  long onLeave(FXObject*,FXSelector,void* PTR_EVENT);
+  long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
+  long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
+  long onHotKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
+  long onHotKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
 public:
   %extend {
     // Constructor

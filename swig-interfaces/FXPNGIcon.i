@@ -37,7 +37,7 @@ public:
       }
 
     /// True if format is supported
-    static bool isSupported() { return FXPNGIcon::supported; }
+    static FXbool isSupported() { return FXPNGIcon::supported; }
     }
 public:
   %extend {
@@ -86,10 +86,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXPNGIcon)
 /**
  * Save an PNG (Portable Network Graphics) file to a stream.
  */
-bool fxsavePNG(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
+FXbool fxsavePNG(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
 
 /**
  * Check if stream contains a bitmap, return TRUE if so.
  */
-bool fxcheckPNG(FXStream& store);
+FXbool fxcheckPNG(FXStream& store);
 

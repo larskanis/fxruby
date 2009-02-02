@@ -254,11 +254,11 @@ public:
   FXTreeItem* getLastItem() const;
 
   /// Fill tree list by appending items from array of strings
-  FXint fillItems(FXTreeItem* father,const FXchar** strings,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
+  FXint fillItems(FXTreeItem* father,const FXchar** strings,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
   %extend {
     /// Insert [possibly subclassed] item under father before other item
-    FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,FXTreeItem* item,FXbool notify=FALSE){
+    FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,FXTreeItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
         dynamic_cast<FXRbTreeItem*>(item)->owner=self;
 	}
@@ -266,7 +266,7 @@ public:
       }
   
     /// Insert item with given text and optional icons, and user-data pointer under father before other item
-    FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
+    FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->insertItem(other,father,text,oi,ci,ITEMDATA,notify);
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
         dynamic_cast<FXRbTreeItem*>(item)->owner=self;
@@ -275,7 +275,7 @@ public:
       }
 
     /// Append [possibly subclassed] item as last child of father 
-    FXTreeItem* appendItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=FALSE){
+    FXTreeItem* appendItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
         dynamic_cast<FXRbTreeItem*>(item)->owner=self;
 	}
@@ -283,7 +283,7 @@ public:
       }
   
     /// Append item with given text and optional icons, and user-data pointer as last child of father
-    FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
+    FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->appendItem(father,text,oi,ci,ITEMDATA,notify);
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
         dynamic_cast<FXRbTreeItem*>(item)->owner=self;
@@ -292,7 +292,7 @@ public:
       }
   
     /// Prepend [possibly subclassed] item as first child of father
-    FXTreeItem* prependItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=FALSE){
+    FXTreeItem* prependItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
         dynamic_cast<FXRbTreeItem*>(item)->owner=self;
 	}
@@ -300,7 +300,7 @@ public:
       }
   
     /// Prepend item with given text and optional icons, and user-data pointer as first child of father
-    FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
+    FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->prependItem(father,text,oi,ci,ITEMDATA,notify);
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
         dynamic_cast<FXRbTreeItem*>(item)->owner=self;
@@ -313,11 +313,11 @@ public:
   FXTreeItem *moveItem(FXTreeItem* other,FXTreeItem* father,FXTreeItem* item);
 
   /// Extract item
-  FXTreeItem* extractItem(FXTreeItem* item,FXbool notify=FALSE);
+  FXTreeItem* extractItem(FXTreeItem* item,FXbool notify=false);
 
   %extend {
     /// Remove item
-    void removeItem(FXTreeItem* item,FXbool notify=FALSE){
+    void removeItem(FXTreeItem* item,FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXTreeItem> items;
       FXRbTreeList::enumerateItem(item,items);
@@ -332,7 +332,7 @@ public:
       }
 
     /// Remove items in range [fm, to] inclusively
-    void removeItems(FXTreeItem* fm,FXTreeItem* to,FXbool notify=FALSE){
+    void removeItems(FXTreeItem* fm,FXTreeItem* to,FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXTreeItem> items;
       FXRbTreeList::enumerateItems(fm,to,items);
@@ -347,7 +347,7 @@ public:
       }
 
     /// Remove all items from list
-    void clearItems(FXbool notify=FALSE){
+    void clearItems(FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXTreeItem> items;
       FXRbTreeList::enumerateItems(self->getFirstItem(),self->getLastItem(),items);
@@ -396,13 +396,13 @@ public:
   FXString getItemText(const FXTreeItem* item) const;
   
   /// Change item's open icon, deleting the old icon if it was owned
-  void setItemOpenIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=FALSE);
+  void setItemOpenIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=false);
   
   /// Return item's open icon
   FXIcon* getItemOpenIcon(const FXTreeItem* item) const;
   
   /// Chance item's closed icon, deleting the old icon if it was owned
-  void setItemClosedIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=FALSE);
+  void setItemClosedIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=false);
   
   /// Return item's closed icon
   FXIcon* getItemClosedIcon(const FXTreeItem* item) const;

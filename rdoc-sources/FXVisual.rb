@@ -4,29 +4,32 @@ module Fox
   #
   # === Construction options for FXVisual
   #
-  # +VISUAL_DEFAULT+::		Default visual
-  # +VISUAL_MONOCHROME+::	Must be monochrome visual
-  # +VISUAL_BEST+::		Best (deepest) visual
-  # +VISUAL_INDEXCOLOR+::	Palette visual
-  # +VISUAL_GRAYSCALE+::	Gray scale visual
-  # +VISUAL_TRUECOLOR+::	Must be true color visual
-  # +VISUAL_OWNCOLORMAP+::	Allocate private colormap
-  # +VISUAL_DOUBLEBUFFER+::	Double-buffered [FXGLVisual]
-  # +VISUAL_STEREO+::		Stereo [FXGLVisual]
-  # +VISUAL_NOACCEL+::		No hardware acceleration [for broken h/w]
-  # +VISUAL_SWAP_COPY+::	Buffer swap by copying (for FXGLVisual)
-  #
-  # === Visual type
-  #
-  # +VISUALTYPE_UNKNOWN+::	Undetermined visual type
-  # +VISUALTYPE_MONO+::		Visual for drawing into 1-bpp surfaces
-  # +VISUALTYPE_TRUE+::		True color
-  # +VISUALTYPE_INDEX+::	Index [palette] color
-  # +VISUALTYPE_GRAY+::		Gray scale
+  # +VISUAL_DEFAULT+::		    Default visual
+  # +VISUAL_MONO+::	          Must be monochrome visual
+  # +VISUAL_BEST+::		        Best (deepest) visual
+  # +VISUAL_INDEX+::	        Palette visual
+  # +VISUAL_GRAY+::	          Gray scale visual
+  # +VISUAL_COLOR+::	        Must be true color visual
+  # +VISUAL_OWNCOLORMAP+::	  Allocate private colormap
+  # +VISUAL_FORCE+::          Force given visual/format
+  # +VISUAL_DOUBLE_BUFFER+::	Double-buffered [FXGLVisual]
+  # +VISUAL_STEREO+::		      Stereo [FXGLVisual]
+  # +VISUAL_NO_ACCEL+::		    No hardware acceleration [for broken h/w]
+  # +VISUAL_SWAP_COPY+::	    Buffer swap by copying (for FXGLVisual)
   #
   class FXVisual < FXId
+
+    Unknown = 0 # Undetermined visual type
+    Mono = 1    # Monochrome 1 bit/pixel
+    Gray = 2    # Gray scale color
+    Index = 3   # Index color
+    Color = 4   # True color
+
     # Visual construction flags [Integer]
-    attr_reader :flags
+    attr_accessor :flags
+    
+    # Hints [Integer]
+    attr_accessor :hints
 
     # Visual depth, i.e. number of significant bits in color representation [Integer]
     attr_reader :depth
@@ -47,9 +50,8 @@ module Fox
     attr_accessor :maxColors
     
     #
-    # The visual type, one of +VISUALTYPE_MONO+, +VISUALTYPE_TRUE+
-    # +VISUALTYPE_INDEX+ or +VISUALTYPE_GRAY+. The visual type
-    # may also be +VISUALTYPE_UNKNOWN+ before the visual is actually
+    # The visual type, one of +Mono+, +Gray+, +Index+ or +Color+.
+    # The visual type may also be +Unknown+ before the visual is actually
     # created.
     #
     attr_reader :visualType
@@ -59,11 +61,11 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
+    # +a+::	    an application instance [FXApp]
     # +flgs+::	visual construction flags [Integer]
-    # +d+::	requested visual depth, in bits [Integer]
+    # +hnt+::	  requested visual depth, in bits [Integer]
     #
-    def initialize(a, flgs, d=32); end
+    def initialize(a, flgs=VISUAL_DEFAULT, hnt=32); end
   
     #
     # Get device pixel value for color value _clr_.

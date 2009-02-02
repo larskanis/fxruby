@@ -7,6 +7,9 @@ module Fox
   # messages to indicate which option the cursor is hovering over.
   # The List Box is able to receive ID_GETINTVALUE and ID_SETINTVALUE which
   # will retrieve the current option or change the selected option.
+  # When items are added, replaced, or removed, the list sends messages of
+  # the type +SEL_INSERTED+, +SEL_REPLACED+, or +SEL_DELETED+, with the index of
+  # the affected item as argument.
   #
   # === Events
   #
@@ -57,6 +60,9 @@ module Fox
   
     # Tool tip message [String]
     attr_accessor :tipText
+    
+    # Shrinkwrap mode for popup pane [Boolean]
+    attr_accessor :shrinkWrap
 
     #
     # Returns an initialized FXListBox instance.
@@ -79,49 +85,74 @@ module Fox
     #
     # Replace the item at _index_ with a new item with the specified _text_,
     # _icon_ and _data_.
+    # If _notify_ is +true+, a +SEL_REPLACED+ message is sent to the list box's message target
+    # before the item is replaced.
     # Raises IndexError if _index_ is out of bounds.
     #
-    def setItem(index, text, icon=nil, ptr=nil); end
+    def setItem(index, text, icon=nil, ptr=nil, notify=false); end
   
     #
     # Fill list by appending items from array of strings, and return the number
     # items added.
+    # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list box's
+    # message target after the items are added.
     #
-    def fillItems(strings, icon=nil, ptr=nil); end
+    def fillItems(strings, icon=nil, ptr=nil, notify=false); end
 
     #
     # Insert a new item at index.
+    # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list box's message target
+    # after the item is inserted.
     # Raises IndexError if _index_ is out of bounds.
     #
-    def insertItem(index, text, icon=nil, ptr=nil); end
+    def insertItem(index, text, icon=nil, ptr=nil, notify=false); end
   
+    #
     # Add an item to the end of the list.
-    def appendItem(text, icon=nil, ptr=nil);
+    # If _notify_ is  +true+, a +SEL_INSERTED+ message is sent to the list box's message target
+    # after the item is appended.
+    #
+    def appendItem(text, icon=nil, ptr=nil, notify=false);
   
+    #
     # Prepend an item to the list
-    def prependItem(text, icon=nil, ptr=nil); end
+    # If _notify_ is  +true+, a +SEL_INSERTED+ message is sent to the list's message target
+    # after the item is prepended.
+    #
+    def prependItem(text, icon=nil, ptr=nil, notify=false); end
   
     #
     # Move item from _oldIndex_ to _newIndex_ and return the new
     # index of the item.
+    # If _notify_ is +true+ and this move causes the current item to change, a
+    # +SEL_CHANGED+ message is sent to the list box's message target to indicate this
+    # change in the current item.
     # Raises IndexError if either _oldIndex_ or _newIndex_ is out of bounds.
     #
-    def moveItem(newIndex, oldIndex); end
+    def moveItem(newIndex, oldIndex, notify=false); end
 
     #
     # Extract item from list and return a reference to the item.
+    # If _notify_ is  +true+, a +SEL_DELETED+ message is sent to the list box's
+    # message target before the item is extracted from the list.
     # Raises IndexError if _index_ is out of bounds.
     #
-    def extractItem(index); end
+    def extractItem(index, notify=false); end
 
     #
     # Remove this item from the list.
+    # If _notify_ is  +true+, a +SEL_DELETED+ message is sent to the list box's message target
+    # before the item is removed.
     # Raises IndexError if _index_ is out of bounds.
     #
-    def removeItem(index); end
+    def removeItem(index, notify=false); end
   
+    #
     # Remove all items from the list
-    def clearItems(); end
+    # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list box's message target
+    # before each item is removed.
+    #
+    def clearItems(notify=false); end
   
     #
     # Search items by _text_, beginning from item _start_. If the start
@@ -180,9 +211,15 @@ module Fox
     #
     def getItemData(index); end
   
-    # Return +true+ if the pane is shown.
-    def paneShown?; end
-  
+    # Return +true+ if the menu pane is shown
+    def menuShown?; end
+    
+    # Set the menu's visibility to shown (+true+) or hidden (+false+)
+    def menuShown=(shown); end
+    
+    # paneShown? is an alias for menuShown?
+    alias paneShown? menuShown?
+
     # Sort items using current sort function
     def sortItems; end
   

@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbText.h 2395 2006-04-22 17:27:36Z lyle $
+ * $Id: FXRbText.h 2771 2007-11-19 23:00:17Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBTEXT_H
@@ -30,12 +30,6 @@
 #define DECLARE_FXTEXT_STUBS(klass) \
 inline void klass ## _setCursorPos(klass* self,FXint pos,FXbool notify){ \
   self->klass::setCursorPos(pos,notify); \
-  } \
-inline FXbool klass ## _extendSelection(klass* self,FXint pos,FXTextSelectionMode mode=SELECT_CHARS,FXbool notify=FALSE){ \
-  return self->klass::extendSelection(pos,mode,notify); \
-  } \
-inline FXbool klass ## _killSelection(klass* self,FXbool notify=FALSE){ \
-  return self->klass::killSelection(notify); \
   } \
 inline void klass ## _replaceText(klass* self,FXint pos,FXint m,const FXString& text,FXbool notify){ \
   self->klass::replaceText(pos,m,text.text(),text.length(),notify); \
@@ -75,12 +69,6 @@ inline void klass ## _setStyledText(klass* self,const FXString& text,FXint style
 #define IMPLEMENT_FXTEXT_STUBS(cls) \
   void cls::setCursorPos(FXint pos,FXbool notify){ \
     FXRbCallVoidMethod(this,rb_intern("setCursorPos"),pos,notify); \
-    } \
-  FXbool cls::extendSelection(FXint pos,FXTextSelectionMode mode,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("extendSelection"),pos,mode,notify); \
-    } \
-  FXbool cls::killSelection(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("killSelection"),notify); \
     } \
   void cls::replaceText(FXint pos,FXint m,const FXchar *text,FXint n,FXbool notify){ \
     FXRbCallVoidMethod(this,rb_intern("replaceText"),pos,m,FXString(text,n),notify); \

@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbScrollArea.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbScrollArea.h 2787 2007-11-28 02:38:10Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBSCROLLAREA_H
@@ -34,11 +34,17 @@ inline FXint klass ## _getContentWidth(klass* self){ \
 inline FXint klass ## _getContentHeight(klass* self){ \
   return self->klass::getContentHeight(); \
   } \
-inline FXint klass ## _getViewportWidth(klass* self){ \
-  return self->klass::getViewportWidth(); \
+inline FXint klass ## _getVisibleX(const klass* self){ \
+  return self->klass::getVisibleX(); \
   } \
-inline FXint klass ## _getViewportHeight(klass* self){ \
-  return self->klass::getViewportHeight(); \
+inline FXint klass ## _getVisibleY(const klass* self){ \
+  return self->klass::getVisibleY(); \
+  } \
+inline FXint klass ## _getVisibleWidth(const klass* self){ \
+  return self->klass::getVisibleWidth(); \
+  } \
+inline FXint klass ## _getVisibleHeight(const klass* self){ \
+  return self->klass::getVisibleHeight(); \
   }
 
 
@@ -49,11 +55,17 @@ inline FXint klass ## _getViewportHeight(klass* self){ \
   FXint cls::getContentHeight(){ \
     return FXRbCallIntMethod(this,rb_intern("getContentHeight")); \
     } \
-  FXint cls::getViewportWidth(){ \
-    return FXRbCallIntMethod(this,rb_intern("getViewportWidth")); \
+  FXint cls::getVisibleX() const { \
+    return FXRbCallIntMethod(this,rb_intern("visibleX")); \
     } \
-  FXint cls::getViewportHeight(){ \
-    return FXRbCallIntMethod(this,rb_intern("getViewportHeight")); \
+  FXint cls::getVisibleY() const { \
+    return FXRbCallIntMethod(this,rb_intern("visibleY")); \
+    } \
+  FXint cls::getVisibleWidth() const { \
+    return FXRbCallIntMethod(this,rb_intern("visibleWidth")); \
+    } \
+  FXint cls::getVisibleHeight() const { \
+    return FXRbCallIntMethod(this,rb_intern("visibleHeight")); \
     }
 
 

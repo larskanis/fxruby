@@ -150,6 +150,12 @@ module Fox
   # In each of these cases, a pointer to the item, if any, is passed in the
   # 3rd argument of the message.
   #
+  # The text in each item is a string separated by tabs for each column;
+  # in mini- or big-icon mode, only the text before the first tab is shown.  
+  # In detail-mode, the text before the first tab is shown in the first column,
+  # the text between the first and second tab is shown in the second column, 
+  # and so on.
+  #
   # === Events
   #
   # The following messages are sent by FXFoldingList to its target:

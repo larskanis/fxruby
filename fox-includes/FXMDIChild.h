@@ -3,23 +3,22 @@
 *          M u l t i p l e   D o c u m e n t   C h i l d   W i n d o w          *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXMDIChild.h 2344 2006-02-12 21:19:36Z lyle $                        *
+* $Id: FXMDIChild.h 2752 2007-11-16 22:49:11Z lyle $                        *
 ********************************************************************************/
 #ifndef FXMDICHILD_H
 #define FXMDICHILD_H
@@ -55,18 +54,26 @@ enum {
 * and if not handled there, to its target object.
 * When the MDI child is maximized, it sends a SEL_MAXIMIZE message; when the MDI
 * child is minimized, it sends a SEL_MINIMIZE message.  When it is restored, it
-* sends a SEL_RESTORE message to its target.  The MDI child also notifies its
-* target when it becomes the active MDI child, via the SEL_SELECTED message.
-* The void* in the SEL_SELECTED message refers to the previously active MDI child,
-* if any.  When an MDI child ceases to be the active one, a SEL_DESELECTED message
-* is sent.  The void* in the SEL_DESELECTED message refers to the newly activated
-* MDI child, if any.  Thus, interception of SEL_SELECTED and SEL_DESELECTED allows
-* the target object to determine whether the user switched between MDI windows of
-* the same document (target) or between MDI windows belonging to the same document.
-* When the MDI child is closed, it sends a SEL_CLOSE message to its target.
-* The target has an opportunity to object to the closing; if the MDI child should
-* not be closed, it should return 1 (objection). If the MDI child should be closed,
-* the target can either just return 0 or simply not handle the SEL_CLOSE message.
+* sends a SEL_RESTORE message to its target.
+* The MDI child also notifies its target when it becomes the active MDI child, via the
+* SEL_SELECTED message.  The void* in the SEL_SELECTED message refers to the previously
+* active MDI child, if any.
+* When an MDI child ceases to be the active window, a SEL_DESELECTED message
+* is sent to its target, and the void* in the SEL_DESELECTED message refers to the newly
+* activated MDI child, if any.
+* Thus, interception of SEL_SELECTED and SEL_DESELECTED allows the target object to determine
+* whether the user switched between MDI windows of the same document (target) or merely between
+* two MDI windows belonging to the same document.
+* When the MDI child is closed, it first sends a SEL_DESELECTED to its target to
+* notify it that it is no longer the active window; next, it sends a SEL_CLOSE message
+* to its target to allow the target to clean up (for example, destroy the document
+* if this was the last window of the document).
+* The target can prevent the MDI child window from being closed by returning 1 from
+* the SEL_CLOSE message handler (objection).  If the target returns 0 or does not
+* handle the SEL_CLOSE message, the MDI child will be closed.
+* If the MDI child windows was not closed, the child window will be reselected
+* as the currently active MDI child widget, and a SEL_SELECTED will be sent to
+* its target to notify it of this fact.
 * The SEL_UPDATE message can be used to modify the MDI child's title (via
 * ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).
 */
@@ -107,9 +114,8 @@ protected:
   FXMDIChild();
   void drawRubberBox(FXint x,FXint y,FXint w,FXint h);
   void animateRectangles(FXint ox,FXint oy,FXint ow,FXint oh,FXint nx,FXint ny,FXint nw,FXint nh);
-  FXuchar where(FXint x,FXint y);
-  void changeCursor(FXint x,FXint y);
-  void revertCursor();
+  FXuchar where(FXint x,FXint y) const;
+  void changeCursor(FXuchar which);
 protected:
   enum {
     DRAG_NONE        = 0,
@@ -129,6 +135,8 @@ private:
   FXMDIChild &operator=(const FXMDIChild&);
 public:
   long onPaint(FXObject*,FXSelector,void*);
+  long onEnter(FXObject*,FXSelector,void*);
+  long onLeave(FXObject*,FXSelector,void*);
   long onFocusSelf(FXObject*,FXSelector,void*);
   long onFocusIn(FXObject*,FXSelector,void*);
   long onFocusOut(FXObject*,FXSelector,void*);
@@ -183,7 +191,7 @@ public:
   virtual void setFocus();
 
   /// MDI Child can receive focus
-  virtual bool canFocus() const;
+  virtual FXbool canFocus() const;
 
   /// Move this window to the specified position in the parent's coordinates
   virtual void move(FXint x,FXint y);
@@ -243,22 +251,22 @@ public:
   void setTitleColor(FXColor clr);
   void setTitleBackColor(FXColor clr);
 
-  /// Maximize MDI window, return TRUE if maximized
-  virtual FXbool maximize(FXbool notify=FALSE);
+  /// Restore MDI window to normal, return true if restored
+  virtual FXbool restore(FXbool notify=false);
 
-  /// Minimize/iconify MDI window, return TRUE if minimized
-  virtual FXbool minimize(FXbool notify=FALSE);
+  /// Maximize MDI window, return true if maximized
+  virtual FXbool maximize(FXbool notify=false);
 
-  /// Restore MDI window to normal, return TRUE if restored
-  virtual FXbool restore(FXbool notify=FALSE);
+  /// Minimize/iconify MDI window, return true if minimized
+  virtual FXbool minimize(FXbool notify=false);
 
-  /// Close MDI window, return TRUE if actually closed
-  virtual FXbool close(FXbool notify=FALSE);
-
-  /// Return TRUE if maximized
+  /// Close MDI window, return true if actually closed
+  virtual FXbool close(FXbool notify=false);
+  
+  /// Return true if maximized
   FXbool isMaximized() const;
 
-  /// Return TRUE if minimized
+  /// Return true if minimized
   FXbool isMinimized() const;
 
   /// Get window icon
@@ -274,7 +282,7 @@ public:
   void setMenu(FXPopup* menu);
 
   /// Set tracking instead of just outline
-  void setTracking(FXbool tracking=TRUE);
+  void setTracking(FXbool tracking=true);
 
   /// Return true if tracking
   FXbool getTracking() const;

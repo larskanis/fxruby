@@ -21,32 +21,31 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbTranslator.h 2303 2005-12-09 03:17:28Z lyle $
+ * $Id: FXRbTranslator.h 2873 2008-05-30 21:38:58Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBTRANSLATOR_H
 #define FXRBTRANSLATOR_H
 
 #define DECLARE_FXTRANSLATOR_STUBS(klass) \
-inline const FXchar* klass ## _tr(const klass* self,const FXchar* context,const FXchar* message,const FXchar* hint){ \
-  return self->klass::tr(context,message,hint); \
+inline const FXchar* klass ## _tr(const klass* self,const FXchar* context,const FXchar* message,const FXchar* hint,FXint count){ \
+  return self->klass::tr(context,message,hint,count); \
   }
 
 
 #define IMPLEMENT_FXTRANSLATOR_STUBS(cls) \
-  const FXchar* cls::tr(const FXchar* context,const FXchar* message,const FXchar* hint) const { \
-    return FXRbCallCStringMethod(this,rb_intern("tr"),context,message,hint); \
+  const FXchar* cls::tr(const FXchar* context,const FXchar* message,const FXchar* hint,FXint count) const { \
+    return FXRbCallCStringMethod(this,rb_intern("tr"),context,message,hint,count); \
     }
 
 class FXRbTranslator : public FXTranslator {
   FXDECLARE(FXRbTranslator)
 protected:
-  FXRbTranslator(){}
 #include "FXRbObjectVirtuals.h"
 #include "FXRbTranslatorVirtuals.h"
 public:
   // Default constructor
-  FXRbTranslator(FXApp* a) : FXTranslator(a){
+  FXRbTranslator() : FXTranslator(){
     }
 
   // Mark dependencies for the GC

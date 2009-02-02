@@ -82,6 +82,12 @@ module Fox
     #
     attr_accessor :barStyle
     
+    # Bar size [Integer]
+    attr_accessor :barSize
+    
+    # Control size [Integer]
+    attr_accessor :controlSize
+    
     # Selection color [FXColor]
     attr_accessor :selectColor
     

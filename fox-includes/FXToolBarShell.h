@@ -3,23 +3,22 @@
 *                    T o o l   B a r   S h e l l   W i d g e t                  *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2000,2003 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2000,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXToolBarShell.h 1536 2003-05-14 21:41:00Z lyle $                     *
+* $Id: FXToolBarShell.h 2767 2007-11-19 18:33:06Z lyle $                    *
 ********************************************************************************/
 #ifndef FXTOOLBARSHELL_H
 #define FXTOOLBARSHELL_H
@@ -32,19 +31,39 @@ namespace FX {
 
 
 /**
-* A Tool bar shell is a widget floating around over the Main Window.
-* It typically contains an undocked tool bar.
+* A Toolbar shell is a widget floating around over the Main Window.
+* It typically contains an undocked tool bar.  The Toolbar shell can
+* be resized horizontally by grabbing its sides if the widget contained
+* in the Toolbar shell has the LAYOUT_FIX_WIDTH option.  Likewise, it
+* can be resized vertically if the LAYOUT_FIX_HEIGHT option is passed
+* to the widget contained in the Toolbar shell.  If both LAYOUT_FIX_WIDTH
+* and LAYOUT_FIX_HEIGHT are passed to the contained widget, Toolbar shell
+* can also be resized by grabbing the corners.
+* Normally, the Toolbar shell tries to accomodate changes in its contained
+* widget by shrink-wrapping around it, i.e. if the contained widget changes,
+* the Toolbar shell will change to fit narrowly around it.
 */
 class FXAPI FXToolBarShell : public FXTopWindow {
   FXDECLARE(FXToolBarShell)
 protected:
-  FXColor   baseColor;
-  FXColor   hiliteColor;
-  FXColor   shadowColor;
-  FXColor   borderColor;
-  FXint     border;
+  FXColor   baseColor;          // Base color
+  FXColor   hiliteColor;        // Highlight color
+  FXColor   shadowColor;        // Shadow color
+  FXColor   borderColor;        // Border color
+  FXint     border;             // Border width
+  FXint     gripx;              // Grip offset x
+  FXint     gripy;              // Grip offset y
+  FXint     xopp;               // Opposite x
+  FXint     yopp;               // Opposite y
+  FXuchar   mode;               // Dragging mode
 protected:
-  FXToolBarShell(){}
+  static const FXDefaultCursor cursorType[16];
+private:
+  FXToolBarShell(const FXToolBarShell&);
+  FXToolBarShell &operator=(const FXToolBarShell&);
+protected:
+  FXToolBarShell();
+  FXuchar where(FXint x,FXint y) const;
   void drawBorderRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
@@ -53,11 +72,27 @@ protected:
   void drawDoubleRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawDoubleSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
   void drawFrame(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-private:
-  FXToolBarShell(const FXToolBarShell&);
-  FXToolBarShell &operator=(const FXToolBarShell&);
+protected:
+  enum {
+    DRAG_NONE        = 0,
+    DRAG_TOP         = 1,
+    DRAG_BOTTOM      = 2,
+    DRAG_LEFT        = 4,
+    DRAG_RIGHT       = 8,
+    DRAG_TOPLEFT     = (DRAG_TOP|DRAG_LEFT),
+    DRAG_TOPRIGHT    = (DRAG_TOP|DRAG_RIGHT),
+    DRAG_BOTTOMLEFT  = (DRAG_BOTTOM|DRAG_LEFT),
+    DRAG_BOTTOMRIGHT = (DRAG_BOTTOM|DRAG_RIGHT),
+    DRAG_WHOLE       = (DRAG_TOP|DRAG_BOTTOM|DRAG_LEFT|DRAG_RIGHT)
+    };
 public:
   long onPaint(FXObject*,FXSelector,void*);
+  long onEnter(FXObject*,FXSelector,void*);
+  long onLeave(FXObject*,FXSelector,void*);
+  long onMotion(FXObject*,FXSelector,void*);
+  long onLeftBtnPress(FXObject*,FXSelector,void*);
+  long onLeftBtnRelease(FXObject*,FXSelector,void*);
+  long onLayout(FXObject*,FXSelector,void*);
 public:
 
   /// Construct a toolbar shell

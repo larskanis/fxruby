@@ -82,10 +82,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXPPMIcon)
 /**
 * Save an PPM (Portable Pixmap Format) file to a stream.
 */
-bool fxsavePPM(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
+FXbool fxsavePPM(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
 
 /**
  * Check if stream contains a bitmap, return TRUE if so.
  */
-bool fxcheckPPM(FXStream& store);
+FXbool fxcheckPPM(FXStream& store);
 

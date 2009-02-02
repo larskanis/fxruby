@@ -26,10 +26,15 @@ class FXGLObject;
 
 // GL Viewer options
 enum {
-  VIEWER_LIGHTING    = 0x00008000,    /// Lighting is on
-  VIEWER_FOG         = 0x00010000,    /// Fog mode on
-  VIEWER_DITHER      = 0x00020000     /// Dithering
+	GLVIEWER_LIGHTING = 0x00010000,    /// Lighting is on
+	GLVIEWER_FOG      = 0x00020000,    /// Fog mode on
+	GLVIEWER_DITHER   = 0x00040000     /// Dithering
   };
+
+// Maintain backwards compatibility with FXRuby 1.6 option names
+%constant FXuint VIEWER_LIGHTING = GLVIEWER_LIGHTING;
+%constant FXuint VIEWER_FOG = GLVIEWER_FOG;
+%constant FXuint VIEWER_DITHER = GLVIEWER_DITHER;
 
   
 /*******************************  Viewer  Structs  *****************************/
@@ -38,39 +43,43 @@ enum {
 /// OpenGL Viewer Viewport
 struct FXViewport {
   FXViewport();
-  FXint      w,h;               // Viewport dimensions
-  FXdouble   left,right;        // World box
-  FXdouble   bottom,top;
-  FXdouble   hither,yon;
+  FXint      w;                 /// Viewport width
+  FXint      h;                 /// Viewport height
+  FXdouble   left;              /// World left
+  FXdouble   right;             /// World right
+  FXdouble   bottom;            /// World bottom
+  FXdouble   top;               /// World top
+  FXdouble   hither;            /// World hither (near)
+  FXdouble   yon;               /// World yon (far)
   ~FXViewport();
   };
 
 
-// OpenGL Light Source
+/// OpenGL Light Source
 struct FXLight {
   FXLight();
-  FXVec4f    ambient;           // Ambient light color
-  FXVec4f    diffuse;           // Diffuse light color
-  FXVec4f    specular;          // Specular light color
-  FXVec4f    position;          // Light position
-  FXVec3f    direction;         // Spot direction
-  FXfloat    exponent;          // Spotlight exponent
-  FXfloat    cutoff;            // Spotlight cutoff angle
-  FXfloat    c_attn;            // Constant attenuation factor
-  FXfloat    l_attn;            // Linear attenuation factor
-  FXfloat    q_attn;            // Quadratic attenuation factor
+  FXVec4f    ambient;           /// Ambient light color
+  FXVec4f    diffuse;           /// Diffuse light color
+  FXVec4f    specular;          /// Specular light color
+  FXVec4f    position;          /// Light position
+  FXVec3f    direction;         /// Spot direction
+  FXfloat    exponent;          /// Spotlight exponent
+  FXfloat    cutoff;            /// Spotlight cutoff angle
+  FXfloat    c_attn;            /// Constant attenuation factor
+  FXfloat    l_attn;            /// Linear attenuation factor
+  FXfloat    q_attn;            /// Quadratic attenuation factor
   ~FXLight();
   };
 
 
-// OpenGL Material Description
+/// OpenGL Material Description
 struct FXMaterial {
   FXMaterial();
-  FXVec4f    ambient;           // Ambient material color
-  FXVec4f    diffuse;           // Diffuse material color
-  FXVec4f    specular;          // Specular material color
-  FXVec4f    emission;          // Emissive material color
-  FXfloat    shininess;         // Specular shininess
+  FXVec4f    ambient;           /// Ambient material color
+  FXVec4f    diffuse;           /// Diffuse material color
+  FXVec4f    specular;          /// Specular material color
+  FXVec4f    emission;          /// Emissive material color
+  FXfloat    shininess;         /// Specular shininess
   ~FXMaterial();
   };
 
@@ -83,76 +92,11 @@ struct FXMaterial {
 
 /// Canvas, an area drawn by another object
 class FXGLViewer : public FXGLCanvas {
-protected:
-  FXViewport      wvt;              // Window viewport transform
-  FXMat4f         transform;        // Current transformation matrix
-  FXMat4f         itransform;       // Inverse of current transformation matrix
-  FXuint          projection;       // Projection mode
-  FXQuatf         rotation;         // Viewer orientation
-  FXdouble        fov;              // Field of view
-  FXdouble        zoom;             // Zoom factor
-  FXVec3f         center;           // Model center
-  FXVec3f         scale;            // Model scale
-  FXdouble        worldpx;          // Pixel size in world
-  FXdouble        modelpx;          // Pixel size in model
-  FXint           maxhits;          // Maximum number of hits
-  FXdouble        ax,ay;            // Quick view->world coordinate mapping
-  FXdouble        diameter;         // Size of model diameter ( always > 0)
-  FXdouble        distance;         // Distance of PRP to target
-  FXVec4f         background[2];    // Background colors
-  FXVec4f         ambient;          // Global ambient light
-  FXLight         light;            // Light source
-  FXMaterial      material;         // Base material properties
-  FXint           dial[3];          // Dial positions
-  FXString        help;             // Status help
-  FXString        tip;              // Tooltip for background
-  FXGLObject     *dropped;          // Object being dropped on
-  FXGLObject     *selection;        // Current object
-  FXZSortFunc     zsortfunc;        // Routine to sort feedback buffer
-  FXGLObject     *scene;            // What we're looking at
-  FXbool          doesturbo;        // Doing turbo mode
-  FXbool          turbomode;        // Turbo mode
-  FXuchar         mode;             // Mode the widget is in
 public:
 
   // Common DND types
   static FXDragType objectType;     // GL Object type
 
-protected:
-
-  // Mouse actions when in viewing window
-  enum {
-    HOVERING,                       // Hovering mouse w/o doing anything
-    PICKING,                        // Pick mode
-    ROTATING,                       // Rotating camera around target
-    POSTING,                        // Posting right-mouse menu
-    TRANSLATING,                    // Translating camera
-    ZOOMING,                        // Zooming
-    FOVING,                         // Change field-of-view
-    DRAGGING,                       // Dragging objects
-    TRUCKING,                       // Trucking camera
-    GYRATING,                       // Rotation of camera around eye
-    DO_LASSOSELECT,                 // Lasso select when mouse pressed
-    LASSOSELECT,                    // Anchor of lasso rectangle
-    DO_LASSOZOOM,                   // Zoom when mouse pressed
-    LASSOZOOM                       // Zoom rectangle
-    };
-
-protected:
-  FXGLViewer();
-  void glsetup();
-  virtual void updateProjection();
-  virtual void updateTransform();
-  FXVec3fspherePoint(FXint px,FXint py);
-  FXQuatf turn(FXint fx,FXint fy,FXint tx,FXint ty);
-  void drawWorld(FXViewport& wv);
-  void drawAnti(FXViewport& wv);
-  void drawLasso(FXint x0,FXint y0,FXint x1,FXint y1);
-  // FXint selectHits(FXuint*& hits,FXint& nhits,FXint x,FXint y,FXint w,FXint h);
-  FXint renderFeedback(FXfloat *buffer,FXint x,FXint y,FXint w,FXint h,FXint maxbuffer);
-  void drawFeedback(FXDCPrint& pdc,const FXfloat* buffer,FXint used);
-  virtual FXGLObject* processHits(FXuint *pickbuffer,FXint nhits);
-  void setOp(FXuint o);
 public:
 
   // Events
@@ -177,6 +121,7 @@ public:
   long onMiddleBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
   long onRightBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onRightBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);
+	long onSpaceBallMotion(FXObject*,FXSelector,void* PTR_EVENT);
   long onUngrabbed(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
@@ -322,11 +267,16 @@ public:
       return new FXRbGLViewer(p,vis,tgt,sel,opts,x,y,w,h);
       }
   
-    /// Construct GL viewer widget sharing display list with another GL viewer
-    FXGLViewer(FXComposite* p,FXGLVisual *vis,FXGLViewer* sharegroup,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
-      return new FXRbGLViewer(p,vis,sharegroup,tgt,sel,opts,x,y,w,h);
-      }
-    }
+		/// Construct GL viewer widget sharing display lists with another GL viewer
+		FXGLViewer(FXComposite* p,FXGLVisual *vis,FXGLViewer* share,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
+	    return new FXRbGLViewer(p,vis,share,tgt,sel,opts,x,y,w,h);
+		  }
+	
+		/// Construct GL viewer widget sharing context
+		FXGLViewer(FXComposite* p,FXGLContext* ctx,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
+	    return new FXRbGLViewer(p,ctx,tgt,sel,opts,x,y,w,h);
+		  }
+  }
 
   /// Return size of pixel in world coordinates
   FXdouble worldPix() const;
@@ -510,11 +460,14 @@ public:
   /// Return the projection mode
   FXuint getProjection() const;
 
-  /// Change top or bottom or both background colors
-  void setBackgroundColor(const FXVec4f& clr,FXbool bottom=MAYBE);
+  /// Change both top and bottom background colors
+  void setBackgroundColor(const FXVec4f& clr);
  
-  /// Return top or bottom window background color.
-  const FXVec4f& getBackgroundColor(FXbool bottom=FALSE) const;
+  /// Change top or bottom background color
+  void setBackgroundColor(const FXVec4f& clr,FXbool bottom);
+
+  /// Return top or bottom window background color
+  const FXVec4f& getBackgroundColor(FXbool bottom) const;
 
   /// Change global ambient light color
   void setAmbientColor(const FXVec4f& clr);
@@ -663,7 +616,7 @@ public:
   FXbool getTurboMode() const;
 
   /// Set turbo mode
-  void setTurboMode(FXbool turbo=TRUE);
+  void setTurboMode(FXbool turbo=true);
   
   %extend {
     // Return light source settings

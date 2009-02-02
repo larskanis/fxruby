@@ -29,7 +29,11 @@ public:
 public:
 
   /// Default constructor
-  FXVec3f();
+  %extend {
+		FXVec3f() {
+			return new FXVec3f(0.0f, 0.0f, 0.0f);
+		}
+	}
 
   /// Copy constructor
   FXVec3f(const FXVec3f& v);
@@ -79,7 +83,7 @@ public:
     FXVec3f cross(const FXVec3f& other) const  { return (*self)^other; }
   
     /// Equality tests
-    bool operator==(const FXVec3f& other) const { return (*self)==other; }
+    FXbool operator==(const FXVec3f& other) const { return (*self)==other; }
 
     /// Normalize vector
     FXVec3f normalize() const { return normalize(*self); }

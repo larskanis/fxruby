@@ -9,6 +9,9 @@ module Fox
 
     # Transparency color [FXColor]
     attr_accessor :transparentColor
+    
+    # Threshold value [Integer]
+    attr_accessor :thresholdValue
 
     #
     # Create an icon with an initial pixel buffer _pix_, a transparent color _clr_,

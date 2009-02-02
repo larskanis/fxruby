@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE book
-  PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
-  "file:/Users/lyle/docbook/xml/4.4/docbookx.dtd" [
+  PUBLIC "-//OASIS//DTD DocBook V5.0//EN"
+  "file:/Users/lyle/docbook/xml/5.0/dtd/docbook.dtd" [
 <!ENTITY bookinfo.xml SYSTEM "bookinfo.xml">
 <!ENTITY build.xml SYSTEM "build.xml">
 <!ENTITY changes.xml SYSTEM "changes.xml">
@@ -19,11 +19,10 @@
 <!ENTITY library.xml SYSTEM "library.xml">
 <!ENTITY opengl.xml SYSTEM "opengl.xml">
 <!ENTITY scintilla.xml SYSTEM "scintilla.xml">
-<!ENTITY todo.xml SYSTEM "todo.xml">
 <!ENTITY tutorial1.xml SYSTEM "tutorial1.xml">
 <!ENTITY unicode.xml SYSTEM "unicode.xml">
 ]>
-<book id="book" lang="en">
+<book id="book" lang="en" xmlns="http://docbook.org/ns/docbook">
 &bookinfo.xml;
 <part label="I">
 <title>The Basics</title>
@@ -37,7 +36,6 @@
 &examples.xml;
 &events.xml;
 <!--&layout.xml;-->
-&todo.xml;
 &infosources.xml;
 &changes.xml;
 </part>

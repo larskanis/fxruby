@@ -25,6 +25,7 @@ text_wrap.cpp
 treelist_wrap.cpp
 ui_wrap.cpp
 impl.cpp
+include/swigrubyrun.h
 include/FXRb4Splitter.h
 include/FXRbAccelTable.h
 include/FXRbApp.h
@@ -185,5 +186,4 @@ include/FXRbXPMIcon.h
 include/FXRbXPMImage.h
 include/FXRuby.h
 include/impl.h
-librb.c
 markfuncs.cpp

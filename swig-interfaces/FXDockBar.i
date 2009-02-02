@@ -45,6 +45,7 @@ protected:
   FXuchar      allowed;         // Where we're allowed to dock
 protected:
   FXDockBar();
+  FXbool isAllowable(FXuint hints) const;
 public:
   long onCmdUndock(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdUndock(FXObject*,FXSelector,void* PTR_IGNORE);

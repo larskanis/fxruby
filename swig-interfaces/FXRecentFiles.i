@@ -23,8 +23,17 @@
 %rename("app") FXRecentFiles::getApp() const;
 
 /**
-* The Recent files manages a most recently used (MRU) file list by
-* means of the standard system registry.  
+* The recent files object manages a most recently used (MRU) file list by
+* means of the standard system registry.
+* When connected to a widget, like a menu command, the recent files object
+* updates the menu commands label to the associated recent file name; when
+* the menu command is invoked, the recent file object sends its target a
+* SEL_COMMAND message with the message data set to the associated file name,
+* of the type const char*.
+* When adding or removing file names, the recent files object automatically
+* updates the system registry to record these changes.
+* The ID_ANYFILES may be connected to a menu separator to cause automatic
+* hiding of the menu separator when there are no recent files.
 */
 class FXRecentFiles : public FXObject {
 protected:

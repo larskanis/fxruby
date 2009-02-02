@@ -40,24 +40,14 @@ class StyledTextWindow < FXMainWindow
       TEXT_READONLY|TEXT_WORDWRAP|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     
     # Construct some hilite styles
-    hs1 = FXHiliteStyle.new
+    hs1 = FXHiliteStyle.from_text(text)
     hs1.normalForeColor = FXColor::Red
     hs1.normalBackColor = FXColor::Blue
-    hs1.selectForeColor = text.selTextColor
-    hs1.selectBackColor = text.selBackColor
-    hs1.hiliteForeColor = text.hiliteTextColor
-    hs1.hiliteBackColor = text.hiliteBackColor
-    hs1.activeBackColor = text.activeBackColor
-    hs1.style = 0
+    hs1.style = FXText::STYLE_BOLD
 
-    hs2 = FXHiliteStyle.new
+    hs2 = FXHiliteStyle.from_text(text)
     hs2.normalForeColor = FXColor::Blue
     hs2.normalBackColor = FXColor::Yellow
-    hs2.selectForeColor = text.selTextColor
-    hs2.selectBackColor = text.selBackColor
-    hs2.hiliteForeColor = text.hiliteTextColor
-    hs2.hiliteBackColor = text.hiliteBackColor
-    hs2.activeBackColor = text.activeBackColor
     hs2.style = FXText::STYLE_UNDERLINE
     
     # Enable the style buffer for this text widget

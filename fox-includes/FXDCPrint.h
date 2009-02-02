@@ -3,23 +3,22 @@
 *           D e v i c e   C o n t e x t   F o r   P r i n t i n g               *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXDCPrint.h 2194 2005-08-24 12:58:14Z lyle $                         *
+* $Id: FXDCPrint.h 2725 2007-11-16 16:57:54Z lyle $                         *
 ********************************************************************************/
 #ifndef FXDCPRINT_H
 #define FXDCPRINT_H
@@ -140,7 +139,7 @@ public:
   /// Generate end of page
   FXbool endPage();
 
-  FXbool setContentRange(FXint pxmin, FXint pymin, FXint pxmax, FXint pymax);
+  FXbool setContentRange(FXint pxmin,FXint pymin,FXint pxmax,FXint pymax);
 
   /// Draw points
   virtual void drawPoint(FXint x,FXint y);
@@ -201,7 +200,7 @@ public:
   /// Draw area from source
   virtual void drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy);
 
-  /// Draw area stretched area from source 
+  /// Draw area stretched area from source
   virtual void drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy,FXint dw,FXint dh);
 
   /// Draw image

@@ -3,23 +3,22 @@
 *                       H a s h   T a b l e   C l a s s                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2003,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2003,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXHash.h 2336 2006-02-04 15:20:33Z lyle $                            *
+* $Id: FXHash.h 2725 2007-11-16 16:57:54Z lyle $                            *
 ********************************************************************************/
 #ifndef FXHASH_H
 #define FXHASH_H
@@ -31,12 +30,12 @@ namespace FX {
 * A hash table for associating pointers to pointers.
 */
 class FXAPI FXHash {
-private:
+protected:
   struct FXEntry {
-    void* key;
-    void* value;
+    void* name;
+    void* data;
     };
-private:
+protected:
   FXEntry *table;       // Hash table
   FXuint   total;       // Table size
   FXuint   used;        // Number of used entries
@@ -46,40 +45,67 @@ private:
   FXHash &operator=(const FXHash&);
 public:
 
-  /// Construct empty hash table
+  /**
+  * Construct empty hash table.
+  */
   FXHash();
 
-  /// Resize the table to the given size.
+  /**
+  * Resize the table to the given size; the size must be
+  * a power of two.
+  */
   void size(FXuint m);
 
-  /// Return the size of the table
-  FXint size() const { return total; }
+  /**
+  * Return the total number of slots in the table.
+  */
+  FXuint size() const { return total; }
 
-  /// Return number of items in table
+  /**
+  * Return number of non-empty slots in the table.
+  */
   FXuint no() const { return used; }
 
-  /// Insert key into the table
-  void* insert(void* key,void* value);
+  /**
+  * Insert key into table, unless the key already exists.
+  * Returns the current value of the key.
+  */
+  void* insert(void* name,void* data);
 
-  /// Replace key in table
-  void* replace(void* key,void* value);
+  /**
+  * Replace key in table, overwriting the old value if the
+  * given key already exists.  Returns the old value of the key.
+  */
+  void* replace(void* name,void* data);
 
-  /// Remove key from the table
-  void* remove(void* key);
+  /**
+  * Remove key from the table. Returns the old value of the key.
+  */
+  void* remove(void* name);
 
-  /// Return value of key
-  void* find(void* key) const;
+  /**
+  * Return value of key, or return NULL.
+  */
+  void* find(void* name) const;
 
-  /// Return true if slot is empty
-  bool empty(FXint pos) const { return (table[pos].key==NULL)||(table[pos].key==(void*)-1L); }
+  /**
+  * Return true if slot is not occupied by a key.
+  */
+  FXbool empty(FXuint pos) const { return (table[pos].name==NULL)||(table[pos].name==(void*)-1L); }
 
-  /// Return key at position pos
-  void* key(FXint pos) const { return table[pos].key; }
+  /**
+  * Return key at position pos.
+  */
+  void* key(FXuint pos) const { return table[pos].name; }
 
-  /// Return data pointer at position pos
-  void* value(FXint pos) const { return table[pos].value; }
+  /**
+  * Return data pointer at position pos.
+  */
+  void* value(FXuint pos) const { return table[pos].data; }
 
-  /// Clear hash table
+  /**
+  * Clear hash table.
+  */
   void clear();
 
   /// Destructor

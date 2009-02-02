@@ -32,7 +32,11 @@ public:
 public:
 
   /// Default constructor
-  FXVec4d();
+  %extend {
+		FXVec4d() {
+			return new FXVec4d(0.0, 0.0, 0.0, 0.0);
+		}
+	}
 
   /// Copy constructor
   FXVec4d(const FXVec4d& v);
@@ -50,7 +54,7 @@ public:
   FXdouble distance(const FXVec3d& p) const;
 
   /// Return true if edge a-b crosses plane
-  bool crosses(const FXVec3d& a,const FXVec3d& b) const;
+  FXbool crosses(const FXVec3d& a,const FXVec3d& b) const;
   
   /// Length and square of length
   FXdouble length2() const;
@@ -89,7 +93,7 @@ public:
     FXdouble dot(const FXVec4d& other) const { return (*self)*other; }
 
     /// Equality tests
-    bool operator==(const FXVec4d& other) const { return (*self)==other; }
+    FXbool operator==(const FXVec4d& other) const { return (*self)==other; }
 
     /// Normalize vector
     FXVec4d normalize() const { return normalize(*self); }

@@ -34,8 +34,8 @@ class FXCheckButton : public FXLabel {
 protected:
   FXColor  checkColor;  // Color of check mark
   FXColor  boxColor;    // Color of check box
-  FXbool   check;       // Check state
-  FXbool   oldcheck;    // Old check state
+  FXuchar  check;       // Check state
+  FXuchar  oldcheck;    // Old check state
 protected:
   FXCheckButton();
 public:
@@ -67,11 +67,11 @@ public:
     }
 
   /// Set check button state (TRUE, FALSE or MAYBE)
-  void setCheck(FXbool state=TRUE, FXbool notify=FALSE);
+  void setCheck(FXuchar state=TRUE, FXbool notify=false);
 
   /// Get check button state (TRUE, FALSE or MAYBE)
   %extend {
-    FXbool getCheck() const {
+    FXuchar getCheck() const {
       rb_warning("FXCheckButton#getCheck is deprecated; use checked?, unchecked? or maybe?");
       return self->getCheck();
       }

@@ -15,6 +15,8 @@ module Fox
   # A MDI Window selection dialog can be brought up through the ID_MDI_OVER_X messages;
   # a menu button connected to the MDI client with the ID_MDI_OVER_X message will be
   # automatically grayed out if there are less than X MDI child windows.
+  # The +ID_MDI_ANY+ may be connected to a menu separator to cause automatic hiding of the
+  # menu separator when no MDI child windows are present.
   #
   # === Events
   #
@@ -38,12 +40,6 @@ module Fox
     def initialize(p, opts=0, x=0, y=0, width=0, height=0) # :yields: theMDIClient
     end
 
-    # Get first MDI Child
-    def getMDIChildFirst(); end
-  
-    # Get last MDI Child
-    def getMDIChildLast(); end
-  
     #
     # Pass message to all MDI windows, stopping when one of
     # the MDI windows fails to handle the message.

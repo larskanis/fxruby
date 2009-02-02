@@ -22,46 +22,34 @@
 
 class FXApp;
 class FXDrawable;
-class FXGLVisual;
 
-
-/**
-* A GL context is an object representing the OpenGL state information.
-* Multiple GL context may share display lists to conserve memory.
-* When drawing multiple windows, it may be advantageous to share not only
-* display lists, but also GL contexts.  Since the GL context is created
-* for a certain frame-buffer configuration, sharing of GL contexts is
-* only possible if the windows sharing the GL context all have the same
-* GL visual.
-* However, display lists may be shared between different GL contexts.
-*/
+/// OpenGL context
 class FXGLContext : public FXId {
-protected:
-  void           *ctx;        // GL Context
-protected:
-  FXGLContext();
 public:
   %extend {
     /**
-    * Construct an OpenGL context with its own private display list.
+		* Construct an GL Context with given GL Visual.  Optionally
+		* share a display list with another GL Context shr.
     */
-    FXGLContext(FXApp* a,FXGLVisual *vis){
-      return new FXRbGLContext(a,vis);
-      }
-  
-    /**
-    * Construct an OpenGL context sharing display lists with an existing GL context.
-    */
-    FXGLContext(FXApp* a,FXGLVisual *vis,FXGLContext *shared){
-      return new FXRbGLContext(a,vis,shared);
+    FXGLContext(FXApp* a,FXGLVisual* vis,FXGLContext *shr=NULL){
+      return new FXRbGLContext(a,vis,shr);
       }
     }
 
-  /// Return TRUE if it is sharing display lists
-  FXbool isShared() const;
-  
+  /// Change visual
+  void setVisual(FXGLVisual* vis);
+
   /// Get the visual
   FXGLVisual* getVisual() const;
+
+  /// Change share context
+  void setShared(FXGLContext *ctx);
+
+  /// Get share context
+  FXGLContext* getShared() const;
+
+  /// Return active drawable
+  FXDrawable *drawable() const;
 
   /// Make OpenGL context current prior to performing OpenGL commands
   FXbool begin(FXDrawable *drawable);
@@ -72,9 +60,15 @@ public:
   /// Swap front and back buffer
   void swapBuffers();
   
-  /// Copy part of backbuffer to front buffer [Mesa]
-  void swapSubBuffers(FXint x,FXint y,FXint w,FXint h);
-  
+  /// Return true if this window's context is current
+  FXbool isCurrent() const;
+
+  /// Has double buffering
+  FXbool isDoubleBuffer() const;
+
+  /// Has stereo buffering
+  FXbool isStereo() const;
+
   /// Destructor
   virtual ~FXGLContext();
   };

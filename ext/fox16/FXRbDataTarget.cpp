@@ -21,9 +21,10 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbDataTarget.cpp 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbDataTarget.cpp 2797 2007-12-11 21:59:11Z lyle $
  ***********************************************************************/
 
+#include "swigrubyrun.h"
 #include "FXRbCommon.h"
 
 /**
@@ -57,15 +58,15 @@ void FXRbDataTarget::setValue(VALUE value){
       connect(doubleValue);
       break;
     case T_STRING:
-      stringValue=STR2CSTR(value);
+      stringValue=StringValuePtr(value);
       connect(stringValue);
       break;
     case T_TRUE:
-      boolValue=TRUE;
+      boolValue=true;
       connect(boolValue);
       break;
     case T_FALSE:
-      boolValue=FALSE;
+      boolValue=false;
       connect(boolValue);
       break;
     default:
@@ -80,6 +81,8 @@ VALUE FXRbDataTarget::getValue() const {
   switch(type){
     case DT_VOID:
       return Qnil;
+    case DT_BOOL:
+	  return to_ruby(*reinterpret_cast<FXbool*>(data));
     case DT_CHAR:
       return to_ruby(*reinterpret_cast<FXchar*>(data));
     case DT_UCHAR:

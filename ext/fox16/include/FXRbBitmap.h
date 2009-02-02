@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbBitmap.h 2335 2006-01-28 02:33:03Z lyle $
+ * $Id: FXRbBitmap.h 2629 2007-04-02 02:04:08Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBBITMAP_H
@@ -37,10 +37,10 @@ inline void cls ## _render(cls* self){ \
 inline void cls ## _release(cls* self){ \
   self->cls::release(); \
   } \
-inline bool cls ## _savePixels(const cls* self,FXStream& store){ \
+inline FXbool cls ## _savePixels(const cls* self,FXStream& store){ \
   return self->cls::savePixels(store); \
   } \
-inline bool cls ## _loadPixels(cls* self,FXStream& store){ \
+inline FXbool cls ## _loadPixels(cls* self,FXStream& store){ \
   return self->cls::loadPixels(store); \
   } \
 inline void cls ## _scale(cls* self,FXint w,FXint h){ \
@@ -76,10 +76,10 @@ inline void cls ## _setData(cls* self,FXuchar* pix,FXuint opts,FXint w,FXint h){
   void cls::release(){ \
     FXRbCallVoidMethod(this,rb_intern("release")); \
     } \
-  bool cls::savePixels(FXStream& store) const { \
+  FXbool cls::savePixels(FXStream& store) const { \
     return FXRbCallBoolMethod(this,rb_intern("savePixels"),store); \
     } \
-  bool cls::loadPixels(FXStream& store){ \
+  FXbool cls::loadPixels(FXStream& store){ \
     return FXRbCallBoolMethod(this,rb_intern("loadPixels"),store); \
     } \
   void cls::scale(FXint w,FXint h){ \

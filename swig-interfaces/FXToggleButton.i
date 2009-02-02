@@ -39,11 +39,11 @@ protected:
   FXint     althotoff;
   FXString  alttip;
   FXString  althelp;
-  FXbool    state;
-  FXbool    down;
+  FXuchar   state;
+  FXuchar   down;
 protected:
   FXToggleButton();
-  void press(FXbool dn);
+  void press(FXuchar dn);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);
@@ -87,10 +87,10 @@ public:
   FXIcon* getAltIcon() const;
 
   /// Change toggled state
-  void setState(FXbool s=TRUE,FXbool notify=FALSE);
+  void setState(FXuchar s=TRUE,FXbool notify=false);
   
   /// return toggled state
-  FXbool getState() const;
+  FXuchar getState() const;
 
   /// Change alternate help text shown when toggled
   void setAltHelpText(const FXString& text);

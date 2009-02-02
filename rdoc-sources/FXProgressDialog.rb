@@ -3,6 +3,8 @@ module Fox
   # A progress dialog is a simple dialog which is used to
   # keep a user informed of the progress of a lengthy operation
   # in a program and that the program is in fact still working.
+  # The PROGRESSDIALOG_CANCEL option enables the display of the
+  # cancel button in the Progress Dialog.
   #
   # === Options
   #

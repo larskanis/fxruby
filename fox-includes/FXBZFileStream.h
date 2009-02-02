@@ -3,23 +3,22 @@
 *                      B Z F i l e S t r e a m   C l a s s e s                  *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1999,2005 by Lyle Johnson. All Rights Reserved.                 *
+* Copyright (C) 1999,2007 by Lyle Johnson. All Rights Reserved.                 *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXBZFileStream.h 2335 2006-01-28 02:33:03Z lyle $                     *
+* $Id: FXBZFileStream.h 2726 2007-11-16 17:27:20Z lyle $                    *
 ********************************************************************************/
 #ifdef HAVE_BZ2LIB_H
 #ifndef FXBZFILESTREAM_H
@@ -50,20 +49,24 @@ public:
   FXBZFileStream(const FXObject* cont=NULL);
 
   /// Open file stream
-  bool open(const FXString& filename,FXStreamDirection save_or_load,FXuval size=8192);
+  FXbool open(const FXString& filename,FXStreamDirection save_or_load,FXuval size=8192);
+
+  /// Flush buffer
+  virtual FXbool flush();
 
   /// Close file stream
-  virtual bool close();
+  virtual FXbool close();
 
   /// Get position
   FXlong position() const { return FXStream::position(); }
 
   /// Move to position
-  virtual bool position(FXlong,FXWhence){ return FALSE; }
+  virtual FXbool position(FXlong,FXWhence){ return false; }
 
   /// Save single items to stream
   FXBZFileStream& operator<<(const FXuchar& v){ FXStream::operator<<(v); return *this; }
   FXBZFileStream& operator<<(const FXchar& v){ FXStream::operator<<(v); return *this; }
+  FXBZFileStream& operator<<(const FXbool& v){ FXStream::operator<<(v); return *this; }
   FXBZFileStream& operator<<(const FXushort& v){ FXStream::operator<<(v); return *this; }
   FXBZFileStream& operator<<(const FXshort& v){ FXStream::operator<<(v); return *this; }
   FXBZFileStream& operator<<(const FXuint& v){ FXStream::operator<<(v); return *this; }
@@ -76,6 +79,7 @@ public:
   /// Save arrays of items to stream
   FXBZFileStream& save(const FXuchar* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXBZFileStream& save(const FXchar* p,FXuval n){ FXStream::save(p,n); return *this; }
+  FXBZFileStream& save(const FXbool* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXBZFileStream& save(const FXushort* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXBZFileStream& save(const FXshort* p,FXuval n){ FXStream::save(p,n); return *this; }
   FXBZFileStream& save(const FXuint* p,FXuval n){ FXStream::save(p,n); return *this; }
@@ -88,6 +92,7 @@ public:
   /// Load single items from stream
   FXBZFileStream& operator>>(FXuchar& v){ FXStream::operator>>(v); return *this; }
   FXBZFileStream& operator>>(FXchar& v){ FXStream::operator>>(v); return *this; }
+  FXBZFileStream& operator>>(FXbool& v){ FXStream::operator>>(v); return *this; }
   FXBZFileStream& operator>>(FXushort& v){ FXStream::operator>>(v); return *this; }
   FXBZFileStream& operator>>(FXshort& v){ FXStream::operator>>(v); return *this; }
   FXBZFileStream& operator>>(FXuint& v){ FXStream::operator>>(v); return *this; }
@@ -100,6 +105,7 @@ public:
   /// Load arrays of items from stream
   FXBZFileStream& load(FXuchar* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXBZFileStream& load(FXchar* p,FXuval n){ FXStream::load(p,n); return *this; }
+  FXBZFileStream& load(FXbool* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXBZFileStream& load(FXushort* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXBZFileStream& load(FXshort* p,FXuval n){ FXStream::load(p,n); return *this; }
   FXBZFileStream& load(FXuint* p,FXuval n){ FXStream::load(p,n); return *this; }

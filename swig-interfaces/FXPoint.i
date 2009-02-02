@@ -28,17 +28,17 @@ public:
 public:
 
   /// Constructors
-  FXPoint();
   FXPoint(const FXSize& s);
   FXPoint(const FXPoint& p);
-  FXPoint(FXshort xx,FXshort yy);
+  FXPoint(FXshort xx=0,FXshort yy=0);
 
   %extend {
     /// Equality
-    bool operator==(const FXPoint& p) const { return *self == p; }
+    FXbool operator==(const FXPoint& p) const { return *self == p; }
     }
 
-  /// Negation
+  /// Unary operators
+  FXPoint operator+();
   FXPoint operator-();
 
   %extend {

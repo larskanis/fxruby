@@ -21,19 +21,25 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbGLShape.h 2190 2005-08-24 07:58:47Z lyle $
+ * $Id: FXRbGLShape.h 2777 2007-11-27 21:32:07Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBGLSHAPE_H
 #define FXRBGLSHAPE_H
 
 #define DECLARE_FXGLSHAPE_STUBS(klass,subklass) \
+inline void klass ## _setPosition(klass* self,const FXVec3f& pos){ \
+  self->klass::setPosition(pos); \
+  } \
 inline void klass ## _drawshape(klass* self,FXGLViewer* viewer){ \
   FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
   dynamic_cast<subklass*>(self)->_drawshape(viewer); \
   }
 
 #define IMPLEMENT_FXGLSHAPE_STUBS(klass,superklass) \
+  void klass::setPosition(const FXVec3f& pos){ \
+    FXRbCallVoidMethod(this,rb_intern("setPosition"),pos); \
+    } \
   void klass::drawshape(FXGLViewer* viewer){ \
     FXRbCallVoidMethod(this,rb_intern("drawshape"),viewer); \
     } \
@@ -57,12 +63,6 @@ public:
 
   // Identify sub-object given path
   virtual FXGLObject* identify(FXuint* path,FXint n);
-
-  // Get position
-  FXVec3f getPosition() const { return position; }
-
-  // Set position
-  void setPosition(const FXVec3f& pos){ position=pos; }
 
   // Set the range
   void setRange(const FXRangef& box){

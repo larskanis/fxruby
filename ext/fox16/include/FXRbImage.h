@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRbImage.h 2336 2006-02-04 15:20:33Z lyle $
+ * $Id: FXRbImage.h 2669 2007-04-16 20:04:22Z lyle $
  ***********************************************************************/
 
 #ifndef FXRBIMAGE_H
@@ -40,7 +40,7 @@ inline void klass ## _release(klass* self){ \
 inline void klass ## _scale(klass* self,FXint w,FXint h,FXint quality){ \
   self->klass::scale(w,h,quality); \
   } \
-inline void klass ## _mirror(klass* self,bool horizontal,bool vertical){ \
+inline void klass ## _mirror(klass* self,FXbool horizontal,FXbool vertical){ \
   self->klass::mirror(horizontal,vertical); \
   } \
 inline void klass ## _rotate(klass* self,FXint degrees){ \
@@ -94,7 +94,7 @@ inline bool klass ## _loadPixels(klass* self,FXStream& store){ \
   void cls::scale(FXint w,FXint h,FXint quality){ \
     FXRbCallVoidMethod(this,rb_intern("scale"),w,h,quality); \
     } \
-  void cls::mirror(bool horizontal,bool vertical){ \
+  void cls::mirror(FXbool horizontal,FXbool vertical){ \
     FXRbCallVoidMethod(this,rb_intern("mirror"),horizontal,vertical); \
     } \
   void cls::rotate(FXint degrees){ \

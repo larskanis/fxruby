@@ -110,6 +110,7 @@ end
 
 fcpp = File.new('impl.cpp', 'wb')
 finc = File.new('./include/inlinestubs.h', 'wb')
+fcpp.puts '#include "swigrubyrun.h"'
 fcpp.puts '#include "FXRbCommon.h"'
 Dir.glob("./include/FX*.h").sort.each do |file|
   unless file =~ /BitmapView/

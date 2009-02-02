@@ -3,23 +3,22 @@
 *                        F i l e    L i s t   W i d g e t                       *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXFileList.h 2336 2006-02-04 15:20:33Z lyle $                        *
+* $Id: FXFileList.h 2742 2007-11-16 21:50:26Z lyle $                        *
 ********************************************************************************/
 #ifndef FXFILELIST_H
 #define FXFILELIST_H
@@ -55,10 +54,10 @@ class FXAPI FXFileItem : public FXIconItem {
   FXDECLARE(FXFileItem)
   friend class FXFileList;
 protected:
-  FXFileAssoc  *assoc;                  // File association record
-  FXFileItem   *link;                   // Link to next item
-  FXlong        size;                   // File size
-  FXTime        date;                   // File time
+  FXFileAssoc *assoc;           // File association record
+  FXFileItem  *link;            // Link to next item
+  FXlong       size;            // File size
+  FXTime       date;            // File time
 private:
   FXFileItem(const FXFileItem&);
   FXFileItem& operator=(const FXFileItem&);
@@ -66,16 +65,17 @@ protected:
   FXFileItem():assoc(NULL),link(NULL),size(0),date(0){}
 protected:
   enum{
-    FOLDER     = 64,                    // Directory item
-    EXECUTABLE = 128,                   // Executable item
-    SYMLINK    = 256,                   // Symbolic linked item
-    CHARDEV    = 512,                   // Character special item
-    BLOCKDEV   = 1024,                  // Block special item
-    FIFO       = 2048,                  // FIFO item
-    SOCK       = 4096,                  // Socket item
-    SHARE      = 8192                   // Share
+    FOLDER     = 64,            /// Directory item
+    EXECUTABLE = 128,           /// Executable item
+    SYMLINK    = 256,           /// Symbolic linked item
+    CHARDEV    = 512,           /// Character special item
+    BLOCKDEV   = 1024,          /// Block special item
+    FIFO       = 2048,          /// FIFO item
+    SOCK       = 4096,          /// Socket item
+    SHARE      = 8192           /// Share
     };
 public:
+
   /// Constructor
   FXFileItem(const FXString& text,FXIcon* bi=NULL,FXIcon* mi=NULL,void* ptr=NULL):FXIconItem(text,bi,mi,ptr),assoc(NULL),link(NULL),size(0L),date(0){}
 
@@ -106,13 +106,16 @@ public:
   /// Return true if this is a socket
   FXbool isSocket() const { return (state&SOCK)!=0; }
 
+  /// Return true if item is a special navigational item like '.' or '..'
+  FXbool isNavigational() const { return (label[0]=='.' && (label[1]=='\t' || (label[1]=='.' && label[2]=='\t'))); }
+
   /// Return the file-association object for this item
   FXFileAssoc* getAssoc() const { return assoc; }
 
   /// Return the file size for this item
   FXlong getSize() const { return size; }
 
-  /// Return the date for this item
+  /// Return the date for this item, in nanoseconds
   FXTime getDate() const { return date; }
   };
 
@@ -130,34 +133,42 @@ public:
 class FXAPI FXFileList : public FXIconList {
   FXDECLARE(FXFileList)
 protected:
-  FXString      directory;      // Current directory
-  FXString      orgdirectory;   // Original directory
-  FXString      dropdirectory;  // Drop directory
-  FXDragAction  dropaction;     // Drop action
-  FXString      dragfiles;      // Dragged files
   FXFileDict   *associations;   // Association table
   FXFileItem   *list;           // File item list
-  FXString      pattern;        // Pattern of file names
-  FXuint        matchmode;      // File wildcard match mode
-  FXuint        counter;        // Refresh counter
-  FXint         imagesize;      // Image size
-  FXTime        timestamp;      // Time when last refreshed
   FXIcon       *big_folder;     // Big folder icon
   FXIcon       *mini_folder;    // Mini folder icon
   FXIcon       *big_doc;        // Big document icon
   FXIcon       *mini_doc;       // Mini document icon
   FXIcon       *big_app;        // Big application icon
   FXIcon       *mini_app;       // Mini application icon
+  FXString      directory;      // Current directory
+  FXString      pattern;        // Pattern of file names
+  FXString      startdirectory; // Start directory
+  FXString      dropdirectory;  // Drop directory
+  FXString      dragfiles;      // Dragged file names
+  FXString      dropfiles;      // Dropped file names
+  FXString      clipfiles;      // Clipped file names
+  FXDragAction  dropaction;     // Drop action
+  FXuint        matchmode;      // File wildcard match mode
+  FXint         imagesize;      // Image size
+  FXTime        timestamp;      // Time when last refreshed
+  FXuint        counter;        // Refresh counter
+  FXbool        draggable;      // Dragable files
 protected:
   FXFileList();
   virtual FXIconItem *createItem(const FXString& text,FXIcon *big,FXIcon* mini,void* ptr);
   void listItems(FXbool force);
+  FXint getSelectedFiles(FXString& result) const;
+  FXString* getSelectedFiles() const;
+  FXIcon* getItemPreviewIcon(FXint index) const;
 private:
   FXFileList(const FXFileList&);
   FXFileList &operator=(const FXFileList&);
 public:
   long onOpenTimer(FXObject*,FXSelector,void*);
   long onRefreshTimer(FXObject*,FXSelector,void*);
+  long onDropAction(FXObject*,FXSelector,void*);
+  long onPreviewChore(FXObject*,FXSelector,void*);
   long onDNDEnter(FXObject*,FXSelector,void*);
   long onDNDLeave(FXObject*,FXSelector,void*);
   long onDNDMotion(FXObject*,FXSelector,void*);
@@ -166,6 +177,8 @@ public:
   long onBeginDrag(FXObject*,FXSelector,void*);
   long onEndDrag(FXObject*,FXSelector,void*);
   long onDragged(FXObject*,FXSelector,void*);
+  long onClipboardLost(FXObject*,FXSelector,void*);
+  long onClipboardRequest(FXObject*,FXSelector,void*);
   long onCmdSetValue(FXObject*,FXSelector,void*);
   long onCmdGetStringValue(FXObject*,FXSelector,void*);
   long onCmdSetStringValue(FXObject*,FXSelector,void*);
@@ -202,6 +215,10 @@ public:
   long onCmdHeader(FXObject*,FXSelector,void*);
   long onUpdHeader(FXObject*,FXSelector,void*);
   long onCmdRefresh(FXObject*,FXSelector,void*);
+  long onCmdCutSel(FXObject*,FXSelector,void*);
+  long onCmdCopySel(FXObject*,FXSelector,void*);
+  long onCmdPasteSel(FXObject*,FXSelector,void*);
+  long onCmdDeleteSel(FXObject*,FXSelector,void*);
 public:
   static FXint ascending(const FXIconItem* a,const FXIconItem* b);
   static FXint descending(const FXIconItem* a,const FXIconItem* b);
@@ -219,8 +236,10 @@ public:
   static FXint descendingGroup(const FXIconItem* a,const FXIconItem* b);
 public:
   enum {
-    ID_REFRESHTIMER=FXIconList::ID_LAST,
-    ID_OPENTIMER,
+    ID_OPENTIMER=FXIconList::ID_LAST,
+    ID_REFRESHTIMER,
+    ID_DROPACTION,
+    ID_PREVIEWCHORE,
     ID_SORT_BY_NAME,    /// Sort by name
     ID_SORT_BY_TYPE,    /// Sort by type
     ID_SORT_BY_SIZE,    /// Sort by size
@@ -237,6 +256,10 @@ public:
     ID_TOGGLE_HIDDEN,   /// Toggle display of hidden files
     ID_TOGGLE_IMAGES,   /// Toggle display of images
     ID_REFRESH,         /// Refresh immediately
+    ID_CUT_SEL,
+    ID_COPY_SEL,
+    ID_DELETE_SEL,
+    ID_PASTE_SEL,
     ID_LAST
     };
 public:
@@ -253,11 +276,11 @@ public:
   /// Destroy server-side resources
   virtual void destroy();
 
-  /// Scan the current directory and update the items if needed, or if force is TRUE
-  void scan(FXbool force=TRUE);
+  /// Scan the current directory and update the items if needed, or if force is true
+  void scan(FXbool force=true);
 
   /// Set current file
-  void setCurrentFile(const FXString& file,FXbool notify=FALSE);
+  void setCurrentFile(const FXString& file,FXbool notify=false);
 
   /// Return current file
   FXString getCurrentFile() const;
@@ -274,17 +297,20 @@ public:
   /// Return wildcard pattern
   FXString getPattern() const { return pattern; }
 
-  /// Return TRUE if item is a directory
+  /// Return true if item is a directory
   FXbool isItemDirectory(FXint index) const;
 
-  /// Return TRUE if item is a directory
+  /// Return true if item is a directory
   FXbool isItemShare(FXint index) const;
 
-  /// Return TRUE if item is a file
+  /// Return true if item is a file
   FXbool isItemFile(FXint index) const;
 
-  /// Return TRUE if item is executable
+  /// Return true if item is executable
   FXbool isItemExecutable(FXint index) const;
+
+  /// Return true if item is navigational item like '.' or '..'
+  FXbool isItemNavigational(FXint index) const;
 
   /// Return name of item at index
   FXString getItemFilename(FXint index) const;
@@ -301,29 +327,29 @@ public:
   /// Change wildcard matching mode
   void setMatchMode(FXuint mode);
 
-  /// Return TRUE if showing hidden files
+  /// Return true if showing hidden files
   FXbool showHiddenFiles() const;
 
   /// Show or hide hidden files
-  void showHiddenFiles(FXbool showing);
+  void showHiddenFiles(FXbool flag);
 
-  /// Return TRUE if showing directories only
+  /// Return true if showing directories only
   FXbool showOnlyDirectories() const;
 
   /// Show directories only
-  void showOnlyDirectories(FXbool shown);
+  void showOnlyDirectories(FXbool flag);
 
-  /// Return TRUE if showing files only
+  /// Return true if showing files only
   FXbool showOnlyFiles() const;
 
   /// Show files only
-  void showOnlyFiles(FXbool shown);
+  void showOnlyFiles(FXbool flag);
 
-  /// Return TRUE if image preview on
+  /// Return true if image preview on
   FXbool showImages() const;
 
   /// Show or hide preview images
-  void showImages(FXbool showing);
+  void showImages(FXbool flag);
 
   /// Return images preview size
   FXint getImageSize() const { return imagesize; }
@@ -331,17 +357,23 @@ public:
   /// Change images preview size
   void setImageSize(FXint size);
 
-  /// Return TRUE if showing parent directories
+  /// Return true if showing parent directories
   FXbool showParents() const;
 
   /// Show parent directories
-  void showParents(FXbool shown);
+  void showParents(FXbool flag);
 
-  /// Change file associations
-  void setAssociations(FXFileDict* assoc);
+  /// Change file associations; delete the old one unless it was shared
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
 
   /// Return file associations
   FXFileDict* getAssociations() const { return associations; }
+
+  /// Set draggable files
+  void setDraggableFiles(FXbool flag);
+
+  /// Are draggable files
+  FXbool getDraggableFiles() const { return draggable; }
 
   /// Save to stream
   virtual void save(FXStream& store) const;

@@ -1,9 +1,9 @@
 module Fox
   #
   # The scroll bar is used when a document has a larger content than may be made
-  # visible.  The range is the total size of the document, the page is the part
-  # of the document which is visible.  The size of the scrollbar thumb is adjusted
-  # to give feedback of the relative sizes of each.
+  # visible.  The range is the total size of the document, the page size is the viewable
+  # space available for the document.  The size of the scrollbar thumb is adjusted to give
+  # feedback of the relative sizes of each.
   # The scroll bar may be manipulated by the left mouse button (normal scrolling), by the
   # middle mouse button (same as the left mouse only the scroll position can jump to the 
   # place where the click is made), or by the right mouse button (vernier- or fine-scrolling).
@@ -47,16 +47,26 @@ module Fox
   # +ID_AUTODEC_PIX+::	x
   #
   class FXScrollBar < FXWindow
-    # Content size range [Integer]
+    #
+    # The content size range [Integer]. The range must be at least 1,
+    # but may be smaller than the viewable page size.
+    #
     attr_accessor :range
     
-    # Viewport page size [Integer]
+    #
+    # The viewable page size [Integer]. The page size must be at least 1,
+    # but may be larger than the range.
+    #
     attr_accessor :page
     
     # Scroll increment for line [Integer]
     attr_accessor :line
     
-    # Current scroll position [Integer]
+    #
+    # The current scroll position [Integer].
+    # The position is always greater or equal to 0, up to the range less the page size.
+    # If the range is less than the page size, the position will simply be equal to zero.
+    #
     attr_accessor :position
     
     # Highlight color [FXColor]

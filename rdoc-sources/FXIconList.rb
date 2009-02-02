@@ -28,6 +28,9 @@ module Fox
     # Constructor
     def initialize(text, bigIcon=nil, miniIcon=nil, data=nil) # :yields: theIconItem
     end
+    
+    # Return the icon item's text
+    def to_s; text; end
 
     # Set the focused state for this item (where _focus_ is either +true+ or +false+)
     def setFocus(focus); end
@@ -79,6 +82,11 @@ module Fox
   # of the type +SEL_INSERTED+, +SEL_REPLACED+, or +SEL_DELETED+.
   # In each of these cases, the index to the item, if any, is passed in the
   # 3rd argument of the message.
+  # The text in each item is a string separated by tabs for each column;
+  # in mini- or big-icon mode, only the text before the first tab is shown.  
+  # In detail-mode, the text before the first tab is shown in the first column,
+  # the text between the first and second tab is shown in the second column, 
+  # and so on.
   #
   # === Events
   #

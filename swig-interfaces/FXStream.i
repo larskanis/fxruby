@@ -97,7 +97,7 @@ public:
   * If data is not NULL, it is expected to point to an external data buffer
   * of length size; otherwise stream will use an internally managed buffer.
   */
-  bool open(FXStreamDirection save_or_load,FXuval size=8192,FXuchar* data=NULL);
+  FXbool open(FXStreamDirection save_or_load,FXuval size=8192,FXuchar* data=NULL);
 
   /// Get available buffer space
   FXuval getSpace() const;
@@ -109,7 +109,7 @@ public:
   FXStreamStatus status() const;
 
   /// Return TRUE if at end of file or error
-  bool eof() const;
+  FXbool eof() const;
   
   /// Set status code
   void setError(FXStreamStatus err);
@@ -124,22 +124,22 @@ public:
   FXlong position() const;
 
   /// Change swap bytes flag
-  void swapBytes(bool s);
+  void swapBytes(FXbool s);
 
   /// Get swap bytes flag
-  bool swapBytes() const;
+  FXbool swapBytes() const;
 
   /**
   * Set stream to big endian mode if TRUE.  Byte swapping will
   * be enabled if the machine native byte order is not equal to
   * the desired byte order.
   */
-  void setBigEndian(bool big);
+  void setBigEndian(FXbool big);
 
   /**
   * Return TRUE if big endian mode.
   */
-  bool isBigEndian() const;
+  FXbool isBigEndian() const;
 
   /// Destructor
   virtual ~FXStream();

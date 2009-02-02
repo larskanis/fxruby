@@ -3,23 +3,22 @@
 *            S i n g l e - P r e c i s i o n   3 x 3   M a t r i x              *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2003,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2003,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXMat3f.h 2344 2006-02-12 21:19:36Z lyle $                           *
+* $Id: FXMat3f.h 2761 2007-11-19 17:03:32Z lyle $                           *
 ********************************************************************************/
 #ifndef FXMAT3F_H
 #define FXMAT3F_H
@@ -29,6 +28,7 @@ namespace FX {
 
 
 class FXQuatf;
+class FXMat4f;
 
 
 /// Single-precision 3x3 matrix
@@ -42,9 +42,15 @@ public:
 
   /// Initialize matrix from another matrix
   FXMat3f(const FXMat3f& other);
+  
+  /// Initialize from rotation and scaling part of 4x4 matrix
+  FXMat3f(const FXMat4f& other);
 
   /// Initialize matrix from scalar
   FXMat3f(FXfloat w);
+
+  /// Initialize diagonal matrix 
+  FXMat3f(FXfloat a,FXfloat b,FXfloat c);
 
   /// Initialize matrix from components
   FXMat3f(FXfloat a00,FXfloat a01,FXfloat a02,
@@ -59,13 +65,20 @@ public:
 
   /// Assignment
   FXMat3f& operator=(const FXMat3f& other);
+  FXMat3f& operator=(const FXMat4f& other);
   FXMat3f& operator=(FXfloat w);
 
   /// Set value from another matrix
   FXMat3f& set(const FXMat3f& other);
 
+  /// Set from rotation and scaling part of 4x4 matrix
+  FXMat3f& set(const FXMat4f& q);
+
   /// Set value from scalar
   FXMat3f& set(FXfloat w);
+
+  /// Set diagonal matrix 
+  FXMat3f& set(FXfloat a,FXfloat b,FXfloat c);
 
   /// Set value from components
   FXMat3f& set(FXfloat a00,FXfloat a01,FXfloat a02,
@@ -81,8 +94,8 @@ public:
   /// Assignment operators
   FXMat3f& operator+=(const FXMat3f& w);
   FXMat3f& operator-=(const FXMat3f& w);
-  FXMat3f& operator*=(FXfloat w);
   FXMat3f& operator*=(const FXMat3f& w);
+  FXMat3f& operator*=(FXfloat w);
   FXMat3f& operator/=(FXfloat w);
 
   /// Indexing
@@ -105,14 +118,27 @@ public:
   FXVec3f operator*(const FXVec3f& v) const;
   FXVec2f operator*(const FXVec2f& v) const;
 
+  /// Equality tests
+  FXbool operator==(const FXMat3f& a) const;
+  FXbool operator!=(const FXMat3f& a) const;
+
+  friend FXAPI FXbool operator==(const FXMat3f& a,FXfloat n);
+  friend FXAPI FXbool operator==(FXfloat n,const FXMat3f& a);
+
+  friend FXAPI FXbool operator!=(const FXMat3f& a,FXfloat n);
+  friend FXAPI FXbool operator!=(FXfloat n,const FXMat3f& a);
+
   /// Matrix and scalar
   friend FXAPI FXMat3f operator*(FXfloat x,const FXMat3f& a);
   friend FXAPI FXMat3f operator*(const FXMat3f& a,FXfloat x);
   friend FXAPI FXMat3f operator/(const FXMat3f& a,FXfloat x);
   friend FXAPI FXMat3f operator/(FXfloat x,const FXMat3f& a);
 
-  /// Set identity matrix
-  FXMat3f& eye();
+  /// Set to identity matrix
+  FXMat3f& identity();
+
+  /// Return true if identity matrix
+  FXbool isIdentity() const;
 
   /// Multiply by rotation of phi
   FXMat3f& rot(FXfloat c,FXfloat s);
@@ -143,8 +169,15 @@ public:
 
 extern FXAPI FXMat3f operator*(FXfloat x,const FXMat3f& a);
 extern FXAPI FXMat3f operator*(const FXMat3f& a,FXfloat x);
+
 extern FXAPI FXMat3f operator/(const FXMat3f& a,FXfloat x);
 extern FXAPI FXMat3f operator/(FXfloat x,const FXMat3f& a);
+
+extern FXAPI FXbool operator==(const FXMat3f& a,FXdouble n);
+extern FXAPI FXbool operator==(FXdouble n,const FXMat3f& a);
+
+extern FXAPI FXbool operator!=(const FXMat3f& a,FXdouble n);
+extern FXAPI FXbool operator!=(FXdouble n,const FXMat3f& a);
 
 extern FXAPI FXStream& operator<<(FXStream& store,const FXMat3f& m);
 extern FXAPI FXStream& operator>>(FXStream& store,FXMat3f& m);

@@ -50,21 +50,21 @@ public:
 
   %extend {
     /// Equality
-    bool operator==(const FXRectangle& p) const {
+    FXbool operator==(const FXRectangle& p) const {
       return *self == p;
       }
     }
 
   /// Point in rectangle
-  bool contains(const FXPoint& p) const;
-  bool contains(FXshort xx,FXshort yy) const;
+  FXbool contains(const FXPoint& p) const;
+  FXbool contains(FXshort xx,FXshort yy) const;
 
   /// Rectangle properly contained in rectangle
-  bool contains(const FXRectangle& r) const;
+  FXbool contains(const FXRectangle& r) const;
 
   %extend {
     /// Rectangles overlap
-    bool overlap(const FXRectangle& p) const {
+    FXbool overlap(const FXRectangle& p) const {
       return overlap(*self,p);
       }
     }

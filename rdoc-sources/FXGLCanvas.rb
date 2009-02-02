@@ -2,33 +2,39 @@ module Fox
   #
   # FXGLCanvas is an area drawn by another object.
   #
+  # ==== GLCanvas Options
+  #
+  # +GLCANVAS_OWN_CONTEXT+:: Context is owned
+  #
   class FXGLCanvas < FXCanvas
+    
+    # Context [FXGLContext]
+    attr_accessor :context
+    
     #
-    # Construct an OpenGL-capable canvas, with its own private display list.
+    # Construct a GL canvas with its private context and private display lists.
     #
     def initialize(parent, vis, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLCanvas
     end
   
     #
-    # Construct an OpenGL-capable canvas that shares its display
-    # list with another GL canvas.  This canvas becomes a member
-    # of a display list share group.  All members of the display
-    # list share group have to have the same visual.
+    # Construct a GL canvas with its private context but shared display lists.
     #
-    def initialize(parent, vis, sharegroup, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLCanvas
+    def initialize(parent, vis, share, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLCanvas
     end
-
+    
+    #
+    # Construct a GL canvas with a shared context.
+    #
+    def initialize(parent, ctx, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLCanvas
+    end
+    
     # Return +true+ if sharing display lists.
     def shared? ; end
 
-    #
-    # Return an integer handle to the underlying OpenGL context.
-    # On Unix/Linux systems, this is the GLX rendering context
-    # returned by a call to glXCreateContext(). On Microsoft Windows
-    # systems, it is the value returns by wglCreateContext().
-    #
-    def context; end
-
+    # Change the context
+    def setContext(ctx, owned=false); end
+    
     # Make OpenGL context current prior to performing OpenGL commands
     def makeCurrent(); end
   

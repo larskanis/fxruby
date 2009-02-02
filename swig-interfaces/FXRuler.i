@@ -130,13 +130,13 @@ public:
     }
 
   /// Set the current position
-  void setPosition(FXint pos,FXbool notify=FALSE);
+  void setPosition(FXint pos,FXbool notify=false);
 
   /// Return the current position
   FXint getPosition() const;
 
   /// Change/return content size
-  void setContentSize(FXint size,FXbool notify=FALSE);
+  void setContentSize(FXint size,FXbool notify=false);
   FXint getContentSize() const;
 
   /// Get lower edge of document
@@ -146,55 +146,55 @@ public:
   FXint getDocumentUpper() const;
 
   /// Change/return document size
-  void setDocumentSize(FXint size,FXbool notify=FALSE);
+  void setDocumentSize(FXint size,FXbool notify=false);
   FXint getDocumentSize() const;
 
   /// Change/return document edge spacing
-  void setEdgeSpacing(FXint space,FXbool notify=FALSE);
+  void setEdgeSpacing(FXint space,FXbool notify=false);
   FXint getEdgeSpacing() const;
 
   /// Change/return lower document margin
-  void setMarginLower(FXint mgn,FXbool notify=FALSE);
+  void setMarginLower(FXint mgn,FXbool notify=false);
   FXint getMarginLower() const;
 
   /// Change/return upper document margin
-  void setMarginUpper(FXint mgn,FXbool notify=FALSE);
+  void setMarginUpper(FXint mgn,FXbool notify=false);
   FXint getMarginUpper() const;
 
   /// Change/return first line indent
-  void setIndentFirst(FXint ind,FXbool notify=FALSE);
+  void setIndentFirst(FXint ind,FXbool notify=false);
   FXint getIndentFirst() const;
 
   /// Change/return lower indent
-  void setIndentLower(FXint ind,FXbool notify=FALSE);
+  void setIndentLower(FXint ind,FXbool notify=false);
   FXint getIndentLower() const;
 
   /// Change/return upper indent
-  void setIndentUpper(FXint ind,FXbool notify=FALSE);
+  void setIndentUpper(FXint ind,FXbool notify=false);
   FXint getIndentUpper() const;
 
   /// Change/return document number placement
-  void setNumberTicks(FXint ticks,FXbool notify=FALSE);
+  void setNumberTicks(FXint ticks,FXbool notify=false);
   FXint getNumberTicks() const;
 
   /// Change/return document major ticks
-  void setMajorTicks(FXint ticks,FXbool notify=FALSE);
+  void setMajorTicks(FXint ticks,FXbool notify=false);
   FXint getMajorTicks() const;
 
   /// Change/return document medium ticks
-  void setMediumTicks(FXint ticks,FXbool notify=FALSE);
+  void setMediumTicks(FXint ticks,FXbool notify=false);
   FXint getMediumTicks() const;
 
   /// Change/return document tiny ticks
-  void setTinyTicks(FXint ticks,FXbool notify=FALSE);
+  void setTinyTicks(FXint ticks,FXbool notify=false);
   FXint getTinyTicks() const;
 
   /// Change/return pixel per tick spacing
-  void setPixelPerTick(FXdouble space,FXbool notify=FALSE);
+  void setPixelPerTick(FXdouble space,FXbool notify=false);
   FXdouble getPixelPerTick() const;
 
   /// Set the text font
-  void setFont(FXFont *fnt,FXbool notify=FALSE);
+  void setFont(FXFont *fnt,FXbool notify=false);
 
   /// Get the text font
   FXFont* getFont() const;
@@ -212,7 +212,7 @@ public:
   FXuint getRulerStyle() const;
 
   /// Set ruler alignment
-  void setRulerAlignment(FXuint alignment,FXbool notify=FALSE);
+  void setRulerAlignment(FXuint alignment,FXbool notify=false);
 
   /// Get ruler alignment
   FXuint getRulerAlignment() const;

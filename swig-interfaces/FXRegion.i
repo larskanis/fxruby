@@ -46,16 +46,16 @@ public:
   FXRegion(FXint x,FXint y,FXint w,FXint h);
 
   /// Construct polygon region 
-  FXRegion(const FXPoint* points,FXuint npoints,bool winding=FALSE);
+  FXRegion(const FXPoint* points,FXuint npoints,FXbool winding=false);
   
   /// Return TRUE if region is empty
-  bool empty() const;
+  FXbool empty() const;
 
   /// Return TRUE if region contains point
-  bool contains(FXint x,FXint y) const;
+  FXbool contains(FXint x,FXint y) const;
 
   /// Return TRUE if region contains rectangle
-  bool contains(FXint x,FXint y,FXint w,FXint h) const;
+  FXbool contains(FXint x,FXint y,FXint w,FXint h) const;
 
   /// Return bounding box
   FXRectangle bounds() const;

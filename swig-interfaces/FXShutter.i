@@ -36,7 +36,7 @@ protected:
   FXScrollWindow   *scrollWindow;
   FXVerticalFrame  *content;
 protected:
-  FXShutterItem(){}
+  FXShutterItem();
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);
@@ -54,6 +54,9 @@ public:
       }
     }
 
+  /// Return a pointer to the scroll window
+  FXScrollWindow* getScrollWindow() const;
+  
   /// Return a pointer to the button for this item
   FXButton* getButton() const;
 
@@ -93,11 +96,10 @@ class FXShutter : public FXVerticalFrame {
 protected:
   FXint          current;               // Item currently open
   FXint          closing;               // Item closing down
-  FXint          heightIncrement;       // Height delta
   FXint          closingHeight;         // Closing items current height
-  FXbool         closingHadScrollbar;   // Closing item had a scroll bar
+  FXint          heightIncrement;       // Height delta
 protected:
-  FXShutter(){}
+  FXShutter();
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);
@@ -113,6 +115,15 @@ public:
     ID_SHUTTER_TIMEOUT=FXVerticalFrame::ID_LAST,
     ID_OPEN_SHUTTERITEM,
     ID_OPEN_FIRST,
+    ID_OPEN_SECOND,
+    ID_OPEN_THIRD,
+    ID_OPEN_FOURTH,
+    ID_OPEN_FIFTH,
+    ID_OPEN_SIXTH,
+    ID_OPEN_SEVENTH,
+    ID_OPEN_EIGHTH,
+    ID_OPEN_NINETH,
+    ID_OPEN_TENTH,
     ID_OPEN_LAST=ID_OPEN_FIRST+1000,
     ID_LAST
     };

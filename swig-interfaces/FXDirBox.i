@@ -49,8 +49,8 @@ public:
   /// Return current directory
   FXString getDirectory() const;
 
-  /// Change file associations
-  void setAssociations(FXFileDict* assoc);
+  /// Change file associations; delete the old one unless it was shared
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
 
   /// Return file associations
   FXFileDict* getAssociations() const;

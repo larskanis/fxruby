@@ -3,23 +3,22 @@
 *                           B u t t o n   W i d g e t                           *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXButton.h 2335 2006-01-28 02:33:03Z lyle $                          *
+* $Id: FXButton.h 2725 2007-11-16 16:57:54Z lyle $                          *
 ********************************************************************************/
 #ifndef FXBUTTON_H
 #define FXBUTTON_H
@@ -31,7 +30,7 @@
 namespace FX {
 
 
-/// Button state bits
+/// Button states
 enum {
   STATE_UP        = 0,		  /// Button is up
   STATE_DOWN      = 1,		  /// Button is down
@@ -104,7 +103,7 @@ public:
   FXButton(FXComposite* p,const FXString& text,FXIcon* ic=NULL,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=BUTTON_NORMAL,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=DEFAULT_PAD,FXint pr=DEFAULT_PAD,FXint pt=DEFAULT_PAD,FXint pb=DEFAULT_PAD);
 
   /// Returns true because a button can receive focus
-  virtual bool canFocus() const;
+  virtual FXbool canFocus() const;
 
   /// Move the focus to this window
   virtual void setFocus();
@@ -113,7 +112,7 @@ public:
   virtual void killFocus();
 
   /// Set as default button
-  virtual void setDefault(FXbool enable=TRUE);
+  virtual void setDefault(FXuchar flag=TRUE);
 
   /// Set the button state
   void setState(FXuint s);

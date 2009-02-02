@@ -53,8 +53,15 @@ class FXPopup;
 %apply FXint COMBOBOX_ITEM_INDEX { FXint index, FXint newindex, FXint oldindex };
 %apply FXint COMBOBOX_ITEM_INDEX_OR_NONE { FXint indexz };
 
-%rename("justify=") FXComboBox::setJustify(FXuint);
-%rename("justify")  FXComboBox::getJustify() const;
+%rename("justify=")     FXComboBox::setJustify(FXuint);
+%rename("justify")      FXComboBox::getJustify() const;
+%rename("shrinkWrap=")  FXComboBox::setShrinkWrap(FXbool);
+%rename("shrinkWrap")   FXComboBox::getShrinkWrap() const;
+%rename("menuShown?")		FXComboBox::isMenuShown() const;
+%rename("menuShown=")		FXComboBox::showMenu(FXbool);
+
+// Add alias for backwards compatibility with FXRuby 1.6
+%alias FXComboBox::isMenuShown() const "paneShown?";
 
 /**
 * A Combo Box provides a way to select a string from a list of strings.
@@ -88,6 +95,7 @@ public:
   long onTextChanged(FXObject*,FXSelector,void* PTR_CSTRING);
   long onTextCommand(FXObject*,FXSelector,void* PTR_CSTRING);
   long onListClicked(FXObject*,FXSelector,void* PTR_INT);
+  long onListCommand(FXObject*,FXSelector,void* PTR_IVAL);
   long onFwdToText(FXObject*,FXSelector,void* PTR_NULL); // FIXME
   long onUpdFmText(FXObject*,FXSelector,void* PTR_IGNORE);
 public:
@@ -108,10 +116,10 @@ public:
   FXbool isEditable() const;
 
   /// Set editable state
-  void setEditable(FXbool edit=TRUE);
+  void setEditable(FXbool edit=true);
 
   /// Set the text
-  void setText(const FXString& text);
+  void setText(const FXString& text,FXbool notify=false);
 
   /// Get the text
   FXString getText() const;
@@ -141,7 +149,7 @@ public:
   FXbool isItemCurrent(FXint index) const;
 
   /// Set the current item (index is zero-based)
-  void setCurrentItem(FXint indexz,FXbool notify=FALSE);
+  void setCurrentItem(FXint indexz,FXbool notify=false);
 
   /// Get the current item's index
   FXint getCurrentItem() const;
@@ -153,25 +161,25 @@ public:
   FXint setItem(FXint index,const FXString& text,void* ITEMDATA=NULL);
 
   /// Fill combo box by appending items from array of strings
-  FXint fillItems(const FXchar** strings);
+  FXint fillItems(const FXchar** strings,FXbool notify=false);
 
   /// Insert a new item at index
-  FXint insertItem(FXint index,const FXString& text,void* ITEMDATA=NULL);
+  FXint insertItem(FXint index,const FXString& text,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Append an item to the list
-  FXint appendItem(const FXString& text,void* ITEMDATA=NULL);
+  FXint appendItem(const FXString& text,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Prepend an item to the list
-  FXint prependItem(const FXString& text,void* ITEMDATA=NULL);
+  FXint prependItem(const FXString& text,void* ITEMDATA=NULL,FXbool notify=false);
 
   /// Move item from oldindex to newindex
-  FXint moveItem(FXint newindex,FXint oldindex);
+  FXint moveItem(FXint newindex,FXint oldindex,FXbool notify=false);
 
   /// Remove this item from the list
-  void removeItem(FXint index);
+  void removeItem(FXint index,FXbool notify=false);
 
   /// Remove all items from the list
-  void clearItems();
+  void clearItems(FXbool notify=false);
 
   /**
    * Search items by name, beginning from item start.  If the start item
@@ -213,8 +221,11 @@ public:
       }
   }
 
-  /// Is the pane shown
-  FXbool isPaneShown() const;
+	/// Show or hide menu
+	void showMenu(FXbool shw);
+
+	/// Is the menu pane shown?
+	FXbool isMenuShown() const;
 
   /// Sort items using current sort function
   void sortItems();
@@ -230,6 +241,12 @@ public:
 
   /// Get the combobox style.
   FXuint getComboStyle() const;
+
+  /// Change popup pane shrinkwrap mode
+  void setShrinkWrap(FXbool flag);
+
+  /// Return popup pane shrinkwrap mode
+  FXbool getShrinkWrap() const;
 
   /// Get background color
   FXColor getBackColor() const;

@@ -3,23 +3,22 @@
 *                            V i s u a l   C l a s s                            *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1999,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1999,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXVisual.h 2343 2006-02-12 20:26:26Z lyle $                          *
+* $Id: FXVisual.h 2869 2008-05-30 20:08:44Z lyle $                          *
 ********************************************************************************/
 #ifndef FXVISUAL_H
 #define FXVISUAL_H
@@ -31,33 +30,6 @@
 namespace FX {
 
 
-/// Construction options for FXVisual class
-enum FXVisualOptions {
-  VISUAL_DEFAULT      = 0,            /// Default visual
-  VISUAL_MONOCHROME   = 1,            /// Must be monochrome visual
-  VISUAL_BEST         = 2,            /// Best (deepest) visual
-  VISUAL_INDEXCOLOR   = 4,            /// Palette visual
-  VISUAL_GRAYSCALE    = 8,            /// Gray scale visual
-  VISUAL_TRUECOLOR    = 16,           /// Must be true color visual
-  VISUAL_OWNCOLORMAP  = 32,           /// Allocate private colormap
-  VISUAL_DOUBLEBUFFER = 64,           /// Double-buffered [FXGLVisual]
-  VISUAL_STEREO       = 128,          /// Stereo [FXGLVisual]
-  VISUAL_NOACCEL      = 256,          /// No hardware acceleration [for broken h/w]
-  VISUAL_SWAP_COPY    = 512           /// Buffer swap by copying [FXGLVisual]
-  };
-
-
-/// Visual type
-enum FXVisualType {
-  VISUALTYPE_UNKNOWN,                 /// Undetermined visual type
-  VISUALTYPE_MONO,                    /// Visual for drawing into 1-bpp surfaces
-  VISUALTYPE_TRUE,                    /// True color
-  VISUALTYPE_INDEX,                   /// Index [palette] color
-  VISUALTYPE_GRAY                     /// Gray scale
-  };
-
-
-class FXApp;
 class FXWindow;
 class FXGLContext;
 class FXGLCanvas;
@@ -65,6 +37,27 @@ class FXImage;
 class FXIcon;
 class FXBitmap;
 class FXDCWindow;
+
+
+/// Construction options for FXVisual class
+enum {
+  VISUAL_DEFAULT       = 0,     /// Default visual
+  VISUAL_MONO          = 1,     /// Must be monochrome visual
+  VISUAL_GRAY          = 2,     /// Gray scale visual
+  VISUAL_INDEX         = 4,     /// Palette visual
+  VISUAL_COLOR         = 8,     /// Must be true color visual
+  VISUAL_BEST          = 16,    /// Best (deepest) visual
+  VISUAL_FORCE         = 32,    /// Force given visual id (X11)
+  VISUAL_OWN_COLORMAP  = 64,    /// Allocate private colormap
+  VISUAL_WINDOW        = 128,   /// Draw to window [GL Visual]
+  VISUAL_IMAGE         = 256,   /// Draw to image [GL Visual]
+  VISUAL_BUFFER        = 512,   /// Draw to buffer [GL Visual]
+  VISUAL_DOUBLE_BUFFER = 1024,  /// Double buffered [GL Visual]
+  VISUAL_STEREO        = 2048,  /// Stereo buffered [GL Visual]
+  VISUAL_NO_ACCEL      = 4096,  /// No hardware acceleration [GL Visual]
+  VISUAL_SWAP_COPY     = 8192,  /// Buffer swap by copying [GL Visual]
+  VISUAL_FLOAT         = 16384  /// Floating point buffers [GL Visual]
+  };
 
 
 /// Visual describes pixel format of a drawable
@@ -79,29 +72,27 @@ class FXAPI FXVisual : public FXId {
   friend class FXGLCanvas;
   friend class FXGLContext;
 protected:
-  FXuint        flags;                  // Visual flags
-  FXuint        hint;                   // Depth Hint
-  FXuint        depth;                  // Visual depth, significant bits/pixel
+  void         *visual;                 // Application visual/pixel format
+  FXID          colormap;               // Color map, if any
+  FXuint        maxcolors;              // Maximum number of colors
+  FXuint        numcolors;              // Total number of colors
   FXuint        numred;                 // Number of reds
   FXuint        numgreen;               // Number of greens
   FXuint        numblue;                // Number of blues
-  FXuint        numcolors;              // Total number of colors
-  FXuint        maxcolors;              // Maximum number of colors
-  FXVisualType  type;                   // Visual type
-  void         *info;                   // Opaque data
-  void         *visual;                 // Application visual/pixel format
-  FXID          colormap;               // Color map, if any
+  FXuint        depth;                  // Visual depth, significant bits/pixel
+  FXuint        flags;                  // Visual flags
+  FXuint        hint;                   // Hint value
+  FXuchar       type;                   // Visual type
   FXbool        freemap;                // We allocated the map
 #ifndef WIN32
 protected:
-  void         *gc;                     // Drawing GC
   void         *scrollgc;               // Scrolling GC
+  void         *gc;                     // Drawing GC
   FXPixel       rpix[16][256];          // Mapping from red -> pixel
   FXPixel       gpix[16][256];          // Mapping from green -> pixel
   FXPixel       bpix[16][256];          // Mapping from blue -> pixel
   FXPixel       lut[256];               // Color lookup table
 protected:
-  void* setupgc(FXbool);
   void setuptruecolor();
   void setupdirectcolor();
   void setuppseudocolor();
@@ -110,6 +101,7 @@ protected:
   void setupstaticgray();
   void setuppixmapmono();
   void setupcolormap();
+  void* setupgc(FXbool);
 #endif
 protected:
   FXVisual();
@@ -118,14 +110,22 @@ private:
   FXVisual &operator=(const FXVisual&);
 public:
 
-  /// Construct default visual
-  FXVisual(FXApp* a,FXuint flgs,FXuint d=32);
+  /// Visual types
+  enum {
+    Unknown,    /// Undetermined visual type
+    Mono,       /// Monochrome 1 bit/pixel
+    Gray,       /// Gray scale color
+    Index,      /// Index color
+    Color       /// True color
+    };
+
+public:
+
+  /// Construct visual
+  FXVisual(FXApp* a,FXuint flgs=VISUAL_DEFAULT,FXuint hnt=32);
 
   /// Get visual type
-  FXVisualType getType() const { return type; }
-
-  /// Get visual info
-  void* getInfo() const { return info; }
+  FXuchar getType() const { return type; }
 
   /// Get visual or pixel format
   void* getVisual() const { return visual; }
@@ -139,8 +139,17 @@ public:
   /// Destroy visual
   virtual void destroy();
 
-  /// Get flags (see FXVisualOptions)
+  /// Change option flags
+  void setFlags(FXuint flgs){ flags=flgs; }
+
+  /// Get option flags
   FXuint getFlags() const { return flags; }
+
+  /// Change hints
+  void setHint(FXuint hnt){ hint=hnt; }
+
+  /// Get hints
+  FXuint getHint() const { return hint; }
 
   /// Get depth, i.e. number of significant bits in color representation
   FXuint getDepth() const { return depth; }

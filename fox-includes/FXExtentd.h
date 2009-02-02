@@ -3,23 +3,22 @@
 *          D o u b l e - P r e c i s i o n    E x t e n t    C l a s s          *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2004,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2004,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXExtentd.h 2335 2006-01-28 02:33:03Z lyle $                          *
+* $Id: FXExtentd.h 2739 2007-11-16 21:25:44Z lyle $                         *
 ********************************************************************************/
 #ifndef FXEXTENTD_H
 #define FXEXTENTD_H
@@ -29,7 +28,7 @@ namespace FX {
 
 
 /// Extent
-class FXExtentd {
+class FXAPI FXExtentd {
 public:
   FXVec2d lower;
   FXVec2d upper;
@@ -41,14 +40,35 @@ public:
   /// Copy constructor
   FXExtentd(const FXExtentd& ext):lower(ext.lower),upper(ext.upper){}
 
-  /// Initialize from two vectors
+  /// Initialize with a single point
+  FXExtentd(const FXVec2d& p):lower(p),upper(p){}
+
+  /// Initialize from corner points
   FXExtentd(const FXVec2d& lo,const FXVec2d& hi):lower(lo),upper(hi){}
 
-  /// Initialize from six numbers
-  FXExtentd(FXdouble xlo,FXdouble xhi,FXdouble ylo,FXdouble yhi):lower(xlo,ylo),upper(xhi,yhi){}
+  /// Initialize with a single point
+  FXExtentd(FXdouble x,FXdouble y):lower(x,y),upper(x,y){}
+
+  /// Initialize with explicit values
+  FXExtentd(FXdouble xl,FXdouble xh,FXdouble yl,FXdouble yh):lower(xl,yl),upper(xh,yh){}
 
   /// Assignment
   FXExtentd& operator=(const FXExtentd& ext){ lower=ext.lower; upper=ext.upper; return *this; }
+
+  /// Set value from another range
+  FXExtentd& set(const FXExtentd& ext){ lower=ext.lower; upper=ext.upper; return *this; }
+
+  /// Set value from single point
+  FXExtentd& set(const FXVec2d& p){ lower=upper=p; return *this; }
+
+  /// Set value from corner points
+  FXExtentd& set(const FXVec2d& lo,const FXVec2d& hi){ lower=lo; upper=hi; return *this; }
+
+  /// Set value from single point
+  FXExtentd& set(FXdouble x,FXdouble y){ lower.x=upper.x=x; lower.y=upper.y=y; return *this; }
+
+  /// Set value from explicit values
+  FXExtentd& set(FXdouble xl,FXdouble xh,FXdouble yl,FXdouble yh){ lower.set(xl,yl); upper.set(xh,yh); return *this; }
 
   /// Indexing with 0..1
   FXVec2d& operator[](FXint i){ return (&lower)[i]; }
@@ -57,8 +77,8 @@ public:
   const FXVec2d& operator[](FXint i) const { return (&lower)[i]; }
 
   /// Comparison
-  bool operator==(const FXExtentd& ext) const { return lower==ext.lower && upper==ext.upper;}
-  bool operator!=(const FXExtentd& ext) const { return lower!=ext.lower || upper!=ext.upper;}
+  FXbool operator==(const FXExtentd& ext) const { return lower==ext.lower && upper==ext.upper;}
+  FXbool operator!=(const FXExtentd& ext) const { return lower!=ext.lower || upper!=ext.upper;}
 
   /// Width of box
   FXdouble width() const { return upper.x-lower.x; }
@@ -85,16 +105,16 @@ public:
   FXVec2d center() const;
 
   /// Test if empty
-  bool empty() const;
+  FXbool empty() const;
 
   /// Test if box contains point x,y
-  bool contains(FXdouble x,FXdouble y) const;
+  FXbool contains(FXdouble x,FXdouble y) const;
 
   /// Test if box contains point p
-  bool contains(const FXVec2d& p) const;
+  FXbool contains(const FXVec2d& p) const;
 
   /// Test if box properly contains another box
-  bool contains(const FXExtentd& ext) const;
+  FXbool contains(const FXExtentd& ext) const;
 
   /// Include point
   FXExtentd& include(FXdouble x,FXdouble y);
@@ -106,7 +126,7 @@ public:
   FXExtentd& include(const FXExtentd& ext);
 
   /// Test if bounds overlap
-  friend FXAPI bool overlap(const FXExtentd& a,const FXExtentd& b);
+  friend FXAPI FXbool overlap(const FXExtentd& a,const FXExtentd& b);
 
   /// Get corner number 0..3
   FXVec2d corner(FXint c) const { return FXVec2d((&lower)[c&1].x, (&lower)[(c>>1)&1].y); }
@@ -125,7 +145,7 @@ public:
   };
 
 
-extern FXAPI bool overlap(const FXExtentd& a,const FXExtentd& b);
+extern FXAPI FXbool overlap(const FXExtentd& a,const FXExtentd& b);
 
 extern FXAPI FXExtentd unite(const FXExtentd& a,const FXExtentd& b);
 extern FXAPI FXExtentd intersect(const FXExtentd& a,const FXExtentd& b);

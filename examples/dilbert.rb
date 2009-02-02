@@ -1,16 +1,15 @@
 #!/usr/bin/env ruby
 
 require 'fox16'
-require 'fox16/kwargs'
 require 'open-uri'
 begin
-  require 'rubyful_soup'
+  require 'hpricot'
 rescue LoadError
   require 'fox16/missingdep'
   MSG = <<EOM
-  Sorry, this example depends on the RubyfulSoup extension. Please
-  check the Ruby Application Archives for an appropriate
-  download site.
+  Sorry, this example depends on the Hpricot extension. Please
+  see http://code.whytheluckystiff.net/hpricot/ for instructions
+  on how to install Hpricot.
 EOM
   missingDependency(MSG)
 end
@@ -41,9 +40,8 @@ class DailyDilbert < FXMainWindow
   end
   
   def image_data
-    src = open("http://www.dilbert.com/").read
-    soup = BeautifulSoup.new(src)
-    url = soup.find('img', { :attrs => { 'alt' => /Today's Comic/ } })
+    doc = Hpricot(open("http://www.dilbert.com/"))
+    url = doc.search("img").find { |e| e['src'] =~ /\/dyn\/str_strip\/.*\.gif/ }
     open("http://www.dilbert.com" + url['src'], "rb").read
   end
   

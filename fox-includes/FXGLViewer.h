@@ -3,23 +3,22 @@
 *                      O p e n G L   V i e w e r   W i d g e t                  *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXGLViewer.h 2127 2005-08-07 20:21:35Z lyle $                        *
+* $Id: FXGLViewer.h 2868 2008-05-30 17:03:51Z lyle $                        *
 ********************************************************************************/
 #ifndef FXGLVIEWER_H
 #define FXGLVIEWER_H
@@ -38,9 +37,9 @@ class FXGLVisual;
 
 // GL Viewer options
 enum {
-  VIEWER_LIGHTING = 0x00008000,    /// Lighting is on
-  VIEWER_FOG      = 0x00010000,    /// Fog mode on
-  VIEWER_DITHER   = 0x00020000     /// Dithering
+  GLVIEWER_LIGHTING = 0x00010000,    /// Lighting is on
+  GLVIEWER_FOG      = 0x00020000,    /// Fog mode on
+  GLVIEWER_DITHER   = 0x00040000     /// Dithering
   };
 
 
@@ -49,35 +48,39 @@ enum {
 
 /// OpenGL Viewer Viewport
 struct FXViewport {
-  FXint      w,h;               // Viewport dimensions
-  FXdouble   left,right;        // World box
-  FXdouble   bottom,top;
-  FXdouble   hither,yon;
+  FXint      w;                 /// Viewport width
+  FXint      h;                 /// Viewport height
+  FXdouble   left;              /// World left
+  FXdouble   right;             /// World right
+  FXdouble   bottom;            /// World bottom
+  FXdouble   top;               /// World top
+  FXdouble   hither;            /// World hither (near)
+  FXdouble   yon;               /// World yon (far)
   };
 
 
-// OpenGL Light Source
+/// OpenGL Light Source
 struct FXAPI FXLight {
-  FXVec4f    ambient;           // Ambient light color
-  FXVec4f    diffuse;           // Diffuse light color
-  FXVec4f    specular;          // Specular light color
-  FXVec4f    position;          // Light position
-  FXVec3f    direction;         // Spot direction
-  FXfloat    exponent;          // Spotlight exponent
-  FXfloat    cutoff;            // Spotlight cutoff angle
-  FXfloat    c_attn;            // Constant attenuation factor
-  FXfloat    l_attn;            // Linear attenuation factor
-  FXfloat    q_attn;            // Quadratic attenuation factor
+  FXVec4f    ambient;           /// Ambient light color
+  FXVec4f    diffuse;           /// Diffuse light color
+  FXVec4f    specular;          /// Specular light color
+  FXVec4f    position;          /// Light position
+  FXVec3f    direction;         /// Spot direction
+  FXfloat    exponent;          /// Spotlight exponent
+  FXfloat    cutoff;            /// Spotlight cutoff angle
+  FXfloat    c_attn;            /// Constant attenuation factor
+  FXfloat    l_attn;            /// Linear attenuation factor
+  FXfloat    q_attn;            /// Quadratic attenuation factor
   };
 
 
-// OpenGL Material Description
+/// OpenGL Material Description
 struct FXAPI FXMaterial {
-  FXVec4f    ambient;           // Ambient material color
-  FXVec4f    diffuse;           // Diffuse material color
-  FXVec4f    specular;          // Specular material color
-  FXVec4f    emission;          // Emissive material color
-  FXfloat    shininess;         // Specular shininess
+  FXVec4f    ambient;           /// Ambient material color
+  FXVec4f    diffuse;           /// Diffuse material color
+  FXVec4f    specular;          /// Specular material color
+  FXVec4f    emission;          /// Emissive material color
+  FXfloat    shininess;         /// Specular shininess
   };
 
 
@@ -190,6 +193,7 @@ public:
   long onMiddleBtnRelease(FXObject*,FXSelector,void*);
   long onRightBtnPress(FXObject*,FXSelector,void*);
   long onRightBtnRelease(FXObject*,FXSelector,void*);
+  long onSpaceBallMotion(FXObject*,FXSelector,void*);
   long onUngrabbed(FXObject*,FXSelector,void*);
   long onKeyPress(FXObject*,FXSelector,void*);
   long onKeyRelease(FXObject*,FXSelector,void*);
@@ -330,8 +334,11 @@ public:
   /// Construct GL viewer widget
   FXGLViewer(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0);
 
-  /// Construct GL viewer widget sharing display list with another GL viewer
-  FXGLViewer(FXComposite* p,FXGLVisual *vis,FXGLViewer* sharegroup,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0);
+  /// Construct GL viewer widget sharing display lists with another GL viewer
+  FXGLViewer(FXComposite* p,FXGLVisual *vis,FXGLViewer* share,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0);
+
+  /// Construct GL viewer widget sharing context
+  FXGLViewer(FXComposite* p,FXGLContext* ctx,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0);
 
   /// Create all of the server-side resources for this window
   virtual void create();
@@ -477,11 +484,14 @@ public:
   /// Return the projection mode
   FXuint getProjection() const { return projection; }
 
-  /// Change top or bottom or both background colors
-  void setBackgroundColor(const FXVec4f& clr,FXbool bottom=MAYBE);
+  /// Change both top and bottom background colors
+  void setBackgroundColor(const FXVec4f& clr);
 
-  /// Return top or bottom window background color.
-  const FXVec4f& getBackgroundColor(FXbool bottom=FALSE) const { return background[bottom]; }
+  /// Change top or bottom background color
+  void setBackgroundColor(const FXVec4f& clr,FXbool bottom);
+
+  /// Return top or bottom window background color
+  const FXVec4f& getBackgroundColor(FXbool bottom) const { return background[bottom]; }
 
   /// Change global ambient light color
   void setAmbientColor(const FXVec4f& clr);
@@ -532,7 +542,7 @@ public:
   FXbool getTurboMode() const { return turbomode; }
 
   /// Set turbo mode
-  void setTurboMode(FXbool turbo=TRUE);
+  void setTurboMode(FXbool turbo=true);
 
   /// Return light source settings
   void getLight(FXLight& lite) const;

@@ -22,19 +22,19 @@
 
 class FXFileSelector;
 
-%rename(setAllowPatternEntry) FXFileDialog::allowPatternEntry(FXbool);
-%rename(getAllowPatternEntry) FXFileDialog::allowPatternEntry() const;
-
-%rename(getShowHiddenFiles) FXFileDialog::showHiddenFiles() const;
-%rename(setShowHiddenFiles) FXFileDialog::showHiddenFiles(FXbool showing);
-
-%rename(getShowImages) FXFileDialog::showImages() const;
-%rename(setShowImages) FXFileDialog::showImages(FXbool showing);
-
-%rename("numPatterns") FXFileDialog::getNumPatterns() const;
-
-%rename("navigationAllowed=") FXFileDialog::allowNavigation(FXbool navigable);
-%rename("navigationAllowed?") FXFileDialog::allowNavigation() const;
+%rename("associations=")        FXFileDialog::setAssociations(FXFileDict*,FXbool);
+%rename("associations")         FXFileDialog::getAssociations() const;
+%rename("draggableFiles=")		FXFileDialog::setDraggableFiles(FXbool);
+%rename("draggableFiles")		FXFileDialog::getDraggableFiles() const;
+%rename(setAllowPatternEntry)   FXFileDialog::allowPatternEntry(FXbool);
+%rename(getAllowPatternEntry)   FXFileDialog::allowPatternEntry() const;
+%rename(getShowHiddenFiles)     FXFileDialog::showHiddenFiles() const;
+%rename(setShowHiddenFiles)     FXFileDialog::showHiddenFiles(FXbool showing);
+%rename(getShowImages)          FXFileDialog::showImages() const;
+%rename(setShowImages)          FXFileDialog::showImages(FXbool showing);
+%rename("navigationAllowed=")   FXFileDialog::allowNavigation(FXbool navigable);
+%rename("navigationAllowed?")   FXFileDialog::allowNavigation() const;
+%rename("numPatterns")          FXFileDialog::getNumPatterns() const;
 
 /// File selection dialog
 class FXFileDialog : public FXDialogBox {
@@ -104,13 +104,13 @@ public:
     void setPatternList(VALUE ary) {
       FXString patterns;
       if(TYPE(ary)==T_STRING){
-        patterns=FXString(STR2CSTR(ary));
+        patterns=FXString(StringValuePtr(ary));
         }
       else if(TYPE(ary)==T_ARRAY){
-        for(long i=0; i<RARRAY(ary)->len; i++){
+        for(long i=0; i<RARRAY_LEN(ary); i++){
           VALUE obj=rb_ary_entry(ary,i);
           Check_Type(obj,T_STRING);
-          patterns+=FXString(STR2CSTR(obj))+FXString("\n");
+          patterns+=FXString(StringValuePtr(obj))+FXString("\n");
           }
         }
       else{
@@ -152,7 +152,7 @@ public:
   FXint getNumPatterns() const;
 
   /// Allow pattern entry
-  void allowPatternEntry(FXbool allow);
+  void allowPatternEntry(FXbool flag);
 
   /// Return TRUE if pattern entry is allowed
   FXbool allowPatternEntry() const;
@@ -185,13 +185,13 @@ public:
   FXbool showHiddenFiles() const;
 
   /// Show or hide hidden files
-  void showHiddenFiles(FXbool showing);
+  void showHiddenFiles(FXbool flag);
 
   /// Return TRUE if image preview on
   FXbool showImages() const;
 
   /// Show or hide preview images
-  void showImages(FXbool showing);
+  void showImages(FXbool flag);
 
   /// Return images preview size
   FXint getImageSize() const;
@@ -200,7 +200,7 @@ public:
   void setImageSize(FXint size);
 
   /// Show readonly button
-  void showReadOnly(FXbool show);
+  void showReadOnly(FXbool flag);
   
   /// Return TRUE if readonly is shown
   FXbool shownReadOnly() const;
@@ -218,10 +218,22 @@ public:
   FXuint getFileBoxStyle() const;
 
   /// Allow or disallow navigation
-  void allowNavigation(FXbool navigable);
+  void allowNavigation(FXbool flag);
   
   /// Is navigation allowed?
   FXbool allowNavigation() const;
+
+  /// Set draggable files
+  void setDraggableFiles(FXbool flag);
+
+  /// Are draggable files
+  FXbool getDraggableFiles() const;
+
+  /// Change file associations; delete old ones if owned
+  void setAssociations(FXFileDict* assoc,FXbool owned=false);
+
+  /// Return file associations
+  FXFileDict* getAssociations() const;
 
   /// Open existing filename
   static FXString getOpenFilename(FXWindow* owner,const FXString& caption,const FXString& path,const FXString& patterns="*",FXint initial=0);

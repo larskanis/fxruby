@@ -3,23 +3,22 @@
 *                 T o p - L e v e l   W i n d o w   W i d g e t                 *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXTopWindow.h 2246 2005-11-10 02:01:15Z lyle $                       *
+* $Id: FXTopWindow.h 2869 2008-05-30 20:08:44Z lyle $                       *
 ********************************************************************************/
 #ifndef FXTOPWINDOW_H
 #define FXTOPWINDOW_H
@@ -50,18 +49,25 @@ enum {
 
 /// Initial window placement
 enum {
-  PLACEMENT_DEFAULT,                  /// Place it at the default size and location
-  PLACEMENT_VISIBLE,                  /// Place window to be fully visible
-  PLACEMENT_CURSOR,                   /// Place it under the cursor position
-  PLACEMENT_OWNER,                    /// Place it centered on its owner
-  PLACEMENT_SCREEN,                   /// Place it centered on the screen
-  PLACEMENT_MAXIMIZED                 /// Place it maximized to the screen size
+  PLACEMENT_DEFAULT,            /// Place it at the default size and location
+  PLACEMENT_VISIBLE,            /// Place window to be fully visible
+  PLACEMENT_CURSOR,             /// Place it under the cursor position
+  PLACEMENT_OWNER,              /// Place it centered on its owner
+  PLACEMENT_SCREEN,             /// Place it centered on the screen
+  PLACEMENT_MAXIMIZED           /// Place it maximized to the screen size
+  };
+
+
+/// Special stacking orders
+enum {
+  STACK_NORMAL,                 /// Stack normally (default)
+  STACK_BOTTOM,                 /// Stack below other windows
+  STACK_TOP                     /// Stack above other windows
   };
 
 
 class FXToolBar;
 class FXIcon;
-
 
 
 /**
@@ -80,7 +86,7 @@ class FXIcon;
 * data to the disk.  If the target returns 0, then the system will proceed
 * to close the session.  Subsequently a SEL_SESSION_CLOSED will be received
 * which causes the window to be closed with prejudice by calling the
-* function close(FALSE).
+* function close(false).
 * When receiving a SEL_UPDATE, the target can update the title string
 * of the window, so that the title of the window reflects the name
 * of the document, for example.
@@ -114,7 +120,7 @@ private:
   FXTopWindow(const FXTopWindow&);
   FXTopWindow& operator=(const FXTopWindow&);
 #ifdef WIN32
-  virtual const char* GetClass() const;
+  virtual const void* GetClass() const;
 #endif
 public:
   long onFocusUp(FXObject*,FXSelector,void*);
@@ -123,9 +129,13 @@ public:
   long onFocusRight(FXObject*,FXSelector,void*);
   long onSessionNotify(FXObject*,FXSelector,void*);
   long onSessionClosed(FXObject*,FXSelector,void*);
+  long onRestore(FXObject*,FXSelector,void*);
+  long onMaximize(FXObject*,FXSelector,void*);
+  long onMinimize(FXObject*,FXSelector,void*);
+  long onCmdRestore(FXObject*,FXSelector,void*);
   long onCmdMaximize(FXObject*,FXSelector,void*);
   long onCmdMinimize(FXObject*,FXSelector,void*);
-  long onCmdRestore(FXObject*,FXSelector,void*);
+  long onCmdFullScreen(FXObject*,FXSelector,void*);
   long onCmdClose(FXObject*,FXSelector,void*);
   long onCmdSetStringValue(FXObject*,FXSelector,void*);
   long onCmdGetStringValue(FXObject*,FXSelector,void*);
@@ -133,9 +143,10 @@ public:
   long onCmdGetIconValue(FXObject*,FXSelector,void*);
 public:
   enum {
-    ID_MAXIMIZE=FXShell::ID_LAST,       /// Maximize the window
+    ID_RESTORE=FXShell::ID_LAST,        /// Restore the window
+    ID_MAXIMIZE,                        /// Maximize the window
     ID_MINIMIZE,                        /// Minimize the window
-    ID_RESTORE,                         /// Restore the window
+    ID_FULLSCREEN,                      /// Make the window full screen
     ID_CLOSE,                           /// Close the window
     ID_QUERY_DOCK,                      /// Toolbar asks to dock
     ID_LAST
@@ -184,6 +195,9 @@ public:
   /// Raise this window to the top of the stacking order
   virtual void raise();
 
+  /// Lower this window to the bottom of the stacking order
+  virtual void lower();
+
   /// Move this window to the specified position in the parent's coordinates
   virtual void move(FXint x,FXint y);
 
@@ -193,29 +207,41 @@ public:
   /// Move and resize this window in the parent's coordinates
   virtual void position(FXint x,FXint y,FXint w,FXint h);
 
-  /// Maximize window, return TRUE if maximized
-  virtual FXbool maximize(FXbool notify=FALSE);
+  /// Flash the window to get user's attention
+  virtual void flash(FXbool yes);
 
-  /// Minimize or iconify window, return TRUE if minimized
-  virtual FXbool minimize(FXbool notify=FALSE);
+  /// Restore window to normal, return true if restored
+  virtual FXbool restore(FXbool notify=false);
 
-  /// Restore window to normal, return TRUE if restored
-  virtual FXbool restore(FXbool notify=FALSE);
+  /// Maximize window, return true if maximized
+  virtual FXbool maximize(FXbool notify=false);
+
+  /// Minimize or iconify window, return true if minimized
+  virtual FXbool minimize(FXbool notify=false);
+
+  /// Make window full screen, return true if success
+  virtual FXbool fullScreen(FXbool notify=false);
+
+  /// Special stacking order level
+  virtual FXbool stackingOrder(FXuint order);
 
   /**
-  * Close the window, return TRUE if actually closed.  If notify=TRUE, the target
+  * Close the window, return true if actually closed.  If notify=true, the target
   * will receive a SEL_CLOSE message to determine if it is OK to close the window.
   * If the target ignores the SEL_CLOSE message or returns 0, the window will
   * be closed, and subsequently deleted.  When the last main window has been
   * closed, the application will receive an ID_QUIT message and will be closed.
   */
-  virtual FXbool close(FXbool notify=FALSE);
+  virtual FXbool close(FXbool notify=false);
 
-  /// Return TRUE if maximized
+  /// Return true if maximized
   FXbool isMaximized() const;
 
-  /// Return TRUE if minimized
+  /// Return true if minimized
   FXbool isMinimized() const;
+
+  /// Return true if full screen
+  FXbool isFullScreen() const;
 
   /// Change window title
   void setTitle(const FXString& name);

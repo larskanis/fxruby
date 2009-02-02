@@ -47,7 +47,7 @@ public:
   FXbool isModified() const;
 
   /// Set its modified state
-  void setModified(FXbool mdfy=TRUE);
+  void setModified(FXbool mdfy=true);
 
   /// Set document title
   void setTitle(const FXString& name);

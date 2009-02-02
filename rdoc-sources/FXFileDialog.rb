@@ -61,6 +61,9 @@ module Fox
     
     # Image size for preview images [Integer]
     attr_accessor :imageSize
+    
+    # File associations [FXFileDict]
+    attr_accessor :associations
 
     # Construct a file dialog box
     def initialize(owner, name, opts=0, x=0, y=0, width=500, height=300) # :yields: theFileDialog
@@ -155,6 +158,12 @@ module Fox
 
     # Set navigation to allowed (+true+) or disallowed (+false+)
     def navigationAllowed=(allowed); end
+    
+    # Set draggable files to +true+ or +false+.
+    def draggableFiles=(flag); end
+    
+    # Return the draggable files state.
+    def draggableFiles?; end
 
     #
     # Display a dialog box that allows the user to select a single existing file name

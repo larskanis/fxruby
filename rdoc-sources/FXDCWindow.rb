@@ -7,6 +7,10 @@ module Fox
   # locked on a drawable at any one time.
   #
   class FXDCWindow < FXDC
+    
+    # Active drawable for this device context [FXDrawable]
+    attr_reader :drawable
+    
     #
     # Construct a device context for drawing into a window (specified by _drawable_).
     # If _event_ is +nil_, the device context is constructed for normal drawing, and the
@@ -27,7 +31,7 @@ module Fox
     #
     # Unlock the drawable surface.
     #
-    def end() ; end
+    def end(); end
   end
 end
 

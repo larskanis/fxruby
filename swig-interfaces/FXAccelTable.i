@@ -52,7 +52,7 @@ public:
   void removeAccel(FXHotKey hotkey);
 
   /// Return true if accelerator specified
-  bool hasAccel(FXHotKey hotkey) const;
+  FXbool hasAccel(FXHotKey hotkey) const;
 
   /// Return target object of the given accelerator
   FXObject* targetOfAccel(FXHotKey hotkey) const;

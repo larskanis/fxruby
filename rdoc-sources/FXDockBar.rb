@@ -121,13 +121,13 @@ module Fox
     # However, if after is -1, it will be docked as the innermost bar just before
     # the work-area, while if after is 0, if will be docked as the outermost bar.
     #
-    def dock(docksite, before=nil, notify=false); end
+    def dock(docksite, other=nil, notify=false); end
 
     #
     # Dock the bar against the given side, near the given position relative
     # to the toolbar dock's origin.
     #
-    def dock(docksite, local_x, local_y, notify); end
+    def dock(docksite, local_x, local_y, notify=false); end
 
     #
     # Undock or float the bar.

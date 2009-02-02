@@ -99,19 +99,19 @@ public:
   FXVec3d center() const;
 
   // Test if empty
-  bool empty() const;
+  FXbool empty() const;
 
   // Test if box contains point x,y,z
-  bool contains(FXdouble x,FXdouble y,FXdouble z) const;
+  FXbool contains(FXdouble x,FXdouble y,FXdouble z) const;
 
   /// Test if box contains point p
-  bool contains(const FXVec3d& p) const;
+  FXbool contains(const FXVec3d& p) const;
 
   /// Test if box properly contains another box
-  bool contains(const FXRanged& bounds) const;
+  FXbool contains(const FXRanged& bounds) const;
 
   /// Test if box properly contains sphere
-  bool contains(const FXSphered& sphere) const;
+  FXbool contains(const FXSphered& sphere) const;
 
   // Include point 
   FXRanged& include(FXdouble x,FXdouble y,FXdouble z);
@@ -129,11 +129,11 @@ public:
   FXint intersect(const FXVec4d& plane) const;
 
   /// Intersect box with ray u-v
-  bool intersect(const FXVec3d& u,const FXVec3d& v);
+  FXbool intersect(const FXVec3d& u,const FXVec3d& v);
 
   %extend {
     // Test if this box overlaps with other
-    bool overlaps(const FXRanged& other) const {
+    FXbool overlaps(const FXRanged& other) const {
       return FX::overlap(*self,other);
       }
 
@@ -146,6 +146,10 @@ public:
       }
 
     /// Union of two boxes
+    // This is not a typo.
+    // We're calling this method "onion" to work around a bug in SWIG
+    // that mistakes the method name "union" for the C++ keyword of the same
+    // name.
     FXRanged onion(const FXRanged& other) const {
       return FX::unite(*self,other);
       }

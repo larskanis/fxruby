@@ -22,6 +22,9 @@ module Fox
     # Requested stencil size (default is zero) [Integer]
     attr_accessor :stencilSize
     
+    # Requested multi samples (default is zero) [Integer]
+    attr_accessor :multiSamples
+    
     # Requested number of bits of red for the accumulation buffer (default is zero) [Integer]
     attr_accessor :accumRedSize
     
@@ -51,6 +54,9 @@ module Fox
 
     # Actual stencil size [Integer]
     attr_reader :actualStencilSize
+    
+    # Actual multi samples [Integer]
+    attr_reader :actualMultiSamples
 
     # Actual number of bits of red for the accumulation buffer [Integer]
     attr_reader :actualAccumRedSize
@@ -67,16 +73,12 @@ module Fox
     #
     # Construct default visual
     #
-    def initialize(app, flags) # :yields: theGLVisual
+    def initialize(app, flags=VISUAL_DOUBLE_BUFFER|VISUAL_WINDOW) # :yields: theGLVisual
 
     #
-    # Test if OpenGL is possible, and what level is supported.
-    # Because of remote display capability, the display server may
-    # support a different level of OpenGL than the client; it may
-    # even support no OpenGL at all!  This function returns the lesser
-    # of the client support level and the display server support level.
+    # Returns +true+ if this visual supports OpenGL.
     #
-    def FXGLVisual.supported?(app); end
+    def FXGLVisual.hasOpenGL?(app); end
 
     # Return +true+ if double-buffered
     def doubleBuffered?; end
@@ -90,5 +92,18 @@ module Fox
     # Return +true+ if this visual "swaps" by copying instead of flipping buffers.
     def bufferSwapCopy?; end
   end
+  
+  #
+  # Create a display list of bitmaps from font glyphs in a font.
+  #
+  # ==== Parameters:
+  #
+  # +font+::    the font [FXFont]
+  # +first+::   [Integer]
+  # +count+::   [Integer]
+  # +list+::    [Integer]
+  #
+  def glUseFXFont(font, first, count, list); end
+  
 end
 

@@ -21,40 +21,41 @@
  ***********************************************************************/
 
 /***********************************************************************
- * $Id: FXRuby.h 2463 2006-07-11 14:02:35Z lyle $
+ * $Id: FXRuby.h 2873 2008-05-30 21:38:58Z lyle $
  ***********************************************************************/
 
 #ifndef FXRUBY_H
 #define FXRUBY_H
 
-// Opaque type declaration for SWIG runtime support
-struct swig_type_info;
-
-// SWIG runtime functions we need
-extern "C" {
-const char *     SWIG_Ruby_TypeName(const swig_type_info *ty);
-swig_type_info * SWIG_Ruby_TypeQuery(const char *);
-VALUE            SWIG_Ruby_NewPointerObj(void *ptr, swig_type_info *type, int own);
-int              SWIG_Ruby_ConvertPtr(VALUE obj, void **ptr, swig_type_info *ty, int flags);
-}
 
 // Helper for overloaded show() functions
 template <class TYPE>
-VALUE showHelper(VALUE self, int argc, VALUE *argv, TYPE *p, swig_type_info *typeinfo) {
-  TYPE *win;
-  SWIG_Ruby_ConvertPtr(self,(void**)&win,typeinfo,1);
-  if (argc == 0) {
-    win->_show();
-    }
-  else if (argc == 1) {
-    FXuint placement = NUM2UINT(argv[0]);
-    win->FXTopWindow::show(placement);
-    }
-  else {
-    rb_raise(rb_eArgError, "wrong # of arguments");
-    }
-  return Qnil;
-  }
+VALUE showHelper(VALUE self, int argc, VALUE *argv, TYPE *p, swig_type_info *typeinfo)
+{
+	TYPE *win;
+	int res = SWIG_ConvertPtr(self, reinterpret_cast<void**>(&win), typeinfo, 0);
+	if (SWIG_IsOK(res)) {
+		if (argc == 0) {
+			win->_show();
+		}
+		else if (argc == 1) {
+			FXuint placement = NUM2UINT(argv[0]);
+			win->FXTopWindow::show(placement);
+		}
+		else {
+			rb_raise(rb_eArgError, "wrong # of arguments");
+		}
+	} else {
+		switch (res) {
+			case SWIG_ObjectPreviouslyDeletedError:
+				rb_raise(rb_eTypeError, "This %s already released", typeinfo->str);
+				break;
+			default:
+				rb_raise(rb_eTypeError, "Expected %s", typeinfo->str);
+		}
+	}
+	return Qnil;
+}
     
 // Wrapper around SWIG_Ruby_NewPointerObj()
 VALUE FXRbNewPointerObj(void *ptr, swig_type_info *typeinfo);
@@ -208,54 +209,16 @@ inline VALUE to_ruby(const FXchar* s){
   return s ? rb_str_new2(s) : Qnil;
   }
 
-extern VALUE to_ruby(const FXObject* obj);
-
-inline VALUE to_ruby(const FXRangef& range){
-  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXRangef*>(&range)),FXRbTypeQuery("FXRangef *"));
-  }
-
-inline VALUE to_ruby(FXStream& store){
-  return (VALUE) 0; // FIXME
-  }
-
-inline VALUE to_ruby(const FXPoint* point){
-  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXPoint*>(point)),FXRbTypeQuery("FXPoint *"));
-  }
- 
-inline VALUE to_ruby(const FXSegment* segment){
-  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXSegment*>(segment)),FXRbTypeQuery("FXSegment *"));
-  }
-
-inline VALUE to_ruby(const FXRectangle* rect){
-  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXRectangle*>(rect)),FXRbTypeQuery("FXRectangle *"));
-  }
-
-inline VALUE to_ruby(const FXRectangle& rect){
-  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXRectangle*>(&rect)),FXRbTypeQuery("FXRectangle *"));
-  }
-
 inline VALUE to_ruby(const FXArc* arc){
-  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXArc*>(arc)),FXRbTypeQuery("FXArc *"));
-  }
+	return FXRbNewPointerObj(static_cast<void*>(const_cast<FXArc*>(arc)),FXRbTypeQuery("FXArc *"));
+	}
 
-inline VALUE to_ruby(const FXRegion& region){
-  return (VALUE) 0; // FIXME
+inline VALUE to_ruby(FXDC& dc){
+  return FXRbGetRubyObj(reinterpret_cast<void*>(&dc),FXRbTypeQuery("FXDC *"));
   }
 
 inline VALUE to_ruby(FXEvent* event){
   return FXRbGetRubyObj(reinterpret_cast<void*>(event),FXRbTypeQuery("FXEvent *"));
-  }
-
-inline VALUE to_ruby(FXTablePos* p){
-  return SWIG_Ruby_NewPointerObj(reinterpret_cast<void*>(p),FXRbTypeQuery("FXTablePos *"),0);
-  }
-
-inline VALUE to_ruby(FXTextChange* p){
-  return SWIG_Ruby_NewPointerObj(reinterpret_cast<void*>(p),FXRbTypeQuery("FXTextChange *"),0);
-  }
-
-inline VALUE to_ruby(FXTableRange* r){
-  return SWIG_Ruby_NewPointerObj(reinterpret_cast<void*>(r),FXRbTypeQuery("FXTableRange *"),0);
   }
 
 inline VALUE to_ruby(FXFontDesc* fontdesc){
@@ -266,8 +229,50 @@ inline VALUE to_ruby(const FXFontDesc& fontdesc){
   return FXRbNewPointerObj(reinterpret_cast<void*>(const_cast<FXFontDesc*>(&fontdesc)),FXRbTypeQuery("FXFontDesc *"));
   }
 
-inline VALUE to_ruby(FXDC& dc){
-  return FXRbGetRubyObj(reinterpret_cast<void*>(&dc),FXRbTypeQuery("FXDC *"));
+extern VALUE to_ruby(const FXObject* obj);
+
+inline VALUE to_ruby(const FXPoint* point){
+  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXPoint*>(point)),FXRbTypeQuery("FXPoint *"));
+  }
+ 
+inline VALUE to_ruby(const FXRangef& range){
+  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXRangef*>(&range)),FXRbTypeQuery("FXRangef *"));
+  }
+
+inline VALUE to_ruby(const FXRectangle* rect){
+  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXRectangle*>(rect)),FXRbTypeQuery("FXRectangle *"));
+  }
+
+inline VALUE to_ruby(const FXRectangle& rect){
+  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXRectangle*>(&rect)),FXRbTypeQuery("FXRectangle *"));
+  }
+
+inline VALUE to_ruby(const FXRegion& region){
+  return (VALUE) 0; // FIXME
+  }
+
+inline VALUE to_ruby(const FXSegment* segment){
+  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXSegment*>(segment)),FXRbTypeQuery("FXSegment *"));
+  }
+
+inline VALUE to_ruby(FXStream& store){
+  return (VALUE) 0; // FIXME
+  }
+
+inline VALUE to_ruby(FXTablePos* p){
+  return SWIG_NewPointerObj(reinterpret_cast<void*>(p),FXRbTypeQuery("FXTablePos *"),0);
+  }
+
+inline VALUE to_ruby(FXTextChange* p){
+  return SWIG_NewPointerObj(reinterpret_cast<void*>(p),FXRbTypeQuery("FXTextChange *"),0);
+  }
+
+inline VALUE to_ruby(FXTableRange* r){
+  return SWIG_NewPointerObj(reinterpret_cast<void*>(r),FXRbTypeQuery("FXTableRange *"),0);
+  }
+
+inline VALUE to_ruby(const FXVec3f& pos){
+  return FXRbNewPointerObj(static_cast<void*>(const_cast<FXVec3f*>(&pos)),FXRbTypeQuery("FXVec3f *"));
   }
 
 /**
@@ -428,27 +433,28 @@ void FXRbCallVoidMethod(FXObject* recv,ID func,TYPE1& arg1,TYPE2 arg2,TYPE3 arg3
   }
 
 // Call function with "FXbool" return value
-inline bool FXRbCallBoolMethod(FXStream* recv,ID func){
+// NOTE that as of fox-1.7.12, FXbool is typedef'd to bool
+inline FXbool FXRbCallBoolMethod(FXStream* recv,ID func){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,0,NULL);
   return (v==Qtrue);
   }
 
 template<class TYPE1>
-bool FXRbCallBoolMethod(FXStream* recv,ID func,TYPE1 arg){
+FXbool FXRbCallBoolMethod(FXStream* recv,ID func,TYPE1 arg){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,1,to_ruby(arg));
   return (v==Qtrue);
   }
 
 template<class TYPE1,class TYPE2>
-bool FXRbCallBoolMethod(FXStream* recv,ID func,TYPE1 arg1,TYPE2 arg2){
+FXbool FXRbCallBoolMethod(FXStream* recv,ID func,TYPE1 arg1,TYPE2 arg2){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,2,to_ruby(arg1),to_ruby(arg2));
   return (v==Qtrue);
   }
 
-bool FXRbCallBoolMethod(const FXObject* recv,ID func);
+FXbool FXRbCallBoolMethod(const FXObject* recv,ID func);
 
 template<class TYPE>
-bool FXRbCallBoolMethod(FXObject* recv, ID func, TYPE& arg){
+FXbool FXRbCallBoolMethod(FXObject* recv, ID func, TYPE& arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,1,to_ruby(arg));
@@ -456,13 +462,13 @@ bool FXRbCallBoolMethod(FXObject* recv, ID func, TYPE& arg){
   }
 
 template<class TYPE>
-bool FXRbCallBoolMethod(const FXObject* recv,ID func,TYPE& arg){
+FXbool FXRbCallBoolMethod(const FXObject* recv,ID func,TYPE& arg){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,1,to_ruby(arg));
   return (v==Qtrue);
   }
 
 template<class TYPE1, class TYPE2>
-bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
+FXbool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,2,to_ruby(arg1),to_ruby(arg2));
@@ -470,7 +476,7 @@ bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   }
 
 template<class TYPE1, class TYPE2, class TYPE3>
-bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3){
+FXbool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,3,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3));
@@ -478,7 +484,7 @@ bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, T
   }
 
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4, class TYPE5>
-bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5){
+FXbool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,5,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3),to_ruby(arg4),to_ruby(arg5));
@@ -543,7 +549,8 @@ FXString FXRbCallStringMethod(const FXObject* recv, ID func);
 
 // Call functions with const FXchar* return value
 const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*, const FXchar*);
-const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*, const FXchar*, const FXchar*);
+const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*, const FXchar*, const FXchar*, FXint);
+const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*, const FXchar*, FXint);
 
 // Call functions with "FXGLObject*" return value
 FXGLObject* FXRbCallGLObjectMethod(FXGLObject* recv,ID func);

@@ -3,23 +3,22 @@
 *                        T o o l B a r   W i d g e t                            *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2004,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2004,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXToolBar.h 2244 2005-11-10 01:45:23Z lyle $                         *
+* $Id: FXToolBar.h 2767 2007-11-19 18:33:06Z lyle $                         *
 ********************************************************************************/
 #ifndef FXTOOLBAR_H
 #define FXTOOLBAR_H
@@ -66,11 +65,11 @@ public:
   /// Return default height
   virtual FXint getDefaultHeight();
 
-  /// Dock and optionally flip orientation of toolbar
-  virtual void dock(FXDockSite* docksite,FXWindow* before=NULL,FXbool notify=FALSE);
+  /// Dock and optionally flip orientation of toolbar before other window
+  virtual void dock(FXDockSite* docksite,FXWindow* other=NULL,FXbool notify=false);
 
   /// Dock and optionally flip orientation of toolbar
-  virtual void dock(FXDockSite* docksite,FXint localx,FXint localy,FXbool notify);
+  virtual void dock(FXDockSite* docksite,FXint localx,FXint localy,FXbool notify=false);
 
   /// Set docking side
   void setDockingSide(FXuint side=LAYOUT_SIDE_TOP);

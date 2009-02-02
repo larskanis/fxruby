@@ -1,29 +1,31 @@
 module Fox
   #
-  # A GL context is an object representing the OpenGL state information.
-  # Multiple GL context may share display lists to conserve memory.
-  # When drawing multiple windows, it may be advantageous to share not only
-  # display lists, but also GL contexts.  Since the GL context is created
-  # for a certain frame-buffer configuration, sharing of GL contexts is
-  # only possible if the windows sharing the GL context all have the same
-  # GL visual.
-  # However, display lists may be shared between different GL contexts.
+  # OpenGL context
   #
   class FXGLContext < FXId
-  
-    # The visual [FXGLVisual]
-    attr_reader :visual
 
-    # Construct an OpenGL context.
-    # If _other_ is a reference to an existing FXGLContext, this context will
-    # share display lists with that other context.
-    # Otherwise, this context will use its own private display list.
-    def initialize(app, visual, other=nil) # :yields: theGLContext
+    # Shared context for this context (if any) [FXGLContext]
+    attr_accessor :shared
+    
+    # The GL visual [FXGLVisual]
+    attr_accessor :visual
+    
+    # Active drawable for this context [FXDrawable]
+    attr_reader :drawable
+    
+		#
+		# Construct an GL Context with given GL Visual. Optionally
+    # share a display list with another GL Context _shr_.
+    #
+    # ==== Parameters:
+    #
+    # +app+::     a reference to the application instance [FXApp]
+    # +vis+::     a reference to the GL visual [FXGLVisual]
+    # +shr+::     a reference to the GLContext with which this one shares its display lists 
+    #
+    def initialize(app, vis, shr=nil) # :yields: theGLContext
     end
   
-    # Return +true+ if it is sharing display lists.
-    def shared?; end
-    
     # Make this OpenGL context current prior to performing OpenGL commands.
     def begin(drawable); end
     
@@ -33,8 +35,14 @@ module Fox
     # Swap front and back buffer
     def swapBuffers(); end
     
-    # Copy part of backbuffer to front buffer [Mesa]
-    def swapSubBuffers(x, y, w, h); end
+    # Return +true+ if this context supports double-buffering.
+    def doubleBuffer? ; end
+    
+    # Return +true+ if this context supports stereo buffer.
+    def stereoBuffer? ; end
+    
+    # Return +true+ if this window's context is current
+    def current?; end
   end
 end
 

@@ -29,6 +29,9 @@ module Fox
 
     # Item's text label [String]
     attr_accessor :text
+    
+    # Item's tool tip text [String]
+    attr_accessor :tipText
 
     # Item's icon [FXIcon]
     attr_accessor :icon
@@ -39,7 +42,7 @@ module Fox
     # Size [Integer]
     attr_accessor :size
     
-    # Sort direction (+FALSE+, +TRUE+ or +MAYBE+) [Integer]
+    # Sort direction (+ARROW_NONE+, +ARROW_UP+ or +ARROW_DOWN+) [Integer]
     attr_accessor :arrowDir
     
     # Current position [Integer]
@@ -56,6 +59,9 @@ module Fox
     #
     def initialize(text, ic=nil, s=0, ptr=nil) # :yields: theHeaderItem
     end
+    
+    # Return the header item's text label
+    def to_s; text; end
     
     # Return the item's content width in the header.
     def getWidth(header); end
@@ -288,6 +294,14 @@ module Fox
     #
     def getItemText(index); end
   
+    # Change tool tip message for item at index.
+    # Raises IndexError if _index_ is out of bounds.
+    def setItemTipText(index, text); end
+
+    # Get tool tip message of item at index.
+    # Raises IndexError if _index_ is out of bounds.
+    def getItemTipText(index); end
+
     #
     # Change icon of item at index.
     # Raises IndexError if _index_ is out of bounds.
@@ -332,19 +346,15 @@ module Fox
     def getItemData(index); end
   
     #
-    # Change arrow (sort) direction for item at index, where _dir_ is either
-    # +FALSE+, +TRUE+ or +MAYBE+.
-    # If _dir_ is +TRUE+, the arrow will point up; if _dir_ is +FALSE+, the
-    # arrow points down; and if _dir_ is +MAYBE+, no arrow is drawn.
+    # Change arrow (sort) direction for item at index, where _dir_ is one of
+    # +FXHeaderItem::ARROW_NONE+, +FXHeaderItem::ARROW_UP+ or +FXHeaderItem::ARROW_DOWN+.
     # Raises IndexError if _index_ is out of bounds.
     #
-    def setArrowDir(index, dir=MAYBE); end
+    def setArrowDir(index, dir=FXHeaderItem::ARROW_NONE); end
     
     #
-    # Return sort direction for the item at index, one of +FALSE+, +TRUE+ or
-    # +MAYBE+.
-    # If _dir_ is +TRUE+, the arrow will point up; if _dir_ is +FALSE+, the
-    # arrow points down; and if _dir_ is +MAYBE+, no arrow is drawn.
+    # Return sort direction for the item at index, one of
+    # +FXHeaderItem::ARROW_NONE+, +FXHeaderItem::ARROW_UP+ or +FXHeaderItem::ARROW_DOWN+.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getArrowDir(index); end

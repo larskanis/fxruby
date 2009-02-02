@@ -451,8 +451,10 @@ module Fox
     def check # :nodoc:
       getCheck
     end			# deprecated
-    def check=(*args) # :nodoc:
-      setCheck(*args)
+    def check=(state) # :nodoc:
+      state = Fox::TRUE  if state == true
+      state = Fox::FALSE if state == false
+      setCheck(state)
     end	# deprecated
     def checkButtonStyle=(*args) # :nodoc:
       setCheckButtonStyle(*args)
@@ -675,9 +677,6 @@ module Fox
     end
     def tipText(*args) # :nodoc:
       getTipText(*args)
-    end
-    def paneShown?(*args) # :nodoc:
-      isPaneShown(*args)
     end
     def itemCurrent?(*args) # :nodoc:
       isItemCurrent(*args)
@@ -1808,7 +1807,10 @@ module Fox
 
   class FXGLCanvas
     def context # :nodoc:
-      getContext()
+      getContext
+    end
+    def context=(*args) # :nodoc:
+      setContext(*args)
     end
     def current? # :nodoc:
       isCurrent()
@@ -1817,15 +1819,31 @@ module Fox
       shared?
     end
   end
-
+  
   class FXGLContext
-    def shared? # :nodoc:
-      isShared()
+    def visual=(*args) # :nodoc:
+      setVisual(*args)
     end
-    def visual(*args) # :nodoc:
-      getVisual(*args)
+    def visual # :nodoc:
+      getVisual
+    end
+    def shared=(*args) # :nodoc:
+      setShared(*args)
+    end
+    def shared # :nodoc:
+      getShared
+    end
+    def current? # :nodoc:
+      isCurrent
+    end
+    def doubleBuffer? # :nodoc:
+      isDoubleBuffer
+    end
+    def stereo? # :nodoc:
+      isStereo
     end
   end
+  
   class FXGLShape
     def position # :nodoc:
       getPosition
@@ -1931,12 +1949,6 @@ module Fox
     def projection(*args) # :nodoc:
       getProjection(*args)
     end
-    def backgroundColor=(*args) # :nodoc:
-      setBackgroundColor(*args)
-    end
-    def backgroundColor(*args) # :nodoc:
-      getBackgroundColor(*args)
-    end
     def ambientColor=(*args) # :nodoc:
       setAmbientColor(*args)
     end
@@ -1972,9 +1984,6 @@ module Fox
     end
   end
   class FXGLVisual
-    def FXGLVisual.supported?(*args) # :nodoc:
-      FXGLVisual.supported(*args)
-    end
     def redSize(*args) # :nodoc:
       getRedSize(*args)
     end
@@ -1992,6 +2001,9 @@ module Fox
     end
     def stencilSize(*args) # :nodoc:
       getStencilSize(*args)
+    end
+    def multiSamples # :nodoc:
+      getMultiSamples
     end
     def accumRedSize(*args) # :nodoc:
       getAccumRedSize(*args)
@@ -2023,6 +2035,9 @@ module Fox
     def stencilSize=(*args) # :nodoc:
       setStencilSize(*args)
     end
+    def multiSamples=(*args) # :nodoc:
+      setMultiSamples(*args)
+    end
     def accumRedSize=(*args) # :nodoc:
       setAccumRedSize(*args)
     end
@@ -2052,6 +2067,9 @@ module Fox
     end
     def actualStencilSize(*args) # :nodoc:
       getActualStencilSize(*args)
+    end
+    def actualMultiSamples # :nodoc:
+      getActualMultiSamples
     end
     def actualAccumRedSize(*args) # :nodoc:
       getActualAccumRedSize(*args)
@@ -2702,9 +2720,6 @@ module Fox
     def tipText(*args) # :nodoc:
       getTipText(*args)
     end
-    def paneShown?(*args) # :nodoc:
-      isPaneShown(*args)
-    end
   end
   class FXMatrix
     def matrixStyle=(*args) # :nodoc:
@@ -2849,6 +2864,9 @@ module Fox
     def activeChild(*args) # :nodoc:
       getActiveChild(*args)
     end
+    def activeChild=(*args) # :nodoc:
+      setActiveChild(*args)
+    end
     def cascadeX=(*args) # :nodoc:
       setCascadeX(*args)
     end
@@ -2872,6 +2890,12 @@ module Fox
     alias space= setSpace
   end
   class FXMenuButton
+    def menuShown? # :nodoc:
+      isMenuShown
+    end
+    def menuShown=(*args) # :nodoc:
+      showMenu(*args)
+    end
     def menu=(*args) # :nodoc:
       setMenu(*args)
     end
@@ -2995,8 +3019,10 @@ module Fox
     def check # :nodoc:
       getCheck
     end			# deprecated
-    def check=(*args) # :nodoc:
-      setCheck(*args)
+    def check=(state) # :nodoc:
+      state = Fox::TRUE  if state == true
+      state = Fox::FALSE if state == false
+      setCheck(state)
     end	# deprecated
     def boxColor # :nodoc:
       getBoxColor()
@@ -3022,8 +3048,10 @@ module Fox
     def check # :nodoc:
       getCheck
     end			# deprecated
-    def check=(*args) # :nodoc:
-      setCheck(*args)
+    def check=(state) # :nodoc:
+      state = Fox::TRUE  if state == true
+      state = Fox::FALSE if state == false
+      setCheck(state)
     end	# deprecated
     def radioColor # :nodoc:
       getRadioColor()
@@ -3327,8 +3355,10 @@ module Fox
     def check # :nodoc:
       getCheck
     end			# deprecated
-    def check=(*args) # :nodoc:
-      setCheck(*args)
+    def check=(state) # :nodoc:
+      state = Fox::TRUE  if state == true
+      state = Fox::FALSE if state == false
+      setCheck(state)
     end	# deprecated
     def radioButtonStyle=(*args) # :nodoc:
       setRadioButtonStyle(*args)
@@ -3571,6 +3601,7 @@ module Fox
     def position=(*args) # :nodoc:
       setPosition(*args)
     end
+    undef_method(:position) if defined?(:position)
     def position # :nodoc:
       getPosition
     end
@@ -3760,12 +3791,6 @@ module Fox
   end
 
   class FXScrollArea
-    def viewportWidth(*args) # :nodoc:
-      getViewportWidth(*args)
-    end
-    def viewportHeight(*args) # :nodoc:
-      getViewportHeight(*args)
-    end
     def contentWidth(*args) # :nodoc:
       getContentWidth(*args)
     end
@@ -3783,12 +3808,6 @@ module Fox
     end
     def verticalScrollable?(*args) # :nodoc:
       isVerticalScrollable(*args)
-    end
-    def xPosition(*args) # :nodoc:
-      getXPosition(*args)
-    end
-    def yPosition(*args) # :nodoc:
-      getYPosition(*args)
     end
   end
   class FXScrollBar
@@ -4382,6 +4401,18 @@ module Fox
     def rowHeaderMode=(hint) # :nodoc:
       setRowHeaderMode(hint)
     end
+    def columnHeaderFont # :nodoc:
+      getColumnHeaderFont
+    end
+    def columnHeaderFont=(f) # :nodoc:
+      setColumnHeaderFont(f)
+    end
+    def rowHeaderFont # :nodoc:
+      getRowHeaderFont
+    end
+    def rowHeaderFont=(f) # :nodoc:
+      setRowHeaderFont(f)
+    end
     def columnHeaderHeight # :nodoc:
       getColumnHeaderHeight()
     end
@@ -4764,6 +4795,7 @@ module Fox
     def editable?(*args) # :nodoc:
       isEditable(*args)
     end
+    alias :editable :editable?
     def editable=(*args) # :nodoc:
       setEditable(*args)
     end
@@ -5302,9 +5334,6 @@ module Fox
     def currentItem(*args) # :nodoc:
       getCurrentItem(*args)
     end
-    def paneShown?(*args) # :nodoc:
-      isPaneShown(*args)
-    end
     def font=(*args) # :nodoc:
       setFont(*args)
     end
@@ -5355,9 +5384,6 @@ module Fox
     alias len2 length2
   end
   class FXVisual
-    def flags(*args) # :nodoc:
-      getFlags(*args)
-    end
     def depth(*args) # :nodoc:
       getDepth(*args)
     end

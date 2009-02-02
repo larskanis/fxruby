@@ -16,7 +16,7 @@ module Fox
   # +ID_BOOKMARK+::	x
   # +ID_VISIT+::	x
   # +ID_NEW+::		x
-  # +ID_DELETE+::	x
+  # +ID_REMOVE+::	x
   # +ID_MOVE+::		x
   # +ID_COPY+::		x
   # +ID_LINK+::		x
@@ -35,6 +35,9 @@ module Fox
     # Wildcard matching mode, some combination of file matching flags [Integer]
     attr_accessor :matchMode
     
+    # File associations [FXFileDict]
+    attr_accessor :associations
+
     # Directory list style [Integer]
     attr_accessor :dirBoxStyle
 
@@ -59,6 +62,18 @@ module Fox
     # directories; otherwise, it won't.
     #
     def hiddenFilesShown=(state); end
+
+    #
+    # Change file associations, where _assoc_ is an FXFileDict instance.
+    # If _owned_ is +true+, the FXDirSelector takes ownership of the FXFileDict instance,
+    # which means that it will destroy it if you replace it.
+    #
+    def setAssociations(assoc, owned=false); end
+    
+    #
+    # Return file associations (an FXFileDict instance).
+    #
+    def getAssociations(); end
   end
 end
 

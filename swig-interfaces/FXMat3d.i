@@ -20,6 +20,9 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
+// Provide an alias for backwards-compatibility with FXRuby 1.6
+%alias FXMat3d::identity() "eye";
+
 /// Double-precision 3x3 matrix
 class FXMat3d {
 protected:
@@ -32,9 +35,15 @@ public:
   /// Initialize matrix from another matrix
   FXMat3d(const FXMat3d& other);
 
+  /// Initialize from rotation and scaling part of 4x4 matrix
+  FXMat3d(const FXMat4d& other);
+  
   /// Initialize matrix from scalar
   FXMat3d(FXdouble w);
 
+  /// Initialize diagonal matrix 
+  FXMat3d(FXdouble a,FXdouble b,FXdouble c);
+  
   /// Initialize matrix from components
   FXMat3d(FXdouble a00,FXdouble a01,FXdouble a02,
           FXdouble a10,FXdouble a11,FXdouble a12,
@@ -76,8 +85,11 @@ public:
     FXVec2d operator*(const FXVec2d& other) const { return (*self)*other; }
     }
 
-  /// Set identity matrix
-  FXMat3d& eye();
+  /// Set to identity matrix
+  FXMat3d& identity();
+  
+  /// Return true if identity matrix
+  FXbool isIdentity() const;
 
   /// Multiply by rotation of phi
   FXMat3d& rot(FXdouble c,FXdouble s);

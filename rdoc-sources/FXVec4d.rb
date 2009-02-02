@@ -7,12 +7,22 @@ module Fox
     attr_accessor :w
     
     #
-    # Return an initialized FXVec4d instance.
+    # Return an FXVec4d instance with _x_, _y_, _z_ and _w_ initialized to zeroes.
+    #
+    def initialize; end
+
+    #
+    # Return an FXVec4d instance initialized from specified component values.
     #
     def initialize(xx, yy, zz, ww=1.0); end
+    
+    #
+    # Return an FXVec4d instance initialized from an FXVec3d instance and optional scalar.
+    #
+    def initialize(vec3d, ww=1.0); end
   
     #
-    # Returns the element at _index_, where _index_ is 0, 1 or 2.
+    # Returns the element at _index_, where _index_ is 0, 1, 2 or 3.
     # Raises IndexError if _index_ is out of range.
     #
     def [](index); end

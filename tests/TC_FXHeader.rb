@@ -13,11 +13,9 @@ class TC_FXHeader < TestCase
 
   def test_setArrowDir
     @header.appendItem("")
-    @header.setArrowDir(0, true)
-    @header.setArrowDir(0, false)
-    @header.setArrowDir(0, Fox::TRUE)
-    @header.setArrowDir(0, Fox::FALSE)
-    @header.setArrowDir(0, Fox::MAYBE)
+    @header.setArrowDir(0, FXHeaderItem::ARROW_NONE)
+    @header.setArrowDir(0, FXHeaderItem::ARROW_UP)
+    @header.setArrowDir(0, FXHeaderItem::ARROW_DOWN)
   end
 
   def test_getArrowDir
@@ -27,23 +25,23 @@ class TC_FXHeader < TestCase
 
   def test_arrowUp?
     @header.appendItem("")
-    assert_same(false, @header.arrowUp?(0))
-    @header.setArrowDir(0, Fox::TRUE)
-    assert_same(true, @header.arrowUp?(0))
+    assert(!@header.arrowUp?(0))
+    @header.setArrowDir(0, FXHeaderItem::ARROW_UP)
+    assert(@header.arrowUp?(0))
   end
 
   def test_arrowDown?
     @header.appendItem("")
-    assert_same(false, @header.arrowDown?(0))
-    @header.setArrowDir(0, Fox::FALSE)
-    assert_same(true, @header.arrowDown?(0))
+    assert(!@header.arrowDown?(0))
+    @header.setArrowDir(0, FXHeaderItem::ARROW_DOWN)
+    assert(@header.arrowDown?(0))
   end
 
-  def test_arrowMaybe?
+  def test_arrowNone?
     @header.appendItem("")
-    assert_same(true, @header.arrowMaybe?(0))
-    @header.setArrowDir(0, Fox::MAYBE)
-    assert_same(true, @header.arrowMaybe?(0))
+    assert(@header.arrowNone?(0))
+    @header.setArrowDir(0, FXHeaderItem::ARROW_NONE)
+    assert(@header.arrowNone?(0))
   end
   
   def test_SEL_REPLACED

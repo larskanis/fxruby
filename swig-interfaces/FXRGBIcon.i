@@ -81,10 +81,10 @@ DECLARE_FXIMAGE_VIRTUALS(FXRGBIcon)
 
 
 /// Save an RGB file to a stream
-bool fxsaveRGB(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
+FXbool fxsaveRGB(FXStream& store,const FXColor *PIXELS,FXint width,FXint height);
 
 /**
  * Check if stream contains a bitmap, return TRUE if so.
  */
-bool fxcheckRGB(FXStream& store);
+FXbool fxcheckRGB(FXStream& store);
 

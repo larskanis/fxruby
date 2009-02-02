@@ -3,23 +3,22 @@
 *       P e r s i s t e n t   S t o r a g e   S t r e a m   C l a s s e s       *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2006 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXStream.h 2345 2006-02-14 03:07:05Z lyle $                          *
+* $Id: FXStream.h 2726 2007-11-16 17:27:20Z lyle $                          *
 ********************************************************************************/
 #ifndef FXSTREAM_H
 #define FXSTREAM_H
@@ -91,8 +90,8 @@ protected:
   FXStreamDirection  dir;       // Direction of current transfer
   FXStreamStatus     code;      // Status code
   FXuint             seq;       // Sequence number
-  bool               owns;      // Stream owns buffer
-  bool               swap;      // Swap bytes on readin
+  FXbool             owns;      // Stream owns buffer
+  FXbool             swap;      // Swap bytes on readin
 protected:
 
   /**
@@ -123,13 +122,13 @@ public:
   * If data is not NULL, it is expected to point to an external data buffer
   * of length size; otherwise stream will use an internally managed buffer.
   */
-  bool open(FXStreamDirection save_or_load,FXuval size=8192,FXuchar* data=NULL);
+  FXbool open(FXStreamDirection save_or_load,FXuval size=8192,FXuchar* data=NULL);
 
   /// Flush buffer
-  virtual bool flush();
+  virtual FXbool flush();
 
   /// Close; return true if OK
-  virtual bool close();
+  virtual FXbool close();
 
   /// Get available buffer space
   FXuval getSpace() const;
@@ -141,7 +140,7 @@ public:
   FXStreamStatus status() const { return code; }
 
   /// Return true if at end of file or error
-  bool eof() const { return code!=FXStreamOK; }
+  FXbool eof() const { return code!=FXStreamOK; }
 
   /// Set status code
   void setError(FXStreamStatus err);
@@ -156,33 +155,34 @@ public:
   FXlong position() const { return pos; }
 
   /// Move to position relative to head, tail, or current location
-  virtual bool position(FXlong offset,FXWhence whence=FXFromStart);
+  virtual FXbool position(FXlong offset,FXWhence whence=FXFromStart);
 
   /**
   * Change swap bytes flag.
   */
-  void swapBytes(bool s){ swap=s; }
+  void swapBytes(FXbool s){ swap=s; }
 
   /**
   * Get state of the swap bytes flag.
   */
-  bool swapBytes() const { return swap; }
+  FXbool swapBytes() const { return swap; }
 
   /**
   * Set stream to big endian mode if true.  Byte swapping will
   * be enabled if the machine native byte order is not equal to
   * the desired byte order.
   */
-  void setBigEndian(bool big);
+  void setBigEndian(FXbool big);
 
   /**
   * Return true if big endian mode.
   */
-  bool isBigEndian() const;
+  FXbool isBigEndian() const;
 
   /// Save single items to stream
   FXStream& operator<<(const FXuchar& v);
   FXStream& operator<<(const FXchar& v){ return *this << reinterpret_cast<const FXuchar&>(v); }
+  FXStream& operator<<(const FXbool& v){ return *this << reinterpret_cast<const FXuchar&>(v); }
   FXStream& operator<<(const FXushort& v);
   FXStream& operator<<(const FXshort& v){ return *this << reinterpret_cast<const FXushort&>(v); }
   FXStream& operator<<(const FXuint& v);
@@ -195,6 +195,7 @@ public:
   /// Save arrays of items to stream
   FXStream& save(const FXuchar* p,FXuval n);
   FXStream& save(const FXchar* p,FXuval n){ return save(reinterpret_cast<const FXuchar*>(p),n); }
+  FXStream& save(const FXbool* p,FXuval n){ return save(reinterpret_cast<const FXuchar*>(p),n); }
   FXStream& save(const FXushort* p,FXuval n);
   FXStream& save(const FXshort* p,FXuval n){ return save(reinterpret_cast<const FXushort*>(p),n); }
   FXStream& save(const FXuint* p,FXuval n);
@@ -207,6 +208,7 @@ public:
   /// Load single items from stream
   FXStream& operator>>(FXuchar& v);
   FXStream& operator>>(FXchar& v){ return *this >> reinterpret_cast<FXuchar&>(v); }
+  FXStream& operator>>(FXbool& v){ return *this >> reinterpret_cast<FXuchar&>(v); }
   FXStream& operator>>(FXushort& v);
   FXStream& operator>>(FXshort& v){ return *this >> reinterpret_cast<FXushort&>(v); }
   FXStream& operator>>(FXuint& v);
@@ -219,6 +221,7 @@ public:
   /// Load arrays of items from stream
   FXStream& load(FXuchar* p,FXuval n);
   FXStream& load(FXchar* p,FXuval n){ return load(reinterpret_cast<FXuchar*>(p),n); }
+  FXStream& load(FXbool* p,FXuval n){ return load(reinterpret_cast<FXuchar*>(p),n); }
   FXStream& load(FXushort* p,FXuval n);
   FXStream& load(FXshort* p,FXuval n){ return load(reinterpret_cast<FXushort*>(p),n); }
   FXStream& load(FXuint* p,FXuval n);

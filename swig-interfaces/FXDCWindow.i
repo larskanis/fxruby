@@ -26,7 +26,6 @@ class FXImage;
 class FXBitmap;
 class FXIcon;
 class FXFont;
-class FXVisual;
 
 %exception FXDCWindow::FXDCWindow {
   $action FXRbRegisterRubyObj(self, result);
@@ -49,20 +48,23 @@ public:
   %extend {  
     /// Construct for painting in response to expose;
     /// This sets the clip rectangle to the exposed rectangle
-    FXDCWindow(FXDrawable* drawable,FXEvent* event){
-      return new FXRbDCWindow(drawable,event);
+    FXDCWindow(FXDrawable* draw,FXEvent* event){
+      return new FXRbDCWindow(draw,event);
       }
   
     /// Construct for normal drawing; 
     /// This sets clip rectangle to the whole drawable
-    FXDCWindow(FXDrawable* drawable){
-      return new FXRbDCWindow(drawable);
+    FXDCWindow(FXDrawable* draw){
+      return new FXRbDCWindow(draw);
       }
     }
 
   /// Begin locks in a drawable surface
-  void begin(FXDrawable *drawable);
+  void begin(FXDrawable *draw);
   
+	/// Return active drawable
+	FXDrawable *drawable() const;
+
   /// End unlock the drawable surface 
   void end();
   

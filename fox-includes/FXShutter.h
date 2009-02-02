@@ -3,23 +3,22 @@
 *                 S h u t t e r   C o n t a i n e r   W i d g e t               *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Charles W. Warren.   All Rights Reserved.          *
+* Copyright (C) 1998,2007 by Charles W. Warren.   All Rights Reserved.          *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXShutter.h 2236 2005-11-09 13:35:17Z lyle $                         *
+* $Id: FXShutter.h 2764 2007-11-19 17:57:29Z lyle $                         *
 ********************************************************************************/
 #ifndef FXSHUTTER_H
 #define FXSHUTTER_H
@@ -45,13 +44,12 @@ class FXShutterItem;
 */
 class FXAPI FXShutterItem : public FXVerticalFrame {
   FXDECLARE(FXShutterItem)
-  friend class FXShutter;
 protected:
   FXButton         *button;
   FXScrollWindow   *scrollWindow;
   FXVerticalFrame  *content;
 protected:
-  FXShutterItem(){}
+  FXShutterItem();
 private:
   FXShutterItem(const FXShutterItem&);
   FXShutterItem &operator=(const FXShutterItem&);
@@ -65,8 +63,12 @@ public:
     ID_LAST
     };
 public:
+
   /// Constructor
   FXShutterItem(FXShutter *p,const FXString& text=FXString::null,FXIcon* icon=NULL,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=DEFAULT_SPACING,FXint pr=DEFAULT_SPACING,FXint pt=DEFAULT_SPACING,FXint pb=DEFAULT_SPACING,FXint hs=DEFAULT_SPACING,FXint vs=DEFAULT_SPACING);
+
+  /// Return a pointer to the scroll window
+  FXScrollWindow* getScrollWindow() const { return scrollWindow; }
 
   /// Return a pointer to the button for this item
   FXButton* getButton() const { return button; }
@@ -86,6 +88,12 @@ public:
   /// Get the tool tip message for this item
   FXString getTipText() const;
 
+  /// Save to stream
+  virtual void save(FXStream& store) const;
+
+  /// Load from stream
+  virtual void load(FXStream& store);
+
   /// Destructor
   virtual ~FXShutterItem();
   };
@@ -98,15 +106,13 @@ public:
 */
 class FXAPI FXShutter : public FXVerticalFrame {
   FXDECLARE(FXShutter)
-  friend class FXShutterItem;
 protected:
-  FXint          current;               // Item currently open
-  FXint          closing;               // Item closing down
-  FXint          heightIncrement;       // Height delta
-  FXint          closingHeight;         // Closing items current height
-  FXbool         closingHadScrollbar;   // Closing item had a scroll bar
+  FXint   current;              // Item currently open
+  FXint   closing;              // Item closing down
+  FXint   closingHeight;        // Height of closing item
+  FXint   heightIncrement;      // Height delta
 protected:
-  FXShutter(){}
+  FXShutter();
 private:
   FXShutter(const FXShutter&);
   FXShutter &operator=(const FXShutter&);
@@ -125,7 +131,16 @@ public:
     ID_SHUTTER_TIMEOUT=FXVerticalFrame::ID_LAST,
     ID_OPEN_SHUTTERITEM,
     ID_OPEN_FIRST,
-    ID_OPEN_LAST=ID_OPEN_FIRST+1000,
+    ID_OPEN_SECOND,
+    ID_OPEN_THIRD,
+    ID_OPEN_FOURTH,
+    ID_OPEN_FIFTH,
+    ID_OPEN_SIXTH,
+    ID_OPEN_SEVENTH,
+    ID_OPEN_EIGHTH,
+    ID_OPEN_NINETH,
+    ID_OPEN_TENTH,
+    ID_OPEN_LAST=ID_OPEN_FIRST+100,
     ID_LAST
     };
 public:
@@ -137,10 +152,16 @@ public:
   virtual void layout();
 
   /// Set the currently displayed item (panel = 0, 1, 2, ..., npanels-1)
-  virtual void setCurrent(FXint panel);
+  virtual void setCurrent(FXint panel,FXbool notify=false);
 
   /// Return the index of the currently displayed item
   FXint getCurrent() const { return current; }
+
+  /// Save to stream
+  virtual void save(FXStream& store) const;
+
+  /// Load from stream
+  virtual void load(FXStream& store);
 
   /// Destructor
   virtual ~FXShutter();

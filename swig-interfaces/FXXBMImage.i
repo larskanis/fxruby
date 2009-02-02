@@ -103,16 +103,16 @@ DECLARE_FXIMAGE_VIRTUALS(FXXBMImage)
  * Save an XBM (X Bitmap) file to a stream; if the parameters hotx and hoty are set
  * to -1, no hotspot location is saved.
  */
-bool fxsaveXBM(FXStream& store,const FXColor *data,FXint width,FXint height,FXint hotx=-1,FXint hoty=-1);
+FXbool fxsaveXBM(FXStream& store,const FXColor *data,FXint width,FXint height,FXint hotx=-1,FXint hoty=-1);
 
 /**
  * Save a PostScript file to a stream; format the picture to the maximal
  * size that fits within the given margins of the indicated paper size.
  */
-bool fxsavePS(FXStream& store,const FXColor *data,FXint width,FXint height,FXint paperw=612,FXint paperh=792,FXint margin=35,FXbool color=TRUE);
+FXbool fxsavePS(FXStream& store,const FXColor *data,FXint width,FXint height,FXint paperw=612,FXint paperh=792,FXint margin=35,FXbool color=TRUE);
 
 /**
  * Check if stream contains a XBM, return TRUE if so.
  */
-bool fxcheckXBM(FXStream& store);
+FXbool fxcheckXBM(FXStream& store);
 

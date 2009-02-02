@@ -75,11 +75,17 @@ public:
   /// Insert unique icon loaded from filename into dictionary
   FXIcon* insert(const FXchar* name);
 
+  /// Replace icon loaded from filename into dictionary
+  FXIcon* replace(const FXchar* name);
+
   /// Remove icon from dictionary
   FXIcon* remove(const FXchar* name);
 
   /// Find icon by name
   FXIcon* find(const FXchar* name);
+
+  /// Return icon at position pos
+  FXIcon* data(FXint pos) const;
 
   /// Destroy the icon dict as well as the icon source
   virtual ~FXIconDict();

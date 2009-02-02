@@ -3,23 +3,22 @@
 *                           O p e n G L   O b j e c t                           *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1998,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1998,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXGLObject.h 2231 2005-11-09 03:16:46Z lyle $                        *
+* $Id: FXGLObject.h 2725 2007-11-16 16:57:54Z lyle $                        *
 ********************************************************************************/
 #ifndef FXGLOBJECT_H
 #define FXGLOBJECT_H
@@ -35,8 +34,6 @@ class FXGLViewer;
 class FXGLObject;
 
 
-// List of objects
-typedef FXObjectListOf<FXGLObject> FXGLObjectList;
 
 /// Basic OpenGL object
 class FXAPI FXGLObject : public FXObject {
@@ -82,13 +79,12 @@ public:
   };
 
 
-// Suppress warning about FXGLGroup::list not being exported
-#ifdef _MSC_VER
-#if _MSC_VER >= 1200
-#pragma warning( push )
-#endif
-#pragma warning( disable : 4251 )
-#endif
+/// Explicit template specialization
+//extern template class FXAPI FXObjectListOf<FXGLObject>;
+
+
+/// List of GL objects
+typedef FXObjectListOf<FXGLObject> FXGLObjectList;
 
 
 /// Group object
@@ -122,7 +118,7 @@ public:
   /// Identify object by means of path
   virtual FXGLObject* identify(FXuint* path);
 
-  /// Return TRUE if group can be dragged
+  /// Return true if group can be dragged
   virtual FXbool canDrag() const;
 
   /// Drag group object
@@ -162,14 +158,6 @@ public:
   /// Destructor
   virtual ~FXGLGroup();
   };
-
-
-// Restore previous warning levels
-#ifdef _MSC_VER
-#if _MSC_VER >= 1200
-#pragma warning( pop )
-#endif
-#endif
 
 
 /// OpenGL Point Object

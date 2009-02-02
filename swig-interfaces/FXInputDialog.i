@@ -23,9 +23,9 @@
 /// Input dialog options
 enum {
   INPUTDIALOG_STRING   = 0,             /// Ask for a string
-  INPUTDIALOG_INTEGER  = 0x01000000,    /// Ask for an integer number
-  INPUTDIALOG_REAL     = 0x02000000,    /// Ask for a real number
-  INPUTDIALOG_PASSWORD = 0x04000000     /// Do not reveal key-in
+  INPUTDIALOG_INTEGER  = 0x02000000,    /// Ask for an integer number
+  INPUTDIALOG_REAL     = 0x04000000,    /// Ask for a real number
+  INPUTDIALOG_PASSWORD = 0x08000000     /// Do not reveal key-in
   };
 
 

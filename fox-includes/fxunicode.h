@@ -3,23 +3,22 @@
 *                   U N I C O D E   C h a r a c t e r   I n f o                 *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2005 by Jeroen van der Zijp.   All Rights Reserved.             *
+* Copyright (C) 2005,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: fxunicode.h 2291 2005-12-05 03:37:36Z lyle $                          *
+* $Id: fxunicode.h 2769 2007-11-19 19:10:43Z lyle $                          *
 ********************************************************************************/
 #ifndef FXUNICODE_H
 #define FXUNICODE_H
@@ -290,24 +289,24 @@ extern FXAPI FXuint scriptType(FXwchar ucs);
 
 
 /// Unicode flavor of common functions
-extern FXAPI bool hasCase(FXwchar ucs);
-extern FXAPI bool isUpper(FXwchar ucs);
-extern FXAPI bool isLower(FXwchar ucs);
-extern FXAPI bool isTitle(FXwchar ucs);
-extern FXAPI bool isAscii(FXwchar ucs);
-extern FXAPI bool isLetter(FXwchar ucs);
-extern FXAPI bool isDigit(FXwchar ucs);
-extern FXAPI bool isAlphaNumeric(FXwchar ucs);
-extern FXAPI bool isControl(FXwchar ucs);
-extern FXAPI bool isSpace(FXwchar ucs);
-extern FXAPI bool isBlank(FXwchar ucs);
-extern FXAPI bool isPunct(FXwchar ucs);
-extern FXAPI bool isGraph(FXwchar ucs);
-extern FXAPI bool isPrint(FXwchar ucs);
-extern FXAPI bool isHexDigit(FXwchar ucs);
-extern FXAPI bool isSymbol(FXwchar ucs);
-extern FXAPI bool isMark(FXwchar ucs);
-extern FXAPI bool isSep(FXwchar ucs);
+extern FXAPI FXbool hasCase(FXwchar ucs);
+extern FXAPI FXbool isUpper(FXwchar ucs);
+extern FXAPI FXbool isLower(FXwchar ucs);
+extern FXAPI FXbool isTitle(FXwchar ucs);
+extern FXAPI FXbool isAscii(FXwchar ucs);
+extern FXAPI FXbool isLetter(FXwchar ucs);
+extern FXAPI FXbool isDigit(FXwchar ucs);
+extern FXAPI FXbool isAlphaNumeric(FXwchar ucs);
+extern FXAPI FXbool isControl(FXwchar ucs);
+extern FXAPI FXbool isSpace(FXwchar ucs);
+extern FXAPI FXbool isBlank(FXwchar ucs);
+extern FXAPI FXbool isPunct(FXwchar ucs);
+extern FXAPI FXbool isGraph(FXwchar ucs);
+extern FXAPI FXbool isPrint(FXwchar ucs);
+extern FXAPI FXbool isHexDigit(FXwchar ucs);
+extern FXAPI FXbool isSymbol(FXwchar ucs);
+extern FXAPI FXbool isMark(FXwchar ucs);
+extern FXAPI FXbool isSep(FXwchar ucs);
 
 /// Case conversion
 extern FXAPI FXwchar toUpper(FXwchar ucs);

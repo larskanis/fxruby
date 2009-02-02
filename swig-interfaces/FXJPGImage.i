@@ -39,7 +39,7 @@ public:
       }
 
     /// True if format is supported
-    static bool isSupported() { return FXJPGImage::supported; }
+    static FXbool isSupported() { return FXJPGImage::supported; }
     }
 public:
   %extend {

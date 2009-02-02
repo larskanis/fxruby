@@ -36,6 +36,8 @@ enum {
   REALSLIDER_NORMAL       = REALSLIDER_HORIZONTAL
   };
 
+%rename("granularity=")	FXRealSlider::setGranularity(FXdouble);
+%rename("granularity")	FXRealSlider::getGranularity() const;
 
 /**
 * The real slider widget is a valuator widget which provides simple linear value range.
@@ -62,6 +64,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+	long onCmdSetLongValue(FXObject*,FXSelector,void*); // FIXME
+	long onCmdGetLongValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdSetRealValue(FXObject*,FXSelector,void* PTR_PDOUBLE);
   long onCmdGetRealValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdSetIntRange(FXObject*,FXSelector,void* PTR_INTRANGE_IN);
@@ -89,13 +93,13 @@ public:
     }
 
   /// Change slider value
-  void setValue(FXdouble value,FXbool notify=FALSE);
+  void setValue(FXdouble value,FXbool notify=false);
   
   /// Return slider value
   FXdouble getValue() const;
 
   /// Change the slider's range
-  void setRange(FXdouble lo,FXdouble hi,FXbool notify=FALSE);
+  void setRange(FXdouble lo,FXdouble hi,FXbool notify=false);
 
   %extend {
     /// Get the slider's current range
@@ -130,6 +134,12 @@ public:
   /// Change the slider's auto-increment/decrement value
   void setIncrement(FXdouble inc);
 
+	/// Change slider's granularity
+	void setGranularity(FXdouble gr);
+	
+	/// Return slider's granularity
+	FXdouble getGranularity() const;
+	
   /// Change the delta between ticks
   void setTickDelta(FXdouble dist);
 

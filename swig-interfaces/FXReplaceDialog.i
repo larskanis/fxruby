@@ -52,6 +52,8 @@ public:
   long onCmdSearchHist(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdReplaceHist(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdAccept(FXObject*,FXSelector,void* PTR_IGNORE);
+  long onWheelSearch(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+  long onWheelReplace(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
 public:
   enum{
     ID_NEXT=FXDialogBox::ID_LAST,

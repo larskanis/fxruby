@@ -9,6 +9,8 @@ module Fox
   # (a String).
   # When adding or removing file names, the recent files object automatically
   # updates the system registry to record these changes.
+  # The +ID_ANYFILES+ may be connected to a menu separator to cause automatic
+  # hiding of the menu separator when there are no recent files.
   #
   # === Events
   #

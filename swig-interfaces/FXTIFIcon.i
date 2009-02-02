@@ -39,7 +39,7 @@ public:
       }
 
     /// True if format is supported
-    static bool isSupported() { return FXTIFIcon::supported; }
+    static FXbool isSupported() { return FXTIFIcon::supported; }
     }
 public:
 
@@ -69,5 +69,5 @@ DECLARE_FXIMAGE_VIRTUALS(FXTIFIcon)
 /**
  * Check if stream contains a bitmap, return TRUE if so.
  */
-bool fxcheckTIF(FXStream& store);
+FXbool fxcheckTIF(FXStream& store);
 

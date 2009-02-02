@@ -5,9 +5,9 @@
   <simplesect>
     <title>Introduction</title>
 
-    <para>Starting with FXRuby version 1.2, FXRuby uses <ulink
-    url="http://rubygems.rubyforge.org">RubyGems</ulink> as its packaging and
-    distribution method. The code is available both as</para>
+    <para>FXRuby uses <ulink
+    url="http://rubygems.rubyforge.org">RubyGems</ulink> as its preferred
+    packaging and distribution method. The code is available both as</para>
 
     <itemizedlist mark="bullet">
       <listitem>
@@ -28,7 +28,7 @@
     <para>If you've already downloaded the source gem, you can install it by
     typing:</para>
 
-    <screen>$ <command>sudo gem install fxruby-1.6.0.gem</command></screen>
+    <screen>$ <command>sudo gem install fxruby-1.6.13.gem</command></screen>
 
     <para>Note the use of the <command>sudo</command> command to invoke
     superuser privileges, since you'll typically need superuser privileges to
@@ -39,12 +39,12 @@
     under some other directory (for example, in your home directory) you might
     need to pass some additional arguments on the command line, e.g.</para>
 
-    <screen>$ <command>sudo gem install fxruby-1.6.0.gem --force -- --with-fox-include=/home/lyle/include/fox-1.6 --with-fox-lib=/home/lyle/lib</command></screen>
+    <screen>$ <command>sudo gem install fxruby-1.6.13.gem --force -- --with-fox-include=/home/lyle/include/fox-1.6 --with-fox-lib=/home/lyle/lib</command></screen>
 
     <para>If you're installing a source gem on a Windows box, you'd instead
     type something like:</para>
 
-    <screen>C:\&gt; <command>gem install fxruby-1.6.0.gem --force -- --with-fox-include=C:\include\fox-1.6 --with-fox-lib=C:\lib</command></screen>
+    <screen>C:\&gt; <command>gem install fxruby-1.6.13.gem --force -- --with-fox-include=C:\include\fox-1.6 --with-fox-lib=C:\lib</command></screen>
 
     <para>If you're installing a source gem, it can take quite awhile to build
     FXRuby, so this might be a good time to take a coffee break. You won't see
@@ -75,7 +75,7 @@ true</screen>
 
     <para>To install a binary gem for Windows, just type:</para>
 
-    <screen>C:\&gt; <command>gem install fxruby-1.6.0-mswin32.gem</command></screen>
+    <screen>C:\&gt; <command>gem install fxruby-1.6.13-mswin32.gem</command></screen>
 
     <para>As a quick sanity check, to make sure that all is well, you should
     probably fire up <filename>irb</filename> and try to require the FXRuby
@@ -115,8 +115,8 @@ true</screen>
     the error message will look something like:</para>
 
     <screen>$ <command>irb</command>
-irb(main):001:0&gt; <userinput>require 'fox'</userinput>
-LoadError: libFOX-0.99.so.173: cannot open shared object file: No such file or directory - /usr/local/lib/ruby/1.8/i686-linux/fox.so
+irb(main):001:0&gt; <userinput>require 'fox16'</userinput>
+LoadError: libFOX-1.6.so: cannot open shared object file: No such file or directory - /usr/local/lib/ruby/1.8/i686-linux/fox16.so
         from (irb):1:in 'require'
         from (irb):1
     </screen>
@@ -145,7 +145,7 @@ irb(main):001:0&gt; <userinput>require 'fox16'</userinput>
     <orderedlist numeration="arabic" spacing="compact">
       <listitem>
         <para>Edit your <filename>/etc/ld.so.conf</filename> file and add the
-        directory where <filename>libFOX.so</filename> is installed;
+        directory where <filename>libFOX-1.6.so</filename> is installed;
         and,</para>
       </listitem>
 

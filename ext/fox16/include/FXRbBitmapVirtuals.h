@@ -9,10 +9,10 @@ public:
   virtual void release();
 
   // Overrides the base class version of savePixels()
-  virtual bool savePixels(FXStream& store) const;
+  virtual FXbool savePixels(FXStream& store) const;
 
   // Overrides the base class version of loadPixels()
-  virtual bool loadPixels(FXStream& store);
+  virtual FXbool loadPixels(FXStream& store);
 
   /// Rescale pixels to the specified width and height
   virtual void scale(FXint w,FXint h);
@@ -24,7 +24,7 @@ public:
   virtual void rotate(FXint degrees);
 
   /// Crop bitmap to given rectangle
-  virtual void crop(FXint x,FXint y,FXint w,FXint h,FXbool color=0);
+  virtual void crop(FXint x,FXint y,FXint w,FXint h,FXbool color=false);
 
   /// Fill bitmap with uniform value
   virtual void fill(FXbool color);

@@ -12,7 +12,7 @@ public:
   virtual void scale(FXint w,FXint h,FXint quality);
 
   // Overrides the base class version of mirror()
-  virtual void mirror(bool horizontal,bool vertical);
+  virtual void mirror(FXbool horizontal,FXbool vertical);
 
   // Overrides the base class version of rotate()
   virtual void rotate(FXint degrees);

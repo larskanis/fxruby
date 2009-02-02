@@ -22,8 +22,8 @@
 
 enum {
   PROGRESSDIALOG_NOCANCEL = 0,                        /// Default is no cancel button
-  PROGRESSDIALOG_CANCEL   = 0x01000000,               /// Enable the cancel button
-  PROGRESSDIALOG_NORMAL   = (DECOR_TITLE|DECOR_BORDER)
+	PROGRESSDIALOG_CANCEL   = 0x02000000,               /// Enable the cancel button
+	PROGRESSDIALOG_NORMAL   = (DECOR_TITLE|DECOR_BORDER)/// Normally with title and border
   };
 
   
@@ -32,6 +32,8 @@ enum {
 * A Progress Dialog is a simple dialog which is used to
 * keep a user informed of the progress of a lengthy operation
 * in a program and that the program is in fact still working.
+* The PROGRESSDIALOG_CANCEL option enables the display of the
+* cancel button in the Progress Dialog.
 */
 class FXProgressDialog : public FXDialogBox {
 protected:
@@ -46,6 +48,8 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
+	long onCmdSetLongValue(FXObject*,FXSelector,void*); // FIXME
+	long onCmdGetLongValue(FXObject*,FXSelector,void*); // FIXME
   long onCmdSetStringValue(FXObject*,FXSelector,void* PTR_STRING);
   long onCmdGetStringValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdCancel(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME

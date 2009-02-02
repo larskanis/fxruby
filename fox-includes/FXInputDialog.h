@@ -3,23 +3,22 @@
 *                         I n p u t   D i a l o g   B o x                       *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2000,2005 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2000,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
-* This library is free software; you can redistribute it and/or                 *
-* modify it under the terms of the GNU Lesser General Public                    *
-* License as published by the Free Software Foundation; either                  *
-* version 2.1 of the License, or (at your option) any later version.            *
+* This library is free software; you can redistribute it and/or modify          *
+* it under the terms of the GNU Lesser General Public License as published by   *
+* the Free Software Foundation; either version 3 of the License, or             *
+* (at your option) any later version.                                           *
 *                                                                               *
 * This library is distributed in the hope that it will be useful,               *
 * but WITHOUT ANY WARRANTY; without even the implied warranty of                *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             *
-* Lesser General Public License for more details.                               *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *
+* GNU Lesser General Public License for more details.                           *
 *                                                                               *
-* You should have received a copy of the GNU Lesser General Public              *
-* License along with this library; if not, write to the Free Software           *
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.    *
+* You should have received a copy of the GNU Lesser General Public License      *
+* along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXInputDialog.h 2261 2005-12-02 01:34:31Z lyle $                     *
+* $Id: FXInputDialog.h 2725 2007-11-16 16:57:54Z lyle $                     *
 ********************************************************************************/
 #ifndef FXINPUTDIALOG_H
 #define FXINPUTDIALOG_H
@@ -34,9 +33,9 @@ namespace FX {
 /// Input dialog options
 enum {
   INPUTDIALOG_STRING   = 0,             /// Ask for a string
-  INPUTDIALOG_INTEGER  = 0x01000000,    /// Ask for an integer number
-  INPUTDIALOG_REAL     = 0x02000000,    /// Ask for a real number
-  INPUTDIALOG_PASSWORD = 0x04000000     /// Do not reveal key-in
+  INPUTDIALOG_INTEGER  = 0x02000000,    /// Ask for an integer number
+  INPUTDIALOG_REAL     = 0x04000000,    /// Ask for a real number
+  INPUTDIALOG_PASSWORD = 0x08000000     /// Do not reveal key-in
   };
 
 
@@ -59,7 +58,7 @@ protected:
 private:
   FXInputDialog(const FXInputDialog&);
   FXInputDialog &operator=(const FXInputDialog&);
-  void initialize(const FXString& text,FXIcon* icon);
+  virtual void initialize(const FXString& text,FXIcon* icon);
 public:
   long onCmdAccept(FXObject*,FXSelector,void*);
 public:
@@ -93,7 +92,7 @@ public:
 
   /**
   * Prompt for a string, start with the initial value.
-  * Return TRUE if the new value is accepted, and false otherwise.
+  * Return true if the new value is accepted, and false otherwise.
   */
   static FXbool getString(FXString& result,FXWindow* owner,const FXString& caption,const FXString& label,FXIcon* icon=NULL);
 
@@ -104,8 +103,8 @@ public:
 
   /**
   * Prompt for an integer number, start with the given initial value.
-  * Return TRUE if the new value is accepted, and false otherwise.
-  * The input is constrained between lo and hi. 
+  * Return true if the new value is accepted, and false otherwise.
+  * The input is constrained between lo and hi.
   */
   static FXbool getInteger(FXint& result,FXWindow* owner,const FXString& caption,const FXString& label,FXIcon* icon=NULL,FXint lo=-2147483647,FXint hi=2147483647);
 
@@ -116,7 +115,7 @@ public:
 
   /**
   * Prompt for an real number, start with the given initial value.
-  * Return TRUE if the new value is accepted, and false otherwise.
+  * Return true if the new value is accepted, and false otherwise.
   * The input is constrained between lo and hi.
   */
   static FXbool getReal(FXdouble& result,FXWindow* owner,const FXString& caption,const FXString& label,FXIcon* icon=NULL,FXdouble lo=-1.797693134862315e+308,FXdouble hi=1.797693134862315e+308);
