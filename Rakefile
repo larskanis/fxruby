@@ -21,7 +21,7 @@ ISCC = "C:\\Progra~1\\InnoSe~1\\ISCC.exe"
 DISTFILES = [
   "ANNOUNCE",
   "LICENSE",
-  "README",
+  "README.textile",
   "README.win32.txt",
   "pre-config.rb",
   "install.rb",

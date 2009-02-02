@@ -1,0 +1,2 @@
+This is FXRuby, the Ruby language bindings for the FOX GUI toolkit. For instructions on building FXRuby from the source code,
+please see the "build instructions":http://www.fxruby.org/doc/build.html from the <em>FXRuby User's Guide</em>.
