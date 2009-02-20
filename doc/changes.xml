@@ -7,11 +7,17 @@
 
     <itemizedlist mark="bullet">
       <listitem>
-        <para>The current release of FXRuby couldn't be built from source against Ruby 1.9.1 final
+        <para>The previous release of FXRuby couldn't be built from source against Ruby 1.9.1 final
         due to a change in some of the file-related utility libraries
         (see <ulink
         url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23786&amp;group_id=300&amp;atid=1223">RubyForge
         Bug #23786</ulink>). This problem has been corrected.</para>
+      </listitem>
+      <listitem>
+        <para>The previous release of FXRuby couldn't be built from source against Ruby versions 1.8.5 or
+        earlier (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23967&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #23967</ulink>). This problem has been corrected.</para>
       </listitem>
       <listitem>
         <para>The <methodname>addAccel</methodname> method for the <classname>FXAccelTable</classname> class
