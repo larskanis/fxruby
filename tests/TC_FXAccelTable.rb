@@ -6,38 +6,52 @@ include Fox
 
 class TC_FXAccelTable < Test::Unit::TestCase
   def setup
-    @accel = FXAccelTable.new
+    @accelTable = FXAccelTable.new
+    @hotKey = fxparseHotKey('&q')
   end
 
-  def test_addAccel
-    hotkey = fxparseHotKey('&A')
+  def test_add_accel_with_nil_target
+    @accelTable.addAccel(@hotKey)
+    assert @accelTable.hasAccel?(@hotKey)
+    assert_nil @accelTable.targetOfAccel(@hotKey)
+  end
+  
+  def test_add_accel_with_default_seldn_selup
     target = FXObject.new
-    seldn, selup = 0, 0
-    @accel.addAccel(hotkey)
-    @accel.addAccel(hotkey, target)
-    @accel.addAccel(hotkey, target, seldn)
-    @accel.addAccel(hotkey, target, seldn, selup)
+    @accelTable.addAccel(@hotKey, target)
+    assert_same target, @accelTable.targetOfAccel(@hotKey)
+  end
+
+  def test_add_accel_with_default_selup
+    @accelTable.addAccel(@hotKey, FXObject.new, FXSEL(SEL_COMMAND, FXWindow::ID_SHOW))
+  end
+
+  def test_add_accel_with_no_defaults
+    @accelTable.addAccel(@hotKey, FXObject.new, FXSEL(SEL_COMMAND, FXWindow::ID_SHOW), FXSEL(SEL_COMMAND, FXWindow::ID_HIDE))
   end
   
-  def test_hasAccel
-    hotkey = fxparseHotKey('&b')
-    assert(!@accel.hasAccel?(hotkey))
-    @accel.addAccel(hotkey)
-    assert(@accel.hasAccel?(hotkey))
+  def test_add_accel_with_lambda_for_seldn
+    @accelTable.addAccel(@hotKey, lambda { puts "hello" })
+  end
+
+  def test_add_accel_with_lambda_for_selup
+    @accelTable.addAccel(@hotKey, nil, lambda { puts "goodbye" })
+  end
+
+  def test_add_accel_with_lambda_for_selup_and_seldn
+    @accelTable.addAccel(@hotKey, lambda { puts "hello" }, lambda { puts "goodbye" })
+  end
+
+  def test_has_accel
+    assert(!@accelTable.hasAccel?(@hotKey))
+    @accelTable.addAccel(@hotKey)
+    assert(@accelTable.hasAccel?(@hotKey))
   end
   
-  def test_targetOfAccel
-    hotkey = fxparseHotKey("&x")
-    target = FXObject.new
-    @accel.addAccel(hotkey, target)
-    assert_same(target, @accel.targetOfAccel(hotkey))
-  end
-  
-  def test_removeAccel
-    hotkey = fxparseHotKey('&b')
-    @accel.addAccel(hotkey)
-    assert(@accel.hasAccel?(hotkey))
-    @accel.removeAccel(hotkey)
-    assert(!@accel.hasAccel?(hotkey))
+  def test_remove_accel
+    @accelTable.addAccel(@hotKey)
+    assert(@accelTable.hasAccel?(@hotKey))
+    @accelTable.removeAccel(@hotKey)
+    assert(!@accelTable.hasAccel?(@hotKey))
   end
 end
