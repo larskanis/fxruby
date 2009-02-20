@@ -263,7 +263,6 @@ end
 
 desc "Set versions"
 task :setversions => [ :create_installer_scripts ] do
-  setversions("FXRuby.spec")
   setversions("Makefile")
   setversions("pre-config.rb")
   setversions("ext/fox16/extconf.rb")
