@@ -20,6 +20,12 @@
         Bug #23967</ulink>). This problem has been corrected.</para>
       </listitem>
       <listitem>
+        <para>A change in the return value for Ruby's <methodname>instance_variables</methodname> method broke
+        some of the code related to message handling in FXRuby (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23787&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #23787</ulink>). This problem has been corrected.</para>
+      </listitem>
+      <listitem>
         <para>The <methodname>addAccel</methodname> method for the <classname>FXAccelTable</classname> class
         now accepts lambda functions (or any other objects that respond to <methodname>call</methodname>). See
         the <ulink url="http://www.fxruby.org/doc/api/classes/Fox/FXAccelTable.html">API documentation</ulink>
