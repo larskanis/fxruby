@@ -28,15 +28,15 @@ module Fox
           tgt.pconnect(SEL_KEYPRESS, args[0])
         else
           tgt = args[0]
-          if args.length > 1
-            if args[1].respond_to? :call
-              tgt = tgt || FXPseudoTarget.new
-              selup = FXSEL(SEL_KEYRELEASE, 0)
-              tgt.pconnect(SEL_KEYRELEASE, args[1])
-            else
-              seldn = args[1]
-              selup = args[2] if args.length > 2
-            end
+        end
+        if args.length > 1
+          if args[1].respond_to? :call
+            tgt = tgt || FXPseudoTarget.new
+            selup = FXSEL(SEL_KEYRELEASE, 0)
+            tgt.pconnect(SEL_KEYRELEASE, args[1])
+          else
+            seldn = args[1]
+            selup = args[2] if args.length > 2
           end
         end
       end
