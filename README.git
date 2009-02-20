@@ -1,0 +1,3 @@
+To push changes on local topic/1.6 branch back to remote 1.6 branch:
+
+    git push origin topic/1.6:1.6
