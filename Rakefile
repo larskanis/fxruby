@@ -179,7 +179,8 @@ Rake::RDocTask.new do |rdoc|
   rdoc.main = "rdoc-sources/README.rdoc"
   rdoc.rdoc_files.add("rdoc-sources/README.rdoc")
   rdoc.rdoc_files.add("rdoc-sources/*.rb")
-  rdoc.rdoc_files.add("lib/fox16/calendar.rb",
+  rdoc.rdoc_files.add("lib/fox16/accel_table.rb",
+                      "lib/fox16/calendar.rb",
                       "lib/fox16/chore.rb",
                       "lib/fox16/core.rb",
                       "lib/fox16/execute_nonmodal.rb",
