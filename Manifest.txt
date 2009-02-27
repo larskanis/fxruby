@@ -378,6 +378,7 @@ ext/fox16/unregisterOwnedObjects.cpp
 fxruby-mswin32.gemspec
 index.html
 install.rb
+lib/fox16/accel_table.rb
 lib/fox16/aliases.rb
 lib/fox16/bitmapview.rb
 lib/fox16/calendar.rb
