@@ -3,8 +3,10 @@ require 'hoe'
 require 'erb'
 require './lib/fox16/version.rb'
 
-# FXRuby version number
+# Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
+FXRUBY_HOME_URL = "http://www.fxruby.org"
+FOX_HOME_URL    = "http://www.fox-toolkit.com"
 
 Hoe.new("FXRuby", PKG_VERSION) do |p|
   # ... project specific data ...
@@ -24,9 +26,36 @@ end
 
 # ... project specific tasks ...
 
+def setversions(filename)
+  File.open(filename, "wb") do |out|
+    template = ERB.new(File.open(filename + ".erb", "rb").read)
+    out.write(template.result)
+  end
+end
+
+desc "Create INNO Setup installer scripts from templates"
+task :create_installer_scripts do
+  output_filenames = {
+    "FXRuby-ruby1.8.6-i386-msvcrt.iss" =>  ["1.8", "ruby186", "i386-msvcrt"]
+  }
+  template = ERB.new(File.open("scripts/FXRuby.iss.erb", "rb").read)
+  output_filenames.each do |output_filename, info|
+    File.open(output_filename, "wb") do |output_file|
+      output_file.write(template.result(binding))
+    end
+  end
+end
+
 desc "Upload the DOAP file to the Web site"
 task :doap => [:setversions] do
   system %{scp -Cq doap.rdf lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+end
+
+desc "Set versions"
+task :setversions => [ :create_installer_scripts ] do
+  setversions("pre-config.rb")
+  setversions("doap.rdf")
+  setversions("scripts/make-installers.rb")
 end
 
 desc "Run SWIG to generate the wrapper files."
