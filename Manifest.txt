@@ -8,12 +8,10 @@ Rakefile
 doap.rdf
 examples/RAA.rb
 examples/README
-examples/WhatAQuietStiff.rb
 examples/babelfish.rb
 examples/bounce.rb
 examples/browser.rb
 examples/button.rb
-examples/canvasdemo.rb
 examples/charts.rb
 examples/custom_table_item.rb
 examples/datatarget.rb
@@ -25,8 +23,6 @@ examples/dragdrop.rb
 examples/dragsource.rb
 examples/dropsite.rb
 examples/foursplit.rb
-examples/gdchart.rb
-examples/gembrowser.rb
 examples/gltest.rb
 examples/glviewer.rb
 examples/groupbox.rb
@@ -113,7 +109,6 @@ examples/mditest.rb
 examples/pig.rb
 examples/raabrowser.rb
 examples/ratio.rb
-examples/rmagick.rb
 examples/rulerview.rb
 examples/scintilla-test.rb
 examples/scribble-orig.rb
@@ -383,11 +378,9 @@ ext/fox16/unregisterOwnedObjects.cpp
 fxruby-mswin32.gemspec
 index.html
 install.rb
-lib/fox16/accel_table.rb
 lib/fox16/aliases.rb
 lib/fox16/bitmapview.rb
 lib/fox16/calendar.rb
-lib/fox16/canvas.rb
 lib/fox16/chore.rb
 lib/fox16/colors.rb
 lib/fox16/core.rb
@@ -411,10 +404,8 @@ lib/fox16/settings.rb
 lib/fox16/signal.rb
 lib/fox16/splashscreen.rb
 lib/fox16/timeout.rb
-lib/fox16/tkcompat.rb
 lib/fox16/undolist.rb
 lib/fox16/version.rb
-lib/fox16/version.rb.in
 pre-config.rb
 rdoc-sources/FX4Splitter.rb
 rdoc-sources/FX7Segment.rb
