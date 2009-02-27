@@ -1,8 +1,10 @@
 require 'rubygems'
 require 'hoe'
+require 'erb'
+require './lib/fox16/version.rb'
 
 # FXRuby version number
-PKG_VERSION = "1.6.19"
+PKG_VERSION = Fox.fxrubyversion
 
 Hoe.new("FXRuby", PKG_VERSION) do |p|
   # ... project specific data ...
