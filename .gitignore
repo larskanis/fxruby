@@ -17,7 +17,6 @@ ext/fox16/librb.c
 ext/fox16/extconf.rb
 ext/fox16/fox16.bundle
 ext/fox16/mkmf.log
-lib/fox16/version.rb
 lib/fox16/kwargs.rb
 pre-config.rb
 swig-interfaces/dependencies
