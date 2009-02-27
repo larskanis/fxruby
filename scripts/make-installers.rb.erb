@@ -73,7 +73,7 @@ def do_upload(fxruby_version)
 end
 
 if __FILE__ == $0
-  fxruby_version = "@@FXRUBY_VERSION@@"
+  fxruby_version = "<%= FXRUBY_VERSION %>"
   untar(fxruby_version)
   iss_filename, dir = copy_installer_script(fxruby_version)
   Dir.chdir(dir)
