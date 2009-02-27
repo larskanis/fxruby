@@ -1,10 +1,18 @@
 = FXRuby
 
 * http://www.fxruby.org/
+* http://rubyforge.org/projects/fxruby
 
 == DESCRIPTION:
 
-FXRuby is...
+FXRuby is a library for developing powerful and sophisticated
+cross-platform graphical user interfaces (GUIs) for your Ruby
+applications. It’s based on the FOX Toolkit, a popular open source
+C++ library developed by Jeroen van der Zijp. What that means for you
+as an application developer is that you’re able to write code in the
+Ruby programming language that you already know and love, while at the
+same time taking advantage of the performance and functionality of a
+featureful, highly optimized C++ toolkit.
 
 == FEATURES/PROBLEMS:
 
