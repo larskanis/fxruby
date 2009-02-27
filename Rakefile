@@ -6,12 +6,13 @@ require './lib/fox16/version.rb'
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
 FXRUBY_HOME_URL = "http://www.fxruby.org"
-FOX_HOME_URL    = "http://www.fox-toolkit.com"
+FOX_VERSION = "1.6.0"
+FOX_HOME_URL = "http://www.fox-toolkit.com"
 
 Hoe.new("FXRuby", PKG_VERSION) do |p|
   # ... project specific data ...
   p.blog_categories = %w{FXRuby}
-  p.clean_globs = ["ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
+  p.clean_globs = ["doap.rdf", "*.iss", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
   p.developer("Lyle Johnson", "lyle@lylejohnson.name")
   p.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
   p.remote_rdoc_dir = "doc/api"
