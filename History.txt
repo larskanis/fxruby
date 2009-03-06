@@ -1,20 +1,8 @@
-=== 1.6.19 / 2009-02-28
+=== 1.6.20 / 2009-03-06
 
-* The previous release of FXRuby couldn't be built from source against
-  Ruby 1.9.1 final due to a change in some of the file-related utility
-	libraries (see "RubyForge Bug #23786":http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23786&amp;group_id=300&amp;atid=1223).
-  This problem has been corrected.
+* Modified project structure for use with Hoe.
 
-* The previous release of FXRuby couldn't be built from source against
-  Ruby versions 1.8.5 or earlier (see "RubyForge Bug #23967":http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23967&amp;group_id=300&amp;atid=1223).
-  This problem has been corrected.
+=== 1.6.19 / 2009-03-06
 
-* A change in the return value for Ruby's <methodname>instance_variables</methodname> method broke
-  some of the code related to message handling in FXRuby (see
-  "RubyForge Bug #23787":http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23787&amp;group_id=300&amp;atid=1223).
-  This problem has been corrected.
-
-* The <methodname>addAccel</methodname> method for the <classname>FXAccelTable</classname> class
-  now accepts lambda functions (or any other objects that respond to <methodname>call</methodname>). See
-  the "API documentation":http://www.fxruby.org/doc/api/classes/Fox/FXAccelTable.html
-  for <classname>FXAccelTable</classname> for examples of how this works.
+* Please see http://www.fxruby.org/doc/changes.html
+  for a complete list of the changes in this release.
