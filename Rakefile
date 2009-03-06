@@ -26,7 +26,7 @@ Hoe.new("FXRuby", PKG_VERSION) do |p|
 end
 
 # Make sure extension is built before tests are run
-task :test => build
+task :test => [:build]
 
 # ... project specific tasks ...
 
