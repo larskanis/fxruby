@@ -9,10 +9,9 @@
       FXRuby source code distribution, and if you'd like you can even
       regenerate the FXRuby sources using SWIG. Because FXRuby relies on
       functionality in a specific version of SWIG (version 1.3.22), you will need
-      to check out that version from the SWIG CVS repository. For instructions
-      on how to do so, please see <ulink url="http://www.swig.org/cvs.html">
-      this page</ulink>. Note that more recent versions of SWIG will not
-      work (this will be corrected in the future).</para>
+      to <ulink url="http://sourceforge.net/project/showfiles.php?group_id=1645&amp;package_id=1608&amp;release_id=265569">download and install SWIG-1.3.22</ulink>.
+      <emphasis role="strong">Note that more recent versions of SWIG will not
+      work</emphasis> (this will be corrected in the future).</para>
     <para>To regenerate the FXRuby sources from the SWIG interface files,
       change directories to the <filename class="directory">swig-interfaces
       </filename> subdirectory of the FXRuby source tree and type <command>make
