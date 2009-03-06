@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/testtask'
 
 # FXRuby version number
-PKG_VERSION = "1.6.18"
+PKG_VERSION = "1.6.19"
 
 # Minimum version of FOX required for compatibility
 FOX_VERSION = "1.6.0"
