@@ -5,6 +5,7 @@ README
 README.txt
 README.win32.txt
 Rakefile
+TODO
 doap.rdf
 examples/RAA.rb
 examples/README
@@ -606,16 +607,13 @@ rdoc-sources/FXXPMImage.rb
 rdoc-sources/Makefile
 rdoc-sources/README.rdoc
 rdoc-sources/fxdefs.rb
-scripts/FXRuby.iss.in
 scripts/build-fox.rb
 scripts/generate_kwargs_lib.rb
 scripts/iface.rb
 scripts/make-installers.rb
-scripts/make-installers.rb.in
 scripts/make-win32-tarball.sh
 scripts/opengl-cygwin.iss
 scripts/opengl.iss
-scripts/update-website.rb
 swig-interfaces/FX4Splitter.i
 swig-interfaces/FX7Segment.i
 swig-interfaces/FXAccelTable.i
