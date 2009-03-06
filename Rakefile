@@ -12,7 +12,7 @@ FOX_HOME_URL = "http://www.fox-toolkit.com"
 Hoe.new("FXRuby", PKG_VERSION) do |p|
   # ... project specific data ...
   p.blog_categories = %w{FXRuby}
-  p.clean_globs = ["doap.rdf", "*.iss", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
+  p.clean_globs = ["ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
   p.developer("Lyle Johnson", "lyle@lylejohnson.name")
   p.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
   p.remote_rdoc_dir = "doc/api"
@@ -24,6 +24,9 @@ Hoe.new("FXRuby", PKG_VERSION) do |p|
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
 end
+
+# Make sure extension is built before tests are run
+task :test => build
 
 # ... project specific tasks ...
 
@@ -75,10 +78,10 @@ end
 
 desc "Run SWIG to generate the wrapper files."
 task :swig do
-  cd "swig-interfaces"
-  system %{touch dependencies}
-  system %{make depend; make}
-  cd ".."
+  Dir.chdir "swig-interfaces" do
+    system %{touch dependencies}
+    system %{make depend; make}
+  end
 end
 
 DISTFILES = [
@@ -157,15 +160,15 @@ end
 
 desc "Generate all of the documentation files."
 task :doc do
-  cd "doc"
-  system %{make}
-  cd ".."
+  Dir.chdir "doc" do
+    system %{make}
+  end
 end
 
 def make_impl
-  cd "ext/fox16"
-  ruby "make_impl.rb"
-  cd "../.."
+  Dir.chdir "ext/fox16" do
+    ruby "make_impl.rb"
+  end
 end
 
 task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
@@ -238,5 +241,3 @@ end
 task :generate_kwargs_lib do
   ruby 'scripts/generate_kwargs_lib.rb'
 end
-
-
