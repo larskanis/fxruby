@@ -8,6 +8,9 @@ PKG_VERSION = Fox.fxrubyversion
 FXRUBY_HOME_URL = "http://www.fxruby.org"
 FOX_VERSION = "1.6.0"
 FOX_HOME_URL = "http://www.fox-toolkit.com"
+FOX_INSTALL_DIR = "e:\\src\\fox-1.6.35"
+FXSCINTILLA_INSTALL_DIR = "c:\\src\\fxscintilla"
+ISCC = "C:\\Progra~1\\InnoSe~1\\ISCC.exe"
 
 Hoe.new("FXRuby", PKG_VERSION) do |p|
   # ... project specific data ...
