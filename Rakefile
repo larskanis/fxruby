@@ -26,6 +26,7 @@ Hoe.new("FXRuby", PKG_VERSION) do |p|
     :require_paths => ['ext/fox16', 'lib'],
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
+  p.test_globs = "test/**/TC_*.rb"
 end
 
 # Make sure extension is built before tests are run
