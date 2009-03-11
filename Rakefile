@@ -15,7 +15,7 @@ ISCC = "C:\\Progra~1\\InnoSe~1\\ISCC.exe"
 Hoe.new("FXRuby", PKG_VERSION) do |p|
   # ... project specific data ...
   p.blog_categories = %w{FXRuby}
-  p.clean_globs = ["ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
+  p.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
   p.developer("Lyle Johnson", "lyle@lylejohnson.name")
   p.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
   p.remote_rdoc_dir = "doc/api"
@@ -187,6 +187,11 @@ end
 desc "Build it."
 task :build => [:configure] do
   ruby "install.rb setup"
+end
+
+desc "Install it."
+task :install => [:build] do
+  ruby "install.rb install"
 end
 
 task :scintilla do
