@@ -1,7 +1,3 @@
-/***********************************************************************
- * $Id: unregisterOwnedObjects.cpp 2946 2009-02-02 21:06:59Z lyle $
- ***********************************************************************/
-
 /**
  * The purpose of an unregisterOwnedObjects() function for a particular
  * class is to call FXRbUnregisterRubyObj() on any objects that this object

@@ -360,7 +360,6 @@ module Fox
       end
     end
     
-
     # Returns an array containing all child windows of this window
     def children
       kids = []

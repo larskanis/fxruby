@@ -104,7 +104,7 @@ module Responder2
   # message data).
   #
   def connect(message_type, callable_object=nil, &block)
-    unless instance_variables.include?('@pseudoTarget')
+    unless instance_variables.include?('@pseudoTarget') || instance_variables.include?(:@pseudoTarget)
       @pseudoTarget = Fox::FXPseudoTarget.new
       self.target = @pseudoTarget
     end
@@ -129,3 +129,4 @@ require 'fox16/timeout'
 require 'fox16/chore'
 require 'fox16/signal'
 require 'fox16/input'
+require 'fox16/accel_table'

@@ -19,7 +19,7 @@ module Responder
 
   # Return the array of (selector -> func) associations
   def messageMap
-    unless instance_variables.include? "@assocs"
+    unless instance_variables.include?("@assocs") || instance_variables.include?(:@assocs)
       @assocs = []
     end
     @assocs

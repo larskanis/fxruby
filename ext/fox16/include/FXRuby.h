@@ -20,13 +20,33 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
-/***********************************************************************
- * $Id: FXRuby.h 2873 2008-05-30 21:38:58Z lyle $
- ***********************************************************************/
-
 #ifndef FXRUBY_H
 #define FXRUBY_H
 
+// RARRAY_LEN, RARRAY_PTR, RSTRING_LEN and RSTRING_PTR macros not defined before Ruby 1.8.6
+#ifndef RARRAY_LEN
+#define RARRAY_LEN(a) RARRAY((a))->len
+#endif
+#ifndef RARRAY_PTR
+#define RARRAY_PTR(a) RARRAY((a))->ptr
+#endif
+#ifndef RSTRING_LEN
+#define RSTRING_LEN(s) RSTRING((s))->len
+#endif
+#ifndef RSTRING_PTR
+#define RSTRING_PTR(s) RSTRING((s))->ptr
+#endif
+
+// Opaque type declaration for SWIG runtime support
+struct swig_type_info;
+
+// SWIG runtime functions we need
+extern "C" {
+const char *     SWIG_Ruby_TypeName(const swig_type_info *ty);
+swig_type_info * SWIG_Ruby_TypeQuery(const char *);
+VALUE            SWIG_Ruby_NewPointerObj(void *ptr, swig_type_info *type, int own);
+int              SWIG_Ruby_ConvertPtr(VALUE obj, void **ptr, swig_type_info *ty, int flags);
+}
 
 // Helper for overloaded show() functions
 template <class TYPE>

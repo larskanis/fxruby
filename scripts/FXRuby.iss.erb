@@ -3,17 +3,17 @@
 
 [Setup]
 AppName=FXRuby
-AppVerName=FXRuby @@FXRUBY_VERSION@@
-AppPublisherURL=@@FXRUBY_HOME_URL@@
-AppSupportURL=@@FXRUBY_HOME_URL@@
-AppUpdatesURL=@@FXRUBY_HOME_URL@@
+AppVerName=FXRuby <%= PKG_VERSION %>
+AppPublisherURL=<%= FXRUBY_HOME_URL %>
+AppSupportURL=<%= FXRUBY_HOME_URL %>
+AppUpdatesURL=<%= FXRUBY_HOME_URL %>
 DefaultDirName=C:\ruby
 DefaultGroupName=FXRuby
 AllowNoIcons=no
 LicenseFile=LICENSE
 InfoBeforeFile=README.win32.txt
 OutputDir=.
-OutputBaseFilename=FXRuby-@@FXRUBY_VERSION@@-@@RUBYVER@@
+OutputBaseFilename=FXRuby-<%= PKG_VERSION %>-<%= info[1] %>
 
 [Files]
 ; readme files
@@ -28,9 +28,9 @@ Source: "tests\README"; DestDir: "{app}\doc\FXRuby\tests"; Flags: ignoreversion
 Source: "tests\*.rb"; DestDir: "{app}\doc\FXRuby\tests"; Flags: ignoreversion
 Source: "tests\*.ps"; DestDir: "{app}\doc\FXRuby\tests"; Flags: ignoreversion
 ; main extension shared library
-Source: "ext\fox16\fox16.so"; DestDir: "{app}\lib\ruby\site_ruby\@@RUBY_VERSION@@\@@TARGET@@"; Flags: ignoreversion
+Source: "ext\fox16\fox16.so"; DestDir: "{app}\lib\ruby\site_ruby\<%= info[0] %>\<%= info[2] %>; Flags: ignoreversion
 ; library files
-Source: "lib\fox16\*.rb"; DestDir: "{app}\lib\ruby\site_ruby\@@RUBY_VERSION@@\fox16"; Flags: ignoreversion
+Source: "lib\fox16\*.rb"; DestDir: "{app}\lib\ruby\site_ruby\<%= info[0] %>\fox16"; Flags: ignoreversion
 ; samples
 Source: "examples\README"; DestDir: "{app}\samples\FXRuby"; Flags: ignoreversion
 Source: "examples\babelfish.rb"; DestDir: "{app}\samples\FXRuby"; DestName: "babelfish.rbw"; Flags: ignoreversion

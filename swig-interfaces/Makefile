@@ -2,8 +2,6 @@
 # This makefile is used to generate the wrapper code from the
 # SWIG interface files.
 #
-# $Id: Makefile 2837 2008-03-28 21:30:30Z lyle $
-#
 
 .PHONY: clean
 

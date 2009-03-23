@@ -3,6 +3,38 @@
   <title>Change History</title>
 
   <simplesect>
+    <title>Changes For Version 1.6.19 (March 6, 2009)</title>
+
+    <itemizedlist mark="bullet">
+      <listitem>
+        <para>The previous release of FXRuby couldn't be built from source against Ruby 1.9.1 final
+        due to a change in some of the file-related utility libraries
+        (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23786&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #23786</ulink>). This problem has been corrected.</para>
+      </listitem>
+      <listitem>
+        <para>The previous release of FXRuby couldn't be built from source against Ruby versions 1.8.5 or
+        earlier (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23967&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #23967</ulink>). This problem has been corrected.</para>
+      </listitem>
+      <listitem>
+        <para>A change in the return value for Ruby's <methodname>instance_variables</methodname> method broke
+        some of the code related to message handling in FXRuby (see <ulink
+        url="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=23787&amp;group_id=300&amp;atid=1223">RubyForge
+        Bug #23787</ulink>). This problem has been corrected.</para>
+      </listitem>
+      <listitem>
+        <para>The <methodname>addAccel</methodname> method for the <classname>FXAccelTable</classname> class
+        now accepts lambda functions (or any other objects that respond to <methodname>call</methodname>). See
+        the <ulink url="http://www.fxruby.org/doc/api/classes/Fox/FXAccelTable.html">API documentation</ulink>
+        for <classname>FXAccelTable</classname> for examples of how this works.</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <simplesect>
     <title>Changes For Version 1.6.18 (December 29, 2008)</title>
 
     <itemizedlist mark="bullet">

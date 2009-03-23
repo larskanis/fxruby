@@ -566,18 +566,18 @@ public:
       FXint* beg;
       FXint* end;
       VALUE ary=Qnil;
-      FXint ngroups=string.contains('(')+1;  // FIXME: is this right?
+			FXint ngroups=string.contains('(')+1;  // FIXME: is this right?
       if(!FXMALLOC(&beg,FXint,ngroups)){
         return Qnil;
-        }
+				}
       if(!FXMALLOC(&end,FXint,ngroups)){
         FXFREE(&beg);
-		return Qnil;
-		}
+				return Qnil;
+				}
       if(self->findText(string,beg,end,start,flags,ngroups)){
         ary=rb_ary_new();
-		rb_ary_push(ary,FXRbMakeArray(beg,ngroups));
-		rb_ary_push(ary,FXRbMakeArray(end,ngroups));
+				rb_ary_push(ary,FXRbMakeArray(beg,ngroups));
+				rb_ary_push(ary,FXRbMakeArray(end,ngroups));
         }
       FXFREE(&beg);
       FXFREE(&end);

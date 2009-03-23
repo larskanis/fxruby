@@ -88,14 +88,14 @@ end
 #
 
 instMajor, instMinor, instLevel = installed_fox_version().split('.')
-thisMajor, thisMinor, thisLevel = "@@FOX_VERSION@@".split('.')
+thisMajor, thisMinor, thisLevel = "<%= FOX_VERSION %>".split('.')
 
 expecting_stable_fox_release = ((thisMinor.to_i % 2) == 0)
 if expecting_stable_fox_release
   if (instMinor != thisMinor)
     puts ""
     puts "   ********************************************************"
-    puts "   * This version of FXRuby (@@FXRUBY_VERSION@@) must be built against"
+    puts "   * This version of FXRuby (<%= PKG_VERSION %>) must be built against"
     puts "   * one of the stable releases of FOX, but it appears that"
     puts "   * you have a development version of FOX (version #{installed_fox_version})"
     puts "   * installed instead. Please download and install one of"

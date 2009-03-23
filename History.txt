@@ -1,0 +1,8 @@
+=== 1.6.20 / 2009-03-06
+
+* Modified project structure for use with Hoe.
+
+=== 1.6.19 / 2009-03-06
+
+* Please see http://www.fxruby.org/doc/changes.html
+  for a complete list of the changes in this release.

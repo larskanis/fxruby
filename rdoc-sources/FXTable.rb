@@ -156,7 +156,7 @@ module Fox
   end
   
   #
-  # The FXTable widget displays a table of items, each with a text and optional
+  # The FXTable widget displays a table of items, each with some text and optional
   # icon.  A column Header control provide captions for each column, and a row
   # Header control provides captions for each row.  Columns are resizable by
   # means of the column Header control if the TABLE_COL_SIZABLE option is passed.
@@ -175,6 +175,7 @@ module Fox
   # one single item; in that case, the item will be stretched to cover all the
   # cells in the region, and no grid lines will be drawn interior to the spanning
   # item.
+  #
   # The Table widget issues SEL_SELECTED or SEL_DESELECTED when cells are selected
   # or deselected, respectively.  The table position affected is passed along as the
   # 3rd parameter of these messages.
@@ -188,7 +189,7 @@ module Fox
   # editing or by other means; the parameter is the range of affected cells.  This message
   # is sent prior to the change.
   # SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED messages are sent when a cell
-  # is clicked, double-clicked, or triple-clicked, respectively.
+  # is clicked, double-clicked, or triple-clicked, respectively. 
   # A SEL_COMMAND is sent when an enabled item is clicked inside the table.
   #
   # === Events
