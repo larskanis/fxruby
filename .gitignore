@@ -19,3 +19,4 @@ ext/fox16/mkmf.log
 lib/fox16/kwargs.rb
 pre-config.rb
 swig-interfaces/dependencies
+ext/fox16/Makefile
