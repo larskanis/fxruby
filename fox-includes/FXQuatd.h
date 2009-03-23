@@ -3,7 +3,7 @@
 *              D o u b l e - P r e c i s i o n  Q u a t e r n i o n             *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1994,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1994,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXQuatd.h 2725 2007-11-16 16:57:54Z lyle $                           *
+* $Id: FXQuatd.h,v 1.20 2009/01/26 09:40:22 fox Exp $                           *
 ********************************************************************************/
 #ifndef FXQUATD_H
 #define FXQUATD_H
@@ -34,7 +34,7 @@ class FXMat3d;
 class FXAPI FXQuatd : public FXVec4d {
 public:
 
-  /// Constructors
+  /// Default constructor; value is not initialized
   FXQuatd(){}
 
   /// Copy constructor

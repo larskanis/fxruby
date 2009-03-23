@@ -3,7 +3,7 @@
 *       S i n g l e - P r e c i s i o n   2 - E l e m e n t   V e c t o r       *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1994,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1994,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXVec2f.h 2775 2007-11-26 15:45:29Z lyle $                           *
+* $Id: FXVec2f.h,v 1.27 2009/01/26 09:40:23 fox Exp $                           *
 ********************************************************************************/
 #ifndef FXVEC2F_H
 #define FXVEC2F_H
@@ -37,7 +37,7 @@ public:
   FXfloat y;
 public:
 
-  /// Default constructor
+  /// Default constructor; value is not initialized
   FXVec2f(){}
 
   /// Initialize from another vector

@@ -3,7 +3,7 @@
 *                            O b j e c t   L i s t                              *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXObjectList.h 2725 2007-11-16 16:57:54Z lyle $                      *
+* $Id: FXObjectList.h,v 1.42 2009/01/06 13:07:26 fox Exp $                      *
 ********************************************************************************/
 #ifndef FXOBJECTLIST_H
 #define FXOBJECTLIST_H
@@ -66,6 +66,14 @@ public:
   /// Indexing operator
   FXObject*& at(FXint i){ return ptr[i]; }
   FXObject* const& at(FXint i) const { return ptr[i]; }
+
+  /// First element in list
+  FXObject*& head(){ return ptr[0]; }
+  FXObject* const& head() const { return ptr[0]; }
+
+  /// Last element in list
+  FXObject*& tail(){ return ptr[no()-1]; }
+  FXObject* const& tail() const { return ptr[no()-1]; }
 
   /// Access to content array
   FXObject** data() const { return ptr; }
@@ -139,6 +147,12 @@ public:
   /// Remove n objects at pos
   FXObjectList& erase(FXint pos,FXint n);
 
+  /// Push object to end
+  FXObjectList& push(FXObject* object);
+
+  /// Pop object from end
+  FXObjectList& pop();
+
   /// Remove object
   FXObjectList& remove(const FXObject* object);
 
@@ -175,6 +189,14 @@ public:
   /// Access to list
   TYPE*& at(FXint i){ return (TYPE*&)ptr[i]; }
   TYPE *const& at(FXint i) const { return (TYPE*const&)ptr[i]; }
+
+  /// First element in list
+  TYPE*& head(){ return (TYPE*&)ptr[0]; }
+  TYPE* const& head() const { return (TYPE*const&)ptr[0]; }
+
+  /// Last element in list
+  TYPE*& tail(){ return (TYPE*&)ptr[no()-1]; }
+  TYPE* const& tail() const { return (TYPE*const&)ptr[no()-1]; }
 
   /// Access to content array
   TYPE** data() const { return (TYPE**)ptr; }

@@ -3,7 +3,7 @@
 *            D o u b l e - P r e c i s i o n   3 x 3   M a t r i x              *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2003,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2003,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXMat3d.h 2761 2007-11-19 17:03:32Z lyle $                           *
+* $Id: FXMat3d.h,v 1.26 2009/01/26 09:40:22 fox Exp $                           *
 ********************************************************************************/
 #ifndef FXMAT3D_H
 #define FXMAT3D_H
@@ -37,19 +37,19 @@ protected:
   FXVec3d m[3];
 public:
 
-  /// Default constructor
+  /// Default constructor; value is not initialized
   FXMat3d(){}
 
   /// Initialize matrix from another matrix
   FXMat3d(const FXMat3d& other);
-  
+
   /// Initialize from rotation and scaling part of 4x4 matrix
   FXMat3d(const FXMat4d& other);
 
   /// Initialize matrix from scalar
   FXMat3d(FXdouble w);
 
-  /// Initialize diagonal matrix 
+  /// Initialize diagonal matrix
   FXMat3d(FXdouble a,FXdouble b,FXdouble c);
 
   /// Initialize matrix from components
@@ -77,9 +77,9 @@ public:
   /// Set value from scalar
   FXMat3d& set(FXdouble w);
 
-  /// Set diagonal matrix 
+  /// Set diagonal matrix
   FXMat3d& set(FXdouble a,FXdouble b,FXdouble c);
-  
+
   /// Set value from components
   FXMat3d& set(FXdouble a00,FXdouble a01,FXdouble a02,
                FXdouble a10,FXdouble a11,FXdouble a12,
@@ -113,7 +113,7 @@ public:
   FXMat3d operator+(const FXMat3d& w) const;
   FXMat3d operator-(const FXMat3d& w) const;
   FXMat3d operator*(const FXMat3d& w) const;
-  
+
   /// Multiply matrix and vector
   FXVec3d operator*(const FXVec3d& v) const;
   FXVec2d operator*(const FXVec2d& v) const;

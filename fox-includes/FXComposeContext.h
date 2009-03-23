@@ -3,7 +3,7 @@
 *                         C o m p o s e - C o n t e x t                         *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2005,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2005,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXComposeContext.h 2867 2008-05-29 21:50:28Z lyle $                  *
+* $Id: FXComposeContext.h,v 1.14 2009/01/06 13:07:22 fox Exp $                  *
 ********************************************************************************/
 #ifndef FXCOMPOSECONTEXT_H
 #define FXCOMPOSECONTEXT_H
@@ -45,6 +45,7 @@ protected:
   FXSelector message;           // Message to send it
 private:
 #ifndef WIN32
+  void* fontset;
   static int  editStartCallback(void*,FXComposeContext*,void*);
   static void editDoneCallback(void*,FXComposeContext*,void*);
   static void editDrawCallback(void*,FXComposeContext*,void*);

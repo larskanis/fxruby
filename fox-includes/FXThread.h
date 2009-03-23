@@ -3,7 +3,7 @@
 *                 M u l i t h r e a d i n g   S u p p o r t                     *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2004,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2004,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXThread.h 2867 2008-05-29 21:50:28Z lyle $                          *
+* $Id: FXThread.h,v 1.82 2009/01/06 13:07:28 fox Exp $                          *
 ********************************************************************************/
 #ifndef FXTHREAD_H
 #define FXTHREAD_H
@@ -210,8 +210,8 @@ public:
   * Return true if the wait ended due to the condition being
   * signalled through signal() or broadcast(), and false if the
   * wait timed out, was interrupted, or some other error occurred.
-  * Note that the wait-time is specified in nanoseconds since
-  * the Epoch (Jan 1, 1970).
+  * The absolute time is specified in nanoseconds since the Epoch
+  * (Jan 1, 1970).
   */
   FXbool wait(FXMutex& mtx,FXTime nsec);
 

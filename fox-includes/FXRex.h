@@ -3,7 +3,7 @@
 *                 R e g u l a r   E x p r e s s i o n   C l a s s               *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1999,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1999,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXRex.h 2867 2008-05-29 21:50:28Z lyle $                             *
+* $Id: FXRex.h,v 1.63 2009/01/06 13:07:27 fox Exp $                             *
 ********************************************************************************/
 #ifndef FXREX_H
 #define FXREX_H
@@ -111,10 +111,10 @@ public:
   FXRex(const FXRex& orig);
 
   /// Compile expression from pattern; if error is not NULL, error code is returned
-  FXRex(const FXchar* pattern,FXint mode=FXRex::Normal,FXRex::Error* error=NULL);
+  FXRex(const FXchar* pattern,FXint mode=Normal,Error* error=NULL);
 
   /// Compile expression from pattern; if error is not NULL, error code is returned
-  FXRex(const FXString& pattern,FXint mode=FXRex::Normal,FXRex::Error* error=NULL);
+  FXRex(const FXString& pattern,FXint mode=Normal,Error* error=NULL);
 
   /// Assign another regular expression to this one
   FXRex& operator=(const FXRex& orig);
@@ -127,10 +127,10 @@ public:
   FXbool empty() const { return (code==fallback); }
 
   /// Parse pattern, return error code if syntax error is found
-  FXRex::Error parse(const FXchar* pattern,FXint mode=FXRex::Normal);
+  FXRex::Error parse(const FXchar* pattern,FXint mode=Normal);
 
   /// Parse pattern, return error code if syntax error is found
-  FXRex::Error parse(const FXString& pattern,FXint mode=FXRex::Normal);
+  FXRex::Error parse(const FXString& pattern,FXint mode=Normal);
 
   /**
   * Match a subject string of length len, returning true if a match is found
@@ -139,10 +139,10 @@ public:
   * refers to the position after the last matched character.
   * Sub expressions from capturing parenthesis i are returned in beg[i] and end[i].
   */
-  FXbool match(const FXchar* string,FXint len,FXint* beg=NULL,FXint* end=NULL,FXint mode=FXRex::Forward,FXint npar=1,FXint fm=0,FXint to=2147483647) const;
+  FXbool match(const FXchar* string,FXint len,FXint* beg=NULL,FXint* end=NULL,FXint mode=Forward,FXint npar=1,FXint fm=0,FXint to=2147483647) const;
 
   /// Search for match in a string
-  FXbool match(const FXString& string,FXint* beg=NULL,FXint* end=NULL,FXint mode=FXRex::Forward,FXint npar=1,FXint fm=0,FXint to=2147483647) const;
+  FXbool match(const FXString& string,FXint* beg=NULL,FXint* end=NULL,FXint mode=Forward,FXint npar=1,FXint fm=0,FXint to=2147483647) const;
 
   /**
   * After performing a regular expression match with capturing parentheses,

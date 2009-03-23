@@ -3,7 +3,7 @@
 *      A d d i t i o n a l   F O X   I n c l u d e   F i l e   F o r   3 D      *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1997,2008 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1997,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: fx3d.h 2867 2008-05-29 21:50:28Z lyle $                              *
+* $Id: fx3d.h,v 1.30 2009/01/06 13:07:29 fox Exp $                              *
 ********************************************************************************/
 #ifndef FX3D_H
 #define FX3D_H
@@ -31,6 +31,9 @@
 #include <windows.h>
 #endif
 #ifdef HAVE_GL_H
+#ifndef GL_GLEXT_PROTOTYPES
+#define GL_GLEXT_PROTOTYPES 1
+#endif
 #include <GL/gl.h>
 #endif
 #ifndef GLAPIENTRY

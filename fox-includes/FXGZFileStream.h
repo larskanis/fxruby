@@ -3,7 +3,7 @@
 *                     G Z F i l e S t r e a m   C l a s s e s                   *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2002,2007 by Sander Jansen.   All Rights Reserved.              *
+* Copyright (C) 2002,2009 by Sander Jansen.   All Rights Reserved.              *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXGZFileStream.h 2726 2007-11-16 17:27:20Z lyle $                    *
+* $Id: FXGZFileStream.h,v 1.15 2009/01/06 13:07:24 fox Exp $                    *
 ********************************************************************************/
 #ifdef HAVE_ZLIB_H
 #ifndef FXGZFILESTREAM_H
@@ -48,8 +48,11 @@ public:
   /// Create GZIP compressed file stream
   FXGZFileStream(const FXObject* cont=NULL);
 
+  /// Create and open GZIP compressed file stream
+  FXGZFileStream(const FXString& filename,FXStreamDirection save_or_load=FXStreamLoad,FXuval size=8192UL);
+
   /// Open file stream
-  FXbool open(const FXString& filename,FXStreamDirection save_or_load,FXuval size=8192);
+  FXbool open(const FXString& filename,FXStreamDirection save_or_load=FXStreamLoad,FXuval size=8192UL);
 
   /// Flush buffer
   virtual FXbool flush();

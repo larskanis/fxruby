@@ -3,7 +3,7 @@
 *                      B Z F i l e S t r e a m   C l a s s e s                  *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1999,2007 by Lyle Johnson. All Rights Reserved.                 *
+* Copyright (C) 1999,2009 by Lyle Johnson. All Rights Reserved.                 *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXBZFileStream.h 2726 2007-11-16 17:27:20Z lyle $                    *
+* $Id: FXBZFileStream.h,v 1.16 2009/01/06 13:07:22 fox Exp $                    *
 ********************************************************************************/
 #ifdef HAVE_BZ2LIB_H
 #ifndef FXBZFILESTREAM_H
@@ -48,8 +48,11 @@ public:
   /// Create BZIP2 file stream
   FXBZFileStream(const FXObject* cont=NULL);
 
+  /// Create and open BZIP2 file stream
+  FXBZFileStream(const FXString& filename,FXStreamDirection save_or_load=FXStreamLoad,FXuval size=8192UL);
+
   /// Open file stream
-  FXbool open(const FXString& filename,FXStreamDirection save_or_load,FXuval size=8192);
+  FXbool open(const FXString& filename,FXStreamDirection save_or_load=FXStreamLoad,FXuval size=8192UL);
 
   /// Flush buffer
   virtual FXbool flush();

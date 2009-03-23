@@ -3,7 +3,7 @@
 *                        F i l e   S t a t i s t i c s                          *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2005,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2005,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXStat.h 2765 2007-11-19 18:11:18Z lyle $                            *
+* $Id: FXStat.h,v 1.33 2009/01/06 13:07:27 fox Exp $                            *
 ********************************************************************************/
 #ifndef FXSTAT_H
 #define FXSTAT_H
@@ -37,9 +37,12 @@ private:
   FXuint  modeFlags;            /// Mode bits
   FXuint  userNumber;           /// User number
   FXuint  groupNumber;          /// Group number
+  FXuint  linkCount;            /// Number of links
   FXTime  createTime;           /// Create time (ns)
   FXTime  accessTime;           /// Access time (ns)
   FXTime  modifyTime;           /// Modify time (ns)
+  FXlong  fileVolume;           /// File volume (device)
+  FXlong  fileIndex;            /// File index (inode)
   FXlong  fileSize;             /// File size
 public:
 
@@ -63,6 +66,15 @@ public:
 
   /// Return group number
   FXuint group() const { return groupNumber; }
+
+  /// Return number of links to file
+  FXuint links() const { return linkCount; }
+
+  /// Return file volume number
+  FXlong volume() const { return fileVolume; }
+
+  /// Return file index number
+  FXlong index() const { return fileIndex; }
 
   /// Return time when last modified, in nanoseconds
   FXTime modified() const { return modifyTime; }
@@ -162,6 +174,15 @@ public:
 
   /// Return file size in bytes
   static FXlong size(const FXString& file);
+
+  /// Return file volume number
+  static FXlong volume(const FXString& file);
+
+  /// Return file index number
+  static FXlong index(const FXString& file);
+
+  /// Return number of links to file
+  static FXuint links(const FXString& file);
 
   /**
   * Return last modified time for this file, on filesystems

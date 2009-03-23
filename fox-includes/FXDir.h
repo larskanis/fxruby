@@ -3,7 +3,7 @@
 *                    D i r e c t o r y   E n u m e r a t o r                    *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 2005,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 2005,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXDir.h 2725 2007-11-16 16:57:54Z lyle $                             *
+* $Id: FXDir.h,v 1.48 2009/01/06 13:07:23 fox Exp $                             *
 ********************************************************************************/
 #ifndef FXDIR_H
 #define FXDIR_H
@@ -44,7 +44,7 @@ public:
     AllDirs     = 8,              /// List all directories
     HiddenFiles = 16,             /// List hidden files also
     HiddenDirs  = 32,             /// List hidden directories also
-    NoParent    = 64,             /// Don't include '..' in the listing
+    NoParent    = 64,             /// Don't include '.' and '..' in the listing
     CaseFold    = 128             /// Matching is case-insensitive
     };
 
@@ -62,23 +62,22 @@ public:
   /// Returns true if the directory is open
   virtual FXbool isOpen() const;
 
-  /// Go to next one
-  virtual FXbool next();
-
-  /// Return current file name
-  virtual FXString name() const;
+  /// Go to next directory entry and return its name
+  virtual FXbool next(FXString& name);
 
   /// Close directory
   virtual void close();
 
+
   /// Create directory
-  static FXbool create(const FXString& path,FXuint mode=FXIO::OwnerFull|FXIO::GroupFull|FXIO::OtherFull);
+  static FXbool create(const FXString& path,FXuint perm=FXIO::AllFull);
 
   /// Remove directory
   static FXbool remove(const FXString& path);
 
-  /// Rename or move srcpath to dstpath
+  /// Rename directory
   static FXbool rename(const FXString& srcpath,const FXString& dstpath);
+
 
   /**
   * List files in a given directory.
@@ -94,9 +93,14 @@ public:
   static FXint listDrives(FXString*& drivelist);
 
 
+  /// Create a directories recursively
+  static FXbool createDirectories(const FXString& path,FXuint perm=FXIO::AllFull);
+
+
   /// Destructor
   virtual ~FXDir();
   };
+
 
 }
 

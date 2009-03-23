@@ -3,7 +3,7 @@
 *            D o u b l e - P r e c i s i o n   4 x 4   M a t r i x              *
 *                                                                               *
 *********************************************************************************
-* Copyright (C) 1994,2007 by Jeroen van der Zijp.   All Rights Reserved.        *
+* Copyright (C) 1994,2009 by Jeroen van der Zijp.   All Rights Reserved.        *
 *********************************************************************************
 * This library is free software; you can redistribute it and/or modify          *
 * it under the terms of the GNU Lesser General Public License as published by   *
@@ -18,7 +18,7 @@
 * You should have received a copy of the GNU Lesser General Public License      *
 * along with this program.  If not, see <http://www.gnu.org/licenses/>          *
 *********************************************************************************
-* $Id: FXMat4d.h 2761 2007-11-19 17:03:32Z lyle $                           *
+* $Id: FXMat4d.h,v 1.30 2009/01/26 09:40:22 fox Exp $                           *
 ********************************************************************************/
 #ifndef FXMAT4D_H
 #define FXMAT4D_H
@@ -27,6 +27,7 @@
 namespace FX {
 
 
+class FXQuatd;
 class FXMat3d;
 
 
@@ -36,7 +37,7 @@ protected:
   FXVec4d m[4];
 public:
 
-  /// Default constructor
+  /// Default constructor; value is not initialized
   FXMat4d(){}
 
   /// Initialize matrix from another matrix
@@ -48,7 +49,7 @@ public:
   /// Initialize matrix from scalar
   FXMat4d(FXdouble w);
 
-  /// Initialize diagonal matrix 
+  /// Initialize diagonal matrix
   FXMat4d(FXdouble a,FXdouble b,FXdouble c,FXdouble d);
 
   /// Initialize matrix from components
@@ -74,7 +75,7 @@ public:
   /// Set value from scalar
   FXMat4d& set(FXdouble w);
 
-  /// Set diagonal matrix 
+  /// Set diagonal matrix
   FXMat4d& set(FXdouble a,FXdouble b,FXdouble c,FXdouble d);
 
   /// Set value from components
