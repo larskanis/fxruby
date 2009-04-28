@@ -14,7 +14,6 @@ ext/fox16/*.o
 ext/fox16/conftest.dSYM
 ext/fox16/include/inlinestubs.h
 ext/fox16/librb.c
-ext/fox16/extconf.rb
 ext/fox16/fox16.bundle
 ext/fox16/mkmf.log
 lib/fox16/kwargs.rb
