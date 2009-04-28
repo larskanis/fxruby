@@ -85,7 +85,7 @@ def do_cygwin_setup
   have_library("jpeg", "jpeg_mem_init")
   have_library("tiff", "TIFFSetErrorHandler")
   $libs = append_library($libs, "FOX-1.6")
-  $CFLAGS = $CFLAGS + " -fpermissive -DWIN32 -Iinclude"
+  $CFLAGS = $CFLAGS + " -fpermissive -DWIN32 -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
@@ -108,7 +108,7 @@ def do_mswin32_setup
   have_library("libtiff", "TIFFSetErrorHandler")
 # $CFLAGS = $CFLAGS + " /DWIN32 /GR /GX /DFOXDLL /Iinclude"
 # $LOCAL_LIBS = $LOCAL_LIBS + "foxdll.lib"
-  $CFLAGS = $CFLAGS + " /DWIN32 /DUNICODE /GR /GX /Iinclude"
+  $CFLAGS = $CFLAGS + " /DWIN32 /DUNICODE /GR /GX /I#{File.join(File.dirname(__FILE__), 'include')}"
   $LOCAL_LIBS = $LOCAL_LIBS + "FOX-1.6.lib"
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
@@ -134,7 +134,7 @@ def do_unix_setup
   find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
   $libs = append_library($libs, "FOX-1.6")
   $libs = append_library($libs, "Xrandr")
-  $CFLAGS = $CFLAGS + " -O0 -Iinclude"
+  $CFLAGS = $CFLAGS + " -O0 -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
@@ -160,7 +160,7 @@ def do_darwin_setup
   $libs = append_library($libs, "Xrandr")
   $libs = append_library($libs, "Xcursor")
   $libs = append_library($libs, "png")
-  $CFLAGS = $CFLAGS + " -O0 -Iinclude"
+  $CFLAGS = $CFLAGS + " -O0 -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
