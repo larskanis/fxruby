@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'hoe'
 require 'erb'
+require 'rake/extensiontask'
+
 require './lib/fox16/version.rb'
 
 # Some constants we'll need
@@ -250,3 +252,5 @@ end
 task :generate_kwargs_lib do
   ruby 'scripts/generate_kwargs_lib.rb'
 end
+
+Rake::ExtensionTask.new("fox16")
