@@ -198,7 +198,7 @@ void FXRbWindow::markfunc(FXWindow* self){
 
     // Mark child windows
     register FXWindow* child=self->getFirst();
-    while(child!=NULL){
+    while((child!=NULL) && (!(NIL_P(FXRbGetRubyObj(child,true))))){
       FXRbGcMark(child);
       child=child->getNext();
       }
@@ -296,6 +296,25 @@ void FXRbCursor::freefunc(FXCursor* self){
   delete_if_not_owned_by_app(self,reinterpret_cast<FXRbCursor*>(0));
   }
 
+/**
+ * Overrides base class version of getFocusWindow() to address
+ * RubyForge Bug #24898.
+ */
+static FXWindow*
+getFocusWindow(FXApp *self)
+{
+  FXWindow *result=self->getActiveWindow();
+  VALUE value=FXRbGetRubyObj(result,true);
+  if(!NIL_P(value)){
+    if(result){
+      while(result->getFocus()){
+        result=result->getFocus();
+        }
+      }
+    return result;
+    }
+  return NULL;
+  }
 
 void FXRbApp::markfunc(FXApp *self){
   FXRbObject::markfunc(self);
@@ -335,7 +354,7 @@ void FXRbApp::markfunc(FXApp *self){
     FXRbGcMark(self->getDefaultCursor(DEF_ROTATE_CURSOR));
   
     // Other windows
-    FXRbGcMark(self->getFocusWindow());
+		FXRbGcMark(::getFocusWindow(self));
     FXRbGcMark(self->getCursorWindow());
   
     /**
