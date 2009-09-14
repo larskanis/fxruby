@@ -182,7 +182,8 @@ task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
 end
 
 task :scintilla do
-  ruby "scripts/iface.rb -i ~/src/fxscintilla/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
+# ruby "scripts/iface.rb -i ~/src/fxscintilla/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
+  ruby "scripts/iface.rb -i c:/src/fxscintilla-1.71/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
 end
 
 desc "Build Win32 installer using INNO Setup"
