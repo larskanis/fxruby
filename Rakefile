@@ -178,42 +178,15 @@ def make_impl
 end
 
 task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
-  unless File.exist?(".config")
-#   ruby "install.rb config -- --with-fxscintilla-include=/usr/include/fxscintilla --with-fxscintilla-lib=/usr/lib"
-#   ruby "install.rb config -- --without-fxscintilla"
-#   ruby "install.rb config -- --with-fox-include=/opt/local/include/fox-1.6 --with-fox-lib=/opt/local/lib --with-fxscintilla-include=/opt/local/include/fxscintilla --with-fxscintilla-lib=/opt/local/lib"
-    ruby "install.rb config -- --with-fox-include=/usr/local/include/fox-1.6 --with-fox-lib=/usr/local/lib --with-fxscintilla-include=/usr/local/include/fxscintilla --with-fxscintilla-lib=/usr/local/lib"
-    make_impl
-  end
-end
-
-desc "Build it."
-task :build => [:configure] do
-  ruby "install.rb setup"
-end
-
-desc "Install it."
-task :install => [:build] do
-  ruby "install.rb install"
+  make_impl
 end
 
 task :scintilla do
   ruby "scripts/iface.rb -i ~/src/fxscintilla/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
 end
 
-# Given the distribution tarball, build the installer for Win32
-desc "Build Win32 installer"
-task :build_win32 do
-  if File.exist? ".config"
-    ruby "install.rb clean"
-  end
-  ruby "install.rb config --make-prog=nmake -- --with-fox-include=#{FOX_INSTALL_DIR}\\include --with-fox-lib=#{FOX_INSTALL_DIR}\\lib --with-fxscintilla-include=#{FXSCINTILLA_INSTALL_DIR}\\include --with-fxscintilla-lib=#{FXSCINTILLA_INSTALL_DIR}\\lib"
-# ruby "install.rb config --make-prog=nmake -- --with-fox-include=#{FOX_INSTALL_DIR}\\include --with-fox-lib=#{FOX_INSTALL_DIR}\\lib"
-  ruby "install.rb setup"
-end
-
 desc "Build Win32 installer using INNO Setup"
-task :build_win32_installer => [:build_win32] do
+task :build_win32_installer => [:compile] do
   iss_script_name = nil
   case VERSION
     when /1.8.2/
@@ -229,7 +202,7 @@ task :build_win32_installer => [:build_win32] do
 end
 
 desc "Build Win32 binary Gem"
-task :build_win32_gem => [:build_win32] do
+task :build_win32_gem => [:compile] do
   spec = create_gemspec
   spec.platform = Gem::Platform::CURRENT
   spec.files += ["ext/fox16/fox16.so"]
@@ -240,17 +213,11 @@ desc "Build Win32 binary installer and Gem"
 task :release_win32 => [:build_win32_installer, :build_win32_gem] do
 end
 
-desc "Build Mac OS X binary Gem"
-task :build_macosx_gem do
-  raise RuntimeError, "remove libFOX*.dylib and recompile before building gem" unless Dir.glob("/usr/local/lib/libFOX*.dylib").empty?
-  spec = create_gemspec
-  spec.platform = Gem::Platform::CURRENT
-  spec.files += ["ext/fox16/fox16.bundle"]
-  Gem::Builder.new(spec).build
-end
-
 task :generate_kwargs_lib do
   ruby 'scripts/generate_kwargs_lib.rb'
 end
 
-Rake::ExtensionTask.new("fox16")
+Rake::ExtensionTask.new("fox16") do |ext|
+end
+
+task :build => [:configure, :compile]
