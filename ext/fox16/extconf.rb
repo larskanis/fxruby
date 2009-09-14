@@ -170,6 +170,32 @@ def do_darwin_setup
   end
 end
 
+def do_rake_compiler_setup
+  $libs = append_library($libs, "stdc++")
+  have_header("sys/time.h")
+  have_header("signal.h")
+  have_library("png", "png_create_read_struct")
+  have_library("z", "deflate")
+  have_library("jpeg", "jpeg_mem_init")
+  have_library("tiff", "TIFFSetErrorHandler")
+  find_library("Xext", "XShmQueryVersion", "/usr/X11R6/lib")
+  find_library("X11", "XFindContext", "/usr/X11R6/lib")
+  find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
+  find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
+  $libs = append_library($libs, "FOX-1.6")
+  $libs = append_library($libs, "Xrandr")
+  $libs = append_library($libs, "Xcursor")
+  $libs = append_library($libs, "png")
+  $CFLAGS = $CFLAGS + " -O0 -I#{File.join(File.dirname(__FILE__), 'include')}"
+  if is_fxscintilla_build?
+    FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
+    $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
+    $libs = append_library($libs, "fxscintilla")
+  else
+    FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
+  end
+end
+
 # This directive processes the "--with-fox-include" and "--with-fox-lib"
 # command line switches and modifies the CFLAGS and LDFLAGS accordingly.
 
@@ -193,15 +219,17 @@ unless fxscintilla_support_suppressed?
 end
 
 # Platform-specific modifications
-if RUBY_PLATFORM =~ /cygwin/ || RUBY_PLATFORM =~ /mingw/
-  do_cygwin_setup
-elsif RUBY_PLATFORM =~ /mswin32/
-  do_mswin32_setup
-elsif RUBY_PLATFORM =~ /darwin/
-  do_darwin_setup
-else
-  do_unix_setup
-end
+do_rake_compiler_setup
+
+# if RUBY_PLATFORM =~ /cygwin/ || RUBY_PLATFORM =~ /mingw/
+#   do_cygwin_setup
+# elsif RUBY_PLATFORM =~ /mswin32/
+#   do_mswin32_setup
+# elsif RUBY_PLATFORM =~ /darwin/
+#   do_darwin_setup
+# else
+#   do_unix_setup
+# end
 
 # Check for Ruby 1.9
 $CFLAGS += " -DRUBY_1_9" if RUBY_VERSION =~ /1\.9\./
