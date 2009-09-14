@@ -172,7 +172,7 @@ end
 
 def do_rake_compiler_setup
   $libs = append_library($libs, "stdc++")
-  have_header("sys/time.h")
+# have_header("sys/time.h") # Breaks MinGW build
   have_header("signal.h")
   have_library("png", "png_create_read_struct")
   have_library("z", "deflate")
