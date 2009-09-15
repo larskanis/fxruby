@@ -82,14 +82,6 @@ task :setversions => [ :create_installer_scripts ] do
   setversions("scripts/make-installers.rb")
 end
 
-desc "Run SWIG to generate the wrapper files."
-task :swig do
-  Dir.chdir "swig-interfaces" do
-    system %{touch dependencies}
-    system %{make depend; make}
-  end
-end
-
 DISTFILES = [
   "ANNOUNCE",
   "LICENSE",
@@ -218,6 +210,53 @@ task :generate_kwargs_lib do
 end
 
 Rake::ExtensionTask.new("fox16") do |ext|
+end
+
+namespace :swig do
+  SWIG = "/usr/local/bin/swig"
+  SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
+  SWIG_MODULES = {
+    "core.i" => "core_wrap.cpp",
+    "dcmodule.i" => "dc_wrap.cpp",
+    "dialogs.i" => "dialogs_wrap.cpp",
+    "framesmodule.i" => "frames_wrap.cpp",
+    "iconlistmodule.i" => "iconlist_wrap.cpp",
+    "icons.i" => "icons_wrap.cpp",
+    "image.i" => "image_wrap.cpp",
+    "labelmodule.i" => "label_wrap.cpp",
+    "layout.i" => "layout_wrap.cpp",
+    "listmodule.i" => "list_wrap.cpp",
+    "mdi.i" => "mdi_wrap.cpp",
+    "menumodule.i" => "menu_wrap.cpp",
+    "fx3d.i" => "fx3d_wrap.cpp",
+    "scintilla.i" => "scintilla_wrap.cpp",
+    "table-module.i" => "table_wrap.cpp",
+    "text-module.i" => "text_wrap.cpp",
+    "treelist-module.i" => "treelist_wrap.cpp",
+    "ui.i" => "ui_wrap.cpp"
+  }
+
+  def swig_generate_dependencies(wrapper_src_file_name, swig_interface_file_name)
+    wrapper_src_file_name = File.join("..", "ext", "fox16", wrapper_src_file_name)
+    system "#{SWIG} #{SWIGFLAGS} -MM -o #{wrapper_src_file_name} #{swig_interface_file_name} >> dependencies"
+  end
+
+  task :swig_dependencies do
+    Dir.chdir "swig-interfaces" do
+      FileUtils.rm_f "dependencies"
+      FileUtils.touch "dependencies"
+      SWIG_MODULES.each do |key, value|
+        swig_generate_dependencies(value, key)
+      end
+    end
+  end
+
+  desc "Run SWIG to generate the wrapper files."
+  task :swig => [:swig_dependencies] do
+    Dir.chdir "swig-interfaces" do
+      system %{make}
+    end
+  end
 end
 
 task :build => [:configure, :compile]
