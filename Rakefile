@@ -34,6 +34,13 @@ end
 # Make sure extension is built before tests are run
 task :test => [:compile]
 
+# The "docs" task created by Hoe assumes that we want to run RDoc
+# over everything under the "lib" and "ext" subdirectories.
+# We need to go back and tell it to skip the stuff under ext.
+# rdoc_target = Rake::Task['docs'].prerequisites.first
+# rdoc_files = Rake::Task[rdoc_target].prerequisites
+# rdoc_files.reject! {|x| x == "ext/fox16" }
+
 # Make sure that all of the package contents exist before we try to build the package
 #Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:guide", "fxruby:setversions", "fxruby:generate_kwargs_lib")
 
