@@ -811,7 +811,6 @@ swig-interfaces/README
 swig-interfaces/common.i
 swig-interfaces/core.i
 swig-interfaces/dcmodule.i
-swig-interfaces/dependencies
 swig-interfaces/dialogs.i
 swig-interfaces/exceptions.i
 swig-interfaces/framesmodule.i
