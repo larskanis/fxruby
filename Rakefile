@@ -43,19 +43,6 @@ def setversions(filename)
   end
 end
 
-desc "Create INNO Setup installer scripts from templates"
-task :create_installer_scripts do
-  output_filenames = {
-    "FXRuby-ruby1.8.6-i386-msvcrt.iss" =>  ["1.8", "ruby186", "i386-msvcrt"]
-  }
-  template = ERB.new(File.open("scripts/FXRuby.iss.erb", "rb").read)
-  output_filenames.each do |output_filename, info|
-    File.open(output_filename, "wb") do |output_file|
-      output_file.write(template.result(binding))
-    end
-  end
-end
-
 desc "Update the web site."
 task :website => [:doap] do
   system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
@@ -76,21 +63,15 @@ task :doap => [:setversions] do
 end
 
 desc "Set versions"
-task :setversions => [ :create_installer_scripts ] do
-  setversions("pre-config.rb")
+task :setversions do
   setversions("doap.rdf")
-  setversions("scripts/make-installers.rb")
 end
 
 DISTFILES = [
   "ANNOUNCE",
   "LICENSE",
   "README",
-  "README.win32.txt",
-  "pre-config.rb",
-  "install.rb",
   "doap.rdf",
-  "FXRuby-ruby1.8.6-i386-msvcrt.iss",
   "Rakefile",
   "index.html",
   "doc/*.css",
@@ -109,15 +90,12 @@ DISTFILES = [
   "ext/fox16/*.cpp",
   "ext/fox16/include/*.h",
   "swig-interfaces/README",
-  "swig-interfaces/Makefile",
-  "swig-interfaces/swig.sed",
   "swig-interfaces/*.i",
   "tests/README",
   "tests/*.rb",
   "tests/*.ps",
   "rdoc-sources/*.rb",
-  "rdoc-sources/README.rdoc",
-  "scripts/make-installers.rb"
+  "rdoc-sources/README.rdoc"
 ]
 
 def distdir
@@ -178,22 +156,6 @@ task :scintilla do
   ruby "scripts/iface.rb -i c:/src/fxscintilla-1.71/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
 end
 
-desc "Build Win32 installer using INNO Setup"
-task :build_win32_installer => [:compile] do
-  iss_script_name = nil
-  case VERSION
-    when /1.8.2/
-      iss_script_name = "FXRuby-ruby1.8.2-i386-msvcrt.iss"
-    when /1.8.4/
-      iss_script_name = "FXRuby-ruby1.8.4-i386-msvcrt.iss"
-    when /1.8.5/
-      iss_script_name = "FXRuby-ruby1.8.5-i386-msvcrt.iss"
-    when /1.8.6/
-      iss_script_name = "FXRuby-ruby1.8.6-i386-msvcrt.iss"
-  end
-  system(ISCC, iss_script_name)
-end
-
 desc "Build Win32 binary Gem"
 task :build_win32_gem => [:compile] do
   spec = create_gemspec
@@ -203,7 +165,7 @@ task :build_win32_gem => [:compile] do
 end
 
 desc "Build Win32 binary installer and Gem"
-task :release_win32 => [:build_win32_installer, :build_win32_gem] do
+task :release_win32 => [:build_win32_gem] do
 end
 
 task :generate_kwargs_lib do
