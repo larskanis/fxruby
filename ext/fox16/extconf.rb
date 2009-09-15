@@ -171,11 +171,17 @@ def do_darwin_setup
 end
 
 def do_rake_compiler_setup
+  $CFLAGS = $CFLAGS + " -I/usr/local/include" # Added for MinGW, to find libpng
+  $LDFLAGS = $LDFLAGS + " -I/usr/local/lib" # Added for MinGW, to find libpng
+  # Prepend these Windows libs for MinGW build
+  %w{stdc++ glu32 opengl32 wsock32 comctl32 mpr gdi32 winspool}.each {|lib| $libs = append_library($libs, lib) }
+
   $libs = append_library($libs, "stdc++")
 # have_header("sys/time.h") # Breaks MinGW build
   have_header("signal.h")
-  have_library("png", "png_create_read_struct")
-  have_library("z", "deflate")
+  if have_library("z", "deflate")
+    have_library("png", "png_create_read_struct")
+  end
   have_library("jpeg", "jpeg_mem_init")
   have_library("tiff", "TIFFSetErrorHandler")
   find_library("Xext", "XShmQueryVersion", "/usr/X11R6/lib")
@@ -183,8 +189,8 @@ def do_rake_compiler_setup
   find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
   find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
   $libs = append_library($libs, "FOX-1.6")
-  $libs = append_library($libs, "Xrandr")
-  $libs = append_library($libs, "Xcursor")
+# $libs = append_library($libs, "Xrandr") # breaks MinGW build
+# $libs = append_library($libs, "Xcursor") # breaks MinGW build
   $libs = append_library($libs, "png")
   $CFLAGS = $CFLAGS + " -O0 -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
