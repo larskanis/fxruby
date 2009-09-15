@@ -82,11 +82,15 @@ task :setversions => [ :create_installer_scripts ] do
   setversions("scripts/make-installers.rb")
 end
 
+# Set environment variable SWIG_LIB to
+# c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
+# before running swig on MinGW.
 desc "Run SWIG to generate the wrapper files."
 task :swig do
   Dir.chdir "swig-interfaces" do
     system %{touch dependencies}
-    system %{make depend; make}
+    system %{make depend}
+    system %{make}
   end
 end
 
