@@ -201,10 +201,6 @@ namespace :swig do
     File.join("..", "ext", "fox16", wrapper_src_file_name)
   end
   
-  def swig_generate_dependencies(swig_interface_file_name, wrapper_src_file_name)
-    system "#{SWIG} #{SWIGFLAGS} -MM -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name} >> dependencies"
-  end
-  
   def sed(wrapper_src_file_name)
     results = []
     IO.readlines(wrapper_src_file_name).each do |line|
