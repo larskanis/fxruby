@@ -10,7 +10,7 @@ FXRUBY_HOME_URL = "http://www.fxruby.org"
 FOX_VERSION = "1.6.0"
 FOX_HOME_URL = "http://www.fox-toolkit.com"
 FOX_INSTALL_DIR = "e:\\src\\fox-1.6.35"
-FXSCINTILLA_INSTALL_DIR = "c:\\src\\fxscintilla"
+FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
 ISCC = "C:\\Progra~1\\InnoSe~1\\ISCC.exe"
 
 hoe = Hoe.spec "FXRuby" do
@@ -185,8 +185,7 @@ namespace :fxruby do
   end
 
   task :scintilla do
-  # ruby "scripts/iface.rb -i ~/src/fxscintilla/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
-    ruby "scripts/iface.rb -i c:/src/fxscintilla-1.71/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
+    ruby "scripts/iface.rb -i #{FXSCINTILLA_INSTALL_DIR}/include/Scintilla.iface -o lib/fox16/scintilla.rb"
   end
 
   task :generate_kwargs_lib do
