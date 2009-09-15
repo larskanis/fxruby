@@ -236,9 +236,34 @@ namespace :swig do
     "ui.i" => "ui_wrap.cpp"
   }
 
-  def swig_generate_dependencies(wrapper_src_file_name, swig_interface_file_name)
-    wrapper_src_file_name = File.join("..", "ext", "fox16", wrapper_src_file_name)
-    system "#{SWIG} #{SWIGFLAGS} -MM -o #{wrapper_src_file_name} #{swig_interface_file_name} >> dependencies"
+  def wrapper_src_file_path(wrapper_src_file_name)
+    File.join("..", "ext", "fox16", wrapper_src_file_name)
+  end
+  
+  def swig_generate_dependencies(swig_interface_file_name, wrapper_src_file_name)
+    system "#{SWIG} #{SWIGFLAGS} -MM -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name} >> dependencies"
+  end
+  
+  def sed(wrapper_src_file_name)
+    results = []
+    IO.readlines(wrapper_src_file_name).each do |line|
+      line.gsub!(/static VALUE mCore;/, "VALUE mCore;")
+      line.gsub!(/mCore = rb_define_module\("Core"\)/, "mFox = rb_define_module(\"Fox\")")
+      line.gsub!(/mCore/, "mFox")
+      next if line =~ /static VALUE m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui);/
+      next if line =~ /m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module/
+      next if line =~ /rb_require/
+      line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
+      results << line
+    end
+    File.open(wrapper_src_file_name, "w") do |io|
+      io.write(results.join)
+    end
+  end
+  
+  def swig(swig_interface_file_name, wrapper_src_file_name)
+    system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
+    sed wrapper_src_file_path(wrapper_src_file_name)
   end
 
   task :swig_dependencies do
@@ -246,7 +271,7 @@ namespace :swig do
       FileUtils.rm_f "dependencies"
       FileUtils.touch "dependencies"
       SWIG_MODULES.each do |key, value|
-        swig_generate_dependencies(value, key)
+        swig_generate_dependencies(key, value)
       end
     end
   end
@@ -254,7 +279,9 @@ namespace :swig do
   desc "Run SWIG to generate the wrapper files."
   task :swig => [:swig_dependencies] do
     Dir.chdir "swig-interfaces" do
-      system %{make}
+      SWIG_MODULES.each do |key, value|
+        swig(key, value)
+      end
     end
   end
 end
