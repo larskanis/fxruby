@@ -13,7 +13,7 @@ FOX_INSTALL_DIR = "e:\\src\\fox-1.6.35"
 FXSCINTILLA_INSTALL_DIR = "c:\\src\\fxscintilla"
 ISCC = "C:\\Progra~1\\InnoSe~1\\ISCC.exe"
 
-Hoe.spec "FXRuby" do
+hoe = Hoe.spec "FXRuby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
   self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
@@ -156,23 +156,11 @@ task :scintilla do
   ruby "scripts/iface.rb -i c:/src/fxscintilla-1.71/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
 end
 
-desc "Build Win32 binary Gem"
-task :build_win32_gem => [:compile] do
-  spec = create_gemspec
-  spec.platform = Gem::Platform::CURRENT
-  spec.files += ["ext/fox16/fox16.so"]
-  Gem::Builder.new(spec).build
-end
-
-desc "Build Win32 binary installer and Gem"
-task :release_win32 => [:build_win32_gem] do
-end
-
 task :generate_kwargs_lib do
   ruby 'scripts/generate_kwargs_lib.rb'
 end
 
-Rake::ExtensionTask.new("fox16") do |ext|
+Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   if RUBY_PLATFORM =~ /mingw/
     ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
     ext.config_options << "--with-fox-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
