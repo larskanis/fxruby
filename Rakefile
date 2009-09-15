@@ -215,6 +215,7 @@ end
 namespace :swig do
   SWIG = "/usr/local/bin/swig"
   SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
+  SWIG_LIB = `#{SWIG} -swiglib`.chomp
   SWIG_MODULES = {
     "core.i" => "core_wrap.cpp",
     "dcmodule.i" => "dc_wrap.cpp",
@@ -275,9 +276,21 @@ namespace :swig do
       end
     end
   end
+  
+  task :swig_librb do
+    Dir.chdir "swig-interfaces" do
+      File.open(wrapper_src_file_path("librb.c"), "w") do |io|
+        io.puts "#define SWIG_GLOBAL 1"
+        io.write(IO.read(File.join(SWIG_LIB, "ruby", "precommon.swg")))
+        io.write(IO.read(File.join(SWIG_LIB, "common.swg")))
+        io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubyhead.swg")))
+        io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubydef.swg")))
+      end
+    end
+  end
 
   desc "Run SWIG to generate the wrapper files."
-  task :swig => [:swig_dependencies] do
+  task :swig => [:swig_dependencies, :swig_librb] do
     Dir.chdir "swig-interfaces" do
       SWIG_MODULES.each do |key, value|
         swig(key, value)
