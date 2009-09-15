@@ -277,16 +277,6 @@ namespace :swig do
     sed wrapper_src_file_path(wrapper_src_file_name)
   end
 
-  task :swig_dependencies do
-    Dir.chdir "swig-interfaces" do
-      FileUtils.rm_f "dependencies"
-      FileUtils.touch "dependencies"
-      SWIG_MODULES.each do |key, value|
-        swig_generate_dependencies(key, value)
-      end
-    end
-  end
-  
   task :swig_librb do
     Dir.chdir "swig-interfaces" do
       File.open(wrapper_src_file_path("librb.c"), "w") do |io|
@@ -300,7 +290,7 @@ namespace :swig do
   end
 
   desc "Run SWIG to generate the wrapper files."
-  task :swig => [:swig_dependencies, :swig_librb] do
+  task :swig => [:swig_librb] do
     Dir.chdir "swig-interfaces" do
       SWIG_MODULES.each do |key, value|
         swig(key, value)
