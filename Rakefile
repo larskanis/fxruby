@@ -2,7 +2,6 @@ require 'rubygems'
 require 'hoe'
 require 'erb'
 require 'rake/extensiontask'
-
 require './lib/fox16/version.rb'
 
 # Some constants we'll need
@@ -14,21 +13,22 @@ FOX_INSTALL_DIR = "e:\\src\\fox-1.6.35"
 FXSCINTILLA_INSTALL_DIR = "c:\\src\\fxscintilla"
 ISCC = "C:\\Progra~1\\InnoSe~1\\ISCC.exe"
 
-Hoe.new("FXRuby", PKG_VERSION) do |p|
+Hoe.spec "FXRuby" do
   # ... project specific data ...
-  p.blog_categories = %w{FXRuby}
-  p.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
-  p.developer("Lyle Johnson", "lyle@lylejohnson.name")
-  p.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
-  p.remote_rdoc_dir = "doc/api"
-  p.spec_extras = {
+  self.blog_categories = %w{FXRuby}
+  self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
+  developer("Lyle Johnson", "lyle@lylejohnson.name")
+  self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
+  self.remote_rdoc_dir = "doc/api"
+  self.spec_extras = {
     :description => "FXRuby is the Ruby binding to the FOX GUI toolkit.",
     :extensions => ["ext/fox16/extconf.rb"],
     :rdoc_options => ['--main', File.join('rdoc-sources', 'README.rdoc'), '--exclude', 'ext/fox16', '--exclude', %r{aliases|kwargs|missingdep|responder}],
     :require_paths => ['ext/fox16', 'lib'],
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
-  p.test_globs = "test/**/TC_*.rb"
+  self.test_globs = "test/**/TC_*.rb"
+  self.version = PKG_VERSION
 end
 
 # Make sure extension is built before tests are run
