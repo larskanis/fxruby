@@ -244,5 +244,3 @@ namespace :swig do
     end
   end
 end
-
-task :build => [:configure, :compile]
