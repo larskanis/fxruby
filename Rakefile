@@ -211,12 +211,12 @@ task :generate_kwargs_lib do
 end
 
 Rake::ExtensionTask.new("fox16") do |ext|
-# ext.config_options << "--with-fox-include=/usr/local/include/fox-1.6"
-# ext.config_options << "--with-fox-lib=/usr/local/lib"
-  ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
-  ext.config_options << "--with-fox-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
-  ext.config_options << "--with-fxscintilla-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fxscintilla"
-  ext.config_options << "--with-fxscintilla-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
+  if RUBY_PLATFORM =~ /mingw/
+    ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
+    ext.config_options << "--with-fox-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
+    ext.config_options << "--with-fxscintilla-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fxscintilla"
+    ext.config_options << "--with-fxscintilla-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
+  end
 end
 
 # Set environment variable SWIG_LIB to
