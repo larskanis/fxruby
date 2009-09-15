@@ -35,7 +35,7 @@ end
 task :test => [:compile]
 
 # Make sure that all of the package contents exist before we try to build the package
-#Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:docs", "fxruby:setversions", "fxruby:generate_kwargs_lib")
+#Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:guide", "fxruby:setversions", "fxruby:generate_kwargs_lib")
 
 # ... project specific tasks ...
 
@@ -160,8 +160,8 @@ namespace :fxruby do
     setversions("doap.rdf")
   end
   
-  desc "Generate all of the documentation files."
-  task :docs do
+  desc "Generate the user's guide"
+  task :guide do
     Dir.chdir "users_guide" do
       system %{make}
     end
