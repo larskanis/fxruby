@@ -34,6 +34,9 @@ end
 # Make sure extension is built before tests are run
 task :test => [:compile]
 
+# Make sure that all of the package contents exist before we try to build the package
+#Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:docs", "fxruby:setversions", "fxruby:generate_kwargs_lib")
+
 # ... project specific tasks ...
 
 Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
@@ -126,37 +129,6 @@ end
 
 namespace :fxruby do
 
-  DISTFILES = [
-    "ANNOUNCE",
-    "LICENSE",
-    "README",
-    "doap.rdf",
-    "Rakefile",
-    "index.html",
-    "doc/*.css",
-    "doc/*.html",
-    "doc/images/*.png",
-    "examples/README",
-    "examples/*.rb",
-    "examples/*.xml",
-    "examples/icons/*.png",
-    "examples/icons/*.ico",
-    "examples/textedit/*.rb",
-    "lib/fox16/*.rb",
-    "ext/fox16/MANIFEST",
-    "ext/fox16/extconf.rb",
-    "ext/fox16/*.c",
-    "ext/fox16/*.cpp",
-    "ext/fox16/include/*.h",
-    "swig-interfaces/README",
-    "swig-interfaces/*.i",
-    "tests/README",
-    "tests/*.rb",
-    "tests/*.ps",
-    "rdoc-sources/*.rb",
-    "rdoc-sources/README.rdoc"
-  ]
-
   desc "Update the web site."
   task :website => [:doap] do
     system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
@@ -188,45 +160,9 @@ namespace :fxruby do
     setversions("doap.rdf")
   end
   
-  def distdir
-    "FXRuby-#{PKG_VERSION}"
-  end
-
-  task :distdir => [:swig, :docs, :setversions, :generate_kwargs_lib] do
-    rm_rf "#{distdir}"
-    mkdir "#{distdir}"
-    chmod(0777, distdir)
-    DISTFILES.each do |filespec|
-      Dir.glob(filespec) { |filename|
-        mkdir_p "#{distdir}/#{File.dirname(filename)}"
-        File.syscopy(filename, "#{distdir}/#{File.dirname(filename)}")
-      }
-    end
-    rm_f "#{distdir}/lib/fox16/acceltable.rb"
-    rm_f "#{distdir}/lib/fox16/canvas.rb"
-    rm_f "#{distdir}/lib/fox16/html.rb"
-    rm_f "#{distdir}/lib/fox16/sugar.rb"
-    rm_f "#{distdir}/lib/fox16/tkcompat.rb"
-    rm_f "#{distdir}/examples/canvasdemo.rb"
-    rm_f "#{distdir}/examples/examples.rb"
-    rm_f "#{distdir}/examples/gdchart.rb"
-    rm_f "#{distdir}/examples/rapt-gui.rb"
-    rm_f "#{distdir}/examples/WhatAQuietStiff.rb"
-    rm_f "#{distdir}/examples/gembrowser.rb"
-    rm_f "#{distdir}/examples/rmagick.rb"
-    rm_f "#{distdir}/examples/tablenew.rb"
-  end
-
-  desc "Build the source tarball."
-  task :dist => [:distdir] do
-    system "chmod -R a+r #{distdir}"
-    system "tar czf #{distdir}.tar.gz #{distdir}"
-    system "rm -rf #{distdir}"
-  end
-
   desc "Generate all of the documentation files."
-  task :doc do
-    Dir.chdir "doc" do
+  task :docs do
+    Dir.chdir "users_guide" do
       system %{make}
     end
   end
