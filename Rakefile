@@ -82,18 +82,6 @@ task :setversions => [ :create_installer_scripts ] do
   setversions("scripts/make-installers.rb")
 end
 
-# Set environment variable SWIG_LIB to
-# c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
-# before running swig on MinGW.
-desc "Run SWIG to generate the wrapper files."
-task :swig do
-  Dir.chdir "swig-interfaces" do
-    system %{touch dependencies}
-    system %{make depend}
-    system %{make}
-  end
-end
-
 DISTFILES = [
   "ANNOUNCE",
   "LICENSE",
@@ -227,6 +215,96 @@ Rake::ExtensionTask.new("fox16") do |ext|
 # ext.config_options << "--with-fox-lib=/usr/local/lib"
   ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
   ext.config_options << "--with-fox-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
+end
+
+# Set environment variable SWIG_LIB to
+# c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
+# before running swig on MinGW.
+namespace :swig do
+  SWIG = "/usr/local/bin/swig"
+  SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
+  SWIG_LIB = `#{SWIG} -swiglib`.chomp
+  SWIG_MODULES = {
+    "core.i" => "core_wrap.cpp",
+    "dcmodule.i" => "dc_wrap.cpp",
+    "dialogs.i" => "dialogs_wrap.cpp",
+    "framesmodule.i" => "frames_wrap.cpp",
+    "iconlistmodule.i" => "iconlist_wrap.cpp",
+    "icons.i" => "icons_wrap.cpp",
+    "image.i" => "image_wrap.cpp",
+    "labelmodule.i" => "label_wrap.cpp",
+    "layout.i" => "layout_wrap.cpp",
+    "listmodule.i" => "list_wrap.cpp",
+    "mdi.i" => "mdi_wrap.cpp",
+    "menumodule.i" => "menu_wrap.cpp",
+    "fx3d.i" => "fx3d_wrap.cpp",
+    "scintilla.i" => "scintilla_wrap.cpp",
+    "table-module.i" => "table_wrap.cpp",
+    "text-module.i" => "text_wrap.cpp",
+    "treelist-module.i" => "treelist_wrap.cpp",
+    "ui.i" => "ui_wrap.cpp"
+  }
+
+  def wrapper_src_file_path(wrapper_src_file_name)
+    File.join("..", "ext", "fox16", wrapper_src_file_name)
+  end
+  
+  def swig_generate_dependencies(swig_interface_file_name, wrapper_src_file_name)
+    system "#{SWIG} #{SWIGFLAGS} -MM -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name} >> dependencies"
+  end
+  
+  def sed(wrapper_src_file_name)
+    results = []
+    IO.readlines(wrapper_src_file_name).each do |line|
+      line.gsub!(/static VALUE mCore;/, "VALUE mCore;")
+      line.gsub!(/mCore = rb_define_module\("Core"\)/, "mFox = rb_define_module(\"Fox\")")
+      line.gsub!(/mCore/, "mFox")
+      next if line =~ /static VALUE m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui);/
+      next if line =~ /m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module/
+      next if line =~ /rb_require/
+      line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
+      results << line
+    end
+    File.open(wrapper_src_file_name, "w") do |io|
+      io.write(results.join)
+    end
+  end
+  
+  def swig(swig_interface_file_name, wrapper_src_file_name)
+    system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
+    sed wrapper_src_file_path(wrapper_src_file_name)
+  end
+
+  task :swig_dependencies do
+    Dir.chdir "swig-interfaces" do
+      FileUtils.rm_f "dependencies"
+      FileUtils.touch "dependencies"
+      SWIG_MODULES.each do |key, value|
+        swig_generate_dependencies(key, value)
+      end
+    end
+  end
+  
+  task :swig_librb do
+    Dir.chdir "swig-interfaces" do
+      File.open(wrapper_src_file_path("librb.c"), "w") do |io|
+        io.puts "#define SWIG_GLOBAL 1"
+        io.write(IO.read(File.join(SWIG_LIB, "ruby", "precommon.swg")))
+        io.write(IO.read(File.join(SWIG_LIB, "common.swg")))
+        io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubyhead.swg")))
+        io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubydef.swg")))
+      end
+    end
+  end
+
+  desc "Run SWIG to generate the wrapper files."
+  task :swig => [:swig_dependencies, :swig_librb] do
+    Dir.chdir "swig-interfaces" do
+      SWIG_MODULES.each do |key, value|
+        swig(key, value)
+      end
+    end
+  end
 end
 
 task :build => [:configure, :compile]
