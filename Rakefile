@@ -36,130 +36,6 @@ task :test => [:compile]
 
 # ... project specific tasks ...
 
-def setversions(filename)
-  File.open(filename, "wb") do |out|
-    template = ERB.new(File.open(filename + ".erb", "rb").read)
-    out.write(template.result)
-  end
-end
-
-desc "Update the web site."
-task :website => [:doap] do
-  system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-  system %{scp -Cq doc/*.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-  system %{scp -Cq doc/images/*.png lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc/images}
-  system %{scp -Cq examples/*.rb lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/examples}
-  system %{scp -Cq web/index.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/community.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/documentation.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/downloads.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/images/* lyle@rubyforge.org:/var/www/gforge-projects/fxruby/images}
-  system %{scp -Cq web/css/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/css}
-end
-
-desc "Upload the DOAP file to the Web site"
-task :doap => [:setversions] do
-  system %{scp -Cq doap.rdf lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-end
-
-desc "Set versions"
-task :setversions do
-  setversions("doap.rdf")
-end
-
-DISTFILES = [
-  "ANNOUNCE",
-  "LICENSE",
-  "README",
-  "doap.rdf",
-  "Rakefile",
-  "index.html",
-  "doc/*.css",
-  "doc/*.html",
-  "doc/images/*.png",
-  "examples/README",
-  "examples/*.rb",
-  "examples/*.xml",
-  "examples/icons/*.png",
-  "examples/icons/*.ico",
-  "examples/textedit/*.rb",
-  "lib/fox16/*.rb",
-  "ext/fox16/MANIFEST",
-  "ext/fox16/extconf.rb",
-  "ext/fox16/*.c",
-  "ext/fox16/*.cpp",
-  "ext/fox16/include/*.h",
-  "swig-interfaces/README",
-  "swig-interfaces/*.i",
-  "tests/README",
-  "tests/*.rb",
-  "tests/*.ps",
-  "rdoc-sources/*.rb",
-  "rdoc-sources/README.rdoc"
-]
-
-def distdir
-  "FXRuby-#{PKG_VERSION}"
-end
-
-task :distdir => [:swig, :docs, :setversions, :generate_kwargs_lib] do
-  rm_rf "#{distdir}"
-  mkdir "#{distdir}"
-  chmod(0777, distdir)
-  DISTFILES.each do |filespec|
-    Dir.glob(filespec) { |filename|
-      mkdir_p "#{distdir}/#{File.dirname(filename)}"
-      File.syscopy(filename, "#{distdir}/#{File.dirname(filename)}")
-    }
-  end
-  rm_f "#{distdir}/lib/fox16/acceltable.rb"
-  rm_f "#{distdir}/lib/fox16/canvas.rb"
-  rm_f "#{distdir}/lib/fox16/html.rb"
-  rm_f "#{distdir}/lib/fox16/sugar.rb"
-  rm_f "#{distdir}/lib/fox16/tkcompat.rb"
-  rm_f "#{distdir}/examples/canvasdemo.rb"
-  rm_f "#{distdir}/examples/examples.rb"
-  rm_f "#{distdir}/examples/gdchart.rb"
-  rm_f "#{distdir}/examples/rapt-gui.rb"
-  rm_f "#{distdir}/examples/WhatAQuietStiff.rb"
-  rm_f "#{distdir}/examples/gembrowser.rb"
-  rm_f "#{distdir}/examples/rmagick.rb"
-  rm_f "#{distdir}/examples/tablenew.rb"
-end
-
-desc "Build the source tarball."
-task :dist => [:distdir] do
-  system "chmod -R a+r #{distdir}"
-  system "tar czf #{distdir}.tar.gz #{distdir}"
-  system "rm -rf #{distdir}"
-end
-
-desc "Generate all of the documentation files."
-task :doc do
-  Dir.chdir "doc" do
-    system %{make}
-  end
-end
-
-def make_impl
-  Dir.chdir "ext/fox16" do
-    ruby "make_impl.rb"
-  end
-end
-
-task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
-  make_impl
-end
-
-task :scintilla do
-# ruby "scripts/iface.rb -i ~/src/fxscintilla/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
-  ruby "scripts/iface.rb -i c:/src/fxscintilla-1.71/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
-end
-
-task :generate_kwargs_lib do
-  ruby 'scripts/generate_kwargs_lib.rb'
-end
-
 Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   if RUBY_PLATFORM =~ /mingw/
     ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
@@ -245,5 +121,132 @@ namespace :swig do
         swig(key, value)
       end
     end
+  end
+end
+
+namespace :fxruby do
+
+  DISTFILES = [
+    "ANNOUNCE",
+    "LICENSE",
+    "README",
+    "doap.rdf",
+    "Rakefile",
+    "index.html",
+    "doc/*.css",
+    "doc/*.html",
+    "doc/images/*.png",
+    "examples/README",
+    "examples/*.rb",
+    "examples/*.xml",
+    "examples/icons/*.png",
+    "examples/icons/*.ico",
+    "examples/textedit/*.rb",
+    "lib/fox16/*.rb",
+    "ext/fox16/MANIFEST",
+    "ext/fox16/extconf.rb",
+    "ext/fox16/*.c",
+    "ext/fox16/*.cpp",
+    "ext/fox16/include/*.h",
+    "swig-interfaces/README",
+    "swig-interfaces/*.i",
+    "tests/README",
+    "tests/*.rb",
+    "tests/*.ps",
+    "rdoc-sources/*.rb",
+    "rdoc-sources/README.rdoc"
+  ]
+
+  desc "Update the web site."
+  task :website => [:doap] do
+    system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
+    system %{scp -Cq doc/*.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
+    system %{scp -Cq doc/images/*.png lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc/images}
+    system %{scp -Cq examples/*.rb lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/examples}
+    system %{scp -Cq web/index.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/community.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/documentation.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/downloads.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/images/* lyle@rubyforge.org:/var/www/gforge-projects/fxruby/images}
+    system %{scp -Cq web/css/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/css}
+  end
+
+  desc "Upload the DOAP file to the Web site"
+  task :doap => [:setversions] do
+    system %{scp -Cq doap.rdf lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+  end
+
+  def setversions(filename)
+    File.open(filename, "wb") do |out|
+      template = ERB.new(File.open(filename + ".erb", "rb").read)
+      out.write(template.result)
+    end
+  end
+
+  desc "Set versions"
+  task :setversions do
+    setversions("doap.rdf")
+  end
+  
+  def distdir
+    "FXRuby-#{PKG_VERSION}"
+  end
+
+  task :distdir => [:swig, :docs, :setversions, :generate_kwargs_lib] do
+    rm_rf "#{distdir}"
+    mkdir "#{distdir}"
+    chmod(0777, distdir)
+    DISTFILES.each do |filespec|
+      Dir.glob(filespec) { |filename|
+        mkdir_p "#{distdir}/#{File.dirname(filename)}"
+        File.syscopy(filename, "#{distdir}/#{File.dirname(filename)}")
+      }
+    end
+    rm_f "#{distdir}/lib/fox16/acceltable.rb"
+    rm_f "#{distdir}/lib/fox16/canvas.rb"
+    rm_f "#{distdir}/lib/fox16/html.rb"
+    rm_f "#{distdir}/lib/fox16/sugar.rb"
+    rm_f "#{distdir}/lib/fox16/tkcompat.rb"
+    rm_f "#{distdir}/examples/canvasdemo.rb"
+    rm_f "#{distdir}/examples/examples.rb"
+    rm_f "#{distdir}/examples/gdchart.rb"
+    rm_f "#{distdir}/examples/rapt-gui.rb"
+    rm_f "#{distdir}/examples/WhatAQuietStiff.rb"
+    rm_f "#{distdir}/examples/gembrowser.rb"
+    rm_f "#{distdir}/examples/rmagick.rb"
+    rm_f "#{distdir}/examples/tablenew.rb"
+  end
+
+  desc "Build the source tarball."
+  task :dist => [:distdir] do
+    system "chmod -R a+r #{distdir}"
+    system "tar czf #{distdir}.tar.gz #{distdir}"
+    system "rm -rf #{distdir}"
+  end
+
+  desc "Generate all of the documentation files."
+  task :doc do
+    Dir.chdir "doc" do
+      system %{make}
+    end
+  end
+
+  def make_impl
+    Dir.chdir "ext/fox16" do
+      ruby "make_impl.rb"
+    end
+  end
+
+  task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
+    make_impl
+  end
+
+  task :scintilla do
+  # ruby "scripts/iface.rb -i ~/src/fxscintilla/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
+    ruby "scripts/iface.rb -i c:/src/fxscintilla-1.71/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
+  end
+
+  task :generate_kwargs_lib do
+    ruby 'scripts/generate_kwargs_lib.rb'
   end
 end
