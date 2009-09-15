@@ -1,14 +1,7 @@
-.config
-InstalledFiles
-FXRuby.spec
-scripts/make-installers.rb
-*.iss
-*.iss.in
 doap.rdf
-Makefile
 *.tmproj
 doc/api
-doc/*.html
+users_guide/*.html
 ext/fox16/*_wrap.cpp
 ext/fox16/*.o
 ext/fox16/conftest.dSYM
@@ -17,5 +10,3 @@ ext/fox16/librb.c
 ext/fox16/fox16.bundle
 ext/fox16/mkmf.log
 lib/fox16/kwargs.rb
-pre-config.rb
-swig-interfaces/dependencies

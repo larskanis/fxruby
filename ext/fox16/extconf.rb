@@ -72,83 +72,18 @@ def fxscintilla_support_suppressed?
   ARGV.include? "--without-fxscintilla"
 end
 
-def do_cygwin_setup
-  extra_libs = %w{stdc++ glu32 opengl32 wsock32 comctl32 mpr gdi32 winspool}
-  extra_libs.each do |lib|
-    $libs = append_library($libs, lib)
+def do_rake_compiler_setup
+  if RUBY_PLATFORM =~ /mingw/
+    $CFLAGS = $CFLAGS + " -I/usr/local/include"
+    $LDFLAGS = $LDFLAGS + " -I/usr/local/lib"
+    %w{stdc++ glu32 opengl32 wsock32 comctl32 mpr gdi32 winspool}.each {|lib| $libs = append_library($libs, lib) }
   end
-  have_header("sys/time.h")
-  have_header("signal.h")
-  if have_library("z", "deflate")
-    have_library("png", "png_create_read_struct")
-  end
-  have_library("jpeg", "jpeg_mem_init")
-  have_library("tiff", "TIFFSetErrorHandler")
-  $libs = append_library($libs, "FOX-1.6")
-  $CFLAGS = $CFLAGS + " -fpermissive -DWIN32 -Iinclude"
-  if is_fxscintilla_build?
-    FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
-    $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
-    $libs = append_library($libs, "fxscintilla")
-  else
-    FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
-  end
-end
-
-def do_mingw_setup
-  extra_libs = %w{stdc++ glu32 opengl32 wsock32 comctl32 mpr gdi32 winspool}
-  extra_libs.each do |lib|
-    $libs = append_library($libs, lib)
-  end
-# have_header("sys/time.h")
-  have_header("signal.h")
-  if have_library("z", "deflate")
-    have_library("png", "png_create_read_struct")
-  end
-  have_library("jpeg", "jpeg_mem_init")
-  have_library("tiff", "TIFFSetErrorHandler")
-  $libs = append_library($libs, "FOX-1.6")
-  $CFLAGS = $CFLAGS + " -fpermissive -DWIN32 -Iinclude"
-  if is_fxscintilla_build?
-    FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
-    $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
-    $libs = append_library($libs, "fxscintilla")
-  else
-    FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
-  end
-end
-
-def do_mswin32_setup
-  extra_libs = %w{glu32 opengl32 mpr wsock32 comctl32 winspool shell32 advapi32 shell32 gdi32 user32}
-  extra_libs.each do |lib|
-    $libs = append_library($libs, lib)
-  end
-  have_header("sys/time.h")
-  have_header("signal.h")
-  have_library("zlib", "deflate")
-  have_library("libpng", "png_create_read_struct")
-  have_library("libjpeg", "jpeg_mem_init")
-  have_library("libtiff", "TIFFSetErrorHandler")
-# $CFLAGS = $CFLAGS + " /DWIN32 /GR /GX /DFOXDLL /Iinclude"
-# $LOCAL_LIBS = $LOCAL_LIBS + "foxdll.lib"
-  $CFLAGS = $CFLAGS + " /DWIN32 /DUNICODE /GR /GX /Iinclude"
-  $LOCAL_LIBS = $LOCAL_LIBS + "FOX-1.6.lib"
-  if is_fxscintilla_build?
-    FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
-    $CFLAGS = $CFLAGS + " /DWITH_FXSCINTILLA /DHAVE_FOX_1_6"
-    $libs = append_library($libs, "fxscintilla")
-  else
-    FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
-  end
-end
-
-def do_unix_setup
   $libs = append_library($libs, "stdc++")
-# $libs = append_library($libs, "supc++")
-  have_header("sys/time.h")
+  have_header("sys/time.h") unless RUBY_PLATFORM =~ /mingw/
   have_header("signal.h")
-  have_library("png", "png_create_read_struct")
-  have_library("z", "deflate")
+  if have_library("z", "deflate")
+    have_library("png", "png_create_read_struct")
+  end
   have_library("jpeg", "jpeg_mem_init")
   have_library("tiff", "TIFFSetErrorHandler")
   find_library("Xext", "XShmQueryVersion", "/usr/X11R6/lib")
@@ -156,34 +91,10 @@ def do_unix_setup
   find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
   find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
   $libs = append_library($libs, "FOX-1.6")
-  $libs = append_library($libs, "Xrandr")
-  $CFLAGS = $CFLAGS + " -O0 -Iinclude"
-  if is_fxscintilla_build?
-    FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
-    $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
-    $libs = append_library($libs, "fxscintilla")
-  else
-    FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
-  end
-end
-
-def do_darwin_setup
-  $libs = append_library($libs, "stdc++")
-  have_header("sys/time.h")
-  have_header("signal.h")
-  have_library("png", "png_create_read_struct")
-  have_library("z", "deflate")
-  have_library("jpeg", "jpeg_mem_init")
-  have_library("tiff", "TIFFSetErrorHandler")
-  find_library("Xext", "XShmQueryVersion", "/usr/X11R6/lib")
-  find_library("X11", "XFindContext", "/usr/X11R6/lib")
-  find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
-  find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
-  $libs = append_library($libs, "FOX-1.6")
-  $libs = append_library($libs, "Xrandr")
-  $libs = append_library($libs, "Xcursor")
+  $libs = append_library($libs, "Xrandr") unless RUBY_PLATFORM =~ /mingw/
+  $libs = append_library($libs, "Xcursor") unless RUBY_PLATFORM =~ /mingw/
   $libs = append_library($libs, "png")
-  $CFLAGS = $CFLAGS + " -O0 -Iinclude"
+  $CFLAGS = $CFLAGS + " -O0 -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
@@ -216,17 +127,7 @@ unless fxscintilla_support_suppressed?
 end
 
 # Platform-specific modifications
-if RUBY_PLATFORM =~ /cygwin/
-  do_cygwin_setup
-elsif RUBY_PLATFORM =~ /mingw/
-  do_mingw_setup
-elsif RUBY_PLATFORM =~ /mswin32/
-  do_mswin32_setup
-elsif RUBY_PLATFORM =~ /darwin/
-  do_darwin_setup
-else
-  do_unix_setup
-end
+do_rake_compiler_setup
 
 # Check for Ruby 1.9
 $CFLAGS += " -DRUBY_1_9" if RUBY_VERSION =~ /1\.9\./
