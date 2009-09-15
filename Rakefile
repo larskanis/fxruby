@@ -56,7 +56,7 @@ Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
 end
 
 # Make the compile task's list of dependencies begin with the :configure task
-Rake::Task['compile'].prerequisites.unshift :configure
+Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 
 # Set environment variable SWIG_LIB to
 # c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
