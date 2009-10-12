@@ -77,6 +77,9 @@ def do_rake_compiler_setup
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
     $LDFLAGS = $LDFLAGS + " -I/usr/local/lib"
     %w{stdc++ glu32 opengl32 wsock32 comctl32 mpr gdi32 winspool}.each {|lib| $libs = append_library($libs, lib) }
+  elsif RUBY_PLATFORM =~ /darwin/
+    $CFLAGS = $CFLAGS + " -I/usr/X11/include" # for built-in libpng
+    $LDFLAGS = $LDFLAGS + " -L/usr/X11/lib"   # for built-in libpng
   end
   $libs = append_library($libs, "stdc++")
   have_header("sys/time.h") unless RUBY_PLATFORM =~ /mingw/
