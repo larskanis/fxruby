@@ -345,8 +345,15 @@ module Fox
       sendMessage(2466, line, set)
     end
 
+    # Set the alpha used for a marker that is drawn in the text area, not the margin.
+    def markerSetAlpha(markerNumber, alpha)
+      sendMessage(2476, markerNumber, alpha)
+    end
+
     SC_MARGIN_SYMBOL = 0
     SC_MARGIN_NUMBER = 1
+    SC_MARGIN_BACK = 2
+    SC_MARGIN_FORE = 3
 
     # Set a margin to be either numeric or symbolic.
     def setMarginTypeN(margin, marginType)
@@ -388,14 +395,15 @@ module Fox
       sendMessage(2247, margin, 0) == 1 ? true : false
     end
 
-    # Styles in range 32..37 are predefined for parts of the UI and are not used as normal styles.
-    # Styles 38 and 39 are for future use.
+    # Styles in range 32..38 are predefined for parts of the UI and are not used as normal styles.
+    # Style 39 is for future use.
     STYLE_DEFAULT = 32
     STYLE_LINENUMBER = 33
     STYLE_BRACELIGHT = 34
     STYLE_BRACEBAD = 35
     STYLE_CONTROLCHAR = 36
     STYLE_INDENTGUIDE = 37
+    STYLE_CALLTIP = 38
     STYLE_LASTPREDEFINED = 39
     STYLE_MAX = 127
 
@@ -501,6 +509,16 @@ module Fox
       sendMessage(2068, useSetting, back & 0xffffff)
     end
 
+    # Get the alpha of the selection.
+    def getSelAlpha
+      sendMessage(2477, 0, 0)
+    end
+
+    # Set the alpha of the selection.
+    def setSelAlpha(alpha)
+      sendMessage(2478, alpha, 0)
+    end
+
     # Set the foreground colour of the caret.
     def setCaretFore(fore)
       sendMessage(2069, fore & 0xffffff, 0)
@@ -566,6 +584,7 @@ module Fox
     INDIC_STRIKE = 4
     INDIC_HIDDEN = 5
     INDIC_BOX = 6
+    INDIC_ROUNDBOX = 7
     INDIC0_MASK = 0x20
     INDIC1_MASK = 0x40
     INDIC2_MASK = 0x80
@@ -1271,6 +1290,11 @@ module Fox
     # Set the foreground colour for the highlighted part of the call tip.
     def callTipSetForeHlt(fore)
       sendMessage(2207, fore & 0xffffff, 0)
+    end
+
+    # Enable use of STYLE_CALLTIP and set call tip tab size in pixels.
+    def callTipUseStyle(tabSize)
+      sendMessage(2212, tabSize, 0)
     end
 
     # Find the display line of a document line taking hidden lines into account.
@@ -2100,7 +2124,6 @@ module Fox
     end
 
     # Set the focus to this Scintilla widget.
-    # GTK+ Specific.
     def grabFocus
       sendMessage(2400, 0, 0)
     end
@@ -2398,6 +2421,20 @@ module Fox
       sendMessage(2469, 0, 0)
     end
 
+    SC_ALPHA_TRANSPARENT = 0
+    SC_ALPHA_OPAQUE = 255
+    SC_ALPHA_NOALPHA = 256
+
+    # Set background alpha of the caret line.
+    def setCaretLineBackAlpha(alpha)
+      sendMessage(2470, alpha, 0)
+    end
+
+    # Get the background alpha of the caret line.
+    def getCaretLineBackAlpha
+      sendMessage(2471, 0, 0)
+    end
+
     # Start notifying the container of all key presses and commands.
     def startRecord
       sendMessage(3001, 0, 0)
@@ -2601,6 +2638,9 @@ module Fox
     SCLEX_FLAGSHIP = 73
     SCLEX_CSOUND = 74
     SCLEX_FREEBASIC = 75
+    SCLEX_INNOSETUP = 76
+    SCLEX_OPAL = 77
+    SCLEX_SPICE = 78
 
     # When a lexer specifies its language as SCLEX_AUTOMATIC it receives a
     # value assigned in sequence from SCLEX_AUTOMATIC+1.
@@ -2643,6 +2683,29 @@ module Fox
     SCE_C_COMMENTDOCKEYWORD = 17
     SCE_C_COMMENTDOCKEYWORDERROR = 18
     SCE_C_GLOBALCLASS = 19
+    # Lexical states for SCLEX_TCL
+    SCE_TCL_DEFAULT = 0
+    SCE_TCL_COMMENT = 1
+    SCE_TCL_COMMENTLINE = 2
+    SCE_TCL_NUMBER = 3
+    SCE_TCL_WORD_IN_QUOTE = 4
+    SCE_TCL_IN_QUOTE = 5
+    SCE_TCL_OPERATOR = 6
+    SCE_TCL_IDENTIFIER = 7
+    SCE_TCL_SUBSTITUTION = 8
+    SCE_TCL_SUB_BRACE = 9
+    SCE_TCL_MODIFIER = 10
+    SCE_TCL_EXPAND = 11
+    SCE_TCL_WORD = 12
+    SCE_TCL_WORD2 = 13
+    SCE_TCL_WORD3 = 14
+    SCE_TCL_WORD4 = 15
+    SCE_TCL_WORD5 = 16
+    SCE_TCL_WORD6 = 17
+    SCE_TCL_WORD7 = 18
+    SCE_TCL_WORD8 = 19
+    SCE_TCL_COMMENT_BOX = 20
+    SCE_TCL_BLOCK_COMMENT = 21
     # Lexical states for SCLEX_HTML, SCLEX_XML
     SCE_H_DEFAULT = 0
     SCE_H_TAG = 1
@@ -2861,6 +2924,7 @@ module Fox
     SCE_PROPS_SECTION = 2
     SCE_PROPS_ASSIGNMENT = 3
     SCE_PROPS_DEFVAL = 4
+    SCE_PROPS_KEY = 5
     # Lexical states for SCLEX_LATEX
     SCE_L_DEFAULT = 0
     SCE_L_COMMAND = 1
@@ -3368,6 +3432,7 @@ module Fox
     SCE_AU3_SPECIAL = 12
     SCE_AU3_EXPAND = 13
     SCE_AU3_COMOBJ = 14
+    SCE_AU3_UDF = 15
     # Lexical states for SCLEX_APDL
     SCE_APDL_DEFAULT = 0
     SCE_APDL_COMMENT = 1
@@ -3593,6 +3658,41 @@ module Fox
     SCE_CSOUND_IRATE_VAR = 13
     SCE_CSOUND_GLOBAL_VAR = 14
     SCE_CSOUND_STRINGEOL = 15
+    # Lexical states for SCLEX_INNOSETUP
+    SCE_INNO_DEFAULT = 0
+    SCE_INNO_COMMENT = 1
+    SCE_INNO_KEYWORD = 2
+    SCE_INNO_PARAMETER = 3
+    SCE_INNO_SECTION = 4
+    SCE_INNO_PREPROC = 5
+    SCE_INNO_PREPROC_INLINE = 6
+    SCE_INNO_COMMENT_PASCAL = 7
+    SCE_INNO_KEYWORD_PASCAL = 8
+    SCE_INNO_KEYWORD_USER = 9
+    SCE_INNO_STRING_DOUBLE = 10
+    SCE_INNO_STRING_SINGLE = 11
+    SCE_INNO_IDENTIFIER = 12
+    # Lexical states for SCLEX_OPAL
+    SCE_OPAL_SPACE = 0
+    SCE_OPAL_COMMENT_BLOCK = 1
+    SCE_OPAL_COMMENT_LINE = 2
+    SCE_OPAL_INTEGER = 3
+    SCE_OPAL_KEYWORD = 4
+    SCE_OPAL_SORT = 5
+    SCE_OPAL_STRING = 6
+    SCE_OPAL_PAR = 7
+    SCE_OPAL_BOOL_CONST = 8
+    SCE_OPAL_DEFAULT = 32
+    # Lexical states for SCLEX_SPICE
+    SCE_SPICE_DEFAULT = 0
+    SCE_SPICE_IDENTIFIER = 1
+    SCE_SPICE_KEYWORD = 2
+    SCE_SPICE_KEYWORD2 = 3
+    SCE_SPICE_KEYWORD3 = 4
+    SCE_SPICE_NUMBER = 5
+    SCE_SPICE_DELIMITER = 6
+    SCE_SPICE_VALUE = 7
+    SCE_SPICE_COMMENTLINE = 8
 
     # Events
 
