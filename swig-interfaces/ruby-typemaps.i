@@ -45,10 +45,10 @@
 %{
 inline FXColor to_FXColor(VALUE obj){
   if(TYPE(obj)==T_STRING){
-    return fxcolorfromname(StringValuePtr(obj));
+    return FX::colorFromName(StringValuePtr(obj));
     }
   else if(TYPE(obj)==T_SYMBOL){
-    return fxcolorfromname(rb_id2name(SYM2ID(obj)));
+    return FX::colorFromName(rb_id2name(SYM2ID(obj)));
     }
   else{
     return NUM2ULONG(obj);
