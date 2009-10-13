@@ -4,10 +4,10 @@ require 'fileutils'
 require 'mkmf'
 
 def find_installed_fox_version
-  stddirs = ["/usr/include/fox-1.6",
-             "/usr/local/include/fox-1.6",
-             "/sw/include/fox-1.6",
-	     "/opt/local/include/fox-1.6"]
+  stddirs = ["/usr/include/fox-1.7",
+             "/usr/local/include/fox-1.7",
+             "/sw/include/fox-1.7",
+	     "/opt/local/include/fox-1.7"]
   usrdirs = []
   ARGV.each do |arg|
     if arg =~ /--with-fox-include/
@@ -95,14 +95,14 @@ def do_rake_compiler_setup
   find_library("X11", "XFindContext", "/usr/X11R6/lib")
   find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
   find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
-  $libs = append_library($libs, "FOX-1.6")
+  $libs = append_library($libs, "FOX-1.7")
   $libs = append_library($libs, "Xrandr") unless RUBY_PLATFORM =~ /mingw/
   $libs = append_library($libs, "Xcursor") unless RUBY_PLATFORM =~ /mingw/
   $libs = append_library($libs, "png")
   $CFLAGS = $CFLAGS + " -O0 -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
-    $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
+    $CFLAGS = $CFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_7"
     $libs = append_library($libs, "fxscintilla")
   else
     FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
@@ -112,7 +112,7 @@ end
 # This directive processes the "--with-fox-include" and "--with-fox-lib"
 # command line switches and modifies the CFLAGS and LDFLAGS accordingly.
 
-dir_config('fox', '/usr/local/include/fox-1.6', '/usr/local/lib')
+dir_config('fox', '/usr/local/include/fox-1.7', '/usr/local/lib')
 
 # This directive processes the "--with-fxscintilla-include" and
 # "--with-fxscintilla-lib" command line switches and modifies the CFLAGS
