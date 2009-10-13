@@ -80,6 +80,8 @@ def do_rake_compiler_setup
   elsif RUBY_PLATFORM =~ /darwin/
     $CFLAGS = $CFLAGS + " -I/usr/X11/include" # for built-in libpng
     $LDFLAGS = $LDFLAGS + " -L/usr/X11/lib"   # for built-in libpng
+    $CFLAGS = $CFLAGS + " -I/usr/local/include" # for libjpeg and libtiff
+    $LDFLAGS = $LDFLAGS + " -L/usr/local/lib"   # for libjpeg and libtiff
   end
   $libs = append_library($libs, "stdc++")
   have_header("sys/time.h") unless RUBY_PLATFORM =~ /mingw/
