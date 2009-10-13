@@ -1,252 +1,192 @@
 require 'rubygems'
 require 'hoe'
 require 'erb'
+require 'rake/extensiontask'
 require './lib/fox16/version.rb'
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-FXRUBY_HOME_URL = "http://www.fxruby.org"
-FOX_VERSION = "1.6.0"
-FOX_HOME_URL = "http://www.fox-toolkit.com"
-FOX_INSTALL_DIR = "e:\\src\\fox-1.6.35"
-FXSCINTILLA_INSTALL_DIR = "c:\\src\\fxscintilla"
-ISCC = "C:\\Progra~1\\InnoSe~1\\ISCC.exe"
+FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
 
-Hoe.new("FXRuby", PKG_VERSION) do |p|
+hoe = Hoe.spec "FXRuby" do
   # ... project specific data ...
-  p.blog_categories = %w{FXRuby}
-  p.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
-  p.developer("Lyle Johnson", "lyle@lylejohnson.name")
-  p.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
-  p.remote_rdoc_dir = "doc/api"
-  p.spec_extras = {
+  self.blog_categories = %w{FXRuby}
+  self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
+  developer("Lyle Johnson", "lyle@lylejohnson.name")
+  self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
+  self.remote_rdoc_dir = "doc/api"
+  self.spec_extras = {
     :description => "FXRuby is the Ruby binding to the FOX GUI toolkit.",
     :extensions => ["ext/fox16/extconf.rb"],
     :rdoc_options => ['--main', File.join('rdoc-sources', 'README.rdoc'), '--exclude', 'ext/fox16', '--exclude', %r{aliases|kwargs|missingdep|responder}],
     :require_paths => ['ext/fox16', 'lib'],
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
-  p.test_globs = "test/**/TC_*.rb"
+  self.test_globs = "test/**/TC_*.rb"
+  self.version = PKG_VERSION
 end
 
 # Make sure extension is built before tests are run
-task :test => [:build]
+task :test => [:compile]
+
+# The "docs" task created by Hoe assumes that we want to run RDoc
+# over everything under the "lib" and "ext" subdirectories.
+# We need to go back and tell it to skip the stuff under ext.
+# rdoc_target = Rake::Task['docs'].prerequisites.first
+# rdoc_files = Rake::Task[rdoc_target].prerequisites
+# rdoc_files.reject! {|x| x == "ext/fox16" }
+
+# Make sure that all of the package contents exist before we try to build the package
+#Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:guide", "fxruby:setversions", "fxruby:generate_kwargs_lib")
 
 # ... project specific tasks ...
 
-def setversions(filename)
-  File.open(filename, "wb") do |out|
-    template = ERB.new(File.open(filename + ".erb", "rb").read)
-    out.write(template.result)
+Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
+  if RUBY_PLATFORM =~ /mingw/
+    ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
+    ext.config_options << "--with-fox-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
+    ext.config_options << "--with-fxscintilla-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fxscintilla"
+    ext.config_options << "--with-fxscintilla-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
   end
 end
 
-desc "Create INNO Setup installer scripts from templates"
-task :create_installer_scripts do
-  output_filenames = {
-    "FXRuby-ruby1.8.6-i386-msvcrt.iss" =>  ["1.8", "ruby186", "i386-msvcrt"]
+# Make the compile task's list of dependencies begin with the :configure task
+Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
+
+# Set environment variable SWIG_LIB to
+# c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
+# before running swig on MinGW.
+
+#
+#  Using the following command-line flags for SWIG:
+#
+# -nodefaultctor don't generate default constructors for classes that don't declare them
+# -nodefaultdtor don't generate default destructors for classes that don't declare them
+# -w302 seems to be required to suppress bogus SWIG warnings about redefined identifiers
+# -features compactdefaultargs causes SWIG to default to the old code generation method for functions with default arguments
+#
+
+namespace :swig do
+  SWIG = "/opt/local/bin/swig"
+  SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
+  SWIG_LIB = `#{SWIG} -swiglib`.chomp
+  SWIG_MODULES = {
+    "core.i" => "core_wrap.cxx",
+    "dcmodule.i" => "dc_wrap.cxx",
+    "dialogs.i" => "dialogs_wrap.cxx",
+    "framesmodule.i" => "frames_wrap.cxx",
+    "iconlistmodule.i" => "iconlist_wrap.cxx",
+    "icons.i" => "icons_wrap.cxx",
+    "image.i" => "image_wrap.cxx",
+    "labelmodule.i" => "label_wrap.cxx",
+    "layout.i" => "layout_wrap.cxx",
+    "listmodule.i" => "list_wrap.cxx",
+    "mdi.i" => "mdi_wrap.cxx",
+    "menumodule.i" => "menu_wrap.cxx",
+    "fx3d.i" => "fx3d_wrap.cxx",
+    "scintilla.i" => "scintilla_wrap.cxx",
+    "table-module.i" => "table_wrap.cxx",
+    "text-module.i" => "text_wrap.cxx",
+    "treelist-module.i" => "treelist_wrap.cxx",
+    "ui.i" => "ui_wrap.cxx"
   }
-  template = ERB.new(File.open("scripts/FXRuby.iss.erb", "rb").read)
-  output_filenames.each do |output_filename, info|
-    File.open(output_filename, "wb") do |output_file|
-      output_file.write(template.result(binding))
+
+  def wrapper_src_file_path(wrapper_src_file_name)
+    File.join("..", "ext", "fox16", wrapper_src_file_name)
+  end
+  
+  def sed(wrapper_src_file_name)
+    results = []
+    IO.readlines(wrapper_src_file_name).each do |line|
+      line.gsub!(/static VALUE mCore;/, "VALUE mCore;")
+      line.gsub!(/mCore = rb_define_module\("Core"\)/, "mFox = rb_define_module(\"Fox\")")
+      line.gsub!(/mCore/, "mFox")
+      next if line =~ /static VALUE m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui);/
+      next if line =~ /m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module/
+      next if line =~ /rb_require/
+      line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
+      results << line
+    end
+    File.open(wrapper_src_file_name, "w") do |io|
+      io.write(results.join)
+    end
+  end
+  
+  def swig(swig_interface_file_name, wrapper_src_file_name)
+    system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
+    sed wrapper_src_file_path(wrapper_src_file_name)
+  end
+
+  task :swig_ruby_runtime do
+    runtime_filename = wrapper_src_file_path(File.join("include", "swigrubyrun.h"))
+    system "#{SWIG} -ruby -external-runtime #{runtime_filename}"
+  end
+
+  desc "Run SWIG to generate the wrapper files."
+  task :swig => [:swig_ruby_runtime] do
+    Dir.chdir "swig-interfaces" do
+      SWIG_MODULES.each do |key, value|
+        swig(key, value)
+      end
     end
   end
 end
 
-desc "Update the web site."
-task :website => [:doap] do
-  system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-  system %{scp -Cq doc/*.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-  system %{scp -Cq doc/images/*.png lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc/images}
-  system %{scp -Cq examples/*.rb lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/examples}
-  system %{scp -Cq web/index.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/community.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/documentation.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/downloads.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-  system %{scp -Cq web/images/* lyle@rubyforge.org:/var/www/gforge-projects/fxruby/images}
-  system %{scp -Cq web/css/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/css}
-end
+namespace :fxruby do
 
-desc "Upload the DOAP file to the Web site"
-task :doap => [:setversions] do
-  system %{scp -Cq doap.rdf lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
-end
-
-desc "Set versions"
-task :setversions => [ :create_installer_scripts ] do
-  setversions("pre-config.rb")
-  setversions("doap.rdf")
-  setversions("scripts/make-installers.rb")
-end
-
-desc "Run SWIG to generate the wrapper files."
-task :swig do
-  Dir.chdir "swig-interfaces" do
-    system %{touch dependencies}
-    system %{make depend; make}
+  desc "Update the web site."
+  task :website => [:doap] do
+    system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
+    system %{scp -Cq doc/*.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
+    system %{scp -Cq doc/images/*.png lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc/images}
+    system %{scp -Cq examples/*.rb lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/examples}
+    system %{scp -Cq web/index.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/community.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/documentation.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/downloads.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
+    system %{scp -Cq web/images/* lyle@rubyforge.org:/var/www/gforge-projects/fxruby/images}
+    system %{scp -Cq web/css/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/css}
   end
-end
 
-DISTFILES = [
-  "ANNOUNCE",
-  "LICENSE",
-  "README.textile",
-  "README.win32.txt",
-  "pre-config.rb",
-  "install.rb",
-  "doap.rdf",
-  "FXRuby-ruby1.8.6-i386-msvcrt.iss",
-  "Rakefile",
-  "index.html",
-  "doc/*.css",
-  "doc/*.html",
-  "doc/images/*.png",
-  "examples/README",
-  "examples/*.rb",
-  "examples/*.xml",
-  "examples/icons/*.png",
-  "examples/icons/*.ico",
-  "examples/textedit/*.rb",
-  "lib/fox16/*.rb",
-  "ext/fox16/MANIFEST",
-  "ext/fox16/extconf.rb",
-  "ext/fox16/*.c",
-  "ext/fox16/*.cpp",
-  "ext/fox16/include/*.h",
-  "swig-interfaces/README",
-  "swig-interfaces/Makefile",
-  "swig-interfaces/swig.sed",
-  "swig-interfaces/*.i",
-  "tests/README",
-  "tests/*.rb",
-  "tests/*.ps",
-  "rdoc-sources/*.rb",
-  "rdoc-sources/README.rdoc",
-  "scripts/make-installers.rb"
-]
-
-def distdir
-  "FXRuby-#{PKG_VERSION}"
-end
-
-task :distdir => [:swig, :docs, :setversions, :generate_kwargs_lib] do
-  rm_rf "#{distdir}"
-  mkdir "#{distdir}"
-  chmod(0777, distdir)
-  DISTFILES.each do |filespec|
-    Dir.glob(filespec) { |filename|
-      mkdir_p "#{distdir}/#{File.dirname(filename)}"
-      File.syscopy(filename, "#{distdir}/#{File.dirname(filename)}")
-    }
+  desc "Upload the DOAP file to the Web site"
+  task :doap => [:setversions] do
+    system %{scp -Cq doap.rdf lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
   end
-  rm_f "#{distdir}/lib/fox16/acceltable.rb"
-  rm_f "#{distdir}/lib/fox16/canvas.rb"
-  rm_f "#{distdir}/lib/fox16/html.rb"
-  rm_f "#{distdir}/lib/fox16/sugar.rb"
-  rm_f "#{distdir}/lib/fox16/tkcompat.rb"
-  rm_f "#{distdir}/examples/canvasdemo.rb"
-  rm_f "#{distdir}/examples/examples.rb"
-  rm_f "#{distdir}/examples/gdchart.rb"
-  rm_f "#{distdir}/examples/rapt-gui.rb"
-  rm_f "#{distdir}/examples/WhatAQuietStiff.rb"
-  rm_f "#{distdir}/examples/gembrowser.rb"
-  rm_f "#{distdir}/examples/rmagick.rb"
-  rm_f "#{distdir}/examples/tablenew.rb"
-end
 
-desc "Build the source tarball."
-task :dist => [:distdir] do
-  system "chmod -R a+r #{distdir}"
-  system "tar czf #{distdir}.tar.gz #{distdir}"
-  system "rm -rf #{distdir}"
-end
-
-desc "Generate all of the documentation files."
-task :doc do
-  Dir.chdir "doc" do
-    system %{make}
+  def setversions(filename)
+    File.open(filename, "wb") do |out|
+      template = ERB.new(File.open(filename + ".erb", "rb").read)
+      out.write(template.result)
+    end
   end
-end
 
-def make_impl
-  Dir.chdir "ext/fox16" do
-    ruby "make_impl.rb"
+  desc "Set versions"
+  task :setversions do
+    setversions("doap.rdf")
   end
-end
+  
+  desc "Generate the user's guide"
+  task :guide do
+    Dir.chdir "users_guide" do
+      system %{make}
+    end
+  end
 
-task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
-  unless File.exist?(".config")
-#   ruby "install.rb config -- --with-fxscintilla-include=/usr/include/fxscintilla --with-fxscintilla-lib=/usr/lib"
-#   ruby "install.rb config -- --without-fxscintilla"
-    ruby "install.rb config -- --with-fox-include=/usr/local/include/fox-1.7 --with-fox-lib=/usr/local/lib --without-fxscintilla"
-#   ruby "install.rb config -- --with-fox-include=/usr/local/include/fox-1.7 --with-fox-lib=/usr/local/lib --with-fxscintilla-include=/usr/local/include/fxscintilla --with-fxscintilla-lib=/usr/local/lib"
+  def make_impl
+    Dir.chdir "ext/fox16" do
+      ruby "make_impl.rb"
+    end
+  end
+
+  task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
     make_impl
   end
-end
 
-desc "Build it."
-task :build => [:configure] do
-  ruby "install.rb setup"
-end
-
-desc "Install it."
-task :install => [:build] do
-  ruby "install.rb install"
-end
-
-task :scintilla do
-  ruby "scripts/iface.rb -i ~/src/fxscintilla/scintilla/include/Scintilla.iface -o lib/fox16/scintilla.rb"
-end
-
-# Given the distribution tarball, build the installer for Win32
-desc "Build Win32 installer"
-task :build_win32 do
-  if File.exist? ".config"
-    ruby "install.rb clean"
+  task :scintilla do
+    ruby "scripts/iface.rb -i #{FXSCINTILLA_INSTALL_DIR}/include/Scintilla.iface -o lib/fox16/scintilla.rb"
   end
-  ruby "install.rb config --make-prog=nmake -- --with-fox-include=#{FOX_INSTALL_DIR}\\include --with-fox-lib=#{FOX_INSTALL_DIR}\\lib --with-fxscintilla-include=#{FXSCINTILLA_INSTALL_DIR}\\include --with-fxscintilla-lib=#{FXSCINTILLA_INSTALL_DIR}\\lib"
-# ruby "install.rb config --make-prog=nmake -- --with-fox-include=#{FOX_INSTALL_DIR}\\include --with-fox-lib=#{FOX_INSTALL_DIR}\\lib"
-  ruby "install.rb setup"
-end
 
-desc "Build Win32 installer using INNO Setup"
-task :build_win32_installer => [:build_win32] do
-  iss_script_name = nil
-  case VERSION
-    when /1.8.2/
-      iss_script_name = "FXRuby-ruby1.8.2-i386-msvcrt.iss"
-    when /1.8.4/
-      iss_script_name = "FXRuby-ruby1.8.4-i386-msvcrt.iss"
-    when /1.8.5/
-      iss_script_name = "FXRuby-ruby1.8.5-i386-msvcrt.iss"
-    when /1.8.6/
-      iss_script_name = "FXRuby-ruby1.8.6-i386-msvcrt.iss"
+  task :generate_kwargs_lib do
+    ruby 'scripts/generate_kwargs_lib.rb'
   end
-  system(ISCC, iss_script_name)
-end
-
-desc "Build Win32 binary Gem"
-task :build_win32_gem => [:build_win32] do
-  spec = create_gemspec
-  spec.platform = Gem::Platform::CURRENT
-  spec.files += ["ext/fox16/fox16.so"]
-  Gem::Builder.new(spec).build
-end
-
-desc "Build Win32 binary installer and Gem"
-task :release_win32 => [:build_win32_installer, :build_win32_gem] do
-end
-
-desc "Build Mac OS X binary Gem"
-task :build_macosx_gem do
-  raise RuntimeError, "remove libFOX*.dylib and recompile before building gem" unless Dir.glob("/usr/local/lib/libFOX*.dylib").empty?
-  spec = create_gemspec
-  spec.platform = Gem::Platform::CURRENT
-  spec.files += ["ext/fox16/fox16.bundle"]
-  Gem::Builder.new(spec).build
-end
-
-task :generate_kwargs_lib do
-  ruby 'scripts/generate_kwargs_lib.rb'
 end
