@@ -53,10 +53,6 @@ end
 # Make the compile task's list of dependencies begin with the :configure task
 Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 
-# Set environment variable SWIG_LIB to
-# c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
-# before running swig on MinGW.
-
 #
 #  Using the following command-line flags for SWIG:
 #
@@ -67,9 +63,8 @@ Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 #
 
 namespace :swig do
-  SWIG = "/opt/local/bin/swig"
-  SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
-  SWIG_LIB = `#{SWIG} -swiglib`.chomp
+  SWIG = "swig"
+  SWIGFLAGS = "-v -fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
   SWIG_MODULES = {
     "core.i" => "core_wrap.cxx",
     "dcmodule.i" => "dc_wrap.cxx",
@@ -114,12 +109,14 @@ namespace :swig do
   
   def swig(swig_interface_file_name, wrapper_src_file_name)
     system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
-    sed wrapper_src_file_path(wrapper_src_file_name)
+    # sed wrapper_src_file_path(wrapper_src_file_name)
   end
 
   task :swig_ruby_runtime do
     runtime_filename = wrapper_src_file_path(File.join("include", "swigrubyrun.h"))
-    system "#{SWIG} -ruby -external-runtime #{runtime_filename}"
+    Dir.chdir "swig-interfaces" do
+      system "#{SWIG} -ruby -external-runtime #{runtime_filename}"
+    end
   end
 
   desc "Run SWIG to generate the wrapper files."
