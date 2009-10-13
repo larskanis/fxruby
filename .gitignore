@@ -2,7 +2,7 @@ doap.rdf
 *.tmproj
 doc/api
 users_guide/*.html
-ext/fox16/*_wrap.cpp
+ext/fox16/*_wrap.cxx
 ext/fox16/*.o
 ext/fox16/conftest.dSYM
 ext/fox16/include/inlinestubs.h
