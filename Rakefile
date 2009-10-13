@@ -37,7 +37,7 @@ task :test => [:compile]
 # rdoc_files.reject! {|x| x == "ext/fox16" }
 
 # Make sure that all of the package contents exist before we try to build the package
-#Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:guide", "fxruby:setversions", "fxruby:generate_kwargs_lib")
+#Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:setversions", "fxruby:generate_kwargs_lib")
 
 # ... project specific tasks ...
 
@@ -165,13 +165,6 @@ namespace :fxruby do
     setversions("doap.rdf")
   end
   
-  desc "Generate the user's guide"
-  task :guide do
-    Dir.chdir "users_guide" do
-      system %{make}
-    end
-  end
-
   def make_impl
     Dir.chdir "ext/fox16" do
       ruby "make_impl.rb"
