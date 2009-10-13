@@ -64,7 +64,7 @@ Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 
 namespace :swig do
   SWIG = "swig"
-  SWIGFLAGS = "-v -fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
+  SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
   SWIG_MODULES = {
     "core.i" => "core_wrap.cxx",
     "dcmodule.i" => "dc_wrap.cxx",
@@ -109,7 +109,7 @@ namespace :swig do
   
   def swig(swig_interface_file_name, wrapper_src_file_name)
     system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
-    # sed wrapper_src_file_path(wrapper_src_file_name)
+    sed wrapper_src_file_path(wrapper_src_file_name)
   end
 
   task :swig_ruby_runtime do
