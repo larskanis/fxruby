@@ -1,6 +1,8 @@
 === 1.6.20 / 2009-03-06
 
-* Modified project structure for use with Hoe.
+* Integrated the Hoe and rake-compiler extensions into the Rakefile and
+  removed redundant tasks.
+* Did some work to provide support for MinGW builds.
 
 === 1.6.19 / 2009-03-06
 
