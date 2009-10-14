@@ -38,7 +38,7 @@ public:
       if(!NIL_P(str)){
         size=RSTRING_LEN(str);
         data=reinterpret_cast<FXuchar*>(StringValuePtr(str));
-        return self->open(save_or_load,size,data);
+        return self->open(save_or_load,data,size);
         }
       else{
         return self->open(save_or_load,data);
