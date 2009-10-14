@@ -289,14 +289,8 @@ public:
   /// Get flags
   FXuint getFlags() const;
 
-  %extend {
-    // Get font description
-    FXFontDesc getFontDesc() const {
-      FXFontDesc fontdesc;
-      self->getFontDesc(fontdesc);
-      return fontdesc;
-    }
-  }
+  // Get font description
+  FXFontDesc getFontDesc() const;
   
   /// Return angle
   FXint getAngle() const;
