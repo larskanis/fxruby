@@ -523,9 +523,6 @@ public:
   /// Return anchor item index, or -1 if none
   FXint getAnchorItem() const { return anchor; }
 
-  /// Return index of item under cursor, or -1 if none
-  FXint getCursorItem() const;
-
   /// Sort items
   void sortItems();
   

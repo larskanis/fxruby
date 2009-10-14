@@ -455,9 +455,6 @@ public:
   /// Return anchor item, if any
   FXTreeItem* getAnchorItem() const;
 
-  /// Return item under cursor, if any
-  FXTreeItem* getCursorItem() const;
-
   /// Sort root items
   void sortRootItems();
   

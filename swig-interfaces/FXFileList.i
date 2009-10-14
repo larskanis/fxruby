@@ -159,7 +159,6 @@ protected:
 public:
   long onOpenTimer(FXObject*,FXSelector,void* PTR_IGNORE);
   long onRefreshTimer(FXObject*,FXSelector,void* PTR_IGNORE);
-  long onDropAction(FXObject*,FXSelector,void* PTR_IGNORE);
   long onPreviewChore(FXObject*,FXSelector,void* PTR_IVAL);
   long onDNDEnter(FXObject*,FXSelector,void* PTR_EVENT);
   long onDNDLeave(FXObject*,FXSelector,void* PTR_EVENT);
@@ -230,7 +229,6 @@ public:
   enum {
     ID_OPENTIMER=FXIconList::ID_LAST,
     ID_REFRESHTIMER,
-    ID_DROPACTION,
     ID_PREVIEWCHORE,
     ID_SORT_BY_NAME,    /// Sort by name
     ID_SORT_BY_TYPE,    /// Sort by type

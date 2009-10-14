@@ -29,7 +29,7 @@ class FXGLVisual : public FXVisual {
 public:
   %extend {
     /// Construct default visual
-    FXGLVisual(FXApp* a,FXuint flgs=VISUAL_DOUBLE_BUFFER|VISUAL_WINDOW){
+    FXGLVisual(FXApp* a,FXuint flgs=VISUAL_DOUBLE_BUFFER){
       return new FXRbGLVisual(a,flgs);
       }
     }

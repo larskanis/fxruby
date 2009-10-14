@@ -47,9 +47,6 @@ public:
   /// Initialize with components
   FXVec4d(FXdouble xx,FXdouble yy,FXdouble zz,FXdouble ww=1.0);
 
-  /// Initialize with color
-  FXVec4d(FXColor color);
-
   /// Signed distance normalized plane and point
   FXdouble distance(const FXVec3d& p) const;
 

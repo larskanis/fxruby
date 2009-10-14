@@ -122,9 +122,6 @@ module Fox
     # Index of anchor item, or -1 if no anchor item [Integer]
     attr_reader	:anchorItem
     
-    # Index of item under the cursor, or -1 if none [Integer]
-    attr_reader	:cursorItem
-    
     # Text font [FXFont]
     attr_accessor :font
     

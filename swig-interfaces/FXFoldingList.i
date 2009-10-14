@@ -481,9 +481,6 @@ public:
   /// Return anchor item, if any
   FXFoldingItem* getAnchorItem() const;
 
-  /// Return item under cursor, if any
-  FXFoldingItem* getCursorItem() const;
-
   /// Sort all items recursively
   void sortItems();
 

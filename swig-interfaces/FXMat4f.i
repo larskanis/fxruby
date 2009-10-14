@@ -55,11 +55,6 @@ public:
       if(i<0 || i>3) rb_raise(rb_eIndexError,"index %d out of bounds",i);
       return (*self)[i];
       }
-    FXVec4f& __setitem__(FXint i,const FXVec3d& other){
-      if(i<0 || i>3) rb_raise(rb_eIndexError,"index %d out of bounds",i);
-      (*self)[i]=other;
-      return (*self)[i];
-      }
 
     // Add matrices
     FXMat4f operator+(const FXMat4f& other) const { return (*self)+other; }

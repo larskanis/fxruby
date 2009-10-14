@@ -218,9 +218,6 @@ module Fox
     # Anchor item, if any [FXFoldingItem]
     attr_accessor :anchorItem
 
-    # Item under the cursor, if any [FXFoldingItem]
-    attr_reader	:cursorItem
-
     # Text font [FXFont]
     attr_accessor :font
 

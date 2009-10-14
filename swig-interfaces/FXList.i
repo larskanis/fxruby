@@ -403,9 +403,6 @@ public:
   /// Return anchor item, if any
   FXint getAnchorItem() const;
 
-  /// Get item under the cursor, if any
-  FXint getCursorItem() const;
-
   /// Sort items using current sort function
   void sortItems();
   

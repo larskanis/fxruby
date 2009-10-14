@@ -76,8 +76,6 @@ public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_COLOR);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_NULL); // FIXME
   long onCmdGetIntValue(FXObject*,FXSelector,void* PTR_NULL); // FIXME
-  long onCmdColorWell(FXObject*,FXSelector,void* PTR_COLOR);
-  long onChgColorWell(FXObject*,FXSelector,void* PTR_COLOR);
   long onCmdSetHelp(FXObject*,FXSelector,void* PTR_STRING);
   long onCmdGetHelp(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdSetTip(FXObject*,FXSelector,void* PTR_STRING);
@@ -86,8 +84,8 @@ public:
   long onQueryTip(FXObject*,FXSelector,void* PTR_IGNORE);
 public:
   enum {
-    ID_COLORDIALOG=FXFrame::ID_LAST,
-    ID_LAST
+	  ID_COLOR=FXFrame::ID_LAST,
+	  ID_LAST
     };
 public:
   %extend {

@@ -41,9 +41,6 @@ public:
   /// Initialize with components
   FXVec3f(FXfloat xx,FXfloat yy,FXfloat zz=1.0f);
 
-  /// Initialize with color
-  FXVec3f(FXColor color);
-
   /// Length and square of length
   FXfloat length2() const;
   FXfloat length() const;

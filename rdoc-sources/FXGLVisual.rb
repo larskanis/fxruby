@@ -73,7 +73,7 @@ module Fox
     #
     # Construct default visual
     #
-    def initialize(app, flags=VISUAL_DOUBLE_BUFFER|VISUAL_WINDOW) # :yields: theGLVisual
+    def initialize(app, flags=VISUAL_DOUBLE_BUFFER) # :yields: theGLVisual
 
     #
     # Returns +true+ if this visual supports OpenGL.
