@@ -22,6 +22,9 @@
 
 class FXFontSelector;
 
+// Aliases for back-compatibility with FXRuby 1.6
+%alias setFontDesc(const FXFontDesc& fontdesc) "setFontSelection";
+%alias getFontDesc() const "getFontSelection";
 
 /// Font selection dialog
 class FXFontDialog : public FXDialogBox {
@@ -38,16 +41,10 @@ public:
     }
 
   /// Set the current font selection
-  void setFontSelection(const FXFontDesc& fontdesc);
+  void setFontDesc(const FXFontDesc& fontdesc);
 
-  %extend {
-    /// Get the current font selection
-    FXFontDesc getFontSelection() const {
-	FXFontDesc fontdesc;
-	self->getFontSelection(fontdesc);
-	return fontdesc;
-    }
-  }
+  /// Get the current font selection
+  const FXFontDesc& getFontDesc() const;
 
   /// Destructor
   virtual ~FXFontDialog();
