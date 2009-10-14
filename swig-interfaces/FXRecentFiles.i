@@ -20,8 +20,6 @@
  * at "lyle@users.sourceforge.net".
  ***********************************************************************/
 
-%rename("app") FXRecentFiles::getApp() const;
-
 /**
 * The recent files object manages a most recently used (MRU) file list by
 * means of the standard system registry.
@@ -76,9 +74,6 @@ public:
       return new FXRbRecentFiles(a,gp,tgt,sel);
       }
     }
-
-  /// Get application
-  FXApp* getApp() const;
 
   /// Change number of files we're tracking
   void setMaxFiles(FXint mx);
