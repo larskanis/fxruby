@@ -97,7 +97,7 @@ public:
   * If data is not NULL, it is expected to point to an external data buffer
   * of length size; otherwise stream will use an internally managed buffer.
   */
-  FXbool open(FXStreamDirection save_or_load,FXuval size=8192,FXuchar* data=NULL);
+  FXbool open(FXStreamDirection save_or_load,FXuchar* data=NULL,FXuval size=8192UL,FXbool owned=false);
 
   /// Get available buffer space
   FXuval getSpace() const;

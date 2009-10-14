@@ -87,7 +87,7 @@ module Fox
     # +size+::		initial buffer size [Integer]
     # +data+::		external data buffer (if any) [String]
     #
-    def open(save_or_load, size=8192, data=nil); end
+    def open(save_or_load, data=nil, size=8192, owned=false); end
   
     #
     # Close stream; returns +true+ if OK.
