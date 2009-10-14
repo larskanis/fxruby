@@ -13,9 +13,6 @@ module Fox
     # XID handle for the server-side resource [Integer]
     attr_reader :xid
     
-    # Resource handle [Integer]
-    attr_reader :res
-
     #
     # Create resource.
     #
