@@ -90,29 +90,47 @@ public:
       }
     }
 
-  /// Show a modal error message
-  static FXuint error(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+  %extend {
+	  /// Show a modal error message
+	  static FXuint error(FXWindow* owner,FXuint opts,const char* caption,const char* message){
+	    return FXMessageBox::error(owner,opts,caption,"%s",message);
+			}
 
-  // Show modal error message, in free floating window.
-  static FXuint error(FXApp* app,FXuint opts,const char* caption,const char* message);
+	  // Show modal error message, in free floating window.
+	  static FXuint error(FXApp* app,FXuint opts,const char* caption,const char* message){
+	    return FXMessageBox::error(app,opts,caption,"%s",message);
+			}
 
-  /// Show a modal warning message
-  static FXuint warning(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+	  /// Show a modal warning message
+	  static FXuint warning(FXWindow* owner,FXuint opts,const char* caption,const char* message){
+	    return FXMessageBox::warning(owner,opts,caption,"%s",message);
+	    }
 
-  /// Show a modal warning message, in a free-floating window
-  static FXuint warning(FXApp* app,FXuint opts,const char* caption,const char* message);
+	  /// Show a modal warning message, in a free-floating window
+	  static FXuint warning(FXApp* app,FXuint opts,const char* caption,const char* message){
+	    return FXMessageBox::warning(app,opts,caption,"%s",message);
+			}
 
-  /// Show a modal question dialog
-  static FXuint question(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+	  /// Show a modal question dialog
+	  static FXuint question(FXWindow* owner,FXuint opts,const char* caption,const char* message){
+		  return FXMessageBox::question(owner,opts,caption,"%s",message);
+		  }
 
-  /// Show a modal question dialog, in a free-floating window
-  static FXuint question(FXApp* app,FXuint opts,const char* caption,const char* message);
+	  /// Show a modal question dialog, in a free-floating window
+	  static FXuint question(FXApp* app,FXuint opts,const char* caption,const char* message){
+			return FXMessageBox::question(app,opts,caption,"%s",message);
+			}
 
-  /// Show a modal information dialog
-  static FXuint information(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+	  /// Show a modal information dialog
+	  static FXuint information(FXWindow* owner,FXuint opts,const char* caption,const char* message){
+			return FXMessageBox::information(owner,opts,caption,"%s",message);
+			}
 
-  /// Show a modal information dialog, in a free-floating window
-  static FXuint information(FXApp* app,FXuint opts,const char* caption,const char* message);
+	  /// Show a modal information dialog, in a free-floating window
+	  static FXuint information(FXApp* app,FXuint opts,const char* caption,const char* message){
+			return FXMessageBox::information(app,opts,caption,"%s",message);
+			}
+    }
 
   // Destructor
   virtual ~FXMessageBox();
