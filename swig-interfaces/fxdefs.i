@@ -358,15 +358,10 @@ FXColor makeHiliteColor(FXColor clr);
 FXColor makeShadowColor(FXColor clr);
 
 /// Get RGB value from color name
-FXColor fxcolorfromname(const FXchar* colorname);
+FXColor colorFromName(const FXString& colorname);
 
-%inline %{
-  /// Get name of (closest) color to RGB
-  FXchar* fxnamefromcolor(FXColor color){
-    static FXchar colorname[128]; // should be large enough, but still a buffer overflow risk!
-    return fxnamefromcolor(colorname,color);
-    }
-%}
+/// Get name of (closest) color to RGB
+FXString nameFromColor(FXColor color);
 
 %inline %{
 /// Convert RGB to HSV
@@ -416,7 +411,7 @@ FXbool fxisconsole(const FXchar *path);
 /// Version number that the library has been compiled with
 VALUE _fxversion(){
   FXString version;
-  return rb_str_new2(version.format("%d.%d.%d",fxversion[0],fxversion[1],fxversion[2]).text());
+  return rb_str_new2(version.value("%d.%d.%d",fxversion[0],fxversion[1],fxversion[2]).text());
   }
 %}
 

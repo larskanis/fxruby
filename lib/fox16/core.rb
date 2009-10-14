@@ -448,6 +448,14 @@ module Fox
       str
     end
   end
+  
+  def self.fxcolorfromname(name)
+    colorFromName(name)
+  end
+  
+  def self.fxnamefromcolor(color)
+    nameFromColor(color)
+  end
 
   #
   # FXStreamError is the base class for exceptions which can occur when

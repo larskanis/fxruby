@@ -68,12 +68,12 @@ module Fox
   #
   # Return the RGB value for this color name.
   #
-  def Fox.fxcolorfromname(colorName); end
+  def Fox.colorFromName(colorName); end
   
   #
   # Return the name of the closest color to the input RGB value.
   #
-  def Fox.fxnamefromcolor(color); end
+  def Fox.nameFromColor(color); end
   
   # Convert RGB to HSV
   def Fox.fxrgb_to_hsv(r, g, b); end
