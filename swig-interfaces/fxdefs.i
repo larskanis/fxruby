@@ -167,16 +167,6 @@ enum {
   };
 
 
-/// Options for fxfilematch
-enum {
-  FILEMATCH_FILE_NAME   = 1,        /// No wildcard can ever match `/'
-  FILEMATCH_NOESCAPE    = 2,        /// Backslashes don't quote special chars
-  FILEMATCH_PERIOD      = 4,        /// Leading `.' is matched only explicitly
-  FILEMATCH_LEADING_DIR = 8,        /// Ignore `/...' after a match
-  FILEMATCH_CASEFOLD    = 16        /// Compare without regard to case
-  };
-
-
 /// Drag and drop actions
 enum FXDragAction {
   DRAG_REJECT  = 0,                 /// Reject all drop actions
@@ -347,9 +337,6 @@ static FXuchar _FXRGBACOMPVAL(FXuint rgba,FXuchar comp){
 
 /// Sleep n microseconds
 void fxsleep(unsigned int n);
-
-/// Match a file name with a pattern
-FXbool fxfilematch(const char *pattern,const char *string,FXuint flags=(FILEMATCH_NOESCAPE|FILEMATCH_FILE_NAME));
 
 /// Get highlight color
 FXColor makeHiliteColor(FXColor clr);
