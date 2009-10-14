@@ -25,7 +25,7 @@ module Fox
     attr_reader :cancelButton
 
     # Font selection [FXFontDesc]
-    attr_accessor :fontSelection
+    attr_accessor :fontDesc
 
     #
     # Return an initialized FXFontSelector instance.

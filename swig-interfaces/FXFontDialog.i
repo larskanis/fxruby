@@ -23,8 +23,8 @@
 class FXFontSelector;
 
 // Aliases for back-compatibility with FXRuby 1.6
-%alias setFontDesc(const FXFontDesc& fontdesc) "setFontSelection";
-%alias getFontDesc() const "getFontSelection";
+%alias FXFontDialog::setFontDesc(const FXFontDesc& fontdesc) "fontSelection=";
+%alias FXFontDialog::getFontDesc() const "fontSelection";
 
 /// Font selection dialog
 class FXFontDialog : public FXDialogBox {

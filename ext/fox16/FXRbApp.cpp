@@ -52,7 +52,7 @@ FXRbApp::FXRbApp(const FXchar* appname,const FXchar* vendor) : FXApp(appname,ven
 // Constructor that also calls FXApp::init()
 FXRbApp* FXRbApp::constructAndInit(const FXchar* appname,const FXchar* vendor){
   int argc=1;
-  static char* argv[]={"",0};
+  static char* argv[]={const_cast<char*>(""),0};
   FXRbApp* app=new FXRbApp(appname,vendor);
   app->FXApp::init(argc,argv);
   return app;

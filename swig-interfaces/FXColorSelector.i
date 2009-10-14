@@ -76,9 +76,7 @@ public:
   long onUpdCMYText(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdList(FXObject*,FXSelector,void* PTR_INT);
   long onCmdCustomWell(FXObject*,FXSelector,void* PTR_COLOR);
-  long onChgCustomWell(FXObject*,FXSelector,void* PTR_COLOR);
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_COLOR);
-  long onCmdActivePane(FXObject*,FXSelector,void* PTR_INT);
   long onCmdAlphaSlider(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdAlphaSlider(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdAlphaText(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -112,7 +110,6 @@ public:
     ID_DIAL_WHEEL,
     ID_COLOR_LIST,
     ID_WELL_CHANGED,
-    ID_ACTIVEPANE,
     ID_ALPHA_SLIDER,
     ID_ALPHA_TEXT,
     ID_ALPHA_LABEL,

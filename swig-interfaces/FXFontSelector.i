@@ -28,6 +28,9 @@ class FXButton;
 class FXCheckButton;
 class FXFont;
 
+// Aliases for backwards-compatibility with FXRuby 1.6
+%alias FXFontSelector::setFontDesc(const FXFontDesc& fontdesc) "fontSelection=";
+%alias FXFontSelector::getFontDesc() const "fontSelection";
 
 /// Font selection widget
 class FXFontSelector : public FXPacker {
@@ -104,16 +107,10 @@ public:
   FXButton *cancelButton() const;
 
   /// Set font selection
-  void setFontSelection(const FXFontDesc& fontdesc);
+  void setFontDesc(const FXFontDesc& fontdesc);
 
-  %extend {
-    /// Get font selection
-    FXFontDesc getFontSelection() const {
-	FXFontDesc fontdesc;
-        self->getFontSelection(fontdesc);
-	return fontdesc;
-    }
-  }
+  /// Get font selection
+  const FXFontDesc& getFontDesc() const;
 
   /// Destructor
   virtual ~FXFontSelector();

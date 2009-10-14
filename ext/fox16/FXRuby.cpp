@@ -1071,7 +1071,6 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
         case FXWindow::ID_CHECK:
         case FXWindow::ID_UNKNOWN:
         case FXWindow::ID_UPDATE:
-        case FXWindow::ID_AUTOSCROLL:
         case FXWindow::ID_QUERY_MENU:
         case FXWindow::ID_HOTKEY:
         case FXWindow::ID_ACCEL:
@@ -1131,9 +1130,6 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
             return reinterpret_cast<void*>(static_cast<FXuval>(RTEST(value) ? 1 : 0));
             }
           return NULL;
-        case FXWindow::ID_HSCROLLED:
-        case FXWindow::ID_VSCROLLED:
-          return reinterpret_cast<void*>(static_cast<unsigned long>(NUM2UINT(value)));
         case FXWindow::ID_SETINTVALUE:
           if(obj->isMemberOf(FXMETACLASS(FXColorWell))){
             colorValue=NUM2UINT(value);
