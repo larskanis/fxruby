@@ -1,6 +1,5 @@
 History.txt
 Manifest.txt
-README
 README.txt
 Rakefile
 TODO
