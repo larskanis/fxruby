@@ -11,7 +11,7 @@ FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
 hoe = Hoe.spec "FXRuby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
-  self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
+  self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*_wrap.cxx", "ext/fox16/*_wrap.cpp", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM"]
   developer("Lyle Johnson", "lyle@lylejohnson.name")
   self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
   self.remote_rdoc_dir = "doc/api"
