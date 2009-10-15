@@ -57,7 +57,7 @@ Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 # c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
 # before running swig on MinGW.
 namespace :swig do
-  SWIG = "swig"
+  SWIG = "swig-1.3.22"
   SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
   SWIG_LIB = `#{SWIG} -swiglib`.chomp
   SWIG_MODULES = {
