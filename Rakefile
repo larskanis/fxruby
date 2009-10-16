@@ -6,7 +6,11 @@ require './lib/fox16/version.rb'
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
+if RUBY_PLATFORM =~ /mingw/
+  FXSCINTILLA_INSTALL_DIR = "c:/src/fxscintilla-1.71/scintilla"
+else
+  FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
+end
 
 hoe = Hoe.spec "FXRuby" do
   # ... project specific data ...
