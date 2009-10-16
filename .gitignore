@@ -10,3 +10,5 @@ ext/fox16/librb.c
 ext/fox16/fox16.bundle
 ext/fox16/mkmf.log
 lib/fox16/kwargs.rb
+fox-includes/diffs.py
+fox-includes/diffs.txt
