@@ -2016,7 +2016,11 @@ extern "C" void Init_ui(void);
 #define REQUIRE(fname) rb_funcall(rb_mKernel,rb_intern("require"),1,rb_str_new2((fname))) 
 #endif
 
-extern "C" void Init_fox16(void) {
+extern "C" void
+#if defined _WIN32
+__declspec(dllexport)
+#endif
+Init_fox16(void) {
   Init_core();
   Init_dc();
   Init_frames();

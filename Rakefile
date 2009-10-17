@@ -6,12 +6,16 @@ require './lib/fox16/version.rb'
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
+if RUBY_PLATFORM =~ /mingw/
+  FXSCINTILLA_INSTALL_DIR = "c:/src/fxscintilla-1.71/scintilla"
+else
+  FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
+end
 
 hoe = Hoe.spec "FXRuby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
-  self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*_wrap.cxx", "ext/fox16/*_wrap.cpp", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM", "ext/fox16/include/swigrubyrun.h"]
+  self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM", "ext/fox16/include/swigrubyrun.h"]
   developer("Lyle Johnson", "lyle@lylejohnson.name")
   self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
   self.remote_rdoc_dir = "doc/api"
@@ -57,7 +61,7 @@ Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 # c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
 # before running swig on MinGW.
 namespace :swig do
-  SWIG = "swig-1.3.22"
+  SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig-1.3.22.exe" : "swig-1.3.22"
   SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
   SWIG_LIB = `#{SWIG} -swiglib`.chomp
   SWIG_MODULES = {
