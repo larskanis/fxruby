@@ -11,6 +11,8 @@ Checklist for FXRuby-1.6.20 release
    - Ruby 1.8.6/1.9.1 on MinGW
    - Ruby 1.8.7 on Mac OS 10.6
    - Ruby 1.8.6 on Mac OS 10.5
+   - Ruby 1.8.6 on Linux
+ * Update MacPorts
  * Updated changes.html page
  * Announcement on FOX and FXRuby mailing lists
  * Publish news item on RubyForge
