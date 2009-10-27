@@ -46,12 +46,18 @@ task :test => [:compile]
 # ... project specific tasks ...
 
 Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
-  if RUBY_PLATFORM =~ /mingw/
-    ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
-    ext.config_options << "--with-fox-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
-    ext.config_options << "--with-fxscintilla-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fxscintilla"
-    ext.config_options << "--with-fxscintilla-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
-  end
+  ext.cross_compile = true
+# ext.cross_platform = 'i386-mingw32'
+# ext.cross_platform = 'i386-mswin32'
+  ext.cross_config_options << "--with-fox-include=/home/lyle/src/mingw/fox-1.6.36/include"
+  ext.cross_config_options << "--with-fox-lib=/home/lyle/src/mingw/fox-1.6.36/src/.libs"
+  ext.cross_config_options << "--with-fxscintilla-include=/home/lyle/mingw/include/fxscintilla"
+  ext.cross_config_options << "--with-fxscintilla-lib=/home/lyle/mingw/lib"
+  
+  # perform alterations on the gem spec when cross-compiling
+# ext.cross_compiling do |gem_spec|
+#   gem_spec.post_install_message = "You installed the binary version of this gem!" 
+# end
 end
 
 # Make the compile task's list of dependencies begin with the :configure task
