@@ -55,9 +55,11 @@ Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   ext.cross_config_options << "--with-fxscintilla-lib=/home/lyle/mingw/lib"
   
   # perform alterations on the gem spec when cross-compiling
-# ext.cross_compiling do |gem_spec|
-#   gem_spec.post_install_message = "You installed the binary version of this gem!" 
-# end
+  ext.cross_compiling do |gem_spec|
+    gem_spec.files.delete "lib/fox16.so"
+    gem_spec.files << "lib/1.8/fox16.so"
+    gem_spec.files << "lib/1.9/fox16.so"
+  end
 end
 
 # Make the compile task's list of dependencies begin with the :configure task
