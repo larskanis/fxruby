@@ -15,7 +15,7 @@ Checklist for FXRuby-1.6.20 release
  * Updated changes.html page [DONE]
  * Announcement on FOX and FXRuby mailing lists
  * Publish news item on RubyForge [DONE]
- * Tag release in Git repository
+ * Tag release in Git repository [DONE]
  * Upload DOAP file to web site [DONE]
 
 Other
