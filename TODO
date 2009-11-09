@@ -1,11 +1,10 @@
 Checklist for FXRuby-1.6.20 release
 ===================================
 
- * Review bug list for any low-hanging fruit
- * Complete and publish updates to the FXRuby User's Guide
- * Update copyright notices in all source files
+ * Review bug list for any low-hanging fruit [DONE]
+ * Complete and publish updates to the FXRuby User's Guide [DONE]
+ * Update copyright notices in all source files [DONE]
  * Publish source gem
- * Publish source tarball
  * Publish binary gems for:
    - Ruby 1.8.6 on mswin32
    - Ruby 1.8.6/1.9.1 on MinGW
@@ -13,7 +12,7 @@ Checklist for FXRuby-1.6.20 release
    - Ruby 1.8.6 on Mac OS 10.5
    - Ruby 1.8.6 on Linux
  * Update MacPorts
- * Updated changes.html page
+ * Updated changes.html page [DONE]
  * Announcement on FOX and FXRuby mailing lists
  * Publish news item on RubyForge
  * Tag release in Git repository
