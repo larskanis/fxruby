@@ -12,7 +12,7 @@ else
   FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
 end
 
-hoe = Hoe.spec "FXRuby" do
+hoe = Hoe.spec "fxruby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
   self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM", "ext/fox16/include/swigrubyrun.h"]
