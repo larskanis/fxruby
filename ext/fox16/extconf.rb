@@ -92,6 +92,7 @@ def do_rake_compiler_setup
   end
   have_library("jpeg", "jpeg_mem_init")
   have_library("tiff", "TIFFSetErrorHandler")
+  have_library("Xft", "XftInit")
   find_library("Xext", "XShmQueryVersion", "/usr/X11R6/lib")
   find_library("X11", "XFindContext", "/usr/X11R6/lib")
   find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
