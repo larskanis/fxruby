@@ -75,14 +75,8 @@ Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 #
 
 namespace :swig do
-<<<<<<< HEAD
-  SWIG = "swig"
+  SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig-1.3.22"
   SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
-=======
-  SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig-1.3.22.exe" : "swig-1.3.22"
-  SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
-  SWIG_LIB = `#{SWIG} -swiglib`.chomp
->>>>>>> topic/1.6
   SWIG_MODULES = {
     "core.i" => "core_wrap.cxx",
     "dcmodule.i" => "dc_wrap.cxx",
