@@ -145,9 +145,6 @@ namespace :fxruby do
 
   desc "Update the web site."
   task :website => [:doap] do
-    system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-    system %{scp -Cq doc/*.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-    system %{scp -Cq doc/images/*.png lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc/images}
     system %{scp -Cq examples/*.rb lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/examples}
     system %{scp -Cq web/index.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
     system %{scp -Cq web/community.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
