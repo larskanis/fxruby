@@ -374,6 +374,7 @@ ext/fox16/treelist_wrap.cxx
 ext/fox16/ui_wrap.cxx
 ext/fox16/unregisterOwnedObjects.cpp
 index.html
+lib/fox16.rb
 lib/fox16/accel_table.rb
 lib/fox16/aliases.rb
 lib/fox16/bitmapview.rb

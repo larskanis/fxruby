@@ -6,9 +6,13 @@ require './lib/fox16/version.rb'
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
+if RUBY_PLATFORM =~ /mingw/
+  FXSCINTILLA_INSTALL_DIR = "c:/src/fxscintilla-1.71/scintilla"
+else
+  FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
+end
 
-hoe = Hoe.spec "FXRuby" do
+hoe = Hoe.spec "fxruby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
   self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*_wrap.cxx", "ext/fox16/*_wrap.cpp", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM", "ext/fox16/include/swigrubyrun.h", "ext/fox16/librb.c"]
@@ -42,11 +46,19 @@ task :test => [:compile]
 # ... project specific tasks ...
 
 Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
-  if RUBY_PLATFORM =~ /mingw/
-    ext.config_options << "--with-fox-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fox-1.6"
-    ext.config_options << "--with-fox-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
-    ext.config_options << "--with-fxscintilla-include=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/include/fxscintilla"
-    ext.config_options << "--with-fxscintilla-lib=c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/lib"
+  ext.cross_compile = true
+# ext.cross_platform = 'i386-mingw32'
+# ext.cross_platform = 'i386-mswin32'
+  ext.cross_config_options << "--with-fox-include=/home/lyle/src/mingw/fox-1.6.36/include"
+  ext.cross_config_options << "--with-fox-lib=/home/lyle/src/mingw/fox-1.6.36/src/.libs"
+  ext.cross_config_options << "--with-fxscintilla-include=/home/lyle/mingw/include/fxscintilla"
+  ext.cross_config_options << "--with-fxscintilla-lib=/home/lyle/mingw/lib"
+  
+  # perform alterations on the gem spec when cross-compiling
+  ext.cross_compiling do |gem_spec|
+    gem_spec.files.delete "lib/fox16.so"
+    gem_spec.files << "lib/1.8/fox16.so"
+    gem_spec.files << "lib/1.9/fox16.so"
   end
 end
 
@@ -63,8 +75,14 @@ Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 #
 
 namespace :swig do
+<<<<<<< HEAD
   SWIG = "swig"
   SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
+=======
+  SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig-1.3.22.exe" : "swig-1.3.22"
+  SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
+  SWIG_LIB = `#{SWIG} -swiglib`.chomp
+>>>>>>> topic/1.6
   SWIG_MODULES = {
     "core.i" => "core_wrap.cxx",
     "dcmodule.i" => "dc_wrap.cxx",
@@ -133,9 +151,6 @@ namespace :fxruby do
 
   desc "Update the web site."
   task :website => [:doap] do
-    system %{scp -Cq doc/*.css lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-    system %{scp -Cq doc/*.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc}
-    system %{scp -Cq doc/images/*.png lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/doc/images}
     system %{scp -Cq examples/*.rb lyle@rubyforge.org:/var/www/gforge-projects/fxruby/1.6/examples}
     system %{scp -Cq web/index.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}
     system %{scp -Cq web/community.html lyle@rubyforge.org:/var/www/gforge-projects/fxruby}

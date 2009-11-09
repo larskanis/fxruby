@@ -1,6 +1,6 @@
 /***********************************************************************
  * FXRuby -- the Ruby language bindings for the FOX GUI toolkit.
- * Copyright (c) 2001-2003 by J. Lyle Johnson. All Rights Reserved.
+ * Copyright (c) 2001-2009 by Lyle Johnson. All Rights Reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
