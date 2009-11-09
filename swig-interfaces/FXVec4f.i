@@ -17,7 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * For further information please contact the author by e-mail
- * at "lyle@users.sourceforge.net".
+ * at "lyle@lylejohnson.name".
  ***********************************************************************/
 
 %rename("crosses?") FXVec4f::crosses(const FXVec3f& a,const FXVec3f& b) const;
