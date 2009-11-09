@@ -4,24 +4,22 @@ Checklist for FXRuby-1.6.20 release
  * Review bug list for any low-hanging fruit [DONE]
  * Complete and publish updates to the FXRuby User's Guide [DONE]
  * Update copyright notices in all source files [DONE]
- * Publish source gem
+ * Publish source gem [DONE]
  * Publish binary gems for:
-   - Ruby 1.8.6 on mswin32
-   - Ruby 1.8.6/1.9.1 on MinGW
-   - Ruby 1.8.7 on Mac OS 10.6
+   - Ruby 1.8.6 on mswin32 [DONE?]
+   - Ruby 1.8.6/1.9.1 on MinGW [DONE]
+   - Ruby 1.8.7 on Mac OS 10.6 [DONE]
    - Ruby 1.8.6 on Mac OS 10.5
-   - Ruby 1.8.6 on Linux
+   - Ruby 1.8.6 on Linux [DONE]
  * Update MacPorts
  * Updated changes.html page [DONE]
  * Announcement on FOX and FXRuby mailing lists
  * Publish news item on RubyForge
  * Tag release in Git repository
+ * Upload DOAP file to web site
 
 Other
 =====
- * What about the existing bug lists and such?
-
- * Review all docs to purge references to SourceForge.
 
  * Modify FXGradientBar so that it just stores a reference to the gradients
    and doesn't own a copy (affects setGradients for example).
