@@ -6,7 +6,7 @@ Checklist for FXRuby-1.6.20 release
  * Update copyright notices in all source files [DONE]
  * Publish source gem [DONE]
  * Publish binary gems for:
-   - Ruby 1.8.6 on mswin32 [DONE?]
+   - Ruby 1.8.6 on mswin32
    - Ruby 1.8.6/1.9.1 on MinGW [DONE]
    - Ruby 1.8.7 on Mac OS 10.6 [DONE]
    - Ruby 1.8.6 on Mac OS 10.5
@@ -14,9 +14,9 @@ Checklist for FXRuby-1.6.20 release
  * Update MacPorts
  * Updated changes.html page [DONE]
  * Announcement on FOX and FXRuby mailing lists
- * Publish news item on RubyForge
+ * Publish news item on RubyForge [DONE]
  * Tag release in Git repository
- * Upload DOAP file to web site
+ * Upload DOAP file to web site [DONE]
 
 Other
 =====
