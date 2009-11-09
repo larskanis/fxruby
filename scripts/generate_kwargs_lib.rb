@@ -110,7 +110,7 @@ class Generator
     out.puts <<-END
 require 'fox16'
 
-$VERBOSE = nil
+old_verbose = $VERBOSE; $VERBOSE = nil
 
 module Fox
 
@@ -132,7 +132,7 @@ END
   def generate_closing(out)
     out.puts "end"
     out.puts ""
-    out.puts "$VERBOSE = true"
+    out.puts "$VERBOSE = old_verbose"
   end
   
   def scan_for_descriptions(filename)
