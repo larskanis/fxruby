@@ -41,7 +41,7 @@ inline void cls ## _create(cls *self){ \
 static void cls ## _init(cls* self,VALUE ary,bool connect){ \
   int i; \
   char **argv; \
-  int argc=1+RARRAY_LEN(ary); \
+  int argc=static_cast<int>(1+RARRAY_LEN(ary)); \
   if(FXMALLOC(&argv,char*,argc+1)){ \
     argv[0]=const_cast<char *>("foo"); \
     for(i=1;i<argc;i++){ \
