@@ -98,7 +98,7 @@ inline void cls ## _exit(cls *self,FXint code){ \
       rb_ary_push(ary,rb_str_new2(argv[i])); \
       } \
     FXRbCallVoidMethod(this,rb_intern("init"),ary,connect); \
-    argc=RARRAY_LEN(ary)+1; \
+    argc=static_cast<int>(RARRAY_LEN(ary)+1); \
     for(i=1; i<argc; i++){ \
       VALUE e=rb_ary_entry(ary,i-1); \
       argv[i]=StringValuePtr(e); \

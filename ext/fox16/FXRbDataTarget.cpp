@@ -45,11 +45,11 @@ void FXRbDataTarget::setValue(VALUE value){
       connect();
       break;
     case T_FIXNUM:
-      intValue=NUM2LONG(value);
+      intValue=static_cast<FXint>(NUM2LONG(value));
       connect(intValue);
       break;
     case T_BIGNUM: /* still not sure about this conversion */
-      intValue=NUM2ULONG(value);
+      intValue=static_cast<FXint>(NUM2ULONG(value));
       connect(intValue);
       break;
     case T_FLOAT:
