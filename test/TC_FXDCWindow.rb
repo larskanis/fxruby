@@ -10,13 +10,15 @@ class TC_FXDCWindow < TestCase
     app.create
     mainWindow.create
   end
+
   def test_new
     dc = FXDCWindow.new(mainWindow)
     dc.drawPoint(0, 0)
     dc.end
   end
+
   def test_new_with_block
-    dc = FXDCWindow.new(mainWindow) do |dc|
+    FXDCWindow.new(mainWindow) do |dc|
       dc.drawPoint(0, 0)
     end
   end
