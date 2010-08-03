@@ -37,7 +37,7 @@ inline void cls ## _create(cls *self){ \
 static void cls ## _init(cls* self,VALUE ary,FXbool connect){ \
   int i; \
   char **argv; \
-  int argc=1+RARRAY_LEN(ary); \
+  int argc=static_cast<int>(1+RARRAY_LEN(ary)); \
   if(FXMALLOC(&argv,char*,argc+1)){ \
     argv[0]=const_cast<char *>("foo"); \
     for(i=1;i<argc;i++){ \
@@ -94,7 +94,7 @@ inline void cls ## _exit(cls *self,FXint code){ \
       rb_ary_push(ary,rb_str_new2(argv[i])); \
       } \
     FXRbCallVoidMethod(this,rb_intern("init"),ary,connect); \
-    argc=RARRAY_LEN(ary)+1; \
+    argc=static_cast<int>(RARRAY_LEN(ary)+1); \
     for(i=1; i<argc; i++){ \
       VALUE e=rb_ary_entry(ary,i-1); \
       argv[i]=StringValuePtr(e); \

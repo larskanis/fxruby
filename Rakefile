@@ -26,7 +26,7 @@ hoe = Hoe.spec "fxruby" do
     :require_paths => ['ext/fox16', 'lib'],
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
-  self.test_globs = "test/**/TC_*.rb"
+  self.test_globs = ["test/**/TC_*.rb"]
   self.version = PKG_VERSION
 end
 
@@ -75,7 +75,7 @@ Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 #
 
 namespace :swig do
-  SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig-1.3.22"
+  SWIG = "swig"
   SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
   SWIG_MODULES = {
     "core.i" => "core_wrap.cxx",

@@ -108,8 +108,6 @@ class Generator
 
   def generate_preamble(out)
     out.puts <<-END
-require 'fox16'
-
 old_verbose = $VERBOSE; $VERBOSE = nil
 
 module Fox
