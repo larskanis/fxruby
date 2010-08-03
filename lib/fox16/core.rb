@@ -203,11 +203,11 @@ module Fox
   end
 
   class FXScrollArea
-	  # Returns a reference to the scroll corner (an FXScrollCorner instance) for this window.
-	  def scrollCorner
-		  verticalScrollBar.next
-		end
-	end
+    # Returns a reference to the scroll corner (an FXScrollCorner instance) for this window.
+    def scrollCorner
+      verticalScrollBar.next
+    end
+  end
 
   class FXSettings
     #
