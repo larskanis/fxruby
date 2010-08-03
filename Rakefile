@@ -26,7 +26,7 @@ hoe = Hoe.spec "fxruby" do
     :require_paths => ['ext/fox16', 'lib'],
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
-  self.test_globs = "test/**/TC_*.rb"
+  self.test_globs = ["test/**/TC_*.rb"]
   self.version = PKG_VERSION
 end
 
