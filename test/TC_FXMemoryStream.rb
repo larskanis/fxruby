@@ -30,10 +30,10 @@ class TC_FXMemoryStream < Test::Unit::TestCase
   end
 
   def test_open_streamload_unknown_size
-  	s = FXMemoryStream.new
-  	assert(s.open(FXStreamLoad, "foo"))
-  	s.close
-	end
+    s = FXMemoryStream.new
+    assert(s.open(FXStreamLoad, "foo"))
+    s.close
+  end
 
 	def test_open_streamsave_unknown_size
 		s = FXMemoryStream.new
