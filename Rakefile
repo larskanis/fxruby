@@ -22,7 +22,7 @@ hoe = Hoe.spec "fxruby" do
   self.spec_extras = {
     :description => "FXRuby is the Ruby binding to the FOX GUI toolkit.",
     :extensions => ["ext/fox16/extconf.rb"],
-    :rdoc_options => ['--main', File.join('rdoc-sources', 'README.rdoc'), '--exclude', 'ext/fox16', '--exclude', %r{aliases|kwargs|missingdep|responder}],
+    :rdoc_options => ['--main', File.join('rdoc-sources', 'README.rdoc'), '--exclude', 'ext/fox16', '--exclude', %r{aliases|kwargs|missingdep|responder}.inspect],
     :require_paths => ['ext/fox16', 'lib'],
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
@@ -53,7 +53,7 @@ Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   ext.cross_config_options << "--with-fox-lib=/home/lyle/src/mingw/fox-1.6.36/src/.libs"
   ext.cross_config_options << "--with-fxscintilla-include=/home/lyle/mingw/include/fxscintilla"
   ext.cross_config_options << "--with-fxscintilla-lib=/home/lyle/mingw/lib"
-  
+
   # perform alterations on the gem spec when cross-compiling
   ext.cross_compiling do |gem_spec|
     gem_spec.files.delete "lib/fox16.so"
@@ -101,7 +101,7 @@ namespace :swig do
   def wrapper_src_file_path(wrapper_src_file_name)
     File.join("..", "ext", "fox16", wrapper_src_file_name)
   end
-  
+
   def sed(wrapper_src_file_name)
     results = []
     IO.readlines(wrapper_src_file_name).each do |line|
@@ -118,7 +118,7 @@ namespace :swig do
       io.write(results.join)
     end
   end
-  
+
   def swig(swig_interface_file_name, wrapper_src_file_name)
     system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
     sed wrapper_src_file_path(wrapper_src_file_name)
@@ -170,7 +170,7 @@ namespace :fxruby do
   task :setversions do
     setversions("doap.rdf")
   end
-  
+
   def make_impl
     Dir.chdir "ext/fox16" do
       ruby "make_impl.rb"
