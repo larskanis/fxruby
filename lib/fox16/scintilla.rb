@@ -45,7 +45,7 @@ module Fox
       sendMessage(2005, 0, 0)
     end
 
-    # Returns the number of characters in the document.
+    # Returns the number of bytes in the document.
     def getLength
       sendMessage(2006, 0, 0)
     end
@@ -229,9 +229,6 @@ module Fox
     # This is the same value as CP_UTF8 in Windows
     SC_CP_UTF8 = 65001
 
-    # The SC_CP_DBCS value can be used to indicate a DBCS mode for GTK+.
-    SC_CP_DBCS = 1
-
     # Set the code page used to interpret the bytes of the document as characters.
     # The SC_CP_UTF8 value can be used to enter Unicode mode.
     def setCodePage(codePage)
@@ -270,12 +267,16 @@ module Fox
     SC_MARK_CIRCLEMINUS = 20
     SC_MARK_CIRCLEMINUSCONNECTED = 21
 
-    # Invisible mark that only sets the line background color.
+    # Invisible mark that only sets the line background colour.
     SC_MARK_BACKGROUND = 22
     SC_MARK_DOTDOTDOT = 23
     SC_MARK_ARROWS = 24
     SC_MARK_PIXMAP = 25
     SC_MARK_FULLRECT = 26
+    SC_MARK_LEFTRECT = 27
+    SC_MARK_AVAILABLE = 28
+    SC_MARK_UNDERLINE = 29
+    SC_MARK_RGBAIMAGE = 30
 
     SC_MARK_CHARACTER = 10000
 
@@ -305,6 +306,16 @@ module Fox
       sendMessage(2042, markerNumber, back & 0xffffff)
     end
 
+    # Set the background colour used for a particular marker number when its folding block is selected.
+    def markerSetBackSelected(markerNumber, back)
+      sendMessage(2292, markerNumber, back & 0xffffff)
+    end
+
+    # Enable/disable highlight for current folding bloc (smallest one that contains the caret)
+    def markerEnableHighlight(enabled)
+      sendMessage(2293, enabled, 0)
+    end
+
     # Add a marker to a line, returning an ID which can be used to find or delete the marker.
     def markerAdd(line, markerNumber)
       sendMessage(2043, line, markerNumber)
@@ -325,7 +336,8 @@ module Fox
       sendMessage(2046, line, 0)
     end
 
-    # Find the next line after lineStart that includes a marker in mask.
+    # Find the next line at or after lineStart that includes a marker in mask.
+    # Return -1 when no more lines.
     def markerNext(lineStart, markerMask)
       sendMessage(2047, lineStart, markerMask)
     end
@@ -354,6 +366,8 @@ module Fox
     SC_MARGIN_NUMBER = 1
     SC_MARGIN_BACK = 2
     SC_MARGIN_FORE = 3
+    SC_MARGIN_TEXT = 4
+    SC_MARGIN_RTEXT = 5
 
     # Set a margin to be either numeric or symbolic.
     def setMarginTypeN(margin, marginType)
@@ -395,6 +409,16 @@ module Fox
       sendMessage(2247, margin, 0) == 1 ? true : false
     end
 
+    # Set the cursor shown when the mouse is inside a margin.
+    def setMarginCursorN(margin, cursor)
+      sendMessage(2248, margin, cursor)
+    end
+
+    # Retrieve the cursor shown in a margin.
+    def getMarginCursorN(margin)
+      sendMessage(2249, margin, 0)
+    end
+
     # Styles in range 32..38 are predefined for parts of the UI and are not used as normal styles.
     # Style 39 is for future use.
     STYLE_DEFAULT = 32
@@ -405,7 +429,7 @@ module Fox
     STYLE_INDENTGUIDE = 37
     STYLE_CALLTIP = 38
     STYLE_LASTPREDEFINED = 39
-    STYLE_MAX = 127
+    STYLE_MAX = 255
 
     # Character set identifiers are used in StyleSetCharacterSet.
     # The values are the same as the Windows *_CHARSET values.
@@ -484,6 +508,76 @@ module Fox
     SC_CASE_MIXED = 0
     SC_CASE_UPPER = 1
     SC_CASE_LOWER = 2
+
+    # Get the foreground colour of a style.
+    def styleGetFore(style)
+      sendMessage(2481, style, 0)
+    end
+
+    # Get the background colour of a style.
+    def styleGetBack(style)
+      sendMessage(2482, style, 0)
+    end
+
+    # Get is a style bold or not.
+    def styleGetBold(style)
+      sendMessage(2483, style, 0) == 1 ? true : false
+    end
+
+    # Get is a style italic or not.
+    def styleGetItalic(style)
+      sendMessage(2484, style, 0) == 1 ? true : false
+    end
+
+    # Get the size of characters of a style.
+    def styleGetSize(style)
+      sendMessage(2485, style, 0)
+    end
+
+    # Get the font of a style.
+    # Returns the length of the fontName
+    def styleGetFont(style)
+      buffer = "".ljust(style)
+      sendMessage(2486, style, buffer)
+      buffer
+    end
+
+    # Get is a style to have its end of line filled or not.
+    def styleGetEOLFilled(style)
+      sendMessage(2487, style, 0) == 1 ? true : false
+    end
+
+    # Get is a style underlined or not.
+    def styleGetUnderline(style)
+      sendMessage(2488, style, 0) == 1 ? true : false
+    end
+
+    # Get is a style mixed case, or to force upper or lower case.
+    def styleGetCase(style)
+      sendMessage(2489, style, 0)
+    end
+
+    # Get the character get of the font in a style.
+    def styleGetCharacterSet(style)
+      sendMessage(2490, style, 0)
+    end
+
+    # Get is a style visible or not.
+    def styleGetVisible(style)
+      sendMessage(2491, style, 0) == 1 ? true : false
+    end
+
+    # Get is a style changeable or not (read only).
+    # Experimental feature, currently buggy.
+    def styleGetChangeable(style)
+      sendMessage(2492, style, 0) == 1 ? true : false
+    end
+
+    # Get is a style a hotspot or not.
+    def styleGetHotSpot(style)
+      sendMessage(2493, style, 0) == 1 ? true : false
+    end
+
     # Set a style to be mixed case, or to force upper or lower case.
     def styleSetCase(style, caseForce)
       sendMessage(2060, style, caseForce)
@@ -499,12 +593,12 @@ module Fox
       sendMessage(2409, style, hotspot)
     end
 
-    # Set the foreground colour of the selection and whether to use this setting.
+    # Set the foreground colour of the main and additional selections and whether to use this setting.
     def setSelFore(useSetting, fore)
       sendMessage(2067, useSetting, fore & 0xffffff)
     end
 
-    # Set the background colour of the selection and whether to use this setting.
+    # Set the background colour of the main and additional selections and whether to use this setting.
     def setSelBack(useSetting, back)
       sendMessage(2068, useSetting, back & 0xffffff)
     end
@@ -517,6 +611,16 @@ module Fox
     # Set the alpha of the selection.
     def setSelAlpha(alpha)
       sendMessage(2478, alpha, 0)
+    end
+
+    # Is the selection end of line filled?
+    def getSelEOLFilled
+      sendMessage(2479, 0, 0) == 1 ? true : false
+    end
+
+    # Set the selection to have its end of line filled or not.
+    def setSelEOLFilled(filled)
+      sendMessage(2480, filled, 0)
     end
 
     # Set the foreground colour of the caret.
@@ -560,7 +664,7 @@ module Fox
     end
 
     # Set the set of characters making up words for when moving or selecting by word.
-    # First sets deaults like SetCharsDefault.
+    # First sets defaults like SetCharsDefault.
     def setWordChars(characters)
       sendMessage(2077, 0, characters)
     end
@@ -576,7 +680,7 @@ module Fox
       sendMessage(2079, 0, 0)
     end
 
-    INDIC_MAX = 7
+    # Indicator style enumeration and some constants
     INDIC_PLAIN = 0
     INDIC_SQUIGGLE = 1
     INDIC_TT = 2
@@ -585,6 +689,13 @@ module Fox
     INDIC_HIDDEN = 5
     INDIC_BOX = 6
     INDIC_ROUNDBOX = 7
+    INDIC_STRAIGHTBOX = 8
+    INDIC_DASH = 9
+    INDIC_DOTS = 10
+    INDIC_SQUIGGLELOW = 11
+    INDIC_DOTBOX = 12
+    INDIC_MAX = 31
+    INDIC_CONTAINER = 8
     INDIC0_MASK = 0x20
     INDIC1_MASK = 0x40
     INDIC2_MASK = 0x80
@@ -610,6 +721,16 @@ module Fox
       sendMessage(2083, indic, 0)
     end
 
+    # Set an indicator to draw under text or over(default).
+    def indicSetUnder(indic, under)
+      sendMessage(2510, indic, under)
+    end
+
+    # Retrieve whether indicator drawn under or over text.
+    def indicGetUnder(indic)
+      sendMessage(2511, indic, 0) == 1 ? true : false
+    end
+
     # Set the foreground colour of all whitespace and whether to use this setting.
     def setWhitespaceFore(useSetting, fore)
       sendMessage(2084, useSetting, fore & 0xffffff)
@@ -618,6 +739,16 @@ module Fox
     # Set the background colour of all whitespace and whether to use this setting.
     def setWhitespaceBack(useSetting, back)
       sendMessage(2085, useSetting, back & 0xffffff)
+    end
+
+    # Set the size of the dots used to mark space characters.
+    def setWhitespaceSize(size)
+      sendMessage(2086, size, 0)
+    end
+
+    # Get the size of the dots used to mark space characters.
+    def getWhitespaceSize
+      sendMessage(2087, 0, 0)
     end
 
     # Divide each styling byte into lexical class bits (default: 5) and indicator
@@ -879,14 +1010,19 @@ module Fox
       sendMessage(2131, 0, 0) == 1 ? true : false
     end
 
+    SC_IV_NONE = 0
+    SC_IV_REAL = 1
+    SC_IV_LOOKFORWARD = 2
+    SC_IV_LOOKBOTH = 3
+
     # Show or hide indentation guides.
-    def setIndentationGuides(show)
-      sendMessage(2132, show, 0)
+    def setIndentationGuides(indentView)
+      sendMessage(2132, indentView, 0)
     end
 
     # Are the indentation guides visible?
     def getIndentationGuides
-      sendMessage(2133, 0, 0) == 1 ? true : false
+      sendMessage(2133, 0, 0)
     end
 
     # Set the highlighted indentation guide column.
@@ -948,6 +1084,11 @@ module Fox
     # Returns the position at the end of the selection.
     def getSelectionEnd
       sendMessage(2145, 0, 0)
+    end
+
+    # Set caret to a position, while removing any existing selection.
+    def setEmptySelection(pos)
+      sendMessage(2556, pos, 0)
     end
 
     # Sets the print magnification added to the point size of each style for printing.
@@ -1315,10 +1456,6 @@ module Fox
     SC_FOLDLEVELBASE = 0x400
     SC_FOLDLEVELWHITEFLAG = 0x1000
     SC_FOLDLEVELHEADERFLAG = 0x2000
-    SC_FOLDLEVELBOXHEADERFLAG = 0x4000
-    SC_FOLDLEVELBOXFOOTERFLAG = 0x8000
-    SC_FOLDLEVELCONTRACTED = 0x10000
-    SC_FOLDLEVELUNINDENT = 0x20000
     SC_FOLDLEVELNUMBERMASK = 0x0FFF
 
     # Set the fold level of a line.
@@ -1383,7 +1520,6 @@ module Fox
     SC_FOLDFLAG_LINEAFTER_EXPANDED = 0x0008
     SC_FOLDFLAG_LINEAFTER_CONTRACTED = 0x0010
     SC_FOLDFLAG_LEVELNUMBERS = 0x0040
-    SC_FOLDFLAG_BOX = 0x0001
 
     # Set some style options for folding.
     def setFoldFlags(flags)
@@ -1490,6 +1626,20 @@ module Fox
       sendMessage(2465, 0, 0)
     end
 
+    SC_WRAPINDENT_FIXED = 0
+    SC_WRAPINDENT_SAME = 1
+    SC_WRAPINDENT_INDENT = 2
+
+    # Sets how wrapped sublines are placed. Default is fixed.
+    def setWrapIndentMode(mode)
+      sendMessage(2472, mode, 0)
+    end
+
+    # Retrieve how wrapped sublines are placed. Default is fixed.
+    def getWrapIndentMode
+      sendMessage(2473, 0, 0)
+    end
+
     SC_CACHE_NONE = 0
     SC_CACHE_CARET = 1
     SC_CACHE_PAGE = 2
@@ -1513,6 +1663,16 @@ module Fox
     # Retrieve the document width assumed for scrolling.
     def getScrollWidth
       sendMessage(2275, 0, 0)
+    end
+
+    # Sets whether the maximum width line displayed is used to set scroll width.
+    def setScrollWidthTracking(tracking)
+      sendMessage(2516, tracking, 0)
+    end
+
+    # Retrieve whether the scroll width tracks wide lines.
+    def getScrollWidthTracking
+      sendMessage(2517, 0, 0) == 1 ? true : false
     end
 
     # Measure the pixel width of some text in a particular style.
@@ -1564,6 +1724,49 @@ module Fox
     # and then the foreground. This avoids chopping off characters that overlap the next run.
     def setTwoPhaseDraw(twoPhase)
       sendMessage(2284, twoPhase, 0)
+    end
+
+    # Control font anti-aliasing.
+
+    SC_EFF_QUALITY_MASK = 0xF
+    SC_EFF_QUALITY_DEFAULT = 0
+    SC_EFF_QUALITY_NON_ANTIALIASED = 1
+    SC_EFF_QUALITY_ANTIALIASED = 2
+    SC_EFF_QUALITY_LCD_OPTIMIZED = 3
+
+    # Choose the quality level for text from the FontQuality enumeration.
+    def setFontQuality(fontQuality)
+      sendMessage(2611, fontQuality, 0)
+    end
+
+    # Retrieve the quality level for text.
+    def getFontQuality
+      sendMessage(2612, 0, 0)
+    end
+
+    # Scroll so that a display line is at the top of the display.
+    def setFirstVisibleLine(lineDisplay)
+      sendMessage(2613, lineDisplay, 0)
+    end
+
+    SC_MULTIPASTE_ONCE = 0
+    SC_MULTIPASTE_EACH = 1
+
+    # Change the effect of pasting when there are multiple selections.
+    def setMultiPaste(multiPaste)
+      sendMessage(2614, multiPaste, 0)
+    end
+
+    # Retrieve the effect of pasting when there are multiple selections..
+    def getMultiPaste
+      sendMessage(2615, 0, 0)
+    end
+
+    # Retrieve the value of a tag from a regular expression search.
+    def getTag(tagNumber)
+      buffer = "".ljust(tagNumber)
+      sendMessage(2616, tagNumber, buffer)
+      buffer
     end
 
     # Make the target range start and end be the same as the selection range start and end.
@@ -1778,6 +1981,11 @@ module Fox
       sendMessage(2336, 0, 0)
     end
 
+    # Delete the word to the right of the caret, but not the trailing non-word characters.
+    def delWordRightEnd
+      sendMessage(2518, 0, 0)
+    end
+
     # Cut the line containing the caret.
     def lineCut
       sendMessage(2337, 0, 0)
@@ -1881,7 +2089,7 @@ module Fox
       sendMessage(2401, 0, 0)
     end
 
-    # How many characters are on a line, not including end of line characters?
+    # How many characters are on a line, including end of line characters?
     def lineLength(line)
       sendMessage(2350, line, 0)
     end
@@ -1891,9 +2099,19 @@ module Fox
       sendMessage(2351, pos1, pos2)
     end
 
+    # Use specified indicator to highlight matching braces instead of changing their style.
+    def braceHighlightIndicator(useBraceHighlightIndicator, indicator)
+      sendMessage(2498, useBraceHighlightIndicator, indicator)
+    end
+
     # Highlight the character at a position indicating there is no matching brace.
     def braceBadLight(pos)
       sendMessage(2352, pos, 0)
+    end
+
+    # Use specified indicator to highlight non matching brace instead of changing its style.
+    def braceBadLightIndicator(useBraceBadLightIndicator, indicator)
+      sendMessage(2499, useBraceBadLightIndicator, indicator)
     end
 
     # Find the position of a matching brace or INVALID_POSITION if no match.
@@ -2033,6 +2251,10 @@ module Fox
       sendMessage(2381, 0, 0) == 1 ? true : false
     end
 
+    SC_STATUS_OK = 0
+    SC_STATUS_FAILURE = 1
+    SC_STATUS_BADALLOC = 2
+
     # Change error status - 0 = OK.
     def setStatus(statusCode)
       sendMessage(2382, statusCode, 0)
@@ -2052,7 +2274,9 @@ module Fox
     end
 
     SC_CURSORNORMAL = -1
+    SC_CURSORARROW = 2
     SC_CURSORWAIT = 4
+    SC_CURSORREVERSEARROW = 7
     # Sets the cursor to one of the SC_CURSOR* values.
     def setCursor(cursorType)
       sendMessage(2386, cursorType, 0)
@@ -2178,9 +2402,19 @@ module Fox
       sendMessage(2410, useSetting, fore & 0xffffff)
     end
 
+    # Get the fore colour for active hotspots.
+    def getHotspotActiveFore
+      sendMessage(2494, 0, 0)
+    end
+
     # Set a back colour for active hotspots.
     def setHotspotActiveBack(useSetting, back)
       sendMessage(2411, useSetting, back & 0xffffff)
+    end
+
+    # Get the back colour for active hotspots.
+    def getHotspotActiveBack
+      sendMessage(2495, 0, 0)
     end
 
     # Enable / Disable underlining active hotspots.
@@ -2188,9 +2422,19 @@ module Fox
       sendMessage(2412, underline, 0)
     end
 
+    # Get whether underlining for active hotspots.
+    def getHotspotActiveUnderline
+      sendMessage(2496, 0, 0) == 1 ? true : false
+    end
+
     # Limit hotspots to single line so hotspots on two lines don't merge.
     def setHotspotSingleLine(singleLine)
       sendMessage(2421, singleLine, 0)
+    end
+
+    # Get the HotspotSingleLine property
+    def getHotspotSingleLine
+      sendMessage(2497, 0, 0) == 1 ? true : false
     end
 
     # Move caret between paragraphs (delimited by empty lines).
@@ -2232,8 +2476,9 @@ module Fox
     SC_SEL_STREAM = 0
     SC_SEL_RECTANGLE = 1
     SC_SEL_LINES = 2
+    SC_SEL_THIN = 3
 
-    # Set the selection mode to stream (SC_SEL_STREAM) or rectangular (SC_SEL_RECTANGLE) or
+    # Set the selection mode to stream (SC_SEL_STREAM) or rectangular (SC_SEL_RECTANGLE/SC_SEL_THIN) or
     # by lines (SC_SEL_LINES).
     def setSelectionMode(mode)
       sendMessage(2422, mode, 0)
@@ -2359,6 +2604,12 @@ module Fox
       sendMessage(2445, 0, 0)
     end
 
+    # Get currently selected item text in the auto-completion list
+    # Returns the length of the item text
+    def autoCGetCurrentText
+      sendMessage(2610, 0, s)
+    end
+
     # Enlarge the document to a particular size of text bytes.
     def allocate(bytes)
       sendMessage(2446, bytes, 0)
@@ -2393,13 +2644,17 @@ module Fox
 
     # Can the caret preferred x position only be changed by explicit movement commands?
     def getCaretSticky
-      sendMessage(2457, 0, 0) == 1 ? true : false
+      sendMessage(2457, 0, 0)
     end
 
     # Stop the caret preferred x position changing when the user types.
     def setCaretSticky(useCaretStickyBehaviour)
       sendMessage(2458, useCaretStickyBehaviour, 0)
     end
+
+    SC_CARETSTICKY_OFF = 0
+    SC_CARETSTICKY_ON = 1
+    SC_CARETSTICKY_WHITESPACE = 2
 
     # Switch between sticky and non-sticky: meant to be bound to a key.
     def toggleCaretSticky
@@ -2433,6 +2688,570 @@ module Fox
     # Get the background alpha of the caret line.
     def getCaretLineBackAlpha
       sendMessage(2471, 0, 0)
+    end
+
+    CARETSTYLE_INVISIBLE = 0
+    CARETSTYLE_LINE = 1
+    CARETSTYLE_BLOCK = 2
+
+    # Set the style of the caret to be drawn.
+    def setCaretStyle(caretStyle)
+      sendMessage(2512, caretStyle, 0)
+    end
+
+    # Returns the current style of the caret.
+    def getCaretStyle
+      sendMessage(2513, 0, 0)
+    end
+
+    # Set the indicator used for IndicatorFillRange and IndicatorClearRange
+    def setIndicatorCurrent(indicator)
+      sendMessage(2500, indicator, 0)
+    end
+
+    # Get the current indicator
+    def getIndicatorCurrent
+      sendMessage(2501, 0, 0)
+    end
+
+    # Set the value used for IndicatorFillRange
+    def setIndicatorValue(value)
+      sendMessage(2502, value, 0)
+    end
+
+    # Get the current indicator vaue
+    def getIndicatorValue
+      sendMessage(2503, 0, 0)
+    end
+
+    # Turn a indicator on over a range.
+    def indicatorFillRange(position, fillLength)
+      sendMessage(2504, position, fillLength)
+    end
+
+    # Turn a indicator off over a range.
+    def indicatorClearRange(position, clearLength)
+      sendMessage(2505, position, clearLength)
+    end
+
+    # Are any indicators present at position?
+    def indicatorAllOnFor(position)
+      sendMessage(2506, position, 0)
+    end
+
+    # What value does a particular indicator have at at a position?
+    def indicatorValueAt(indicator, position)
+      sendMessage(2507, indicator, position)
+    end
+
+    # Where does a particular indicator start?
+    def indicatorStart(indicator, position)
+      sendMessage(2508, indicator, position)
+    end
+
+    # Where does a particular indicator end?
+    def indicatorEnd(indicator, position)
+      sendMessage(2509, indicator, position)
+    end
+
+    # Set number of entries in position cache
+    def setPositionCache(size)
+      sendMessage(2514, size, 0)
+    end
+
+    # How many entries are allocated to the position cache?
+    def getPositionCache
+      sendMessage(2515, 0, 0)
+    end
+
+    # Copy the selection, if selection empty copy the line with the caret
+    def copyAllowLine
+      sendMessage(2519, 0, 0)
+    end
+
+    # Compact the document buffer and return a read-only pointer to the
+    # characters in the document.
+    def getCharacterPointer
+      sendMessage(2520, 0, 0)
+    end
+
+    # Always interpret keyboard input as Unicode
+    def setKeysUnicode(keysUnicode)
+      sendMessage(2521, keysUnicode, 0)
+    end
+
+    # Are keys always interpreted as Unicode?
+    def getKeysUnicode
+      sendMessage(2522, 0, 0) == 1 ? true : false
+    end
+
+    # Set the alpha fill colour of the given indicator.
+    def indicSetAlpha(indicator, alpha)
+      sendMessage(2523, indicator, alpha)
+    end
+
+    # Get the alpha fill colour of the given indicator.
+    def indicGetAlpha(indicator)
+      sendMessage(2524, indicator, 0)
+    end
+
+    # Set the alpha outline colour of the given indicator.
+    def indicSetOutlineAlpha(indicator, alpha)
+      sendMessage(2558, indicator, alpha)
+    end
+
+    # Get the alpha outline colour of the given indicator.
+    def indicGetOutlineAlpha(indicator)
+      sendMessage(2559, indicator, 0)
+    end
+
+    # Set extra ascent for each line
+    def setExtraAscent(extraAscent)
+      sendMessage(2525, extraAscent, 0)
+    end
+
+    # Get extra ascent for each line
+    def getExtraAscent
+      sendMessage(2526, 0, 0)
+    end
+
+    # Set extra descent for each line
+    def setExtraDescent(extraDescent)
+      sendMessage(2527, extraDescent, 0)
+    end
+
+    # Get extra descent for each line
+    def getExtraDescent
+      sendMessage(2528, 0, 0)
+    end
+
+    # Which symbol was defined for markerNumber with MarkerDefine
+    def markerSymbolDefined(markerNumber)
+      sendMessage(2529, markerNumber, 0)
+    end
+
+    # Set the text in the text margin for a line
+    def marginSetText(line, text)
+      sendMessage(2530, line, text)
+    end
+
+    # Get the text in the text margin for a line
+    def marginGetText(line)
+      buffer = "".ljust(line)
+      sendMessage(2531, line, buffer)
+      buffer
+    end
+
+    # Set the style number for the text margin for a line
+    def marginSetStyle(line, style)
+      sendMessage(2532, line, style)
+    end
+
+    # Get the style number for the text margin for a line
+    def marginGetStyle(line)
+      sendMessage(2533, line, 0)
+    end
+
+    # Set the style in the text margin for a line
+    def marginSetStyles(line, styles)
+      sendMessage(2534, line, styles)
+    end
+
+    # Get the styles in the text margin for a line
+    def marginGetStyles(line)
+      buffer = "".ljust(line)
+      sendMessage(2535, line, buffer)
+      buffer
+    end
+
+    # Clear the margin text on all lines
+    def marginTextClearAll
+      sendMessage(2536, 0, 0)
+    end
+
+    # Get the start of the range of style numbers used for margin text
+    def marginSetStyleOffset(style)
+      sendMessage(2537, style, 0)
+    end
+
+    # Get the start of the range of style numbers used for margin text
+    def marginGetStyleOffset
+      sendMessage(2538, 0, 0)
+    end
+
+    SC_MARGINOPTION_NONE = 0
+    SC_MARGINOPTION_SUBLINESELECT = 1
+
+    # Set the margin options.
+    def setMarginOptions(marginOptions)
+      sendMessage(2539, marginOptions, 0)
+    end
+
+    # Get the margin options.
+    def getMarginOptions
+      sendMessage(2557, 0, 0)
+    end
+
+    # Set the annotation text for a line
+    def annotationSetText(line, text)
+      sendMessage(2540, line, text)
+    end
+
+    # Get the annotation text for a line
+    def annotationGetText(line)
+      buffer = "".ljust(line)
+      sendMessage(2541, line, buffer)
+      buffer
+    end
+
+    # Set the style number for the annotations for a line
+    def annotationSetStyle(line, style)
+      sendMessage(2542, line, style)
+    end
+
+    # Get the style number for the annotations for a line
+    def annotationGetStyle(line)
+      sendMessage(2543, line, 0)
+    end
+
+    # Set the annotation styles for a line
+    def annotationSetStyles(line, styles)
+      sendMessage(2544, line, styles)
+    end
+
+    # Get the annotation styles for a line
+    def annotationGetStyles(line)
+      buffer = "".ljust(line)
+      sendMessage(2545, line, buffer)
+      buffer
+    end
+
+    # Get the number of annotation lines for a line
+    def annotationGetLines(line)
+      sendMessage(2546, line, 0)
+    end
+
+    # Clear the annotations from all lines
+    def annotationClearAll
+      sendMessage(2547, 0, 0)
+    end
+
+    ANNOTATION_HIDDEN = 0
+    ANNOTATION_STANDARD = 1
+    ANNOTATION_BOXED = 2
+
+    # Set the visibility for the annotations for a view
+    def annotationSetVisible(visible)
+      sendMessage(2548, visible, 0)
+    end
+
+    # Get the visibility for the annotations for a view
+    def annotationGetVisible
+      sendMessage(2549, 0, 0)
+    end
+
+    # Get the start of the range of style numbers used for annotations
+    def annotationSetStyleOffset(style)
+      sendMessage(2550, style, 0)
+    end
+
+    # Get the start of the range of style numbers used for annotations
+    def annotationGetStyleOffset
+      sendMessage(2551, 0, 0)
+    end
+
+    UNDO_MAY_COALESCE = 1
+
+    # Add a container action to the undo stack
+    def addUndoAction(token, flags)
+      sendMessage(2560, token, flags)
+    end
+
+    # Find the position of a character from a point within the window.
+    def charPositionFromPoint(x, y)
+      sendMessage(2561, x, y)
+    end
+
+    # Find the position of a character from a point within the window.
+    # Return INVALID_POSITION if not close to text.
+    def charPositionFromPointClose(x, y)
+      sendMessage(2562, x, y)
+    end
+
+    # Set whether multiple selections can be made
+    def setMultipleSelection(multipleSelection)
+      sendMessage(2563, multipleSelection, 0)
+    end
+
+    # Whether multiple selections can be made
+    def getMultipleSelection
+      sendMessage(2564, 0, 0) == 1 ? true : false
+    end
+
+    # Set whether typing can be performed into multiple selections
+    def setAdditionalSelectionTyping(additionalSelectionTyping)
+      sendMessage(2565, additionalSelectionTyping, 0)
+    end
+
+    # Whether typing can be performed into multiple selections
+    def getAdditionalSelectionTyping
+      sendMessage(2566, 0, 0) == 1 ? true : false
+    end
+
+    # Set whether additional carets will blink
+    def setAdditionalCaretsBlink(additionalCaretsBlink)
+      sendMessage(2567, additionalCaretsBlink, 0)
+    end
+
+    # Whether additional carets will blink
+    def getAdditionalCaretsBlink
+      sendMessage(2568, 0, 0) == 1 ? true : false
+    end
+
+    # Set whether additional carets are visible
+    def setAdditionalCaretsVisible(additionalCaretsBlink)
+      sendMessage(2608, additionalCaretsBlink, 0)
+    end
+
+    # Whether additional carets are visible
+    def getAdditionalCaretsVisible
+      sendMessage(2609, 0, 0) == 1 ? true : false
+    end
+
+    # How many selections are there?
+    def getSelections
+      sendMessage(2570, 0, 0)
+    end
+
+    # Clear selections to a single empty stream selection
+    def clearSelections
+      sendMessage(2571, 0, 0)
+    end
+
+    # Set a simple selection
+    def setSelection(caret, anchor)
+      sendMessage(2572, caret, anchor)
+    end
+
+    # Add a selection
+    def addSelection(caret, anchor)
+      sendMessage(2573, caret, anchor)
+    end
+
+    # Set the main selection
+    def setMainSelection(selection)
+      sendMessage(2574, selection, 0)
+    end
+
+    # Which selection is the main selection
+    def getMainSelection
+      sendMessage(2575, 0, 0)
+    end
+
+    def setSelectionNCaret(selection, pos)
+      sendMessage(2576, selection, pos)
+    end
+    def getSelectionNCaret(selection)
+      sendMessage(2577, selection, 0)
+    end
+    def setSelectionNAnchor(selection, posAnchor)
+      sendMessage(2578, selection, posAnchor)
+    end
+    def getSelectionNAnchor(selection)
+      sendMessage(2579, selection, 0)
+    end
+    def setSelectionNCaretVirtualSpace(selection, space)
+      sendMessage(2580, selection, space)
+    end
+    def getSelectionNCaretVirtualSpace(selection)
+      sendMessage(2581, selection, 0)
+    end
+    def setSelectionNAnchorVirtualSpace(selection, space)
+      sendMessage(2582, selection, space)
+    end
+    def getSelectionNAnchorVirtualSpace(selection)
+      sendMessage(2583, selection, 0)
+    end
+
+    # Sets the position that starts the selection - this becomes the anchor.
+    def setSelectionNStart(selection, pos)
+      sendMessage(2584, selection, pos)
+    end
+
+    # Returns the position at the start of the selection.
+    def getSelectionNStart(selection)
+      sendMessage(2585, selection, 0)
+    end
+
+    # Sets the position that ends the selection - this becomes the currentPosition.
+    def setSelectionNEnd(selection, pos)
+      sendMessage(2586, selection, pos, 0)
+    end
+
+    # Returns the position at the end of the selection.
+    def getSelectionNEnd(selection)
+      sendMessage(2587, selection, 0)
+    end
+
+    def setRectangularSelectionCaret(pos)
+      sendMessage(2588, pos, 0)
+    end
+    def getRectangularSelectionCaret
+      sendMessage(2589, 0, 0)
+    end
+    def setRectangularSelectionAnchor(posAnchor)
+      sendMessage(2590, posAnchor, 0)
+    end
+    def getRectangularSelectionAnchor
+      sendMessage(2591, 0, 0)
+    end
+    def setRectangularSelectionCaretVirtualSpace(space)
+      sendMessage(2592, space, 0)
+    end
+    def getRectangularSelectionCaretVirtualSpace
+      sendMessage(2593, 0, 0)
+    end
+    def setRectangularSelectionAnchorVirtualSpace(space)
+      sendMessage(2594, space, 0)
+    end
+    def getRectangularSelectionAnchorVirtualSpace
+      sendMessage(2595, 0, 0)
+    end
+
+    SCVS_NONE = 0
+    SCVS_RECTANGULARSELECTION = 1
+    SCVS_USERACCESSIBLE = 2
+
+    def setVirtualSpaceOptions(virtualSpaceOptions)
+      sendMessage(2596, virtualSpaceOptions, 0)
+    end
+    def getVirtualSpaceOptions
+      sendMessage(2597, 0, 0)
+    end
+
+    # On GTK+, allow selecting the modifier key to use for mouse-based
+    # rectangular selection. Often the window manager requires Alt+Mouse Drag
+    # for moving windows.
+    # Valid values are SCMOD_CTRL(default), SCMOD_ALT, or SCMOD_SUPER.
+
+    def setRectangularSelectionModifier(modifier)
+      sendMessage(2598, modifier, 0)
+    end
+
+    # Get the modifier key used for rectangular selection.
+    def getRectangularSelectionModifier
+      sendMessage(2599, 0, 0)
+    end
+
+    # Set the foreground colour of additional selections.
+    # Must have previously called SetSelFore with non-zero first argument for this to have an effect.
+    def setAdditionalSelFore(fore)
+      sendMessage(2600, fore & 0xffffff, 0)
+    end
+
+    # Set the background colour of additional selections.
+    # Must have previously called SetSelBack with non-zero first argument for this to have an effect.
+    def setAdditionalSelBack(back)
+      sendMessage(2601, back & 0xffffff, 0)
+    end
+
+    # Set the alpha of the selection.
+    def setAdditionalSelAlpha(alpha)
+      sendMessage(2602, alpha, 0)
+    end
+
+    # Get the alpha of the selection.
+    def getAdditionalSelAlpha
+      sendMessage(2603, 0, 0)
+    end
+
+    # Set the foreground colour of additional carets.
+    def setAdditionalCaretFore(fore)
+      sendMessage(2604, fore & 0xffffff, 0)
+    end
+
+    # Get the foreground colour of additional carets.
+    def getAdditionalCaretFore
+      sendMessage(2605, 0, 0)
+    end
+
+    # Set the main selection to the next selection.
+    def rotateSelection
+      sendMessage(2606, 0, 0)
+    end
+
+    # Swap that caret and anchor of the main selection.
+    def swapMainAnchorCaret
+      sendMessage(2607, 0, 0)
+    end
+
+    # Indicate that the internal state of a lexer has changed over a range and therefore
+    # there may be a need to redraw.
+    def changeLexerState(start, last)
+      sendMessage(2617, start, last)
+    end
+
+    # Find the next line at or after lineStart that is a contracted fold header line.
+    # Return -1 when no more lines.
+    def contractedFoldNext(lineStart)
+      sendMessage(2618, lineStart, 0)
+    end
+
+    # Centre current line in window.
+    def verticalCentreCaret
+      sendMessage(2619, 0, 0)
+    end
+
+    # Move the selected lines up one line, shifting the line above after the selection
+    def moveSelectedLinesUp
+      sendMessage(2620, 0, 0)
+    end
+
+    # Move the selected lines down one line, shifting the line below before the selection
+    def moveSelectedLinesDown
+      sendMessage(2621, 0, 0)
+    end
+
+    # Set the identifier reported as idFrom in notification messages.
+    def setIdentifier(identifier)
+      sendMessage(2622, identifier, 0)
+    end
+
+    # Get the identifier.
+    def getIdentifier
+      sendMessage(2623, 0, 0)
+    end
+
+    # Set the width for future RGBA image data.
+    def rGBAImageSetWidth(width)
+      sendMessage(2624, width, 0)
+    end
+
+    # Set the height for future RGBA image data.
+    def rGBAImageSetHeight(height)
+      sendMessage(2625, height, 0)
+    end
+
+    # Define a marker from RGBA data.
+    # It has the width and height from RGBAImageSetWidth/Height
+    def markerDefineRGBAImage(markerNumber, pixels)
+      sendMessage(2626, markerNumber, pixels)
+    end
+
+    # Register an RGBA image for use in autocompletion lists. 
+    # It has the width and height from RGBAImageSetWidth/Height
+    def registerRGBAImage(type, pixels)
+      sendMessage(2627, type, pixels)
+    end
+
+    # Scroll to start of document.
+    def scrollToStart
+      sendMessage(2628, 0, 0)
+    end
+
+    # Scroll to end of document.
+    def scrollToEnd
+      sendMessage(2629, 0, 0)
     end
 
     # Start notifying the container of all key presses and commands.
@@ -2509,6 +3328,43 @@ module Fox
       sendMessage(4011, 0, 0)
     end
 
+    # Retrieve the name of the lexer.
+    # Return the length of the text.
+    def getLexerLanguage
+      sendMessage(4012, 0, text)
+    end
+
+    # For private communication between an application and a known lexer.
+    def privateLexerCall(operation, pointer)
+      sendMessage(4013, operation, pointer)
+    end
+
+    # Retrieve a '\n' separated list of properties understood by the current lexer.
+    def propertyNames
+      sendMessage(4014, 0, names)
+    end
+
+    SC_TYPE_BOOLEAN = 0
+    SC_TYPE_INTEGER = 1
+    SC_TYPE_STRING = 2
+
+    # Retrieve the type of a property.
+    def propertyType(name)
+      sendMessage(4015, name, 0)
+    end
+
+    # Describe a property.
+    def describeProperty(name)
+      buffer = "".ljust(name)
+      sendMessage(4016, name, buffer)
+      buffer
+    end
+
+    # Retrieve a '\n' separated list of descriptions of the keyword sets understood by the current lexer.
+    def describeKeyWordSets
+      sendMessage(4017, 0, descriptions)
+    end
+
     # Notifications
     # Type of modification and the action which caused the modification.
     # These are defined as a bit mask to make it easy to specify which notifications are wanted.
@@ -2526,7 +3382,19 @@ module Fox
     SC_MOD_BEFOREINSERT = 0x400
     SC_MOD_BEFOREDELETE = 0x800
     SC_MULTILINEUNDOREDO = 0x1000
-    SC_MODEVENTMASKALL = 0x1FFF
+    SC_STARTACTION = 0x2000
+    SC_MOD_CHANGEINDICATOR = 0x4000
+    SC_MOD_CHANGELINESTATE = 0x8000
+    SC_MOD_CHANGEMARGIN = 0x10000
+    SC_MOD_CHANGEANNOTATION = 0x20000
+    SC_MOD_CONTAINER = 0x40000
+    SC_MOD_LEXERSTATE = 0x80000
+    SC_MODEVENTMASKALL = 0xFFFFF
+
+    SC_UPDATE_CONTENT = 0x1
+    SC_UPDATE_SELECTION = 0x2
+    SC_UPDATE_V_SCROLL = 0x4
+    SC_UPDATE_H_SCROLL = 0x8
 
     # For compatibility, these go through the COMMAND notification rather than NOTIFY
     # and should have had exactly the same values as the EN_* constants.
@@ -2557,11 +3425,16 @@ module Fox
     SCK_ADD = 310
     SCK_SUBTRACT = 311
     SCK_DIVIDE = 312
+    SCK_WIN = 313
+    SCK_RWIN = 314
+    SCK_MENU = 315
 
     SCMOD_NORM = 0
     SCMOD_SHIFT = 1
     SCMOD_CTRL = 2
     SCMOD_ALT = 4
+    SCMOD_SUPER = 8
+    SCMOD_META = 16
 
     # For SciLexer.h
     SCLEX_CONTAINER = 0
@@ -2641,6 +3514,29 @@ module Fox
     SCLEX_INNOSETUP = 76
     SCLEX_OPAL = 77
     SCLEX_SPICE = 78
+    SCLEX_D = 79
+    SCLEX_CMAKE = 80
+    SCLEX_GAP = 81
+    SCLEX_PLM = 82
+    SCLEX_PROGRESS = 83
+    SCLEX_ABAQUS = 84
+    SCLEX_ASYMPTOTE = 85
+    SCLEX_R = 86
+    SCLEX_MAGIK = 87
+    SCLEX_POWERSHELL = 88
+    SCLEX_MYSQL = 89
+    SCLEX_PO = 90
+    SCLEX_TAL = 91
+    SCLEX_COBOL = 92
+    SCLEX_TACL = 93
+    SCLEX_SORCUS = 94
+    SCLEX_POWERPRO = 95
+    SCLEX_NIMROD = 96
+    SCLEX_SML = 97
+    SCLEX_MARKDOWN = 98
+    SCLEX_TXT2TAGS = 99
+    SCLEX_A68K = 100
+    SCLEX_MODULA = 101
 
     # When a lexer specifies its language as SCLEX_AUTOMATIC it receives a
     # value assigned in sequence from SCLEX_AUTOMATIC+1.
@@ -2683,6 +3579,32 @@ module Fox
     SCE_C_COMMENTDOCKEYWORD = 17
     SCE_C_COMMENTDOCKEYWORDERROR = 18
     SCE_C_GLOBALCLASS = 19
+    SCE_C_STRINGRAW = 20
+    SCE_C_TRIPLEVERBATIM = 21
+    # Lexical states for SCLEX_D
+    SCE_D_DEFAULT = 0
+    SCE_D_COMMENT = 1
+    SCE_D_COMMENTLINE = 2
+    SCE_D_COMMENTDOC = 3
+    SCE_D_COMMENTNESTED = 4
+    SCE_D_NUMBER = 5
+    SCE_D_WORD = 6
+    SCE_D_WORD2 = 7
+    SCE_D_WORD3 = 8
+    SCE_D_TYPEDEF = 9
+    SCE_D_STRING = 10
+    SCE_D_STRINGEOL = 11
+    SCE_D_CHARACTER = 12
+    SCE_D_OPERATOR = 13
+    SCE_D_IDENTIFIER = 14
+    SCE_D_COMMENTLINEDOC = 15
+    SCE_D_COMMENTDOCKEYWORD = 16
+    SCE_D_COMMENTDOCKEYWORDERROR = 17
+    SCE_D_STRINGB = 18
+    SCE_D_STRINGR = 19
+    SCE_D_WORD5 = 20
+    SCE_D_WORD6 = 21
+    SCE_D_WORD7 = 22
     # Lexical states for SCLEX_TCL
     SCE_TCL_DEFAULT = 0
     SCE_TCL_COMMENT = 1
@@ -2863,6 +3785,9 @@ module Fox
     SCE_PL_STRING_QR = 29
     SCE_PL_STRING_QW = 30
     SCE_PL_POD_VERB = 31
+    SCE_PL_SUB_PROTOTYPE = 40
+    SCE_PL_FORMAT_IDENT = 41
+    SCE_PL_FORMAT = 42
     # Lexical states for SCLEX_RUBY
     SCE_RB_DEFAULT = 0
     SCE_RB_ERROR = 1
@@ -2974,6 +3899,7 @@ module Fox
     SCE_ERR_ABSF = 18
     SCE_ERR_TIDY = 19
     SCE_ERR_JAVA_STACK = 20
+    SCE_ERR_VALUE = 21
     # Lexical states for SCLEX_BATCH
     SCE_BAT_DEFAULT = 0
     SCE_BAT_COMMENT = 1
@@ -2999,6 +3925,7 @@ module Fox
     SCE_DIFF_POSITION = 4
     SCE_DIFF_DELETED = 5
     SCE_DIFF_ADDED = 6
+    SCE_DIFF_CHANGED = 7
     # Lexical states for SCLEX_CONF (Apache Configuration Files Lexer)
     SCE_CONF_DEFAULT = 0
     SCE_CONF_COMMENT = 1
@@ -3143,6 +4070,7 @@ module Fox
     SCE_ASM_CHARACTER = 12
     SCE_ASM_STRINGEOL = 13
     SCE_ASM_EXTINSTRUCTION = 14
+    SCE_ASM_COMMENTDIRECTIVE = 15
     # Lexical states for SCLEX_FORTRAN
     SCE_F_DEFAULT = 0
     SCE_F_COMMENT = 1
@@ -3177,6 +4105,12 @@ module Fox
     SCE_CSS_SINGLESTRING = 14
     SCE_CSS_IDENTIFIER2 = 15
     SCE_CSS_ATTRIBUTE = 16
+    SCE_CSS_IDENTIFIER3 = 17
+    SCE_CSS_PSEUDOELEMENT = 18
+    SCE_CSS_EXTENDED_IDENTIFIER = 19
+    SCE_CSS_EXTENDED_PSEUDOCLASS = 20
+    SCE_CSS_EXTENDED_PSEUDOELEMENT = 21
+    SCE_CSS_MEDIA = 22
     # Lexical states for SCLEX_POV
     SCE_POV_DEFAULT = 0
     SCE_POV_COMMENT = 1
@@ -3312,6 +4246,7 @@ module Fox
     SCE_YAML_DOCUMENT = 6
     SCE_YAML_TEXT = 7
     SCE_YAML_ERROR = 8
+    SCE_YAML_OPERATOR = 9
     # Lexical states for SCLEX_TEX
     SCE_TEX_DEFAULT = 0
     SCE_TEX_SPECIAL = 1
@@ -3339,8 +4274,19 @@ module Fox
     SCE_ERLANG_CHARACTER = 9
     SCE_ERLANG_MACRO = 10
     SCE_ERLANG_RECORD = 11
-    SCE_ERLANG_SEPARATOR = 12
+    SCE_ERLANG_PREPROC = 12
     SCE_ERLANG_NODE_NAME = 13
+    SCE_ERLANG_COMMENT_FUNCTION = 14
+    SCE_ERLANG_COMMENT_MODULE = 15
+    SCE_ERLANG_COMMENT_DOC = 16
+    SCE_ERLANG_COMMENT_DOC_MACRO = 17
+    SCE_ERLANG_ATOM_QUOTED = 18
+    SCE_ERLANG_MACRO_QUOTED = 19
+    SCE_ERLANG_RECORD_QUOTED = 20
+    SCE_ERLANG_NODE_NAME_QUOTED = 21
+    SCE_ERLANG_BIFS = 22
+    SCE_ERLANG_MODULES = 23
+    SCE_ERLANG_MODULES_ATT = 24
     SCE_ERLANG_UNKNOWN = 31
     # Lexical states for SCLEX_OCTAVE are identical to MatLab
     # Lexical states for SCLEX_MSSQL
@@ -3501,6 +4447,7 @@ module Fox
     SCE_CAML_OPERATOR = 7
     SCE_CAML_NUMBER = 8
     SCE_CAML_CHAR = 9
+    SCE_CAML_WHITE = 10
     SCE_CAML_STRING = 11
     SCE_CAML_COMMENT = 12
     SCE_CAML_COMMENT1 = 13
@@ -3545,6 +4492,7 @@ module Fox
     SCE_T3_USER1 = 17
     SCE_T3_USER2 = 18
     SCE_T3_USER3 = 19
+    SCE_T3_BRACE = 20
     # Lexical states for SCLEX_REBOL
     SCE_REBOL_DEFAULT = 0
     SCE_REBOL_COMMENTLINE = 1
@@ -3636,11 +4584,19 @@ module Fox
     SCE_FS_DATE = 16
     SCE_FS_STRINGEOL = 17
     SCE_FS_CONSTANT = 18
-    SCE_FS_ASM = 19
-    SCE_FS_LABEL = 20
-    SCE_FS_ERROR = 21
-    SCE_FS_HEXNUMBER = 22
-    SCE_FS_BINNUMBER = 23
+    SCE_FS_WORDOPERATOR = 19
+    SCE_FS_DISABLEDCODE = 20
+    SCE_FS_DEFAULT_C = 21
+    SCE_FS_COMMENTDOC_C = 22
+    SCE_FS_COMMENTLINEDOC_C = 23
+    SCE_FS_KEYWORD_C = 24
+    SCE_FS_KEYWORD2_C = 25
+    SCE_FS_NUMBER_C = 26
+    SCE_FS_STRING_C = 27
+    SCE_FS_PREPROCESSOR_C = 28
+    SCE_FS_OPERATOR_C = 29
+    SCE_FS_IDENTIFIER_C = 30
+    SCE_FS_STRINGEOL_C = 31
     # Lexical states for SCLEX_CSOUND
     SCE_CSOUND_DEFAULT = 0
     SCE_CSOUND_COMMENT = 1
@@ -3665,7 +4621,7 @@ module Fox
     SCE_INNO_PARAMETER = 3
     SCE_INNO_SECTION = 4
     SCE_INNO_PREPROC = 5
-    SCE_INNO_PREPROC_INLINE = 6
+    SCE_INNO_INLINE_EXPANSION = 6
     SCE_INNO_COMMENT_PASCAL = 7
     SCE_INNO_KEYWORD_PASCAL = 8
     SCE_INNO_KEYWORD_USER = 9
@@ -3693,6 +4649,333 @@ module Fox
     SCE_SPICE_DELIMITER = 6
     SCE_SPICE_VALUE = 7
     SCE_SPICE_COMMENTLINE = 8
+    # Lexical states for SCLEX_CMAKE
+    SCE_CMAKE_DEFAULT = 0
+    SCE_CMAKE_COMMENT = 1
+    SCE_CMAKE_STRINGDQ = 2
+    SCE_CMAKE_STRINGLQ = 3
+    SCE_CMAKE_STRINGRQ = 4
+    SCE_CMAKE_COMMANDS = 5
+    SCE_CMAKE_PARAMETERS = 6
+    SCE_CMAKE_VARIABLE = 7
+    SCE_CMAKE_USERDEFINED = 8
+    SCE_CMAKE_WHILEDEF = 9
+    SCE_CMAKE_FOREACHDEF = 10
+    SCE_CMAKE_IFDEFINEDEF = 11
+    SCE_CMAKE_MACRODEF = 12
+    SCE_CMAKE_STRINGVAR = 13
+    SCE_CMAKE_NUMBER = 14
+    # Lexical states for SCLEX_GAP
+    SCE_GAP_DEFAULT = 0
+    SCE_GAP_IDENTIFIER = 1
+    SCE_GAP_KEYWORD = 2
+    SCE_GAP_KEYWORD2 = 3
+    SCE_GAP_KEYWORD3 = 4
+    SCE_GAP_KEYWORD4 = 5
+    SCE_GAP_STRING = 6
+    SCE_GAP_CHAR = 7
+    SCE_GAP_OPERATOR = 8
+    SCE_GAP_COMMENT = 9
+    SCE_GAP_NUMBER = 10
+    SCE_GAP_STRINGEOL = 11
+    # Lexical state for SCLEX_PLM
+    SCE_PLM_DEFAULT = 0
+    SCE_PLM_COMMENT = 1
+    SCE_PLM_STRING = 2
+    SCE_PLM_NUMBER = 3
+    SCE_PLM_IDENTIFIER = 4
+    SCE_PLM_OPERATOR = 5
+    SCE_PLM_CONTROL = 6
+    SCE_PLM_KEYWORD = 7
+    # Lexical state for SCLEX_PROGRESS
+    SCE_4GL_DEFAULT = 0
+    SCE_4GL_NUMBER = 1
+    SCE_4GL_WORD = 2
+    SCE_4GL_STRING = 3
+    SCE_4GL_CHARACTER = 4
+    SCE_4GL_PREPROCESSOR = 5
+    SCE_4GL_OPERATOR = 6
+    SCE_4GL_IDENTIFIER = 7
+    SCE_4GL_BLOCK = 8
+    SCE_4GL_END = 9
+    SCE_4GL_COMMENT1 = 10
+    SCE_4GL_COMMENT2 = 11
+    SCE_4GL_COMMENT3 = 12
+    SCE_4GL_COMMENT4 = 13
+    SCE_4GL_COMMENT5 = 14
+    SCE_4GL_COMMENT6 = 15
+    SCE_4GL_DEFAULT_ = 16
+    SCE_4GL_NUMBER_ = 17
+    SCE_4GL_WORD_ = 18
+    SCE_4GL_STRING_ = 19
+    SCE_4GL_CHARACTER_ = 20
+    SCE_4GL_PREPROCESSOR_ = 21
+    SCE_4GL_OPERATOR_ = 22
+    SCE_4GL_IDENTIFIER_ = 23
+    SCE_4GL_BLOCK_ = 24
+    SCE_4GL_END_ = 25
+    SCE_4GL_COMMENT1_ = 26
+    SCE_4GL_COMMENT2_ = 27
+    SCE_4GL_COMMENT3_ = 28
+    SCE_4GL_COMMENT4_ = 29
+    SCE_4GL_COMMENT5_ = 30
+    SCE_4GL_COMMENT6_ = 31
+    # Lexical states for SCLEX_ABAQUS
+    SCE_ABAQUS_DEFAULT = 0
+    SCE_ABAQUS_COMMENT = 1
+    SCE_ABAQUS_COMMENTBLOCK = 2
+    SCE_ABAQUS_NUMBER = 3
+    SCE_ABAQUS_STRING = 4
+    SCE_ABAQUS_OPERATOR = 5
+    SCE_ABAQUS_WORD = 6
+    SCE_ABAQUS_PROCESSOR = 7
+    SCE_ABAQUS_COMMAND = 8
+    SCE_ABAQUS_SLASHCOMMAND = 9
+    SCE_ABAQUS_STARCOMMAND = 10
+    SCE_ABAQUS_ARGUMENT = 11
+    SCE_ABAQUS_FUNCTION = 12
+    # Lexical states for SCLEX_ASYMPTOTE
+    SCE_ASY_DEFAULT = 0
+    SCE_ASY_COMMENT = 1
+    SCE_ASY_COMMENTLINE = 2
+    SCE_ASY_NUMBER = 3
+    SCE_ASY_WORD = 4
+    SCE_ASY_STRING = 5
+    SCE_ASY_CHARACTER = 6
+    SCE_ASY_OPERATOR = 7
+    SCE_ASY_IDENTIFIER = 8
+    SCE_ASY_STRINGEOL = 9
+    SCE_ASY_COMMENTLINEDOC = 10
+    SCE_ASY_WORD2 = 11
+    # Lexical states for SCLEX_R
+    SCE_R_DEFAULT = 0
+    SCE_R_COMMENT = 1
+    SCE_R_KWORD = 2
+    SCE_R_BASEKWORD = 3
+    SCE_R_OTHERKWORD = 4
+    SCE_R_NUMBER = 5
+    SCE_R_STRING = 6
+    SCE_R_STRING2 = 7
+    SCE_R_OPERATOR = 8
+    SCE_R_IDENTIFIER = 9
+    SCE_R_INFIX = 10
+    SCE_R_INFIXEOL = 11
+    # Lexical state for SCLEX_MAGIKSF
+    SCE_MAGIK_DEFAULT = 0
+    SCE_MAGIK_COMMENT = 1
+    SCE_MAGIK_HYPER_COMMENT = 16
+    SCE_MAGIK_STRING = 2
+    SCE_MAGIK_CHARACTER = 3
+    SCE_MAGIK_NUMBER = 4
+    SCE_MAGIK_IDENTIFIER = 5
+    SCE_MAGIK_OPERATOR = 6
+    SCE_MAGIK_FLOW = 7
+    SCE_MAGIK_CONTAINER = 8
+    SCE_MAGIK_BRACKET_BLOCK = 9
+    SCE_MAGIK_BRACE_BLOCK = 10
+    SCE_MAGIK_SQBRACKET_BLOCK = 11
+    SCE_MAGIK_UNKNOWN_KEYWORD = 12
+    SCE_MAGIK_KEYWORD = 13
+    SCE_MAGIK_PRAGMA = 14
+    SCE_MAGIK_SYMBOL = 15
+    # Lexical state for SCLEX_POWERSHELL
+    SCE_POWERSHELL_DEFAULT = 0
+    SCE_POWERSHELL_COMMENT = 1
+    SCE_POWERSHELL_STRING = 2
+    SCE_POWERSHELL_CHARACTER = 3
+    SCE_POWERSHELL_NUMBER = 4
+    SCE_POWERSHELL_VARIABLE = 5
+    SCE_POWERSHELL_OPERATOR = 6
+    SCE_POWERSHELL_IDENTIFIER = 7
+    SCE_POWERSHELL_KEYWORD = 8
+    SCE_POWERSHELL_CMDLET = 9
+    SCE_POWERSHELL_ALIAS = 10
+    SCE_POWERSHELL_FUNCTION = 11
+    SCE_POWERSHELL_USER1 = 12
+    SCE_POWERSHELL_COMMENTSTREAM = 13
+    # Lexical state for SCLEX_MYSQL
+    SCE_MYSQL_DEFAULT = 0
+    SCE_MYSQL_COMMENT = 1
+    SCE_MYSQL_COMMENTLINE = 2
+    SCE_MYSQL_VARIABLE = 3
+    SCE_MYSQL_SYSTEMVARIABLE = 4
+    SCE_MYSQL_KNOWNSYSTEMVARIABLE = 5
+    SCE_MYSQL_NUMBER = 6
+    SCE_MYSQL_MAJORKEYWORD = 7
+    SCE_MYSQL_KEYWORD = 8
+    SCE_MYSQL_DATABASEOBJECT = 9
+    SCE_MYSQL_PROCEDUREKEYWORD = 10
+    SCE_MYSQL_STRING = 11
+    SCE_MYSQL_SQSTRING = 12
+    SCE_MYSQL_DQSTRING = 13
+    SCE_MYSQL_OPERATOR = 14
+    SCE_MYSQL_FUNCTION = 15
+    SCE_MYSQL_IDENTIFIER = 16
+    SCE_MYSQL_QUOTEDIDENTIFIER = 17
+    SCE_MYSQL_USER1 = 18
+    SCE_MYSQL_USER2 = 19
+    SCE_MYSQL_USER3 = 20
+    SCE_MYSQL_HIDDENCOMMAND = 21
+    # Lexical state for SCLEX_PO
+    SCE_PO_DEFAULT = 0
+    SCE_PO_COMMENT = 1
+    SCE_PO_MSGID = 2
+    SCE_PO_MSGID_TEXT = 3
+    SCE_PO_MSGSTR = 4
+    SCE_PO_MSGSTR_TEXT = 5
+    SCE_PO_MSGCTXT = 6
+    SCE_PO_MSGCTXT_TEXT = 7
+    SCE_PO_FUZZY = 8
+    # Lexical states for SCLEX_PASCAL
+    SCE_PAS_DEFAULT = 0
+    SCE_PAS_IDENTIFIER = 1
+    SCE_PAS_COMMENT = 2
+    SCE_PAS_COMMENT2 = 3
+    SCE_PAS_COMMENTLINE = 4
+    SCE_PAS_PREPROCESSOR = 5
+    SCE_PAS_PREPROCESSOR2 = 6
+    SCE_PAS_NUMBER = 7
+    SCE_PAS_HEXNUMBER = 8
+    SCE_PAS_WORD = 9
+    SCE_PAS_STRING = 10
+    SCE_PAS_STRINGEOL = 11
+    SCE_PAS_CHARACTER = 12
+    SCE_PAS_OPERATOR = 13
+    SCE_PAS_ASM = 14
+    # Lexical state for SCLEX_SORCUS
+    SCE_SORCUS_DEFAULT = 0
+    SCE_SORCUS_COMMAND = 1
+    SCE_SORCUS_PARAMETER = 2
+    SCE_SORCUS_COMMENTLINE = 3
+    SCE_SORCUS_STRING = 4
+    SCE_SORCUS_STRINGEOL = 5
+    SCE_SORCUS_IDENTIFIER = 6
+    SCE_SORCUS_OPERATOR = 7
+    SCE_SORCUS_NUMBER = 8
+    SCE_SORCUS_CONSTANT = 9
+    # Lexical state for SCLEX_POWERPRO
+    SCE_POWERPRO_DEFAULT = 0
+    SCE_POWERPRO_COMMENTBLOCK = 1
+    SCE_POWERPRO_COMMENTLINE = 2
+    SCE_POWERPRO_NUMBER = 3
+    SCE_POWERPRO_WORD = 4
+    SCE_POWERPRO_WORD2 = 5
+    SCE_POWERPRO_WORD3 = 6
+    SCE_POWERPRO_WORD4 = 7
+    SCE_POWERPRO_DOUBLEQUOTEDSTRING = 8
+    SCE_POWERPRO_SINGLEQUOTEDSTRING = 9
+    SCE_POWERPRO_LINECONTINUE = 10
+    SCE_POWERPRO_OPERATOR = 11
+    SCE_POWERPRO_IDENTIFIER = 12
+    SCE_POWERPRO_STRINGEOL = 13
+    SCE_POWERPRO_VERBATIM = 14
+    SCE_POWERPRO_ALTQUOTE = 15
+    SCE_POWERPRO_FUNCTION = 16
+    # Lexical states for SCLEX_SML
+    SCE_SML_DEFAULT = 0
+    SCE_SML_IDENTIFIER = 1
+    SCE_SML_TAGNAME = 2
+    SCE_SML_KEYWORD = 3
+    SCE_SML_KEYWORD2 = 4
+    SCE_SML_KEYWORD3 = 5
+    SCE_SML_LINENUM = 6
+    SCE_SML_OPERATOR = 7
+    SCE_SML_NUMBER = 8
+    SCE_SML_CHAR = 9
+    SCE_SML_STRING = 11
+    SCE_SML_COMMENT = 12
+    SCE_SML_COMMENT1 = 13
+    SCE_SML_COMMENT2 = 14
+    SCE_SML_COMMENT3 = 15
+    # Lexical state for SCLEX_MARKDOWN
+    SCE_MARKDOWN_DEFAULT = 0
+    SCE_MARKDOWN_LINE_BEGIN = 1
+    SCE_MARKDOWN_STRONG1 = 2
+    SCE_MARKDOWN_STRONG2 = 3
+    SCE_MARKDOWN_EM1 = 4
+    SCE_MARKDOWN_EM2 = 5
+    SCE_MARKDOWN_HEADER1 = 6
+    SCE_MARKDOWN_HEADER2 = 7
+    SCE_MARKDOWN_HEADER3 = 8
+    SCE_MARKDOWN_HEADER4 = 9
+    SCE_MARKDOWN_HEADER5 = 10
+    SCE_MARKDOWN_HEADER6 = 11
+    SCE_MARKDOWN_PRECHAR = 12
+    SCE_MARKDOWN_ULIST_ITEM = 13
+    SCE_MARKDOWN_OLIST_ITEM = 14
+    SCE_MARKDOWN_BLOCKQUOTE = 15
+    SCE_MARKDOWN_STRIKEOUT = 16
+    SCE_MARKDOWN_HRULE = 17
+    SCE_MARKDOWN_LINK = 18
+    SCE_MARKDOWN_CODE = 19
+    SCE_MARKDOWN_CODE2 = 20
+    SCE_MARKDOWN_CODEBK = 21
+    # Lexical state for SCLEX_TXT2TAGS
+    SCE_TXT2TAGS_DEFAULT = 0
+    SCE_TXT2TAGS_LINE_BEGIN = 1
+    SCE_TXT2TAGS_STRONG1 = 2
+    SCE_TXT2TAGS_STRONG2 = 3
+    SCE_TXT2TAGS_EM1 = 4
+    SCE_TXT2TAGS_EM2 = 5
+    SCE_TXT2TAGS_HEADER1 = 6
+    SCE_TXT2TAGS_HEADER2 = 7
+    SCE_TXT2TAGS_HEADER3 = 8
+    SCE_TXT2TAGS_HEADER4 = 9
+    SCE_TXT2TAGS_HEADER5 = 10
+    SCE_TXT2TAGS_HEADER6 = 11
+    SCE_TXT2TAGS_PRECHAR = 12
+    SCE_TXT2TAGS_ULIST_ITEM = 13
+    SCE_TXT2TAGS_OLIST_ITEM = 14
+    SCE_TXT2TAGS_BLOCKQUOTE = 15
+    SCE_TXT2TAGS_STRIKEOUT = 16
+    SCE_TXT2TAGS_HRULE = 17
+    SCE_TXT2TAGS_LINK = 18
+    SCE_TXT2TAGS_CODE = 19
+    SCE_TXT2TAGS_CODE2 = 20
+    SCE_TXT2TAGS_CODEBK = 21
+    SCE_TXT2TAGS_COMMENT = 22
+    SCE_TXT2TAGS_OPTION = 23
+    SCE_TXT2TAGS_PREPROC = 24
+    SCE_TXT2TAGS_POSTPROC = 25
+    # Lexical states for SCLEX_A68K
+    SCE_A68K_DEFAULT = 0
+    SCE_A68K_COMMENT = 1
+    SCE_A68K_NUMBER_DEC = 2
+    SCE_A68K_NUMBER_BIN = 3
+    SCE_A68K_NUMBER_HEX = 4
+    SCE_A68K_STRING1 = 5
+    SCE_A68K_OPERATOR = 6
+    SCE_A68K_CPUINSTRUCTION = 7
+    SCE_A68K_EXTINSTRUCTION = 8
+    SCE_A68K_REGISTER = 9
+    SCE_A68K_DIRECTIVE = 10
+    SCE_A68K_MACRO_ARG = 11
+    SCE_A68K_LABEL = 12
+    SCE_A68K_STRING2 = 13
+    SCE_A68K_IDENTIFIER = 14
+    SCE_A68K_MACRO_DECLARATION = 15
+    SCE_A68K_COMMENT_WORD = 16
+    SCE_A68K_COMMENT_SPECIAL = 17
+    SCE_A68K_COMMENT_DOXYGEN = 18
+    # Lexical states for SCLEX_MODULA
+    SCE_MODULA_DEFAULT = 0
+    SCE_MODULA_COMMENT = 1
+    SCE_MODULA_DOXYCOMM = 2
+    SCE_MODULA_DOXYKEY = 3
+    SCE_MODULA_KEYWORD = 4
+    SCE_MODULA_RESERVED = 5
+    SCE_MODULA_NUMBER = 6
+    SCE_MODULA_BASENUM = 7
+    SCE_MODULA_FLOAT = 8
+    SCE_MODULA_STRING = 9
+    SCE_MODULA_STRSPEC = 10
+    SCE_MODULA_CHAR = 11
+    SCE_MODULA_CHARSPEC = 12
+    SCE_MODULA_PROC = 13
+    SCE_MODULA_PRAGMA = 14
+    SCE_MODULA_PRGKEY = 15
+    SCE_MODULA_OPERATOR = 16
+    SCE_MODULA_BADSTR = 17
 
     # Events
 
@@ -3719,23 +5002,16 @@ module Fox
     SCN_HOTSPOTDOUBLECLICK = 2020
     SCN_CALLTIPCLICK = 2021
     SCN_AUTOCSELECTION = 2022
+    SCN_INDICATORCLICK = 2023
+    SCN_INDICATORRELEASE = 2024
+    SCN_AUTOCCANCELLED = 2025
+    SCN_AUTOCCHARDELETED = 2026
+    SCN_HOTSPOTRELEASECLICK = 2027
 
     # Deprecated
 
-    # CARET_POLICY changed in 1.47
-    def setCaretPolicy(caretPolicy, caretSlop)
-      sendMessage(2369, caretPolicy, caretSlop)
-    end
-    CARET_CENTER = 0x02
-    CARET_XEVEN = 0x08
-    CARET_XJUMPS = 0x10
-
-    # The old name for SCN_UPDATEUI
-    SCN_CHECKBRACE = 2007
-    SCN_POSCHANGED = 2012
-
-    # SCLEX_HTML should be used in preference to these.
-    SCLEX_ASP = 29
-    SCLEX_PHP = 30
+    # Deprecated in 2.21
+    # The SC_CP_DBCS value can be used to indicate a DBCS mode for GTK+.
+    SC_CP_DBCS = 1
   end
 end
