@@ -3,14 +3,11 @@ require 'hoe'
 require 'erb'
 require 'rake/extensiontask'
 require './lib/fox16/version.rb'
+load 'Rakefile.cross'
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-if RUBY_PLATFORM =~ /mingw/
-  FXSCINTILLA_INSTALL_DIR = "c:/src/fxscintilla-1.71/scintilla"
-else
-  FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
-end
+FXSCINTILLA_INSTALL_DIR = Pathname( "build/builds/fxscintilla-#{LIBFXSCINTILLA_VERSION}" ).expand_path
 
 hoe = Hoe.spec "fxruby" do
   # ... project specific data ...
@@ -47,19 +44,13 @@ task :test => [:compile]
 
 Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   ext.cross_compile = true
-# ext.cross_platform = 'i386-mingw32'
-# ext.cross_platform = 'i386-mswin32'
-  ext.cross_config_options << "--with-fox-include=/home/lyle/src/mingw/fox-1.6.36/include"
-  ext.cross_config_options << "--with-fox-lib=/home/lyle/src/mingw/fox-1.6.36/src/.libs"
-  ext.cross_config_options << "--with-fxscintilla-include=/home/lyle/mingw/include/fxscintilla"
-  ext.cross_config_options << "--with-fxscintilla-lib=/home/lyle/mingw/lib"
-
-  # perform alterations on the gem spec when cross-compiling
-  ext.cross_compiling do |gem_spec|
-    gem_spec.files.delete "lib/fox16.so"
-    gem_spec.files << "lib/1.8/fox16.so"
-    gem_spec.files << "lib/1.9/fox16.so"
-  end
+  ext.cross_platform = ['i386-mswin32', 'i386-mingw32']
+  ext.cross_config_options += [
+    "--with-fxscintilla-include=#{STATIC_INSTALLDIR}/include/fxscintilla",
+    "--with-installed-dir=#{STATIC_INSTALLDIR}",
+    "--enable-win32-static-build",
+    "--with-fxscintilla",
+  ]
 end
 
 # Make the compile task's list of dependencies begin with the :configure task
@@ -181,7 +172,7 @@ namespace :fxruby do
     make_impl
   end
 
-  task :scintilla do
+  task :scintilla => [FXSCINTILLA_INSTALL_DIR] do
     ruby "scripts/iface.rb -i #{FXSCINTILLA_INSTALL_DIR}/include/Scintilla.iface -o lib/fox16/scintilla.rb"
   end
 

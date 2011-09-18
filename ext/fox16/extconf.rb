@@ -17,7 +17,7 @@ def find_installed_fox_version
   end
   incdirs = usrdirs + stddirs
   incdirs.uniq! # remove duplicates
-  
+
   incdirs.each do |incdir|
     filename = File.join(incdir, "fxver.h")
     if FileTest.exist?(filename)
@@ -26,7 +26,7 @@ def find_installed_fox_version
       return
     end
   end
-  
+
   # Couldn't find it; this should have been caught by the pre-config script
   raise RuntimeError, "couldn't find FOX header files"
 end
@@ -47,7 +47,7 @@ def find_installed_fxscintilla_version
   end
   incdirs = usrdirs + stddirs
   incdirs.uniq! # remove duplicates
-  
+
   incdirs.each do |incdir|
     filename = File.join(incdir, "FXScintilla.h")
     if FileTest.exist?(filename)
@@ -62,7 +62,7 @@ end
 def is_fxscintilla_build?
   # No means no
   return false if fxscintilla_support_suppressed?
-  
+
   # Check arguments
   args = ARGV.delete_if { |e| !(e =~ /--with-fxscintilla/) }
   (args.length > 0) || $autodetected_fxscintilla
@@ -73,7 +73,15 @@ def fxscintilla_support_suppressed?
 end
 
 def do_rake_compiler_setup
-  if RUBY_PLATFORM =~ /mingw/
+  if enable_config("win32-static-build")
+    dir_config("installed")
+    have_library( 'gdi32', 'CreateDC' ) && append_library( $libs, 'gdi32' )
+    have_library( 'opengl32' ) && append_library( $libs, 'opengl32' )
+    have_library( 'winspool', 'EnumPrintersA') && append_library( $libs, 'winspool' )
+
+    CONFIG['CC'] += "\nCXX=i586-mingw32msvc-g++" # Hack CXX into Makefile for cross compilation
+    $CFLAGS += " -D_SYS_TIME_H_" # fix incompatible types for gettimeofday()
+  elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
     $LDFLAGS = $LDFLAGS + " -I/usr/local/lib"
     %w{stdc++ glu32 opengl32 wsock32 comctl32 mpr gdi32 winspool}.each {|lib| $libs = append_library($libs, lib) }
@@ -98,8 +106,8 @@ def do_rake_compiler_setup
   find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
   find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
   $libs = append_library($libs, "FOX-1.6")
-  $libs = append_library($libs, "Xrandr") unless RUBY_PLATFORM =~ /mingw/
-  $libs = append_library($libs, "Xcursor") unless RUBY_PLATFORM =~ /mingw/
+  $libs = append_library($libs, "Xrandr") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
+  $libs = append_library($libs, "Xcursor") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
   $libs = append_library($libs, "png")
   $CFLAGS = $CFLAGS + " -O0 -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
