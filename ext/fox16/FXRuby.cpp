@@ -204,12 +204,11 @@ FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
 #ifdef RUBY_1_9
   rb_io_t *fptr;
   GetOpenFile(obj, fptr);
-  FILE *fpr=fptr->stdio_file;
+  return fptr->fd;
 #else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
   FILE *fpr=GetReadFile(fptr);
-#endif /* RUBY_1_9 */
 #ifdef WIN32
 #ifdef __CYGWIN__
   return (FXInputHandle) get_osfhandle(fileno(fpr));
@@ -219,6 +218,7 @@ FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
 #else
   return (FXInputHandle) fileno(fpr);
 #endif
+#endif /* RUBY_1_9 */
   }
 
 
@@ -227,12 +227,11 @@ FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
 #ifdef RUBY_1_9
   rb_io_t *fptr;
   GetOpenFile(obj, fptr);
-  FILE *fpw=fptr->stdio_file;
+  return fptr->fd;
 #else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
   FILE *fpw=GetWriteFile(fptr);
-#endif /* RUBY_1_9 */
 #ifdef WIN32
 #ifdef __CYGWIN__
   return (FXInputHandle) get_osfhandle(fileno(fpw));
@@ -242,6 +241,7 @@ FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
 #else
   return (FXInputHandle) fileno(fpw);
 #endif
+#endif /* RUBY_1_9 */
   }
 
 
@@ -431,7 +431,7 @@ VALUE FXRbMakeArray(const FXRectangle* rectangles,FXuint nrectangles){
     rb_ary_push(result,FXRbGetRubyObj(&rectangles[i],"FXRectangle *"));
   return result;
   }
-  
+
 // Returns a Ruby array of FXSegments
 VALUE FXRbMakeArray(const FXSegment* segments,FXuint nsegments){
   VALUE result=rb_ary_new();
@@ -1170,7 +1170,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
 	    }
 		return 0;
     }
-	
+
 	if(type==SEL_DRAGGED){
 	    SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
 	    return ptr;
@@ -1344,7 +1344,7 @@ void FXRbRange2LoHi(VALUE range,FXdouble& lo,FXdouble& hi){
       }
     }
   }
-  
+
 //----------------------------------------------------------------------
 
 void FXRbCallVoidMethod(FXObject* recv, ID func) {
@@ -1594,7 +1594,7 @@ FXRbMenuRadio::~FXRbMenuRadio(){
 void FXRbTreeList::enumerateItem(FXTreeItem* item,FXObjectListOf<FXTreeItem>& items){
   // Add this item to the list
   items.append(item);
-  
+
   // Add this item's children
   FXRbTreeList::enumerateItems(item->getFirst(),item->getLast(),items);
   }
@@ -1623,7 +1623,7 @@ void FXRbTreeList::enumerateItems(FXTreeItem* fm,FXTreeItem* to,FXObjectListOf<F
 void FXRbFoldingList::enumerateItem(FXFoldingItem* item,FXObjectListOf<FXFoldingItem>& items){
   // Add this item to the list
   items.append(item);
-  
+
   // Add this item's children
   FXRbFoldingList::enumerateItems(item->getFirst(),item->getLast(),items);
   }
@@ -1658,7 +1658,7 @@ FXint FXRbComboBox::sortFunc(const FXListItem* a,const FXListItem* b){
   return static_cast<FXint>(NUM2INT(result));
   }
 
-  
+
 // Sort function stand-in for FXFoldingList
 FXint FXRbFoldingList::sortFunc(const FXFoldingItem* a,const FXFoldingItem* b){
   VALUE itemA = FXRbGetRubyObj(const_cast<FXFoldingItem*>(a), "FXFoldingItem *");
@@ -1694,7 +1694,7 @@ FXint FXRbListBox::sortFunc(const FXListItem* a,const FXListItem* b){
   return static_cast<FXint>(NUM2INT(result));
   }
 
-  
+
 // Sort function stand-in for FXTreeList
 FXint FXRbTreeList::sortFunc(const FXTreeItem* a,const FXTreeItem* b){
   VALUE itemA = FXRbGetRubyObj(const_cast<FXTreeItem*>(a), "FXTreeItem *");
@@ -2013,7 +2013,7 @@ extern "C" void Init_ui(void);
 #ifdef USE_RB_REQUIRE
 #define REQUIRE(fname) rb_require((fname))
 #else
-#define REQUIRE(fname) rb_funcall(rb_mKernel,rb_intern("require"),1,rb_str_new2((fname))) 
+#define REQUIRE(fname) rb_funcall(rb_mKernel,rb_intern("require"),1,rb_str_new2((fname)))
 #endif
 
 extern "C" void
@@ -2053,14 +2053,14 @@ Init_fox16(void) {
   REQUIRE("fox16/version");
   REQUIRE("fox16/kwargs");
   REQUIRE("fox16/exceptions_for_fxerror");
-  
+
   id_assocs=rb_intern("@assocs");
   id_backtrace=rb_intern("backtrace");
   id_cmp=rb_intern("<=>");
   id_begin=rb_intern("begin");
   id_end=rb_intern("end");
   id_exclude_endp=rb_intern("exclude_end?");
-  
+
   FXRuby_Objects=st_init_numtable();
   appSensitiveObjs=st_init_numtable();
   appSensitiveDCs=st_init_numtable();
