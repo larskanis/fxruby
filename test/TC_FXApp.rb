@@ -33,11 +33,11 @@ class TC_FXApp2 < TestCase
       pipe_wr.write " "
     end
     app.run
+    assert data_sent, "the read input event shouldn't fire before some data is available"
+
     app.removeInput(pipe_rd, INPUT_READ)
     pipe_wr.close
-    pipe_rd.close
-
-    assert data_sent, "the read input event shouldn't fire before some data is available"
+    pipe_rd.close unless pipe_rd.closed?
   end
 
   def test_addInput_on_pipe
@@ -51,5 +51,10 @@ class TC_FXApp2 < TestCase
     s.close
 
     check_events pipe_rd, pipe_wr
+  end
+
+  def test_addInput_on_popen
+    pipe_rdwr = IO.popen("cat", "r+")
+    check_events pipe_rdwr, pipe_rdwr
   end
 end
