@@ -156,47 +156,47 @@ FXbool FXRbCatchExceptions=FALSE;
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
-#ifdef RUBY_1_9
-  rb_io_t *fptr;
-  GetOpenFile(obj, fptr);
-  return fptr->fd;
-#else
-  OpenFile *fptr;
-  GetOpenFile(obj, fptr);
-  FILE *fpr=GetReadFile(fptr);
+  int fd;
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #ifdef WIN32
 #ifdef __CYGWIN__
-  return (FXInputHandle) get_osfhandle(fileno(fpr));
+  return (FXInputHandle) get_osfhandle(fd);
 #else
-  return (FXInputHandle) _get_osfhandle(_fileno(fpr));
+  return (FXInputHandle) _get_osfhandle(fd);
 #endif
 #else
-  return (FXInputHandle) fileno(fpr);
+  return (FXInputHandle) fd;
 #endif
-#endif /* RUBY_1_9 */
   }
 
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
+  int fd = -1;
 #ifdef RUBY_1_9
   rb_io_t *fptr;
   GetOpenFile(obj, fptr);
-  return fptr->fd;
+  VALUE wrio = fptr->tied_io_for_writing;
+  if(wrio) obj = wrio;
+#elif defined(RBX_CAPI_RUBY_H)
+  VALUE vwrite = rb_intern("@write");
+  if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
 #else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
   FILE *fpw=GetWriteFile(fptr);
+  fd = fileno(fpw);
+#endif
+  if(fd == -1) fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #ifdef WIN32
 #ifdef __CYGWIN__
-  return (FXInputHandle) get_osfhandle(fileno(fpw));
+  return (FXInputHandle) get_osfhandle(fd);
 #else
-  return (FXInputHandle) _get_osfhandle(_fileno(fpw));
+  return (FXInputHandle) _get_osfhandle(fd);
 #endif
 #else
-  return (FXInputHandle) fileno(fpw);
+  return (FXInputHandle) fd;
 #endif
-#endif /* RUBY_1_9 */
   }
 
 
