@@ -29,20 +29,6 @@
 #endif
 
 #include "FXRbCommon.h"
-
-#ifndef RUBY_1_9
-#include "version.h"
-
-#if RUBY_VERSION_CODE < 167
-#define RB_RESCUE2_BROKEN_PROTOTYPE 1
-#endif
-
-// The prototype for st_foreach() changed at Ruby version 1.8.2
-#if RUBY_VERSION_CODE < 182
-#define ST_BROKEN_PROTOTYPES 1
-#endif
-#endif /* RUBY_1_9 */
-
 #include "impl.h"
 
 #ifdef __CYGWIN__
@@ -53,50 +39,19 @@
 #include <signal.h>	// for definitions of SIGINT, etc.
 #endif
 
-#ifndef RUBY_1_9
-extern "C" {
-#include "rubyio.h"	// for GetOpenFile(), etc.
-}
-#else
-#include "ruby/io.h"
-#endif
-
-// Symbol table functions from Ruby. If we included "st.h" directly
-// we'd be dealing with broken prototypes anyways, so just duplicate
-// the needed declarations here with the correct prototypes.
-
-#if defined(ST_BROKEN_PROTOTYPES)
-
-extern "C" {
-
-struct st_table;
-
-typedef char * st_data_t; /* this type changed to unsigned long at Ruby 1.8.2 */
-
-st_table *st_init_strtable();
-st_table *st_init_numtable();
-int st_lookup(st_table *table, st_data_t key, st_data_t *value);
-int st_insert(st_table *table, st_data_t key, st_data_t value);
-int st_delete(st_table *table, st_data_t *key, st_data_t *value);
-void st_foreach(st_table *table, int (*func)(st_data_t, st_data_t, st_data_t), st_data_t arg);
-
-}
-
-#else
-
 #ifdef RUBY_1_9
 
+#include "ruby/io.h"
 #include "ruby/st.h"
 
 #else
 
 extern "C" {
 #include "st.h"
+#include "rubyio.h"     // for GetOpenFile(), etc.
 }
 
 #endif /* RUBY_1_9 */
-
-#endif /* ST_BROKEN_PROTOTYPES */
 
 // Opaque type declaration from SWIG runtime
 struct swig_type_info;
@@ -1265,15 +1220,9 @@ long FXRbHandleMessage(FXObject* recv,ID func,FXObject* sender,FXSelector key,vo
   FXTRACE((100,"FXRbHandleMessage(recv=%p(%s),FXSEL(%s,%d)\n",recv,recv->getClassName(),FXDebugTarget::messageTypeName[FXSELTYPE(key)],FXSELID(key)));
 
   if(FXRbCatchExceptions){
-#ifdef RB_RESCUE2_BROKEN_PROTOTYPE
-    retval=rb_rescue2((VALUE(*)()) handle_body, reinterpret_cast<VALUE>(&hArgs),
-                      (VALUE(*)()) handle_rescue, Qnil,
-                      rb_eStandardError, rb_eNameError, 0);
-#else
     retval=rb_rescue2((VALUE(*)(ANYARGS)) handle_body, reinterpret_cast<VALUE>(&hArgs),
                       (VALUE(*)(ANYARGS)) handle_rescue, Qnil,
                       rb_eStandardError, rb_eNameError, 0);
-#endif
     }
   else{
     retval=handle_body(reinterpret_cast<VALUE>(&hArgs));
@@ -1911,11 +1860,7 @@ void FXRbUnregisterAppSensitiveObject(FXDC* dc){
   FXASSERT(st_lookup(appSensitiveDCs,reinterpret_cast<st_data_t>(dc),reinterpret_cast<st_data_t *>(0))==0);
   }
 
-#ifdef ST_BROKEN_PROTOTYPES
-static int st_cbfunc_obj(st_data_t key,st_data_t,st_data_t arg){
-#else
 static int st_cbfunc_obj(st_data_t key,st_data_t,st_data_t arg,int){
-#endif
   FXASSERT(key!=0);
   FXASSERT(arg!=0);
   FXObjectListOf<FXObject> *pObjectList=reinterpret_cast<FXObjectListOf<FXObject>*>(arg);
@@ -1924,11 +1869,7 @@ static int st_cbfunc_obj(st_data_t key,st_data_t,st_data_t arg,int){
   return 0;
   }
 
-#ifdef ST_BROKEN_PROTOTYPES
-static int st_cbfunc_dc(st_data_t key,st_data_t,st_data_t arg){
-#else
 static int st_cbfunc_dc(st_data_t key,st_data_t,st_data_t arg,int){
-#endif
   FXASSERT(key!=0);
   FXASSERT(arg!=0);
   FXArray<FXDC*> *pDCArray=reinterpret_cast<FXArray<FXDC*>*>(arg);
@@ -1941,11 +1882,7 @@ void FXRbDestroyAppSensitiveObjects(){
   FXTRACE((100,"%s:%d: Begin destroying objects that hold references to the FXApp...\n",__FILE__,__LINE__));
 
   FXObjectListOf<FXObject> objs;
-#ifdef ST_BROKEN_PROTOTYPES
-  st_foreach(appSensitiveObjs,st_cbfunc_obj,reinterpret_cast<st_data_t>(&objs));
-#else
   st_foreach(appSensitiveObjs,reinterpret_cast<int (*)(ANYARGS)>(st_cbfunc_obj),reinterpret_cast<st_data_t>(&objs));
-#endif
   for(FXint i=0;i<objs.no();i++){
     if(objs[i]->isMemberOf(FXMETACLASS(FXRbCursor))){
       if(dynamic_cast<FXRbCursor*>(objs[i])->ownedByApp)
@@ -1975,11 +1912,7 @@ void FXRbDestroyAppSensitiveObjects(){
     }
 
   FXArray<FXDC*> dcs;
-#ifdef ST_BROKEN_PROTOTYPES
-  st_foreach(appSensitiveDCs,st_cbfunc_dc,reinterpret_cast<st_data_t>(&dcs));
-#else
   st_foreach(appSensitiveDCs,reinterpret_cast<int (*)(ANYARGS)>(st_cbfunc_dc),reinterpret_cast<st_data_t>(&dcs));
-#endif
   for(FXint j=0;j<dcs.no();j++){
     delete dcs[j];
     }
