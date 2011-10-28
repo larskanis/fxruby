@@ -6,7 +6,8 @@ require 'hoe'
 require 'rake/extensiontask'
 require 'rake/extensioncompiler'
 require 'uri'
-require "rbconfig"
+require 'rbconfig'
+require 'pathname'
 
 ENV['RUBY_CC_VERSION'] ||= '1.8.7:1.9.2'
 
