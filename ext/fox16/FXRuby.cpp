@@ -53,6 +53,7 @@ extern "C" {
 
 #endif /* RUBY_1_9 */
 
+
 // Opaque type declaration from SWIG runtime
 struct swig_type_info;
 
@@ -173,14 +174,14 @@ FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
   int fd = -1;
-#ifdef RUBY_1_9
+#if defined(RUBINIUS)
+  VALUE vwrite = rb_intern("@write");
+  if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
+#elif defined(RUBY_1_9)
   rb_io_t *fptr;
   GetOpenFile(obj, fptr);
   VALUE wrio = fptr->tied_io_for_writing;
   if(wrio) obj = wrio;
-#elif defined(RBX_CAPI_RUBY_H)
-  VALUE vwrite = rb_intern("@write");
-  if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
 #else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
