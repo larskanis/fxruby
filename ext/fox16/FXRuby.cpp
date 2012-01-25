@@ -172,22 +172,23 @@ FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
-  int fd = -1;
+  int fd;
 #ifdef RUBY_1_9
   rb_io_t *fptr;
   GetOpenFile(obj, fptr);
   VALUE wrio = fptr->tied_io_for_writing;
   if(wrio) obj = wrio;
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #elif defined(RBX_CAPI_RUBY_H)
   VALUE vwrite = rb_intern("@write");
   if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
   FILE *fpw=GetWriteFile(fptr);
   fd = fileno(fpw);
 #endif
-  if(fd == -1) fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #ifdef WIN32
 #ifdef __CYGWIN__
   return (FXInputHandle) get_osfhandle(fd);
