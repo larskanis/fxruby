@@ -17,10 +17,11 @@ STATIC_SOURCESDIR          = COMPILE_HOME + 'sources'
 STATIC_BUILDDIR            = COMPILE_HOME + 'builds'
 STATIC_INSTALLDIR          = COMPILE_HOME + 'install'
 RUBY_BUILD                 = RbConfig::CONFIG["host"]
-CROSS_PREFIX = if RUBY_PLATFORM.include?( 'darwin' )
-    'i386-mingw32'
-else
-    'i586-mingw32msvc'
+CROSS_PREFIX = begin
+  Rake::ExtensionCompiler.mingw_host
+rescue => err
+  $stderr.puts "Cross-compilation disabled -- %s" % [ err.message ]
+  'unknown'
 end
 
 NUM_CPUS = if File.exist?('/proc/cpuinfo')
