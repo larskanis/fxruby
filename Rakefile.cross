@@ -165,8 +165,8 @@ LIBPNG_ENV = [
 file LIBPNG_MAKEFILE => [STATIC_LIBPNG_BUILDDIR, LIBZ_A] do |t|
   Dir.chdir( STATIC_LIBPNG_BUILDDIR ) do
     options = [
-      '--target=i386-mingw32',
-      "--host=#{Rake::ExtensionCompiler.mingw_host}",
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
       "--build=#{RUBY_BUILD}",
       "--prefix=#{STATIC_INSTALLDIR}",
       "--disable-shared",
@@ -206,8 +206,8 @@ end
 file LIBJPEG_MAKEFILE => STATIC_LIBJPEG_BUILDDIR do |t|
   Dir.chdir( STATIC_LIBJPEG_BUILDDIR ) do
     options = [
-      '--target=i386-mingw32',
-      "--host=#{Rake::ExtensionCompiler.mingw_host}",
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
       "--build=#{RUBY_BUILD}",
       "--prefix=#{STATIC_INSTALLDIR}",
       "--disable-shared",
@@ -253,8 +253,8 @@ LIBTIFF_ENV = [
 file LIBTIFF_MAKEFILE => [STATIC_LIBTIFF_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
   Dir.chdir( STATIC_LIBTIFF_BUILDDIR ) do
     options = [
-      '--target=i386-mingw32',
-      "--host=#{Rake::ExtensionCompiler.mingw_host}",
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
       "--build=#{RUBY_BUILD}",
       "--prefix=#{STATIC_INSTALLDIR}",
       "--disable-shared",
@@ -304,8 +304,8 @@ LIBFOX_ENV = [
 file LIBFOX_MAKEFILE => [STATIC_LIBFOX_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
   Dir.chdir( STATIC_LIBFOX_BUILDDIR ) do
     options = [
-      '--target=i386-mingw32',
-      "--host=#{Rake::ExtensionCompiler.mingw_host}",
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
       "--build=#{RUBY_BUILD}",
       "--prefix=#{STATIC_INSTALLDIR}",
       "--disable-shared",
@@ -356,8 +356,8 @@ FOX_ENV = [
 file LIBFXSCINTILLA_MAKEFILE => [STATIC_LIBFXSCINTILLA_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
   Dir.chdir( STATIC_LIBFXSCINTILLA_BUILDDIR ) do
     options = [
-      '--target=i386-mingw32',
-      "--host=#{Rake::ExtensionCompiler.mingw_host}",
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
       "--build=#{RUBY_BUILD}",
       "--prefix=#{STATIC_INSTALLDIR}",
       "--disable-shared",
