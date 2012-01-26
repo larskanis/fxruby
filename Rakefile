@@ -44,7 +44,7 @@ task :test => [:compile]
 
 Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   ext.cross_compile = true
-  ext.cross_platform = ['i386-mswin32', 'i386-mingw32']
+  ext.cross_platform = ['i386-mingw32']
   ext.cross_config_options += [
     "--with-fxscintilla-include=#{STATIC_INSTALLDIR}/include/fxscintilla",
     "--with-installed-dir=#{STATIC_INSTALLDIR}",
