@@ -64,7 +64,20 @@ module Fox
           end
         end
       end
+      # FIXME: The target objects stored in the accelerator table are currently
+      # private. Therefore FXRbAccelTable::markfunc() doesn't mark them as used.
+      # As a workaround the objects are additionally stored in @targets Hash.
+      @targets = {} unless instance_variable_defined?('@targets')
+      @targets[hotKey] = tgt
       addAccelOrig(hotKey, tgt, seldn, selup)
+    end
+
+    alias removeAccelOrig removeAccel # :nodoc:
+
+    def removeAccel(hotKey)
+      @targets = {} unless instance_variable_defined?('@targets')
+      @targets.delete(hotKey)
+      removeAccelOrig(hotKey)
     end
   end
 end
