@@ -25,6 +25,9 @@ hoe = Hoe.spec "fxruby" do
   }
   self.test_globs = ["test/**/TC_*.rb"]
   self.version = PKG_VERSION
+
+  # use interim gem name 'fxrubi'
+  self.spec_extras[:name] = 'fxrubi'
 end
 
 # Make sure extension is built before tests are run
