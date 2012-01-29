@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXSize < Test::Unit::TestCase
+  include Fox
+
   def setup
     @size1 = FXSize.new
     @size2 = FXSize.new(300, 200)

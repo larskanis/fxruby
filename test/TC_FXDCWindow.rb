@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXDCWindow < Fox::TestCase
+  include Fox
 
-class TC_FXDCWindow < TestCase
   def setup
     super(self.class.name)
     app.create

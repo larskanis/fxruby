@@ -2,9 +2,9 @@ require 'test/unit'
 require 'fox16'
 require 'tempfile'
 
-include Fox
-
 class TC_FXFileStream < Test::Unit::TestCase
+  include Fox
+
   def setup
     @filestream = FXFileStream.new
   end

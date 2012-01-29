@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXFileAssoc < Test::Unit::TestCase
+  include Fox
+
   def setup
     @app = FXApp.instance || FXApp.new
     @icon = FXIcon.new(@app)

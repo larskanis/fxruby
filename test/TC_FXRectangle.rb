@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXRectangle < Test::Unit::TestCase
+  include Fox
+
   def setup
     @rect1 = FXRectangle.new
     @rect2 = FXRectangle.new(5, 5, 300, 200)

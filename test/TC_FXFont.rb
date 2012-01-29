@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXFont < Test::Unit::TestCase
+  include Fox
+
   def setup
     if FXApp.instance.nil?
       @app = FXApp.new('TC_FXFont', 'FoxTest') 

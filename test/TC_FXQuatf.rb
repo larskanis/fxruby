@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXQuatf < Test::Unit::TestCase
+  include Fox
+
   def setup
     @quat = FXQuatf.new
   end

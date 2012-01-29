@@ -2,9 +2,9 @@ require 'test/unit'
 require 'fox16'
 require 'testcase'
 
-include Fox
+class TC_FXScrollWindow < Fox::TestCase
+  include Fox
 
-class TC_FXScrollWindow < TestCase
   def setup
     super(self.class.name)
     @scrollWindow = FXScrollWindow.new(mainWindow)

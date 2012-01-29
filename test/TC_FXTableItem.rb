@@ -2,12 +2,10 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
-
 class OverrideError < Exception
 end
 
-class CustomTableItem < FXTableItem
+class CustomTableItem < Fox::FXTableItem
   def getText
     raise OverrideError
   end
@@ -16,7 +14,9 @@ class CustomTableItem < FXTableItem
   end
 end
 
-class TC_FXTableItem < TestCase
+class TC_FXTableItem < Fox::TestCase
+  include Fox
+
   def setup
     super(self.class.name)
     @table = FXTable.new(mainWindow)

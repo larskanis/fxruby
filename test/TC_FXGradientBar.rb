@@ -2,9 +2,9 @@ require 'test/unit'
 require 'fox16'
 require 'testcase'
 
-include Fox
+class TC_FXGradientBar < Fox::TestCase
+  include Fox
 
-class TC_FXGradientBar < TestCase
   def setup
     super(self.class.name)
     @gradientBar = FXGradientBar.new(mainWindow)

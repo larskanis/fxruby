@@ -2,9 +2,9 @@ require 'test/unit'
 require 'fox16'
 require 'testcase'
 
-include Fox
+class TC_downcast < Fox::TestCase
+  include Fox
 
-class TC_downcast < TestCase
   def setup
     super(self.class.name)
   end

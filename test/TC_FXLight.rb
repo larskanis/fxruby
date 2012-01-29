@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXLight < Test::Unit::TestCase
+  include Fox
+
   def setup
     @light = FXLight.new
   end

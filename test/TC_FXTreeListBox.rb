@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXTreeListBox < Fox::TestCase
+  include Fox
 
-class TC_FXTreeListBox < TestCase
   
   def setup
     super(self.class.name)

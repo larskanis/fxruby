@@ -1,9 +1,9 @@
 require 'fox16'
 require 'test/unit'
 
-include Fox
-
 class TC_FXHiliteStyle < Test::Unit::TestCase
+  include Fox
+
 
   def setup
     @style = FXHiliteStyle.new

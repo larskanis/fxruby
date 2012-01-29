@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXRangef < Test::Unit::TestCase
+  include Fox
+
 
   WIDTH, HEIGHT, DEPTH = 2, 4, 6
 

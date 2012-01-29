@@ -3,9 +3,9 @@ require 'test/unit'
 require 'fox16'
 require 'fox16/glshapes'
 
-include Fox
-
 class TC_FXMaterial < Test::Unit::TestCase
+  include Fox
+
 
   DELTA = 1.0e-6
   

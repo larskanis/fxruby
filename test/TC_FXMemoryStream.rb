@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXMemoryStream < Test::Unit::TestCase
+  include Fox
+
 
   DEFAULT_BUFFER_SIZE = 16
 

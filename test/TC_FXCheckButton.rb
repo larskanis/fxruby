@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXCheckButton < Fox::TestCase
+  include Fox
 
-class TC_FXCheckButton < TestCase
   def setup
     super("TC_FXCheckButton")
     @checkButton = FXCheckButton.new(mainWindow, "cbText")

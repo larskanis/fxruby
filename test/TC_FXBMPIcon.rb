@@ -2,9 +2,9 @@ require 'fox16'
 require 'test/unit'
 require 'testcase'
 
-include Fox
+class TC_FXBMPIcon < Fox::TestCase
+  include Fox
 
-class TC_FXBMPIcon < TestCase
   def setup
     super(self.class.name)
   end

@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXShell < Test::Unit::TestCase
+  include Fox
+
   def setup
     if FXApp.instance.nil?
       @app = FXApp.new('TC_FXShell', 'FXRuby')

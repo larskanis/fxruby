@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXRegion < Test::Unit::TestCase
+  include Fox
+
 
   def setup
     @region = FXRegion.new(5, 5, 10, 10)

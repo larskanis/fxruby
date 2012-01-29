@@ -3,9 +3,9 @@ require 'fox16'
 require 'testcase'
 require 'socket'
 
-include Fox
-
 class TC_FXApp < Test::Unit::TestCase
+  include Fox
+
   def test_exception_for_second_app
     app = FXApp.new
     mainWindow = FXMainWindow.new(app, "")
@@ -16,7 +16,9 @@ class TC_FXApp < Test::Unit::TestCase
   end
 end
 
-class TC_FXApp2 < TestCase
+class TC_FXApp2 < Fox::TestCase
+  include Fox
+
   def setup
     super(self.class.name)
   end

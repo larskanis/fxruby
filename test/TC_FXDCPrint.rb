@@ -3,9 +3,9 @@ require 'test/unit'
 require 'fox16'
 require 'fileutils'
 
-include Fox
-
 class TC_FXDCPrint < Test::Unit::TestCase
+  include Fox
+
 private
   def printJob
     job = FXPrinter.new

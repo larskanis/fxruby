@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXDataTarget < Test::Unit::TestCase
+  include Fox
+
   def setup
     @nilTarget    = FXDataTarget.new
     @intTarget    = FXDataTarget.new(42)
