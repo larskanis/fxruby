@@ -35,7 +35,7 @@ end
 
 # Fetch zlib tarball
 LIBZ_VERSION            = ENV['LIBZ_VERSION'] || '1.2.5'
-LIBZ_SOURCE_URI         = URI( "http://zlib.net/zlib-#{LIBZ_VERSION}.tar.bz2" )
+LIBZ_SOURCE_URI         = URI( "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.bz2" )
 LIBZ_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBZ_SOURCE_URI.path )
 STATIC_LIBZ_BUILDDIR    = STATIC_BUILDDIR + LIBZ_TARBALL.basename(".tar.bz2")
 LIBZ_MAKEFILE           = STATIC_LIBZ_BUILDDIR + 'Makefile'
