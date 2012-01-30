@@ -56,9 +56,6 @@ Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   ]
 end
 
-# Make the compile task's list of dependencies begin with the :configure task
-Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
-
 # Set environment variable SWIG_LIB to
 # c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
 # before running swig on MinGW.
@@ -169,7 +166,8 @@ namespace :fxruby do
   end
 
   desc "Set versions"
-  task :setversions do
+  task :setversions => "doap.rdf"
+  file "doap.rdf" => ["doap.rdf.erb"] do
     setversions("doap.rdf")
   end
 
@@ -179,7 +177,7 @@ namespace :fxruby do
     end
   end
 
-  task :configure => [:scintilla, :setversions, :generate_kwargs_lib, 'ext/fox16/impl.cpp', 'ext/fox16/include/inlinestubs.h']
+  task :configure => [:scintilla, :setversions, :generate_kwargs_lib]
 
   rb_header_files = Dir['ext/include/*.h']
   file 'ext/fox16/include/inlinestubs.h' => rb_header_files do
@@ -189,7 +187,8 @@ namespace :fxruby do
     make_impl
   end
 
-  file "ext/fox16/extconf.rb" => ["ext/fox16/librb.c"] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16", cppfile) }
+  file "ext/fox16/extconf.rb" => ['ext/fox16/librb.c', 'ext/fox16/impl.cpp', 'ext/fox16/include/inlinestubs.h'] +
+      SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16", cppfile) }
 
   task :scintilla => 'lib/fox16/scintilla.rb'
   file 'lib/fox16/scintilla.rb' => [FXSCINTILLA_INSTALL_DIR, 'scripts/iface.rb'] do
