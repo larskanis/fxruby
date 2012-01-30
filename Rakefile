@@ -113,7 +113,8 @@ namespace :swig do
     sed wrapper_src_file_path(wrapper_src_file_name)
   end
 
-  task :swig_librb do
+  task :swig_librb => ["ext/fox16/librb.c"]
+  file "ext/fox16/librb.c" do
     Dir.chdir "swig-interfaces" do
       File.open(wrapper_src_file_path("librb.c"), "w") do |io|
         io.puts "#define SWIG_GLOBAL 1"
@@ -126,14 +127,21 @@ namespace :swig do
   end
 
   desc "Run SWIG to generate the wrapper files."
-  task :swig => [:swig_librb] do
-    Dir.chdir "swig-interfaces" do
-      SWIG_MODULES.each do |key, value|
-        swig(key, value)
+  task :swig => [:swig_librb] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16", cppfile) }
+
+  # add dependencies for compile *.i to *_wrap.cpp
+  SWIG_MODULES.each do |ifile, cppfile|
+    ifile_path = File.join("swig-interfaces", ifile)
+    cppfile_path = File.join("ext/fox16", cppfile)
+
+    file cppfile_path => [ifile_path] do
+      Dir.chdir "swig-interfaces" do
+        swig(ifile, cppfile)
       end
     end
   end
 end
+
 
 namespace :fxruby do
 
@@ -171,15 +179,25 @@ namespace :fxruby do
     end
   end
 
-  task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
+  task :configure => [:scintilla, :setversions, :generate_kwargs_lib, 'ext/fox16/impl.cpp', 'ext/fox16/include/inlinestubs.h']
+
+  rb_header_files = Dir['ext/include/*.h']
+  file 'ext/fox16/include/inlinestubs.h' => rb_header_files do
+    make_impl
+  end
+  file 'ext/fox16/impl.cpp' => rb_header_files do
     make_impl
   end
 
-  task :scintilla => [FXSCINTILLA_INSTALL_DIR] do
+  file "ext/fox16/extconf.rb" => ["ext/fox16/librb.c"] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16", cppfile) }
+
+  task :scintilla => 'lib/fox16/scintilla.rb'
+  file 'lib/fox16/scintilla.rb' => [FXSCINTILLA_INSTALL_DIR, 'scripts/iface.rb'] do
     ruby "scripts/iface.rb -i #{FXSCINTILLA_INSTALL_DIR}/include/Scintilla.iface -o lib/fox16/scintilla.rb"
   end
 
-  task :generate_kwargs_lib do
+  task :generate_kwargs_lib => 'lib/fox16/kwargs.rb'
+  file 'lib/fox16/kwargs.rb' => ['scripts/generate_kwargs_lib.rb'] + Dir.glob('rdoc-sources/*.rb') do
     ruby 'scripts/generate_kwargs_lib.rb'
   end
 end
