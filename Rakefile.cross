@@ -112,6 +112,7 @@ end
 # Extract the libz builds
 file STATIC_LIBZ_BUILDDIR => LIBZ_TARBALL do |t|
   sh 'tar', '-xjf', LIBZ_TARBALL.to_s, '-C', STATIC_LIBZ_BUILDDIR.parent.to_s
+  rm LIBZ_MAKEFILE
 end
 
 LIBZ_ENV = [
