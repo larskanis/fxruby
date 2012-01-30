@@ -121,7 +121,7 @@ LIBZ_ENV = [
 ]
 
 # generate the makefile in a clean build location
-task LIBZ_MAKEFILE => [STATIC_LIBZ_BUILDDIR] do |t|
+file LIBZ_MAKEFILE => [STATIC_LIBZ_BUILDDIR] do |t|
   Dir.chdir( STATIC_LIBZ_BUILDDIR ) do
     options = [
       "--prefix=#{STATIC_INSTALLDIR}",
