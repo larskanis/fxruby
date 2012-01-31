@@ -391,6 +391,7 @@ task :mingw32 do
     warn "Please refer to your distribution/package manager documentation about installation."
     fail
   end
+  ENV['CROSS_PREFIX'] = Rake::ExtensionCompiler.mingw_host
 end
 
 

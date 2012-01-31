@@ -79,7 +79,7 @@ def do_rake_compiler_setup
     have_library( 'opengl32' ) && append_library( $libs, 'opengl32' )
     have_library( 'winspool', 'EnumPrintersA') && append_library( $libs, 'winspool' )
 
-    CONFIG['CC'] += "\nCXX=i586-mingw32msvc-g++" # Hack CXX into Makefile for cross compilation
+    CONFIG['CC'] += "\nCXX=#{ENV['CROSS_PREFIX']}-g++" # Hack CXX into Makefile for cross compilation
     $CFLAGS += " -D_SYS_TIME_H_" # fix incompatible types for gettimeofday()
   elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
