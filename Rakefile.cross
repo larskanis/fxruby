@@ -39,7 +39,7 @@ LIBZ_SOURCE_URI         = URI( "http://downloads.sourceforge.net/project/libpng/
 LIBZ_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBZ_SOURCE_URI.path )
 STATIC_LIBZ_BUILDDIR    = STATIC_BUILDDIR + LIBZ_TARBALL.basename(".tar.bz2")
 LIBZ_MAKEFILE           = STATIC_LIBZ_BUILDDIR + 'Makefile'
-LIBZ_A                  = STATIC_INSTALLDIR + 'libz.a'
+LIBZ_A                  = STATIC_INSTALLDIR + 'lib' + 'libz.a'
 
 # Fetch libpng tarball
 LIBPNG_VERSION            = ENV['LIBPNG_VERSION'] || '1.5.4'
@@ -47,7 +47,7 @@ LIBPNG_SOURCE_URI         = URI( "http://prdownloads.sourceforge.net/libpng/libp
 LIBPNG_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBPNG_SOURCE_URI.path )
 STATIC_LIBPNG_BUILDDIR    = STATIC_BUILDDIR + LIBPNG_TARBALL.basename(".tar.gz")
 LIBPNG_MAKEFILE           = STATIC_LIBPNG_BUILDDIR + 'Makefile'
-LIBPNG_A                  = STATIC_INSTALLDIR + 'libpng.a'
+LIBPNG_A                  = STATIC_INSTALLDIR + 'lib' + 'libpng.a'
 
 
 # Fetch libjpeg tarball
@@ -56,7 +56,7 @@ LIBJPEG_SOURCE_URI         = URI( "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_V
 LIBJPEG_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBJPEG_SOURCE_URI.path )
 STATIC_LIBJPEG_BUILDDIR    = STATIC_BUILDDIR + "jpeg-#{LIBJPEG_VERSION}"
 LIBJPEG_MAKEFILE           = STATIC_LIBJPEG_BUILDDIR + 'Makefile'
-LIBJPEG_A                  = STATIC_INSTALLDIR + 'libjpeg.a'
+LIBJPEG_A                  = STATIC_INSTALLDIR + 'lib' + 'libjpeg.a'
 
 
 # Fetch libtiff tarball
@@ -65,7 +65,7 @@ LIBTIFF_SOURCE_URI         = URI( "http://download.osgeo.org/libtiff/tiff-#{LIBT
 LIBTIFF_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBTIFF_SOURCE_URI.path )
 STATIC_LIBTIFF_BUILDDIR    = STATIC_BUILDDIR + LIBTIFF_TARBALL.basename(".tar.gz")
 LIBTIFF_MAKEFILE           = STATIC_LIBTIFF_BUILDDIR + 'Makefile'
-LIBTIFF_A                  = STATIC_INSTALLDIR + 'libtiff.a'
+LIBTIFF_A                  = STATIC_INSTALLDIR + 'lib' + 'libtiff.a'
 
 
 # Fetch libfox tarball
@@ -74,7 +74,7 @@ LIBFOX_SOURCE_URI         = URI( "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VE
 LIBFOX_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBFOX_SOURCE_URI.path )
 STATIC_LIBFOX_BUILDDIR    = STATIC_BUILDDIR + LIBFOX_TARBALL.basename(".tar.gz")
 LIBFOX_MAKEFILE           = STATIC_LIBFOX_BUILDDIR + 'Makefile'
-LIBFOX_A                  = STATIC_INSTALLDIR + 'libfox.a'
+LIBFOX_A                  = STATIC_INSTALLDIR + 'lib' + 'libfox.a'
 
 # Fetch fxscintilla tarball
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
@@ -82,7 +82,7 @@ LIBFXSCINTILLA_SOURCE_URI         = URI( "http://download.savannah.gnu.org/relea
 LIBFXSCINTILLA_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBFXSCINTILLA_SOURCE_URI.path )
 STATIC_LIBFXSCINTILLA_BUILDDIR    = STATIC_BUILDDIR + LIBFXSCINTILLA_TARBALL.basename(".tar.gz")
 LIBFXSCINTILLA_MAKEFILE           = STATIC_LIBFXSCINTILLA_BUILDDIR + 'Makefile'
-LIBFXSCINTILLA_A                  = STATIC_INSTALLDIR + 'libfxscintilla.a'
+LIBFXSCINTILLA_A                  = STATIC_INSTALLDIR + 'lib' + 'libfxscintilla.a'
 
 
 
