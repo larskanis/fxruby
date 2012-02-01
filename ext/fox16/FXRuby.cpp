@@ -26,20 +26,6 @@
 
 #include "swigrubyrun.h"
 #include "FXRbCommon.h"
-
-#ifndef RUBY_1_9
-#include "version.h"
-
-#if RUBY_VERSION_CODE < 167
-#define RB_RESCUE2_BROKEN_PROTOTYPE 1
-#endif
-
-// The prototype for st_foreach() changed at Ruby version 1.8.2
-#if RUBY_VERSION_CODE < 182
-#define ST_BROKEN_PROTOTYPES 1
-#endif
-#endif /* RUBY_1_9 */
-
 #include "impl.h"
 
 #ifdef __CYGWIN__
@@ -50,50 +36,20 @@
 #include <signal.h>	// for definitions of SIGINT, etc.
 #endif
 
-#ifndef RUBY_1_9
-extern "C" {
-#include "rubyio.h"	// for GetOpenFile(), etc.
-}
-#else
-#include "ruby/io.h"
-#endif
-
-// Symbol table functions from Ruby. If we included "st.h" directly
-// we'd be dealing with broken prototypes anyways, so just duplicate
-// the needed declarations here with the correct prototypes.
-
-#if defined(ST_BROKEN_PROTOTYPES)
-
-extern "C" {
-
-struct st_table;
-
-typedef char * st_data_t; /* this type changed to unsigned long at Ruby 1.8.2 */
-
-st_table *st_init_strtable();
-st_table *st_init_numtable();
-int st_lookup(st_table *table, st_data_t key, st_data_t *value);
-int st_insert(st_table *table, st_data_t key, st_data_t value);
-int st_delete(st_table *table, st_data_t *key, st_data_t *value);
-void st_foreach(st_table *table, int (*func)(st_data_t, st_data_t, st_data_t), st_data_t arg);
-
-}
-
-#else
-
 #ifdef RUBY_1_9
 
+#include "ruby/io.h"
 #include "ruby/st.h"
 
 #else
 
 extern "C" {
 #include "st.h"
+#include "rubyio.h"     // for GetOpenFile(), etc.
 }
 
 #endif /* RUBY_1_9 */
 
-#endif /* ST_BROKEN_PROTOTYPES */
 
 // Wrapper around SWIG_TypeQuery() that caches results for performance
 swig_type_info *FXRbTypeQuery(const char *desc){
@@ -207,46 +163,47 @@ FXbool FXRbCatchExceptions=FALSE;
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetReadFileHandle(VALUE obj) {
-#ifdef RUBY_1_9
-  rb_io_t *fptr;
-  GetOpenFile(obj, fptr);
-  FILE *fpr=fptr->stdio_file;
-#else
-  OpenFile *fptr;
-  GetOpenFile(obj, fptr);
-  FILE *fpr=GetReadFile(fptr);
-#endif /* RUBY_1_9 */
+  int fd;
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #ifdef WIN32
 #ifdef __CYGWIN__
-  return (FXInputHandle) get_osfhandle(fileno(fpr));
+  return (FXInputHandle) get_osfhandle(fd);
 #else
-  return (FXInputHandle) _get_osfhandle(_fileno(fpr));
+  return (FXInputHandle) _get_osfhandle(fd);
 #endif
 #else
-  return (FXInputHandle) fileno(fpr);
+  return (FXInputHandle) fd;
 #endif
   }
 
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
-#ifdef RUBY_1_9
+  int fd;
+#if defined(RUBINIUS)
+  VALUE vwrite = rb_intern("@write");
+  if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
+#elif defined(RUBY_1_9)
   rb_io_t *fptr;
   GetOpenFile(obj, fptr);
-  FILE *fpw=fptr->stdio_file;
+  VALUE wrio = fptr->tied_io_for_writing;
+  if(wrio) obj = wrio;
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #else
   OpenFile *fptr;
   GetOpenFile(obj, fptr);
   FILE *fpw=GetWriteFile(fptr);
-#endif /* RUBY_1_9 */
+  fd = fileno(fpw);
+#endif
 #ifdef WIN32
 #ifdef __CYGWIN__
-  return (FXInputHandle) get_osfhandle(fileno(fpw));
+  return (FXInputHandle) get_osfhandle(fd);
 #else
-  return (FXInputHandle) _get_osfhandle(_fileno(fpw));
+  return (FXInputHandle) _get_osfhandle(fd);
 #endif
 #else
-  return (FXInputHandle) fileno(fpw);
+  return (FXInputHandle) fd;
 #endif
   }
 
@@ -437,7 +394,7 @@ VALUE FXRbMakeArray(const FXRectangle* rectangles,FXuint nrectangles){
     rb_ary_push(result,FXRbGetRubyObj(&rectangles[i],"FXRectangle *"));
   return result;
   }
-  
+
 // Returns a Ruby array of FXSegments
 VALUE FXRbMakeArray(const FXSegment* segments,FXuint nsegments){
   VALUE result=rb_ary_new();
@@ -1173,7 +1130,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
 	    }
 		return 0;
     }
-	
+
 	if(type==SEL_DRAGGED){
 	    SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
 	    return ptr;
@@ -1268,15 +1225,9 @@ long FXRbHandleMessage(FXObject* recv,ID func,FXObject* sender,FXSelector key,vo
   FXTRACE((100,"FXRbHandleMessage(recv=%p(%s),FXSEL(%s,%d)\n",recv,recv->getClassName(),FXDebugTarget::messageTypeName[FXSELTYPE(key)],FXSELID(key)));
 
   if(FXRbCatchExceptions){
-#ifdef RB_RESCUE2_BROKEN_PROTOTYPE
-    retval=rb_rescue2((VALUE(*)()) handle_body, reinterpret_cast<VALUE>(&hArgs),
-                      (VALUE(*)()) handle_rescue, Qnil,
-                      rb_eStandardError, rb_eNameError, 0);
-#else
     retval=rb_rescue2((VALUE(*)(ANYARGS)) handle_body, reinterpret_cast<VALUE>(&hArgs),
                       (VALUE(*)(ANYARGS)) handle_rescue, Qnil,
                       rb_eStandardError, rb_eNameError, 0);
-#endif
     }
   else{
     retval=handle_body(reinterpret_cast<VALUE>(&hArgs));
@@ -1347,7 +1298,7 @@ void FXRbRange2LoHi(VALUE range,FXdouble& lo,FXdouble& hi){
       }
     }
   }
-  
+
 //----------------------------------------------------------------------
 
 void FXRbCallVoidMethod(FXObject* recv, ID func) {
@@ -1606,7 +1557,7 @@ FXRbMenuRadio::~FXRbMenuRadio(){
 void FXRbTreeList::enumerateItem(FXTreeItem* item,FXObjectListOf<FXTreeItem>& items){
   // Add this item to the list
   items.append(item);
-  
+
   // Add this item's children
   FXRbTreeList::enumerateItems(item->getFirst(),item->getLast(),items);
   }
@@ -1635,7 +1586,7 @@ void FXRbTreeList::enumerateItems(FXTreeItem* fm,FXTreeItem* to,FXObjectListOf<F
 void FXRbFoldingList::enumerateItem(FXFoldingItem* item,FXObjectListOf<FXFoldingItem>& items){
   // Add this item to the list
   items.append(item);
-  
+
   // Add this item's children
   FXRbFoldingList::enumerateItems(item->getFirst(),item->getLast(),items);
   }
@@ -1670,7 +1621,7 @@ FXint FXRbComboBox::sortFunc(const FXListItem* a,const FXListItem* b){
   return static_cast<FXint>(NUM2INT(result));
   }
 
-  
+
 // Sort function stand-in for FXFoldingList
 FXint FXRbFoldingList::sortFunc(const FXFoldingItem* a,const FXFoldingItem* b){
   VALUE itemA = FXRbGetRubyObj(const_cast<FXFoldingItem*>(a), "FXFoldingItem *");
@@ -1706,7 +1657,7 @@ FXint FXRbListBox::sortFunc(const FXListItem* a,const FXListItem* b){
   return static_cast<FXint>(NUM2INT(result));
   }
 
-  
+
 // Sort function stand-in for FXTreeList
 FXint FXRbTreeList::sortFunc(const FXTreeItem* a,const FXTreeItem* b){
   VALUE itemA = FXRbGetRubyObj(const_cast<FXTreeItem*>(a), "FXTreeItem *");
@@ -1923,11 +1874,7 @@ void FXRbUnregisterAppSensitiveObject(FXDC* dc){
   FXASSERT(st_lookup(appSensitiveDCs,reinterpret_cast<st_data_t>(dc),reinterpret_cast<st_data_t *>(0))==0);
   }
 
-#ifdef ST_BROKEN_PROTOTYPES
-static int st_cbfunc_obj(st_data_t key,st_data_t,st_data_t arg){
-#else
 static int st_cbfunc_obj(st_data_t key,st_data_t,st_data_t arg,int){
-#endif
   FXASSERT(key!=0);
   FXASSERT(arg!=0);
   FXObjectListOf<FXObject> *pObjectList=reinterpret_cast<FXObjectListOf<FXObject>*>(arg);
@@ -1936,11 +1883,7 @@ static int st_cbfunc_obj(st_data_t key,st_data_t,st_data_t arg,int){
   return 0;
   }
 
-#ifdef ST_BROKEN_PROTOTYPES
-static int st_cbfunc_dc(st_data_t key,st_data_t,st_data_t arg){
-#else
 static int st_cbfunc_dc(st_data_t key,st_data_t,st_data_t arg,int){
-#endif
   FXASSERT(key!=0);
   FXASSERT(arg!=0);
   FXArray<FXDC*> *pDCArray=reinterpret_cast<FXArray<FXDC*>*>(arg);
@@ -1953,11 +1896,7 @@ void FXRbDestroyAppSensitiveObjects(){
   FXTRACE((100,"%s:%d: Begin destroying objects that hold references to the FXApp...\n",__FILE__,__LINE__));
 
   FXObjectListOf<FXObject> objs;
-#ifdef ST_BROKEN_PROTOTYPES
-  st_foreach(appSensitiveObjs,st_cbfunc_obj,reinterpret_cast<st_data_t>(&objs));
-#else
   st_foreach(appSensitiveObjs,reinterpret_cast<int (*)(ANYARGS)>(st_cbfunc_obj),reinterpret_cast<st_data_t>(&objs));
-#endif
   for(FXint i=0;i<objs.no();i++){
     if(objs[i]->isMemberOf(FXMETACLASS(FXRbCursor))){
       if(dynamic_cast<FXRbCursor*>(objs[i])->ownedByApp)
@@ -1987,11 +1926,7 @@ void FXRbDestroyAppSensitiveObjects(){
     }
 
   FXArray<FXDC*> dcs;
-#ifdef ST_BROKEN_PROTOTYPES
-  st_foreach(appSensitiveDCs,st_cbfunc_dc,reinterpret_cast<st_data_t>(&dcs));
-#else
   st_foreach(appSensitiveDCs,reinterpret_cast<int (*)(ANYARGS)>(st_cbfunc_dc),reinterpret_cast<st_data_t>(&dcs));
-#endif
   for(FXint j=0;j<dcs.no();j++){
     delete dcs[j];
     }
@@ -2025,7 +1960,7 @@ extern "C" void Init_ui(void);
 #ifdef USE_RB_REQUIRE
 #define REQUIRE(fname) rb_require((fname))
 #else
-#define REQUIRE(fname) rb_funcall(rb_mKernel,rb_intern("require"),1,rb_str_new2((fname))) 
+#define REQUIRE(fname) rb_funcall(rb_mKernel,rb_intern("require"),1,rb_str_new2((fname)))
 #endif
 
 extern "C" void
@@ -2065,14 +2000,14 @@ Init_fox16(void) {
   REQUIRE("fox16/version");
   REQUIRE("fox16/kwargs");
   REQUIRE("fox16/exceptions_for_fxerror");
-  
+
   id_assocs=rb_intern("@assocs");
   id_backtrace=rb_intern("backtrace");
   id_cmp=rb_intern("<=>");
   id_begin=rb_intern("begin");
   id_end=rb_intern("end");
   id_exclude_endp=rb_intern("exclude_end?");
-  
+
   FXRuby_Objects=st_init_numtable();
   appSensitiveObjs=st_init_numtable();
   appSensitiveDCs=st_init_numtable();

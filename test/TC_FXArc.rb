@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXArc < Test::Unit::TestCase
+  include Fox
+
   def test_new
     anArc = FXArc.new
     assert_equal(0, anArc.x)

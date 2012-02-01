@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXImage < Fox::TestCase
+  include Fox
 
-class TC_FXImage < TestCase
   def setup
     super(self.class.name)
   end

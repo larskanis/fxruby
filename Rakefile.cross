@@ -1,0 +1,398 @@
+# -*- coding: utf-8 -*-
+# -*- ruby -*-
+
+require 'rubygems'
+require 'hoe'
+require 'rake/extensiontask'
+require 'rake/extensioncompiler'
+require 'uri'
+require 'rbconfig'
+require 'pathname'
+
+ENV['RUBY_CC_VERSION'] ||= '1.8.7:1.9.2'
+
+# Cross-compilation constants
+COMPILE_HOME               = Pathname( "build" ).expand_path
+STATIC_SOURCESDIR          = COMPILE_HOME + 'sources'
+STATIC_BUILDDIR            = COMPILE_HOME + 'builds'
+STATIC_INSTALLDIR          = COMPILE_HOME + 'install'
+RUBY_BUILD                 = RbConfig::CONFIG["host"]
+CROSS_PREFIX = begin
+  Rake::ExtensionCompiler.mingw_host
+rescue => err
+  $stderr.puts "Cross-compilation disabled -- %s" % [ err.message ]
+  'unknown'
+end
+
+NUM_CPUS = if File.exist?('/proc/cpuinfo')
+    File.read('/proc/cpuinfo').scan('processor').length
+elsif RUBY_PLATFORM.include?( 'darwin' )
+    `system_profiler SPHardwareDataType | grep 'Cores' | awk '{print $5}'`.chomp
+else
+    1
+end
+
+
+# Fetch zlib tarball
+LIBZ_VERSION            = ENV['LIBZ_VERSION'] || '1.2.5'
+LIBZ_SOURCE_URI         = URI( "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.bz2" )
+LIBZ_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBZ_SOURCE_URI.path )
+STATIC_LIBZ_BUILDDIR    = STATIC_BUILDDIR + LIBZ_TARBALL.basename(".tar.bz2")
+LIBZ_MAKEFILE           = STATIC_LIBZ_BUILDDIR + 'Makefile'
+LIBZ_A                  = STATIC_INSTALLDIR + 'lib' + 'libz.a'
+
+# Fetch libpng tarball
+LIBPNG_VERSION            = ENV['LIBPNG_VERSION'] || '1.5.4'
+LIBPNG_SOURCE_URI         = URI( "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz?download" )
+LIBPNG_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBPNG_SOURCE_URI.path )
+STATIC_LIBPNG_BUILDDIR    = STATIC_BUILDDIR + LIBPNG_TARBALL.basename(".tar.gz")
+LIBPNG_MAKEFILE           = STATIC_LIBPNG_BUILDDIR + 'Makefile'
+LIBPNG_A                  = STATIC_INSTALLDIR + 'lib' + 'libpng.a'
+
+
+# Fetch libjpeg tarball
+LIBJPEG_VERSION            = ENV['LIBJPEG_VERSION'] || '8c'
+LIBJPEG_SOURCE_URI         = URI( "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz" )
+LIBJPEG_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBJPEG_SOURCE_URI.path )
+STATIC_LIBJPEG_BUILDDIR    = STATIC_BUILDDIR + "jpeg-#{LIBJPEG_VERSION}"
+LIBJPEG_MAKEFILE           = STATIC_LIBJPEG_BUILDDIR + 'Makefile'
+LIBJPEG_A                  = STATIC_INSTALLDIR + 'lib' + 'libjpeg.a'
+
+
+# Fetch libtiff tarball
+LIBTIFF_VERSION            = ENV['LIBTIFF_VERSION'] || '3.9.5'
+LIBTIFF_SOURCE_URI         = URI( "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz" )
+LIBTIFF_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBTIFF_SOURCE_URI.path )
+STATIC_LIBTIFF_BUILDDIR    = STATIC_BUILDDIR + LIBTIFF_TARBALL.basename(".tar.gz")
+LIBTIFF_MAKEFILE           = STATIC_LIBTIFF_BUILDDIR + 'Makefile'
+LIBTIFF_A                  = STATIC_INSTALLDIR + 'lib' + 'libtiff.a'
+
+
+# Fetch libfox tarball
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.44'
+LIBFOX_SOURCE_URI         = URI( "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz" )
+LIBFOX_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBFOX_SOURCE_URI.path )
+STATIC_LIBFOX_BUILDDIR    = STATIC_BUILDDIR + LIBFOX_TARBALL.basename(".tar.gz")
+LIBFOX_MAKEFILE           = STATIC_LIBFOX_BUILDDIR + 'Makefile'
+LIBFOX_A                  = STATIC_INSTALLDIR + 'lib' + 'libfox.a'
+
+# Fetch fxscintilla tarball
+LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
+LIBFXSCINTILLA_SOURCE_URI         = URI( "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz" )
+LIBFXSCINTILLA_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBFXSCINTILLA_SOURCE_URI.path )
+STATIC_LIBFXSCINTILLA_BUILDDIR    = STATIC_BUILDDIR + LIBFXSCINTILLA_TARBALL.basename(".tar.gz")
+LIBFXSCINTILLA_MAKEFILE           = STATIC_LIBFXSCINTILLA_BUILDDIR + 'Makefile'
+LIBFXSCINTILLA_A                  = STATIC_INSTALLDIR + 'lib' + 'libfxscintilla.a'
+
+
+
+# clean intermediate files and folders
+CLEAN.include( STATIC_BUILDDIR.to_s )
+
+#####################################################################
+### C R O S S - C O M P I L A T I O N - T A S K S
+#####################################################################
+
+
+directory STATIC_SOURCESDIR.to_s
+
+#
+# Static libz build tasks
+#
+directory STATIC_LIBZ_BUILDDIR.to_s
+
+# libz source file should be stored there
+file LIBZ_TARBALL => STATIC_SOURCESDIR do |t|
+  # download the source file using wget or curl
+  chdir File.dirname(t.name) do
+    sh "wget '#{LIBZ_SOURCE_URI}' -O #{LIBZ_TARBALL}"
+  end
+end
+
+# Extract the libz builds
+file STATIC_LIBZ_BUILDDIR => LIBZ_TARBALL do |t|
+  sh 'tar', '-xjf', LIBZ_TARBALL.to_s, '-C', STATIC_LIBZ_BUILDDIR.parent.to_s
+  rm LIBZ_MAKEFILE
+end
+
+LIBZ_ENV = [
+  "CC=#{CROSS_PREFIX}-gcc",
+  "AR=#{CROSS_PREFIX}-ar",
+  "RANLIB=#{CROSS_PREFIX}-ranlib",
+]
+
+# generate the makefile in a clean build location
+file LIBZ_MAKEFILE => [STATIC_LIBZ_BUILDDIR] do |t|
+  Dir.chdir( STATIC_LIBZ_BUILDDIR ) do
+    options = [
+      "--prefix=#{STATIC_INSTALLDIR}",
+    ]
+
+    configure_path = STATIC_LIBZ_BUILDDIR + 'configure'
+    sh "env #{[LIBZ_ENV, configure_path.to_s, *options].join(" ")}"
+  end
+end
+
+# generate the makefile in a clean build location
+task LIBZ_A => LIBZ_MAKEFILE do |t|
+  Dir.chdir( STATIC_LIBZ_BUILDDIR ) do
+    sh "make -j#{NUM_CPUS} install 'LDSHAREDLIBC=-lmsvcrt'"
+  end
+end
+
+#
+# Static libpng build tasks
+#
+directory STATIC_LIBPNG_BUILDDIR.to_s
+
+# libpng source file should be stored there
+file LIBPNG_TARBALL => STATIC_SOURCESDIR do |t|
+  # download the source file using wget or curl
+  chdir File.dirname(t.name) do
+    sh "wget '#{LIBPNG_SOURCE_URI}' -O #{LIBPNG_TARBALL}"
+  end
+end
+
+# Extract the libpng builds
+file STATIC_LIBPNG_BUILDDIR => LIBPNG_TARBALL do |t|
+  sh 'tar', '-xzf', LIBPNG_TARBALL.to_s, '-C', STATIC_LIBPNG_BUILDDIR.parent.to_s
+end
+
+LIBPNG_ENV = [
+  "'CPPFLAGS=-I#{STATIC_INSTALLDIR}/include'",
+  "'LDFLAGS=-L#{STATIC_INSTALLDIR}/lib'",
+]
+# generate the makefile in a clean build location
+file LIBPNG_MAKEFILE => [STATIC_LIBPNG_BUILDDIR, LIBZ_A] do |t|
+  Dir.chdir( STATIC_LIBPNG_BUILDDIR ) do
+    options = [
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
+      "--build=#{RUBY_BUILD}",
+      "--prefix=#{STATIC_INSTALLDIR}",
+      "--disable-shared",
+    ]
+
+    configure_path = STATIC_LIBPNG_BUILDDIR + 'configure'
+    sh "env #{[LIBPNG_ENV, configure_path.to_s, *options].join(" ")}"
+  end
+end
+
+# generate the makefile in a clean build location
+task LIBPNG_A => [LIBPNG_MAKEFILE, LIBZ_A] do |t|
+  Dir.chdir( STATIC_LIBPNG_BUILDDIR ) do
+    sh "make -j#{NUM_CPUS} install"
+  end
+end
+
+#
+# Static libjpeg build tasks
+#
+directory STATIC_LIBJPEG_BUILDDIR.to_s
+
+# libjpeg source file should be stored there
+file LIBJPEG_TARBALL => STATIC_SOURCESDIR do |t|
+  # download the source file using wget or curl
+  chdir File.dirname(t.name) do
+    sh "wget '#{LIBJPEG_SOURCE_URI}' -O #{LIBJPEG_TARBALL}"
+  end
+end
+
+# Extract the libjpeg builds
+file STATIC_LIBJPEG_BUILDDIR => LIBJPEG_TARBALL do |t|
+  sh 'tar', '-xzf', LIBJPEG_TARBALL.to_s, '-C', STATIC_LIBJPEG_BUILDDIR.parent.to_s
+end
+
+# generate the makefile in a clean build location
+file LIBJPEG_MAKEFILE => STATIC_LIBJPEG_BUILDDIR do |t|
+  Dir.chdir( STATIC_LIBJPEG_BUILDDIR ) do
+    options = [
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
+      "--build=#{RUBY_BUILD}",
+      "--prefix=#{STATIC_INSTALLDIR}",
+      "--disable-shared",
+    ]
+
+    configure_path = STATIC_LIBJPEG_BUILDDIR + 'configure'
+    cmd = [ configure_path.to_s, *options ]
+    sh *cmd
+  end
+end
+
+# build libjpeg.a
+task LIBJPEG_A => [LIBJPEG_MAKEFILE] do |t|
+  Dir.chdir( STATIC_LIBJPEG_BUILDDIR ) do
+    sh "make -j#{NUM_CPUS} install"
+  end
+end
+
+#
+# Static libtiff build tasks
+#
+directory STATIC_LIBTIFF_BUILDDIR.to_s
+
+# libtiff source file should be stored there
+file LIBTIFF_TARBALL => STATIC_SOURCESDIR do |t|
+  # download the source file using wget or curl
+  chdir File.dirname(t.name) do
+    sh "wget '#{LIBTIFF_SOURCE_URI}' -O #{LIBTIFF_TARBALL}"
+  end
+end
+
+# Extract the libtiff builds
+file STATIC_LIBTIFF_BUILDDIR => LIBTIFF_TARBALL do |t|
+  sh 'tar', '-xzf', LIBTIFF_TARBALL.to_s, '-C', STATIC_LIBTIFF_BUILDDIR.parent.to_s
+end
+
+LIBTIFF_ENV = [
+  "'CPPFLAGS=-I#{STATIC_INSTALLDIR}/include'",
+  "'LDFLAGS=-L#{STATIC_INSTALLDIR}/lib'",
+]
+
+# generate the makefile in a clean build location
+file LIBTIFF_MAKEFILE => [STATIC_LIBTIFF_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
+  Dir.chdir( STATIC_LIBTIFF_BUILDDIR ) do
+    options = [
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
+      "--build=#{RUBY_BUILD}",
+      "--prefix=#{STATIC_INSTALLDIR}",
+      "--disable-shared",
+      "--with-zlib-include-dir=#{STATIC_LIBZ_BUILDDIR}",
+      "--with-zlib-lib-dir=#{File.dirname(LIBZ_A)}",
+      "--with-jpeg-include-dir=#{STATIC_LIBJPEG_BUILDDIR}",
+      "--with-jpeg-lib-dir=#{File.dirname(LIBJPEG_A)}",
+    ]
+
+    configure_path = STATIC_LIBTIFF_BUILDDIR + 'configure'
+    sh "env #{[LIBTIFF_ENV, configure_path.to_s, *options].join(" ")}"
+  end
+end
+
+# build libtiff.a
+task LIBTIFF_A => [LIBTIFF_MAKEFILE] do |t|
+  Dir.chdir( STATIC_LIBTIFF_BUILDDIR ) do
+    sh "make -j#{NUM_CPUS} install"
+  end
+end
+
+
+#
+# Static libfox build tasks
+#
+directory STATIC_LIBFOX_BUILDDIR.to_s
+
+# libfox source file should be stored there
+file LIBFOX_TARBALL => STATIC_SOURCESDIR do |t|
+  # download the source file using wget or curl
+  chdir File.dirname(t.name) do
+    sh "wget '#{LIBFOX_SOURCE_URI}' -O #{LIBFOX_TARBALL}"
+  end
+end
+
+# Extract the libfox builds
+file STATIC_LIBFOX_BUILDDIR => LIBFOX_TARBALL do |t|
+  sh 'tar', '-xzf', LIBFOX_TARBALL.to_s, '-C', STATIC_LIBFOX_BUILDDIR.parent.to_s
+end
+
+LIBFOX_ENV = [
+  "'CPPFLAGS=-I#{STATIC_INSTALLDIR}/include'",
+  "'LDFLAGS=-L#{STATIC_INSTALLDIR}/lib'",
+]
+
+# generate the makefile in a clean build location
+file LIBFOX_MAKEFILE => [STATIC_LIBFOX_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
+  Dir.chdir( STATIC_LIBFOX_BUILDDIR ) do
+    options = [
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
+      "--build=#{RUBY_BUILD}",
+      "--prefix=#{STATIC_INSTALLDIR}",
+      "--disable-shared",
+      "--without-xft",
+      "--without-x",
+    ]
+
+    configure_path = STATIC_LIBFOX_BUILDDIR + 'configure'
+    sh "env #{[LIBFOX_ENV, configure_path.to_s, *options].join(" ")}"
+  end
+end
+
+# build libfox.a
+task LIBFOX_A => [LIBFOX_MAKEFILE] do |t|
+  Dir.chdir( STATIC_LIBFOX_BUILDDIR ) do
+    sh "make -j#{NUM_CPUS} #{FOX_ENV.join(" ")} install"
+  end
+end
+
+
+#
+# Static libfxscintilla build tasks
+#
+directory STATIC_LIBFXSCINTILLA_BUILDDIR.to_s
+
+# libfxscintilla source file should be stored there
+file LIBFXSCINTILLA_TARBALL => STATIC_SOURCESDIR do |t|
+  # download the source file using wget or curl
+  chdir File.dirname(t.name) do
+    sh "wget '#{LIBFXSCINTILLA_SOURCE_URI}' -O #{LIBFXSCINTILLA_TARBALL}"
+  end
+end
+
+# Extract the libfxscintilla builds
+file STATIC_LIBFXSCINTILLA_BUILDDIR => LIBFXSCINTILLA_TARBALL do |t|
+  sh 'tar', '-xzf', LIBFXSCINTILLA_TARBALL.to_s, '-C', STATIC_LIBFXSCINTILLA_BUILDDIR.parent.to_s
+end
+
+FOX_ENV = [
+  "'CFLAGS=-I#{STATIC_INSTALLDIR}/include'",
+  "'CPPFLAGS=-I#{STATIC_INSTALLDIR}/include'",
+  "'LDFLAGS=-L#{STATIC_INSTALLDIR}/lib'",
+  "'FOX_CFLAGS=-I#{STATIC_INSTALLDIR}/include/fox-1.6 -DFOX_1_6'",
+  "'FOX_LIBS=-L#{STATIC_INSTALLDIR}/lib -lFOX-1.6'",
+]
+
+# generate the makefile in a clean build location
+file LIBFXSCINTILLA_MAKEFILE => [STATIC_LIBFXSCINTILLA_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
+  Dir.chdir( STATIC_LIBFXSCINTILLA_BUILDDIR ) do
+    options = [
+      "--target=#{CROSS_PREFIX}",
+      "--host=#{CROSS_PREFIX}",
+      "--build=#{RUBY_BUILD}",
+      "--prefix=#{STATIC_INSTALLDIR}",
+      "--disable-shared",
+    ]
+
+    configure_path = STATIC_LIBFXSCINTILLA_BUILDDIR + 'configure'
+    sh "env #{[FOX_ENV, configure_path.to_s, *options].join(" ")}"
+  end
+end
+
+# build libfxscintilla.a
+task LIBFXSCINTILLA_A => [LIBFXSCINTILLA_MAKEFILE] do |t|
+  Dir.chdir( STATIC_LIBFXSCINTILLA_BUILDDIR ) do
+    sh "make -j#{NUM_CPUS} #{FOX_ENV.join(" ")} install"
+  end
+end
+
+
+
+desc "compile static libz libraries"
+task :static_libs => [ LIBZ_A, LIBPNG_A, LIBJPEG_A, LIBTIFF_A, LIBFOX_A, LIBFXSCINTILLA_A ]
+
+desc 'cross compile required libs for win32'
+task :cross => [ :mingw32, :static_libs ]
+
+task :mingw32 do
+  # Use Rake::ExtensionCompiler helpers to find the proper host
+  unless Rake::ExtensionCompiler.mingw_host then
+    warn "You need to install mingw32 cross compile functionality to be able to continue."
+    warn "Please refer to your distribution/package manager documentation about installation."
+    fail
+  end
+  ENV['CROSS_PREFIX'] = Rake::ExtensionCompiler.mingw_host
+end
+
+
+# vim: syntax=ruby

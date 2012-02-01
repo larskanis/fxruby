@@ -2,9 +2,9 @@ require 'test/unit'
 require 'fox16'
 require 'testcase'
 
-include Fox
+class TC_FXGLViewer < Fox::TestCase
+  include Fox
 
-class TC_FXGLViewer < TestCase
   def setup
     super(self.class.name)
     vis = FXGLVisual.new(app, VISUAL_DOUBLEBUFFER)

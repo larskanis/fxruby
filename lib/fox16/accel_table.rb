@@ -1,7 +1,7 @@
 module Fox
   class FXAccelTable
     alias addAccelOrig addAccel # :nodoc:
-    
+
     #
     # Add an accelerator to the table. The _hotKey_ is a code returned
     # by the Fox.fxparseAccel method.
@@ -48,7 +48,7 @@ module Fox
       if args.length > 0
         if args[0].respond_to? :call
           tgt = FXPseudoTarget.new
-          seldn = FXSEL(SEL_KEYPRESS, 0)
+          seldn = Fox.FXSEL(SEL_KEYPRESS, 0)
           tgt.pconnect(SEL_KEYPRESS, args[0])
         else
           tgt = args[0]
@@ -56,7 +56,7 @@ module Fox
         if args.length > 1
           if args[1].respond_to? :call
             tgt = tgt || FXPseudoTarget.new
-            selup = FXSEL(SEL_KEYRELEASE, 0)
+            selup = Fox.FXSEL(SEL_KEYRELEASE, 0)
             tgt.pconnect(SEL_KEYRELEASE, args[1])
           else
             seldn = args[1]
@@ -64,7 +64,20 @@ module Fox
           end
         end
       end
+      # FIXME: The target objects stored in the accelerator table are currently
+      # private. Therefore FXRbAccelTable::markfunc() doesn't mark them as used.
+      # As a workaround the objects are additionally stored in @targets Hash.
+      @targets = {} unless instance_variable_defined?('@targets')
+      @targets[hotKey] = tgt
       addAccelOrig(hotKey, tgt, seldn, selup)
+    end
+
+    alias removeAccelOrig removeAccel # :nodoc:
+
+    def removeAccel(hotKey)
+      @targets = {} unless instance_variable_defined?('@targets')
+      @targets.delete(hotKey)
+      removeAccelOrig(hotKey)
     end
   end
 end

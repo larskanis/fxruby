@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXList < Fox::TestCase
+  include Fox
 
-class TC_FXList < TestCase
   def setup
     super(self.class.name)
     @list = FXList.new(mainWindow)

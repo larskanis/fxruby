@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXPoint < Test::Unit::TestCase
+  include Fox
+
   def setup
     @point1 = FXPoint.new
     @point2 = FXPoint.new(300, 200)

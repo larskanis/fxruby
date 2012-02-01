@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXComboBox < Fox::TestCase
+  include Fox
 
-class TC_FXComboBox < TestCase
   def setup
     super(self.class.name)
     @comboBox = FXComboBox.new(mainWindow, 1)

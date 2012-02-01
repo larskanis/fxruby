@@ -3,11 +3,11 @@ require 'fox16'
 require 'fox16/colors'
 require 'testcase'
 
-include Fox
-
 SAMPLE = "The quick brown fox jumped over the lazy dog"
 
-class TC_FXText < TestCase
+class TC_FXText < Fox::TestCase
+  include Fox
+
 
 private
 
@@ -71,7 +71,7 @@ public
   def test_getText
     assert_equal(SAMPLE, @text.text)
   end
-  
+
   def test_find_text
     @text.text = "99 bottles of beer"
     startIndex, endIndex = @text.findText("bottles")

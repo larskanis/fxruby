@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXMenuCheck < Fox::TestCase
+  include Fox
 
-class TC_FXMenuCheck < TestCase
   def setup
     super(self.class.name)
     @menuCheck = FXMenuCheck.new(mainWindow, "menuCheck")

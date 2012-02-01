@@ -3,14 +3,11 @@ require 'hoe'
 require 'erb'
 require 'rake/extensiontask'
 require './lib/fox16/version.rb'
+load 'Rakefile.cross'
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-if RUBY_PLATFORM =~ /mingw/
-  FXSCINTILLA_INSTALL_DIR = "c:/src/fxscintilla-1.71/scintilla"
-else
-  FXSCINTILLA_INSTALL_DIR = "~/src/fxscintilla-1.71/scintilla"
-end
+FXSCINTILLA_INSTALL_DIR = Pathname( "build/builds/fxscintilla-#{LIBFXSCINTILLA_VERSION}" ).expand_path
 
 hoe = Hoe.spec "fxruby" do
   # ... project specific data ...
@@ -22,7 +19,7 @@ hoe = Hoe.spec "fxruby" do
   self.spec_extras = {
     :description => "FXRuby is the Ruby binding to the FOX GUI toolkit.",
     :extensions => ["ext/fox16/extconf.rb"],
-    :rdoc_options => ['--main', File.join('rdoc-sources', 'README.rdoc'), '--exclude', 'ext/fox16', '--exclude', %r{aliases|kwargs|missingdep|responder}],
+    :rdoc_options => ['--main', File.join('rdoc-sources', 'README.rdoc'), '--exclude', 'ext/fox16', '--exclude', %r{aliases|kwargs|missingdep|responder}.inspect],
     :require_paths => ['ext/fox16', 'lib'],
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
@@ -47,23 +44,14 @@ task :test => [:compile]
 
 Rake::ExtensionTask.new("fox16", hoe.spec) do |ext|
   ext.cross_compile = true
-# ext.cross_platform = 'i386-mingw32'
-# ext.cross_platform = 'i386-mswin32'
-  ext.cross_config_options << "--with-fox-include=/home/lyle/src/mingw/fox-1.6.36/include"
-  ext.cross_config_options << "--with-fox-lib=/home/lyle/src/mingw/fox-1.6.36/src/.libs"
-  ext.cross_config_options << "--with-fxscintilla-include=/home/lyle/mingw/include/fxscintilla"
-  ext.cross_config_options << "--with-fxscintilla-lib=/home/lyle/mingw/lib"
-  
-  # perform alterations on the gem spec when cross-compiling
-  ext.cross_compiling do |gem_spec|
-    gem_spec.files.delete "lib/fox16.so"
-    gem_spec.files << "lib/1.8/fox16.so"
-    gem_spec.files << "lib/1.9/fox16.so"
-  end
+  ext.cross_platform = ['i386-mingw32']
+  ext.cross_config_options += [
+    "--with-fxscintilla-include=#{STATIC_INSTALLDIR}/include/fxscintilla",
+    "--with-installed-dir=#{STATIC_INSTALLDIR}",
+    "--enable-win32-static-build",
+    "--with-fxscintilla",
+  ]
 end
-
-# Make the compile task's list of dependencies begin with the :configure task
-Rake::Task['compile'].prerequisites.unshift("fxruby:configure")
 
 #
 #  Using the following command-line flags for SWIG:
@@ -101,7 +89,7 @@ namespace :swig do
   def wrapper_src_file_path(wrapper_src_file_name)
     File.join("..", "ext", "fox16", wrapper_src_file_name)
   end
-  
+
   def sed(wrapper_src_file_name)
     results = []
     IO.readlines(wrapper_src_file_name).each do |line|
@@ -118,28 +106,35 @@ namespace :swig do
       io.write(results.join)
     end
   end
-  
+
   def swig(swig_interface_file_name, wrapper_src_file_name)
     system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
     sed wrapper_src_file_path(wrapper_src_file_name)
   end
 
-  task :swig_ruby_runtime do
-    runtime_filename = wrapper_src_file_path(File.join("include", "swigrubyrun.h"))
+  task :swig_ruby_runtime => ["ext/fox16/include/swigrubyrun.h"]
+  file "ext/fox16/include/swigrubyrun.h" do
     Dir.chdir "swig-interfaces" do
       system "#{SWIG} -ruby -external-runtime #{runtime_filename}"
     end
   end
 
   desc "Run SWIG to generate the wrapper files."
-  task :swig => [:swig_ruby_runtime] do
-    Dir.chdir "swig-interfaces" do
-      SWIG_MODULES.each do |key, value|
-        swig(key, value)
+  task :swig => [:swig_ruby_runtime] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16", cppfile) }
+
+  # add dependencies for compile *.i to *_wrap.cpp
+  SWIG_MODULES.each do |ifile, cppfile|
+    ifile_path = File.join("swig-interfaces", ifile)
+    cppfile_path = File.join("ext/fox16", cppfile)
+
+    file cppfile_path => [ifile_path] do
+      Dir.chdir "swig-interfaces" do
+        swig(ifile, cppfile)
       end
     end
   end
 end
+
 
 namespace :fxruby do
 
@@ -167,25 +162,37 @@ namespace :fxruby do
   end
 
   desc "Set versions"
-  task :setversions do
+  task :setversions => "doap.rdf"
+  file "doap.rdf" => ["doap.rdf.erb"] do
     setversions("doap.rdf")
   end
-  
+
   def make_impl
     Dir.chdir "ext/fox16" do
       ruby "make_impl.rb"
     end
   end
 
-  task :configure => [:scintilla, :setversions, :generate_kwargs_lib] do
+  task :configure => [:scintilla, :setversions, :generate_kwargs_lib]
+
+  rb_header_files = Dir['ext/include/*.h']
+  file 'ext/fox16/include/inlinestubs.h' => rb_header_files do
+    make_impl
+  end
+  file 'ext/fox16/impl.cpp' => rb_header_files do
     make_impl
   end
 
-  task :scintilla do
+  file "ext/fox16/extconf.rb" => ['ext/fox16/librb.c', 'ext/fox16/impl.cpp', 'ext/fox16/include/inlinestubs.h'] +
+      SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16", cppfile) }
+
+  task :scintilla => 'lib/fox16/scintilla.rb'
+  file 'lib/fox16/scintilla.rb' => [FXSCINTILLA_INSTALL_DIR, 'scripts/iface.rb'] do
     ruby "scripts/iface.rb -i #{FXSCINTILLA_INSTALL_DIR}/include/Scintilla.iface -o lib/fox16/scintilla.rb"
   end
 
-  task :generate_kwargs_lib do
+  task :generate_kwargs_lib => 'lib/fox16/kwargs.rb'
+  file 'lib/fox16/kwargs.rb' => ['scripts/generate_kwargs_lib.rb'] + Dir.glob('rdoc-sources/*.rb') do
     ruby 'scripts/generate_kwargs_lib.rb'
   end
 end

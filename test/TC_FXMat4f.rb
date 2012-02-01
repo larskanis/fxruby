@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXMat4f < Test::Unit::TestCase
+  include Fox
+
   def setup
     @hmat = FXMat4f.new
   end

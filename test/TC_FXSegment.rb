@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXSegment < Test::Unit::TestCase
+  include Fox
+
   def test_new
     aSeg = FXSegment.new
     assert_equal(0, aSeg.x1)

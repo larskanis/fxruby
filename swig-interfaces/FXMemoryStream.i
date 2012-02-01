@@ -44,7 +44,7 @@ public:
         return self->open(save_or_load,data);
         }
       }
-  
+
     // Take buffer away from stream
     VALUE takeBuffer() {
       FXuchar* buffer;
@@ -54,19 +54,23 @@ public:
       FXFREE(&buffer);
       return result;
       }
-  
+
     /// Give buffer to stream
     void giveBuffer(VALUE str){
+      FXuchar* copy = NULL;
       Check_Type(str,T_STRING);
       FXuchar* buffer=reinterpret_cast<FXuchar*>(StringValuePtr(str));
       FXuval sp=RSTRING_LEN(str);
-      self->giveBuffer(buffer,sp);
+      if( FXMALLOC(&copy, FXuchar *, sp)) {
+        memcpy(copy, buffer, sp);
+        self->giveBuffer(copy,sp);
+        }
       }
   }
-  
+
   /// Get position
   FXlong position() const;
-  
+
   /// Destructor
   virtual ~FXMemoryStream();
   };

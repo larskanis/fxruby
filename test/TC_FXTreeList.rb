@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXTreeList < Fox::TestCase
+  include Fox
 
-class TC_FXTreeList < TestCase
   def setup
     super(self.class.name)
     @treeList = FXTreeList.new(mainWindow, nil, 0,

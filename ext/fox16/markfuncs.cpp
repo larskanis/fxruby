@@ -39,6 +39,7 @@ static void delete_if_not_owned_by_app(BASECLASS* self,SUBCLASS*){
 
 // FIXME: How to get to the target objects stored in the accelerator
 // table? This is currently private (not protected) data for the class.
+// See workaround in lib/fox16/accel_table.rb.
 void FXRbAccelTable::markfunc(FXAccelTable* accelTable){
   FXRbObject::markfunc(accelTable);
   }

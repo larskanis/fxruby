@@ -184,7 +184,7 @@ inline FXbool to_FXbool(VALUE obj){
   $1 = NULL;
   if(!NIL_P($input)){
     Check_Type($input, T_ARRAY);
-    if (FXMALLOC(&$1, FXchar *, RARRAY_LEN($input))+1) {
+    if (FXMALLOC(&$1, FXchar *, RARRAY_LEN($input)+1)) {
       for (long i = 0; i < RARRAY_LEN($input); i++) {
         VALUE e = rb_ary_entry($input, i);
         $1[i] = (FXchar *) StringValuePtr(e);
@@ -201,7 +201,7 @@ inline FXbool to_FXbool(VALUE obj){
   $1 = NULL;
   if(!NIL_P($input)){
     Check_Type($input, T_ARRAY);
-    if (FXMALLOC(&$1, FXColor, RARRAY_LEN($input))+1) {
+    if (FXMALLOC(&$1, FXColor, RARRAY_LEN($input)+1)) {
       for (long i = 0; i < RARRAY_LEN($input); i++) {
         $1[i] = static_cast<FXColor>(NUM2ULONG(rb_ary_entry($input, i)));
       }
@@ -608,7 +608,7 @@ inline void* to_FXEvent(VALUE obj){
 
 /* Output typemap for FXViewport instances */
 %typemap(out) FXViewport {
-    FXViewport* resultptr = new FXViewport($1); 
+    FXViewport* resultptr = new FXViewport($1);
     $result = FXRbGetRubyObj(resultptr, "FXViewport *");
 }
 
@@ -740,7 +740,7 @@ inline void* to_FXEvent(VALUE obj){
  * be able to pass either zero, -1, or a window to that function and get
  * the same behavior as in FOX.
  */
- 
+
 %typemap(in) FXWindow* TOOLBAR_DOCK_AFTER {
     if (TYPE($input) == T_FIXNUM) {
         $1 = reinterpret_cast<FXWindow *>(static_cast<long>(NUM2INT($input)));

@@ -1,10 +1,11 @@
 require 'test/unit'
 
 require 'fox16'
-
-include Fox
+require 'fileutils'
 
 class TC_FXDCPrint < Test::Unit::TestCase
+  include Fox
+
 private
   def printJob
     job = FXPrinter.new
@@ -25,7 +26,7 @@ private
     job.flags = PRINT_DEST_FILE
     job
   end
-  
+
   def hexdump(ios)
     count = 0
     ios.each_byte do |byte|
@@ -48,7 +49,7 @@ private
     File.open(actual, 'rb')   { |f| actual_contents = crlf_to_lf(f.read) }
     assert_equal(expected_contents, actual_contents)
   end
-  
+
 public
   def setup
     if FXApp.instance.nil?
@@ -92,7 +93,7 @@ public
     end
 #   assert_same_file_contents("howdypage.ps", printJob.name)
   end
-  
+
   def teardown
     if File.exists?("output.ps")
       FileUtils.rm_f("output.ps")

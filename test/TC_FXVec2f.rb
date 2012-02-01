@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXVec2f < Test::Unit::TestCase
+  include Fox
+
 
   def test_default_constructor
     FXVec4f.new

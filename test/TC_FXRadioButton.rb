@@ -2,9 +2,9 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
+class TC_FXRadioButton < Fox::TestCase
+  include Fox
 
-class TC_FXRadioButton < TestCase
   def setup
     super(self.class.name)
     @radioButton = FXRadioButton.new(mainWindow, "cbText")

@@ -2,12 +2,10 @@ require 'test/unit'
 require 'testcase'
 require 'fox16'
 
-include Fox
-
 class OverrideError < Exception
 end
 
-class CustomTable < FXTable
+class CustomTable < Fox::FXTable
   def setColumnWidth(col, cwidth)
     raise OverrideError
   end
@@ -25,7 +23,9 @@ class CustomTable < FXTable
   end
 end
 
-class TC_FXTable < TestCase
+class TC_FXTable < Fox::TestCase
+  include Fox
+
 
 private
 
@@ -39,13 +39,13 @@ private
     item = nil
     nr = @table.numRows
     nc = @table.numColumns
-    
+
     (1..nc-2).each { |c|
       item = @table.getItem(nr-1, c)
         item.button = false
         item.justify = FXTableItem::RIGHT
     }
-    
+
     unless extending
       (1..nr-2).each { |r|
         item = @table.getItem(r, nc-1)
@@ -161,7 +161,7 @@ private
   end
 
 public
-  
+
   def setup
     super(self.class.name)
     @table = FXTable.new(mainWindow)
@@ -174,7 +174,7 @@ public
     100.times { loadLog } # this should be enough to do it
   end
 =end
-  
+
   def test_getCellColor
     assert_nothing_raised {
       @table.getCellColor(0, 0)
@@ -232,7 +232,7 @@ public
       @table.setCellColor(0, 2, FXRGB(0, 0, 0))
     }
   end
-  
+
   def test_updateRange
     @table.setTableSize(5, 5)
     assert_nothing_raised {
@@ -251,7 +251,7 @@ public
       @table.updateRange(0, 0, 0, 5) # endCol >= numColumns
     }
   end
-  
+
   def test_insertRows
     @table.setTableSize(5, 5)
     assert_nothing_raised {
@@ -283,7 +283,7 @@ public
       @table.insertColumns(@table.numColumns+1) # column > numColumns
     }
   end
-  
+
   def test_removeRows
     @table.setTableSize(8, 5)
     assert_raises(IndexError) {
@@ -299,7 +299,7 @@ public
       @table.removeRows(@table.numRows)
     }
   end
-  
+
   def test_removeColumns
     @table.setTableSize(5, 8)
     assert_raises(IndexError) {
@@ -331,7 +331,7 @@ public
       @table.getColumnX(5)
     }
   end
-  
+
   def test_getRowY
     @table.setTableSize(5, 5)
     assert_raises(IndexError) {
@@ -356,7 +356,7 @@ public
     @table.setItemText(1, 1, "(1, 1)")
     assert_equal("(0, 0)\t(0, 1)\n(1, 0)\t(1, 1)\n", @table.extractText(0, 1, 0, 1))
   end
-  
+
   def test_overlayText
     @table.setTableSize(2, 2)
     @table.overlayText(0, 1, 0, 1, "(0, 0)\t(0, 1)\n(1, 0)\t(1, 1)\n")
@@ -365,196 +365,196 @@ public
     assert_equal("(1, 0)", @table.getItemText(1, 0))
     assert_equal("(1, 1)", @table.getItemText(1, 1))
   end
-  
+
   def test_set_column_icon_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnIcon(-1, nil) 
+      @table.setColumnIcon(-1, nil)
     }
   end
 
   def test_set_column_icon_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnIcon(@table.numColumns, nil) 
+      @table.setColumnIcon(@table.numColumns, nil)
     }
   end
 
   def test_get_column_icon_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnIcon(-1) 
+      @table.getColumnIcon(-1)
     }
   end
 
   def test_get_column_icon_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnIcon(@table.numColumns) 
+      @table.getColumnIcon(@table.numColumns)
     }
   end
 
   def test_set_column_icon_position_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnIconPosition(-1, 0) 
+      @table.setColumnIconPosition(-1, 0)
     }
   end
 
   def test_set_column_icon_position_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnIconPosition(@table.numColumns, 0) 
+      @table.setColumnIconPosition(@table.numColumns, 0)
     }
   end
 
   def test_get_column_icon_position_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnIconPosition(-1) 
+      @table.getColumnIconPosition(-1)
     }
   end
 
   def test_get_column_icon_position_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnIconPosition(@table.numColumns) 
+      @table.getColumnIconPosition(@table.numColumns)
     }
   end
 
   def test_set_column_justify_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnJustify(-1, 0) 
+      @table.setColumnJustify(-1, 0)
     }
   end
 
   def test_set_column_justify_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnJustify(@table.numColumns, 0) 
+      @table.setColumnJustify(@table.numColumns, 0)
     }
   end
 
   def test_get_column_justify_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnJustify(-1) 
+      @table.getColumnJustify(-1)
     }
   end
 
   def test_get_column_justify_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnJustify(@table.numColumns) 
+      @table.getColumnJustify(@table.numColumns)
     }
   end
 
   def test_set_column_text_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnText(-1, "") 
+      @table.setColumnText(-1, "")
     }
   end
 
   def test_set_column_text_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setColumnText(@table.numColumns, "") 
+      @table.setColumnText(@table.numColumns, "")
     }
   end
 
   def test_get_column_text_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnText(-1) 
+      @table.getColumnText(-1)
     }
   end
 
   def test_get_column_text_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getColumnText(@table.numColumns) 
+      @table.getColumnText(@table.numColumns)
     }
   end
 
   def test_set_row_icon_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowIcon(-1, nil) 
+      @table.setRowIcon(-1, nil)
     }
   end
 
   def test_set_row_icon_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowIcon(@table.numRows, nil) 
+      @table.setRowIcon(@table.numRows, nil)
     }
   end
 
   def test_get_row_icon_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowIcon(-1) 
+      @table.getRowIcon(-1)
     }
   end
 
   def test_get_row_icon_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowIcon(@table.numRows) 
+      @table.getRowIcon(@table.numRows)
     }
   end
 
   def test_set_row_icon_position_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowIconPosition(-1, 0) 
+      @table.setRowIconPosition(-1, 0)
     }
   end
 
   def test_set_row_icon_position_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowIconPosition(@table.numRows, 0) 
+      @table.setRowIconPosition(@table.numRows, 0)
     }
   end
 
   def test_get_row_icon_position_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowIconPosition(-1) 
+      @table.getRowIconPosition(-1)
     }
   end
 
   def test_get_row_icon_position_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowIconPosition(@table.numRows) 
+      @table.getRowIconPosition(@table.numRows)
     }
   end
 
   def test_set_row_justify_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowJustify(-1, 0) 
+      @table.setRowJustify(-1, 0)
     }
   end
 
   def test_set_row_justify_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowJustify(@table.numRows, 0) 
+      @table.setRowJustify(@table.numRows, 0)
     }
   end
 
   def test_get_row_justify_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowJustify(-1) 
+      @table.getRowJustify(-1)
     }
   end
 
   def test_get_row_justify_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowJustify(@table.numRows) 
+      @table.getRowJustify(@table.numRows)
     }
   end
 
   def test_set_row_text_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowText(-1, "") 
+      @table.setRowText(-1, "")
     }
   end
 
   def test_set_row_text_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.setRowText(@table.numRows, "") 
+      @table.setRowText(@table.numRows, "")
     }
   end
 
   def test_get_row_text_negative_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowText(-1) 
+      @table.getRowText(-1)
     }
   end
 
   def test_get_row_text_large_index_raises_index_error
     assert_raises(IndexError) {
-      @table.getRowText(@table.numRows) 
+      @table.getRowText(@table.numRows)
     }
   end
 

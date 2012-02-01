@@ -24,7 +24,9 @@
  * $Id: FXRbCommon.h 2797 2007-12-11 21:59:11Z lyle $
  ***********************************************************************/
 
+extern "C" {
 #include "ruby.h"
+}
 
 /**
  * The Ruby header files for Win32 redefine the symbol "select", which

@@ -2,9 +2,9 @@ require 'test/unit'
 
 require 'fox16'
 
-include Fox
-
 class TC_FXFontDesc < Test::Unit::TestCase
+  include Fox
+
   def setup
     @fontdesc = FXFontDesc.new
   end

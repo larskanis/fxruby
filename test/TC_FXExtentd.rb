@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fox16'
 
-include Fox
-
 class TC_FXExtentd < Test::Unit::TestCase
+  include Fox
+
   def test_lower_always_returns_same_instance
     e = FXExtentd.new(0, 1, 0, 1)
     assert_same e.lower, e.lower

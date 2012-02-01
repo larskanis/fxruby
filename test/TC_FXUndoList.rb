@@ -2,9 +2,7 @@ require 'test/unit'
 require 'fox16'
 require 'fox16/undolist'
 
-include Fox
-
-class DummyCommand < FXCommand
+class DummyCommand < Fox::FXCommand
   def undo ; end
   def redo ; end
   def undoName
@@ -16,6 +14,8 @@ class DummyCommand < FXCommand
 end
 
 class TC_FXUndoList < Test::Unit::TestCase
+  include Fox
+
   def test_cut_with_nil_marker
     undoList = FXUndoList.new
     assert_nothing_raised {

@@ -2,6 +2,7 @@
 
 * http://www.fxruby.org/
 * http://rubyforge.org/projects/fxruby
+* http://github.com/larskanis/fxruby
 
 == DESCRIPTION:
 
@@ -20,7 +21,7 @@ featureful, highly optimized C++ toolkit.
 
 == INSTALL:
 
-* sudo gem install fxruby
+* sudo gem install fxrubi --prerelease
 
 == LICENSE
 

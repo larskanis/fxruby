@@ -18,7 +18,7 @@ module Fox
   # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
   #
   class FXBitmapView < FXScrollArea
-  
+
     # Bitmap alignment styles
     BITMAPVIEW_NORMAL    = 0          # Normal mode is centered
     BITMAPVIEW_CENTER_X  = 0          # Centered horizontally
@@ -37,7 +37,7 @@ module Fox
       self.target = tgt
       self.message = sel
       @bitmap = bmp
-      @onColor = FXRGB(0, 0, 0)
+      @onColor = Fox.FXRGB(0, 0, 0)
       @offColor = backColor
       @grabx = 0
       @graby = 0
@@ -58,11 +58,11 @@ module Fox
     end
 
     def getContentWidth
-      bitmap.nil? 1 : bitmap.width
+      bitmap.nil? ? 1 : bitmap.width
     end
 
     def getContentHeight
-      bitmap.nil? 1 : bitmap.height
+      bitmap.nil? ? 1 : bitmap.height
     end
 
     def layout
@@ -121,10 +121,10 @@ module Fox
     # Handle right mouse button press
     def onRightBtnPress(sender, sel, ev)
       self.flags &= ~FLAG_TIP
-      handle(self, FXSEL(SEL_FOCUS_SELF, 0), ev)
+      handle(self, Fox.FXSEL(SEL_FOCUS_SELF, 0), ev)
       if enabled?
         grab
-        if target && target.handle(self, FXSEL(SEL_RIGHTBUTTONPRESS, message), ev) != 0
+        if target && target.handle(self, Fox.FXSEL(SEL_RIGHTBUTTONPRESS, message), ev) != 0
           return 1
         end
         self.flags &= ~FLAG_UPDATE
@@ -142,7 +142,7 @@ module Fox
         ungrab
         self.flags &= ~(FLAG_PRESSED|FLAG_SCROLLING)
         self.flags |= FLAG_UPDATE
-        if target && target.handle(self, FXSEL(SEL_RIGHTBUTTONPRESS, message), ev) != 0 
+        if target && target.handle(self, Fox.FXSEL(SEL_RIGHTBUTTONPRESS, message), ev) != 0
           return 1
         end
         return 1
@@ -220,4 +220,3 @@ module Fox
     end
   end
 end
-
