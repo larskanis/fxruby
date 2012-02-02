@@ -63,7 +63,7 @@ struct FXFileAssoc {
 *
 * For example, the binding for "jpg" could be:
 *
-*   xv %s &;JPEG Image;bigimage.xpm;miniimage.xpm;image/jpeg;term 
+*   xv %s &;JPEG Image;bigimage.xpm;miniimage.xpm;image/jpeg;term
 *
 * The association for a file name is determined by first looking at the entire
 * file name, then at the whole extension, and then at sub-extensions.

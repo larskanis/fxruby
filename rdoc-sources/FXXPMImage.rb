@@ -7,7 +7,7 @@ module Fox
     # Return the suggested file extension for this image type ("xpm").
     #
     def FXXPMImage.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #

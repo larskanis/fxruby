@@ -1,7 +1,7 @@
 module Fox
   # Void symbol
   KEY_VoidSymbol		    = 0
-  
+
   # Miscellaneous
   KEY_BackSpace		            = 0xFF08
   KEY_Tab			    = 0xFF09
@@ -14,7 +14,7 @@ module Fox
   KEY_Escape		            = 0xFF1B
   KEY_Delete		            = 0xFFFF
   KEY_Multi_key		            = 0xFF20
-  
+
   # Japanese
   KEY_Kanji		            = 0xFF21
   KEY_Muhenkan		            = 0xFF22
@@ -33,7 +33,7 @@ module Fox
   KEY_Kana_Shift		    = 0xFF2E
   KEY_Eisu_Shift	            = 0xFF2F
   KEY_Eisu_toggle	            = 0xFF30
-  
+
   # Cursor
   KEY_Home			    = 0xFF50
   KEY_Left			    = 0xFF51
@@ -46,7 +46,7 @@ module Fox
   KEY_Page_Down		            = 0xFF56
   KEY_End		            = 0xFF57
   KEY_Begin		            = 0xFF58
-  
+
   # Functions
   KEY_Select		            = 0xFF60
   KEY_Print		            = 0xFF61
@@ -62,7 +62,7 @@ module Fox
   KEY_Mode_switch	            = 0xFF7E
   KEY_script_switch                 = 0xFF7E
   KEY_Num_Lock		            = 0xFF7F
-  
+
   # Keypad
   KEY_KP_Space		            = 0xFF80
   KEY_KP_Tab		            = 0xFF89
@@ -91,7 +91,7 @@ module Fox
   KEY_KP_Subtract	            = 0xFFAD
   KEY_KP_Decimal	            = 0xFFAE
   KEY_KP_Divide		            = 0xFFAF
-  
+
   # Keypad numbers
   KEY_KP_0			    = 0xFFB0
   KEY_KP_1			    = 0xFFB1
@@ -103,7 +103,7 @@ module Fox
   KEY_KP_7			    = 0xFFB7
   KEY_KP_8			    = 0xFFB8
   KEY_KP_9			    = 0xFFB9
-  
+
   # Function keys
   KEY_F1			    = 0xFFBE
   KEY_F2		            = 0xFFBF
@@ -165,7 +165,7 @@ module Fox
   KEY_R14		            = 0xFFDF
   KEY_F35		            = 0xFFE0
   KEY_R15		            = 0xFFE0
-  
+
   # Modifiers
   KEY_Shift_L		            = 0xFFE1
   KEY_Shift_R		            = 0xFFE2
@@ -173,7 +173,7 @@ module Fox
   KEY_Control_R		            = 0xFFE4
   KEY_Caps_Lock		            = 0xFFE5
   KEY_Shift_Lock	            = 0xFFE6
-  
+
   KEY_Meta_L		            = 0xFFE7
   KEY_Meta_R		            = 0xFFE8
   KEY_Alt_L		            = 0xFFE9
@@ -182,8 +182,8 @@ module Fox
   KEY_Super_R		            = 0xFFEC
   KEY_Hyper_L		            = 0xFFED
   KEY_Hyper_R		            = 0xFFEE
-  
-  
+
+
   # ISO 9995
   KEY_ISO_Lock			    = 0xFE01
   KEY_ISO_Level2_Latch		    = 0xFE02
@@ -222,7 +222,7 @@ module Fox
   KEY_ISO_Emphasize		    = 0xFE32
   KEY_ISO_Center_Object		    = 0xFE33
   KEY_ISO_Enter			    = 0xFE34
-  
+
   KEY_dead_grave		    = 0xFE50
   KEY_dead_acute		    = 0xFE51
   KEY_dead_circumflex		    = 0xFE52
@@ -240,13 +240,13 @@ module Fox
   KEY_dead_voiced_sound		    = 0xFE5E
   KEY_dead_semivoiced_sound	    = 0xFE5F
   KEY_dead_belowdot		    = 0xFE60
-  
+
   KEY_First_Virtual_Screen	    = 0xFED0
   KEY_Prev_Virtual_Screen	    = 0xFED1
   KEY_Next_Virtual_Screen	    = 0xFED2
   KEY_Last_Virtual_Screen	    = 0xFED4
   KEY_Terminate_Server		    = 0xFED5
-  
+
   KEY_AccessX_Enable		    = 0xFE70
   KEY_AccessX_Feedback_Enable	    = 0xFE71
   KEY_RepeatKeys_Enable		    = 0xFE72
@@ -258,7 +258,7 @@ module Fox
   KEY_Overlay1_Enable		    = 0xFE78
   KEY_Overlay2_Enable		    = 0xFE79
   KEY_AudibleBell_Enable	    = 0xFE7A
-  
+
   KEY_Pointer_Left		    = 0xFEE0
   KEY_Pointer_Right		    = 0xFEE1
   KEY_Pointer_Up		    = 0xFEE2
@@ -285,12 +285,12 @@ module Fox
   KEY_Pointer_Drag3		    = 0xFEF7
   KEY_Pointer_Drag4		    = 0xFEF8
   KEY_Pointer_Drag5		    = 0xFEFD
-  
+
   KEY_Pointer_EnableKeys	    = 0xFEF9
   KEY_Pointer_Accelerate	    = 0xFEFA
   KEY_Pointer_DfltBtnNext	    = 0xFEFB
   KEY_Pointer_DfltBtnPrev	    = 0xFEFC
-  
+
   # 3270 Terminal
   KEY_3270_Duplicate                = 0xFD01
   KEY_3270_FieldMark                = 0xFD02
@@ -322,7 +322,7 @@ module Fox
   KEY_3270_CursorSelect             = 0xFD1C
   KEY_3270_PrintScreen              = 0xFD1D
   KEY_3270_Enter                    = 0xFD1E
-  
+
   # Latin 1
   KEY_space                           = 0x0020
   KEY_exclam                          = 0x0021
@@ -421,7 +421,7 @@ module Fox
   KEY_bar                             = 0x007C
   KEY_braceright                      = 0x007D
   KEY_asciitilde                      = 0x007E
-  
+
   KEY_nobreakspace                    = 0x00A0
   KEY_exclamdown                      = 0x00A1
   KEY_cent        	            = 0x00A2
@@ -520,7 +520,7 @@ module Fox
   KEY_yacute                          = 0x00FD
   KEY_thorn                           = 0x00FE
   KEY_ydiaeresis                      = 0x00FF
-  
+
   # Latin 2
   KEY_Aogonek                         = 0x01A1
   KEY_breve                           = 0x01A2
@@ -579,7 +579,7 @@ module Fox
   KEY_uring                           = 0x01F9
   KEY_tcedilla                        = 0x01FE
   KEY_abovedot                        = 0x01FF
-  
+
   # Latin 3
   KEY_Hstroke                         = 0x02A1
   KEY_Hcircumflex                     = 0x02A6
@@ -603,8 +603,8 @@ module Fox
   KEY_gcircumflex                     = 0x02F8
   KEY_ubreve                          = 0x02FD
   KEY_scircumflex                     = 0x02FE
-  
-  
+
+
   # Latin 4
   KEY_kra                             = 0x03A2
   KEY_kappa                           = 0x03A2
@@ -642,7 +642,7 @@ module Fox
   KEY_uogonek                         = 0x03F9
   KEY_utilde                          = 0x03FD
   KEY_umacron                         = 0x03FE
-  
+
   # Katakana
   KEY_overline			    = 0x047E
   KEY_kana_fullstop                   = 0x04A1
@@ -714,7 +714,7 @@ module Fox
   KEY_voicedsound                     = 0x04DE
   KEY_semivoicedsound                 = 0x04DF
   KEY_kana_switch                     = 0x0FF7
-  
+
   # Arabic
   KEY_Arabic_comma                    = 0x05AC
   KEY_Arabic_semicolon                = 0x05BB
@@ -766,7 +766,7 @@ module Fox
   KEY_Arabic_shadda                   = 0x05F1
   KEY_Arabic_sukun                    = 0x05F2
   KEY_Arabic_switch                   = 0xFF7E
-  
+
   # Cyrillic
   KEY_Serbian_dje                     = 0x06A1
   KEY_Macedonia_gje                   = 0x06A2
@@ -875,7 +875,7 @@ module Fox
   KEY_Cyrillic_SHCHA                  = 0x06FD
   KEY_Cyrillic_CHE                    = 0x06FE
   KEY_Cyrillic_HARDSIGN               = 0x06FF
-  
+
   # Greek
   KEY_Greek_ALPHAaccent               = 0x07A1
   KEY_Greek_EPSILONaccent             = 0x07A2
@@ -951,7 +951,7 @@ module Fox
   KEY_Greek_psi                       = 0x07F8
   KEY_Greek_omega                     = 0x07F9
   KEY_Greek_switch                    = 0xFF7E
-  
+
   # Technical
   KEY_leftradical                     = 0x08A1
   KEY_topleftradical                  = 0x08A2
@@ -1002,7 +1002,7 @@ module Fox
   KEY_uparrow                         = 0x08FC
   KEY_rightarrow                      = 0x08FD
   KEY_downarrow                       = 0x08FE
-  
+
   # Special
   KEY_blank                           = 0x09DF
   KEY_soliddiamond                    = 0x09E0
@@ -1028,7 +1028,7 @@ module Fox
   KEY_bott                            = 0x09F6
   KEY_topt                            = 0x09F7
   KEY_vertbar                         = 0x09F8
-  
+
   # Publishing
   KEY_emspace                         = 0x0AA1
   KEY_enspace                         = 0x0AA2
@@ -1113,7 +1113,7 @@ module Fox
   KEY_singlelowquotemark              = 0x0AFD
   KEY_doublelowquotemark              = 0x0AFE
   KEY_cursor                          = 0x0AFF
-  
+
   # APL
   KEY_leftcaret                       = 0x0BA3
   KEY_rightcaret                      = 0x0BA6
@@ -1134,7 +1134,7 @@ module Fox
   KEY_leftshoe                        = 0x0BDA
   KEY_lefttack                        = 0x0BDC
   KEY_righttack                       = 0x0BFC
-  
+
   # Hebrew
   KEY_hebrew_doublelowline            = 0x0CDF
   KEY_hebrew_aleph                    = 0x0CE0
@@ -1176,7 +1176,7 @@ module Fox
   KEY_hebrew_taw                      = 0x0CFA
   KEY_hebrew_taf                      = 0x0CFA
   KEY_Hebrew_switch                   = 0xFF7E
-  
+
   # Thai
   KEY_Thai_kokai			    = 0x0DA1
   KEY_Thai_khokhai		    = 0x0DA2
@@ -1262,7 +1262,7 @@ module Fox
   KEY_Thai_lekchet		    = 0x0DF7
   KEY_Thai_lekpaet		    = 0x0DF8
   KEY_Thai_lekkao			    = 0x0DF9
-  
+
   # Korean
   KEY_Hangul		            = 0xFF31
   KEY_Hangul_Start		    = 0xFF32

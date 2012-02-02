@@ -36,7 +36,7 @@ module Fox
     #   doc = accelTable.targetofAccel(fxparseAccel("Ctrl+S"))
     #
     def targetOfAccel(hotKey) ; end
-  
+
     #
     # Remove mapping for specified hot key.
     # Here, _hotKey_ is a code representing an accelerator key as returned

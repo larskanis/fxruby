@@ -7,7 +7,7 @@ module Fox
     # Application [FXApp]
     attr_reader :app
 
-    # User data [Object]  
+    # User data [Object]
     attr_accessor :userData
 
     # XID handle for the server-side resource [Integer]

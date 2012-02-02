@@ -46,7 +46,7 @@ class DataTargetWindow < FXMainWindow
 
     # Menubar
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-    
+
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "Progress dialog...").connect(SEL_COMMAND) do
@@ -179,7 +179,7 @@ class DataTargetWindow < FXMainWindow
   def onTimeout(sender, sel, ptr)
     # Increment the progress modulo 100
     @progressTarget.value = (@progressTarget.value + 1) % 100
-  
+
     # Reset the timer for next time
     getApp().addTimeout(80, method(:onTimeout))
   end

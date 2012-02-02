@@ -35,17 +35,17 @@ module Fox
     # Set current directory
     #
     def setDirectory(pathname); end
-    
+
     #
     # Return current directory
     #
     def getDirectory(); end
-    
+
     #
     # Change file associations, where _assoc_ is an FXFileDict instance.
     #
     def setAssociations(assoc); end
-    
+
     #
     # Return file associations (an FXFileDict instance).
     #

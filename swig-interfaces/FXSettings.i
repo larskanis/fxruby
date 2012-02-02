@@ -65,7 +65,7 @@ public:
 
   /// Parse a file containing a settings database.
   bool parseFile(const FXString& filename,bool mark);
-  
+
   /// Unparse settings database into given file.
   bool unparseFile(const FXString& filename);
 
@@ -116,7 +116,7 @@ public:
 
   /// Write a boolean value entry
   bool writeBoolEntry(const FXchar *section,const FXchar *key,FXbool val);
- 
+
   /// Delete a registry entry
   bool deleteEntry(const FXchar *section,const FXchar *key);
 
@@ -137,7 +137,7 @@ public:
 
   /// Is it modified
   bool isModified() const;
-  
+
   /// Destructor
   virtual ~FXSettings();
   };

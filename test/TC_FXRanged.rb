@@ -11,11 +11,11 @@ class TC_FXRanged < Test::Unit::TestCase
   def setup
     @range = FXRanged.new(0, WIDTH, 0, HEIGHT, 0, DEPTH)
   end
-  
+
   def test_lower_is_a_vector
     assert_instance_of(FXVec3d, @range.lower)
   end
-  
+
   def test_upper_is_a_vector
     assert_instance_of(FXVec3d, @range.upper)
   end
@@ -23,7 +23,7 @@ class TC_FXRanged < Test::Unit::TestCase
   def test_width
     assert_equal(@range.width, WIDTH)
   end
-  
+
   def test_height
     assert_equal(@range.height, HEIGHT)
   end

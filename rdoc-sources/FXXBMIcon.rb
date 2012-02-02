@@ -7,7 +7,7 @@ module Fox
     # Return the suggested file extension for this image type ("xbm").
     #
     def FXXBMIcon.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #
@@ -29,7 +29,7 @@ module Fox
     def initialize(a, pixels=nil, mask=nil, clr=0, opts=0, width=1, height=1) # :yields: theXBMIcon
     end
   end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains an XBM image.
   #

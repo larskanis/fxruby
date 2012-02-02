@@ -19,7 +19,7 @@ module Fox
     def initialize(tgt=nil)
       @target = tgt
     end
-    
+
     def doKeyPress
       unless @target.nil?
         evt = FXEvent.new

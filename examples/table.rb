@@ -13,30 +13,30 @@ class TableWindow < FXMainWindow
 
     # Tooltip
     tooltip = FXToolTip.new(getApp())
-    
+
     # Icon used in some cells
     penguinicon = nil
     File.open(File.join('icons', 'penguin.png'), 'rb') do |f|
       penguinicon = FXPNGIcon.new(getApp(), f.read, 0, IMAGE_ALPHAGUESS)
     end
-    
+
     # Menubar
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-    
+
     # Separator
     FXHorizontalSeparator.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X|SEPARATOR_GROOVE)
-  
+
     # Contents
     contents = FXVerticalFrame.new(self, LAYOUT_SIDE_TOP|FRAME_NONE|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     frame = FXVerticalFrame.new(contents,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y, :padding => 0)
-  
+
     # Table
     @table = FXTable.new(frame,
       :opts => TABLE_COL_SIZABLE|TABLE_ROW_SIZABLE|LAYOUT_FILL_X|LAYOUT_FILL_Y,
       :padding => 2)
-      
+
     @table.visibleRows = 20
     @table.visibleColumns = 8
 
@@ -47,7 +47,7 @@ class TableWindow < FXMainWindow
     @table.setCellColor(0, 1, FXRGB(255, 240, 240))
     @table.setCellColor(1, 0, FXRGB(240, 255, 240))
     @table.setCellColor(1, 1, FXRGB(240, 240, 255))
-  
+
     # Initialize the scrollable part of the table
     (0..49).each do |r|
       (0..13).each do |c|
@@ -57,10 +57,10 @@ class TableWindow < FXMainWindow
 
     # Initialize column headers
     (0...12).each  { |c| @table.setColumnText(c, Date::MONTHNAMES[c+1]) }
-    
+
     # Initialize row headers
     (0...50).each { |r| @table.setRowText(r, "Row#{r}") }
-    
+
     @table.setItemText(10, 10, "This is multi-\nline text")
     @table.setItemJustify(10, 10, FXTableItem::CENTER_X|FXTableItem::CENTER_Y)
 
@@ -69,31 +69,31 @@ class TableWindow < FXMainWindow
     @table.setItem(5, 7, @table.getItem(5, 5))
     @table.setItemText(5, 5, "Spanning Item")
     @table.setItemJustify(5, 5, FXTableItem::CENTER_X|FXTableItem::CENTER_Y)
-    
+
     @table.getItem( 9,  9).borders = FXTableItem::TBORDER|FXTableItem::LBORDER|FXTableItem::BBORDER
     @table.getItem( 9, 10).borders = FXTableItem::TBORDER|FXTableItem::RBORDER|FXTableItem::BBORDER
-    
+
     @table.getItem(40, 13).borders = FXTableItem::LBORDER|FXTableItem::TBORDER|FXTableItem::RBORDER|FXTableItem::BBORDER
     @table.getItem(49, 13).borders = FXTableItem::LBORDER|FXTableItem::TBORDER|FXTableItem::RBORDER|FXTableItem::BBORDER
     @table.getItem( 5,  0).borders = FXTableItem::LBORDER|FXTableItem::TBORDER|FXTableItem::RBORDER|FXTableItem::BBORDER
-    
+
     @table.getItem(6, 6).icon = penguinicon
     @table.getItem(6, 6).iconPosition = FXTableItem::ABOVE  # icon above the text
     @table.getItem(6, 6).justify = FXTableItem::CENTER_X|FXTableItem::CENTER_Y
-    
+
     @table.getItem(3, 4).stipple = STIPPLE_CROSSDIAG
-    
+
     # File Menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q", nil, getApp(), FXApp::ID_QUIT)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-    
+
     # Options Menu
     tablemenu = FXMenuPane.new(self)
     FXMenuCheck.new(tablemenu, "Horizontal grid", @table, FXTable::ID_HORZ_GRID)
     FXMenuCheck.new(tablemenu, "Vertical grid", @table, FXTable::ID_VERT_GRID)
     FXMenuTitle.new(menubar, "&Options", nil, tablemenu)
-    
+
     # Manipulations Menu
     manipmenu = FXMenuPane.new(self)
     FXMenuCommand.new(manipmenu, "Delete Column\tCtl-C", nil,
@@ -106,7 +106,7 @@ class TableWindow < FXMainWindow
       @table, FXTable::ID_INSERT_ROW)
     FXMenuCommand.new(manipmenu, "Resize table...").connect(SEL_COMMAND, method(:onCmdResizeTable))
     FXMenuTitle.new(menubar, "&Manipulations", nil, manipmenu)
-    
+
     # Selection Menu
     selectmenu = FXMenuPane.new(self)
     FXMenuCommand.new(selectmenu, "Select All", nil, @table, FXTable::ID_SELECT_ALL)
@@ -170,13 +170,13 @@ end
 if __FILE__ == $0
   # Make application
   application = FXApp.new("TableApp", "FoxTest")
-  
+
   # Make window
   TableWindow.new(application)
-  
+
   # Create app
   application.create
-  
+
   # Run
   application.run
 end

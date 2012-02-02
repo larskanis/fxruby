@@ -110,7 +110,7 @@ public:
 
   /// Load choice box from a stream
   virtual void load(FXStream& store);
-  
+
   /// Destroy choice box
   virtual ~FXChoiceBox();
   };

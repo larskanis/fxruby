@@ -38,7 +38,7 @@ protected:
 #include "FXRbDockBarVirtuals.h"
 public:
   /**
-  * Construct a floatable toolbar 
+  * Construct a floatable toolbar
   * Normally, the toolbar is docked under window p.
   * When floated, the toolbar can be docked under window q, which is
   * typically an FXToolBarShell window.

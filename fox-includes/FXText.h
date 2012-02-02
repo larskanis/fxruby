@@ -683,7 +683,7 @@ public:
 
   /// Return number of rows in buffer
   FXint getNumRows() const { return nrows; }
-  
+
   /// Shift block of lines from position start up to end by given amount
   FXint shiftText(FXint start,FXint end,FXint amount,FXbool notify=FALSE);
 

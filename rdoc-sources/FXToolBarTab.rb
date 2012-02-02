@@ -26,7 +26,7 @@ module Fox
   # +TOOLBARTAB_VERTICAL+::		For vertical toolbar
   #
   # === Message identifiers
-  # 
+  #
   # +ID_COLLAPSE+::					Collapse the toolbar tab
   # +ID_UNCOLLAPSE+::				Uncollapse the toolbar tab
   #
@@ -37,7 +37,7 @@ module Fox
 
     # The active color [FXColor]
     attr_accessor :activeColor
-    
+
     # Tooltip message [String]
     attr_accessor :tipText
 
@@ -64,7 +64,7 @@ module Fox
     # tab's message target after the toolbar tab is collapsed (or uncollapsed).
     #
     def collapse(fold, notify=false); end
-  
+
     #
     # Return +true+ if the toolbar is collapsed, +false+ otherwise.
     #

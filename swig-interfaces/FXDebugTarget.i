@@ -47,7 +47,7 @@ public:
 public:
   long onMessage(FXObject*,FXSelector,void* PTR_NULL); // FIXME
 public:
-  %extend {  
+  %extend {
     /// Construct a debug target
     FXDebugTarget(){
       return new FXRbDebugTarget();

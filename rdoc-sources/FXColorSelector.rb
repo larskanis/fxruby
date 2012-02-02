@@ -40,18 +40,18 @@ module Fox
   # +ID_ALPHA_TEXT+::			x
   # +ID_ALPHA_LABEL+::			x
   # +ID_COLORPICK+::			x
-  
+
   class FXColorSelector < FXPacker
 
     # The "Accept" button [FXButton]
     attr_reader	:acceptButton
-    
+
     # The "Cancel" button [FXButton]
     attr_reader	:cancelButton
-  
+
     # The color [FXColor]
     attr_accessor :rgba
-    
+
     # Only opaque colors allowed [Boolean]
     attr_writer	:opaqueOnly
 

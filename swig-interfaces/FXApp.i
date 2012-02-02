@@ -85,7 +85,7 @@ enum FXDefaultCursor {
   };
 
 
-/// FOX Event 
+/// FOX Event
 struct FXEvent {
   FXEvent();
   FXuint      type;           /// Event type
@@ -191,7 +191,7 @@ public:
 
   /// Connection to display; this is called by init()
   bool openDisplay(const FXchar* dpyname=NULL);
-  
+
   /// Close connection to the display
   bool closeDisplay();
 
@@ -243,7 +243,7 @@ public:
   /// Return window at the end of the focus chain
   FXWindow *getFocusWindow() const;
 
-  /// Get the window under the cursor, if any  
+  /// Get the window under the cursor, if any
   FXWindow *getCursorWindow() const;
 
   /// Get the active toplevel window, if any
@@ -310,7 +310,7 @@ public:
 
   %extend {
     /**
-    * Add signal processing message to be sent to target object when 
+    * Add signal processing message to be sent to target object when
     * the signal sig is raised; flags are to be set as per POSIX definitions.
     * When immediate is TRUE, the message will be sent to the target right away;
     * this should be used with extreme care as the application is interrupted
@@ -360,7 +360,7 @@ public:
     /**
     * Add a file descriptor fd to be watched for activity as determined
     * by mode, where mode is a bitwise OR (INPUT_READ, INPUT_WRITE, INPUT_EXCEPT).
-    * A message of type SEL_IO_READ, SEL_IO_WRITE, or SEL_IO_EXCEPT will be sent 
+    * A message of type SEL_IO_READ, SEL_IO_WRITE, or SEL_IO_EXCEPT will be sent
     * to the target when the specified activity is detected on the file descriptor.
     */
     bool addInput(VALUE obj,FXuint mode,FXObject *tgt,FXSelector sel){
@@ -435,7 +435,7 @@ public:
   * Run event loop while there are events are available in the queue.
   * Returns 1 when all events in the queue have been handled, and 0 when
   * the event loop was terminated due to stop() or stopModal().
-  * Except for the modal window and its children, user input to all windows 
+  * Except for the modal window and its children, user input to all windows
   * is blocked; if the modal window is NULL, all user input is blocked.
   */
   FXint runModalWhileEvents(FXWindow* window=NULL);
@@ -447,14 +447,14 @@ public:
   FXint runModal();
 
   /**
-  * Run a modal event loop for the given window, until stop() or stopModal() is 
+  * Run a modal event loop for the given window, until stop() or stopModal() is
   * called. Except for the modal window and its children, user input to all
   * windows is blocked; if the modal window is NULL all user input is blocked.
   */
   FXint runModalFor(FXWindow* window);
 
   /**
-  * Run modal while window is shown, or until stop() or stopModal() is called. 
+  * Run modal while window is shown, or until stop() or stopModal() is called.
   * Except for the modal window and its children, user input to all windows
   * is blocked; if the modal window is NULL all user input is blocked.
   */
@@ -488,7 +488,7 @@ public:
   */
   void stopModal(FXWindow* window,FXint value=0);
 
-  /** 
+  /**
   * Break out of the innermost modal loop, returning code equal to value.
   */
   void stopModal(FXint value=0);
@@ -568,7 +568,7 @@ public:
       }
   }
 
-  /// Return current wait cursor  
+  /// Return current wait cursor
   FXCursor* getWaitCursor() const;
 
   /// Obtain a default cursor

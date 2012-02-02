@@ -46,21 +46,21 @@ module Fox
     # If _owner_ is the application, the message box will be free-floating.
     #
     def FXMessageBox.error(owner, opts, caption, message); end
-  
+
     #
     # Show a modal warning message; returns one of the return values listed above.
     # If _owner_ is a window, the message box will float over that window.
     # If _owner_ is the application, the message box will be free-floating.
     #
     def FXMessageBox.warning(owner, opts, caption, message); end
-  
+
     #
     # Show a modal question dialog; returns one of the return values listed above.
     # If _owner_ is a window, the message box will float over that window.
     # If _owner_ is the application, the message box will be free-floating.
     #
     def FXMessageBox.question(owner, opts, caption, message); end
-  
+
     #
     # Show a modal information dialog; returns one of the return values listed above.
     # If _owner_ is a window, the message box will float over that window.

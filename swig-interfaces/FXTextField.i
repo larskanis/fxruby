@@ -152,7 +152,7 @@ public:
       }
     }
 
-  /// Change text field editability 
+  /// Change text field editability
   void setEditable(FXbool edit=TRUE);
 
   /// Return TRUE if text field may be edited

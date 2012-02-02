@@ -36,7 +36,7 @@ class TC_FXRegion < Test::Unit::TestCase
     # Definitely out of bounds
     assert(!@region.contains?(2, 3))
 
-    # Definitely in bounds    
+    # Definitely in bounds
     assert(@region.contains?(6, 6))
 
     # Check corners too

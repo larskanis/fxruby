@@ -7,7 +7,7 @@ module Fox
     # Return the suggested file extension for this image type ("tif").
     #
     def FXTIFImage.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #
@@ -18,7 +18,7 @@ module Fox
 
     # Codec setting [Integer]
     attr_accessor :codec
-    
+
     #
     # Return an initialized FXTIFImage instance.
     #

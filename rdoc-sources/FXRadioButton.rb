@@ -30,13 +30,13 @@ module Fox
 
     # Radio button state, one of +TRUE+, +FALSE+ or +MAYBE+ [Integer]
     attr_accessor :checkState
-    
+
     # Radio button style [Integer]
     attr_accessor :radioButtonStyle
-    
+
     # Radio ball color [FXColor]
     attr_accessor :radioColor
-    
+
     # Radio disk color [FXColor]
     attr_accessor :diskColor
 
@@ -52,7 +52,7 @@ module Fox
     def checked?
       self.checkState == Fox::TRUE
     end
-    
+
     #
     # Return +true+ if the radio button state is +FALSE+
     #

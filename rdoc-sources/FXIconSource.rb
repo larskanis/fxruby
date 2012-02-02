@@ -17,7 +17,7 @@ module Fox
     #
     def initialize(app) # :yields: theIconSource
     end
-    
+
     #
     # Load an icon from the file _filename_. By default, the file extension is
     # stripped and used as the icon _type_; if an explicit icon type is forced,
@@ -67,7 +67,7 @@ module Fox
     # to divine the icon format if the parameter is omitted).
     #
     def loadImageData(pixels, type=nil); end
-  
+
     #
     # Load an image of a given type (e.g. "gif") from an already open stream.
     # Returns +nil+ if there's some error loading the image. (The optional

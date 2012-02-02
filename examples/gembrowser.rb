@@ -103,7 +103,7 @@ class GemsPanel < FXVerticalFrame
   def initialize(p, br, opts)
     # Initialize base class
     super(p, opts)
-    
+
     # Save a reference to the browser
     @browser = br
 
@@ -154,11 +154,11 @@ class GemsPanel < FXVerticalFrame
   def getItem(*args)
     @iconList.getItem(*args)
   end
-  
+
   def selectItem(index)
     @iconList.selectItem(index, true)
   end
-  
+
   def numItems
     @iconList.numItems
   end
@@ -206,7 +206,7 @@ class GemBrowserWindow < FXMainWindow
 
     # Main window interior
     contents = FXVerticalFrame.new(self, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     @browser = GemBrowser.new
 
     # Horizontal splitter with info pane on the left, icon list on the right
@@ -214,7 +214,7 @@ class GemBrowserWindow < FXMainWindow
       infoPanel = GemInfoPanel.new(splitter, @browser, LAYOUT_FILL_X|LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
       @gemsPanel = GemsPanel.new(splitter, @browser, LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_SUNKEN|FRAME_THICK)
     end
-    
+
     # Catch these too
     self.connect(SEL_CLOSE) { quit }
     anApp.addSignal("SIGINT") { quit }
@@ -226,11 +226,11 @@ class GemBrowserWindow < FXMainWindow
       dlg.patternList = ["Gem Files (*.gem)", "All Files (*)"]
       if dlg.execute != 0
         @directory = dlg.directory
-        begin  
+        begin
           spec = browser.install(dlg.filename)
 	  @gemsPanel.appendItem(spec)
 	rescue => ex
-	  FXMessageBox.error(self, MBOX_OK, "Installation Failed", ex.to_s) 
+	  FXMessageBox.error(self, MBOX_OK, "Installation Failed", ex.to_s)
 	end
       end
     }
@@ -270,7 +270,7 @@ class GemBrowserWindow < FXMainWindow
     if rightPaneSize >= 0
       @splitter.first.next.width = rightPaneSize
     end
-    
+
     # Last directory for Gem files
     @directory = getApp().reg().readStringEntry("SETTINGS", "directory", "")
 

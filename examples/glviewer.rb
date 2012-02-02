@@ -146,10 +146,10 @@ end
 class GLViewWindow < FXMainWindow
 
   include Responder
-  
+
   ID_QUERY_MODE = FXMainWindow::ID_LAST
   ID_GLVIEWER   = ID_QUERY_MODE + 1
-  
+
   # Load the named PNG icon from a file
   def loadIcon(filename)
     begin
@@ -300,7 +300,7 @@ class GLViewWindow < FXMainWindow
     FXButton.new(toolbar, "\tPrint Image\tPrint shapshot image.",
       loadIcon("printicon"), @mdiclient, FXGLViewer::ID_PRINT_IMAGE,
       BUTTON_AUTOGRAY|FRAME_THICK|FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT)
-  
+
     # Editing
     FXFrame.new(toolbar,
       LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, :width => 4, :height => 20)
@@ -313,7 +313,7 @@ class GLViewWindow < FXMainWindow
     FXButton.new(toolbar, "\tPaste", loadIcon("paste"), @mdiclient,
       FXGLViewer::ID_PASTE_SEL, (BUTTON_AUTOGRAY|FRAME_THICK|FRAME_RAISED|
       LAYOUT_TOP|LAYOUT_LEFT))
-  
+
     # Projections
     FXFrame.new(toolbar, (LAYOUT_TOP|LAYOUT_LEFT|
       LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT), :width => 8, :height => 20)
@@ -323,7 +323,7 @@ class GLViewWindow < FXMainWindow
     FXButton.new(toolbar, "\tParallel\tSwitch to parallel projection.",
       loadIcon("parallel"), @mdiclient, FXGLViewer::ID_PARALLEL,
       BUTTON_AUTOGRAY|FRAME_THICK|FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT)
-  
+
     # Shading model
     FXFrame.new(toolbar, (LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|
       LAYOUT_FIX_HEIGHT), :width => 8, :height => 20)
@@ -341,7 +341,7 @@ class GLViewWindow < FXMainWindow
     FXToggleButton.new(toolbar, "\tToggle Light\tToggle light source.", nil,
       loadIcon("nolight"), loadIcon("light"), nil, 0,
       FRAME_THICK|FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT)
-  
+
     # View orientation
     FXFrame.new(toolbar, (LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|
       LAYOUT_FIX_HEIGHT), :width => 8, :height => 20)
@@ -363,7 +363,7 @@ class GLViewWindow < FXMainWindow
     FXButton.new(toolbar, "\tBottom View\tView objects from below.",
       loadIcon("bottomview"), @mdiclient, FXGLViewer::ID_BOTTOM,
       BUTTON_AUTOGRAY|FRAME_THICK|FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT)
-  
+
     # Miscellaneous buttons
     FXFrame.new(toolbar, (LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|
       LAYOUT_FIX_HEIGHT), :width => 8, :height => 20)
@@ -376,14 +376,14 @@ class GLViewWindow < FXMainWindow
       FRAME_THICK|FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT)
     FXButton.new(toolbar, nil, loadIcon("foxicon"), nil, 0,
       FRAME_THICK|FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT)
-  
+
     # Dangerous delete a bit on the side
     FXFrame.new(toolbar, (LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|
       LAYOUT_FIX_HEIGHT), :width => 10, :height => 20)
     FXButton.new(toolbar, "\tDelete\tDelete the selected object.",
       loadIcon("kill"), @mdiclient, FXGLViewer::ID_DELETE_SEL,
       BUTTON_AUTOGRAY|FRAME_THICK|FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT)
-  
+
     # View menu
     viewmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&View", nil, viewmenu)
@@ -414,7 +414,7 @@ class GLViewWindow < FXMainWindow
       @mdiclient, FXGLViewer::ID_LASSO_ZOOM, MENU_AUTOGRAY)
     FXMenuCommand.new(viewmenu, "Select...\t\tZoom in on area", nil,
       @mdiclient, FXGLViewer::ID_LASSO_SELECT, MENU_AUTOGRAY)
-  
+
     # Rendering menu
     rendermenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Rendering", nil, rendermenu)
@@ -427,7 +427,7 @@ class GLViewWindow < FXMainWindow
     FXMenuCommand.new(rendermenu,
       "Bounding Box\t\tRender bounding box only.", nil,
       @mdiclient, FXGLShape::ID_STYLE_BOUNDINGBOX, MENU_AUTOGRAY)
-  
+
     # Window menu
     windowmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar,"&Windows", nil, windowmenu)
@@ -462,7 +462,7 @@ class GLViewWindow < FXMainWindow
     FXMenuCommand.new(windowmenu, nil, nil, @mdiclient, FXMDIClient::ID_MDI_2)
     FXMenuCommand.new(windowmenu, nil, nil, @mdiclient, FXMDIClient::ID_MDI_3)
     FXMenuCommand.new(windowmenu, nil, nil, @mdiclient, FXMDIClient::ID_MDI_4)
-  
+
     # Help menu
     helpmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Help", nil, helpmenu, LAYOUT_RIGHT)
@@ -472,14 +472,14 @@ class GLViewWindow < FXMainWindow
       FXMessageBox.information(self, MBOX_OK, "About FOX",
         "FOX OpenGL Example.\nCopyright (C) 1998 Jeroen van der Zijp")
     }
-  
+
     # Make a tool tip
     FXToolTip.new(getApp(), 0)
-  
+
     # The status bar shows our mode
     statusbar.statusLine.target = self
     statusbar.statusLine.selector = ID_QUERY_MODE
-  
+
     # Make a scene!
     @scene = FXGLGroup.new
     gp2 = FXGLGroup.new
@@ -495,7 +495,7 @@ class GLViewWindow < FXMainWindow
     gp2.append(FXGLCylinder.new(-1.0, 0.5, 0.0, 1.0, 0.5))
     gp2.append(sphere)
     gp2.append(sphere2)
-  
+
     # Add scene to GL viewer
     viewer.scene = @scene
   end

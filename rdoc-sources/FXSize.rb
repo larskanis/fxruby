@@ -5,7 +5,7 @@ module Fox
   class FXSize
     # Width [Integer]
     attr_accessor :w
-    
+
     # Height [Integer]
     attr_accessor :h
 
@@ -25,10 +25,10 @@ module Fox
     # _hh_ are the initial width and height.
     #
     def initialize(ww, hh); end
-    
+
     # Return +true+ if width or height is less than or equal to zero.
     def empty?; end
-    
+
     #
     # Grow the rectangle by some amount and return a reference to the rectangle.
     #
@@ -59,7 +59,7 @@ module Fox
     # +bottommargin+::	number of units to grow on the bottom side [Integer]
     #
     def grow!(leftmargin, rightmargin, topmargin, bottommargin); end
-  
+
     #
     # Shrink the rectangle by _margin_ units, and return a reference to the rectangle.
     #

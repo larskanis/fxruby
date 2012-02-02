@@ -55,7 +55,7 @@ public:
 
   /// Return true if edge a-b crosses plane
   bool crosses(const FXVec3d& a,const FXVec3d& b) const;
-  
+
   /// Length and square of length
   FXdouble length2() const;
   FXdouble length() const;

@@ -46,7 +46,7 @@ enum {
   PLACEMENT_MAXIMIZED                 /// Place it maximized to the screen size
   };
 
-  
+
 class FXToolBar;
 
 
@@ -125,7 +125,7 @@ public:
     FXTopWindow(FXApp* a,const FXString& name,FXIcon *ic,FXIcon *mi,FXuint opts,FXint x,FXint y,FXint w,FXint h,FXint pl,FXint pr,FXint pt,FXint pb,FXint hs,FXint vs){
       return new FXRbTopWindow(a,name,ic,mi,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
-    
+
     // Construct owned top-level window
     FXTopWindow(FXWindow* owner,const FXString& name,FXIcon *ic,FXIcon *mi,FXuint opts,FXint x,FXint y,FXint w,FXint h,FXint pl,FXint pr,FXint pt,FXint pb,FXint hs,FXint vs){
       return new FXRbTopWindow(owner,name,ic,mi,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
@@ -157,7 +157,7 @@ public:
 
   /// Change window title
   void setTitle(const FXString& name);
-  
+
   /// Return window title
   FXString getTitle() const;
 
@@ -193,28 +193,28 @@ public:
 
   /// Change horizontal spacing between children
   void setHSpacing(FXint hs);
-  
+
   /// Change vertical spacing between children
   void setVSpacing(FXint vs);
-  
+
   /// Change packing hints for children
   void setPackingHints(FXuint ph);
- 
+
   /// Return packing hints for children
   FXuint getPackingHints() const;
-  
+
   /// Change title and border decorations
   void setDecorations(FXuint decorations);
-  
+
   /// Return current title and border decorations
   FXuint getDecorations() const;
-  
+
   /// Return window icon
   FXIcon* getIcon() const;
 
   /// Change window icon
   void setIcon(FXIcon* ic);
-  
+
   /// Return window mini (title) icon
   FXIcon* getMiniIcon() const;
 

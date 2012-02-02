@@ -26,7 +26,7 @@ enum {
   TOOLTIP_VARIABLE   = 0x00040000,      /// ToolTip stays up variable time, depending on the length of the string
   TOOLTIP_NORMAL     = 0
   };
-  
+
 
 class FXFont;
 

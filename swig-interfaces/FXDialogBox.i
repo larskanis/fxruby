@@ -22,7 +22,7 @@
 
 /**
 * DialogBox window.
-* When receiving ID_CANCEL or ID_ACCEPT, the DialogBox breaks out of the 
+* When receiving ID_CANCEL or ID_ACCEPT, the DialogBox breaks out of the
 * modal loop and returns FALSE or TRUE, respectively.
 * To close the DialogBox when not running modally, simply send it ID_HIDE.
 */
@@ -46,13 +46,13 @@ public:
     FXDialogBox(FXApp* APP,const FXString& name,FXuint opts=DECOR_TITLE|DECOR_BORDER,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=10,FXint pr=10,FXint pt=10,FXint pb=10,FXint hs=4,FXint vs=4){
       return new FXRbDialogBox(APP,name,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
-  
+
     /// Construct dialog which will always float over the owner window
     FXDialogBox(FXWindow* OWNER,const FXString& name,FXuint opts=DECOR_TITLE|DECOR_BORDER,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=10,FXint pr=10,FXint pt=10,FXint pb=10,FXint hs=4,FXint vs=4){
       return new FXRbDialogBox(OWNER,name,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
     }
-  
+
   /// Destructor
   virtual ~FXDialogBox();
   };

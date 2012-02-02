@@ -3,7 +3,7 @@ module Fox
   # Represents a range in 3-D space.
   #
   class FXRangef
-  
+
     # Lower corner of range [FXVec3f]
     attr_accessor :lower
 

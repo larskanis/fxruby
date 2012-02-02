@@ -28,10 +28,10 @@ class FXMemoryBuffer {
 public:
   // Create an memory buffer object
   FXMemoryBuffer(FXColor *data,FXuint size);
-  
+
   // Returns the size (in bytes)
   FXuint getSize() const;
-  
+
   %extend {
     // Returns the data as an array of Bignums
     VALUE getData() const {
@@ -52,13 +52,13 @@ public:
     FXColor __getitem__(FXuint i) const {
       return self->getData()[i];
       }
-    
+
     FXColor __setitem__(FXuint i,FXColor value){
       self->getData()[i] = value;
       return value;
       }
   }
-  
+
   // Destructor
   ~FXMemoryBuffer();
   };

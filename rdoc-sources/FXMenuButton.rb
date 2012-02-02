@@ -6,10 +6,10 @@ module Fox
   # menu button; this is controlled by the flags +MENUBUTTON_DOWN+, etc.
   # Next, there are several attachment modes; the popup's left/bottom edge may
   # attach to the menu button's left/top edge, or the popup's right/top edge may
-  # attach to the menu button's right/bottom edge, or both. 
+  # attach to the menu button's right/bottom edge, or both.
   # Also, the popup may appear centered relative to the menu button.
   # Finally, a small offset may be specified to displace the location of the
-  # popup by a few pixels so as to account for borders and so on. 
+  # popup by a few pixels so as to account for borders and so on.
   # Normally, the menu button shows an arrow pointing to the direction where
   # the popup is set to appear; this can be turned off by passing the option
   # +MENUBUTTON_NOARROWS+.
@@ -59,19 +59,19 @@ module Fox
 
     # The popup menu [FXPopup]
     attr_accessor :menu
-    
+
     # X-offset where menu pops up relative to button [Integer]
     attr_accessor :xOffset
-    
+
     # Y-offset where menu pops up relative to button [Integer]
     attr_accessor :yOffset
-    
+
     # Menu button style [Integer]
     attr_accessor :buttonStyle
-    
+
     # Popup style [Integer]
     attr_accessor :popupStyle
-    
+
     # Attachment [Integer]
     attr_accessor :attachment
 

@@ -69,7 +69,7 @@ enum FXJoinStyle {
 /// Fill Styles
 enum FXFillStyle {
   FILL_SOLID,                     /// Fill with solid color
-  FILL_TILED,                     /// Fill with tiled bitmap 
+  FILL_TILED,                     /// Fill with tiled bitmap
   FILL_STIPPLED,                  /// Fill where stipple mask is 1
   FILL_OPAQUESTIPPLED             /// Fill with foreground where mask is 1, background otherwise
   };
@@ -140,7 +140,7 @@ struct FXArc {
   FXshort x,y,w,h,a,b;
   ~FXArc();
   };
-    
+
 
 class FXApp;
 class FXImage;
@@ -156,12 +156,12 @@ class FXDrawable;
 /**
 * Abstract Device Context
 *
-* A Device Context is used to maintain the state of the graphics drawing system. 
+* A Device Context is used to maintain the state of the graphics drawing system.
 * Defining your drawing code in terms of the Abstract Device Context allows the
 * drawing commands to be rendered on different types of surfaces, such as windows
-* and images (FXDCWindow), or on paper (FXDCPrint). 
+* and images (FXDCWindow), or on paper (FXDCPrint).
 * WYSYWYG may be obtained by using the same identical drawing code in your
-* application regardless of the actual device surface being utilized. 
+* application regardless of the actual device surface being utilized.
 */
 class FXDC {
 private:
@@ -197,10 +197,10 @@ public:
       return new FXRbDC(a);
       }
     }
-  
+
   /// Get context handle
   void* context() const { return ctx; }
-  
+
   /// Get application
   FXApp* getApp() const;
 
@@ -222,55 +222,55 @@ public:
 
   /// Get dash length
   FXuint getDashLength() const;
-  
+
   /// Get line width
   FXuint getLineWidth() const;
-  
+
   /// Get line cap style
   FXCapStyle getLineCap() const;
-  
+
   /// Get line join style
   FXJoinStyle getLineJoin() const;
-  
+
   /// Get line style
   FXLineStyle getLineStyle() const;
-  
+
   /// Get fill style
   FXFillStyle getFillStyle() const;
-  
+
   /// Get fill rule
   FXFillRule getFillRule() const;
-  
+
   /// Get rasterop function
   FXFunction getFunction() const;
 
   /// Get the tile image
   FXImage *getTile() const;
-  
+
   /// Get stipple bitmap
   FXBitmap *getStippleBitmap() const;
-  
-  /// Get pattern 
+
+  /// Get pattern
   FXStipplePattern getStipplePattern() const;
 
   /// Return clip rectangle
   const FXRectangle& getClipRectangle() const;
-  
+
   /// Return clip x
   FXint getClipX() const;
-  
+
   /// Return clip y
   FXint getClipY() const;
-  
+
   /// Return clip width
   FXint getClipWidth() const;
-  
+
   /// Return clip height
   FXint getClipHeight() const;
 
-  /// Get text font 
+  /// Get text font
   FXFont* getFont() const;
-  
+
   /// Destructor
   virtual ~FXDC();
   };

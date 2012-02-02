@@ -86,13 +86,13 @@ module Fox
     # +bar+::	a reference to the removed dockbar [FXDockBar]
     #
     def undockToolBar(bar); end
-    
+
     #
     # If _wrap_ is +true+, allow the wrapping of dockbars (i.e. set the
     # +DOCKSITE_WRAP+ option.)
     #
     def wrapGalleys=(wrap); end
-    
+
     #
     # Return +true+ if the +DOCKSITE_WRAP+ option is set, indicating that
     # dockbars will be wrapped to another galley if there's not enough space on

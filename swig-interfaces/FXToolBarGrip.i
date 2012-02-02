@@ -52,7 +52,7 @@ public:
   long onLeave(FXObject*,FXSelector,void* PTR_EVENT);
 public:
   %extend {
-    /// Construct toolbar grip 
+    /// Construct toolbar grip
     FXToolBarGrip(FXToolBar* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=TOOLBARGRIP_SINGLE,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbToolBarGrip(p,tgt,sel,opts,x,y,w,h);
       }
@@ -63,13 +63,13 @@ public:
 
   /// Return TRUE if toolbar grip is displayed as a double bar
   FXbool isDoubleBar() const;
-  
+
   /// Set the active color
   void setActiveColor(FXColor clr);
 
   /// Get the active color
   FXColor getActiveColor() const;
-  
+
   /// Destructor
   virtual ~FXToolBarGrip();
   };

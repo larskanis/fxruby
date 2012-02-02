@@ -24,13 +24,13 @@
 
 /**
 * A Data Target allows a valuator widget such as a Slider or Text Field
-* to be directly connected with a variable in the program. 
+* to be directly connected with a variable in the program.
 * Whenever the valuator control changes, the variable connected through
 * the data target is automatically updated; conversely, whenever the program
-* changes a variable, all the connected valuator widgets will be updated 
+* changes a variable, all the connected valuator widgets will be updated
 * to reflect this new value on the display.
 * Data Targets also allow connecting Radio Buttons, Menu Commands, and so on
-* to a variable.  In this case, the new value of the connected variable is computed 
+* to a variable.  In this case, the new value of the connected variable is computed
 * by subtracting ID_OPTION from the message ID.
 */
 class FXDataTarget : public FXObject {
@@ -98,7 +98,7 @@ public:
       FXASSERT(self->isMemberOf(FXMETACLASS(FXRbDataTarget)));
       return dynamic_cast<const FXRbDataTarget*>(self)->getValue();
       }
-  
+
     // Set new value
     void setValue(VALUE value){
       FXASSERT(self->isMemberOf(FXMETACLASS(FXRbDataTarget)));
@@ -109,7 +109,7 @@ public:
   /// Destructor
   virtual ~FXDataTarget();
   };
- 
+
 
 DECLARE_FXOBJECT_VIRTUALS(FXDataTarget)
 

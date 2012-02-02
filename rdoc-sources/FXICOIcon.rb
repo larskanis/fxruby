@@ -56,7 +56,7 @@ module Fox
   # +yspot+::	hotspot y-coordinate [Integer]
   #
   def Fox.fxsaveICO(store, pixels, transp, width, height, xspot=-1, yspot=-1); end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains a ICO image.
   #

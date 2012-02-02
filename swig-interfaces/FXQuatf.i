@@ -97,7 +97,7 @@ public:
 
   /// Spherical lerp
   FXQuatf& lerp(const FXQuatf& u,const FXQuatf& v,FXfloat f);
-    
+
   %extend {
     /// Obtain yaw, pitch, and roll from quaternion
     VALUE getRollPitchYaw() const {

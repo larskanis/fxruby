@@ -31,7 +31,7 @@ class FXImage;
 
 
 /**
-* A color bar is a widget which controls the brightness (value) of a 
+* A color bar is a widget which controls the brightness (value) of a
 * color by means of the hue, saturation, value specification system.
 */
 class FXColorBar : public FXFrame {
@@ -64,20 +64,20 @@ public:
 
   /// Change hue
   void setHue(FXfloat h);
-  
-  /// Return hue 
+
+  /// Return hue
   FXfloat getHue() const;
 
   /// Change saturation
   void setSat(FXfloat s);
-  
-  /// Return saturation 
+
+  /// Return saturation
   FXfloat getSat() const;
 
   /// Change value
   void setVal(FXfloat v);
-  
-  /// Return value 
+
+  /// Return value
   FXfloat getVal() const;
 
   /// Change the color bar style

@@ -32,7 +32,7 @@ module Fox
 
     # Dial value [Integer]
     attr_accessor :value
-    
+
     # Dial range [Range]
     attr_accessor :range
 
@@ -45,7 +45,7 @@ module Fox
     attr_accessor :revolutionIncrement
 
     #
-    # The spacing for the small notches; this should be set 
+    # The spacing for the small notches; this should be set
     # in tenths of degrees in the range [1,3600], and the value should
     # be a divisor of 3600, so as to make the notches come out evenly. [Integer]
     #
@@ -56,16 +56,16 @@ module Fox
     # be tenths of degrees in the range [-3600,3600]. [Integer]
     #
     attr_accessor :notchOffset
-    
+
     # Current dial style [Integer]
     attr_accessor :dialStyle
-    
+
     # Center notch color [FXColor]
     attr_accessor :notchColor
-    
+
     # Status line help text for this dial [String]
     attr_accessor :helpText
-    
+
     # Tool tip message for this dial
     attr_accessor :tipText
 
@@ -89,13 +89,13 @@ module Fox
     #
     def initialize(p, target=nil, selector=0, opts=DIAL_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theDial
     end
-    
+
     #
     # Set the dial value. If _notify_ is +true+, a +SEL_COMMAND+ message is
     # sent to the dial's message target after the value is changed.
     #
     def setValue(value, notify=false); end
-    
+
     #
     # Set the dial's range. If _notify_ is +true+, and the range modification
     # causes the dial's value to change, a +SEL_COMMAND+ message is sent

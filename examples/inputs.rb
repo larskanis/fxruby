@@ -13,7 +13,7 @@ class InputHandlerWindow < FXMainWindow
     # Text area plus a button
     commands = FXHorizontalFrame.new(self, LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X)
     FXLabel.new(commands, "Command:")
-    @cmdInput = FXTextField.new(commands, 30, :opts => FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X) 
+    @cmdInput = FXTextField.new(commands, 30, :opts => FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X)
     @cmdInput.connect(SEL_COMMAND, method(:onCmdText))
     FXHorizontalSeparator.new(self, LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X)
     textFrame = FXVerticalFrame.new(self,
@@ -39,7 +39,7 @@ class InputHandlerWindow < FXMainWindow
       @pipe = nil
     end
   end
-  
+
   def onCmdText(sender, sel, ptr)
     # Stop previous command
     closePipe

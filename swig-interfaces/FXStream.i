@@ -110,7 +110,7 @@ public:
 
   /// Return TRUE if at end of file or error
   bool eof() const;
-  
+
   /// Set status code
   void setError(FXStreamStatus err);
 

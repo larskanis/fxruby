@@ -1,7 +1,7 @@
 module Fox
   #
   # The dock handler exists as a common base class for tool bar grip
-  # and dock title.  
+  # and dock title.
   #
   # === Events
   #
@@ -13,10 +13,10 @@ module Fox
   class FXDockHandler < FXFrame
     # Status line help text [String]
     attr_accessor :helpText
-    
+
     # Tool tip text [String]
     attr_accessor :tipText
-    
+
     #
     # Return an initialized FXDockHandler instance.
     #

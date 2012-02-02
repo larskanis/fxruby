@@ -44,10 +44,10 @@ module Fox
 
     # Currently selected date [Time]
     attr_reader :selected
-    
+
     # Font used for days [FXFont]
     attr_reader :dayLabelFont
-    
+
     #
     # Returns an initialized calendar widget
     #
@@ -62,9 +62,9 @@ module Fox
       @headerBGColor = FXColor::Black
       @headerFGColor = FXColor::White
       @dayLabelFont = FXFont.new(getApp, "helvetica", 7)
-      
+
       @date_showing = initial_date
-      
+
       # Header row
       @header = FXHorizontalFrame.new(self, LAYOUT_FILL_X)
       @header.backColor = @headerBGColor
@@ -73,7 +73,7 @@ module Fox
         @date_showing = _last_month
         _build_date_matrix
         @current_month.text = _header_date
-      end  
+      end
       @current_month = FXLabel.new(@header, _header_date, nil,
         LAYOUT_FILL_X|JUSTIFY_CENTER_X|LAYOUT_FILL_Y)
       @current_month.backColor = @headerBGColor
@@ -84,7 +84,7 @@ module Fox
         _build_date_matrix
         @current_month.text = _header_date
       end
-      
+
       @matrix = FXMatrix.new(self, 7,
         MATRIX_BY_COLUMNS|LAYOUT_FILL_X|LAYOUT_FILL_Y|PACK_UNIFORM_WIDTH|FRAME_RAISED,
         0, 0, 0, 0, 0, 0, 0, 0)
@@ -99,17 +99,17 @@ module Fox
         btn.connect(SEL_COMMAND) do |send, sel, ev|
           @selected = Time.local(@date_showing.year, @date_showing.month,
                                  send.text.to_i)
-          target.handle(self, MKUINT(selector, SEL_COMMAND), @selected) if target 
+          target.handle(self, MKUINT(selector, SEL_COMMAND), @selected) if target
         end
       end
       _build_date_matrix()
     end
-    
+
     # Return the current header background color
     def headerBackColor
       @headerBGColor
     end
-    
+
     # Set the header background color
     def headerBackColor=(clr)
       @headerBGColor = clr
@@ -117,19 +117,19 @@ module Fox
       @current_month.backColor = clr
       DAYS.each_index { |i| @matrix.childAtIndex(i).backColor = clr }
     end
-    
+
     # Return the current header text color
     def headerTextColor
       @headerFGColor
     end
-    
+
     # Set the header text color
     def headerTextColor=(clr)
       @headerFGColor = clr
       @current_month.textColor = clr
       DAYS.each_index { |i| @matrix.childAtIndex(i).textColor = clr }
     end
-    
+
     # Change the font used for the days of the weeks
     def dayLabelFont=(font)
       if @dayLabelFont != font
@@ -138,16 +138,16 @@ module Fox
 	update
       end
     end
-    
-    private   
+
+    private
     def _header_date()
       @date_showing.strftime("%B, %Y")
     end
-    
+
     def _first_day
       Time.local(@date_showing.year, @date_showing.month, 1)
     end
-    
+
     def _last_day
       year = @date_showing.year
       month = @date_showing.month+1
@@ -157,7 +157,7 @@ module Fox
       end
       Time.local(year, month, 1) - (60*60*24)
     end
-    
+
     def _last_month
       year = @date_showing.year
       month = @date_showing.month - 1
@@ -167,7 +167,7 @@ module Fox
       end
       Time.local(year, month)
     end
-    
+
     def _next_month
       year = @date_showing.year
       month = @date_showing.month + 1
@@ -177,7 +177,7 @@ module Fox
       end
       Time.local(year, month)
     end
-    
+
     def _build_date_matrix
       (0...6*7-1).each do |index|
         @matrix.childAtRowCol(index/7+1, index.modulo(7)).setCurrent(0)
@@ -189,7 +189,7 @@ module Fox
         switcher.childAtIndex(1).text = day.to_s
       end
     end
-    
+
     def _add_matrix_label(label)
       l = FXLabel.new(@matrix, label, nil,
         LAYOUT_FILL_X|LAYOUT_FILL_COLUMN|JUSTIFY_CENTER_X|FRAME_SUNKEN)
@@ -198,7 +198,7 @@ module Fox
       l.font = @dayLabelFont
     end
   end
-end       
+end
 
 if __FILE__ == $0
 

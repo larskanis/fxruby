@@ -103,16 +103,16 @@ public:
 
   /// Return the current text color
   void setTextColor(FXColor clr);
-  
+
   /// Return the selection background color
   FXColor getSelBackColor() const;
-  
+
   /// Set the selection background color
   void setSelBackColor(FXColor clr);
-  
+
   /// Return the selection text color
   FXColor getSelTextColor() const;
-  
+
   /// Set the selection text color
   void setSelTextColor(FXColor clr);
 

@@ -44,7 +44,7 @@ module Fox
   class FXTabBar < FXPacker
     # Currently active tab item's index [Integer]
     attr_accessor :current
-    
+
     # Tab bar style [Integer]
     attr_accessor :tabStyle
 
@@ -70,7 +70,7 @@ module Fox
     end
 
     #
-    # Change currently active tab item; this raises the active tab item 
+    # Change currently active tab item; this raises the active tab item
     # slightly above the neighboring tab items.
     # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the tab bar's message target
     #

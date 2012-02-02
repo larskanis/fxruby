@@ -5,7 +5,7 @@ require 'fox16'
 class TC_FXTreeListBox < Fox::TestCase
   include Fox
 
-  
+
   def setup
     super(self.class.name)
     @treeListBox = FXTreeListBox.new(mainWindow)
@@ -26,7 +26,7 @@ class TC_FXTreeListBox < Fox::TestCase
     @treeListBox.each { |item| count += 1 }
     assert_equal(0, count, "count for empty list should be zero")
   end
-  
+
   def test_each
     @treeListBox.appendItem(nil, "1")
     @treeListBox.appendItem(nil, "2")
@@ -36,6 +36,6 @@ class TC_FXTreeListBox < Fox::TestCase
     @treeListBox.each { |item| count += 1 }
     assert_equal(4, count, "count didn't match expected number of items")
   end
-  
+
 end
 

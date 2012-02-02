@@ -1,11 +1,11 @@
 module Fox
   class FXVec4f
-    
+
     attr_accessor :x
     attr_accessor :y
     attr_accessor :z
     attr_accessor :w
-    
+
     #
     # Return an FXVec4f instance with _x_, _y_, _z_ and _w_ initialized to zeroes.
     #
@@ -15,12 +15,12 @@ module Fox
     # Return an FXVec4f instance initialized from specified component values.
     #
     def initialize(xx, yy, zz, ww=1.0); end
-    
+
     #
     # Return an FXVec4f instance initialized from an FXVec3f instance and optional scalar.
     #
     def initialize(vec3f, ww=1.0); end
-  
+
     #
     # Returns the element at _index_, where _index_ is 0, 1, 2 or 3.
     # Raises IndexError if _index_ is out of range.
@@ -80,7 +80,7 @@ module Fox
     # Return the square of the length of this vector.
     #
     def length2; end
-    
+
     #
     # Return the length (magnitude) of this vector.
     #
@@ -90,7 +90,7 @@ module Fox
     # Clamp the values of this vector between limits _lo_ and _hi_.
     #
     def clamp(lo, hi); end
-    
+
     #
     # Return a new FXVec4f instance which is a normalized version
     # of this one.
@@ -108,12 +108,12 @@ module Fox
     # vector and _other_.
     #
     def hi(other); end
-    
+
     #
     # Compute normalized plane equation ax + by + cz + d = 0.
     #
     def FXVec4f.plane(vec); end
-    
+
     #
     # Compute normalized plane equation ax + by + cz + d = 0.
     #

@@ -232,7 +232,7 @@ public:
 
   // Another constructor
   FXRbWindow(FXApp* a,FXVisual *vis):FXWindow(a,vis){}
-  
+
   // Yet another constructor
   FXRbWindow(FXApp* a,FXWindow* own,FXuint opts,FXint x,FXint y,FXint w,FXint h):FXWindow(a,own,opts,x,y,w,h){}
 

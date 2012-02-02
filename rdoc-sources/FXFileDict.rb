@@ -5,31 +5,31 @@ module Fox
   class FXFileAssoc
     # Command to execute [String]
     attr_accessor :command
-    
+
     # Full extension name [String]
     attr_accessor :extension
-    
+
     # Mime type name [String]
     attr_accessor :mimetype
-    
+
     # Big normal icon [FXIcon]
     attr_accessor :bigicon
-    
+
     # Big open icon [FXIcon]
     attr_accessor :bigiconopen
-    
+
     # Mini normal icon [FXIcon]
     attr_accessor :miniicon
-    
+
     # Mini open icon [FXIcon]
     attr_accessor :miniiconopen
-    
+
     # Registered drag type [FXDragType]
     attr_accessor :dragtype
-    
+
     # Flags [Integer]
     attr_accessor :flags
-    
+
     # Returns an initialized FXFileAssoc instance
     def initialize; end
   end
@@ -64,25 +64,25 @@ module Fox
   # is used, and for executables the "defaultexecbinding" is used.
   #
   class FXFileDict < FXDict
-  
+
     # Settings database [FXSettings]
     attr_accessor :settings
-  
+
     # Current icon search path [FXIconDict]
     attr_accessor :iconDict
 
     # Current icon search path [String]
     attr_accessor :iconPath
-    
+
     # Return the registry key used to find fallback executable icons.
     def FXFileDict.defaultExecBinding(); end
-  
+
     # Return the registry key used to find fallback directory icons.
     def FXFileDict.defaultDirBinding(); end
 
     # Return the registry key used to find fallback document icons.
     def FXFileDict.defaultFileBinding(); end
-  
+
     #
     # Construct a dictionary that maps file extensions to file associations.
     # If _db_ is not +nil+, the specified settings database is used as a
@@ -95,7 +95,7 @@ module Fox
     # +db+::	Settings database [FXSettings]
     #
     def initialize(app, db=nil); end
-  
+
     #
     # Replace file association for the specified extension;
     # returns a reference to the file association.
@@ -106,13 +106,13 @@ module Fox
     # +str+::	String [String]
     #
     def replace(ext, str); end
-  
+
     #
     # Remove file association for the specified extension
     # and return a reference to it.
     #
     def remove(ext); end
-  
+
     #
     # Find file association from registry for the specified key.
     #

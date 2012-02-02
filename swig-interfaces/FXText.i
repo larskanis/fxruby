@@ -32,7 +32,7 @@ enum {
   TEXT_AUTOSCROLL    = 0x08000000               /// Logging mode, keeping last line visible
   };
 
-  
+
 /// Selection modes
 enum FXTextSelectionMode {
   SELECT_CHARS,
@@ -161,7 +161,7 @@ public:
   long onCmdReplace(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdSearchNext(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdSearchSel(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
   // Cursor movement
   long onCmdCursorTop(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCursorBottom(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -189,17 +189,17 @@ public:
   long onCmdGotoLine(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdScrollUp(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdScrollDown(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
   // Mark and extend
   long onCmdMark(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdExtend(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
   // Inserting
   long onCmdOverstString(FXObject*,FXSelector,void* PTR_CHAR);
   long onCmdInsertString(FXObject*,FXSelector,void* PTR_CSTRING);
   long onCmdInsertNewline(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdInsertTab(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
   // Manipulation Selection
   long onCmdCutSel(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCopySel(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -208,7 +208,7 @@ public:
   long onCmdChangeCase(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdShiftText(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdPasteMiddle(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
   // Changing Selection
   long onCmdSelectChar(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdSelectWord(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -217,7 +217,7 @@ public:
   long onCmdSelectMatching(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdSelectBlock(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDeselectAll(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
   // Deletion
   long onCmdBackspace(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdBackspaceWord(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -227,12 +227,12 @@ public:
   long onCmdDeleteEol(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDeleteAll(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDeleteLine(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
 public:
   static const FXchar textDelimiters[];
 
 public:
-  
+
   enum {
     ID_CURSOR_TOP=FXScrollArea::ID_LAST,
     ID_CURSOR_BOTTOM,
@@ -393,7 +393,7 @@ public:
 
   /// Change delimiters of words
   void setDelimiters(const FXchar* delims=textDelimiters);
- 
+
   /// Return word delimiters
   const FXchar* getDelimiters() const;
 
@@ -513,7 +513,7 @@ public:
 
   /// Return number of rows in buffer
   FXint getNumRows() const;
-  
+
   /// Shift block of lines from position start up to end by given amount
   FXint shiftText(FXint start,FXint end,FXint amount,FXbool notify=FALSE);
 
@@ -614,7 +614,7 @@ public:
 
   /// Retreat to the previous valid utf8 character start
   FXint dec(FXint pos) const;
-  
+
   /// Advance to the next valid utf8 character start
   FXint inc(FXint pos) const;
 
@@ -693,7 +693,7 @@ public:
   /// Return number of visible columns
   FXint getVisibleColumns() const;
 
-  /** 
+  /**
   * Change brace and parenthesis match highlighting time, in ms.
   * A match highlight time of 0 disables brace matching.
   */

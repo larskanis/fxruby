@@ -32,18 +32,18 @@ module Fox
   # === Message identifiers
   #
   # +ID_COLORDIALOG+::		x
-  
+
   class FXColorWell < FXFrame
 
     # The color [FXColor]
     attr_accessor :rgba
-    
+
     # Status line help text [String]
     attr_accessor :helpText
-    
+
     # Tool tip message [String]
     attr_accessor :tipText
-    
+
     # Only opaque colors allowed [Boolean]
     attr_writer :opaqueOnly
 

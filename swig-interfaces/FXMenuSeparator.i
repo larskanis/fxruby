@@ -52,7 +52,7 @@ public:
 
   /// Get shadow color
   FXColor getShadowColor() const;
-  
+
   // Destructor
   virtual ~FXMenuSeparator();
   };

@@ -100,13 +100,13 @@ module Fox
       getExpanded()
     end
   end
-  
+
   class FXAccelTable
     def hasAccel?(*args) # :nodoc:
       hasAccel(*args)
     end
   end
-  
+
   class FXApp
     def mainloop # :nodoc:
       run
@@ -1459,7 +1459,7 @@ module Fox
       getImageSize
     end
   end
-  
+
   class FXFoldingItem
     def parent(*args) # :nodoc:
       getParent(*args)

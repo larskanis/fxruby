@@ -44,7 +44,7 @@ enum FXVisualType {
   VISUALTYPE_INDEX,                   /// Index [palette] color
   VISUALTYPE_GRAY                     /// Gray scale
   };
-  
+
 %rename("visualType") FXVisual::getType() const;
 
 %ignore FXVisual::getInfo() const;

@@ -22,28 +22,28 @@ public:
 
   // Overrides the base class version of insertRows()
   virtual void insertRows(FXint row,FXint nr=1,FXbool notify=FALSE);
-  
+
   // Overrides the base class version of insertColumns()
   virtual void insertColumns(FXint col,FXint nc=1,FXbool notify=FALSE);
-  
+
   // Overrides the base class version of removeRows()
   virtual void removeRows(FXint row,FXint nr=1,FXbool notify=FALSE);
-  
+
   // Overrides the base class version of removeColumns()
   virtual void removeColumns(FXint col,FXint nc=1,FXbool notify=FALSE);
-  
+
   // Overrides the base class version of extractItem()
   virtual FXTableItem* extractItem(FXint row,FXint col,FXbool notify=FALSE);
 
   // Overrides the base class version of removeItem()
   virtual void removeItem(FXint row,FXint col,FXbool notify=FALSE);
-  
+
   // Overrides the base class version of removeRange()
   virtual void removeRange(FXint startrow,FXint startcol,FXint endrow,FXint endcol,FXbool notify=FALSE);
 
   // Overrides the base class version of clearItems()
   virtual void clearItems(FXbool notify=FALSE);
-  
+
   // Overrides the base class version of setColumnWidth()
   virtual void setColumnWidth(FXint col,FXint cwidth);
 
@@ -67,23 +67,23 @@ public:
 
   // Overrides the base class version of killSelection()
   virtual FXbool killSelection(FXbool notify=FALSE);
-  
+
   // Overrides base class version of startInput()
   virtual void startInput(FXint row,FXint col);
-  
+
   // Overrides base class version of cancelInput()
   virtual void cancelInput();
-  
+
   // Overrides base class version of acceptInput()
   virtual void acceptInput(FXbool notify=FALSE);
-  
+
   // Overrides the base class version of makePositionVisible()
   virtual void makePositionVisible(FXint r,FXint c);
-  
+
   // Overrides the base class version of enableItem()
   virtual FXbool enableItem(FXint r,FXint c);
-  
+
   // Overrides the base class version of disableItem()
   virtual FXbool disableItem(FXint r,FXint c);
-  
+
 

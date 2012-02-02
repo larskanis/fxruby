@@ -11,7 +11,7 @@ class Processor
     @inside_class
   end
 
-  def getBaseClassName(klass) 
+  def getBaseClassName(klass)
     klass.sub(/FXRb/, "FX")
   end
 
@@ -55,7 +55,7 @@ class MyProcessor < Processor
     @classname = nil
     @baseclass = nil
   end
-  
+
   def start_class(classname, baseclass)
     @classname = classname
     @baseclass = baseclass
@@ -66,7 +66,7 @@ class MyProcessor < Processor
     @fcpp.printf("/* Start stub implementations for class %s */\n", classname)
     @finc.printf("/* Start stub declarations for class %s */\n", classname)
   end
-  
+
   def implement_overrides(filename)
     stubclass = filename.gsub('"', '').sub("FXRb", "FX")
     stubclass = stubclass.sub(/Virtuals\.h/, "").upcase
@@ -76,7 +76,7 @@ class MyProcessor < Processor
       @fcpp.printf("IMPLEMENT_%s_STUBS(%s,%s)\n", stubclass, @classname, @baseclass)
     end
   end
-  
+
   def implement_stubs(filename)
     stubclass = filename.gsub('"', '').sub("FXRb", "FX")
     stubclass = stubclass.sub(/Virtuals\.h/, "").upcase
@@ -95,7 +95,7 @@ class MyProcessor < Processor
       implement_stubs(incfile)
     end
   end
-  
+
   def end_class
     if @classname == "FXRbScintilla"
       @fcpp.puts "\n#endif"

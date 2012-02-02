@@ -33,7 +33,7 @@ enum {
 /// Toggle Button
 class FXToggleButton : public FXLabel {
 protected:
-  FXString  altlabel; 
+  FXString  altlabel;
   FXIcon   *alticon;
   FXHotKey  althotkey;
   FXint     althotoff;
@@ -76,31 +76,31 @@ public:
 
   /// Change alternate text shown when toggled
   void setAltText(const FXString& text);
-  
+
   /// Return alternate text
   FXString getAltText() const;
 
   /// Change alternate icon shown when toggled
   void setAltIcon(FXIcon* ic);
-  
+
   /// Return alternate icon
   FXIcon* getAltIcon() const;
 
   /// Change toggled state
   void setState(FXbool s=TRUE,FXbool notify=FALSE);
-  
+
   /// return toggled state
   FXbool getState() const;
 
   /// Change alternate help text shown when toggled
   void setAltHelpText(const FXString& text);
-  
+
   /// Return alternate help text
   FXString getAltHelpText() const;
 
   /// Change alternate tip text shown when toggled
   void setAltTipText(const FXString& text);
-  
+
   /// Return alternate tip text
   FXString getAltTipText() const;
 

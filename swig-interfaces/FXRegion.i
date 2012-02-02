@@ -38,16 +38,16 @@ public:
 
   /// Construct new region copied from region r
   FXRegion(const FXRegion& r);
-  
+
   /// Construct new region from rectangle
   FXRegion(const FXRectangle& rect);
 
   /// Construct rectangle region
   FXRegion(FXint x,FXint y,FXint w,FXint h);
 
-  /// Construct polygon region 
+  /// Construct polygon region
   FXRegion(const FXPoint* points,FXuint npoints,bool winding=FALSE);
-  
+
   /// Return TRUE if region is empty
   bool empty() const;
 
@@ -79,7 +79,7 @@ public:
     // Return TRUE if region equal to this one
     bool operator==(const FXRegion& other) const { return (*self)==other; }
     }
-  
+
   /// Reset region to empty
   void reset();
 

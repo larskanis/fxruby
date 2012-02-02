@@ -55,28 +55,28 @@ module Fox
 
     # Horizontal split fraction [Integer]
     attr_accessor :hSplit
-    
+
     # Vertical split fraction [Integer]
     attr_accessor :vSplit
-    
+
     # Current splitter style, either +FOURSPLITTER_TRACKING+ or +FOURSPLITTER_NORMAL+
     attr_accessor :splitterStyle
-    
+
     # Splitter bar width, in pixels [Integer]
     attr_accessor :barSize
-    
+
     # Currently expanded child (some combination of the expansion flags, or zero if no panes are expanded)
     attr_accessor :expanded
-    
+
     # Top left child window, if any [FXWindow]
     attr_reader :topLeft
-    
+
     # Top right child window, if any [FXWindow]
     attr_reader :topRight
-    
+
     # Bottom left child window, if any [FXWindow]
     attr_reader :bottomLeft
-    
+
     # Bottom right child window, if any [FXWindow]
     attr_reader :bottomRight
 
@@ -94,7 +94,7 @@ module Fox
     #
     def initialize(p, opts=FOURSPLITTER_NORMAL, x=0, y=0, width=0, height=0) # :yields: theSplitter
     end
-    
+
     #
     # Return an initialized FX4Splitter instance, initially shown as four unexpanded panes;
     # notifies _tgt_ about size changes.

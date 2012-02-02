@@ -5,9 +5,9 @@ module Fox
   # of the document which is visible.  The size of the scrollbar thumb is adjusted
   # to give feedback of the relative sizes of each.
   # The scroll bar may be manipulated by the left mouse button (normal scrolling), by the
-  # middle mouse button (same as the left mouse only the scroll position can jump to the 
+  # middle mouse button (same as the left mouse only the scroll position can jump to the
   # place where the click is made), or by the right mouse button (vernier- or fine-scrolling).
-  # Holding down the control key while scrolling with the left or middle mouse button also 
+  # Holding down the control key while scrolling with the left or middle mouse button also
   # enables vernier-scrolling mode.  The vernier-scrolling mode is very useful for accurate
   # positioning in large documents.
   # Finally, if the mouse sports a wheel, the scroll bar can be manipulated by means
@@ -49,16 +49,16 @@ module Fox
   class FXScrollBar < FXWindow
     # Content size range [Integer]
     attr_accessor :range
-    
+
     # Viewport page size [Integer]
     attr_accessor :page
-    
+
     # Scroll increment for line [Integer]
     attr_accessor :line
-    
+
     # Current scroll position [Integer]
     attr_accessor :position
-    
+
     # Highlight color [FXColor]
     attr_accessor :hiliteColor
 
@@ -70,7 +70,7 @@ module Fox
 
     # Scroll bar style [Integer]
     attr_accessor :scrollbarStyle
-    
+
     # Bar size [Integer]
     attr_accessor :barSize
 
@@ -91,7 +91,7 @@ module Fox
     def initialize(p, target=nil, selector=0, opts=SCROLLBAR_VERTICAL, x=0, y=0, width=0, height=0) # :yields: theScrollBar
     end
   end
-  
+
   #
   # Corner between scroll bars
   #

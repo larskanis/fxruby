@@ -47,8 +47,8 @@ public:
   // Mark dependencies for the GC
   static void markfunc(FXSeparator* self);
   };
-  
-  
+
+
 class FXRbHorizontalSeparator : public FXHorizontalSeparator {
   FXDECLARE(FXRbHorizontalSeparator)
 protected:

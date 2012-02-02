@@ -31,28 +31,28 @@ module Fox
 
     # Viewport width, in pixels [Integer]
     attr_reader	:viewportWidth
-    
+
     # Viewport height, in pixels [Integer]
     attr_reader	:viewportHeight
-    
+
     # Content width, in pixels [Integer]
     attr_reader	:contentWidth
-    
+
     # Content height, in pixels [Integer]
     attr_reader	:contentHeight
-    
+
     # Scroll style [Integer]
     attr_accessor :scrollStyle
-    
+
     # Horizontal scrollbar [FXScrollBar]
     attr_reader	:horizontalScrollBar
-    
+
     # Vertical scrollbar [FXScrollBar]
     attr_reader	:verticalScrollBar
-    
+
     # Current x-position [Integer]
     attr_reader	:xPosition
-    
+
     # Current y-position [Integer]
     attr_reader	:yPosition
 
@@ -70,7 +70,7 @@ module Fox
     #
     def initialize(parent, opts=0, x=0, y=0, width=0, height=0) # :yields: theScrollArea
     end
-    
+
     # Return +true+ if horizontally scrollable
     def horizontalScrollable?() ; end
 

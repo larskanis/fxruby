@@ -1,17 +1,17 @@
 module Fox
   #
   # Line segment
-  # 
-  class FXSegment 
+  #
+  class FXSegment
     # x-coordinate of the starting point [Integer]
     attr_accessor :x1
-    
+
     # y-coordinate of the starting point [Integer]
     attr_accessor :y1
-    
+
     # x-coordinate of the endpoint [Integer]
     attr_accessor :x2
-    
+
     # y-coordinate of the endpoint [Integer]
     attr_accessor :y2
   end
@@ -19,24 +19,24 @@ module Fox
   #
   # Arc
   #
-  class FXArc 
+  class FXArc
     # x-coordinate of center point [Integer]
     attr_accessor :x
-    
+
     # y-coordinate of center point [Integer]
     attr_accessor :y
-    
+
     # Width [Integer]
     attr_accessor :w
-    
+
     # Height [Integer]
     attr_accessor :h
-    
+
     # Start of the arc, relative to the three-o'clock position from the center, in units of degrees * 64 [Integer]
     attr_accessor :a
-    
+
     # Path and extent of the arc, relative to the three-o'clock position from the center, in units of degrees * 64 [Integer]
-    attr_accessor :b 
+    attr_accessor :b
   end
 
   #
@@ -88,7 +88,7 @@ module Fox
   # === Fill Styles
   #
   # +FILL_SOLID+::              Fill with solid color
-  # +FILL_TILED+::              Fill with tiled bitmap 
+  # +FILL_TILED+::              Fill with tiled bitmap
   # +FILL_STIPPLED+::           Fill where stipple mask is 1
   # +FILL_OPAQUESTIPPLED+::     Fill with foreground where mask is 1, background otherwise
   #
@@ -131,67 +131,67 @@ module Fox
 
     # Application [FXApp]
     attr_reader	:app
-    
+
     # Foreground drawing color [FXColor]
     attr_accessor :foreground
-    
+
     # Background drawing color [FXColor]
     attr_accessor :background
-    
+
     # Dash pattern [String]
     attr_reader	:dashPattern
-    
+
     # Dash offset [Integer]
     attr_reader	:dashOffset
-    
+
     # Dash length [Integer]
     attr_reader	:dashLength
-    
+
     # Line width; a line width of zero means thinnest and fastest possible [Integer]
     attr_accessor :lineWidth
-    
+
     # Line cap style, one of +CAP_NOT_LAST+, +CAP_BUTT+, +CAP_ROUND+ or +CAP_PROJECTING+ [Integer]
     attr_accessor :lineCap
-    
+
     # Line join style, one of +JOIN_MITER+, +JOIN_ROUND+ or +JOIN_BEVEL+ [Integer]
     attr_accessor :lineJoin
-    
+
     # Line style, one of +LINE_SOLID+, +LINE_ONOFF_DASH+ or +LINE_DOUBLE_DASH+ [Integer]
     attr_accessor :lineStyle
-    
+
     # Fill style, one of +FILL_SOLID+, +FILL_TILED+, +FILL_STIPPLED+ or +FILL_OPAQUESTIPPLED+ [Integer]
     attr_accessor :fillStyle
-    
+
     # Fill rule, one of +RULE_EVEN_ODD+ or +RULE_WINDING+ [Integer]
     attr_accessor :fillRule
-    
+
     # Raster op function, one of +BLT_CLR+, +BLT_SRC+, +BLT_DST+, etc. (see list above) [Integer]
     attr_accessor :function
-    
+
     # Tile image [FXImage]
     attr_accessor :tile
-    
+
     # Stipple pattern [FXBitmap or Integer]
     attr_accessor :stipple
-    
+
     # Clip region [FXRegion]
     attr_writer	:clipRegion
-    
+
     # Clip rectangle [FXRectangle]
     attr_reader	:clipRectangle
-    
+
     # X-coordinate of clip rectangle [Integer]
     attr_reader	:clipX
-    
+
     # Y-coordinate of clip rectangle [Integer]
     attr_reader	:clipY
-    
+
     # Width of clip rectangle, in pixels [Integer]
     attr_reader	:clipWidth
-    
+
     # Height of clip rectangle, in pixels [Integer]
     attr_reader	:clipHeight
-    
+
     # Font to draw text with [FXFont]
     attr_accessor :font
 
@@ -207,7 +207,7 @@ module Fox
     # +y+::	y-coordinate of the pixel of interest [Integer]
     #
     def readPixel(x, y) ; end
-  
+
     #
     # Draw a point at (_x_, _y_) in the current foreground drawing color.
     #
@@ -219,7 +219,7 @@ module Fox
     # See also #drawPoints and #drawPointsRel.
     #
     def drawPoint(x, y) ; end
-    
+
     #
     # Draw multiple points, where _points_ is an array of FXPoint instances.
     #
@@ -230,7 +230,7 @@ module Fox
     # See also #drawPoint and #drawPointsRel.
     #
     def drawPoints(points) ; end
-    
+
     #
     # Draw multiple points, where _points_ is an array of FXPoint instances.
     # Unlike #drawPoints, where each of the points is drawn relative to the
@@ -244,7 +244,7 @@ module Fox
     # See also #drawPoint and #drawPoints.
     #
     def drawPointsRel(points) ; end
-  
+
     #
     # Draw the line from (<em>x1</em>, <em>y1</em>) to (<em>x2</em>, <em>y2</em>).
     #
@@ -258,7 +258,7 @@ module Fox
     # See also #drawLines and #drawLinesRel.
     #
     def drawLine(x1, y1, x2, y2) ; end
-    
+
     #
     # Draw connected lines, where _points_ is an array of FXPoint instances.
     # The number of lines drawn is equal to the size of the _points_
@@ -272,7 +272,7 @@ module Fox
     # See also #drawLine and #drawLinesRel.
     #
     def drawLines(points) ; end
-    
+
     #
     # Draw connected lines, where _points_ is an array of FXPoint instances.
     # The number of lines drawn is equal to the size of the _points_
@@ -287,7 +287,7 @@ module Fox
     # See also #drawLine and #drawLines.
     #
     def drawLinesRel(points) ; end
-    
+
     #
     # Draw mutiple, unconnected lines (i.e. line segments), where _segments_ is
     # an array of FXSegment instances.
@@ -297,7 +297,7 @@ module Fox
     # +segments+::	an array of FXSegment instances [Array]
     #
     def drawLineSegments(segments) ; end
-  
+
     #
     # Draw rectangle with upper-left corner at (_x_, _y_) and with width and height (_w_, _h_).
     #
@@ -311,7 +311,7 @@ module Fox
     # See also #drawRectangles, #fillRectangle and #fillRectangles.
     #
     def drawRectangle(x, y, w, h) ; end
-    
+
     #
     # Draw multiple rectangles, where _rectangles_ is an array of FXRectangle instances.
     #
@@ -322,7 +322,7 @@ module Fox
     # See also #drawRectangle, #fillRectangle and #fillRectangles.
     #
     def drawRectangles(rectangles) ; end
-  
+
     #
     # Draw a rounded rectangle with ellipse width _ew_ and ellipse height _eh_.
     #
@@ -356,7 +356,7 @@ module Fox
     # See also #drawArcs, #fillArc and #fillArcs.
     #
     def drawArc(x, y, w, h, start, extent) ; end
-    
+
     #
     # Draw arcs, where _arcs_ is an array of FXArc instances.
     #
@@ -386,7 +386,7 @@ module Fox
     # See also #drawRectangle, #drawRectangles and #fillRectangles.
     #
     def fillRectangle(x, y, w, h) ; end
-    
+
     #
     # Draw filled rectangles, where _rectangles_ is an array of FXRectangle instances.
     #
@@ -412,7 +412,7 @@ module Fox
 
     def fillChord(x, y, w, h, ang1, ang2) ; end
     def fillChords(chords, nchords) ; end
-  
+
     #
     # Draw filled arc (see documentation for #drawArc).
     #
@@ -428,7 +428,7 @@ module Fox
     # See also #drawArc, #drawArcs and #fillArcs.
     #
     def fillArc(x, y, w, h, start, extent) ; end
-    
+
     #
     # Draw filled arcs, where _arcs_ is an array of FXArc instances.
     #
@@ -439,7 +439,7 @@ module Fox
     # See also #drawArc, #drawArcs and #fillArc.
     #
     def fillArcs(arcs) ; end
-  
+
     #
     # Draw a filled ellipse.
     #
@@ -471,7 +471,7 @@ module Fox
     # +points+::	an array of FXPoint instances [Array]
     #
     def fillComplexPolygon(points) ; end
-  
+
     #
     # Draw filled polygon with relative points, where _points_ is an array of FXPoint instances.
     #
@@ -498,7 +498,7 @@ module Fox
     # +points+::	an array of FXPoint instances [Array]
     #
     def fillComplexPolygonRel(points) ; end
-  
+
     #
     # Draw hashed box with upper-left corner at (_x_, _y_) and with width and height (_w_, _h_).
     #
@@ -511,7 +511,7 @@ module Fox
     # +b+::	border width, in pixels [Integer]
     #
     def drawHashBox(x, y, w, h, b=1) ; end
-  
+
     #
     # Draw focus rectangle with upper-left corner at (_x_, _y_) and with width and height (_w_, _h_).
     #
@@ -523,7 +523,7 @@ module Fox
     # +height+::	height of the rectangle, in pixels [Integer]
     #
     def drawFocusRectangle(x, y, w, h) ; end
-    
+
     #
     # Copy some rectangular area from _source_ into the drawable attached to this
     # device context.
@@ -539,7 +539,7 @@ module Fox
     # +dy+::		y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawArea(source, sx, sy, sw, sh, dx, dy) ; end
-  
+
     #
     # Copy some rectangular area from _source_ into the drawable attached to this
     # device context, stretching it to width _dw_ and height _dh_.
@@ -568,7 +568,7 @@ module Fox
     # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawImage(image, dx, dy) ; end
-  
+
     #
     # Draw _bitmap_ into the drawable attached to this device context.
     #
@@ -579,7 +579,7 @@ module Fox
     # +dy+::		y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawBitmap(bitmap, dx, dy) ; end
-  
+
     #
     # Draw _icon_ into the drawable attached to this device context.
     #
@@ -590,7 +590,7 @@ module Fox
     # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawIcon(icon, dx, dy) ; end
-    
+
     #
     # Draw a shaded version of an icon into the drawable attached to this device context.
     # This is typically used for drawing disabled labels and buttons.
@@ -602,7 +602,7 @@ module Fox
     # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawIconShaded(icon, dx, dy) ; end
-    
+
     #
     # Draw a sunken version of an icon into the drawable attached to this device context.
     #
@@ -613,7 +613,7 @@ module Fox
     # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawIconSunken(icon, dx, dy) ; end
-  
+
     #
     # Draw _string_ at position (_x_, _y_).
     #
@@ -626,7 +626,7 @@ module Fox
     # See also #drawImageText.
     #
     def drawText(x, y, string) ; end
-    
+
     #
     # Draw _string_ at position (_x_, _y_).
     #
@@ -639,10 +639,10 @@ module Fox
     # See also #drawText.
     #
     def drawImageText(x, y, string) ; end
-  
+
     #
     # Set dash pattern and dash offset.
-    # A dash pattern of [1, 2, 3, 4] is a repeating pattern of 1 foreground pixel, 
+    # A dash pattern of [1, 2, 3, 4] is a repeating pattern of 1 foreground pixel,
     # 2 background pixels, 3 foreground pixels, and 4 background pixels.
     # The offset is where in the pattern the system will start counting.
     # The maximum length of the dash pattern array is 32 elements.
@@ -653,7 +653,7 @@ module Fox
     # +dashPattern+::	array of integers indicating the dash pattern [Array]
     #
     def setDashes(dashOffset, dashPattern) ; end
-  
+
     #
     # Set clip rectangle.
     #
@@ -667,7 +667,7 @@ module Fox
     # See also #setClipMask.
     #
     def setClipRectangle(x, y, w, h) ; end
-    
+
     #
     # Set clip rectangle.
     #
@@ -678,12 +678,12 @@ module Fox
     # See also #setClipMask.
     #
     def setClipRectangle(rectangle) ; end
-    
+
     #
     # Clear clipping.
     #
     def clearClipRectangle() ; end
-  
+
     #
     # Set clip mask to _bitmap_.
     #
@@ -696,7 +696,7 @@ module Fox
     # See also #setClipRectangle.
     #
     def setClipMask(bitmap, dx=0, dy=0) ; end
-  
+
     #
     # Clear clip mask.
     #

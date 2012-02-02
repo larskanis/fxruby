@@ -24,7 +24,7 @@
 
 /**
 * The Recent files manages a most recently used (MRU) file list by
-* means of the standard system registry.  
+* means of the standard system registry.
 */
 class FXRecentFiles : public FXObject {
 protected:

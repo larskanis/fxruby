@@ -36,13 +36,13 @@
 #define NULL 0
 #endif
 
-// FOX System Defined Selector Types 
+// FOX System Defined Selector Types
 enum FXSelType {
   SEL_NONE,
   SEL_KEYPRESS,                       // Key
-  SEL_KEYRELEASE,            
+  SEL_KEYRELEASE,
   SEL_LEFTBUTTONPRESS,                // Buttons
-  SEL_LEFTBUTTONRELEASE,     
+  SEL_LEFTBUTTONRELEASE,
   SEL_MIDDLEBUTTONPRESS,
   SEL_MIDDLEBUTTONRELEASE,
   SEL_RIGHTBUTTONPRESS,
@@ -52,11 +52,11 @@ enum FXSelType {
   SEL_LEAVE,
   SEL_FOCUSIN,
   SEL_FOCUSOUT,
-  SEL_KEYMAP, 
+  SEL_KEYMAP,
   SEL_UNGRABBED,                      // Lost the grab (Windows)
   SEL_PAINT,                          // Must repaint window
-  SEL_CREATE,                
-  SEL_DESTROY,               
+  SEL_CREATE,
+  SEL_DESTROY,
   SEL_UNMAP,                            /// Window was hidden
   SEL_MAP,                              /// Window was shown
   SEL_CONFIGURE,                        /// Resize
@@ -181,7 +181,7 @@ enum FXDragAction {
   DRAG_LINK    = 4,                 /// Link
   DRAG_PRIVATE = 5                  /// Private
   };
-  
+
 
 /// Origin of data
 enum FXDNDOrigin {
@@ -189,7 +189,7 @@ enum FXDNDOrigin {
   FROM_CLIPBOARD  = 1,              /// Clipboard
   FROM_DRAGNDROP  = 2               /// Drag and drop source
   };
-  
+
 
 /// Exponent display
 enum FXExponent {
@@ -198,7 +198,7 @@ enum FXExponent {
   EXP_AUTO=MAYBE                    /// Use exponential notation if needed
   };
 
-  
+
 /// Search modes for search/replace dialogs
 enum {
   SEARCH_FORWARD      = 0,    /// Search forward (default)
@@ -210,8 +210,8 @@ enum {
   SEARCH_REGEX        = 8,    /// Regular expression match
   SEARCH_PREFIX       = 16    /// Prefix of subject string
   };
-  
-  
+
+
 /*********************************  Typedefs  **********************************/
 
 
@@ -262,7 +262,7 @@ static FXuint _MKUINT(FXushort l,FXushort h){
 static FXuint _FXSEL(FXushort type,FXushort id){
   return FXSEL(type,id);
   }
- 
+
 static FXushort _FXSELTYPE(FXuint s){
   return FXSELTYPE(s);
   }
@@ -272,7 +272,7 @@ static FXushort _FXSELID(FXuint s){
   }
 %}
 
-/// Make int out of two shorts 
+/// Make int out of two shorts
 %name(MKUINT) FXuint _MKUINT(FXushort l,FXushort h);
 
 /// Make selector from message type and message id

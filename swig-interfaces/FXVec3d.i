@@ -75,7 +75,7 @@ public:
       if(n==0.0) rb_raise(rb_eZeroDivError,"divided by 0");
       return (*self)/n;
       }
-  
+
     /// Dot product
     FXdouble operator*(const FXVec3d& other) const { return (*self)*other; }
     FXdouble dot(const FXVec3d& other) const { return (*self)*other; }
@@ -83,7 +83,7 @@ public:
     /// Cross product
     FXVec3d operator^(const FXVec3d& other) const  { return (*self)^other; }
     FXVec3d cross(const FXVec3d& other) const  { return (*self)^other; }
-  
+
     /// Equality tests
     bool operator==(const FXVec3d& other) const { return (*self)==other; }
 

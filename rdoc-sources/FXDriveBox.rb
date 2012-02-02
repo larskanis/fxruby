@@ -13,7 +13,7 @@ module Fox
 
     # Current drive [String]
     attr_accessor :drive
-    
+
     # File associations [FXFileDict]
     attr_accessor :associations
 
@@ -26,17 +26,17 @@ module Fox
     # Returns +true+ on success, +false+ on failure.
     #
     def setDrive(drive); end
-    
+
     #
     # Return current drive as a string.
     #
     def getDrive(); end
-    
+
     #
     # Change file associations, where _assoc_ is an FXFileDict instance.
     #
     def setAssociations(assoc); end
-    
+
     #
     # Return file associations (an FXFileDict instance).
     #

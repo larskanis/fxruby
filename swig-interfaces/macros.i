@@ -49,7 +49,7 @@
 %define DECLARE_FXBITMAP_VIRTUALS(klass)
 %extend klass {
    /**
-  * Retrieves pixels from the server-side bitmap.  
+  * Retrieves pixels from the server-side bitmap.
   */
   virtual void restore();
 
@@ -61,7 +61,7 @@
 
   /// Save pixel data only
   virtual bool savePixels(FXStream& store) const;
-  
+
   /// Load pixel data
   virtual bool loadPixels(FXStream& store);
 
@@ -102,7 +102,7 @@
 %extend klass {
   /// Save pixel data only
   virtual bool savePixels(FXStream& store) const;
-  
+
   /// Load pixel data
   virtual bool loadPixels(FXStream& store);
   }
@@ -123,7 +123,7 @@
   virtual void drawLines(const FXPoint* points,FXuint npoints);
   virtual void drawLinesRel(const FXPoint* points,FXuint npoints);
   virtual void drawLineSegments(const FXSegment* segments,FXuint nsegments);
-  
+
   /// Draw rectangles
   virtual void drawRectangle(FXint x,FXint y,FXint w,FXint h);
   virtual void drawRectangles(const FXRectangle* rectangles,FXuint nrectangles);
@@ -133,9 +133,9 @@
 
   /**
   * Draw arcs.
-  * The argument ang1 specifies the start of the arc relative to the 
+  * The argument ang1 specifies the start of the arc relative to the
   * three-o'clock position from the center, in units of degrees*64.
-  * The argument ang2 specifies the path and extent of the arc relative 
+  * The argument ang2 specifies the path and extent of the arc relative
   * to the start of the arc, in units of degrees*64.
   * The arguments x,y,w,h specify the bounding rectangle.
   */
@@ -175,20 +175,20 @@
 
   /// Draw focus rectangle
   virtual void drawFocusRectangle(FXint x,FXint y,FXint w,FXint h);
-  
+
   /// Draw area from source
   virtual void drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy);
 
   /// Draw stretched area from source
   virtual void drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy,FXint dw,FXint dh);
 
-  /// Draw image 
+  /// Draw image
   virtual void drawImage(const FXImage* image,FXint dx,FXint dy);
 
   /// Draw bitmap
   virtual void drawBitmap(const FXBitmap* bitmap,FXint dx,FXint dy);
-  
-  /// Draw icon 
+
+  /// Draw icon
   virtual void drawIcon(const FXIcon* icon,FXint dx,FXint dy);
   virtual void drawIconShaded(const FXIcon* icon,FXint dx,FXint dy);
   virtual void drawIconSunken(const FXIcon* icon,FXint dx,FXint dy);
@@ -201,13 +201,13 @@
 
   /// Set foreground drawing color
   virtual void setForeground(FXColor clr);
-  
+
   /// Set background drawing color
   virtual void setBackground(FXColor clr);
-  
+
   /**
   * Set dash pattern and dash offset.
-  * A dash pattern of [1 2 3 4] is a repeating pattern of 1 foreground pixel, 
+  * A dash pattern of [1 2 3 4] is a repeating pattern of 1 foreground pixel,
   * 2 background pixels, 3 foreground pixels, and 4 background pixels.
   * The offset is where in the pattern the system will start counting.
   * The maximum length of the dash pattern is 32.
@@ -216,55 +216,55 @@
 
   /// Set line width:- 0 means thinnest/fastest possible
   virtual void setLineWidth(FXuint linewidth=0);
-  
+
   /// Set line cap style
   virtual void setLineCap(FXCapStyle capstyle=CAP_BUTT);
-  
+
   /// Set line join style
   virtual void setLineJoin(FXJoinStyle joinstyle=JOIN_MITER);
-  
+
   /// Set line style
   virtual void setLineStyle(FXLineStyle linestyle=LINE_SOLID);
-  
+
   /// Set fill style
   virtual void setFillStyle(FXFillStyle fillstyle=FILL_SOLID);
-  
+
   /// Set fill rule
   virtual void setFillRule(FXFillRule fillrule=RULE_EVEN_ODD);
-  
+
   /// Set rasterop function
   virtual void setFunction(FXFunction func=BLT_SRC);
-  
+
   /// Set the tile image
   virtual void setTile(FXImage* image,FXint dx=0,FXint dy=0);
-  
-  /// Set the stipple pattern 
+
+  /// Set the stipple pattern
   virtual void setStipple(FXBitmap *bitmap,FXint dx=0,FXint dy=0);
-  
-  /// Set the stipple pattern 
+
+  /// Set the stipple pattern
   virtual void setStipple(FXStipplePattern pat,FXint dx=0,FXint dy=0);
-  
+
   /// Set clip region
   virtual void setClipRegion(const FXRegion& region);
-  
+
   /// Set clip rectangle
   virtual void setClipRectangle(FXint x,FXint y,FXint w,FXint h);
 
   /// Change clip rectangle
   virtual void setClipRectangle(const FXRectangle& rectangle);
-  
+
   /// Clear clipping
   virtual void clearClipRectangle();
-  
+
   /// Set clip mask
   virtual void setClipMask(FXBitmap* bitmap,FXint dx=0,FXint dy=0);
-  
+
   /// Clear clip mask
   virtual void clearClipMask();
-  
+
   /// Set font to draw text with
   virtual void setFont(FXFont *fnt);
-  
+
   /// Clip against child windows
   virtual void clipChildren(FXbool yes);
   }
@@ -338,7 +338,7 @@
 
 %define DECLARE_FXDRAWABLE_VIRTUALS(klass)
 %extend klass {
-  /// Resize drawable to the specified width and height 
+  /// Resize drawable to the specified width and height
   virtual void resize(FXint w,FXint h);
   }
 %enddef
@@ -428,7 +428,7 @@
 
   /// Find out if the font is monotype or proportional
   virtual FXbool isFontMono() const;
-  
+
   %extend {
     /// See if font has glyph for ch
     virtual FXbool hasChar(VALUE ch) const {
@@ -446,33 +446,33 @@
       }
   }
 
-  /// Get first character glyph in font  
+  /// Get first character glyph in font
   virtual FXwchar getMinChar() const;
-  
+
   /// Get last character glyph in font
   virtual FXwchar getMaxChar() const;
 
   /// Left bearing
   virtual FXint leftBearing(FXwchar ch) const;
-  
+
   /// Right bearing
   virtual FXint rightBearing(FXwchar ch) const;
-  
+
   /// Width of widest character in font
   virtual FXint getFontWidth() const;
-  
+
   /// Height of highest character in font
   virtual FXint getFontHeight() const;
-  
+
   /// Ascent from baseline
   virtual FXint getFontAscent() const;
-  
+
   /// Descent from baseline
   virtual FXint getFontDescent() const;
-  
+
   /// Get font leading [that is lead-ing as in Pb!]
   virtual FXint getFontLeading() const;
-  
+
   /// Get font line spacing
   virtual FXint getFontSpacing() const;
 
@@ -491,7 +491,7 @@
 %extend klass {
   /// Make OpenGL context current prior to performing OpenGL commands
   virtual FXbool makeCurrent();
-  
+
   /// Make OpenGL context non current
   virtual FXbool makeNonCurrent();
 
@@ -585,10 +585,10 @@
 %extend klass {
   /// Select item at index
   virtual FXbool selectItem(FXint index,FXbool notify=FALSE);
-  
+
   /// Deselect item at index
   virtual FXbool deselectItem(FXint index,FXbool notify=FALSE);
-  
+
   /// Toggle item at index
   virtual FXbool toggleItem(FXint index,FXbool notify=FALSE);
 
@@ -608,11 +608,11 @@
   virtual FXint getItemAt(FXint x,FXint y) const;
 
   /// Scroll to make item at index visible
-  virtual void makeItemVisible(FXint index);  
+  virtual void makeItemVisible(FXint index);
 
   /// Enable item at index
   virtual FXbool enableItem(FXint index);
-  
+
   /// Disable item at index
   virtual FXbool disableItem(FXint index);
   }
@@ -666,7 +666,7 @@
   * to divine the icon format if the parameter is omitted].
   */
   virtual FXImage *loadImageData(const void *pixels,const FXString& type=FXString::null) const;
-  
+
   /**
   * Load an image of a given type (e.g. "gif") from an already open stream.
   * Returns NULL if there's some error loading the image.  [The optional
@@ -718,7 +718,7 @@
   * pixels.  Normally, IMAGE_DITHER is used which causes the server-side
   * representation to be rendered using a 16x16 ordered dither if necessary;
   * however if IMAGE_NEAREST is used a faster (but uglier-looking), nearest
-  * neighbor algorithm is used.  
+  * neighbor algorithm is used.
   */
   virtual void render();
 
@@ -727,24 +727,24 @@
    * If it is not owned, the image just forgets about the buffer.
    */
   virtual void release();
-  
+
   /**
-  * Rescale pixels image to the specified width and height; this calls 
+  * Rescale pixels image to the specified width and height; this calls
   * resize() to adjust the client and server side representations.
   */
   virtual void scale(FXint w,FXint h,FXint quality=0);
-  
+
   /// Mirror image horizontally and/or vertically
   virtual void mirror(bool horizontal,bool vertical);
 
   /**
-  * Rotate image by degrees ccw; this calls resize() to adjust the client 
+  * Rotate image by degrees ccw; this calls resize() to adjust the client
   * and server side representations if necessary.
   */
   virtual void rotate(FXint degrees);
 
   /**
-  * Crop image to given rectangle; this calls resize() to adjust the client 
+  * Crop image to given rectangle; this calls resize() to adjust the client
   * and server side representations.
   */
   virtual void crop(FXint x,FXint y,FXint w,FXint h,FXColor color=0);
@@ -806,28 +806,28 @@
 %extend klass {
   /// Enable item
   virtual FXbool enableItem(FXint index);
-  
+
   /// Disable item
   virtual FXbool disableItem(FXint index);
-  
+
   /// Scroll to bring item into view
   virtual void makeItemVisible(FXint index);
-  
+
   /// Return index of item at x,y, if any
   virtual FXint getItemAt(FXint x,FXint y) const;
-  
+
   /// Select item
   virtual FXbool selectItem(FXint index,FXbool notify=FALSE);
-  
+
   /// Deselect item
   virtual FXbool deselectItem(FXint index,FXbool notify=FALSE);
-  
+
   /// Toggle item selection state
   virtual FXbool toggleItem(FXint index,FXbool notify=FALSE);
 
   /// Extend selection from anchor item to index
   virtual FXbool extendSelection(FXint index,FXbool notify=FALSE);
-  
+
   /// Deselect all items
   virtual FXbool killSelection(FXbool notify=FALSE);
 
@@ -950,10 +950,10 @@
   virtual void drawContent(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
   virtual void drawPattern(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
   virtual void drawBackground(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  
+
   // Change item's text label
   virtual void setText(const FXString& txt);
-  
+
   // Return item's text label
   virtual FXString getText() const;
 
@@ -968,10 +968,10 @@
 
   // Select item
   virtual void setSelected(FXbool selected);
-  
+
   // Enable or disable item
   virtual void setEnabled(FXbool enabled);
-  
+
   // Make item draggable
   virtual void setDraggable(FXbool draggable);
 
@@ -995,16 +995,16 @@
 
   // Return width of item
   virtual FXint getWidth(const FXTable* table) const;
-  
+
   // Return height of item
   virtual FXint getHeight(const FXTable* table) const;
-  
+
   // Create server-side resources
   virtual void create();
-  
+
   // Detach server-side resources
   virtual void detach();
-  
+
   // Destroy server-side resources
   virtual void destroy();
   }
@@ -1018,7 +1018,7 @@
   virtual void drawVGrid(FXDC& dc,FXint rlo,FXint rhi,FXint clo,FXint chi);
   virtual void drawContents(FXDC& dc,FXint x,FXint y,FXint w,FXint h);
   virtual FXTableItem* createItem(const FXString& text,FXIcon* icon,void* ptr);
-  
+
   /// Set the table size to nr rows and nc columns; all existing items will be removed
   virtual void setTableSize(FXint nr,FXint nc,FXbool notify=FALSE);
 
@@ -1069,7 +1069,7 @@
 
   /// Kill selection
   virtual FXbool killSelection(FXbool notify=FALSE);
-  
+
   /**
   * Start input mode for the cell at the given position.
   * An input control is created which is used to edit the cell;
@@ -1098,7 +1098,7 @@
 
   /// Scroll to make cell at r,c fully visible
   virtual void makePositionVisible(FXint row_unchecked,FXint col_unchecked);
-  
+
   /// Enable item
   virtual FXbool enableItem(FXint r,FXint c);
 
@@ -1136,13 +1136,13 @@
 
   /// Change style of text range
   virtual void changeStyle(FXint pos,FXint n,FXint style);
- 
+
   /// Change style of text range from style-array
   virtual void changeStyle(FXint pos,const FXString& style);
 
   /// Change the text in the buffer to new text
   virtual void setText(const FXString& text,FXbool notify=FALSE);
- 
+
   /// Change the text in the buffer to new text
   virtual void setStyledText(const FXString& text,FXint style=0,FXbool notify=FALSE);
   }
@@ -1177,10 +1177,10 @@
 %extend klass {
   // Change item label
   virtual void setText(const FXString& txt);
-  
+
   // Change open icon, deleting the old one if it was owned
   virtual void setOpenIcon(FXIcon* icn,FXbool owned=FALSE);
-  
+
   // Change closed icon, deleting the old one if it was owned
   virtual void setClosedIcon(FXIcon* icn,FXbool owned=FALSE);
   virtual void setFocus(FXbool focus);
@@ -1210,7 +1210,7 @@
 
   /// Extend selection from anchor item to item
   virtual FXbool extendSelection(FXTreeItem* item,FXbool notify=FALSE);
-  
+
   /// Deselect all items
   virtual FXbool killSelection(FXbool notify=FALSE);
 
@@ -1223,7 +1223,7 @@
   /// Collapse tree
   virtual FXbool collapseTree(FXTreeItem* tree,FXbool notify=FALSE);
 
-  /// Expand tree 
+  /// Expand tree
   virtual FXbool expandTree(FXTreeItem* tree,FXbool notify=FALSE);
 
   /// Change current item
@@ -1304,7 +1304,7 @@
   */
   virtual const FXchar* tr(const FXchar* message,const FXchar* hint=NULL) const;
 
-  /// Enable this window to receive drops 
+  /// Enable this window to receive drops
   virtual void dropEnable();
 
   /// Disable this window from receiving drops

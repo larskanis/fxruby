@@ -301,7 +301,7 @@ class ScintillaIFaceToRuby
 		args.compact!
 		@output.print("(#{args.join(', ')})") unless args.empty?
 		@output.puts
-		
+
 		if stringresult and !stringresult1
 			@output.puts("      buffer = \"\".ljust(#{_fun.args[0].name})")
 		end

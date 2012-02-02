@@ -26,12 +26,12 @@ class DirListWindow < FXMainWindow
     # Text field at bottom
     text = FXTextField.new(self, 10,
       :opts => LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
-  
+
     # Make contents
     dirlist = FXDirList.new(self, :opts => (HSCROLLING_OFF|
       TREELIST_SHOWS_LINES|TREELIST_SHOWS_BOXES|FRAME_SUNKEN|FRAME_THICK|
       LAYOUT_FILL_X|LAYOUT_FILL_Y))
-  
+
     # Now make the directory list widget (dirlist) the message target
     # for the text field. If you type a new directory name in the text
     # field the directory list should navigate to that directory.
@@ -49,13 +49,13 @@ end
 def run
   # Make application
   application = FXApp.new("DirList", "FoxTest")
-  
+
   # Make window
   DirListWindow.new(application)
-  
-  # Create app  
+
+  # Create app
   application.create
-  
+
   # Run
   application.run
 end

@@ -8,7 +8,7 @@ module Fox
     #
     def initialize(parent, vis, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theGLCanvas
     end
-  
+
     #
     # Construct an OpenGL-capable canvas that shares its display
     # list with another GL canvas.  This canvas becomes a member
@@ -31,7 +31,7 @@ module Fox
 
     # Make OpenGL context current prior to performing OpenGL commands
     def makeCurrent(); end
-  
+
     # Make OpenGL context non-current
     def makeNonCurrent(); end
 

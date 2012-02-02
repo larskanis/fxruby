@@ -29,7 +29,7 @@
 }
 %freefunc klass "FXRbObject::freefunc"; // some classes override this in freefuncs.i
 %enddef
-		
+
 DO_CLASS_SETUP(FX4Splitter)
 DO_CLASS_SETUP(FX7Segment)
 DO_CLASS_SETUP(FXAccelTable)

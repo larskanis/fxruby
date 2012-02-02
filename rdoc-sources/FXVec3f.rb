@@ -1,20 +1,20 @@
 module Fox
   class FXVec3f
-    
+
     attr_accessor :x
     attr_accessor :y
     attr_accessor :z
-    
+
     #
     # Return an FXVec3f instance with _x_, _y_ and _z_ initialized to zeroes.
     #
     def initialize; end
-    
+
     #
     # Return an FXVec3f instance initialized with specified component values.
     #
     def initialize(xx, yy, zz=1.0); end
-  
+
     #
     # Returns the element at _index_, where _index_ is 0, 1 or 2.
     # Raises IndexError if _index_ is out of range.
@@ -74,7 +74,7 @@ module Fox
     # Return the square of the length of this vector.
     #
     def length2; end
-    
+
     #
     # Return the length (magnitude) of this vector.
     #
@@ -84,7 +84,7 @@ module Fox
     # Clamp the values of this vector between limits _lo_ and _hi_.
     #
     def clamp(lo, hi); end
-    
+
     #
     # Return a new FXVec3f instance which is a normalized version
     # of this one.
@@ -102,13 +102,13 @@ module Fox
     # vector and _other_.
     #
     def hi(other); end
-    
+
     #
     # Compute normal vector from points _a_, _b_ and _c_ (each of which is
     # an FXVec3f instance).
     #
     def FXVec3f.normal(a, b, c); end
-    
+
     #
     # Compute approximate normal from four points _a_, _b_, _c_ and _d_.
     #

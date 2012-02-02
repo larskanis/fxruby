@@ -43,7 +43,7 @@ module Fox
 
     # Text font [FXFont]
     attr_accessor :font
-    
+
     # Tree list box style
     attr_accessor :listStyle
 
@@ -87,8 +87,8 @@ module Fox
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def insertItem(other, father, item, notify=false); end
-  
-    # Insert item with given text and optional icons, and user-data pointer under _father_ before _other_ item. 
+
+    # Insert item with given text and optional icons, and user-data pointer under _father_ before _other_ item.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
@@ -99,25 +99,25 @@ module Fox
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def appendItem(father, item, notify=false); end
-  
+
     # Append item with given text and optional icons, and user-data pointer as last child of _father_.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def appendItem(father, text, openIcon=nil, closedIcon=nil, data=nil, notify=false); end
-  
+
     # Prepend a new (possibly subclassed) _item_ as first child of _father_.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def prependItem(father, item, notify=false); end
-  
+
     # Prepend item with given text and optional icons, and user-data pointer as first child of _father_.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def prependItem(father, text, openIcon=nil, closedIcon=nil, data=nil, notify=false); end
-  
+
     # Remove item.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message
     # target before the item is removed.
@@ -187,31 +187,31 @@ module Fox
     # message target.
     #
     def setCurrentItem(item, notify=false); end
-    
+
     # Change item's text
     def setItemText(item, text); end
-    
+
     # Return item's text
     def getItemText(item); end
-  
+
     # Change item's open icon
     def setItemOpenIcon(item, openIcon); end
-    
+
     # Return item's open icon
     def getItemOpenIcon(item); end
-    
+
     # Change item's closed icon
     def setItemClosedIcon(item, closedIcon); end
-    
+
     # Return item's closed icon
     def getItemClosedIcon(item); end
-  
+
     # Change item's user data
     def setItemData(item, data); end
-  
+
     # Return item's user data
     def getItemData(item); end
-  
+
     # Return +true+ if the pane is shown.
     def paneShown?; end
   end

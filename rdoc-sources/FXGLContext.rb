@@ -10,7 +10,7 @@ module Fox
   # However, display lists may be shared between different GL contexts.
   #
   class FXGLContext < FXId
-  
+
     # The visual [FXGLVisual]
     attr_reader :visual
 
@@ -20,19 +20,19 @@ module Fox
     # Otherwise, this context will use its own private display list.
     def initialize(app, visual, other=nil) # :yields: theGLContext
     end
-  
+
     # Return +true+ if it is sharing display lists.
     def shared?; end
-    
+
     # Make this OpenGL context current prior to performing OpenGL commands.
     def begin(drawable); end
-    
+
     # Make this OpenGL context non-current.
     def end(); end
-    
+
     # Swap front and back buffer
     def swapBuffers(); end
-    
+
     # Copy part of backbuffer to front buffer [Mesa]
     def swapSubBuffers(x, y, w, h); end
   end

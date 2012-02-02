@@ -50,7 +50,7 @@ module Fox
     #
     def each_section # :yields: aStringDict
     end
-    
+
     #
     # Read a string registry entry from the specified _section_ and _key_.
     # If no value is found, the _default_ value is returned.

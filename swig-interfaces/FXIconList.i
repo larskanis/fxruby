@@ -84,7 +84,7 @@ public:
     void setData(VALUE ptr){
       self->setData((void*) ptr);
       }
-      
+
     VALUE getData() const {
       return self->getData() ? (VALUE) self->getData() : Qnil;
       }
@@ -94,7 +94,7 @@ public:
   FXbool isSelected() const;
   FXbool isEnabled() const;
   FXbool isDraggable() const;
-  
+
   virtual ~FXIconItem();
   };
 
@@ -265,10 +265,10 @@ public:
 
   /// Return number of items
   FXint getNumItems() const;
-  
+
   /// Return number of rows
   FXint getNumRows() const;
-  
+
   /// Return number of columns
   FXint getNumCols() const;
 
@@ -283,34 +283,34 @@ public:
 
   /// Append header with given text and optional icon
   void appendHeader(const FXString& text,FXIcon *icon=NULL,FXint size=1);
-  
+
   /// Remove header at index
   void removeHeader(FXint headerIndex);
-  
+
   /// Change text of header at index
   void setHeaderText(FXint headerIndex,const FXString& text);
-  
+
   /// Return text of header at index
   FXString getHeaderText(FXint headerIndex) const;
-  
+
   /// Change icon of header at index
   void setHeaderIcon(FXint headerIndex,FXIcon *icon);
-  
+
   /// Return icon of header at index
   FXIcon* getHeaderIcon(FXint headerIndex) const;
-  
+
   /// Change size of header at index
   void setHeaderSize(FXint headerIndex,FXint size);
-  
+
   /// Return width of header at index
   FXint getHeaderSize(FXint headerIndex) const;
-  
+
   /// Return number of headers
   FXint getNumHeaders() const;
-  
+
   /// Return the item at the given index
   FXIconItem *getItem(FXint index) const;
-  
+
   %extend {
     /// Replace the item with a [possibly subclassed] item
     FXint setItem(FXint index,FXIconItem* item,FXbool notify=FALSE){
@@ -336,7 +336,7 @@ public:
 
       // Do the deed
       FXint result=self->setItem(index,text,big,mini,ITEMDATA,notify);
-      
+
       // Now zero-out pointers held by still-alive Ruby objects
       FXRbUnregisterRubyObj(oldItem);
 
@@ -344,7 +344,7 @@ public:
       return result;
       }
   }
-  
+
 
   /// Fill list by appending items from array of strings
   FXint fillItems(const FXchar** strings,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
@@ -357,10 +357,10 @@ public:
       return self->insertItem(index,item,notify);
       }
   }
-  
+
   /// Insert item at index with given text, icons, and user-data pointer
   FXint insertItem(FXint index,const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
-  
+
   %extend {
     /// Append a [possibly subclassed] item to the end of the list
     FXint appendItem(FXIconItem* item,FXbool notify=FALSE){
@@ -369,7 +369,7 @@ public:
       return self->appendItem(item,notify);
       }
   }
-  
+
   /// Append new item with given text and optional icons, and user-data pointer
   FXint appendItem(const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
 
@@ -381,7 +381,7 @@ public:
       return self->prependItem(item,notify);
       }
   }
-  
+
   /// Append new item with given text and optional icons, and user-data pointer
   FXint prependItem(const FXString& text,FXIcon *big=NULL,FXIcon* mini=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
 
@@ -403,7 +403,7 @@ public:
       // Now zero-out pointers held by still-alive Ruby objects
       FXRbUnregisterRubyObj(item);
       }
-  
+
     /// Remove all items from list
     void clearItems(FXbool notify=FALSE){
       // Save pointers to the soon-to-be-destroyed items
@@ -418,14 +418,14 @@ public:
       for (FXint j = 0; j < items.no(); j++) FXRbUnregisterRubyObj(items[j]);
       }
   }
-  
+
   /// Return item width
   FXint getItemWidth() const;
 
   /// Return item height
   FXint getItemHeight() const;
 
-  /** 
+  /**
   * Search items by name, beginning from item start.  If the start
   * item is -1 the search will start at the first item in the list.
   * Flags may be SEARCH_FORWARD or SEARCH_BACKWARD to control the
@@ -436,7 +436,7 @@ public:
   * Return -1 if no matching item is found.
   */
   FXint findItem(const FXString& text,FXint start=-1,FXuint flags=SEARCH_FORWARD|SEARCH_WRAP) const;
-  
+
   /**
   * Search items by associated user data, beginning from item start. If the
   * start item is -1 the search will start at the first item in the list.
@@ -458,61 +458,61 @@ public:
 	}
       }
   }
-  
+
   /// Change item text
   void setItemText(FXint index,const FXString& text);
-  
+
   /// Return item text
   FXString getItemText(FXint index) const;
-  
+
   /// Change item big icon
   void setItemBigIcon(FXint index,FXIcon* icon,FXbool owned=FALSE);
-  
+
   /// Return big icon of item at index
   FXIcon* getItemBigIcon(FXint index) const;
-  
+
   /// Change item mini icon
   void setItemMiniIcon(FXint index,FXIcon* icon,FXbool owned=FALSE);
-  
+
   /// Return mini icon of item at index
   FXIcon* getItemMiniIcon(FXint index) const;
-  
+
   %extend {
     /// Change item user-data pointer
     void setItemData(FXint index, VALUE ptr){
       self->setItemData(index, (void*) ptr);
       }
-  
+
     /// Return item user-data pointer
     VALUE getItemData(FXint index) const {
       return self->getItemData(index) ? (VALUE) self->getItemData(index) : Qnil;
       }
   }
-  
+
   /// Return TRUE if item at index is selected
   FXbool isItemSelected(FXint index) const;
-  
+
   /// Return TRUE if item at index is current
   FXbool isItemCurrent(FXint index) const;
-  
+
   /// Return TRUE if item at index is visible
   FXbool isItemVisible(FXint index) const;
-  
+
   /// Return TRUE if item at index is enabled
   FXbool isItemEnabled(FXint index) const;
-  
+
   /// Return item hit code: 0 outside, 1 icon, 2 text
   FXint hitItem(FXint index,FXint x,FXint y,FXint ww=1,FXint hh=1) const;
-  
+
   /// Repaint item at index
   void updateItem(FXint index) const;
-  
+
   /// Return current item index, or -1 if none
   FXint getCurrentItem() const;
 
   /// Change anchor item index
   void setAnchorItem(FXint index);
-  
+
   /// Return anchor item index, or -1 if none
   FXint getAnchorItem() const { return anchor; }
 
@@ -521,10 +521,10 @@ public:
 
   /// Sort items
   void sortItems();
-  
+
   /// Change text font
   void setFont(FXFont* fnt);
-  
+
   /// Return text font
   FXFont* getFont() const;
 
@@ -533,22 +533,22 @@ public:
 
   /// Change normal text color
   void setTextColor(FXColor clr);
-  
+
   /// Return selected text background
   FXColor getSelBackColor() const;
 
   /// Change selected text background
   void setSelBackColor(FXColor clr);
-  
+
   /// Return selected text color
   FXColor getSelTextColor() const;
 
   /// Change selected text color
   void setSelTextColor(FXColor clr);
-  
+
   /// Change maximum item space for each item
   void setItemSpace(FXint s);
-  
+
   /// Return maximum item space
   FXint getItemSpace() const;
 

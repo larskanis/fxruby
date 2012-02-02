@@ -31,9 +31,9 @@ enum {
   VIEWER_DITHER      = 0x00020000     /// Dithering
   };
 
-  
+
 /*******************************  Viewer  Structs  *****************************/
-  
+
 
 /// OpenGL Viewer Viewport
 struct FXViewport {
@@ -74,7 +74,7 @@ struct FXMaterial {
   ~FXMaterial();
   };
 
-  
+
 // Feedback buffer sort routine
 // typedef FXbool (*FXZSortFunc)(FXfloat*& buffer,FXint& used,FXint& size); FIXME
 
@@ -254,7 +254,7 @@ public:
   long onQueryTip(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
 
 public:
-  
+
   // Projection modes
   enum {
     PARALLEL,		  // Parallel projection
@@ -275,7 +275,7 @@ public:
     ID_FITVIEW,
     ID_TOP_COLOR,
     ID_BOTTOM_COLOR,
-    ID_BACK_COLOR,    
+    ID_BACK_COLOR,
     ID_AMBIENT_COLOR,
     ID_LIGHT_AMBIENT,
     ID_LIGHT_DIFFUSE,
@@ -321,7 +321,7 @@ public:
     FXGLViewer(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbGLViewer(p,vis,tgt,sel,opts,x,y,w,h);
       }
-  
+
     /// Construct GL viewer widget sharing display list with another GL viewer
     FXGLViewer(FXComposite* p,FXGLVisual *vis,FXGLViewer* sharegroup,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbGLViewer(p,vis,sharegroup,tgt,sel,opts,x,y,w,h);
@@ -353,7 +353,7 @@ public:
 
   /// Fit viewer to the given bounding box
   FXbool fitToBounds(const FXRangef& box);
-  
+
   %extend {
     /// Return the viewer's viewport
     FXViewport getViewport() const {
@@ -362,7 +362,7 @@ public:
       return v;
     }
   }
-  
+
   %extend {
     /// Translate eye-coordinate to screen coordinate
     VALUE eyeToScreen(FXVec3f e) {
@@ -377,25 +377,25 @@ public:
 
   /// Translate screen coordinate to eye coordinate at the given depth
   FXVec3f screenToEye(FXint sx,FXint sy,FXfloat eyez=0.0);
-  
+
   /// Translate screen coordinate to eye coordinate at the target point depth
   FXVec3f screenToTarget(FXint sx,FXint sy);
-  
+
   /// Translate world coordinate to eye coordinate
   FXVec3f worldToEye(FXVec3f w);
-  
+
   /// Translate world coordinate to eye coordinate depth
   FXfloat worldToEyeZ(FXVec3f w);
-  
+
   /// Translate eye coordinate to eye coordinate
-  FXVec3f eyeToWorld(FXVec3f e); 
-  
+  FXVec3f eyeToWorld(FXVec3f e);
+
   /// Calculate world coordinate vector from screen movement
   FXVec3f worldVector(FXint fx,FXint fy,FXint tx,FXint ty);
-  
+
   ///  Change default object material setting
   void setMaterial(const FXMaterial &mtl);
-  
+
   %extend {
     /// Return default object material setting
     FXMaterial getMaterial() const {
@@ -404,46 +404,46 @@ public:
       return mtl;
     }
   }
-  
+
   /// Change camera field of view angle (in degrees)
   void setFieldOfView(FXdouble fv);
-  
+
   /// Return camera field of view angle
   FXdouble getFieldOfView() const { return fov; }
 
   /// Change camera zoom factor
   void setZoom(FXdouble zm);
-  
+
   /// Return camera zoom factor
   FXdouble getZoom() const;
 
   /// Change target point distance
   void setDistance(FXdouble ed);
-  
+
   /// Return target point distance
   FXdouble getDistance() const;
 
   /// Change unequal model scaling factors
   void setScale(FXVec3f s);
-  
+
   /// Return current scaling factors
   const FXVec3f& getScale() const;
 
   /// Change camera orientation from quaternion
   void setOrientation(FXQuatf rot);
-  
+
   /// Return current camera orientation quaternion
   const FXQuatf& getOrientation() const;
 
   /// Change object center (tranlation)
   void setCenter(FXVec3f cntr);
-  
+
   /// Return object center
   const FXVec3f& getCenter() const;
 
   /// Translate object center
   void translate(FXVec3f vec);
-  
+
   %extend {
     /// Return boresight vector (an array of two arrays)
     VALUE getBoreVector(FXint sx,FXint sy) {
@@ -470,19 +470,19 @@ public:
 
   /// Return eyesight vector
   FXVec3f getEyeVector() const;
-  
-  /// Return eye position 
+
+  /// Return eye position
   FXVec3f getEyePosition() const;
-  
+
   /// Change help text
   void setHelpText(const FXString& text);
-  
+
   /// Return help text
   const FXString& getHelpText() const;
 
   /// Change tip text
   void setTipText(const FXString& text);
-  
+
   /// Return tip text
   const FXString& getTipText() const;
 
@@ -494,7 +494,7 @@ public:
 
   /// Change the scene, i.e. the object being displayed.
   void setScene(FXGLObject* sc);
-  
+
   /// Return the current scene object
   FXGLObject* getScene() const;
 
@@ -506,19 +506,19 @@ public:
 
   /// Change the projection mode, PERSPECTIVE or PARALLEL
   void setProjection(FXuint proj);
-  
+
   /// Return the projection mode
   FXuint getProjection() const;
 
   /// Change top or bottom or both background colors
   void setBackgroundColor(const FXVec4f& clr,FXbool bottom=MAYBE);
- 
+
   /// Return top or bottom window background color.
   const FXVec4f& getBackgroundColor(FXbool bottom=FALSE) const;
 
   /// Change global ambient light color
   void setAmbientColor(const FXVec4f& clr);
-  
+
   /// Return global ambient light color
   const FXVec4f& getAmbientColor() const;
 
@@ -538,9 +538,9 @@ public:
 	}
       return pixels;
       }
-  
+
     /**
-     * Read the feedback buffer containing the current scene, returning used 
+     * Read the feedback buffer containing the current scene, returning used
      * and allocated size.
      */
     VALUE readFeedback(FXint x,FXint y,FXint w,FXint h){
@@ -621,12 +621,12 @@ public:
       }
   }
 #endif
-  
+
 #ifdef SWIGRUBY
   /**
   * Change hidden-surface feedback buffer sorting algorithm.
   * This can be used for move/draw printed output depth sorting.
-  */  
+  */
   %extend {
     void setZSortFunc(VALUE proc){
       }
@@ -642,7 +642,7 @@ public:
   }
 #endif
 
-  /** 
+  /**
   * Change the maximum hits, i.e. the maximum size of the pick buffer.
   * When set to less than or equal to zero, picking is essentially turned off.
   */
@@ -664,7 +664,7 @@ public:
 
   /// Set turbo mode
   void setTurboMode(FXbool turbo=TRUE);
-  
+
   %extend {
     // Return light source settings
     FXLight getLight() const {
@@ -673,7 +673,7 @@ public:
       return lite;
     }
   }
-  
+
   /// Change light source settings
   void setLight(const FXLight& lite);
 

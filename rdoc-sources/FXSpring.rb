@@ -30,10 +30,10 @@ module Fox
   class FXSpring < FXPacker
     # Relative width [Integer]
     attr_accessor :relativeWidth
-    
+
     # Relative height [Integer]
     attr_accessor :relativeHeight
-    
+
     #
     # Return an initialized FXSpring instance.
     #

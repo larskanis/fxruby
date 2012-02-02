@@ -8,27 +8,27 @@ module Fox
   # the last child item.
   #
   class FXTreeItem < FXObject
-  
+
     #
     # Return a new FXTreeItem instance, initialized with the specified text,
     # open-state icon, closed-state icon and user data.
     #
     def initialize(text, openIcon=nil, closedIcon=nil, data=nil) # :yields: theItem
     end
-    
+
     # Return the number of child items for this tree item.
     def numChildren; end
 
     # Return the item text (a string) for this tree item.
     def text; end
-    
+
     # Set the item text for this tree item.
     def text=(txt); end
 
     # Return a reference to the opened-state icon (an FXIcon instance) for
     # this tree item, or +nil+ if none was specified.
     def openIcon; end
-    
+
     # Set the opened-state icon (an FXIcon instance) for this tree item,
     # or +nil+ if no icon should be used.
     def setOpenIcon(oi, owned=false); end
@@ -36,7 +36,7 @@ module Fox
     # Return a reference to the closed-state icon (an FXIcon instance) for
     # this tree item, or +nil+ if none was specified.
     def closedIcon; end
-    
+
     # Set the closed-state icon (an FXIcon instance) for this tree item,
     # or +nil+ if no icon should be used.
     def setClosedIcon(ci, owned=false); end
@@ -54,22 +54,22 @@ module Fox
 
     # Returns +true+ if this item has the focus
     def hasFocus? ; end
-    
+
     # Set this item's selected state to +true+ or +false+.
     def selected=(sel); end
 
     # Returns +true+ if this item is selected
     def selected? ; end
-    
+
     # Set this item's "opened" state to +true+ or +false+.
     def opened=(op); end
 
     # Returns +true+ if this item is opened
     def opened? ; end
-    
+
     # Set this item's expanded state to +true+ or +false+.
     def expanded=(ex); end
-    
+
     # Returns +true+ if this item is expanded
     def expanded? ; end
 
@@ -81,16 +81,16 @@ module Fox
 
     # Set this item's "draggable" state to +true+ or +false+.
     def draggable=(dr); end
-    
+
     # Returns +true+ if this item is draggable
     def draggable? ; end
-    
+
     # Return +true+ if this items has subitems, real or imagined.
     def hasItems?; end
-    
+
     # Change has items flag to +true+ or +false+.
     def hasItems=(flag); end
-        
+
     # Return a reference to the parent item for this tree item, or +nil+
     # if this is a root-level item.
     def parent; end
@@ -133,13 +133,13 @@ module Fox
     def to_s
       text
     end
-    
+
     # Get the width of this item
     def getWidth(treeList) ; end
-    
+
     # Get the height of this item
     def getHeight(treeList) ; end
-    
+
     # Create this tree item
     def create; end
 
@@ -150,7 +150,7 @@ module Fox
     def destroy; end
   end
 
-  # 
+  #
   # A Tree List Widget organizes items in a hierarchical, tree-like fashion.
   # Subtrees can be collapsed or expanded by double-clicking on an item
   # or by clicking on the optional plus button in front of the item.
@@ -283,37 +283,37 @@ module Fox
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def insertItem(other, father, item, notify=false); end
-  
-    # Insert item with given text and optional icons, and user-data pointer under _father_ before _other_ item. 
+
+    # Insert item with given text and optional icons, and user-data pointer under _father_ before _other_ item.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def insertItem(other, father, text, oi=nil, ci=nil, ptr=nil, notify=false); end
 
-    # Append a new (possibly subclassed) _item_ as last child of _father_. 
+    # Append a new (possibly subclassed) _item_ as last child of _father_.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def appendItem(father, item, notify=false); end
-  
+
     # Append item with given text and optional icons, and user-data pointer as last child of _father_.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def appendItem(father, text, oi=nil, ci=nil, ptr=nil, notify=false); end
-  
+
     # Prepend a new (possibly subclassed) _item_ as first child of _father_.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def prependItem(father, item, notify=false); end
-  
+
     # Prepend item with given text and optional icons, and user-data pointer as first child of _father_.
     # Returns a reference to the newly added item (an FXTreeItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def prependItem(father, text, oi=nil, ci=nil, ptr=nil, notify=false); end
-  
+
     #
     # Move _item_ under _father_ before _other_ item and return a reference to
     # _item_.
@@ -342,13 +342,13 @@ module Fox
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message
     # target before each item is removed.
     def clearItems(notify=false); end
-  
+
     # Return item width
     def getItemWidth(item); end
-  
+
     # Return item height
     def getItemHeight(item); end
-    
+
     # Return a reference to the tree item at (_x_, _y_), if any.
     def getItemAt(x, y); end
 
@@ -379,34 +379,34 @@ module Fox
 
     # Scroll the list to make _item_ visible
     def makeItemVisible(item); end
-  
+
     # Change item's text
     def setItemText(item, text); end
-    
+
     # Return item's text
     def getItemText(item); end
-  
+
     # Change item's open icon, deleting the old icon if it's owned
     def setItemOpenIcon(item, openIcon, owned=false); end
-    
+
     # Return item's open icon
     def getItemOpenIcon(item); end
-    
+
     # Change item's closed icon, deleting the old icon if it's owned
     def setItemClosedIcon(item, closedIcon, owned=false); end
-    
+
     # Return item's closed icon
     def getItemClosedIcon(item); end
-  
+
     # Change item's user data
     def setItemData(item, data); end
-  
+
     # Return item's user data
     def getItemData(item); end
-  
+
     # Return +true+ if item is selected
     def itemSelected?(item); end
-    
+
     # Return +true+ if item is current
     def itemCurrent?(item); end
 
@@ -418,10 +418,10 @@ module Fox
 
     # Return +true+ if item expanded
     def itemExpanded?(item); end
-  
+
     # Return +true+ if item is a leaf-item, i.e. has no children
     def itemLeaf?(item); end
-  
+
     # Return +true+ if item is enabled
     def itemEnabled?(item); end
 
@@ -430,13 +430,13 @@ module Fox
 
     # Repaint item
     def updateItem(item); end
-  
+
     # Enable item
     def enableItem(item); end
-  
+
     # Disable item
     def disableItem(item); end
-  
+
     # Select item.
     # If _notify_ is +true+, a +SEL_SELECTED+ message is sent to the list's
     # message target after the item is selected.
@@ -446,12 +446,12 @@ module Fox
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the list's
     # message target after the item is deselected.
     def deselectItem(item, notify=false); end
-  
+
     # Toggle item selection.
     # If _notify_ is +true+, a +SEL_SELECTED+ or +SEL_DESELECTED+ message is
     # sent to the list's message target to indicate the change.
     def toggleItem(item, notify=false); end
-  
+
     #
     # Set this item's state to opened. The primary result of this change is
     # that the item's icon will change to its "open" icon.
@@ -461,7 +461,7 @@ module Fox
     # message target after the item is opened.
     #
     def openItem(item, notify=false); end
-  
+
     #
     # Set this item's state to closed. The primary result of this change is
     # that the item's icon will change to its "closed" icon.
@@ -471,7 +471,7 @@ module Fox
     # message target after the item is closed.
     #
     def closeItem(item, notify=false); end
-  
+
     # Collapse sub-tree rooted at _tree_.
     # If _notify_ is +true+, a +SEL_COLLAPSED+ message is sent to the list's
     # message target after the sub-tree is collapsed.
@@ -481,7 +481,7 @@ module Fox
     # If _notify_ is +true+, a +SEL_EXPANDED+ message is sent to the list's
     # message target after the sub-tree is expanded.
     def expandTree(tree, notify=false); end
-  
+
     #
     # Change current item. If there is already a current item, that item
     # is first closed. After _item_ is set as the tree list's current item,
@@ -490,17 +490,17 @@ module Fox
     # message target after the current item changes.
     #
     def setCurrentItem(item, notify=false); end
-  
+
     # Extend selection from anchor item to _item_.
     # If _notify_ is +true+, a series of +SEL_SELECTED+ and +SEL_DESELECTED+
     # messages may be sent to the list's message target, indicating the changes.
     def extendSelection(item, notify=false); end
-    
+
     # Deselect all items.
     # If _notify_ is +true+, +SEL_DESELECTED+ messages will be sent to the list's
     # message target indicating the affected items.
     def killSelection(notify=false); end
-    
+
     # Sort root items.
     def sortRootItems(); end
 

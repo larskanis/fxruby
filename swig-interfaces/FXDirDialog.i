@@ -52,10 +52,10 @@ public:
 
   /// Change directory
   void setDirectory(const FXString& path);
-  
+
   /// Return directory
   FXString getDirectory() const;
-  
+
   /// Return TRUE if showing files as well as directories
   FXbool showFiles() const;
 

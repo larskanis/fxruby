@@ -247,7 +247,7 @@ public:
 
   /// Return number of patterns
   FXint getNumPatterns() const;
-  
+
   /// Allow pattern entry
   void allowPatternEntry(FXbool allow);
 
@@ -319,10 +319,10 @@ public:
 
   /// Show readonly button
   void showReadOnly(FXbool show);
-  
+
   /// Return TRUE if readonly is shown
   FXbool shownReadOnly() const;
-  
+
   /// Set initial state of readonly button
   void setReadOnly(FXbool state);
 
@@ -331,7 +331,7 @@ public:
 
   /// Allow or disallow navigation
   void allowNavigation(FXbool navigable);
-  
+
   /// Is navigation allowed?
   FXbool allowNavigation() const;
 

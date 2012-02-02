@@ -45,7 +45,7 @@ public:
       return self->identify(path);
       }
     }
-    
+
   // Destructor
   virtual ~FXGLObject();
   };

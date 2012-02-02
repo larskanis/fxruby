@@ -12,31 +12,31 @@ module Fox
 
     # The text for this menu [String]
     attr_accessor :text
-    
+
     # The icon for this menu [FXIcon]
     attr_accessor :icon
-    
+
     # The text font [FXFont]
     attr_accessor :font
-    
+
     # Text color [FXColor]
     attr_accessor :textColor
-    
+
     # Selection background color [FXColor]
     attr_accessor :selBackColor
-    
+
     # Selection text color [FXColor]
     attr_accessor :selTextColor
-    
+
     # Highlight color [FXColor]
     attr_accessor :hiliteColor
-    
+
     # Shadow color [FXColor]
     attr_accessor :shadowColor
-    
+
     # Status line help text for this menu [String]
     attr_accessor :helpText
-    
+
     # Tool tip message for this menu [String]
     attr_accessor :tipText
 
@@ -45,7 +45,7 @@ module Fox
     #
     def initialize(parent, text, icon=nil, opts=0) # :yields: theMenuCaption
     end
-    
+
     # Return the menu caption's text
     def to_s; text; end
   end

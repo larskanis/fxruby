@@ -32,7 +32,7 @@ public:
       return new FXRbMenuPane(owner,opts);
       }
     }
-  
+
   // Destructor
   virtual ~FXMenuPane();
   };

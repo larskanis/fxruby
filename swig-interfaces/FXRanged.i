@@ -42,7 +42,7 @@ public:
 
   // Default constructor
   FXRanged();
-  
+
   // Copy constructor
   FXRanged(const FXRanged& bounds);
 
@@ -113,12 +113,12 @@ public:
   /// Test if box properly contains sphere
   bool contains(const FXSphered& sphere) const;
 
-  // Include point 
+  // Include point
   FXRanged& include(FXdouble x,FXdouble y,FXdouble z);
 
-  // Include point 
+  // Include point
   FXRanged& include(const FXVec3d& v);
-  
+
   // Include given range into box
   FXRanged& include(const FXRanged& box);
 

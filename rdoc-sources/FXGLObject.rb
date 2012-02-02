@@ -13,12 +13,12 @@ module Fox
     # Return a new object which is a copy (i.e. a "clone") of this one.
     #
     def copy; end
-    
+
     #
     # Return a bounding box (an FXRangef instance) for this object.
     #
     def bounds; end
-    
+
     #
     # Draw this object in a viewer.
     #
@@ -27,7 +27,7 @@ module Fox
     # +viewer+::	the viewer window into which we're drawing [FXGLViewer]
     #
     def draw(viewer); end
-    
+
     #
     # Draw this object for hit-testing purposes.
     #
@@ -36,17 +36,17 @@ module Fox
     # +viewer+::	the viewer window into which we're drawing [FXGLViewer]
     #
     def hit(viewer); end
-    
+
     #
     # Return +true+ if this object can be dragged around.
     #
     def canDrag; end
-    
+
     #
     # Return +true+ if this object can be deleted from the scene.
     #
     def canDelete; end
-    
+
     #
     # Drag this object from one position to another. Returns +true+
     # if the drag was successful.

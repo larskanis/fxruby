@@ -16,7 +16,7 @@ module Fox
 
     # Amount of progress [Integer]
     attr_accessor :progress
-    
+
     # Maximum value for progress [Integer]
     attr_accessor :total
 
@@ -25,10 +25,10 @@ module Fox
     #
     def initialize(owner, caption, label, opts=PROGRESSDIALOG_NORMAL, x=0, y=0, width=0, height=0) # :yields: theProgressDialog
     end
-  
+
     # Increment progress by given _amount_.
     def increment(amount); end
-  
+
     # Return true if the operation was cancelled.
     def cancelled?; end
   end

@@ -19,12 +19,12 @@ module Fox
     # Constructor
     def initialize(parent, opts=0, x=0, y=0, width=0, height=0) # :yields: theComposite
     end
-  
+
     #
     # Return the width of the widest child window.
     #
     def maxChildWidth() ; end
-  
+
     #
     # Return the height of the tallest child window.
     #

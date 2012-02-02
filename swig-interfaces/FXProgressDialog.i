@@ -26,7 +26,7 @@ enum {
   PROGRESSDIALOG_NORMAL   = (DECOR_TITLE|DECOR_BORDER)
   };
 
-  
+
 
 /**
 * A Progress Dialog is a simple dialog which is used to
@@ -63,10 +63,10 @@ public:
 
   /// Get progress message
   FXString getMessage() const;
-  
+
   /// Change style of the progress bar widget
   void setBarStyle(FXuint style);
-  
+
   /// Get style of the progress bar widget
   FXuint getBarStyle() const;
 
@@ -90,8 +90,8 @@ public:
 
   /// Change cancelled flag
   void setCancelled(FXbool flg);
-  
-  /// Destroy 
+
+  /// Destroy
   virtual ~FXProgressDialog();
   };
 

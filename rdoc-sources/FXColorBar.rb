@@ -25,19 +25,19 @@ module Fox
 
     # Hue [Float]
     attr_accessor :hue
-    
+
     # Saturation [Float]
     attr_accessor :sat
-    
+
     # Value [Float]
     attr_accessor :val
-    
+
     # Color bar style (one of +COLORBAR_HORIZONTAL+ or +COLORBAR_VERTICAL+) [Integer]
     attr_accessor	:barStyle
-    
+
     # Status line help text [String]
     attr_accessor	:helpText
-    
+
     # Tool tip message [String]
     attr_accessor	:tipText
 

@@ -4,7 +4,7 @@ public:
 
   // Overrides the base class version of render()
   virtual void render();
-  
+
   // Overrides the base class version of release()
   virtual void release();
 
@@ -28,7 +28,7 @@ public:
 
   /// Fill bitmap with uniform value
   virtual void fill(FXbool color);
- 
+
   // Overrides the base class version of setData()
   virtual void setData(FXuchar *pix,FXuint opts=0);
 

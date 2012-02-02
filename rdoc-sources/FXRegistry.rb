@@ -24,10 +24,10 @@ module Fox
 
     # Application key [String]
     attr_reader	:appKey
-    
+
     # Vendor key [String]
     attr_reader	:vendorKey
-    
+
     # Use file-based registry instead of Windows Registry [Boolean]
     attr_writer	:asciiMode
 
@@ -36,12 +36,12 @@ module Fox
     # Regular applications SHOULD set a vendor key!
     #
     def initialize(appKey="", vendorKey="") ; end
-    
+
     #
     # Read registry.
     #
     def read; end
-    
+
     #
     # Write registry.
     #

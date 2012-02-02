@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 class FXMDIChild;
-  
+
 
 /**
 * The MDI client window manages a number of MDI child windows in a multiple-document
@@ -74,7 +74,7 @@ public:
 public:
   enum {
     ID_MDI_ANY=65400,
-    ID_MDI_1,           // Select MDI child 1 
+    ID_MDI_1,           // Select MDI child 1
     ID_MDI_2,
     ID_MDI_3,
     ID_MDI_4,

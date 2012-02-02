@@ -19,7 +19,7 @@ module Fox
 
     # Indicates whether the grip is displayed as a double-bar [Boolean]
     attr_writer	:doubleBar
-    
+
     # Active color [FXColor]
     attr_accessor :activeColor
 

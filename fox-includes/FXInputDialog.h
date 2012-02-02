@@ -105,7 +105,7 @@ public:
   /**
   * Prompt for an integer number, start with the given initial value.
   * Return TRUE if the new value is accepted, and false otherwise.
-  * The input is constrained between lo and hi. 
+  * The input is constrained between lo and hi.
   */
   static FXbool getInteger(FXint& result,FXWindow* owner,const FXString& caption,const FXString& label,FXIcon* icon=NULL,FXint lo=-2147483647,FXint hi=2147483647);
 

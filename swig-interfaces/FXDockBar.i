@@ -143,7 +143,7 @@ public:
   FXDockSite* findDockNear(FXint rootx,FXint rooty);
 
   /**
-  * Change set of sides (a combination of ALLOW_TOP, ALLOW_LEFT, etc.), 
+  * Change set of sides (a combination of ALLOW_TOP, ALLOW_LEFT, etc.),
   * where docking is allowed. The default is to allow docking on all sides.
   */
   void allowedSides(FXuchar allow);

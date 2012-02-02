@@ -48,7 +48,7 @@ public:
     FXGLContext(FXApp* a,FXGLVisual *vis){
       return new FXRbGLContext(a,vis);
       }
-  
+
     /**
     * Construct an OpenGL context sharing display lists with an existing GL context.
     */
@@ -59,22 +59,22 @@ public:
 
   /// Return TRUE if it is sharing display lists
   FXbool isShared() const;
-  
+
   /// Get the visual
   FXGLVisual* getVisual() const;
 
   /// Make OpenGL context current prior to performing OpenGL commands
   FXbool begin(FXDrawable *drawable);
-  
-  /// Make OpenGL context non current 
+
+  /// Make OpenGL context non current
   FXbool end();
-  
+
   /// Swap front and back buffer
   void swapBuffers();
-  
+
   /// Copy part of backbuffer to front buffer [Mesa]
   void swapSubBuffers(FXint x,FXint y,FXint w,FXint h);
-  
+
   /// Destructor
   virtual ~FXGLContext();
   };

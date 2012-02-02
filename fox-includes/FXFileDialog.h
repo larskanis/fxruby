@@ -176,7 +176,7 @@ public:
 
   /// Allow or disallow navigation
   void allowNavigation(FXbool navigable);
-  
+
   /// Is navigation allowed?
   FXbool allowNavigation() const;
 

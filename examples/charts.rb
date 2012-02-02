@@ -11,7 +11,7 @@ class ChartsWindow < FXMainWindow
       f.image = FXPNGImage.new(app, open(bar_chart.to_escaped_url, "rb").read)
     end
   end
-  
+
   def bar_chart
     GoogleChart::BarChart.new('600x200', 'My Chart', :vertical) do |bc|
       bc.data 'Trend 1', [5,4,3,1,3,5], '0000ff'

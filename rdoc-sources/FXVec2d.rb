@@ -1,14 +1,14 @@
 module Fox
   class FXVec2d
-    
+
     attr_accessor :x
     attr_accessor :y
-    
+
     #
     # Return an initialized FXVec2d instance.
     #
     def initialize(xx=0.0, yy=0.0); end
-  
+
     #
     # Returns the element at _index_, where _index_ is 0 or 1.
     # Raises IndexError if _index_ is out of range.
@@ -65,7 +65,7 @@ module Fox
     # Return the square of the length of this vector.
     #
     def length2; end
-    
+
     #
     # Return the length (magnitude) of this vector.
     #
@@ -73,7 +73,7 @@ module Fox
 
     # Clamp the values of this vector between limits _lo_ and _hi_.
     def clamp(lo, hi); end
-    
+
     #
     # Return a new FXVec2d instance which is a normalized version
     # of this one.

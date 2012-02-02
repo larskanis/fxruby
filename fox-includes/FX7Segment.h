@@ -122,16 +122,16 @@ public:
   /// Get the current text-justification mode.
   FXuint getJustify() const;
 
-  /// Set the status line help text 
+  /// Set the status line help text
   void setHelpText(const FXString& text){ help=text; }
 
-  /// Get the status line help text 
+  /// Get the status line help text
   const FXString& getHelpText() const { return help; }
 
-  /// Set the tool tip message 
+  /// Set the tool tip message
   void setTipText(const FXString& text){ tip=text; }
 
-  /// Get the tool tip message 
+  /// Get the tool tip message
   const FXString& getTipText() const { return tip; }
 
   /// Save to a stream

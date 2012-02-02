@@ -51,34 +51,34 @@ module Fox
   # +ID_ARROW+::		write me
   #
   class FXRuler < FXFrame
-  
+
     # Current position [Integer]
     attr_accessor :position
-    
+
     # Content size [Integer]
     attr_accessor :contentSize
-    
+
     # Document size [Integer]
     attr_accessor :documentSize
-  
+
     # Document size [Integer]
     attr_accessor :edgeSpacing
-    
+
     # Lower document margin [Integer]
     attr_accessor :marginLower
 
     # Upper document margin [Integer]
     attr_accessor :marginUpper
-    
+
     # First line indent [Integer]
     attr_accessor :indentFirst
-    
+
     # Lower indent [Integer]
     attr_accessor :indentLower
-    
+
     # Upper indent [Integer]
     attr_accessor :indentUpper
-    
+
     # Document number placement [Integer]
     attr_accessor :numberTicks
 
@@ -93,37 +93,37 @@ module Fox
 
     # Pixels per tick spacing [Float]
     attr_accessor :pixelsPerTick
-    
+
     # The text font [FXFont]
     attr_accessor :font
-    
+
     # The slider value [Integer]
     attr_accessor :value
-    
+
     # The ruler style [Integer]
     attr_accessor :rulerStyle
-    
+
     # Ruler alignment [Integer]
     attr_accessor :rulerAlignment
 
     # The current text color [FXColor]
     attr_accessor :textColor
-    
+
     # The status line help text for this ruler [String]
     attr_accessor :helpText
-    
+
     # The tool tip message for this ruler [String]
     attr_accessor :tipText
-    
+
     #
     # Return an initialized FXRuler instance.
     #
     def initialize(p, target=nil, selector=0, opts=RULER_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theRuler
     end
-    
+
     # Return lower edge of document (an integer)
     def documentLower; end
-    
+
     # Return upper edge of document (an integer)
     def documentUpper; end
   end

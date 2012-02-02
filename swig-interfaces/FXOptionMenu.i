@@ -106,25 +106,25 @@ public:
 
   /// Set the current option
   void setCurrent(FXOption *win,FXbool notify=FALSE);
-  
+
   /// Return the current option
   FXOption* getCurrent() const;
 
   /// Set the current option number
   void setCurrentNo(FXint no,FXbool notify=FALSE);
-  
+
   /// Get the current option number
   FXint getCurrentNo() const;
-  
+
   /// Get number of options
   FXint getNumOptions() const;
-  
+
   /// Set the pane which will be popped up
   void setMenu(FXPopup *pup);
-  
+
   /// Return the pane which is popped up
   FXPopup* getMenu() const;
-  
+
   /// Return TRUE if popped up
   FXbool isPopped() const;
 

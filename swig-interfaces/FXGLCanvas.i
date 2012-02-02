@@ -36,7 +36,7 @@ public:
     FXGLCanvas(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbGLCanvas(p,vis,tgt,sel,opts,x,y,w,h);
       }
-  
+
     /**
     * Construct an OpenGL-capable canvas, sharing display
     * list with another GL canvas.  This canvas becomes a member
@@ -50,7 +50,7 @@ public:
 
   /// Return TRUE if it is sharing display lists
   FXbool isShared() const;
-  
+
   %extend {
     /// Return current context, if any
     static unsigned long getCurrentContext(){
@@ -62,7 +62,7 @@ public:
       return reinterpret_cast<unsigned long>(self->getContext());
       }
     }
-  
+
   /// Destructor
   virtual ~FXGLCanvas();
   };

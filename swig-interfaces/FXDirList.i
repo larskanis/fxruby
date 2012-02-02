@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 struct FXFileAssoc;
-class  FXFileDict; 
+class  FXFileDict;
 class  FXIcon;
 
 
@@ -206,34 +206,34 @@ public:
 
   /// Return TRUE if item is a directory
   FXbool isItemDirectory(const FXTreeItem* item) const;
-  
+
   /// Return TRUE if item is a file
   FXbool isItemFile(const FXTreeItem* item) const;
-  
+
   /// Return TRUE if item is executable
   FXbool isItemExecutable(const FXTreeItem* item) const;
-  
+
   /// Set current file
   void setCurrentFile(const FXString& file,FXbool notify=FALSE);
-  
+
   /// Return current file
   FXString getCurrentFile() const;
-  
+
   /// Set current directory
   void setDirectory(const FXString& path,FXbool notify=FALSE);
-  
+
   /// Return current directory
   FXString getDirectory() const;
-  
+
   /// Return absolute pathname of item
   FXString getItemPathname(const FXTreeItem* item) const;
-  
+
   /// Return the item from the absolute pathname
   FXTreeItem* getPathnameItem(const FXString& path);
 
   /// Change wildcard matching pattern
   void setPattern(const FXString& ptrn);
-  
+
   /// Return wildcard pattern
   FXString getPattern() const;
 
@@ -242,25 +242,25 @@ public:
 
   /// Change wildcard matching mode
   void setMatchMode(FXuint mode);
-  
+
   /// Return TRUE if showing files as well as directories
   FXbool showFiles() const;
-  
+
   /// Show or hide normal files
   void showFiles(FXbool showing);
 
   /// Return TRUE if showing hidden files and directories
   FXbool showHiddenFiles() const;
-  
+
   /// Show or hide hidden files and directories
   void showHiddenFiles(FXbool showing);
-  
+
   /// Change file associations
   void setAssociations(FXFileDict* assoc);
-  
+
   /// Return file associations
   FXFileDict* getAssociations() const;
-  
+
   /// Destructor
   virtual ~FXDirList();
   };

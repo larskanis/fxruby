@@ -20,7 +20,7 @@
  * at "lyle@lylejohnson.name".
  ***********************************************************************/
 
-// Tab Item orientations which affect border 
+// Tab Item orientations which affect border
 enum {
   TAB_TOP          = 0,           // Top side tabs
   TAB_LEFT         = 0x00800000,  // Left side tabs
@@ -56,7 +56,7 @@ public:
   long onHotKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onHotKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);
 public:
-  
+
   /// Construct a tab item
   %extend {
     FXTabItem(FXTabBar* p,const FXString& text,FXIcon* ic=0,FXuint opts=TAB_TOP_NORMAL,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=DEFAULT_PAD,FXint pr=DEFAULT_PAD,FXint pt=DEFAULT_PAD,FXint pb=DEFAULT_PAD){
@@ -66,10 +66,10 @@ public:
 
   /// Return current tab item orientation
   FXuint getTabOrientation() const;
-  
+
   /// Change tab item orientation
   void setTabOrientation(FXuint style);
-  
+
   /// Destructor
   virtual ~FXTabItem();
   };

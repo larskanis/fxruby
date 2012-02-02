@@ -41,7 +41,7 @@ class TC_FXComboBox < Fox::TestCase
     assert_instance_of(FXTextField, @comboBox.children[0])
     assert_instance_of(FXMenuButton, @comboBox.children[1])
   end
-  
+
   def test_set_current_to_none
     assert_nothing_raised do
       @comboBox.currentItem = -1

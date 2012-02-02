@@ -20,7 +20,7 @@ module Fox
 
     # Return the specified element (an FXColor value)
     def [](index); end
-    
+
     # Set the specified element to _clr_.
     def []=(index, clr); end
   end

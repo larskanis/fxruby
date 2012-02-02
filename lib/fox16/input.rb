@@ -1,5 +1,5 @@
 module Fox
-  
+
   class FXApp
 
     alias addInputOrig addInput # :nodoc:
@@ -7,7 +7,7 @@ module Fox
     #
     # Add a file descriptor _fileDesc_ to be watched for activity as determined
     # by _mode_, where _mode_ is a bitwise OR (+INPUT_READ+, +INPUT_WRITE+, +INPUT_EXCEPT+).
-    # A message of type +SEL_IO_READ+, +SEL_IO_WRITE+, or +SEL_IO_EXCEPT+ will be sent 
+    # A message of type +SEL_IO_READ+, +SEL_IO_WRITE+, or +SEL_IO_EXCEPT+ will be sent
     # to the target when the specified activity is detected on the file descriptor.
     #
     # There are several forms for #addInput; the original form (from FOX)
@@ -53,7 +53,7 @@ module Fox
       end
       addInputOrig(fd, mode, tgt, sel)
     end
-    
+
   end # class FXApp
-  
+
 end # module Fox

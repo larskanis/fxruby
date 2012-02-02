@@ -8,36 +8,36 @@ module Fox
 
     # File size [Integer]
     attr_reader :size
-    
+
     # File time [Integer]
     attr_reader :date
 
     # Returns an initialized FXDirItem instance
     def initialize(text, oi=nil, ci=nil, data=nil) # :yields: theDirItem
     end
-    
+
     # Return +true+ if this is a directory
     def directory?; end
 
     # Return +true+ if this is an executable
     def executable?; end
-    
+
     # Return +true+ if this is a symbolic link
     def symlink?; end
-    
+
     # Return +true+ if this is a character device
     def chardev?; end
-    
+
     # Return +true+ if this is a block device
     def blockdev?; end
-    
+
     # Return +true+ if this is a FIFO (a named pipe)
     def fifo?; end
-    
+
     # Return +true+ if this is a socket
     def socket?; end
   end
-  
+
   #
   # An FXDirList widget provides a tree-structured view of the file system.
   # It automatically updates itself periodically by re-scanning the file system
@@ -76,23 +76,23 @@ module Fox
 
     # Current file [String]
     attr_accessor :currentFile
-    
+
     # Current directory [String]
     attr_accessor :directory
-    
+
     # Wildcard pattern [String]
     attr_accessor :pattern
-    
+
     # Wildcard matching mode, some combination of file matching flags [Integer]
     attr_accessor :matchMode
-    
+
     # File associations [FXFileDict]
     attr_accessor :associations
 
     # Returns an initialized FXDirList instance
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theDirList
     end
-  
+
     #
     # Scan the directories and update the items if needed, or if _force_ is +true+.
     #
@@ -100,20 +100,20 @@ module Fox
 
     # Return +true+ if item is a directory
     def itemDirectory?(anItem); end
-    
+
     # Return +true+ if item is a file
     def itemFile?(anItem); end
-    
+
     # Return +true+ if item is executable
     def itemExecutable?(anItem); end
-    
+
     #
     # Set current file.
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the list's
     # message target to indicate that the current item has changed.
     #
     def setCurrentFile(file, notify=false); end
-  
+
     #
     # Set current directory.
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the list's
@@ -123,22 +123,22 @@ module Fox
 
     # Return absolute pathname of item
     def itemPathname(anItem); end
-    
+
     # Return the item from the absolute pathname
     def pathnameItem(path); end
 
     # Return +true+ if showing files as well as directories
     def filesShown?; end
-    
+
     #
     # If _state_ is +true+, the directory list will show files as well as
     # directories; otherwise, it will only show directories.
     #
     def filesShown=(state); end
-  
+
     # Return +true+ if showing hidden files and directories
     def hiddenFilesShown?; end
-    
+
     #
     # If _state_ is +true+, the directory list will show hidden files and
     # directories; otherwise, it won't.

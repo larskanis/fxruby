@@ -20,7 +20,7 @@ class ScintillaTest  < FXMainWindow
 
     # Menubar
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-  
+
     # Status bar
     FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
@@ -29,7 +29,7 @@ class ScintillaTest  < FXMainWindow
     sunkenFrame = FXHorizontalFrame.new(self,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @scintilla = FXScintilla.new(sunkenFrame, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  
+
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "&Open\tCtl-O\tOpen...").connect(SEL_COMMAND) {
@@ -43,7 +43,7 @@ class ScintillaTest  < FXMainWindow
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q\tQuit application.", nil,
       getApp(), FXApp::ID_QUIT, 0)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-      
+
     # Help menu
     helpmenu = FXMenuPane.new(self)
     FXMenuCommand.new(helpmenu, "&About FXRuby...").connect(SEL_COMMAND) {
@@ -69,13 +69,13 @@ end
 if __FILE__ == $0
   # Make application
   application = FXApp.new("ScintillaTest", "FoxTest")
-  
+
   # Make window
   ScintillaTest.new(application)
-  
+
   # Create app
   application.create
-  
+
   # Run
   application.run
 end

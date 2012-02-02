@@ -36,7 +36,7 @@ protected:
 #include "FXRbDrawableVirtuals.h"
 #include "FXRbWindowVirtuals.h"
 public:
-  /// Construct toolbar grip 
+  /// Construct toolbar grip
   FXRbToolBarGrip(FXToolBar* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=TOOLBARGRIP_SINGLE,FXint x=0,FXint y=0,FXint w=0,FXint h=0) : FXToolBarGrip(p,tgt,sel,opts,x,y,w,h){}
 
   // Destructor

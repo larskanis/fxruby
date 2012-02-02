@@ -51,7 +51,7 @@ module Fox
 
     # Stream direction, one of +FXStreamSave+, +FXStreamLoad+ or +FXStreamDead+.
     attr_reader :direction
-  
+
     # Parent object [FXObject]
     attr_reader :container
 
@@ -60,7 +60,7 @@ module Fox
 
     # Stream position (an offset from the beginning of the stream) [Integer]
     attr_accessor :position
-  
+
     #
     # Construct stream with given container object.  The container object
     # is an object that will itself not be saved to or loaded from the stream,
@@ -73,7 +73,7 @@ module Fox
     #
     def initialize(cont=nil) # :yields: theStream
     end
-  
+
     #
     # Open stream for reading or for writing.
     # An initial buffer size may be given, which must be at least 16 bytes.
@@ -88,12 +88,12 @@ module Fox
     # +data+::		external data buffer (if any) [String]
     #
     def open(save_or_load, size=8192, data=nil); end
-  
+
     #
     # Close stream; returns +true+ if OK.
     #
     def close(); end
-  
+
     #
     # Flush buffer
     #
@@ -103,7 +103,7 @@ module Fox
     # Get available buffer space
     #
     def getSpace(); end
-  
+
     #
     # Set available buffer space
     #
@@ -122,10 +122,10 @@ module Fox
 
     # Set the byte-swapped flag to +true+ or +false+.
     def bytesSwapped=(swapBytes); end
-    
+
     # Returns +true+ if bytes are swapped for this stream
     def bytesSwapped?; end
-  
+
     #
     # Set stream to big endian mode if +true+. Byte swapping will
     # be enabled if the machine native byte order is not equal to

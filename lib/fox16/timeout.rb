@@ -1,5 +1,5 @@
 module Fox
-  
+
   class FXApp
 
     alias addTimeoutOrig	addTimeout # :nodoc:
@@ -130,7 +130,7 @@ module Fox
         remainingTimeoutOrig(hsh[:target], hsh[:selector])
       end
     end
-    
+
   end # class FXApp
-  
+
 end # module Fox

@@ -21,7 +21,7 @@ module Fox
     #
     def initialize(cont=nil) # :yields: theMemoryStream
     end
-  
+
     #
     # Open memory stream for reading or writing.
     # Returns +true+ if successful, +false+ otherwise.
@@ -32,14 +32,14 @@ module Fox
     # +data+::         memory buffer to be used for the stream, or +nil+ if the stream object should allocate its own buffer [String]
     #
     def open(save_or_load, data); end
-    
+
     #
     # Take buffer away from stream, thus transferring ownership of the buffer
     # from the stream object to the caller.
     # Returns a string containing the buffer contents.
     #
     def takeBuffer; end
-    
+
     #
     # Give buffer (a string) to this stream, thus transferring ownership of
     # the buffer from the caller to the stream object.

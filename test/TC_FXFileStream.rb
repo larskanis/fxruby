@@ -12,7 +12,7 @@ class TC_FXFileStream < Test::Unit::TestCase
   def test_container
     assert_nil(@filestream.container)
   end
-  
+
   def test_open_non_existing_file
     assert_equal(FXStreamDead, @filestream.direction)
     status = @filestream.open("non_existing_file", FXStreamLoad)
@@ -39,7 +39,7 @@ class TC_FXFileStream < Test::Unit::TestCase
     assert(status)
     assert_equal(FXStreamDead, @filestream.direction)
   end
-  
+
   def test_status
     assert_equal(FXStreamOK, @filestream.status)
     @filestream.open("README", FXStreamLoad)
@@ -47,7 +47,7 @@ class TC_FXFileStream < Test::Unit::TestCase
     @filestream.close
     assert_equal(FXStreamOK, @filestream.status)
   end
-  
+
   def test_position
     @filestream.open("README", FXStreamLoad)
     assert_equal(0, @filestream.position)
@@ -55,7 +55,7 @@ class TC_FXFileStream < Test::Unit::TestCase
     assert_equal(500, @filestream.position)
     @filestream.close
   end
-  
+
   def test_exceptions
     # Non-existing file
     assert_raises(FXStreamNoReadError) {
@@ -80,7 +80,7 @@ class TC_FXFileStream < Test::Unit::TestCase
       FXFileStream.open(tf.path, FXStreamSave) { |s| }
     }
   end
-  
+
   def teardown
     if File.exists?("goobers")
       FileUtils.rm_f("goobers")

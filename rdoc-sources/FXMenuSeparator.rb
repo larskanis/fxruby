@@ -7,7 +7,7 @@ module Fox
 
     # Highlight color [FXColor]
     attr_accessor :hiliteColor
-    
+
     # Shadow color [FXColor]
     attr_accessor :shadowColor
 

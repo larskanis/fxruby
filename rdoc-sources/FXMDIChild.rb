@@ -78,10 +78,10 @@ module Fox
 
     # Iconified height [Integer]
     attr_accessor :iconHeight
-    
+
     # Content window [FXWindow]
     attr_reader :contentWindow
-    
+
     # Window title [String]
     attr_accessor :title
 
@@ -102,20 +102,20 @@ module Fox
 
     # Title background color [FXColor]
     attr_accessor :titleBackColor
-    
+
     # Window icon [FXIcon]
     attr_accessor :icon
-    
+
     # Window menu [FXPopup]
     attr_accessor :menu
-    
+
     # Title font [FXFont]
     attr_accessor :font
 
     # Construct MDI Child window with given name and icon
     def initialize(p, name, ic=nil, pup=nil, opts=0, x=0, y=0, width=0, height=0) # :yields: theMDIChild
     end
-  
+
     #
     # Minimize this window.
     # If _notify_ is +true+, ...
@@ -136,18 +136,18 @@ module Fox
 
     # Return +true+ if maximized
     def maximized? ; end
-    
+
     # Return +true+ if minimized
     def minimized? ; end
-    
+
     # Set tracking instead of just outline
     def setTracking(tracking); end
-    
+
     alias tracking= setTracking
-    
+
     # Return +true+ if tracking, +false+ otherwise.
     def getTracking(); end
-    
+
     alias isTracking? getTracking
     alias tracking    getTracking
 

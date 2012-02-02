@@ -101,7 +101,7 @@ public:
     void setData(VALUE ptr){
       self->setData(reinterpret_cast<void*>(ptr));
       }
-    
+
     VALUE getData() const {
       return self->getData() ? reinterpret_cast<VALUE>(self->getData()) : Qnil;
       }
@@ -127,10 +127,10 @@ public:
 
   /// Return TRUE if subitems, real or imagined
   FXbool hasItems() const;
-  
+
   /// Change has items flag
   void setHasItems(FXbool flag);
-  
+
   /// Return true if descendent of parent item
   FXbool isChildOf(const FXFoldingItem* item) const;
 
@@ -318,7 +318,7 @@ public:
   FXFoldingItem* appendItem(FXFoldingItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
 
   %extend {
-    /// Prepend [possibly subclassed] item as first child of father 
+    /// Prepend [possibly subclassed] item as first child of father
     FXFoldingItem* prependItem(FXFoldingItem* father,FXFoldingItem* item,FXbool notify=FALSE){
       if(item->isMemberOf(FXMETACLASS(FXRbFoldingItem))){
         dynamic_cast<FXRbFoldingItem*>(item)->owned=TRUE;
@@ -342,10 +342,10 @@ public:
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXFoldingItem> items;
       FXRbFoldingList::enumerateItem(item,items);
-      
+
       // Do the deed
       self->removeItem(item,notify);
-      
+
       // Now zero-out pointers held by still-alive Ruby objects
       for(FXint i=0;i<items.no();i++){
         FXRbUnregisterRubyObj(items[i]);
@@ -433,7 +433,7 @@ public:
     void setItemData(FXFoldingItem* item,VALUE ptr){
       self->setItemData(item,reinterpret_cast<void*>(ptr));
       }
-  
+
     /// Return item user-data pointer
     VALUE getItemData(const FXFoldingItem* item) const {
       return self->getItemData(item) ? reinterpret_cast<VALUE>(self->getItemData(item)) : Qnil;

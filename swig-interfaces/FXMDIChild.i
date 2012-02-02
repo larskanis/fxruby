@@ -155,7 +155,7 @@ public:
   void setNormalY(FXint y);
   void setNormalWidth(FXint w);
   void setNormalHeight(FXint h);
-  
+
   /// Return normal (restored) position
   FXint getNormalX() const;
   FXint getNormalY() const;
@@ -167,19 +167,19 @@ public:
   void setIconY(FXint y);
   void setIconWidth(FXint w);
   void setIconHeight(FXint h);
-  
+
   /// Return iconified position
   FXint getIconX() const;
   FXint getIconY() const;
   FXint getIconWidth() const;
   FXint getIconHeight() const;
- 
+
   /// Return content window
   FXWindow *contentWindow() const;
-  
+
   /// Change MDI Child's title
   void setTitle(const FXString& name);
-  
+
   /// Get current title
   FXString getTitle() const;
 
@@ -198,25 +198,25 @@ public:
   void setBorderColor(FXColor clr);
   void setTitleColor(FXColor clr);
   void setTitleBackColor(FXColor clr);
-  
+
   /// Return TRUE if maximized
   FXbool isMaximized() const;
 
   /// Return TRUE if minimized
   FXbool isMinimized() const;
-  
+
   /// Get window icon
   FXIcon *getIcon() const;
-  
+
   /// Set window icon
   void setIcon(FXIcon* icon);
-  
+
   /// Get window menu
   FXPopup* getMenu() const;
-  
+
   /// Set window menu
   void setMenu(FXPopup* menu);
-  
+
   /// Set tracking instead of just outline
   void setTracking(FXbool tracking=TRUE);
 
@@ -225,7 +225,7 @@ public:
 
   /// Set title font
   void setFont(FXFont *fnt);
-  
+
   /// Get title font
   FXFont* getFont() const;
 

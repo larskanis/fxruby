@@ -60,19 +60,19 @@ public:
 
   /// Change the temporary status message
   void setText(const FXString& text);
-  
+
   /// Return the temporary status message
   FXString getText() const;
 
   /// Change the permanent status message
   void setNormalText(const FXString& text);
-  
+
   /// Return the permanent status message
   FXString getNormalText() const;
 
   /// Change the font
   void setFont(FXFont* fnt);
-  
+
   /// Return the current font
   FXFont* getFont() const;
 
@@ -81,13 +81,13 @@ public:
 
   /// Change the text color
   void setTextColor(FXColor clr);
-  
+
   /// Return the highlight text color
   FXColor getTextHighlightColor() const;
 
   /// Change the highlight text color
   void setTextHighlightColor(FXColor clr);
-  
+
   /// Destroy
   virtual ~FXStatusLine();
   };

@@ -32,7 +32,7 @@ enum {
   COMBOBOX_NORMAL         = 0
   };
 
-  
+
 class FXTextField;
 class FXMenuButton;
 class FXList;
@@ -236,19 +236,19 @@ public:
 
   /// Change text color
   void setTextColor(FXColor clr);
-  
+
   /// Return text color
   FXColor getTextColor() const;
 
   /// Change selected background color
   void setSelBackColor(FXColor clr);
-  
+
   /// Return selected background color
   FXColor getSelBackColor() const;
 
   /// Change selected text color
   void setSelTextColor(FXColor clr);
-  
+
   /// Return selected text color
   FXColor getSelTextColor() const;
 

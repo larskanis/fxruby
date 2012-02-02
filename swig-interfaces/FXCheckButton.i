@@ -80,7 +80,7 @@ public:
 
   /// Change check button style
   void setCheckButtonStyle(FXuint style);
-  
+
   /// Return current check button style
   FXuint getCheckButtonStyle() const;
 
@@ -89,7 +89,7 @@ public:
 
   /// Set the box background color
   void setBoxColor(FXColor clr);
-  
+
   /// Get the box check color
   FXColor getCheckColor() const;
 

@@ -19,29 +19,29 @@ class FXTestDialog < FXDialogBox
     # Separator
     FXHorizontalSeparator.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|SEPARATOR_GROOVE)
-  
+
     # Contents
     contents = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_TOP|FRAME_NONE|LAYOUT_FILL_X|LAYOUT_FILL_Y|PACK_UNIFORM_WIDTH)
-  
+
     submenu = FXMenuPane.new(self)
     FXMenuCommand.new(submenu, "One")
     FXMenuCommand.new(submenu, "Two")
     FXMenuCommand.new(submenu, "Three")
-    
+
     # Menu
     menu = FXMenuPane.new(self)
     FXMenuCommand.new(menu, "&Accept", nil, self, ID_ACCEPT)
     FXMenuCommand.new(menu, "&Cancel", nil, self, ID_CANCEL)
     FXMenuCascade.new(menu, "Submenu", nil, submenu)
     FXMenuCommand.new(menu, "&Quit\tCtl-Q", nil, getApp(), FXApp::ID_QUIT)
-  
+
     # Popup menu
     pane = FXPopup.new(self)
     %w{One Two Three Four Five Six Seven Eight Nine Ten}.each do |s|
       FXOption.new(pane, s, :opts => JUSTIFY_HZ_APART|ICON_AFTER_TEXT)
     end
-  
+
     # Option menu
     FXOptionMenu.new(contents, pane, (FRAME_RAISED|FRAME_THICK|
       JUSTIFY_HZ_APART|ICON_AFTER_TEXT|LAYOUT_CENTER_X|LAYOUT_CENTER_Y))
@@ -54,15 +54,15 @@ class FXTestDialog < FXDialogBox
     # Accept
     accept = FXButton.new(buttons, "&Accept", nil, self, ID_ACCEPT,
       FRAME_RAISED|FRAME_THICK|LAYOUT_RIGHT|LAYOUT_CENTER_Y)
-  
+
     # Cancel
     FXButton.new(buttons, "&Cancel", nil, self, ID_CANCEL,
       FRAME_RAISED|FRAME_THICK|LAYOUT_RIGHT|LAYOUT_CENTER_Y)
-    
-    accept.setDefault  
+
+    accept.setDefault
     accept.setFocus
   end
-  
+
 end
 
 # Subclassed main window
@@ -74,10 +74,10 @@ class DialogTester < FXMainWindow
 
     # Tooltip
     FXToolTip.new(getApp())
-  
+
     # Menubar
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-  
+
     # Separator
     FXHorizontalSeparator.new(self,
       LAYOUT_SIDE_TOP|LAYOUT_FILL_X|SEPARATOR_GROOVE)
@@ -86,7 +86,7 @@ class DialogTester < FXMainWindow
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "&Quit", nil, getApp(), FXApp::ID_QUIT, 0)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-  
+
     # Contents
     contents = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_TOP|FRAME_NONE|LAYOUT_FILL_X|LAYOUT_FILL_Y|PACK_UNIFORM_WIDTH)
@@ -96,13 +96,13 @@ class DialogTester < FXMainWindow
       "&Non-Modal Dialog...\tDisplay normal dialog",
       :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_CENTER_X|LAYOUT_CENTER_Y)
     nonModalButton.connect(SEL_COMMAND, method(:onCmdShowDialog))
-  
+
     # Button to pop modal dialog
     modalButton = FXButton.new(contents,
       "&Modal Dialog...\tDisplay modal dialog",
       :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_CENTER_X|LAYOUT_CENTER_Y)
     modalButton.connect(SEL_COMMAND, method(:onCmdShowDialogModal))
-  
+
     # Build a dialog box
     @dialog = FXTestDialog.new(self)
 

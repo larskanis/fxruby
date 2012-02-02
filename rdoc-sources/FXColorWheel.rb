@@ -17,17 +17,17 @@ module Fox
 
     # Hue [Float]
     attr_accessor :hue
-    
+
     # Saturation [Float]
     attr_accessor :sat
-    
+
     # Value [Float]
     attr_accessor :val
-  
-    # Status line help text [String]  
+
+    # Status line help text [String]
     attr_accessor :helpText
-  
-    # Tool tip message [String]  
+
+    # Tool tip message [String]
     attr_accessor :tipText
 
     #

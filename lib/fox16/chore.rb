@@ -1,5 +1,5 @@
 module Fox
-  
+
   class FXApp
 
     alias addChoreOrig		addChore # :nodoc:
@@ -101,5 +101,5 @@ module Fox
     end
 
   end # class FXApp
-  
+
 end # module Fox

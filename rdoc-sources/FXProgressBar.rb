@@ -13,7 +13,7 @@ module Fox
   class FXProgressBar < FXFrame
     # Amount of progress [Integer]
     attr_accessor :progress
-    
+
     # Maximum value for progress [Integer]
     attr_accessor :total
 
@@ -28,13 +28,13 @@ module Fox
 
     # Text color [FXColor]
     attr_accessor :textColor
-    
+
     # Alternate text color [FXColor]
     attr_accessor :textAltColor
-    
+
     # Text font [FXFont]
     attr_accessor :font
-    
+
     # Progress bar style [Integer]
     attr_accessor :barStyle
 
@@ -43,13 +43,13 @@ module Fox
     #
     def initialize(p, target=nil, selector=0, opts=PROGRESSBAR_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theProgressBar
     end
-  
+
     # Increment progress by given _amount_.
     def increment(amount); end
-  
+
     # Hide progress percentage
     def hideNumber; end
-  
+
     # Show progress percentage
     def showNumber; end
   end

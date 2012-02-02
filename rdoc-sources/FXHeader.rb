@@ -38,10 +38,10 @@ module Fox
 
     # Size [Integer]
     attr_accessor :size
-    
+
     # Sort direction (+FALSE+, +TRUE+ or +MAYBE+) [Integer]
     attr_accessor :arrowDir
-    
+
     # Current position [Integer]
     attr_accessor :pos
 
@@ -56,28 +56,28 @@ module Fox
     #
     def initialize(text, ic=nil, s=0, ptr=nil) # :yields: theHeaderItem
     end
-    
+
     # Return the header item's text label
     def to_s; text; end
-    
+
     # Return the item's content width in the header.
     def getWidth(header); end
-    
+
     # Return the item's content height in the header.
     def getHeight(header); end
-    
+
     # Create server-side resources
     def create; end
-    
+
     # Detach from server-side resources
     def detach; end
-    
+
     # Destroy server-side resources
     def destroy; end
-    
+
     # Set pressed state to +true+ or +false+.
     def pressed=(p); end
-    
+
     # Return +true+ if in pressed state.
     def pressed?; end
   end
@@ -136,13 +136,13 @@ module Fox
   # +ID_TIPTIMER+::		x
   #
   class FXHeader < FXFrame
-  
+
     # Number of items [Integer]
     attr_reader :numItems
-    
+
     # Total size of all items [Integer]
     attr_reader :totalSize
-    
+
     # Current position [Integer]
     attr_accessor :position
 
@@ -151,25 +151,25 @@ module Fox
 
     # Text color [FXColor]
     attr_accessor :textColor
-  
+
     # Header style options [Integer]
     attr_accessor :headerStyle
 
     # Status line help text for this header
     attr_accessor :helpText
-  
+
     #
     # Return an initialized FXHeader instance.
     #
     def initialize(p, target=nil, selector=0, opts=HEADER_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theHeader
     end
-  
+
     #
     # Return the item (a FXHeaderItem instance) at the given index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItem(index); end
-  
+
     #
     # Return the item-index given its coordinate offset.
     # Returns -1 if the specified coordinate is before the first item in the
@@ -186,7 +186,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItem(index, item, notify=false); end
-  
+
     #
     # Replace the item at _index_ with a new item with the specified
     # text, icon, size and user data object, and return the index of the replaced
@@ -196,11 +196,11 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItem(index, text, icon=nil, size=0, data=nil, notify=false); end
-  
+
     #
     # Fill the header by appending items from an array of strings.
     # Returns the number of items appended.
-    # 
+    #
     def fillItems(strings, icon=nil, size=0, data=nil, notify=false); end
 
     #
@@ -211,7 +211,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def insertItem(index, item, notify=false); end
-  
+
     #
     # Insert a new item at the specified _index_ with the specified text, icon, size
     # and user data object, and return the index of the inserted item.
@@ -221,7 +221,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def insertItem(index, text, icon=nil, size=0, data=nil, notify=false); end
-  
+
     #
     # Append a (possibly subclassed) item to the list and return the index
     # of the appended item.
@@ -229,7 +229,7 @@ module Fox
     # message target after the item is appended.
     #
     def appendItem(item, notify=false); end
-  
+
     #
     # Append a new item with the specified text, icon, size and user data object,
     # and return the index of the appended item.
@@ -238,7 +238,7 @@ module Fox
     # message target after the item is appended.
     #
     def appendItem(text, icon=nil, size=0, data=nil, notify=false); end
-  
+
     #
     # Prepend a (possibly subclassed) item to the list and return the index
     # of the prepended item.
@@ -246,7 +246,7 @@ module Fox
     # message target after the item is appended.
     #
     def prependItem(item, notify=false); end
-  
+
     #
     # Prepend a new item with the specified text, icon, size and user data object,
     # and return the index of the appended item.
@@ -255,7 +255,7 @@ module Fox
     # message target after the item is appended.
     #
     def prependItem(text, icon=nil, size=0, data=nil, notify=false); end
-  
+
     #
     # Extract item from list and return a reference to the item.
     # If _notify_ is  +true+, a +SEL_DELETED+ message is sent to the header's
@@ -263,7 +263,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def extractItem(index, notify=false); end
-    
+
     #
     # Remove the item at the specified index from this header.
     # If _notify_ is  +true+, a +SEL_DELETED+ message is sent to the header's message target
@@ -271,69 +271,69 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def removeItem(index, notify=false); end
-  
+
     #
     # Remove all items from this header.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the header's message target
     # before each item is removed.
     #
     def clearItems(notify=false); end
-  
+
     #
     # Change text label for item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemText(index, text); end
-  
+
     #
     # Get text of item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemText(index); end
-  
+
     #
     # Change icon of item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemIcon(index, icon); end
-  
+
     #
     # Return icon of item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemIcon(index); end
-  
+
     #
     # Change size of item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemSize(index, size); end
-  
+
     #
     # Return size of item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemSize(index); end
-  
+
     #
     # Return the offset (in pixels) of the left side of the item at index.
     # (If it's a vertical header, return the offset of the top side of the item).
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemOffset(index); end
-  
+
     #
     # Change user data object of item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemData(index, ptr); end
-  
+
     #
     # Return user data for item at index.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemData(index); end
-  
+
     #
     # Change arrow (sort) direction for item at index, where _dir_ is either
     # +FALSE+, +TRUE+ or +MAYBE+.
@@ -342,7 +342,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setArrowDir(index, dir=MAYBE); end
-    
+
     #
     # Return sort direction for the item at index, one of +FALSE+, +TRUE+ or
     # +MAYBE+.
@@ -368,7 +368,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemJustify(index); end
-  
+
     #
     # Change relative position of icon and text of item.
     # Passing FXHeaderItem::BEFORE or FXHeaderItem::AFTER places the icon
@@ -378,7 +378,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemIconPosition(index, mode); end
-  
+
     #
     # Return relative icon and text position of the item at _index_,
     # one of +ABOVE+, +BELOW+, +BEFORE+ or +AFTER+.
@@ -391,16 +391,16 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemPressed(index, pressed=true); end
-  
+
     #
     # Return +true+ if button item at specified index is pressed in.
     # Raises IndexError if _index_ is out of bounds.
     #
     def isItemPressed(index); end
-    
+
     # Scroll to make the specified item visible.
     def makeItemVisible(index); end
-  
+
     #
     # Repaint header at index.
     # Raises IndexError if _index_ is out of bounds.

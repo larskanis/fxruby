@@ -5,7 +5,7 @@ require 'soap/wsdlDriver'
 include Fox
 
 class RAABrowserWindow < FXMainWindow
-  
+
   def initialize(app)
     # Initialize base class
     super(app, "Ruby Application Archive", :opts => DECOR_ALL, :width => 600, :height => 600)
@@ -60,7 +60,7 @@ class RAABrowserWindow < FXMainWindow
     @download = FXDataTarget.new("")
     @license = FXDataTarget.new("")
     @description = FXDataTarget.new("")
-    
+
     # Information appears on the right-hand side
     infoFrame = FXVerticalFrame.new(splitter, LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_RIGHT|FRAME_SUNKEN|FRAME_THICK)
 
@@ -88,10 +88,10 @@ class RAABrowserWindow < FXMainWindow
     descriptionBox = FXGroupBox.new(infoFrame, "Description", GROUPBOX_NORMAL|LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_GROOVE)
     descriptionFrame = FXHorizontalFrame.new(descriptionBox, FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     FXText.new(descriptionFrame, @description, FXDataTarget::ID_VALUE, TEXT_READONLY|TEXT_WORDWRAP|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-      
+
     # Initialize the service
     @raa = SOAP::WSDLDriverFactory.new("http://www2.ruby-lang.org/xmlns/soap/interface/RAA/0.0.4/").create_rpc_driver
-    
+
     # Set up the product tree list
     @productTree = @raa.tree_by_category
     @productTree.keys.sort.each do |sectionName|
@@ -106,7 +106,7 @@ class RAABrowserWindow < FXMainWindow
       end
     end
   end
-  
+
   def create
     super
     @treeList.parent.parent.setWidth(@treeList.font.getTextWidth('M'*24))

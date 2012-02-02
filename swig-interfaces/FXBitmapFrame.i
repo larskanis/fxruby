@@ -36,7 +36,7 @@ public:
       return new FXRbBitmapFrame(p,bmp,opts,x,y,w,h,pl,pr,pt,pb);
     }
   }
-  
+
   /// Change the image being displayed
   void setBitmap(FXBitmap* bmp);
 

@@ -2,10 +2,10 @@ module Fox
   class FXExtentd
     # Lower corner of this extent (an FXVec2d instance).
     attr_reader :lower
-    
+
     # Upper corner of this extent (an FXVec2d instance).
     attr_reader :upper
-    
+
     # Default constructor
     def initialize; end
 

@@ -81,7 +81,7 @@ public:
 
   /// Change style of the progress bar widget
   void setBarStyle(FXuint style);
-  
+
   /// Get style of the progress bar widget
   FXuint getBarStyle() const;
 

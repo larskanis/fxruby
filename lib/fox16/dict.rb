@@ -23,7 +23,7 @@ module Fox
         pos = self.next(pos)
       end
     end
-    
+
     #
     # Returns +true+ if this dictionary contains no key-value pairs.
     #

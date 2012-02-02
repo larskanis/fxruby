@@ -56,8 +56,8 @@ DECLARE_FXOBJECT_VIRTUALS(FXPNGIcon)
 DECLARE_FXID_VIRTUALS(FXPNGIcon)
 DECLARE_FXDRAWABLE_VIRTUALS(FXPNGIcon)
 DECLARE_FXIMAGE_VIRTUALS(FXPNGIcon)
-  
-  
+
+
 %inline %{
   /**
    * Load an PNG (Portable Network Graphics) file from a stream.

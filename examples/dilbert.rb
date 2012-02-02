@@ -27,24 +27,24 @@ class DailyDilbert < FXMainWindow
     # Sunken border for image widget
     imagebox = FXHorizontalFrame.new(self,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  
+
     # Make image widget
     @imageview = FXImageView.new(imagebox,
       :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y|HSCROLLER_NEVER|VSCROLLER_NEVER)
-      
+
     # Construct a GIF image and store it in the image viewer
     @imageview.image = FXGIFImage.new(getApp(), image_data)
 
     # Resize main window client area to fit image size
     resize(@imageview.contentWidth, @imageview.contentHeight)
   end
-  
+
   def image_data
     doc = Hpricot(open("http://www.dilbert.com/"))
     url = doc.search("img").find { |e| e['src'] =~ /\/dyn\/str_strip\/.*\.gif/ }
     open("http://www.dilbert.com" + url['src'], "rb").read
   end
-  
+
   def create
     super
     show(PLACEMENT_SCREEN)

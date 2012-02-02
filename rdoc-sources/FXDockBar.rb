@@ -57,7 +57,7 @@ module Fox
     #
     def initialize(p, q, opts=LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theDockBar
     end
-  
+
     #
     # Construct a non-floatable dock bar.
     # The dock bar can not be undocked.
@@ -79,7 +79,7 @@ module Fox
     #
     def initialize(p, opts=LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theDockBar
     end
-    
+
     # Return +true+ if docked
     def docked? ; end
 
@@ -93,7 +93,7 @@ module Fox
     # If it was docked, reparent under the new docking window.
     #
     def dryDock=(dry); end
-    
+
     # Return parent when docked.
     def dryDock; end
 
@@ -102,7 +102,7 @@ module Fox
     # If it was undocked, then reparent under the new floating window.
     #
     def wetDock=(wet); end
-    
+
     # Return parent when floating.
     def wetDock; end
 
@@ -137,7 +137,7 @@ module Fox
     def undock(root_x, root_y, notify=false); end
 
     #
-    # Change set of sides (a combination of +ALLOW_TOP+, +ALLOW_LEFT+, etc.), 
+    # Change set of sides (a combination of +ALLOW_TOP+, +ALLOW_LEFT+, etc.),
     # where docking is allowed. The default is to allow docking on all sides.
     #
     def allowedSides=(allowed); end

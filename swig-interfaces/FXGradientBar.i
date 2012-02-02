@@ -194,13 +194,13 @@ public:
 
   /// Set lower color of a segment
   void setSegmentLowerColor(FXint SEG0,FXColor clr,FXbool notify=FALSE);
-  
+
   /// Set upper color of a segment
   void setSegmentUpperColor(FXint SEG0,FXColor clr,FXbool notify=FALSE);
 
   /// Get lower color of a segment
   FXColor getSegmentLowerColor(FXint SEG0) const;
-  
+
   /// Get upper color of a segment
   FXColor getSegmentUpperColor(FXint SEG0) const;
 
@@ -218,10 +218,10 @@ public:
 
   /// Get lower value of segment sg
   FXdouble getSegmentLower(FXint SEG0) const;
-  
+
   /// Get middle value of segment sg
   FXdouble getSegmentMiddle(FXint SEG0) const;
-  
+
   /// Get upper value of segment sg
   FXdouble getSegmentUpper(FXint SEG0) const;
 

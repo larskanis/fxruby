@@ -4,7 +4,7 @@ module Fox
   # to be directly connected with a variable in the program.
   # Whenever the valuator control changes, the variable connected through
   # the data target is automatically updated; conversely, whenever the program
-  # changes a variable, all the connected valuator widgets will be updated 
+  # changes a variable, all the connected valuator widgets will be updated
   # to reflect this new value on the display. For example:
   #
   #     data = FXDataTarget.new("Some Text")
@@ -43,7 +43,7 @@ module Fox
   # +ID_OPTION+::   +ID_OPTION++_i_ will set the value to _i_, where -10000 <= _i_ <= 10000
   #
   class FXDataTarget < FXObject
-  
+
     # The message target object for this data target [FXObject]
     attr_accessor :target
 

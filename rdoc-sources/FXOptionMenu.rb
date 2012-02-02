@@ -15,7 +15,7 @@ module Fox
   class FXOption < FXLabel
     # Selection background color [FXColor]
     attr_accessor :selBackColor
-    
+
     # Selection text color [FXColor]
     attr_accessor :selTextColor
 
@@ -40,37 +40,37 @@ module Fox
   # +SEL_COMMAND+::		sent when this an option is selected; the message data is the option number.
   #
   class FXOptionMenu < FXLabel
-  
+
     # The current option, or +nil+ if none [FXOption]
     attr_accessor :current
-    
+
     # The current option number, or -1 if none [Integer]
     attr_accessor :currentNo
-    
+
     # The pane which will be popped up [FXPopup]
     attr_accessor :menu
-    
+
     #
     # Returns an initialized FXOptionMenu instance.
     #
     def initialize(p, pup=nil, opts=JUSTIFY_NORMAL|ICON_BEFORE_TEXT, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theOptionMenu
     end
-  
+
     #
     # Set the current option.
     #
     def setCurrent(win, notify=false); end
-    
+
     #
     # Return a reference to the current option (an FXOption instance).
     #
     def getCurrent(); end
-  
+
     #
     # Set the current option number.
     #
     def setCurrentNo(no, notify=false); end
-    
+
     #
     # Get the current option number.
     #

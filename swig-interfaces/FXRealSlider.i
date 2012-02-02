@@ -80,7 +80,7 @@ public:
     ID_LAST
     };
 public:
-  
+
   /// Construct a slider widget
   %extend {
     FXRealSlider(FXComposite* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=REALSLIDER_NORMAL,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=0,FXint pr=0,FXint pt=0,FXint pb=0){
@@ -90,7 +90,7 @@ public:
 
   /// Change slider value
   void setValue(FXdouble value,FXbool notify=FALSE);
-  
+
   /// Return slider value
   FXdouble getValue() const;
 
@@ -108,22 +108,22 @@ public:
 
   /// Change the slider style
   FXuint getSliderStyle() const;
-  
+
   /// Get the current slider style
   void setSliderStyle(FXuint style);
-  
+
   /// Get the slider's head size
   FXint getHeadSize() const;
 
   /// Change the slider's head size
   void setHeadSize(FXint hs);
-  
+
   /// Get the slider's current slot size
   FXint getSlotSize() const;
 
   /// Change the slider's slot size
   void setSlotSize(FXint bs);
-  
+
   /// Get the slider's auto-increment/decrement value
   FXdouble getIncrement() const;
 
@@ -135,22 +135,22 @@ public:
 
   /// Get delta between ticks
   FXdouble getTickDelta() const;
-  
+
   /// Change the color of the slot the slider head moves in
   void setSlotColor(FXColor clr);
-  
+
   /// Get the current slot color
   FXColor getSlotColor() const;
 
   /// Set the help text to be displayed on the status line
   void setHelpText(const FXString& text);
-  
+
   /// Get the current help text
   const FXString& getHelpText() const;
 
   /// Set the tip text to be displayed in the tooltip
   void setTipText(const FXString& text);
-  
+
   /// Get the current tooltip text value
   const FXString& getTipText() const;
 

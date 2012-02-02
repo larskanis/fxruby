@@ -39,7 +39,7 @@ enum {
 * windows such that one of them is placed on top; all other
 * child windows are hidden.
 * Switcher provides a convenient method to conserve screen
-* real-estate by arranging several GUI panels to appear in the 
+* real-estate by arranging several GUI panels to appear in the
 * same space, depending on context.
 * Switcher ignores all layout hints from its children:- all
 * children are stretched according to the switcher layout
@@ -51,7 +51,7 @@ enum {
 */
 class FXSwitcher : public FXPacker {
 protected:
-  FXint  current;  
+  FXint  current;
 protected:
   FXSwitcher(){}
 public:
@@ -77,7 +77,7 @@ public:
     ID_LAST
     };
 public:
-  
+
   /// Construct a switcher layout manager
   %extend {
     FXSwitcher(FXComposite* p,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=DEFAULT_SPACING,FXint pr=DEFAULT_SPACING,FXint pt=DEFAULT_SPACING,FXint pb=DEFAULT_SPACING){
@@ -87,7 +87,7 @@ public:
 
   /// Bring the child window at index to the top
   void setCurrent(FXint index,FXbool notify=FALSE);
-  
+
   /// Return the index of the child window currently on top
   FXint getCurrent() const;
 
@@ -96,7 +96,7 @@ public:
 
   /// Get the switcher style flags
   FXuint getSwitcherStyle() const;
-  
+
   /// Destructor
   virtual ~FXSwitcher();
   };

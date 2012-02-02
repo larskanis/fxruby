@@ -14,14 +14,14 @@ class TC_FXTopWindow < Test::Unit::TestCase
     end
     @mainWin = FXMainWindow.new(@app, 'TC_FXButton')
   end
-  
+
   def test_new
     # Free-floating
     top1 = FXTopWindow.new(@app, "top1", nil, nil, DECOR_ALL, 0, 0, 0, 0,
       DEFAULT_PAD, DEFAULT_PAD, DEFAULT_PAD, DEFAULT_PAD,
       DEFAULT_SPACING, DEFAULT_SPACING)
     assert_equal("top1", top1.title)
-      
+
     # Owned
     top2 = FXTopWindow.new(@mainWin, "top2", nil, nil, DECOR_ALL, 0, 0, 0, 0,
       DEFAULT_PAD, DEFAULT_PAD, DEFAULT_PAD, DEFAULT_PAD,

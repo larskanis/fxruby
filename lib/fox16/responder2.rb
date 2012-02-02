@@ -69,9 +69,9 @@ module Fox
       end
       result
     end
-    
+
   end # class FXPseudoTarget
-  
+
 end # module Fox
 
 #
@@ -79,7 +79,7 @@ end # module Fox
 # which is mixed-in to all classes that have a message
 # target (i.e. Fox::FXDataTarget, Fox::FXRecentFiles
 # and Fox::FXWindow).
-# 
+#
 module Responder2
   #
   # Assign a "handler" for all FOX messages of type _messageType_
@@ -110,7 +110,7 @@ module Responder2
     end
     @pseudoTarget.pconnect(message_type, callable_object ? callable_object : block)
   end
-  
+
 end
 
 module Fox

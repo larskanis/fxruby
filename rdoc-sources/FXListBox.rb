@@ -36,25 +36,25 @@ module Fox
 
     # Current item's index, or -1 if no current item [Integer]
     attr_accessor :currentItem
-    
+
     # Text font [FXFont]
     attr_accessor :font
-  
+
     # Background color [FXColor]
     attr_reader :backColor
-  
+
     # Text color [FXColor]
     attr_accessor :textColor
-    
+
     # Background color for selected items [FXColor]
     attr_accessor :selBackColor
-    
+
     # Text color for selected items [FXColor]
     attr_accessor :selTextColor
-  
+
     # Status line help text [String]
     attr_accessor :helpText
-  
+
     # Tool tip message [String]
     attr_accessor :tipText
 
@@ -82,7 +82,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItem(index, text, icon=nil, ptr=nil); end
-  
+
     #
     # Fill list by appending items from array of strings, and return the number
     # items added.
@@ -94,13 +94,13 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def insertItem(index, text, icon=nil, ptr=nil); end
-  
+
     # Add an item to the end of the list.
     def appendItem(text, icon=nil, ptr=nil);
-  
+
     # Prepend an item to the list
     def prependItem(text, icon=nil, ptr=nil); end
-  
+
     #
     # Move item from _oldIndex_ to _newIndex_ and return the new
     # index of the item.
@@ -119,10 +119,10 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def removeItem(index); end
-  
+
     # Remove all items from the list
     def clearItems(); end
-  
+
     #
     # Search items by _text_, beginning from item _start_. If the start
     # item is -1 the search will start at the first item in the list.
@@ -134,7 +134,7 @@ module Fox
     # Return -1 if no matching item is found.
     #
     def findItem(text, start=-1, flags=SEARCH_FORWARD|SEARCH_WRAP); end
-  
+
     #
     # Search items by associated user _data_, beginning from item _start_. If the
     # start item is -1 the search will start at the first item in the list.
@@ -149,25 +149,25 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemText(index, text); end
-  
+
     #
     # Return text for specified item.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemText(index); end
-  
+
     #
     # Set icon for specified item to _icon_.
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemIcon(index, icon, owned=false); end
-    
+
     #
     # Return icon for specified item.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemIcon(index); end
-    
+
     #
     # Set user data object for specified item to _ptr_.
     # Raises IndexError if _index_ is out of bounds.
@@ -179,13 +179,13 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemData(index); end
-  
+
     # Return +true+ if the pane is shown.
     def paneShown?; end
-  
+
     # Sort items using current sort function
     def sortItems; end
-  
+
     alias appendItem <<
   end
 end

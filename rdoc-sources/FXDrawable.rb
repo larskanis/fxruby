@@ -4,13 +4,13 @@ module Fox
   # drawn upon, such as an FXWindow or an FXImage.
   #
   class FXDrawable < FXId
-  
+
     # Width of drawable, in pixels [Integer]
     attr_reader	:width
-    
+
     # Height of drawable, in pixels [Integer]
     attr_reader	:height
-    
+
     # Visual [FXVisual]
     attr_accessor :visual
 

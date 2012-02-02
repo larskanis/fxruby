@@ -122,7 +122,7 @@ public:
 
   /// Does it swap by copying instead of flipping buffers?
   FXbool isBufferSwapCopy() const;
- 
+
   /// Destructor
   virtual ~FXGLVisual();
   };
@@ -131,6 +131,6 @@ public:
 DECLARE_FXOBJECT_VIRTUALS(FXGLVisual)
 DECLARE_FXID_VIRTUALS(FXGLVisual)
 
-  
+
 /// Create a display list of bitmaps from font glyphs in a font
 void glUseFXFont(FXFont* font,int first,int count,int list);

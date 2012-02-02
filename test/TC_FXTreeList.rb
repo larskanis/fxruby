@@ -11,7 +11,7 @@ class TC_FXTreeList < Fox::TestCase
       (TREELIST_BROWSESELECT|TREELIST_SHOWS_LINES|TREELIST_SHOWS_BOXES|
        TREELIST_ROOT_BOXES|LAYOUT_FILL_X|LAYOUT_FILL_Y))
   end
-  
+
   def test_firstItem
     assert_nil(@treeList.firstItem)
     item = @treeList.prependItem(nil, "first")
@@ -70,7 +70,7 @@ class TC_FXTreeList < Fox::TestCase
     theItem = @treeList.appendItem(nil, "", nil, nil, nil, true)
     assert_same(theItem, anItem)
   end
-  
+
   def test_SEL_DELETED
     theItem = @treeList.appendItem(nil, "")
     anItem = nil
@@ -86,7 +86,7 @@ class TC_FXTreeList < Fox::TestCase
     @treeList.each { |item| count += 1 }
     assert_equal(0, count, "count for empty list should be zero")
   end
-  
+
   def test_each
     @treeList.appendItem(nil, "1")
     @treeList.appendItem(nil, "2")
@@ -96,5 +96,5 @@ class TC_FXTreeList < Fox::TestCase
     @treeList.each { |item| count += 1 }
     assert_equal(4, count, "count didn't match expected number of items")
   end
-  
+
 end

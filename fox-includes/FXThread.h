@@ -289,7 +289,7 @@ public:
   * Wake at appointed time specified in nanoseconds since Epoch.
   */
   static void wakeat(FXlong nsec);
-  
+
   /**
   * Return pointer to the FXThread instance associated
   * with the calling thread; it returns NULL for the main

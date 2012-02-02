@@ -17,19 +17,19 @@ module Fox
       	  @theApp = FXApp.instance
       	end
       	@theMainWindow = FXMainWindow.new(@theApp, appName)
-      end      
+      end
     end
-    
+
     # Return a reference to the application
     def app
       @theApp
     end
-    
+
     # Return a reference to the main window
     def mainWindow
       @theMainWindow
     end
-    
+
     # Override the base class version of default_test() so that
     # a test case with no tests doesn't trigger an error.
     def default_test; end

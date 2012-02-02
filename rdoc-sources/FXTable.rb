@@ -5,23 +5,23 @@ module Fox
   class FXTablePos
     # Cell row (zero-based) [Integer]
     attr_accessor :row
-    
+
     # Cell column (zero-based) [Integer]
     attr_accessor :col
-    
+
     #
     # Returns an initialized FXTablePos instance.
     #
     def initialize; end
   end
-  
+
   #
   # Represents a range of cells in an FXTable.
   #
   class FXTableRange
     # Starting position for this range of cells [FXTablePos]
     attr_accessor :fm
-    
+
     # Ending position for this range of cells [FXTablePos]
     attr_accessor :to
 
@@ -38,25 +38,25 @@ module Fox
 
     # Text associated with this cell [String]
     attr_accessor :text
-    
+
     # Icon associated with this cell [FXIcon]
     attr_accessor :icon
-    
+
     # User data associated with this cell [Object]
     attr_accessor :data
-    
+
     # Indicates whether this item has the focus [Boolean]
     attr_writer :focus
-    
+
     # Indicates whether this item is selected [Boolean]
     attr_writer :selected
-    
+
     # Indicates whether this item is enabled [Boolean]
     attr_writer :enabled
-    
+
     # Indicates whether this item is draggable [Boolean]
     attr_writer :draggable
-    
+
     #
     # Indicates how the text in the cell will be justified.
     # This value is some combination of the horizontal justification
@@ -64,18 +64,18 @@ module Fox
     # justification flags +TOP+, +CENTER_Y+ and +BOTTOM+.
     #
     attr_accessor :justify
-    
+
     # The icon's position in the cell, relative to the text (one
     # of +BEFORE+, +AFTER+, +ABOVE+ or +BELOW+) [Integer]
     attr_accessor :iconPosition
-    
+
     # Which borders will be drawn for this cell (some combination of
     # +LBORDER+, +RBORDER+, +TBORDER+ and +BBORDER+) [Integer]
     attr_accessor :borders
-    
+
     # The background stipple pattern for this cell [Integer]
     attr_accessor :stipple
-    
+
     #
     # Return an initialized FXTableItem instance.
     #
@@ -92,53 +92,53 @@ module Fox
 
     # Return the height of this item (in pixels)
     def getHeight(table); end
-    
+
     # Return true if this item has the focus
     def hasFocus?; end
-    
+
     # Return true if this item is selected
     def selected?; end
-    
+
     # Return true if this item is enabled
     def enabled?; end
-    
+
     # Return true if this item is draggable
     def draggable?; end
-    
+
     # Return the text for this table item
     def to_s
       text
     end
-    
+
     # Change item icon, deleting the previous item icon if it was owned
     # by this table item.
     def setIcon(icn, owned=false); end
-    
+
     # Draw this table item
     def draw(table, dc, x, y, w, h); end
-    
+
     # Draw borders
-    def drawBorders(table, dc, x, y, w, h); end 
-    
+    def drawBorders(table, dc, x, y, w, h); end
+
     # Draw content
-    def drawContent(table, dc, x, y, w, h); end 
-    
+    def drawContent(table, dc, x, y, w, h); end
+
     # Draw hatch pattern
-    def drawPattern(table, dc, x, y, w, h); end 
-    
+    def drawPattern(table, dc, x, y, w, h); end
+
     # Draw background behind the cell
     def drawBackground(table, dc, x, y, w, h)
       hg = table.horizontalGridShown? ? 1 : 0
       vg = table.verticalGridShown? ? 1 : 0
       dc.fillRectangle(x + vg, y + hg, w - vg, h - hg)
-    end 
+    end
 
     #
     # Create input control for editing this item.
     # Should return a new instance of some subclass of FXWindow.
     #
     def getControlFor(table); end
-    
+
     #
     # Set item value from input _control_ (an instance of some subclass
     # of FXWindow).
@@ -147,14 +147,14 @@ module Fox
 
     # Create the server-side resources associated with this table item
     def create; end
-    
+
     # Detach the server-side resources associated with this table item
     def detach; end
-    
+
     # Destroy the server-side resources associated with this table item
     def destroy; end
   end
-  
+
   #
   # The FXTable widget displays a table of items, each with some text and optional
   # icon.  A column Header control provide captions for each column, and a row
@@ -189,7 +189,7 @@ module Fox
   # editing or by other means; the parameter is the range of affected cells.  This message
   # is sent prior to the change.
   # SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED messages are sent when a cell
-  # is clicked, double-clicked, or triple-clicked, respectively. 
+  # is clicked, double-clicked, or triple-clicked, respectively.
   # A SEL_COMMAND is sent when an enabled item is clicked inside the table.
   #
   # === Events
@@ -263,115 +263,115 @@ module Fox
 
     # Button in the upper left corner [FXButton]
     attr_reader :cornerButton
-    
+
     # Column header control [FXHeader]
     attr_reader :columnHeader
-    
+
     # Row header control [FXHeader]
     attr_reader :rowHeader
 
     # Number of visible rows [Integer]
     attr_accessor	:visibleRows
-    
+
     # Number of visible columns [Integer]
     attr_accessor	:visibleColumns
-    
+
     # Number of rows [Integer]
     attr_reader		:numRows
-    
+
     # Number of columns [Integer]
     attr_reader		:numColumns
-    
+
     # Top cell margin, in pixels [Integer]
     attr_accessor	:marginTop
-    
+
     # Bottom cell margin, in pixels [Integer]
     attr_accessor	:marginBottom
-    
+
     # Left cell margin, in pixels [Integer]
     attr_accessor	:marginLeft
-    
+
     # Right cell margin, in pixels [Integer]
     attr_accessor	:marginRight
-    
+
     # Table style [Integer]
     attr_accessor	:tableStyle
-    
+
     # The column header height mode is either fixed (LAYOUT_FIX_HEIGHT) or variable.
     # In variable height mode, the column header will size to fit the contents in it.
     # In fixed height mode, the size is explicitly set via the _columnHeaderHeight_
     # attribute.
     attr_accessor	:columnHeaderMode
-    
+
     # The row header width mode is either fixed (LAYOUT_FIX_WIDTH) or variable.
     # In variable width mode, the row header will size to fit the contents in it.
     # In fixed width mode, the size is explicitly set via the _rowHeaderWidth_
     # attribute.
     attr_accessor	:rowHeaderMode
-    
+
     # Row header font [FXFont]
     attr_accessor	:rowHeaderFont
-    
+
     # Column header font [FXFont]
     attr_accessor	:columnHeaderFont
-    
+
     # The fixed column header height, if _columnHeaderMode_ is +LAYOUT_FIX_HEIGHT+.
     attr_accessor	:columnHeaderHeight
-    
+
     # The fixed row header width, if _rowHeaderMode_ is +LAYOUT_FIX_WIDTH+.
     attr_accessor	:rowHeaderWidth
-    
+
     # Default column width, in pixels [Integer]
     attr_accessor	:defColumnWidth
-    
+
     # Default row height, in pixels [Integer]
     attr_accessor	:defRowHeight
-    
+
     # Row number for current cell [Integer]
     attr_reader		:currentRow
-    
+
     # Column number for current cell [Integer]
     attr_reader		:currentColumn
-    
+
     # Row number for anchor cell [Integer]
     attr_reader		:anchorRow
-    
+
     # Column number for anchor cell [Integer]
     attr_reader		:anchorColumn
-    
+
     # Starting row number for selection, or -1 if there is no selection [Integer]
     attr_reader		:selStartRow
-    
+
     # Starting column number for selection, or -1 if there is no selection [Integer]
     attr_reader		:selStartColumn
-    
+
     # Ending row number for selection, or -1 if there is no selection [Integer]
     attr_reader		:selEndRow
-    
+
     # Ending column number for selection, or -1 if there is no selection [Integer]
     attr_reader		:selEndColumn
-    
+
     # Text font [FXFont]
     attr_accessor	:font
-    
+
     # Text color [FXColor]
     attr_accessor	:textColor
-    
+
     # Base GUI color [FXColor]
     attr_accessor	:baseColor
-    
+
     # Highlight color [FXColor]
     attr_accessor	:hiliteColor
-    
+
     # Shadow color [FXColor]
     attr_accessor	:shadowColor
-    
+
     # Border color [FXColor]
     attr_accessor	:borderColor
-    
+
     # Background color for selected cell(s) [FXColor]
     attr_accessor	:selBackColor
-    
+
     # Text color for selected cell(s) [FXColor]
     attr_accessor	:selTextColor
 
@@ -392,7 +392,7 @@ module Fox
 
     # Returns the drag type for CSV data
     def FXTable.csvType; end
-    
+
     # Returns the drag type name for CSV data
     def FXTable.csvTypeName; end
 
@@ -418,7 +418,7 @@ module Fox
     #
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0, padLeft=DEFAULT_MARGIN, padRight=DEFAULT_MARGIN, padTop=DEFAULT_MARGIN, padBottom=DEFAULT_MARGIN) # :yields: theTable
     end
-  
+
     # Set visibility of horizontal grid to +true+ or +false+.
     def horizontalGridShown=(vis); end
 
@@ -436,16 +436,16 @@ module Fox
     # Note that this is equivalent to the #horizontalGridShown=() method.
     #
     def showHorzGrid(on=true) ; end
-  
+
     #
     # Show or hide vertical grid.
     # Note that this is equivalent to the #verticalGridShown=() method.
     #
     def showVertGrid(on=true) ; end
-    
+
     # Set editability of this table to +true+ or +false+.
     def editable=(edit); end
-    
+
     # Return +true+ if this table is editable.
     def editable? ; end
 
@@ -481,7 +481,7 @@ module Fox
     # Otherwise, returns the row in the table containing _y_.
     #
     def rowAtY(y) ; end
-    
+
     #
     # Determine column containing _x_.
     # Returns -1 if _x_ is to the left of the first column, and _numColumns_ if _x_ is
@@ -489,7 +489,7 @@ module Fox
     # containing _x_.
     #
     def colAtX(x) ; end
-  
+
     # Return the item (a reference to an FXTableItem) at the given _row_ and _column_.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def getItem(row, column) ; end
@@ -513,7 +513,7 @@ module Fox
     # Raises ArgError if either _numRows_ or _numCols_ is less than zero.
     #
     def setTableSize(numRows, numCols, notify=false) ; end
-  
+
     #
     # Insert _numRows_ rows beginning at the specified _row_ number.
     # If _row_ is equal to the number of rows in the table, the new
@@ -523,7 +523,7 @@ module Fox
     # Raises IndexError if _row_ is out of bounds.
     #
     def insertRows(row, numRows=1, notify=false) ; end
-    
+
     #
     # Insert _numColumns_ columns beginning at the specified _column_ number.
     # If _column_ is equal to the number of columns in the table, the
@@ -533,7 +533,7 @@ module Fox
     # Raises IndexError if _column_ is out of bounds.
     #
     def insertColumns(column, numColumns=1, notify=false) ; end
-    
+
     #
     # Remove the _nr_ rows starting at the specified _row_.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the table's
@@ -542,7 +542,7 @@ module Fox
     # is greater than the current number of table rows.
     #
     def removeRows(row, nr=1, notify=false) ; end
-    
+
     #
     # Remove the _nc_ columns starting at the specified _column_.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the table's
@@ -551,7 +551,7 @@ module Fox
     # _column_ + _nc_ is greater than the current number of table columns.
     #
     def removeColumns(column, nc=1, notify=false) ; end
-    
+
     #
     # Extract item from table and return a reference to it.
     # If _notify_ is +true+, a +SEL_REPLACED+ message is sent to the table's
@@ -559,7 +559,7 @@ module Fox
     # Raises IndexError if either _row_ or _col_ is out of bounds.
     #
     def extractItem(r, c, notify=false); end
-    
+
     #
     # Remove item at (_row_, _col_), replacing it with +nil+.
     # If _notify_ is +true+, a +SEL_REPLACED+ message is sent to the table's
@@ -587,39 +587,39 @@ module Fox
     # Scroll to make cell at (_row_, _column_) fully visible.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def makePositionVisible(row, column) ; end
-  
+
     # Returns +true+ if the cell at position (_row_, _column_) is visible.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def itemVisible?(row, column) ; end
-    
+
     # Set column width.
     # Raises IndexError if _column_ is out of bounds.
     def setColumnWidth(column, columnWidth) ; end
-    
+
     # Get column width.
     # Raises IndexError if _column_ is out of bounds.
     def getColumnWidth(column) ; end
-  
+
     # Set row height.
     # Raises IndexError if _row_ is out of bounds.
     def setRowHeight(row, rowHeight) ; end
-    
+
     # Get row height.
     # Raises IndexError if _row_ is out of bounds.
     def getRowHeight(row) ; end
-  
+
     # Get x-coordinate of column.
     # Raises IndexError if _column_ is out of bounds.
     def getColumnX(column) ; end
-  
+
     # Get y-coordinate of row.
     # Raises IndexError if _row_ is out of bounds.
     def getRowY(row) ; end
-  
+
     # Return minimum row height for row _r_.
     # Raises IndexError if _r_ is out of bounds.
     def minRowHeight(r); end
-    
+
     # Return minimum column width for column _c_.
     # Raises IndexError if _c_ is out of bounds.
     def minColumnWidth(c); end
@@ -635,19 +635,19 @@ module Fox
     # column index _col_.
     #
     def fitColumnsToContents(col, nc=1); end
-    
+
     # Set column header at _index_ to _text_.
     # Raises IndexError if _index_ is out of bounds.
     def setColumnText(index, text); end
-    
+
     # Return text of column header at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getColumnText(index); end
-    
+
     # Set row header at _index_ to _text_.
     # Raises IndexError if _index_ is out of bounds.
     def setRowText(index, text); end
-    
+
     # Return text of row header at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getRowText(index); end
@@ -663,7 +663,7 @@ module Fox
     # Change row header icon.
     # Raises IndexError if _index_ is out of bounds.
     def setRowIcon(index, icon); end
-    
+
     # Return icon of row header at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getRowIcon(index); end
@@ -683,7 +683,7 @@ module Fox
     # Return icon position of row header at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getRowIconPosition(index); end
-    
+
     # Change column header justify, e.g. FXHeaderItem::RIGHT, etc.
     # Raises IndexError if _index_ is out of bounds.
     def setColumnJustify(index, justify); end
@@ -699,7 +699,7 @@ module Fox
     # Return justify of row header at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getRowJustify(index); end
-    
+
     #
     # Modify cell text for item at specified _row_ and _col_.
     # If _notify_ is +true+, a +SEL_REPLACED+ message is sent to the table's
@@ -723,11 +723,11 @@ module Fox
     # Return item icon.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def getItemIcon(row, column) ; end
-  
+
     # Modify cell user data.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def setItemData(row, column, data) ; end
-    
+
     # Return cell user data.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def getItemData(row, column) ; end
@@ -753,7 +753,7 @@ module Fox
     # +rs+::		the string to insert at each row break [String]
     #
     def extractText(startrow, endrow, startcol, endcol, cs="\t", rs="\n"); end
-    
+
     #
     # Overlay the text for the cells in the specified range with
     # the fields specified in _text_.
@@ -776,7 +776,7 @@ module Fox
     # +rs+::		the character to insert at each row break [String]
     #
     def overlayText(startrow, endrow, startcol, endcol, text, cs="\t", rs="\n", notify=false); end
-    
+
     #
     # Determine the number of rows and columns in a block of text
     # where columns are separated by characters from the set _cs_, and rows
@@ -789,26 +789,26 @@ module Fox
     # Return +true+ if the cell at position (_r_, _c_) is a spanning cell.
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     def itemSpanning?(r, c); end
-    
+
     #
     # Repaint cells between grid lines (_startRow_, _endRow_) and grid lines
     # (_startCol_, _endCol_).
     # Raises IndexError if any of the starting or ending grid lines is out of bounds.
     #
     def updateRange(startRow, endRow, startCol, endCol) ; end
-  
+
     # Repaint cell.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def updateItem(row, column) ; end
-  
+
     # Enable cell.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def enableItem(row, column) ; end
-    
+
     # Disable cell.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def disableItem(row, column) ; end
-    
+
     # Returns +true+ if the cell at position (_row_, _column_) is enabled.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def itemEnabled?(row, column) ; end
@@ -824,11 +824,11 @@ module Fox
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     #
     def setItemJustify(r, c, justify); end
-    
+
     # Return item justification for the cell at (_r_, _c_).
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     def getItemJustify(r, c); end
-    
+
     #
     # Change relative position of icon and text of item at (_r_, _c_).
     # Passing FXTableItem::BEFORE or FXTableItem::AFTER places the icon
@@ -839,11 +839,11 @@ module Fox
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     #
     def setItemIconPosition(r, c, mode); end
-    
+
     # Return the relative position of the icon and text for the cell at (_r_, _c_).
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     def getItemIconPosition(r, c); end
-  
+
     #
     # Change item borders style for the item at (_r_, _c_).
     # Borders on each side of the item can be turned
@@ -853,7 +853,7 @@ module Fox
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     #
     def setItemBorders(r, c, borders); end
-    
+
     # Return the border style for the cell at (_r_, _c_).
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     def getItemBorders(r, c); end
@@ -861,11 +861,11 @@ module Fox
     # Set the background stipple style for the cell at (_r_, _c_).
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     def setItemStipple(r, c, pat); end
-    
+
     # Return the background stipple style for the cell at (_r_, _c_).
     # Raises IndexError if either _r_ or _c_ is out of bounds.
     def getItemStipple(r, c); end
-    
+
     # Change current cell.
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the table's
     # message target after the current item changes.
@@ -875,7 +875,7 @@ module Fox
     # Returns +true+ if the cell at position (_row_, _column_) is the current cell.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def itemCurrent?(row, column) ; end
-    
+
     # Change anchored cell.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def setAnchorItem(row, column) ; end
@@ -883,18 +883,18 @@ module Fox
     # Returns +true+ if the cell at position (_row_, _column_) is selected.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def itemSelected?(row, column) ; end
-    
+
     # Return +true+ if the specified row of cells is selected.
     # Raises IndexError if _r_ is out of bounds.
     def rowSelected?(r); end
-    
+
     # Return +true+ if the specified column of cells is selected.
     # Raises IndexError if _c_ is out of bounds.
     def columnSelected?(c); end
-    
+
     # Return +true+ if any cells are selected.
     def anythingSelected?; end
-    
+
     # Select a row of cells.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the table's message
     # target for each previously selected cell that becomes deselected as a result of
@@ -902,7 +902,7 @@ module Fox
     # message target for each newly-selected cell.
     # Raises IndexError if _row_ is out of bounds.
     def selectRow(row, notify=false); end
-    
+
     # Select a column of cells.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the table's message
     # target for each previously selected cell that becomes deselected as a result of
@@ -910,7 +910,7 @@ module Fox
     # message target for each newly-selected cell.
     # Raises IndexError if _col_ is out of bounds.
     def selectColumn(col, notify=false); end
-    
+
     # Select range.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the table's message
     # target for each previously selected cell that becomes deselected as a result of
@@ -918,13 +918,13 @@ module Fox
     # message target for each newly-selected cell.
     # Raises IndexError if _startRow_, _endRow_, _startColumn_ or _endColumn_ is out of bounds.
     def selectRange(startRow, endRow, startColumn, endColumn, notify=false) ; end
-  
+
     # Extend selection.
     # If _notify_ is +true+, a series of +SEL_SELECTED+ and +SEL_DESELECTED+ messages are sent to the table's message target
     # after each affected item is selected or deselected.
     # Raises IndexError if either _row_ or _column_ is out of bounds.
     def extendSelection(row, column, notify=false) ; end
-  
+
     # Kill selection.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the table's
     # message target for each cell that was previously selected.
@@ -939,7 +939,7 @@ module Fox
     # See also #getCellColor.
     #
     def setCellColor(row, column, color) ; end
-  
+
     #
     # Obtain cell background color.
     # The values for _row_ and _column_ are either zero or one.
@@ -949,25 +949,25 @@ module Fox
     # See also #setCellColor.
     #
     def getCellColor(row, column) ; end
-    
+
     # Create a new table item
     def createItem(text, icon, data) ; end
-    
+
     # Draw a table cell
     def drawCell(dc, xlo, xhi, ylo, yhi, xoff, yoff, startRow, endRow, startCol, endCol) ; end
-    
+
     # Draw a range of cells
     def drawRange(dc, xlo, xhi, ylo, yhi, xoff, yoff, rlo, rhi, clo, chi) ; end
-    
+
     # Set column renumbering to +true+ or +false+.
     def columnRenumbering=(renumber); end
-    
+
     # Get column renumbering
     def columnRenumbering? ; end
-    
+
     # Set row renumbering to +true+ or +false+.
     def rowRenumbering=(renumber); end
-    
+
     # Get row renumbering
     def rowRenumbering? ; end
   end

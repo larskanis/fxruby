@@ -27,7 +27,7 @@ class FXJPGIcon : public FXIcon {
 protected:
   FXint quality;
 protected:
-  FXJPGIcon(){}      
+  FXJPGIcon(){}
 public:
   %extend {
     static VALUE fileExt() {
@@ -42,7 +42,7 @@ public:
     static bool isSupported() { return FXJPGIcon::supported; }
     }
 public:
-  %extend {  
+  %extend {
     /// Construct an icon from memory stream formatted in JPG format
     FXJPGIcon(FXApp *a,const void *pix=NULL,FXColor clr=0,FXuint opts=0,FXint w=1,FXint h=1,FXint q=75){
       return new FXRbJPGIcon(a,pix,clr,opts,w,h,q);
@@ -54,7 +54,7 @@ public:
 
   /// Get image quality setting
   FXint getQuality() const;
-  
+
   /// Destroy
   virtual ~FXJPGIcon();
   };

@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 
-/// Icon class 
+/// Icon class
 class FXIcon : public FXImage {
 protected:
   FXID     shape;             // Shape pixmap
@@ -29,7 +29,7 @@ protected:
   FXColor  transp;            // Transparency color
 protected:
   FXIcon(){}
-  FXColor guesstransp(); 
+  FXColor guesstransp();
 public:
   %extend {
     /**
@@ -43,10 +43,10 @@ public:
 
   /// Obtain transparency color
   FXColor getTransparentColor() const;
-  
+
   /// Change transparency color
   void setTransparentColor(FXColor color);
- 
+
   /// Destructor
   virtual ~FXIcon();
   };

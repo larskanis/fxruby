@@ -84,52 +84,52 @@ module Fox
 
     # Window title [String]
     attr_accessor	:title
-    
+
     # Top padding, in pixels [Integer]
     attr_accessor	:padTop
-    
+
     # Bottom padding, in pixels [Integer]
     attr_accessor	:padBottom
-    
+
     # Left padding, in pixels [Integer]
     attr_accessor	:padLeft
-    
+
     # Right padding, in pixels [Integer]
     attr_accessor	:padRight
-    
+
     # Horizontal spacing between child widgets, in pixels [Integer]
     attr_accessor	:hSpacing
-    
+
     # Vertical spacing between child widgets, in pixels [Integer]
     attr_accessor	:vSpacing
-    
+
     # Packing hints for child widgets [Integer]
     attr_accessor	:packingHints
-    
+
     # Title and border decorations (see above) [Integer]
     attr_accessor	:decorations
-    
+
     # Window icon [FXIcon]
     attr_accessor	:icon
-    
+
     # Window mini (title) icon [FXIcon]
     attr_accessor	:miniIcon
 
     # Show this window with given _placement_
     # (one of +PLACEMENT_DEFAULT+, +PLACEMENT_VISIBLE+, +PLACEMENT_CURSOR+, +PLACEMENT_OWNER+, +PLACEMENT_SCREEN+ or +PLACEMENT_MAXIMIZED+).
     def show(placement) ; end
-  
+
     # Position the window based on _placement_
     # (one of +PLACEMENT_DEFAULT+, +PLACEMENT_VISIBLE+, +PLACEMENT_CURSOR+, +PLACEMENT_OWNER+, +PLACEMENT_SCREEN+ or +PLACEMENT_MAXIMIZED+).
     def place(placement) ; end
-    
+
     # Obtain border sizes added to our window by the window manager.
     # Returns a 4-element array containing the left, right, top and bottom border sizes (in pixels).
     def getWMBorders(); end
-    
+
     # Return +true+ if window is maximized.
     def maximized? ; end
-    
+
     # Return +true+ if window is minimized.
     def minimized? ; end
 
@@ -138,19 +138,19 @@ module Fox
     # If _notify_ is +true+, sends a +SEL_MAXIMIZE+ message to its message target.
     #
     def maximize(notify=false); end
-    
+
     #
     # Minimize or iconify window and return +true+ if minimized.
     # If _notify_ is +true+, sends a +SEL_MINIMIZE+ message to its message target.
     #
     def minimize(notify=false); end
-    
+
     #
     # Restore window to normal and return +true+ if restored.
     # If _notify_ is +true+, sends a +SEL_RESTORE+ message to its message target.
     #
     def restore(notify=false); end
-    
+
     #
     # Close the window, return +true+ if actually closed. If _notify_ is +true+, the target
     # will receive a +SEL_CLOSE+ message to determine if it is OK to close the window.

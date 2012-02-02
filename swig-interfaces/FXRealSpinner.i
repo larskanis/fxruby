@@ -77,28 +77,28 @@ public:
 
   /// Increment spinner
   void increment(FXbool notify=FALSE);
-  
+
   /// Increment spinner by certain amount
   void incrementByAmount(FXdouble amount,FXbool notify=FALSE);
-  
+
   /// Decrement spinner
   void decrement(FXbool notify=FALSE);
-  
+
   /// Decrement spinner by certain amount
   void decrementByAmount(FXdouble amount,FXbool notify=FALSE);
-  
+
   /// Return TRUE if in cyclic mode
   FXbool isCyclic() const;
-  
+
   /// Set to cyclic mode, i.e. wrap around at maximum/minimum
   void setCyclic(FXbool cyclic);
-  
+
   /// Return TRUE if text is visible
   FXbool isTextVisible() const;
-  
+
   /// Set text visible flag
   void setTextVisible(FXbool shown);
-  
+
   /// Return current value
   FXdouble getValue() const;
 
@@ -109,7 +109,7 @@ public:
       FXRbRange2LoHi(range,lo,hi);
       self->setRange(lo,hi);
       }
-  
+
     /// Get the spinner's current range
     VALUE getRange() const {
       FXdouble lo,hi;
@@ -120,7 +120,7 @@ public:
 
   /// Change spinner increment
   void setIncrement(FXdouble increment);
-  
+
   /// Return spinner increment
   FXdouble getIncrement() const;
 
@@ -150,28 +150,28 @@ public:
 
   /// Change spinner style
   void setSpinnerStyle(FXuint style);
-  
+
   /// Return current spinner style
   FXuint getSpinnerStyle() const;
 
   /// Allow editing of the text field
   void setEditable(FXbool edit=TRUE);
-  
+
   /// Return TRUE if text field is editable
   FXbool isEditable() const;
-  
+
   /// Change color of the up arrow
   void setUpArrowColor(FXColor clr);
-  
+
   /// Return color of the up arrow
   FXColor getUpArrowColor() const;
-  
+
   /// Change color of the down arrow
   void setDownArrowColor(FXColor clr);
-  
+
   /// Return color of the the down arrow
   FXColor getDownArrowColor() const;
-  
+
   /// Change text color
   void setTextColor(FXColor clr);
 

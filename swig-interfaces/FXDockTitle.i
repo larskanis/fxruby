@@ -54,7 +54,7 @@ public:
       return new FXRbDockTitle(p,text,tgt,sel,opts,x,y,w,h,pl,pr,pt,pb);
       }
   }
-  
+
   /// Set the caption for the grip
   void setCaption(const FXString& text);
 

@@ -72,7 +72,7 @@ public:
     };
 public:
   %extend {
-   /// Construct toolbar tab 
+   /// Construct toolbar tab
    FXToolBarTab(FXComposite* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=FRAME_RAISED,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
      return new FXRbToolBarTab(p,tgt,sel,opts,x,y,w,h);
      }
@@ -80,22 +80,22 @@ public:
 
   /// Collapse or uncollapse the toolbar
   void collapse(FXbool fold,FXbool notify=FALSE);
-  
+
   /// Return true if the toolbar is collapsed
   FXbool isCollapsed() const;
 
   /// Change the tab style
   void setTabStyle(FXuint style);
-  
+
   /// Get current tab style
   FXuint getTabStyle() const;
-  
+
   /// Get the active color
   FXColor getActiveColor() const;
 
   /// Set the active color
   void setActiveColor(FXColor clr);
-  
+
   /// Set the tool tip message for the toolbar tab
   void setTipText(const FXString& text);
 

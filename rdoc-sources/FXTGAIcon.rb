@@ -7,7 +7,7 @@ module Fox
     # Return the suggested file extension for this image type ("tga").
     #
     def FXTGAIcon.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #
@@ -28,7 +28,7 @@ module Fox
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: theTGAIcon
     end
   end
-  
+
   #
   # Load a Targa file from a stream.
   # If successful, returns an array containing the image pixel data (as a
@@ -54,7 +54,7 @@ module Fox
   # +height+::		height [Integer]
   #
   def Fox.fxsaveTGA(store, data, channels, width, height); end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains a TGA image.
   #

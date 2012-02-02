@@ -22,7 +22,7 @@ module Fox
     def initialize(p, opts=SEPARATOR_GROOVE|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=0, padRight=0, padTop=0, padBottom=0) # :yields: theSeparator
     end
   end
-    
+
   #
   # Horizontal separator
   #

@@ -9,12 +9,12 @@ class TC_FXVec4f < Test::Unit::TestCase
   def test_new
     FXVec4f.new
   end
-  
+
   def test_new2
     vec1 = FXVec4f.new(1.0, 2.0, 3.0, 4.0)
     assert_equal(vec1, FXVec4f.new(vec1))
   end
-  
+
   def test_new3
     a = FXVec3f.new(1, 2, 3)
     b = FXVec4f.new(a)
@@ -23,7 +23,7 @@ class TC_FXVec4f < Test::Unit::TestCase
     assert_equal(3, b[2])
     assert_equal(1, b[3])
   end
-  
+
   def test_new4
     a = FXVec4f.new(1, 2, 3)
     assert_equal(1, a[0])
@@ -37,7 +37,7 @@ class TC_FXVec4f < Test::Unit::TestCase
     assert_equal(3, b[2])
     assert_equal(4, b[3])
   end
-  
+
   def test_new5
     c = FXVec4f.new(FXRGB(128, 128, 128))
   end
@@ -90,7 +90,7 @@ class TC_FXVec4f < Test::Unit::TestCase
     v2 = FXVec4f.new(6.0, 12.0, 18.0, 24.0)
     assert_equal(v2, v1 * 2)
   end
-  
+
   def test_mul2 # same as dot product
     v1 = FXVec4f.new(3.0, 6.0, 9.0, 12.0)
     v2 = FXVec4f.new(2.0, 4.0, 6.0, 8.0)
@@ -116,7 +116,7 @@ class TC_FXVec4f < Test::Unit::TestCase
 
   def test_length
     v = FXVec4f.new(1.0, 1.0, 1.0, 1.0)
-    assert_equal(2.0, v.length) 
+    assert_equal(2.0, v.length)
   end
 
   def test_normalize

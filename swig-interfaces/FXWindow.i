@@ -70,7 +70,7 @@ enum {
   PACK_UNIFORM_HEIGHT = 0x00008000,     /// Uniform height
   PACK_UNIFORM_WIDTH  = 0x00010000      /// Uniform width
   };
-  
+
 class FXCursor;
 class FXAccelTable;
 class FXComposite;
@@ -163,7 +163,7 @@ protected:
     };
 
 public:
-  
+
   // Message handlers
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onMap(FXObject*,FXSelector,void* PTR_EVENT);
@@ -252,9 +252,9 @@ public:
     ID_GETICONVALUE,
     ID_GETINTRANGE,
     ID_GETREALRANGE,
-    ID_SETHELPSTRING, 
-    ID_GETHELPSTRING, 
-    ID_SETTIPSTRING, 
+    ID_SETHELPSTRING,
+    ID_GETHELPSTRING,
+    ID_SETTIPSTRING,
     ID_GETTIPSTRING,
     ID_QUERY_MENU,
     ID_HOTKEY,
@@ -285,7 +285,7 @@ public:
     static VALUE octetTypeName() {
       return to_ruby(FXWindow::octetTypeName);
     }
-    
+
     static VALUE deleteTypeName() {
       return to_ruby(FXWindow::deleteTypeName);
     }
@@ -319,28 +319,28 @@ public:
     FXWindow(FXComposite* p,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbWindow(p,opts,x,y,w,h);
       }
-  
+
     // Shell window constructor
     FXWindow(FXApp* a,FXVisual *vis){
       return new FXRbWindow(a,vis);
       }
-    
+
     // Construct owned window
     FXWindow(FXApp* a,FXWindow* own,FXuint opts,FXint x,FXint y,FXint w,FXint h){
       return new FXRbWindow(a,own,opts,x,y,w,h);
       }
     }
 
-  /// Return a pointer to the parent window 
+  /// Return a pointer to the parent window
   FXWindow* getParent() const;
 
-  /// Return a pointer to the owner window 
+  /// Return a pointer to the owner window
   FXWindow* getOwner() const;
 
-  /// Return a pointer to the shell window  
+  /// Return a pointer to the shell window
   FXWindow* getShell() const;
 
-  /// Return a pointer to the root window 
+  /// Return a pointer to the root window
   FXWindow* getRoot() const;
 
   /// Return a pointer to the next (sibling) window, if any
@@ -370,10 +370,10 @@ public:
   /// Get the message target object for this window, if any
   FXObject* getTarget() const;
 
-  /// Set the message identifier for this window 
+  /// Set the message identifier for this window
   void setSelector(FXSelector sel);
 
-  /// Get the message identifier for this window 
+  /// Get the message identifier for this window
   FXSelector getSelector() const;
 
   /// Get this window's x-coordinate, in the parent's coordinate system
@@ -402,22 +402,22 @@ public:
   */
   void setHeight(FXint h);
 
-  /// Set layout hints for this window 
+  /// Set layout hints for this window
   void setLayoutHints(FXuint lout);
 
-  /// Get layout hints for this window 
+  /// Get layout hints for this window
   FXuint getLayoutHints() const;
 
-  /// Return a pointer to the accelerator table 
+  /// Return a pointer to the accelerator table
   FXAccelTable* getAccelTable() const;
 
-  /// Set the accelerator table 
+  /// Set the accelerator table
   void setAccelTable(FXAccelTable* acceltable);
 
   /// Add a hot key
   void addHotKey(FXHotKey code);
 
-  /// Remove a hot key 
+  /// Remove a hot key
   void remHotKey(FXHotKey code);
 
   /// Change help tag for this widget
@@ -441,11 +441,11 @@ public:
   /// Return the child window at specified coordinates
   FXWindow* getChildAt(FXint x,FXint y) const;
 
-  /// Return the number of child windows for this window 
+  /// Return the number of child windows for this window
   FXint numChildren() const;
 
   /**
-  * Return the index (starting from zero) of the specified child window, 
+  * Return the index (starting from zero) of the specified child window,
   * or -1 if the window is not a child or NULL
   */
   FXint indexOfChild(const FXWindow *window) const;
@@ -464,7 +464,7 @@ public:
   }
 
   /**
-  * Return the child window at specified index, 
+  * Return the child window at specified index,
   * or NULL if the index is negative or out of range
   */
   FXWindow* childAtIndex(FXint index) const;
@@ -482,26 +482,26 @@ public:
     bool before(const FXWindow *other) const { return FXWindow::before(self, other); }
     bool after(const FXWindow *other) const { return FXWindow::after(self, other); }
   }
-  
+
   /// Return compose context
   FXComposeContext* getComposeContext() const;
-  
+
   /// Create compose context
   void createComposeContext();
-  
+
   /// Destroy compose context
   void destroyComposeContext();
 
   /// Set the default cursor for this window
   void setDefaultCursor(FXCursor* cur);
 
-  /// Return the default cursor for this window 
+  /// Return the default cursor for this window
   FXCursor* getDefaultCursor() const;
 
   /// Set the drag cursor for this window
   void setDragCursor(FXCursor* cur);
 
-  /// Return the drag cursor for this window 
+  /// Return the drag cursor for this window
   FXCursor* getDragCursor() const;
 
   %extend {
@@ -535,14 +535,14 @@ public:
 
   /// Return true if this is the default window
   bool isDefault() const;
-  
+
   /// Make this window the initial default window
   void setInitial(bool enable=true);
-  
+
   /// Return true if this is the initial default window
   bool isInitial() const;
 
-  /// Generate a SEL_UPDATE message for the window and its children 
+  /// Generate a SEL_UPDATE message for the window and its children
   void forceRefresh();
 
   /// Scroll rectangle x,y,w,h by a shift of dx,dy
@@ -556,7 +556,7 @@ public:
 
   /// Process any outstanding repaint messages immediately, for the given rectangle
   void repaint(FXint x,FXint y,FXint w,FXint h) const;
-  
+
   /// If marked but not yet painted, paint the window now
   void repaint() const;
 
@@ -566,7 +566,7 @@ public:
   */
   void grab();
 
-  /// Release the mouse grab 
+  /// Release the mouse grab
   void ungrab();
 
   /// Return true if the window has been grabbed
@@ -640,7 +640,7 @@ public:
 
   /// Return true if a drag operaion has been initiated from this window
   bool isDragging() const;
-  
+
   %extend {
     /// Initiate a drag operation with a list of previously registered drag types
     bool beginDrag(VALUE typesArray){
@@ -658,37 +658,37 @@ public:
       return result;
       }
   }
-  
+
   /**
   * When dragging, inform the drop-target of the new position and
   * the drag action
   */
   bool handleDrag(FXint x,FXint y,FXDragAction action=DRAG_COPY);
-  
+
   /// Terminate the drag operation with or without actually dropping the data
   FXDragAction endDrag(bool drop=true);
-  
+
   /// Return true if this window is the target of a drop
   bool isDropTarget() const;
-  
+
   /**
   * When being dragged over, indicate that no further SEL_DND_MOTION messages
   * are required while the cursor is inside the given rectangle
   */
   void setDragRectangle(FXint x,FXint y,FXint w,FXint h,bool wantupdates=true) const;
-  
+
   /**
   * When being dragged over, indicate we want to receive SEL_DND_MOTION messages
   * every time the cursor moves
   */
   void clearDragRectangle() const;
-  
+
   /// When being dragged over, indicate acceptance or rejection of the dragged data
   void acceptDrop(FXDragAction action=DRAG_ACCEPT) const;
-  
+
   /// The target accepted our drop
   FXDragAction didAccept() const;
-  
+
   /**
   * Sent by the drop target in response to SEL_DND_DROP.  The drag action
   * should be the same as the action the drop target reported to the drag
@@ -703,7 +703,7 @@ public:
   void dropFinished(FXDragAction action=DRAG_REJECT) const;
 
   %extend {
-    // When being dragged over, inquire the drag types which are being offered 
+    // When being dragged over, inquire the drag types which are being offered
     VALUE inquireDNDTypes(FXDNDOrigin origin) const {
       FXDragType* types;
       FXuint numtypes;
@@ -719,10 +719,10 @@ public:
 
   /// When being dragged over, return true if we are offered the given drag type
   bool offeredDNDType(FXDNDOrigin origin,FXDragType type) const;
-  
+
   /// When being dragged over, return the drag action
   FXDragAction inquireDNDAction() const;
-  
+
   %extend {
     // Set DND data; ownership is transferred to the system
     void setDNDData(FXDNDOrigin origin, FXDragType type, VALUE str) const {
@@ -772,7 +772,7 @@ public:
       rb_ary_push(result, INT2NUM(toy));
       return result;
     }
-  
+
     // Translate coordinates from this window's coordinate space
     // to towindow's coordinate space
     VALUE translateCoordinatesTo(const FXWindow* towindow,
@@ -785,7 +785,7 @@ public:
       return result;
     }
   }
-  
+
   /// Get background color
   FXColor getBackColor() const;
 

@@ -41,10 +41,10 @@ module Fox
 
     # Pixel data [FXMemoryBuffer]
     attr_reader	:data
-    
+
     # Option flags [Integer]
     attr_accessor :options
-    
+
     #
     # Create an image.  If a client-side pixel buffer has been specified,
     # the image does not own the pixel buffer unless the +IMAGE_OWNED+ flag is
@@ -85,7 +85,7 @@ module Fox
     # +clr+::	new color value for this pixel [FXColor]
     #
     def setPixel(x, y, clr) ; end
-    
+
     # Scan the image and return +false+ if it's fully opaque.
     def hasAlpha?; end
 
@@ -104,7 +104,7 @@ module Fox
     # and if the image width and height are greater than zero.
     #
     def render() ; end
-  
+
     #
     # Release the client-side pixels buffer, free it if it was owned
     # (i.e. if the +IMAGE_OWNED+ option is set)..
@@ -131,7 +131,7 @@ module Fox
     # +quality+::	scaling algorithm quality, either 0 or 1 (see above) [Integer]
     #
     def scale(w, h, quality=0) ; end
-  
+
     #
     # Mirror image horizontally and/or vertically and then re-render the
     # server-side image from the client-side pixel buffer.
@@ -142,7 +142,7 @@ module Fox
     # +vertical+::	if +true+, the image will be flipped from top to bottom [Boolean]
     #
     def mirror(horizontal, vertical) ; end
-  
+
     #
     # Rotate image counter-clockwise by some number of degrees and then
     # re-render the server-side image from the client-side pixel buffer.
@@ -152,7 +152,7 @@ module Fox
     # +degrees+::	number of degrees by which to rotate the image [Integer]
     #
     def rotate(degrees) ; end
-  
+
     #
     # Crop image to given rectangle and then re-render the server-side image
     # from the client-side pixel buffer. This method calls resize() to adjust the client
@@ -169,10 +169,10 @@ module Fox
     # +color+::	fill color for blank areas after crop [FXColor]
     #
     def crop(x, y, w, h, color=0) ; end
-    
+
     # Fill image with uniform color.
     def fill(color); end
-    
+
     #
     # Fade an image to a certain color by a certain factor. The _factor_ is
     # some integer value between 0 and 255 inclusive, where a factor of 255 indicates no fading and a factor
@@ -251,7 +251,7 @@ module Fox
     # +color+::	  the blended color [FXColor]
     #
     def blend(color); end
-  
+
     #
     # Save pixel data to a stream.
     #
@@ -269,7 +269,7 @@ module Fox
     # +store+::	opened stream to which to save the pixel data [FXStream]
     #
     def savePixels(store) ; end
-  
+
     #
     # Load pixel data from a stream.
     #

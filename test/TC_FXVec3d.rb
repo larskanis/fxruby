@@ -23,7 +23,7 @@ class TC_FXVec3d < Test::Unit::TestCase
     assert_equal(3, vec[2])
     assert_equal(3, vec.z)
   end
-  
+
   def test_construct_from_color
     vec = FXVec3d.new(FXRGB(1, 1, 1))
     assert_in_delta(0.003921568627, vec.x, 1.0e-12)
@@ -44,7 +44,7 @@ class TC_FXVec3d < Test::Unit::TestCase
     assert_equal(2, v[1] = 2)
     assert_equal(3, v[2] = 3)
   end
-  
+
   def test_bounds_checks
     vec = FXVec3d.new
     assert_raises(IndexError) { vec[-1] }
@@ -52,7 +52,7 @@ class TC_FXVec3d < Test::Unit::TestCase
     assert_raises(IndexError) { vec[-1] = 0.0 }
     assert_raises(IndexError) { vec[3]  = 0.0 }
   end
-  
+
   def test_unary_minus
     assert_equal(FXVec3d.new(-1, -2, -3), -FXVec3d.new(1, 2, 3))
   end
@@ -100,12 +100,12 @@ class TC_FXVec3d < Test::Unit::TestCase
 
   def test_length
     v = FXVec3d.new(1, 1, 1)
-    assert_in_delta(Math.sqrt(3), v.length, 1.0e-12) 
+    assert_in_delta(Math.sqrt(3), v.length, 1.0e-12)
   end
 
   def test_length2
     v = FXVec3d.new(1, 1, 1)
-    assert_equal(3, v.length2) 
+    assert_equal(3, v.length2)
   end
 
   def test_normalize

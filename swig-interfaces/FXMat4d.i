@@ -57,10 +57,10 @@ public:
       if(x==0.0) rb_raise(rb_eZeroDivError,"divided by 0");
       return (*self)/x;
       }
-  
+
     /// Multiply matrix and vector
     FXVec4d operator*(const FXVec4d& other) const { return (*self)*other; }
-  
+
     /// Mutiply matrix and vector, for non-projective matrix
     FXVec3d operator*(const FXVec3d& v) const { return (*self)*v; }
     }

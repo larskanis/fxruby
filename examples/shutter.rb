@@ -46,7 +46,7 @@ class ShutterWindow < FXMainWindow
 
     # Menubar along the top
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-    
+
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "Quit\tCtl-Q", nil, getApp(), FXApp::ID_QUIT)
@@ -88,7 +88,7 @@ class ShutterWindow < FXMainWindow
     @shutter = FXShutter.new(splitter,
       :opts => FRAME_SUNKEN|LAYOUT_FILL_X|LAYOUT_FILL_Y,
       :padding => 0, :hSpacing => 0, :vSpacing => 0)
-    
+
     fatBot = loadIcon("FatBot.ico")
     angryGuy = loadIcon("AngryGuyInBunnySuit.ico")
     sawBlade = loadIcon("SawBlade.ico")
@@ -96,7 +96,7 @@ class ShutterWindow < FXMainWindow
     leGoon = loadIcon("LeGoon.ico")
     flippedySwitch = loadIcon("FlippedySwitch.ico")
     net = loadIcon("Net.ico")
-    
+
     shutterItem = ShutterItem.new(@shutter, "Lookout Shortcuts", nil, LAYOUT_FILL_Y)
     ShutterButton.new(shutterItem.content, "Lookout Today", fatBot).connect(SEL_COMMAND) { @switcher.current = 0 }
     ShutterButton.new(shutterItem.content, "Inbox", angryGuy).connect(SEL_COMMAND) { @switcher.current = 1 }
@@ -105,19 +105,19 @@ class ShutterWindow < FXMainWindow
     ShutterButton.new(shutterItem.content, "Tasks", leGoon).connect(SEL_COMMAND) { @switcher.current = 4 }
     ShutterButton.new(shutterItem.content, "Notes", flippedySwitch).connect(SEL_COMMAND) { @switcher.current = 5 }
     ShutterButton.new(shutterItem.content, "Deleted Items", net).connect(SEL_COMMAND) { @switcher.current = 6 }
-  
+
     shutterItem = ShutterItem.new(@shutter, "My Shortcuts")
     ShutterButton.new(shutterItem.content, "Drafts", fatBot).connect(SEL_COMMAND) { @switcher.current = 7 }
     ShutterButton.new(shutterItem.content, "Outbox", angryGuy).connect(SEL_COMMAND) { @switcher.current = 8 }
     ShutterButton.new(shutterItem.content, "Sent Items", sawBlade).connect(SEL_COMMAND) { @switcher.current = 9 }
     ShutterButton.new(shutterItem.content, "Journal", redMacOS).connect(SEL_COMMAND) { @switcher.current = 10 }
     ShutterButton.new(shutterItem.content, "Lookout Update", flippedySwitch).connect(SEL_COMMAND) { @switcher.current = 11 }
-  
+
     shutterItem = ShutterItem.new(@shutter, "Other Shortcuts")
     ShutterButton.new(shutterItem.content, "My Computer", angryGuy).connect(SEL_COMMAND) { @switcher.current = 12 }
     ShutterButton.new(shutterItem.content, "My Documents", net).connect(SEL_COMMAND) { @switcher.current = 13 }
     ShutterButton.new(shutterItem.content, "Favorites", leGoon).connect(SEL_COMMAND) { @switcher.current = 14 }
-      
+
     # Right pane is a switcher
     # For a real application, each panel in the switcher would have real, working contents...
     @switcher = FXSwitcher.new(splitter,

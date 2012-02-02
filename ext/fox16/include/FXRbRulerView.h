@@ -23,7 +23,7 @@
 /***********************************************************************
  * $Id: FXRbRuler.h 2190 2005-08-24 07:58:47Z lyle $
  ***********************************************************************/
- 
+
 #ifndef FXRBRULERVIEW_H
 #define FXRBRULERVIEW_H
 
@@ -41,10 +41,10 @@ public:
   /// Construct label with given text and icon
   FXRbRulerView(FXComposite* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0) :
   	FXRulerView(p,tgt,sel,opts,x,y,w,h) {}
-  
+
   // Mark dependencies for the GC
   static void markfunc(FXRulerView* self);
-  
+
   // Destructor
   virtual ~FXRbRulerView(){
     FXRbUnregisterRubyObj(this);

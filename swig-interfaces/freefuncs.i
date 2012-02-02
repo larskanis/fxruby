@@ -25,7 +25,7 @@
  * time is defined by FXRbObject::freefunc, and it is associated with
  * all of the classes as part of the DO_CLASS_SETUP macro (see exceptions.i).
  */
- 
+
 /**
  * Special cases.
  */

@@ -143,10 +143,10 @@ public:
 
   /// Change item icon
   void setItemIcon(FXint index,FXIcon* icon,FXbool owned=FALSE);
-  
+
   /// Return icon of item at index
   FXIcon* getItemIcon(FXint index) const;
-  
+
   %extend {
     /// Set data pointer for specified item
     void setItemData(FXint index,VALUE ptr) {
@@ -176,19 +176,19 @@ public:
 
   /// Change text color
   void setTextColor(FXColor clr);
-  
+
   /// Return text color
   FXColor getTextColor() const;
 
   /// Change selected background color
   void setSelBackColor(FXColor clr);
-  
+
   /// Return selected background color
   FXColor getSelBackColor() const;
 
   /// Change selected text color
   void setSelTextColor(FXColor clr);
-  
+
   /// Return selected text color
   FXColor getSelTextColor() const;
 

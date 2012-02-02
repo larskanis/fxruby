@@ -4,13 +4,13 @@ require 'RMagick'
 include Fox
 
 class RMagickExample < FXMainWindow
-  
+
   def initialize(app)
     super(app, "RMagick Example", :width => 800, :height => 600)
-    
+
     # Construct an ImageList
     dippy = Magick::ImageList.new(File.join("icons", "dippy.png"))
-    
+
     # Manipulate the image
     text = Magick::Draw.new
     text.annotate(dippy, 0, 0, 0, 60, "Dippy Duck") do
@@ -20,19 +20,19 @@ class RMagickExample < FXMainWindow
       self.fill = '#0000A9'
       self.font_weight = Magick::BoldWeight
     end
-        
+
     # Extract image data and use it to construct FXPNGImage
     dippy_image = FXPNGImage.new(app, dippy.to_blob)
-    
+
     # Display it inside an FXImageFrame
     FXImageFrame.new(self, dippy_image, :opts => LAYOUT_FILL)
   end
-  
+
   def create
     super
     show(PLACEMENT_SCREEN)
   end
-  
+
 end
 
 if __FILE__ == $0

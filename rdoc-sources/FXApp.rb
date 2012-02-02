@@ -1,61 +1,61 @@
 module Fox
-  # FOX Event 
+  # FOX Event
   class FXEvent
-  
+
     # Event type [Integer]
     attr_reader :type
-    
+
     # Time of last event [Integer]
     attr_reader :time
-    
+
     # Window-relative x-coordinate [Integer]
     attr_reader :win_x
-    
+
     # Window-relative y-coordinate [Integer]
     attr_reader :win_y
-    
+
     # Root window x-coordinate [Integer]
     attr_reader :root_x
-    
+
     # Root window y-coordinate [Integer]
     attr_reader :root_y
-    
+
     # Keyboard/modifier state [Integer]
     attr_reader :state
-    
+
     # Button, keysym or mode; DDE source [Integer]
     attr_reader :code
-    
+
     # Text of keyboard event [String]
     attr_reader :text
-    
+
     # Window-relative x-coordinate of previous mouse location [Integer]
     attr_reader :last_x
-    
+
     # Window-relative y-coordinate of previous mouse location [Integer]
     attr_reader :last_y
-    
+
     # Window-relative x-coordinate of mouse press [Integer]
     attr_reader :click_x
-    
+
     # Window-relative y-coordinate of mouse press [Integer]
     attr_reader :click_y
-    
+
     # Root window x-coordinate of mouse press [Integer]
     attr_reader :rootclick_x
-    
+
     # Root window y-coordinate of mouse press [Integer]
     attr_reader :rootclick_y
-    
+
     # Time of mouse button press [Integer]
     attr_reader :click_time
-    
+
     # Mouse button pressed [Integer]
     attr_reader :click_button
-    
+
     # Click count [Integer]
     attr_reader :click_count
-    
+
     # Target drag type being requested [Integer]
     attr_reader :target
 
@@ -93,7 +93,7 @@ module Fox
   #   When a signal handler object is registered with the application using
   #   the addSignal method, a +SEL_SIGNAL+ message may be sent to the message
   #   target.
-  # 
+  #
   # === File input modes for #addInput
   #
   # +INPUT_NONE+::		inactive
@@ -153,10 +153,10 @@ module Fox
 
     # Vendor name [String]
     attr_reader :vendorName
-    
+
     # Argument count [Integer]
     attr_reader :argc
-    
+
     # Argument vector [Array]
     attr_reader :argv
 
@@ -192,10 +192,10 @@ module Fox
 
     # Default background color for tooltips [FXColor]
     attr_accessor :tipbackColor
-    
+
     # Default text color for selected menu items [FXColor]
     attr_accessor :selMenuTextColor
-    
+
     # Default background color for selected menu items [FXColor]
     attr_accessor :selMenuBackColor
 
@@ -219,7 +219,7 @@ module Fox
 
     # The window at the end of the focus chain, if any [FXWindow]
     attr_reader :focusWindow
-    
+
     # The active top-level window, if any [FXWindow]
     attr_reader :activeWindow
 
@@ -265,13 +265,13 @@ module Fox
 
     # Number of wheel lines [Integer]
     attr_accessor :wheelLines
-    
+
     # Scroll bar size [Integer]
     attr_accessor :scrollBarSize
 
     # Amount of time (in milliseconds) to yield to Ruby's thread scheduler [Integer]
     attr_accessor :sleepTime
-    
+
     # Message translator [FXTranslator]
     attr_accessor :translator
 
@@ -290,7 +290,7 @@ module Fox
     # Open connection to display; this is called by #init.
     #
     def openDisplay(dpyname=nil) ; end
-  
+
     # Close connection to the display
     def closeDisplay() ; end
 
@@ -304,9 +304,9 @@ module Fox
     # Process any timeouts due at this time.
     #
     def handleTimeouts(); end
-    
+
     #
-    # Add signal processing message to be sent to target object when 
+    # Add signal processing message to be sent to target object when
     # the signal _sig_ is raised; flags are to be set as per POSIX definitions.
     # When _immediate_ is +true+, the message will be sent to the target right away;
     # this should be used with extreme care as the application is interrupted
@@ -367,7 +367,7 @@ module Fox
     # Run event loop while there are events are available in the queue.
     # Returns 1 when all events in the queue have been handled, and 0 when
     # the event loop was terminated due to #stop or #stopModal.
-    # Except for the modal window and its children, user input to all windows 
+    # Except for the modal window and its children, user input to all windows
     # is blocked; if the modal window is +nil+, all user input is blocked.
     #
     def runModalWhileEvents(window=nil); end
@@ -376,20 +376,20 @@ module Fox
     # until #stopModal is called.
     def runModal(); end
 
-    # Run a modal event loop for the given window, until #stop or #stopModal is 
+    # Run a modal event loop for the given window, until #stop or #stopModal is
     # called. Except for the modal window and its children, user input to all
     # windows is blocked; if the modal window is +nil+ all user input is blocked.
     def runModalFor(window); end
-  
-    # Run modal while window is shown, or until #stop or #stopModal is called. 
+
+    # Run modal while window is shown, or until #stop or #stopModal is called.
     # Except for the modal window and its children, user input to all windows
     # is blocked; if the modal window is +nil+ all user input is blocked.
     def runModalWhileShown(window); end
-  
+
     # Run popup menu while shown, until #stop or #stopModal is called.
     # Also returns when entering previous cascading popup menu.
     def runPopup(window); end
-  
+
     # Returns +true+ if the window is modal
     def modal?(window) ; end
 
@@ -397,13 +397,13 @@ module Fox
     # All more deeper nested event loops will be terminated with code equal
     # to 0, while the outermost event loop will return code equal to _value_.
     def stop(value=0); end
-  
+
     #
     # Break out of the matching modal loop, returning code equal to _value_.
     # All deeper nested event loops are terminated with code equal to 0.
     #
     def stopModal(window, value=0); end
-  
+
     #
     # Break out of the innermost modal loop, returning code equal to _value_.
     #
@@ -421,7 +421,7 @@ module Fox
     # Paint all windows marked for repainting.
     # On return all the applications windows have been painted.
     def repaint(); end
-  
+
     #
     # Return a reference to the registry (an FXRegistry instance).
     # The registry keeps settings and configuration information for an application,
@@ -438,7 +438,7 @@ module Fox
     # Exit application.
     # Closes the display and writes the registry.
     def exit(code=0); end
-  
+
     #
     # Register a drag type with the given name and return the drag
     # drag type. If this drag type has already been registered, this
@@ -461,25 +461,25 @@ module Fox
 
     # Beep
     def beep(); end
-  
+
     # Return application instance
     def FXApp.instance(); end
-  
+
     # End the most deeply nested wait-cursor block.
     # See also #beginWaitCursor.
     def endWaitCursor(); end
-  
+
     #
     # Return a reference to one of the default application cursors (an
     # FXCursor instance), where _which_ is one of the default cursor
     # identifiers listed above, e.g.
     #
     #   rotateCursor = app.getDefaultCursor(DEF_ROTATE_CURSOR)
-    # 
+    #
     # See also #setDefaultCursor.
     #
     def getDefaultCursor(which) ; end
-  
+
     #
     # Replace one of the default application cursors with _cursor_; e.g
     #
@@ -488,7 +488,7 @@ module Fox
     # See also #getDefaultCursor.
     #
     def setDefaultCursor(which, cursor); end
-  
+
     #
     # Write a window and its children, and all resources reachable from this
     # window, into the stream _store_ (an FXStream instance).
@@ -529,13 +529,13 @@ module Fox
 
     # Dump widget information
     def dumpWidgets() ; end
-    
+
     # Return the number of existing windows.
     def windowCount; end
-    
+
     # Enable support for multithreaded applications
     def enableThreads(); end
-  
+
     # Disable support for multithreaded applications
     def disableThreads(); end
 

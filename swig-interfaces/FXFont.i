@@ -34,7 +34,7 @@ enum FXFontEncoding {
   FONTENCODING_ISO_8859_2   = 2,        /// Central and East European (Latin2)
   FONTENCODING_ISO_8859_3   = 3,        /// Esperanto (Latin3)
   FONTENCODING_ISO_8859_4   = 4,
-  FONTENCODING_ISO_8859_5   = 5,                        /// Cyrillic (almost obsolete) 
+  FONTENCODING_ISO_8859_5   = 5,                        /// Cyrillic (almost obsolete)
   FONTENCODING_ISO_8859_6   = 6,        /// Arabic
   FONTENCODING_ISO_8859_7   = 7,        /// Greek
   FONTENCODING_ISO_8859_8   = 8,        /// Hebrew
@@ -80,29 +80,29 @@ enum FXFontEncoding {
 
   FONTENCODING_UNICODE      = 9999,
 
-  FONTENCODING_LATIN1      = FONTENCODING_ISO_8859_1,   /// Latin 1 (West European) 
-  FONTENCODING_LATIN2      = FONTENCODING_ISO_8859_2,   /// Latin 2 (East European) 
-  FONTENCODING_LATIN3      = FONTENCODING_ISO_8859_3,   /// Latin 3 (South European) 
-  FONTENCODING_LATIN4      = FONTENCODING_ISO_8859_4,   /// Latin 4 (North European) 
-  FONTENCODING_LATIN5      = FONTENCODING_ISO_8859_9,   /// Latin 5 (Turkish) 
-  FONTENCODING_LATIN6      = FONTENCODING_ISO_8859_10,  /// Latin 6 (Nordic) 
+  FONTENCODING_LATIN1      = FONTENCODING_ISO_8859_1,   /// Latin 1 (West European)
+  FONTENCODING_LATIN2      = FONTENCODING_ISO_8859_2,   /// Latin 2 (East European)
+  FONTENCODING_LATIN3      = FONTENCODING_ISO_8859_3,   /// Latin 3 (South European)
+  FONTENCODING_LATIN4      = FONTENCODING_ISO_8859_4,   /// Latin 4 (North European)
+  FONTENCODING_LATIN5      = FONTENCODING_ISO_8859_9,   /// Latin 5 (Turkish)
+  FONTENCODING_LATIN6      = FONTENCODING_ISO_8859_10,  /// Latin 6 (Nordic)
   FONTENCODING_LATIN7      = FONTENCODING_ISO_8859_13,  /// Latin 7 (Baltic Rim)
   FONTENCODING_LATIN8      = FONTENCODING_ISO_8859_14,  /// Latin 8 (Celtic)
   FONTENCODING_LATIN9      = FONTENCODING_ISO_8859_15,  /// Latin 9 AKA Latin 0
   FONTENCODING_LATIN10     = FONTENCODING_ISO_8859_16,  /// Latin 10
 
   FONTENCODING_USASCII     = FONTENCODING_ISO_8859_1,   /// Latin 1
-  FONTENCODING_WESTEUROPE  = FONTENCODING_ISO_8859_1,   /// Latin 1 (West European) 
-  FONTENCODING_EASTEUROPE  = FONTENCODING_ISO_8859_2,   /// Latin 2 (East European) 
-  FONTENCODING_SOUTHEUROPE = FONTENCODING_ISO_8859_3,   /// Latin 3 (South European) 
-  FONTENCODING_NORTHEUROPE = FONTENCODING_ISO_8859_4,   /// Latin 4 (North European) 
+  FONTENCODING_WESTEUROPE  = FONTENCODING_ISO_8859_1,   /// Latin 1 (West European)
+  FONTENCODING_EASTEUROPE  = FONTENCODING_ISO_8859_2,   /// Latin 2 (East European)
+  FONTENCODING_SOUTHEUROPE = FONTENCODING_ISO_8859_3,   /// Latin 3 (South European)
+  FONTENCODING_NORTHEUROPE = FONTENCODING_ISO_8859_4,   /// Latin 4 (North European)
   FONTENCODING_CYRILLIC    = FONTENCODING_ISO_8859_5,   /// Cyrillic
   FONTENCODING_RUSSIAN     = FONTENCODING_KOI8,         /// Cyrillic
   FONTENCODING_ARABIC      = FONTENCODING_ISO_8859_6,   /// Arabic
   FONTENCODING_GREEK       = FONTENCODING_ISO_8859_7,   /// Greek
   FONTENCODING_HEBREW      = FONTENCODING_ISO_8859_8,   /// Hebrew
-  FONTENCODING_TURKISH     = FONTENCODING_ISO_8859_9,   /// Latin 5 (Turkish) 
-  FONTENCODING_NORDIC      = FONTENCODING_ISO_8859_10,  /// Latin 6 (Nordic) 
+  FONTENCODING_TURKISH     = FONTENCODING_ISO_8859_9,   /// Latin 5 (Turkish)
+  FONTENCODING_NORDIC      = FONTENCODING_ISO_8859_10,  /// Latin 6 (Nordic)
   FONTENCODING_THAI        = FONTENCODING_ISO_8859_11,  /// Thai
   FONTENCODING_BALTIC      = FONTENCODING_ISO_8859_13,  /// Latin 7 (Baltic Rim)
   FONTENCODING_CELTIC      = FONTENCODING_ISO_8859_14   /// Latin 8 (Celtic)
@@ -224,17 +224,17 @@ public:
     FXFont(FXApp* a,const FXString& string){
       return new FXRbFont(a,string);
       }
-  
+
     /**
     * Construct a font with given name, size in points, weight, slant, character set
     * encoding, setwidth, and hints.
-    * The font name may be comprised of a family name and optional foundry name enclosed in 
+    * The font name may be comprised of a family name and optional foundry name enclosed in
     * square brackets, for example, "helvetica [bitstream]".
     */
     FXFont(FXApp* a,const FXString& face,FXuint sz,FXuint wt=FXFont::Normal,FXuint slant=FXFont::Straight,FXuint encoding=FONTENCODING_DEFAULT,FXuint setwidth=FXFont::NonExpanded,FXuint h=0){
       return new FXRbFont(a,face,sz,wt,slant,encoding,setwidth,h);
       }
-  
+
     /// Construct font from font description
     FXFont(FXApp* a,const FXFontDesc& fontdesc){
       return new FXRbFont(a,fontdesc);
@@ -249,13 +249,13 @@ public:
 
   /// Get font family name
   const FXString& getName() const;
-  
+
   /// Get actual family name
   const FXString& getActualName() const;
 
   /// Get size in deci-points
   FXuint getSize() const;
-  
+
   /// Get actual size in deci-points
   FXuint getActualSize() const;
 
@@ -267,7 +267,7 @@ public:
 
   /// Get slant
   FXuint getSlant() const;
-  
+
   /// Get actual slant
   FXuint getActualSlant() const;
 
@@ -297,7 +297,7 @@ public:
       return fontdesc;
     }
   }
-  
+
   /// Return angle
   FXint getAngle() const;
 

@@ -22,7 +22,7 @@
 
 %rename("dockingSide=") FXToolBar::setDockingSide(FXuint side);
 %rename("dockingSide")  FXToolBar::getDockingSide() const;
-  
+
 
 /**
  * A tool bar widget can be docked in a dock site; it automatically
@@ -38,7 +38,7 @@ public:
 public:
   %extend {
     /**
-     * Construct a floatable toolbar 
+     * Construct a floatable toolbar
      * Normally, the toolbar is docked under window p.
      * When floated, the toolbar can be docked under window q, which is
      * typically an FXToolBarShell window.
@@ -56,12 +56,12 @@ public:
       }
     }
 
-  /// Set docking side 
+  /// Set docking side
   void setDockingSide(FXuint side=LAYOUT_SIDE_TOP);
 
   /// Return docking side
   FXuint getDockingSide() const;
-  
+
   /// Destroy
   virtual ~FXToolBar();
   };

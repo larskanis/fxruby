@@ -99,7 +99,7 @@ public:
 
   /// Expand radius to include box
   FXSpheref& includeInRadius(const FXRangef& box);
- 
+
   /// Include given sphere into this one
   FXSpheref& include(const FXSpheref& sphere);
 

@@ -83,7 +83,7 @@ struct TextRange {
       FXMALLOC(&tr->lpstrText,char,size);
       return tr;
       }
-      
+
     // Destructor
     ~TextRange(){
       FXFREE(&self->lpstrText);
@@ -133,7 +133,7 @@ public:
 
   // Scintilla messaging
   void setScintillaID(int id);
-  
+
   %extend {
     VALUE sendMessage(unsigned int iMsg, VALUE wParam = Qnil, VALUE lParam = Qnil){
       // Convert wParam argument
@@ -175,7 +175,7 @@ public:
           break;
         }
       sptr_t result=self->sendMessage(iMsg,wp,lp);
-      return INT2NUM(result); 
+      return INT2NUM(result);
       }
   }
 

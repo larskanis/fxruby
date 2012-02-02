@@ -36,7 +36,7 @@ public:
       }
     }
 public:
-  
+
   /// Construct image from compiled-in X Pixmap format
   %extend {
     FXXPMImage(FXApp* a,const FXchar **pix=NULL,FXuint opts=0,FXint w=1,FXint h=1){

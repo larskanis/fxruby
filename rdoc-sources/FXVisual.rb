@@ -45,7 +45,7 @@ module Fox
 
     # Maximum number of colors [Integer]
     attr_accessor :maxColors
-    
+
     #
     # The visual type, one of +VISUALTYPE_MONO+, +VISUALTYPE_TRUE+
     # +VISUALTYPE_INDEX+ or +VISUALTYPE_GRAY+. The visual type
@@ -64,12 +64,12 @@ module Fox
     # +d+::	requested visual depth, in bits [Integer]
     #
     def initialize(a, flgs, d=32); end
-  
+
     #
     # Get device pixel value for color value _clr_.
     #
     def getPixel(clr); end
-  
+
     #
     # Get color value for device pixel value _pix_.
     #

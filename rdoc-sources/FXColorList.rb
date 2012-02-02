@@ -3,13 +3,13 @@ module Fox
   class FXColorItem < FXListItem
     # Item color [FXColor]
     attr_accessor :color
-    
+
     # Return a new color item, initialized with the given text, color and
     # user data.
     def initialize(text, clr, data=nil) # :yields: theColorItem
     end
   end
-  
+
   # Displays a list of colors
   class FXColorList < FXList
 

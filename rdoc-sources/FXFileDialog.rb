@@ -34,31 +34,31 @@ module Fox
 
     # File name [String]
     attr_accessor :filename
-    
+
     # List of selected filenames [Array]
     attr_reader :filenames
-    
+
     # File pattern [String]
     attr_accessor :pattern
-    
+
     # Current pattern number [Integer]
     attr_accessor :currentPattern
-    
+
     # Directory [String]
     attr_accessor :directory
-    
+
     # Inter-item spacing (in pixels) [Integer]
     attr_accessor :itemSpace
-    
+
     # File list style [Integer]
     attr_accessor :fileBoxStyle
-    
+
     # File selection mode [Integer]
     attr_accessor :selectMode
-    
+
     # Wildcard matching mode [Integer]
     attr_accessor :matchMode
-    
+
     # Image size for preview images [Integer]
     attr_accessor :imageSize
 
@@ -102,7 +102,7 @@ module Fox
 
     # Change pattern text for pattern number
     def setPatternText(patno, text); end
-  
+
     #
     # Return number of patterns
     #
@@ -112,7 +112,7 @@ module Fox
     # Change whether this file dialog allows pattern entry or not.
     #
     def allowsPatternEntry=(allowed); end
-    
+
     #
     # Return +true+ if this file dialog allows pattern entry
     #
@@ -120,13 +120,13 @@ module Fox
 
     # Set visibility of the read-only button, where _shown_ is either +true+ or +false+
     def showReadOnly=(shown); end
-    
+
     # Return +true+ if read-only button is shown
     def readOnlyShown?; end
-    
+
     # Return +true+ if showing hidden files and directories
     def hiddenFilesShown?; end
-    
+
     #
     # If _state_ is +true+, the file dialog will show hidden files and
     # directories; otherwise, it won't.
@@ -138,18 +138,18 @@ module Fox
     # otherwise it won't.
     #
     def imagesShown=(shown); end
-    
+
     #
     # Return +true+ if the file dialog is showing preview images.
     #
     def imagesShown? ; end
-    
+
     # Set initial state of read-only button, where _state_ is either +true+ or +false+
     def readOnly=(state); end
-  
+
     # Return +true+ if read-only
     def readOnly?; end
-  
+
     # Return +true+ if navigation allowed.
     def navigationAllowed?; end
 
@@ -170,7 +170,7 @@ module Fox
     # +initial+::	the initial pattern to be used (an index into the pattern list) [Integer]
     #
     def FXFileDialog.getOpenFilename(owner, caption, path, patterns="*", initial=0); end
-  
+
     #
     # Display a dialog box that allows the user to select multiple existing file names
     # for opening.
@@ -185,7 +185,7 @@ module Fox
     # +initial+::	the initial pattern to be used (an index into the pattern list) [Integer]
     #
     def FXFileDialog.getOpenFilenames(owner, caption, path, patterns="*", initial=0); end
-  
+
     #
     # Display a dialog box that allows the user to select an existing file name, or
     # enter a new file name, for saving.
@@ -200,7 +200,7 @@ module Fox
     # +initial+::	the initial pattern to be used (an index into the pattern list) [Integer]
     #
     def FXFileDialog.getSaveFilename(owner, caption, path, patterns="*", initial=0); end
-  
+
     #
     # Display a dialog box that allows the user to select a directory.
     # Returns the directory name (a String).

@@ -17,7 +17,7 @@ class TC_FXScrollWindow < Fox::TestCase
     assert_kind_of(Integer, pos[0])
     assert_kind_of(Integer, pos[1])
   end
-  
+
   def test_setPosition
     @scrollWindow.setPosition(0, 0)
   end

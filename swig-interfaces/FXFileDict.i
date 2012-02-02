@@ -71,7 +71,7 @@ public:
     FXFileDict(FXApp* a){
       return new FXRbFileDict(a);
       }
-  
+
     /**
     * Construct a dictionary mapping file-extension to file associations,
     * using the specified settings database as a source for the bindings.
@@ -110,7 +110,7 @@ public:
 
   /// Find file association from registry
   FXFileAssoc* find(const FXchar* ext);
-  
+
   /// Destructor
   virtual ~FXFileDict();
   };

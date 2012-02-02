@@ -90,10 +90,10 @@ public:
 
   /// Return tab bar style
   FXuint getTabStyle() const;
-  
+
   /// Change tab tab style
   void setTabStyle(FXuint style);
-  
+
   /// Destructor
   virtual ~FXTabBar();
   };

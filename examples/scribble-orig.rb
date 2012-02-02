@@ -172,13 +172,13 @@ end
 def run
   # Construct the application object
   application = FXApp.new('Scribble', 'FoxTest')
-  
+
   # Construct the main window
   scribble = ScribbleWindow.new(application)
-  
+
   # Create the application
   application.create
-  
+
   # Run the application
   application.run
 end

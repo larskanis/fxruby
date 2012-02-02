@@ -12,32 +12,32 @@ module Fox
   class FX7Segment < FXFrame
     # The text for this label [String]
     attr_accessor :text
-    
+
     # The text color [FXColor]
     attr_accessor :textColor
-    
+
     # Cell width, in pixels [Integer]
     attr_accessor :cellWidth
-    
+
     # Cell height, in pixels [Integer]
     attr_accessor :cellHeight
-    
+
     # Segment thickness, in pixels [Integer]
     attr_accessor :thickness
-    
+
     # Current text-justification mode [Integer]
     attr_accessor :justify
-    
+
     # Status line help text [String]
     attr_accessor :helpText
-    
+
     # Tool tip message [String]
     attr_accessor :tipText
-    
+
     # Create a seven segment display
     def initialize(p, text, opts=SEVENSEGMENT_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: the7Segment
     end
-  
+
     #
     # Change 7 segment style, where _style_ is either +SEVENSEGMENT_NORMAL+ or
     # +SEVENSEGMENT_SHADOW+.

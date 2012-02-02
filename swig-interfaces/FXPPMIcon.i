@@ -52,8 +52,8 @@ DECLARE_FXOBJECT_VIRTUALS(FXPPMIcon)
 DECLARE_FXID_VIRTUALS(FXPPMIcon)
 DECLARE_FXDRAWABLE_VIRTUALS(FXPPMIcon)
 DECLARE_FXIMAGE_VIRTUALS(FXPPMIcon)
-  
-  
+
+
 %inline %{
   /**
    * Load an PPM (Portable Pixmap Format) file from a stream.

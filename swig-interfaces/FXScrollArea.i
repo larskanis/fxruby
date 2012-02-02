@@ -22,8 +22,8 @@
 
 /// ScrollBar options
 enum {
-  SCROLLERS_NORMAL     = 0,                                 /// Show the scrollbars when needed 
-  HSCROLLER_ALWAYS     = 0x00008000,                        /// Always show horizontal scrollers 
+  SCROLLERS_NORMAL     = 0,                                 /// Show the scrollbars when needed
+  HSCROLLER_ALWAYS     = 0x00008000,                        /// Always show horizontal scrollers
   HSCROLLER_NEVER      = 0x00010000,                        /// Never show horizontal scrollers
   VSCROLLER_ALWAYS     = 0x00020000,                        /// Always show vertical scrollers
   VSCROLLER_NEVER      = 0x00040000,                        /// Never show vertical scrollers
@@ -48,8 +48,8 @@ class FXScrollCorner;
 * Depending on the mode, scrollbars may be displayed on an as-needed
 * basis, always, or never.
 * Normally, the scroll area's size and the content's size are independent;
-* however, it is possible to disable scrolling in the horizontal 
-* (vertical) direction.  In this case, the content width (height) 
+* however, it is possible to disable scrolling in the horizontal
+* (vertical) direction.  In this case, the content width (height)
 * will influence the width (height) of the scroll area widget.
 * For content which is time-consuming to repaint, continuous
 * scrolling may be turned off.
@@ -87,13 +87,13 @@ public:
 
   /// Change scroll style
   void setScrollStyle(FXuint style);
-  
+
   /// Return scroll style
   FXuint getScrollStyle() const;
-  
+
   /// Return TRUE if horizontally scrollable
   FXbool isHorizontalScrollable() const;
-  
+
   /// Return TRUE if vertically scrollable
   FXbool isVerticalScrollable() const;
 

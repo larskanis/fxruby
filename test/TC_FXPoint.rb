@@ -20,7 +20,7 @@ class TC_FXPoint < Test::Unit::TestCase
   # FXPoint's '==' method, which is the point of this test
   def test_equals
     assert_equal(@point2, @point3)
-  
+
     samePoint1 = FXPoint.new
     samePoint1.x = @point1.x
     samePoint1.y = @point1.y

@@ -3,12 +3,12 @@ module Fox
   # JPEG Image class
   #
   class FXJPGImage < FXImage
-  
+
     #
     # Return the suggested file extension for this image type ("jpg").
     #
     def FXJPGImage.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #

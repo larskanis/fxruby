@@ -41,19 +41,19 @@ class FXVisual;
  * The Window Device Context allows drawing into an FXDrawable, such as an
  * on-screen window (FXWindow and derivatives) or an off-screen image (FXImage
  * and its derivatives).
- * Because certain hardware resources are locked down, only one FXDCWindow may be 
+ * Because certain hardware resources are locked down, only one FXDCWindow may be
  * locked on a drawable at any one time.
- */ 
+ */
 class FXDCWindow : public FXDC {
 public:
-  %extend {  
+  %extend {
     /// Construct for painting in response to expose;
     /// This sets the clip rectangle to the exposed rectangle
     FXDCWindow(FXDrawable* drawable,FXEvent* event){
       return new FXRbDCWindow(drawable,event);
       }
-  
-    /// Construct for normal drawing; 
+
+    /// Construct for normal drawing;
     /// This sets clip rectangle to the whole drawable
     FXDCWindow(FXDrawable* drawable){
       return new FXRbDCWindow(drawable);
@@ -62,10 +62,10 @@ public:
 
   /// Begin locks in a drawable surface
   void begin(FXDrawable *drawable);
-  
-  /// End unlock the drawable surface 
+
+  /// End unlock the drawable surface
   void end();
-  
+
   /// Destructor
   virtual ~FXDCWindow();
   };

@@ -108,7 +108,7 @@ public:
   virtual void layout();
 
   /**
-  * Change currently active tab item; this raises the active tab item 
+  * Change currently active tab item; this raises the active tab item
   * slightly above the neighboring tab items.  If notify=TRUE then the
   * tab bar will also send a SEL_COMMAND message to its target.
   */

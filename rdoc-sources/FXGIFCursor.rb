@@ -13,8 +13,8 @@ module Fox
     #
     def initialize(a, pix, hx=-1, hy=-1) # :yields: theGIFCursor
     end
-  end  
-  
+  end
+
   #
   # Save a GIF (Graphics Interchange Format) image to a stream.
   # If _fast_ is +true+, the faster Floyd-Steinberg dither method will be used
@@ -30,7 +30,7 @@ module Fox
   # +fast+::	if +true+, use faster Floyd-Steinberg algorithm [Boolean]
   #
   def Fox.fxsaveGIF(store, data, width, height, fast=true); end
-  
+
   #
   # Load a GIF file from a stream.
   # If successful, returns an array containing the image pixel data (as a

@@ -3,7 +3,7 @@ module Fox
   # An FXFoldingItem is an item in an FXFoldingList widget.
   #
   class FXFoldingItem < FXObject
-  
+
     # Parent item [FXFoldingItem]
     attr_reader		:parent
 
@@ -58,31 +58,31 @@ module Fox
     # Construct a new folding item
     def initialize(text, openIcon=nil, closedIcon=nil, data=nil) # :yields: theItem
     end
-    
+
     # Set the focus on this folding item (_focus_ is either +true+ or +false+)
     def setFocus(focus) ; end
 
     # Returns +true+ if this item has the focus
     def hasFocus? ; end
-    
+
     # Returns +true+ if this item is selected
     def selected? ; end
-    
+
     # Returns +true+ if this item is opened
     def opened? ; end
-    
+
     # Returns +true+ if this item is expanded
     def expanded? ; end
-    
+
     # Returns +true+ if this item is enabled
     def enabled? ; end
-    
+
     # Returns +true+ if this item is draggable
     def draggable? ; end
-    
+
     # Return +true+ if subitems, real or imagined
     def hasItems?; end
-    
+
     # Change has items flag to +true+ or +false+.
     def hasItems=(flag); end
 
@@ -100,13 +100,13 @@ module Fox
     def to_s
       text
     end
-    
+
     # Get the width of this item
     def getWidth(foldingList) ; end
-    
+
     # Get the height of this item
     def getHeight(foldingList) ; end
-    
+
     # Create this folding item
     def create; end
 
@@ -115,13 +115,13 @@ module Fox
 
     # Destroy this folding item
     def destroy; end
-    
+
     #
     # Change open icon to _icn_, deleting old icon if it was owned.
     # If _owned_ is +true+, mark _icn_ as owned by this folding item.
     #
     def setOpenIcon(icn, owned=false); end
-    
+
     #
     # Change closed icon to _icn_, deleting old icon if it was owned.
     # If _owned_ is +true+, mark _icn_ as owned by this folding item.
@@ -129,7 +129,7 @@ module Fox
     def setClosedIcon(icn, owned=false); end
   end
 
-  # 
+  #
   # An FXFoldingList widget resembles an FXTreeList, but it supports a
   # header control to provide each item with multiple columns of text.
   # Subtrees can be collapsed or expanded by double-clicking on an item
@@ -190,10 +190,10 @@ module Fox
 
     # Header control [FXHeader]
     attr_reader :header
-    
+
     # Number of header items [Integer]
     attr_reader :numHeaders
-    
+
     # Number of items [Integer]
     attr_reader	:numItems
 
@@ -288,39 +288,39 @@ module Fox
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after each item is added.
     def fillItems(father, strings, oi=nil, ci=nil, ptr=nil, notify=false); end
-  
+
     # Insert a (possibly subclassed) _item_ under _father_, before _other_.
     # Returns a reference to the newly added item (an FXFoldingItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def insertItem(other, father, item, notify=false); end
-  
+
     # Insert item with given text and optional icons, and user-data pointer under _father_ before _other_ item..
     # Returns a reference to the newly added item (an FXFoldingItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def insertItem(other, father, text, oi=nil, ci=nil, ptr=nil, notify=false); end
-  
-    # Append (possibly subclassed) _item_ as last child of _father_.. 
+
+    # Append (possibly subclassed) _item_ as last child of _father_..
     # Returns a reference to the newly added item (an FXFoldingItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def appendItem(father, item, notify=false); end
-  
+
     # Append a new item with given _text_ and optional _openIcon_, _closedIcon_ and user _data_
-    # as last child of _father_. 
+    # as last child of _father_.
     # Returns a reference to the newly added item (an FXFoldingItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def appendItem(father, text, oi=nil, ci=nil, ptr=nil, notify=false); end
-  
-    # Prepend (possibly subclassed) _item_ as first child of _father_. 
+
+    # Prepend (possibly subclassed) _item_ as first child of _father_.
     # Returns a reference to the newly added item (an FXFoldingItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
     def prependItem(father, item, notify=false); end
-  
-    # Prepend a new item with given _text_ and optional icons and user data as first child of _father_. 
+
+    # Prepend a new item with given _text_ and optional icons and user data as first child of _father_.
     # Returns a reference to the newly added item (an FXFoldingItem instance).
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message
     # target after the item is added.
@@ -354,10 +354,10 @@ module Fox
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message
     # target before each item is removed.
     def clearItems(notify=false); end
-  
+
     # Return item width
     def getItemWidth(item); end
-  
+
     # Return item height
     def getItemHeight(item); end
 
@@ -381,36 +381,36 @@ module Fox
 
     # Scroll the list to make _item_ visible
     def makeItemVisible(item); end
-  
+
     # Change item's text
     def setItemText(item, text); end
-    
+
     # Return item's text
     def getItemText(item); end
-  
+
     # Change item's open icon, deleting old icon if it was owned.
     # If _owned_ is +true+, mark _icn_ as owned by this folding item.
     def setItemOpenIcon(item, icn, owned=false); end
-    
+
     # Return item's open icon
     def getItemOpenIcon(item); end
-    
+
     # Change item's closed icon, deleting old icon if it was owned.
     # If _owned_ is +true+, mark _icn_ as owned by this folding item.
     def setItemClosedIcon(item, icn, owned=false); end
-    
+
     # Return item's closed icon
     def getItemClosedIcon(item); end
-  
+
     # Change item's user data
     def setItemData(item, data); end
-  
+
     # Return item's user data
     def getItemData(item); end
-  
+
     # Return +true+ if item is selected
     def itemSelected?(item); end
-    
+
     # Return +true+ if item is current
     def itemCurrent?(item); end
 
@@ -422,10 +422,10 @@ module Fox
 
     # Return +true+ if item expanded
     def itemExpanded?(item); end
-  
+
     # Return +true+ if item is a leaf-item, i.e. has no children
     def itemLeaf?(item); end
-  
+
     # Return +true+ if item is enabled
     def itemEnabled?(item); end
 
@@ -434,13 +434,13 @@ module Fox
 
     # Repaint item
     def updateItem(item); end
-  
+
     # Enable item
     def enableItem(item); end
-  
+
     # Disable item
     def disableItem(item); end
-  
+
     # Select item.
     # If _notify_ is +true+, a +SEL_SELECTED+ message is sent to the list's
     # message target after the item is selected.
@@ -450,22 +450,22 @@ module Fox
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the list's
     # message target after the item is deselected.
     def deselectItem(item, notify=false); end
-  
+
     # Toggle item selection.
     # If _notify_ is +true+, a +SEL_SELECTED+ or +SEL_DESELECTED+ message is
     # sent to the list's message target to indicate the change.
     def toggleItem(item, notify=false); end
-  
+
     # Open item.
     # If _notify_ is +true+, a +SEL_OPENED+ message is sent to the list's
     # message target after the item is opened.
     def openItem(item, notify=false); end
-  
+
     # Close item.
     # If _notify_ is +true+, a +SEL_CLOSED+ message is sent to the list's
     # message target after the item is closed.
     def closeItem(item, notify=false); end
-  
+
     # Collapse sub-tree rooted at _tree_.
     # If _notify_ is +true+, a +SEL_COLLAPSED+ message is sent to the list's
     # message target after the sub-tree is collapsed.
@@ -475,28 +475,28 @@ module Fox
     # If _notify_ is +true+, a +SEL_EXPANDED+ message is sent to the list's
     # message target after the sub-tree is expanded.
     def expandTree(tree, notify=false); end
-  
+
     # Change current item.
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the list's
     # message target after the current item changes.
     def setCurrentItem(item, notify=false); end
-  
+
     # Extend selection from anchor item to _item_.
     # If _notify_ is +true+, a series of +SEL_SELECTED+ and +SEL_DESELECTED+
     # messages may be sent to the list's message target, indicating the changes.
     def extendSelection(item, notify=false); end
-    
+
     # Deselect all items.
     # If _notify_ is +true+, +SEL_DESELECTED+ messages will be sent to the list's
     # message target indicating the affected items.
     def killSelection(notify=false); end
-    
+
     # Sort all items recursively
     def sortItems(); end
 
     # Sort root items
     def sortRootItems(); end
-    
+
     # Sort children of _item_
     def sortChildItems(item); end
   end

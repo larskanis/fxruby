@@ -9,12 +9,12 @@ class TC_FXList < Fox::TestCase
     super(self.class.name)
     @list = FXList.new(mainWindow)
   end
-  
+
   def test_numVisible
     @list.numVisible = 7
     assert_equal(7, @list.numVisible)
   end
-  
+
   def test_appendItem_byItem
     items = []
     0.upto(4) do |i|
@@ -42,7 +42,7 @@ class TC_FXList < Fox::TestCase
     @list << FXListItem.new("item3")
     assert_equal(3, @list.numItems)
   end
-  
+
   def test_appendItem_byText
     assert_equal(0, @list.numItems)
     itemIndex = @list.appendItem("")
@@ -62,7 +62,7 @@ class TC_FXList < Fox::TestCase
     end
     assert_equal(6, @list.numItems)
   end
-  
+
   def test_getItem
     assert_raises(IndexError) {
       @list.getItem(0)
@@ -100,7 +100,7 @@ class TC_FXList < Fox::TestCase
     assert_equal(0, @list.moveItem(0, 1))
     assert_equal(1, @list.moveItem(1, 0))
   end
-  
+
   def test_makeItemVisible
     items = []
     0.upto(2) { |i|

@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 struct FXFileAssoc;
-class  FXFileDict; 
+class  FXFileDict;
 class  FXIcon;
 
 
@@ -81,7 +81,7 @@ public:
 
   /// Return the date for this item
   FXTime getDate() const;
-  
+
   /// Destructor
   virtual ~FXFileItem();
   };
@@ -279,7 +279,7 @@ public:
 
   /// Return full pathname of item at index
   FXString getItemPathname(FXint index) const;
-  
+
   /// Return file association of item
   FXFileAssoc* getItemAssoc(FXint index) const;
 
@@ -289,18 +289,18 @@ public:
   /// Change wildcard matching mode
   void setMatchMode(FXuint mode);
 
-  /// Return TRUE if showing hidden files 
+  /// Return TRUE if showing hidden files
   FXbool showHiddenFiles() const;
-  
+
   /// Show or hide hidden files
   void showHiddenFiles(FXbool showing);
-  
+
   /// Return TRUE if showing directories only
   FXbool showOnlyDirectories() const;
-  
+
   /// Show directories only
   void showOnlyDirectories(FXbool shown);
-  
+
   /// Return TRUE if showing files only
   FXbool showOnlyFiles() const;
 
@@ -315,10 +315,10 @@ public:
 
   /// Return images preview size
   FXint getImageSize() const;
-  
+
   /// Change images preview size
   void setImageSize(FXint size);
-  
+
   /// Return TRUE if showing parent directories
   FXbool showParents() const;
 
@@ -327,7 +327,7 @@ public:
 
   /// Change file associations
   void setAssociations(FXFileDict* assoc);
-  
+
   /// Return file associations
   FXFileDict* getAssociations() const;
 

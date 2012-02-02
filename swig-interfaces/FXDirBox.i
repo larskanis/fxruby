@@ -45,7 +45,7 @@ public:
 
   /// Set current directory
   void setDirectory(const FXString& pathname);
-  
+
   /// Return current directory
   FXString getDirectory() const;
 

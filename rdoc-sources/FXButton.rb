@@ -45,10 +45,10 @@ module Fox
   # +BUTTON_NORMAL+::   Default button flags (<tt>FRAME_RAISED|FRAME_THICK|JUSTIFY_NORMAL|ICON_BEFORE_TEXT</tt>)
   #
   class FXButton < FXLabel
-  
+
     # Button state (one of +STATE_UP+, +STATE_DOWN+, etc.) [Integer]
     attr_accessor :state
-    
+
     # Button style flags (some combination of +BUTTON_AUTOGRAY+, +BUTTON_AUTOHIDE+, etc.) [Integer]
     attr_accessor :buttonStyle
 

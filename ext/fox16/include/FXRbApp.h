@@ -129,7 +129,7 @@ public:
 public:
   // Constructor
   FXRbApp(const FXchar* name,const FXchar* vendor);
-  
+
   // Construct and call init()
   static FXRbApp* constructAndInit(const FXchar* name,const FXchar* vendor);
 

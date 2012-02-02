@@ -259,7 +259,7 @@ public:
   // Enumerate items
   static void enumerateItem(FXFoldingItem* item,FXObjectListOf<FXFoldingItem>& items);
   static void enumerateItems(FXFoldingItem* fm,FXFoldingItem* to,FXObjectListOf<FXFoldingItem>& items);
-  
+
   // Destructor
   virtual ~FXRbFoldingList(){
     FXRbFoldingList::unregisterOwnedObjects(this);

@@ -4,7 +4,7 @@ module Fox
   # windows such that one of them is placed on top; all other
   # child windows are hidden.
   # Switcher provides a convenient method to conserve screen
-  # real-estate by arranging several GUI panels to appear in the 
+  # real-estate by arranging several GUI panels to appear in the
   # same space, depending on context.
   # Switcher ignores all layout hints from its children; all
   # children are stretched according to the switcher layout
@@ -66,7 +66,7 @@ module Fox
     #
     def initialize(p, opts=0, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING) # :yields: theSwitcher
     end
-  
+
     #
     # Raise the child window at _index_ to the top of the stack.
     # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the switcher's message target

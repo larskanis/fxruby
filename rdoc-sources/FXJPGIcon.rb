@@ -3,7 +3,7 @@ module Fox
   # JPEG icon class
   #
   class FXJPGIcon < FXIcon
-  
+
     #
     # Return the suggested file extension for this image type ("jpg").
     #
@@ -13,7 +13,7 @@ module Fox
     # Return the MIME type for this image type
     #
     def FXJPGIcon.mimeType; end
-    
+
     # Return +true+ if JPEG image file format is supported.
     def FXJPGIcon.supported? ; end
 
@@ -46,7 +46,7 @@ module Fox
   # +store+::	stream from which to read the file data [FXStream]
   #
   def Fox.fxloadJPG(store); end
-  
+
   #
   # Save a JPEG image to a stream.
   # Returns +true+ on success, +false+ on failure.

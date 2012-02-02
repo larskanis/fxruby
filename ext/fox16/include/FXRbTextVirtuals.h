@@ -7,7 +7,7 @@ public:
 
   // Overrides the base class version of killSelection()
   virtual FXbool killSelection(FXbool notify=FALSE);
-  
+
   /// Overrides the base class versions of replaceText()
   virtual void replaceText(FXint pos,FXint m,const FXchar *text,FXint n,FXbool notify=FALSE);
   virtual void replaceText(FXint pos,FXint m,const FXString& text,FXbool notify=FALSE);
@@ -37,7 +37,7 @@ public:
 
   /// Overrides the base class version of changeStyle()
   virtual void changeStyle(FXint pos,FXint n,FXint style);
- 
+
   /// Overrides the base class versions of changeStyle()
   virtual void changeStyle(FXint pos,const FXchar* style,FXint n);
   virtual void changeStyle(FXint pos,const FXString& style);
@@ -45,7 +45,7 @@ public:
   /// Overrides the base class versions of setText()
   virtual void setText(const FXchar* text,FXint n,FXbool notify=FALSE);
   virtual void setText(const FXString& text,FXbool notify=FALSE);
- 
+
   /// Overrides the base class versions of setStyledText()
   virtual void setStyledText(const FXchar* text,FXint n,FXint style=0,FXbool notify=FALSE);
   virtual void setStyledText(const FXString& text,FXint style=0,FXbool notify=FALSE);

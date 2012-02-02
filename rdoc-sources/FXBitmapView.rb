@@ -21,10 +21,10 @@ module Fox
   # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
   #
   class FXBitmapView < FXScrollArea
-  
+
     # The bitmap [FXBitmap]
     attr_accessor :bitmap
-    
+
     # The color used for the "on" bits in the bitmap [FXColor]
     attr_accessor :onColor
 

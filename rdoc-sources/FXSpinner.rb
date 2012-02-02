@@ -44,10 +44,10 @@ module Fox
 
     # Tool tip text for this spinner [String]
     attr_accessor :tipText
-    
+
     # Spinner style [Integer]
     attr_accessor :spinnerStyle
-    
+
     # Color of the "up" arrow [FXColor]
     attr_accessor :upArrowColor
 
@@ -90,33 +90,33 @@ module Fox
     #
     def initialize(p, cols, target=nil, selector=0, opts=SPIN_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theSpinner
     end
-  
+
     # Increment spinner
     def increment(notify=FALSE); end
-    
+
     # Increment spinner by certain amount
     def incrementByAmount(amt, notify=false); end
-  
+
     # Decrement spinner
     def decrement(notify=FALSE); end
-    
+
     # Decrement spinner by certain amount
     def decrementByAmount(amt, notify=false); end
-  
+
     # Return +true+ if the spinner is in cyclic mode.
     def cyclic?; end
-  
+
     #
     # Set to cyclic mode, i.e. wrap around at maximum/minimum.
     #
     def cyclic=(cyc); end
-  
+
     # Return +true+ if this spinner's text field is visible.
     def textVisible?; end
-  
+
     # Set the visibility of this spinner's text field.
     def textVisible=(shown); end
-  
+
     #
     # Change the spinner increment value, i.e. the amount by which the spinner's
     # value increases when the up arrow is clicked.
@@ -128,7 +128,7 @@ module Fox
 
     # Set the "editability" of this spinner's text field.
     def editable=(ed); end
-  
+
     # Return +true+ if the spinner's text field is editable.
     def editable?; end
   end

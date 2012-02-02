@@ -57,10 +57,10 @@ class Application < FXApp
     init(ARGV)
 
     @mainWindow = FXMainWindow.new(self, appName, nil, nil, DECOR_ALL, 0, 0, 400, 600)
-    @dirTree = DirTree.new(@mainWindow) 
+    @dirTree = DirTree.new(@mainWindow)
 
     @count = 0
-  end 
+  end
 
   def create
     super
@@ -83,10 +83,10 @@ end
 if __FILE__ == $0
 # Make application
   application = Application.new
-  
-  # Create app  
+
+  # Create app
   application.create()
-  
+
   # Run
   application.run()
 end

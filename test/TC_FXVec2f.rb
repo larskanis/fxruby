@@ -21,7 +21,7 @@ class TC_FXVec2f < Test::Unit::TestCase
     assert_equal(3.0, vec[1])
     assert_equal(3.0, vec.y)
   end
-  
+
   def test_getitem
     vec = FXVec2f.new(2.0, 3.0)
     assert_equal(2.0, vec[0])
@@ -90,12 +90,12 @@ class TC_FXVec2f < Test::Unit::TestCase
 
   def test_length
     v = FXVec2f.new(1.0, 1.0)
-    assert_in_delta(Math.sqrt(2), v.length, 1.0e-7) 
+    assert_in_delta(Math.sqrt(2), v.length, 1.0e-7)
   end
 
   def test_length2
     v = FXVec2f.new(1.0, 1.0)
-    assert_equal(2.0, v.length2) 
+    assert_equal(2.0, v.length2)
   end
 
   def test_normalize

@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# ratio.rb  
+# ratio.rb
 # Translated from FOX C++ version to Ruby (Dec 2004) by Brett Hallett.
 # Demonstrates the use of the FXSpring method to retain size ratios between widgets when form is resized.
 #
@@ -10,7 +10,7 @@ require 'fox16/colors'
 include Fox
 
 class MainWindow < FXMainWindow
-  
+
   def initialize(app)
 	 # Initialize base class first
     super(app, 'Ratio', :opts => DECOR_ALL,
@@ -58,21 +58,21 @@ class MainWindow < FXMainWindow
   end
 
   def create
-    super 
-    show(PLACEMENT_SCREEN) 
-  end # create 
+    super
+    show(PLACEMENT_SCREEN)
+  end # create
 
-end  # class MainWindow 
+end  # class MainWindow
 
 if __FILE__ == $0
   # Construct an application
   FXApp.new('Smithy', 'Max') do |theApp|
 
     # Construct the main window
-    MainWindow.new(theApp) 
+    MainWindow.new(theApp)
 
-    # Create and show the application windows  
-    theApp.create 
+    # Create and show the application windows
+    theApp.create
 
     # Run the application
     theApp.run

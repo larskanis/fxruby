@@ -9,7 +9,7 @@ module Fox
     #
     def initialize(cont=nil) # :yields: theFileStream
     end
-  
+
     #
     # Open binary data file stream; allocate a buffer of the given _size_
     # for the file I/O; the buffer must be at least 16 bytes. Returns

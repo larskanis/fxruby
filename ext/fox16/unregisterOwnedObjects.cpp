@@ -22,7 +22,7 @@
  * worry about the C++ objects that aren't subclasses of regular FOX classes,
  * but which have somehow been "exposed" to the Ruby layer.
  */
- 
+
 #include "FXRbCommon.h"
 
 void FXRbHeader::unregisterOwnedObjects(FXHeader *self)
@@ -49,7 +49,7 @@ void FXRbFoldingList::unregisterOwnedObjects(FXFoldingList *self)
 {
     FXRbScrollArea::unregisterOwnedObjects(self);
     FXRbUnregisterRubyObj(self->getHeader());
-    
+
     // Save pointer(s) to the soon-to-be-destroyed items
     FXObjectListOf<FXFoldingItem> items;
     FXRbFoldingList::enumerateItems(self->getFirstItem(),self->getLastItem(),items);
@@ -109,7 +109,7 @@ void FXRbText::unregisterOwnedObjects(FXText *self)
 void FXRbTreeList::unregisterOwnedObjects(FXTreeList *self)
 {
     FXRbScrollArea::unregisterOwnedObjects(self);
-    
+
     // Save pointer(s) to the soon-to-be-destroyed items
     FXObjectListOf<FXTreeItem> items;
     FXRbTreeList::enumerateItems(self->getFirstItem(), self->getLastItem(), items);

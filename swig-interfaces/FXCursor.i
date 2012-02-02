@@ -57,7 +57,7 @@ public:
     FXCursor(FXApp* a,FXStockCursor curid=CURSOR_ARROW){
       return new FXRbCursor(a,curid);
       }
-  
+
     /// Make cursor from source and mask; cursor size should at most 32x32 for portability!
     FXCursor(FXApp* a,const FXuchar* src,const FXuchar* msk,FXint w=32,FXint h=32,FXint hx=0,FXint hy=0){
       return new FXRbCursor(a,src,msk,w,h,hx,hy);
@@ -77,16 +77,16 @@ public:
 
   /// Set hotspot x
   void setHotX(FXint x);
-  
+
   /// Get hotspot x
   FXint getHotX() const;
 
   /// Set hotspot y
   void setHotY(FXint y);
-  
+
   /// Get hotspot y
   FXint getHotY() const;
-  
+
   /// Check if there is color in the cursor
   bool isColor() const;
 

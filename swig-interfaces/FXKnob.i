@@ -117,7 +117,7 @@ public:
       FXRbRange2LoHi(range,lo,hi);
       self->setRange(lo,hi,notify);
       }
-    
+
     /// Get the knob's current range
     VALUE getRange() const {
       FXint lo,hi;
@@ -126,7 +126,7 @@ public:
       }
   }
 
-  /** 
+  /**
   * Change the knob's movement limits (start and ending angles)
   * accept values in degrees from 0 (south) to 360.
   */

@@ -54,7 +54,7 @@ public:
 
   /// Change frame style
   void setFrameStyle(FXuint style);
-  
+
   /// Get current frame style
   FXuint getFrameStyle() const;
 
@@ -81,10 +81,10 @@ public:
 
   /// Change base gui color
   void setBaseColor(FXColor clr);
-  
+
   /// Get base gui color
   FXColor getBaseColor() const;
-  
+
   /// Destructor
   virtual ~FXToolBarShell();
   };

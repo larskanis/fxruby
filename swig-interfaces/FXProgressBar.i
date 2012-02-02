@@ -60,52 +60,52 @@ public:
 
   /// Change the amount of progress
   void setProgress(FXuint value);
-  
+
   /// Get current progress
   FXuint getProgress() const;
 
   /// Set total amount of progress
   void setTotal(FXuint value);
-  
+
   /// Return total amount of progrss
   FXuint getTotal() const;
 
   /// Increment progress by given amount
   void increment(FXuint value);
-  
+
   /// Hide progress percentage
   void hideNumber();
-  
+
   /// Show progress percentage
   void showNumber();
-  
+
   /// Change progress bar width
   void setBarSize(FXint size);
-  
+
   /// Return progress bar width
   FXint getBarSize() const;
 
   /// Change backgroundcolor
   void setBarBGColor(FXColor clr);
-  
+
   /// Return background color
   FXColor getBarBGColor() const;
 
   /// Change bar color
   void setBarColor(FXColor clr);
-  
+
   /// Return bar color
   FXColor getBarColor() const;
 
   /// Change text color
   void setTextColor(FXColor clr);
-  
+
   /// Return text color
   FXColor getTextColor() const;
 
   /// Change alternate text color shown when bar under text
   void setTextAltColor(FXColor clr);
-  
+
   /// Return alternate text color
   FXColor getTextAltColor() const;
 
@@ -117,10 +117,10 @@ public:
 
   /// Change progress bar style
   void setBarStyle(FXuint style);
-  
+
   /// Return current progress bar style
   FXuint getBarStyle() const;
-  
+
   /// Destructor
   virtual ~FXProgressBar();
   };

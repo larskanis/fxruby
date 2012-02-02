@@ -40,36 +40,36 @@ module Fox
 
     # Maximum number of files to track [Integer]
     attr_accessor :maxFiles
-    
+
     # Group name [String]
     attr_accessor :groupName
-    
+
     # Message target [FXObject]
     attr_accessor :target
-    
+
     # Message identifier [Integer]
     attr_accessor :selector
-    
+
     #
     # Construct a new FXRecentFiles group, using the global application instance.
     #
     def initialize # :yields: theRecentFiles
     end
-  
+
     # Make new recent files group with default groupname
     def initialize(a) # :yields: theRecentFiles
     end
-    
+
     # Make new recent files group with groupname gp
     def initialize(a, gp, target=nil, selector=0) # :yields: theRecentFiles
     end
 
     # Append a file to the end of the list.
     def appendFile(filename); end
-  
+
     # Remove a file from the list.
     def removeFile(filename); end
-  
+
     # Clear the list of files.
     def clear(); end
   end

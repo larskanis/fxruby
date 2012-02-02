@@ -45,7 +45,7 @@ struct FXTablePos {
   FXint  col;
   ~FXTablePos();
   };
-  
+
 
 // Range of table cells
 struct FXTableRange {
@@ -75,7 +75,7 @@ protected:
 protected:
   FXTableItem();
 public:
-  enum{    
+  enum{
     SELECTED   = 0x00000001,    /// Selected
     FOCUS      = 0x00000002,    /// Focus
     DISABLED   = 0x00000004,    /// Disabled
@@ -117,16 +117,16 @@ public:
       return self->getData() ? reinterpret_cast<VALUE>(self->getData()) : Qnil;
       }
   }
-  
+
   // Return true if item has focus
   FXbool hasFocus() const;
-  
+
   // Return true if item is selected
   FXbool isSelected() const;
-  
+
   // Return true if item is enabled
   FXbool isEnabled() const;
-  
+
   // Return true if item is draggable
   FXbool isDraggable() const;
 
@@ -245,7 +245,7 @@ public:
   long onClicked(FXObject*,FXSelector,void* PTR_EVENT);
   long onDoubleClicked(FXObject*,FXSelector,void* PTR_EVENT);
   long onTripleClicked(FXObject*,FXSelector,void* PTR_EVENT);
-  
+
   long onCmdToggleEditable(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdToggleEditable(FXObject*,FXSelector,void* PTR_IGNORE);
 
@@ -254,7 +254,7 @@ public:
   long onUpdHorzGrid(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdVertGrid(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onUpdVertGrid(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
-  
+
   // Row/Column manipulations
   long onCmdDeleteColumn(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onUpdDeleteColumn(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
@@ -264,7 +264,7 @@ public:
   long onUpdInsertColumn(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdInsertRow(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onUpdInsertRow(FXObject*,FXSelector,void* PTR_IGNORE);
-  
+
   // Movement
   long onCmdMoveRight(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
   long onCmdMoveLeft(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME
@@ -349,7 +349,7 @@ public:
     };
 
 public:
-  
+
   /**
   * Construct a new table.
   * The table is initially empty, and reports a default size based on
@@ -360,7 +360,7 @@ public:
       return new FXRbTable(p,tgt,sel,opts,x,y,w,h,pl,pr,pt,pb);
       }
     }
-  
+
   /// Return button in the top/left corner
   FXButton* getCornerButton() const;
 
@@ -372,16 +372,16 @@ public:
 
   /// Change number of visible rows
   void setVisibleRows(FXint nvrows);
-  
+
   /// Return number of visible rows
   FXint getVisibleRows() const;
-  
+
   // Change number of visible columns
   void setVisibleColumns(FXint nvcols);
-  
+
   // Return number of visible columns
   FXint getVisibleColumns() const;
- 
+
   /// Return TRUE if table is editable
   FXbool isEditable() const;
 
@@ -396,7 +396,7 @@ public:
 
   /// Show or hide vertical grid
   void showVertGrid(FXbool on=TRUE);
-  
+
   /// Is vertical grid shown
   FXbool isVertGridShown() const;
 
@@ -443,7 +443,7 @@ public:
   * otherwise, returns row in table containing y.
   */
   FXint rowAtY(FXint y) const;
-  
+
   /// Return the item at the given index
   FXTableItem *getItem(FXint row,FXint col) const;
 
@@ -513,7 +513,7 @@ public:
         }
       return self->getColumnX(colEdge);
       }
-  
+
     /// Change Y coordinate of row r
     FXint getRowY(FXint rowEdge) const {
       if(rowEdge<0 || self->getRowHeader()->getNumItems()<=rowEdge){
@@ -522,7 +522,7 @@ public:
       return self->getRowY(rowEdge);
       }
   }
-  
+
   /// Get column width
   FXint getColumnWidth(FXint col) const;
 
@@ -531,13 +531,13 @@ public:
 
   /// Change default column width
   void setDefColumnWidth(FXint cwidth);
-  
+
   /// Get default column width
   FXint getDefColumnWidth() const;
 
   /// Change default row height
   void setDefRowHeight(FXint rheight);
-  
+
   /// Get default row height
   FXint getDefRowHeight() const;
 
@@ -612,11 +612,11 @@ public:
         }
       }
   }
-  
+
   // Get cell text
   FXString getItemText(FXint r,FXint c) const;
 
-  %extend {  
+  %extend {
     /// Modify cell icon, deleting the old icon if it was owned
     void setItemIcon(FXint r,FXint c,FXIcon* icon,FXbool notify=FALSE){
       FXRbTableItem* item;
@@ -627,10 +627,10 @@ public:
         }
       }
   }
-  
+
   // Get the item's icon
   FXIcon* getItemIcon(FXint r,FXint c) const;
-  
+
   %extend {
     /// Modify cell user-data
     void setItemData(FXint r,FXint c,VALUE ptr){
@@ -648,7 +648,7 @@ public:
       return (ptr!=0) ? reinterpret_cast<VALUE>(ptr) : Qnil;
       }
   }
-  
+
   %extend {
     /// Extract cells from given range as text.
     VALUE extractText(FXint startrow,FXint endrow,FXint startcol,FXint endcol,const FXchar* cs="\t",const FXchar* rs="\n") const {
@@ -695,7 +695,7 @@ public:
 
   /// Repaint cell at r,c
   void updateItem(FXint r,FXint c) const;
-  
+
   // Is item enabled?
   FXbool isItemEnabled(FXint r,FXint c) const;
 
@@ -707,10 +707,10 @@ public:
   * The default is a combination of FXTableItem::RIGHT and FXTableItem::CENTER_Y.
   */
   void setItemJustify(FXint r,FXint c,FXuint justify);
-  
+
   /// Return item justification
   FXuint getItemJustify(FXint r,FXint c) const;
-  
+
   /**
   * Change relative position of icon and text of item.
   * Passing FXTableItem::BEFORE or FXTableItem::AFTER places the icon
@@ -719,23 +719,23 @@ public:
   * The default is 0 which places the text on top of the icon.
   */
   void setItemIconPosition(FXint r,FXint c,FXuint mode);
-  
+
   /// Return relative icon and text position
   FXuint getItemIconPosition(FXint r,FXint c) const;
-  
+
   /**
   * Change item borders style.  Borders on each side of the item can be turned
   * controlled individually using FXTableItem::LBORDER, FXTableItem::RBORDER,
   * FXTableItem::TBORDER and FXTableItem::BBORDER.
   */
   void setItemBorders(FXint r,FXint c,FXuint borders);
-  
+
   /// Return item border style
   FXuint getItemBorders(FXint r,FXint c) const;
-  
+
   /// Change item background stipple style
   void setItemStipple(FXint r,FXint c,FXStipplePattern pat);
-  
+
   /// Return item background stipple style
   FXStipplePattern getItemStipple(FXint r,FXint c) const;
 
@@ -771,7 +771,7 @@ public:
 
   /// Is item selected?
   FXbool isItemSelected(FXint r,FXint c) const;
-  
+
   /// Is row of cells selected
   FXbool isRowSelected(FXint r) const;
 
@@ -824,7 +824,7 @@ public:
   /// Change table style
   FXuint getTableStyle() const;
   void setTableStyle(FXuint style);
-  
+
   /// Set column renumbering
   void setColumnRenumbering(FXbool flag);
 
@@ -839,7 +839,7 @@ public:
 
   /// Change help text
   void setHelpText(const FXString& text);
-  
+
   /// Get help text
   const FXString& getHelpText() const;
 

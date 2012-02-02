@@ -16,7 +16,7 @@ class Babelfish < FXMainWindow
     super(app, "Babelfish", :opts => DECOR_ALL, :width => 600, :height => 400)
 
     @translator = Tranexp::Http.new
-    
+
     # Controls area along the bottom
     controlsFrame = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X)
@@ -56,7 +56,7 @@ class Babelfish < FXMainWindow
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @translatedText = FXText.new(sunkenFrame, :opts => TEXT_READONLY|LAYOUT_FILL_X|LAYOUT_FILL_Y)
   end
-  
+
   def create
     super
     show(PLACEMENT_SCREEN)
