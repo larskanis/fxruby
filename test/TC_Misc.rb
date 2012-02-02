@@ -143,15 +143,19 @@ class TC_Misc < Test::Unit::TestCase
     assert_in_delta(1.0, s, DELTA)
     assert_in_delta(1.0, v, DELTA)
   end
-  
+
   def test_fxversion
     assert_instance_of(String, Fox.fxversion)
   end
-  
+
   def test_fxrubyversion
     assert_instance_of(String, Fox.fxrubyversion)
   end
 
   def test_fxTraceLevel
+    old = Fox.fxTraceLevel
+    Fox.fxTraceLevel = 10
+    assert_equal 10, Fox.fxTraceLevel
+    Fox.fxTraceLevel = old
   end
 end

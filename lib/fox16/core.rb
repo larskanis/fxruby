@@ -427,7 +427,7 @@ module Fox
   # clipboard back into a Ruby string.
   #
   def Fox.fxdecodeStringData(data)
-    if /mswin/ =~ PLATFORM
+    if /cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM
       data.chop
     else
       data
@@ -442,7 +442,7 @@ module Fox
   # appropriate for the current platform.
   #
   def Fox.fxencodeStringData(str)
-    if /mswin/ =~ PLATFORM
+    if /cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM
       str + "\0"
     else
       str
