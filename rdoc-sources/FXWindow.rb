@@ -151,7 +151,7 @@ module Fox
   # +ID_MDI_PREV+::             x
 
   class FXWindow < FXDrawable
-  
+
     # This window's parent window [FXWindow]
     attr_reader	:parent
 
@@ -235,7 +235,7 @@ module Fox
 
     # Common DND type: Clipboard text type (pre-registered)
     def FXWindow.stringType; end
-  
+
     # Common DND type: Clipboard image type (pre-registered)
     def FXWindow.imageType; end
 
@@ -244,16 +244,16 @@ module Fox
 
     # Common DND type name: Delete request
     def FXWindow.deleteTypeName() ; end
-    
+
     # Common DND type name: ASCII text
     def FXWindow.textTypeName() ; end
-    
+
     # Common DND type name: Color
     def FXWindow.colorTypeName() ; end
-    
+
     # Common DND type name: URI List
     def FXWindow.urilistTypeName() ; end
-  
+
     # Common DND type name: UTF-8 text request
     def FXWindow.utf8TypeName() ; end
 
@@ -274,7 +274,7 @@ module Fox
     #
     def initialize(p, opts=0, x=0, y=0, width=0, height=0) # :yields: theWindow
     end
-  
+
     #
     # Return an initialized FXWindow instance, for a shell window.
     #
@@ -304,7 +304,7 @@ module Fox
 
     # Return the window width (in pixels).
     def width; end
-    
+
     #
     # Set the window width; and flag the widget as being in need of
     # layout by its parent.  This does not immediately update the server-
@@ -324,19 +324,19 @@ module Fox
 
     # Return the default width of this window
     def defaultWidth(); end
-  
-    # Return the default height of this window 
+
+    # Return the default height of this window
     def defaultHeight(); end
-  
+
     # Return width for given height
     def getWidthForHeight(givenHeight); end
-  
+
     # Return height for given width
     def getHeightForWidth(givenWidth); end
-  
+
     # Return child window with given window key
     def getChildWithKey(key); end
-  
+
     #
     # Add this hot key to the closest ancestor's accelerator table.
     #
@@ -350,7 +350,7 @@ module Fox
         accel.addAccel(code, self, MKUINT(ID_HOTKEY, SEL_KEYPRESS), MKUINT(ID_HOTKEY, SEL_KEYRELEASE))
       end
     end
-  
+
     #
     # Remove this hot key from the closest ancestor's accelerator
     # table.
@@ -365,33 +365,33 @@ module Fox
         accel.removeAccel(code)
       end
     end
-  
+
     # Return +true+ if this window is a shell window.
     def shell?() ; end
-  
+
     #
     # Return +true+ if specified _window_ is ancestor of this window.
     #
     def childOf?(window) ; end
-  
+
     #
     # Return +true+ if this window contains _child_ in its subtree.
     #
     def containsChild?(child) ; end
-  
+
     # Return the child window at specified coordinates (_x_, _y_)
     def getChildAt(x, y) ; end
-  
-    # Return the index (starting from zero) of the specified child _window_, 
+
+    # Return the index (starting from zero) of the specified child _window_,
     # or -1 if the window is not a child of this window.
     def indexOfChild(window) ; end
-  
+
     # Remove specified child window
     def removeChild(child) ; end
-  
+
     # Return the child window at specified index. Raises IndexError if _index_ is out of range.
     def childAtIndex(index) ; end
-  
+
     # Return the common ancestor of window _a_ and window _b_.
     def FXWindow.commonAncestor(a, b); end
 
@@ -403,10 +403,10 @@ module Fox
 
     # Return compose context (an FXComposeContext).
     def composeContext; end
-  
+
     # Create compose context.
     def createComposeContext; end
-  
+
     # Destroy compose context.
     def destroyComposeContext; end
 
@@ -420,65 +420,65 @@ module Fox
 
     # Return the cursor position and mouse button-state as a three-element array.
     def cursorPosition() ; end
-  
+
     # Warp the cursor to the new position (_x_, _y_).
     def setCursorPosition(x, y); end
-  
+
     # Return +true+ if this window is able to receive mouse and keyboard events.
     def enabled?() ; end
-  
+
     # Return +true+ if this window is active.
     def active?() ; end
-  
+
     # Return +true+ if this window is a control capable of receiving the focus.
     def canFocus?() ; end
-  
+
     # Return +true+ if this window has the focus.
     def hasFocus?() ; end
-    
+
     # Return +true+ if this window is in the focus chain.
     def inFocusChain? ; end
-  
+
     # Move the focus to this window.
     def setFocus(); end
-  
+
     # Remove the focus from this window.
     def killFocus(); end
-  
+
     # Notification that focus moved to a new child window.
     def changeFocus(child); end
 
     # This changes the default window which responds to the *Enter*
-    # key in a dialog. If _enable_ is +true+, this window becomes the default 
+    # key in a dialog. If _enable_ is +true+, this window becomes the default
     # window; when _enable_ is +false+, this window will no longer be the
     # default window.  Finally, when _enable_ is +MAYBE+, the default window
     # will revert to the initial default window.
     def setDefault(enable=TRUE) ; end
-    
+
     # Return +true+ if this is the default window.
     def default?() ; end
-    
+
     # Make this window the initial default window.
     def setInitial(enable=true) ; end
-    
+
     # Return +true+ if this is the initial default window.
     def initial?() ; end
-  
+
     # Enable the window to receive mouse and keyboard events.
     def enable(); end
-  
+
     # Disable the window from receiving mouse and keyboard events.
     def disable(); end
-  
+
     # Create all of the server-side resources for this window.
     def create(); end
-  
+
     # Detach the server-side resources for this window.
     def detach(); end
-  
+
     # Destroy the server-side resources for this window.
     def destroy(); end
-  
+
     #
     # Set window shape, where _shape_ is either an FXRegion, FXBitmap or
     # FXIcon instance.
@@ -490,137 +490,137 @@ module Fox
 
     # Raise this window to the top of the stacking order.
     def raiseWindow(); end
-  
+
     # Lower this window to the bottom of the stacking order.
     def lower(); end
-  
+
     #
     # Move the window immediately, in the parent's coordinate system.
     # Update the server representation as well if the window is realized.
     # Perform layout of the children when necessary.
     #
     def move(x, y) ; end
-  
+
     #
     # Resize the window to the specified width and height immediately,
     # updating the server representation as well, if the window was realized.
     # Perform layout of the children when necessary.
     #
     def resize(w, h) ; end
-  
+
     #
     # Move and resize the window immediately, in the parent's coordinate system.
     # Update the server representation as well if the window is realized.
     # Perform layout of the children when necessary.
     #
     def position(x, y, w, h); end
-  
+
     # Mark this window's layout as dirty
     def recalc(); end
-  
+
     # Perform layout immediately.
     def layout(); end
 
     # Generate a SEL_UPDATE message for the window and its children.
     def forceRefresh(); end
-  
+
     # Reparent this window under new _father_ window, before _other_ sibling..
     def reparent(father, other); end
-  
+
     # Scroll rectangle (_x_, _y_, _w_, _h_) by a shift of (_dx_, _dy_)
     def scroll(x, y, w, h, dx, dy); end
-  
+
     # Mark the entire window client area dirty.
     def update() ; end
 
     # Mark the specified rectangle dirty
     def update(x, y, w, h) ; end
-  
+
     # Process any outstanding repaint messages immediately, for the given rectangle
     def repaint(x, y, w, h) ; end
-    
+
     # If marked but not yet painted, paint the entire window
     def repaint() ; end
-  
+
     # Grab the mouse to this window; future mouse events will be
     # reported to this window even while the cursor goes outside of this window
     def grab() ; end
-  
-    # Release the mouse grab 
+
+    # Release the mouse grab
     def ungrab(); end
-  
+
     # Return +true+ if the window has been grabbed
     def grabbed?() ; end
-  
+
     # Grab keyboard device
     def grabKeyboard(); end
-  
+
     # Ungrab keyboard device
     def ungrabKeyboard(); end
-  
+
     # Return +true+ if active grab is in effect
     def grabbedKeyboard?() ; end
-  
-    # Show this window 
+
+    # Show this window
     def show(); end
-  
-    # Hide this window 
+
+    # Hide this window
     def hide(); end
-  
+
     # Return +true+ if this window is shown.
     def shown?() ; end
-    
+
     alias visible? shown?
-  
+
     # Return +true+ if this window is a composite.
     def composite?() ; end
-  
+
     # Return +true+ if this window is under the cursor
     def underCursor?() ; end
-  
+
     # Return +true+ if this window owns the primary selection
     def hasSelection?() ; end
-  
+
     #
     # Try to acquire the primary selection, given an array of drag types.
     # Returns +true+ on success.
     #
     def acquireSelection(typesArray) ; end
-  
+
     #
     # Release the primary selection. Returns +true+ on success.
     #
     def releaseSelection(); end
-  
+
     # Return +true+ if this window owns the clipboard
     def hasClipboard?() ; end
-  
+
     #
     # Try to acquire the clipboard, given an array of drag types.
     # Returns +true+ on success.
     #
     def acquireClipboard(typesArray) ; end
-  
+
     #
     # Release the clipboard. Returns +true+ on success.
     #
     def releaseClipboard(); end
-  
-    # Enable this window to receive drops 
+
+    # Enable this window to receive drops
     def dropEnable(); end
-  
+
     # Disable this window from receiving drops
     def dropDisable(); end
-  
+
     # Return +true+ if this window is able to receive drops
     def dropEnabled?() ; end
-  
+
     # Return +true+ if a drag operation has been initiated from this window
     def dragging?() ; end
-    
+
     # Initiate a drag operation with an array of previously registered drag types
     def beginDrag(typesArray) ; end
-    
+
     # When dragging, inform the drop target of the new position and
     # the drag action. The _action_ is a constant, one of:
     #
@@ -632,24 +632,24 @@ module Fox
     # +DRAG_PRIVATE+::	private
 
     def handleDrag(x, y, action=DRAG_COPY) ; end
-    
+
     #
     # Terminate the drag operation with or without actually dropping the data.
     # Return the action performed by the target.
     #
     def endDrag(drop=true); end
-    
+
     # Return +true+ if this window is the target of a drop
     def dropTarget?() ; end
-    
+
     # When being dragged over, indicate that no further +SEL_DND_MOTION+ messages
     # are required while the cursor is inside the given rectangle
     def setDragRectangle(x, y, w, h, wantUpdates=true); end
-    
+
     # When being dragged over, indicate we want to receive +SEL_DND_MOTION+ messages
     # every time the cursor moves
     def clearDragRectangle();
-    
+
     # When being dragged over, indicate acceptance or rejection of the dragged data.
     # The _action_ is a constant indicating the suggested drag action, one of:
     #
@@ -661,12 +661,12 @@ module Fox
     # +DRAG_PRIVATE+::	private
 
     def acceptDrop(action=DRAG_ACCEPT); end
-    
+
     # Returns +DRAG_REJECT+ when the drop target would not accept the drop;
     # otherwise indicates acceptance by returning one of +DRAG_ACCEPT+,
     # +DRAG_COPY+, +DRAG_MOVE+ or +DRAG_LINK+.
     def didAccept() ; end
-    
+
     #
     # Sent by the drop target in response to +SEL_DND_DROP+.  The drag action
     # should be the same as the action the drop target reported to the drag
@@ -685,44 +685,44 @@ module Fox
     # +FROM_SELECTION+, +FROM_CLIPBOARD+ or +FROM_DRAGNDROP+.
     # Returns an array of drag types.
     def inquireDNDTypes(origin) ; end
-    
+
     # When being dragged over, return +true+ if we are offered the given drag type.
     # The _origin_ is a constant indicating the origin of the data, one of
     # +FROM_SELECTION+, +FROM_CLIPBOARD+ or +FROM_DRAGNDROP+.
     # The _type_ is a previously registered drag type.
     def offeredDNDType?(origin, type) ; end
-    
+
     # When being dragged over, return the drag action
     def inquireDNDAction() ; end
-    
+
     # Get DND data; the caller becomes the owner of the array.
     # The _origin_ is a constant indicating the origin of the data, one of
     # +FROM_SELECTION+, +FROM_CLIPBOARD+ or +FROM_DRAGNDROP+.
     # The _type_ is a previously registered drag type.
     def getDNDData(origin, type) ; end
-    
+
     # Set DND data; ownership is transferred to the system.
     # The _origin_ is a constant indicating the origin of the data, one of
     # +FROM_SELECTION+, +FROM_CLIPBOARD+ or +FROM_DRAGNDROP+.
     # The _type_ is a previously registered drag type.
     def setDNDData(origin, type, data) ; end
-    
+
     # Return +true+ if this window logically contains the given point (_parentX_, _parentY_).
     def contains?(parentX, parentY) ; end
-    
+
     # Translate coordinates (_fromX_, _fromY_) from _fromWindow_'s coordinate system
     # to this window's coordinate system. Returns a two-element array containing the
     # coordinates in this window's coordinate system.
     def translateCoordinatesFrom(fromWindow, fromX, fromY) ; end
-    
+
     # Translate coordinates (_fromX_, _fromY_) from this window's coordinate system
     # to _toWindow_'s coordinate system. Returns a two-element array containing the
     # coordinates in _toWindow_'s coordinate system.
     def translateCoordinatesTo(toWindow, fromX, fromY) ; end
- 
+
     # Return +true+ if this window does save-unders.
     def doesSaveUnder?() ; end
-  
+
     #
     # Translate message for localization; using the current FXTranslator,
     # an attempt is made to translate the given message into the current

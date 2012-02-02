@@ -89,7 +89,7 @@ public:
     FX4Splitter(FXComposite* p,FXuint opts=FOURSPLITTER_NORMAL,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRb4Splitter(p,opts,x,y,w,h);
       }
-  
+
     /// Create 4-way splitter, initially shown as four unexpanded panes; notifies target about size changes
     FX4Splitter(FXComposite* p,FXObject* tgt,FXSelector sel,FXuint opts=FOURSPLITTER_NORMAL,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRb4Splitter(p,tgt,sel,opts,x,y,w,h);
@@ -122,13 +122,13 @@ public:
 
   /// Return current splitter style
   FXuint getSplitterStyle() const;
-  
+
   /// Change splitter style
   void setSplitterStyle(FXuint style);
-  
+
   /// Change splitter bar width
   void setBarSize(FXint bs);
-  
+
   /// Get splitter bar width
   FXint getBarSize() const;
 
@@ -137,7 +137,7 @@ public:
 
   /// Get expanded child, or -1 if not expanded
   FXuint getExpanded() const;
-  
+
   /// Destructor
   virtual ~FX4Splitter();
   };

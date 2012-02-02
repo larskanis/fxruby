@@ -31,13 +31,13 @@ module Fox
   # +ID_BACK_MATERIAL+::	x
   #
   class FXGLShape < FXGLObject
-  
+
     # Tool tip message for this shape [String]
     attr_accessor :tipText
 
     # Position [FXVec3f]
     attr_accessor :position
-    
+
     #
     # Draws the shape in this GL viewer.
     #
@@ -59,7 +59,7 @@ module Fox
     # Get the material for specified side (where _side_ = 0 or 1).
     #
     def getMaterial(side); end
-    
+
     #
     # Set the range (an FXRangef instance) for this shape.
     #

@@ -9,11 +9,11 @@ module Fox
   # if the splitter is reversed, the left-most (or top-most) child window
   # will be resized instead.
   # Normally, children are resizable from size 0 upwards; however, if the child
-  # in a horizontally-oriented splitter has +LAYOUT_FILL_X+ in combination with 
+  # in a horizontally-oriented splitter has +LAYOUT_FILL_X+ in combination with
   # +LAYOUT_FIX_WIDTH+, it will not be made smaller than its default width,
   # except when the child is the last visible widget (or first when the
   # +SPLITTER_REVERSED+ option has been passed to the splitter).
-  # In a vertically-oriented splitter, children with +LAYOUT_FILL_Y+ and 
+  # In a vertically-oriented splitter, children with +LAYOUT_FILL_Y+ and
   # +LAYOUT_FIX_HEIGHT+ behave analogously.
   #
   # === Events
@@ -34,13 +34,13 @@ module Fox
   # +SPLITTER_NORMAL+::       same as +SPLITTER_HORIZONTAL+
   #
   class FXSplitter < FXComposite
-  
+
     # Splitter style [Integer]
     attr_accessor :splitterStyle
-    
+
     # Splitter bar size, in pixels [Integer]
     attr_accessor :barSize
-    
+
     #
     # Return an initialized FXSplitter instance.
     #
@@ -72,7 +72,7 @@ module Fox
     #
     def initialize(p, tgt, sel, opts=SPLITTER_NORMAL, x=0, y=0, width=0, height=0) # :yields: theSplitter
     end
-    
+
     #
     # Return size of the panel at index.
     # Raises IndexError if _index_ is out of range.

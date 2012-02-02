@@ -99,7 +99,7 @@ public:
     void setData(VALUE ptr){
       self->setData((void*) ptr);
       }
-    
+
     VALUE getData() const {
       return self->getData() ? (VALUE) self->getData() : Qnil;
       }
@@ -114,10 +114,10 @@ public:
 
   /// Return TRUE if subitems, real or imagined
   FXbool hasItems() const;
-  
+
   /// Change has items flag
   void setHasItems(FXbool flag);
-  
+
   /// Return true if descendent of parent item
   FXbool isChildOf(const FXTreeItem* item) const;
 
@@ -240,13 +240,13 @@ public:
 
   /// Return number of items
   FXint getNumItems() const;
-  
+
   /// Return number of visible items
   FXint getNumVisible() const;
 
   /// Change number of visible items
   void setNumVisible(FXint nvis);
-  
+
   /// Return first root item
   FXTreeItem* getFirstItem() const;
 
@@ -264,7 +264,7 @@ public:
 	}
       return self->insertItem(other,father,item,notify);
       }
-  
+
     /// Insert item with given text and optional icons, and user-data pointer under father before other item
     FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->insertItem(other,father,text,oi,ci,ITEMDATA,notify);
@@ -274,14 +274,14 @@ public:
       return item;
       }
 
-    /// Append [possibly subclassed] item as last child of father 
+    /// Append [possibly subclassed] item as last child of father
     FXTreeItem* appendItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
         dynamic_cast<FXRbTreeItem*>(item)->owner=self;
 	}
       return self->appendItem(father,item,notify);
       }
-  
+
     /// Append item with given text and optional icons, and user-data pointer as last child of father
     FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->appendItem(father,text,oi,ci,ITEMDATA,notify);
@@ -290,7 +290,7 @@ public:
 	}
       return item;
       }
-  
+
     /// Prepend [possibly subclassed] item as first child of father
     FXTreeItem* prependItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
@@ -298,7 +298,7 @@ public:
 	}
       return self->prependItem(father,item,notify);
       }
-  
+
     /// Prepend item with given text and optional icons, and user-data pointer as first child of father
     FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->prependItem(father,text,oi,ci,ITEMDATA,notify);
@@ -321,10 +321,10 @@ public:
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXTreeItem> items;
       FXRbTreeList::enumerateItem(item,items);
-      
+
       // Do the deed
       self->removeItem(item,notify);
-      
+
       // Now zero-out pointers held by still-alive Ruby objects
       for(FXint i=0;i<items.no();i++){
         FXRbUnregisterRubyObj(items[i]);
@@ -361,7 +361,7 @@ public:
         }
       }
   }
-  
+
   /// Return item width
   FXint getItemWidth(const FXTreeItem* item) const;
 
@@ -391,37 +391,37 @@ public:
 
   /// Change item's text
   void setItemText(FXTreeItem* item,const FXString& text);
-  
+
   /// Return item's text
   FXString getItemText(const FXTreeItem* item) const;
-  
+
   /// Change item's open icon, deleting the old icon if it was owned
   void setItemOpenIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=false);
-  
+
   /// Return item's open icon
   FXIcon* getItemOpenIcon(const FXTreeItem* item) const;
-  
+
   /// Chance item's closed icon, deleting the old icon if it was owned
   void setItemClosedIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=false);
-  
+
   /// Return item's closed icon
   FXIcon* getItemClosedIcon(const FXTreeItem* item) const;
-  
+
   %extend {
     /// Change item user-data pointer
     void setItemData(FXTreeItem* item,VALUE ptr){
       self->setItemData(item,(void*) ptr);
       }
-  
+
     /// Return item user-data pointer
     VALUE getItemData(const FXTreeItem* item) const {
       return self->getItemData(item) ? (VALUE) self->getItemData(item) : Qnil;
       }
   }
-  
+
   /// Return TRUE if item is selected
   FXbool isItemSelected(const FXTreeItem* item) const;
-  
+
   /// Return TRUE if item is current
   FXbool isItemCurrent(const FXTreeItem* item) const;
 
@@ -457,13 +457,13 @@ public:
 
   /// Sort root items
   void sortRootItems();
-  
+
   /// Sort all items recursively
   void sortItems();
 
   /// Sort children of item
   void sortChildItems(FXTreeItem* item);
-  
+
   /// Return sort function
   FXTreeListSortFunc getSortFunc() const;
 
@@ -499,7 +499,7 @@ public:
 
   /// Change selected text color
   void setSelTextColor(FXColor clr);
-  
+
   /// Return line color
   FXColor getLineColor() const;
 
@@ -508,13 +508,13 @@ public:
 
   /// Return list style
   FXuint getListStyle() const;
-  
+
   /// Change list style
   void setListStyle(FXuint style);
-  
+
   /// Set the status line help text for this list
   void setHelpText(const FXString& text);
-  
+
   /// Get the status line help text for this list
   const FXString& getHelpText() const;
 

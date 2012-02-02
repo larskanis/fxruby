@@ -56,7 +56,7 @@ public:
 
   /// Return a pointer to the scroll window
   FXScrollWindow* getScrollWindow() const;
-  
+
   /// Return a pointer to the button for this item
   FXButton* getButton() const;
 

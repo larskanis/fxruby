@@ -65,20 +65,20 @@ public:
 
   /// Change hue
   void setHue(FXfloat h);
-  
-  /// Return hue 
+
+  /// Return hue
   FXfloat getHue() const;
 
   /// Change saturation
   void setSat(FXfloat s);
-  
-  /// Return saturation 
+
+  /// Return saturation
   FXfloat getSat() const;
 
   /// Change value
   void setVal(FXfloat v);
-  
-  /// Return value 
+
+  /// Return value
   FXfloat getVal() const;
 
   /// Set hue, saturation, value

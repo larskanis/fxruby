@@ -56,7 +56,7 @@ public:
       return new FXRbTabBook(p,tgt,sel,opts,x,y,w,h,pl,pr,pt,pb);
       }
     }
-  
+
   /// Destructor
   virtual ~FXTabBook();
   };

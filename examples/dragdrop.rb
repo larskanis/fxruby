@@ -3,18 +3,18 @@ require 'fox16'
 include Fox
 
 class DragDropWindow < FXMainWindow
-  
+
   def initialize(anApp)
     # Initialize base class
     super(anApp, "Drag and Drop", :opts => DECOR_ALL, :width => 400, :height => 300)
-    
+
     # Fill main window with canvas
     @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @canvas.backColor = "red"
-    
+
     # Enable canvas for drag-and-drop messages
     @canvas.dropEnable
-    
+
     # Handle expose events on the canvas
     @canvas.connect(SEL_PAINT) do |sender, sel, event|
       FXDCWindow.new(@canvas, event) do |dc|
@@ -36,7 +36,7 @@ class DragDropWindow < FXMainWindow
       dragTypes = [FXWindow.colorType]
       @canvas.beginDrag(dragTypes)
     end
-    
+
     # Handle mouse motion events
     @canvas.connect(SEL_MOTION) do |sender, sel, event|
       if @canvas.dragging?
@@ -59,7 +59,7 @@ class DragDropWindow < FXMainWindow
       @canvas.ungrab
       @canvas.endDrag
     end
-    
+
     # Handle SEL_DND_DROP message from the canvas
     @canvas.connect(SEL_DND_DROP) do
       # Try to obtain the data as color values first
@@ -78,7 +78,7 @@ class DragDropWindow < FXMainWindow
   def create
     # Create the main window and canvas
     super
-    
+
     # Register the drag type for colors
     FXWindow.colorType = getApp().registerDragType(FXWindow.colorTypeName)
 

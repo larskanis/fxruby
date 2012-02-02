@@ -37,13 +37,13 @@ public:
 
   /// Initialize from rotation and scaling part of 4x4 matrix
   FXMat3f(const FXMat4f& other);
-  
+
   /// Construct from scalar number
   FXMat3f(FXfloat w);
 
-  /// Initialize diagonal matrix 
+  /// Initialize diagonal matrix
   FXMat3f(FXfloat a,FXfloat b,FXfloat c);
-  
+
   /// Construct from components
   FXMat3f(FXfloat a00,FXfloat a01,FXfloat a02,
           FXfloat a10,FXfloat a11,FXfloat a12,

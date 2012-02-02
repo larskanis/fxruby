@@ -9,7 +9,7 @@ class TC_FXListBox < Fox::TestCase
     super(self.class.name)
     @listBox = FXListBox.new(mainWindow)
   end
-  
+
   def test_appendItem
     assert_equal(0, @listBox.numItems)
     @listBox.appendItem("An item")

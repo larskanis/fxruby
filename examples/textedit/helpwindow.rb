@@ -217,7 +217,7 @@ Changing Font.
 
 You can change font by invoking the Font Selection Dialog from the Font menu.
 The Font Dialog displays four list boxes showing the font Family, Weight, Style,
-and Size of each font. 
+and Size of each font.
 You can narrow down the number of fonts displayed by selecting a specific character
 set, setwidth, pitch, and whether or not scalable fonts are to be listed only.
 The All Fonts checkbutton causes all fonts to be listed. Use this feature if you
@@ -231,7 +231,7 @@ The four color wells on the status line determine the color of the
 selection background, selection foreground, and normal background and foreground
 respectively.  Double clicking on a colorwell will bring up the Color Selection
 Dialog.
-The Color Selection Dialog sypports several ways to select a color: 
+The Color Selection Dialog sypports several ways to select a color:
 
 1\tBy means of Red, Green, and Blue mixing.
 2\tBy means of Hue, Saturation, Value mixing.
@@ -246,8 +246,8 @@ to hold your own custom color collections.
 Configuration Issues.
 
 The File Browser keeps an association list in the registry database to associate
-a particular file extension to an icon and other descriptive information. 
-The following is an example of how this could be filled in: 
+a particular file extension to an icon and other descriptive information.
+The following is an example of how this could be filled in:
 
   [SETTINGS]
   iconpath = /usr/share/icons:/home/jeroen/icons
@@ -269,7 +269,7 @@ class HelpWindow < FXDialogBox
   def initialize(owner)
     super(owner, "Help on TextEdit", DECOR_TITLE|DECOR_BORDER|DECOR_RESIZE,
       0, 0, 0, 0, 6, 6, 6, 6, 4, 4)
-  
+
     # Bottom part
     closebox = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|PACK_UNIFORM_WIDTH)
@@ -291,7 +291,7 @@ class HelpWindow < FXDialogBox
       TEXT_READONLY|TEXT_WORDWRAP|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     helptext.visibleRows = 50
     helptext.visibleColumns = 60
-  
+
     # Fill with help
     helptext.text = HELP
     helptext.tabColumns = 35

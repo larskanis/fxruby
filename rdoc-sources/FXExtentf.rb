@@ -2,10 +2,10 @@ module Fox
   class FXExtentf
     # Lower corner of this extent (an FXVec2f instance).
     attr_reader :lower
-    
+
     # Upper corner of this extent (an FXVec2f instance).
     attr_reader :upper
-    
+
     # Default constructor
     def initialize; end
 
@@ -14,14 +14,14 @@ module Fox
 
     # Initialize with a single point (where _p_ is an FXVec2f instance).
     def initialize(p); end
-    
+
     # Initialize from corner points (where _lo_ and _hi_ are two
     # FXVec2f instances).
     def initialize(lo, hi); end
 
     # Initialize with a single point, where _x_ and _y_ are Float values.
     def initialize(x, y); end
-    
+
     # Initialize with explicit values
     def initialize(xlo, xhi, ylo, yhi); end
 

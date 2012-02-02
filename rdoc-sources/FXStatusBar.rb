@@ -7,16 +7,16 @@ module Fox
   # +STATUSBAR_WITH_DRAGCORNER+:: Causes the drag corner to be shown
   #
   class FXStatusBar < FXHorizontalFrame
-  
+
     # The status line widget [FXStatusLine]
     attr_reader :statusLine
-    
+
     # The drag corner widget [FXDragCorner]
     attr_reader :dragCorner
-    
+
     # If +true+, the drag corner is shown [Boolean]
     attr_accessor :cornerStyle
-  
+
     #
     # Return an initialized FXStatusBar instance.
     #

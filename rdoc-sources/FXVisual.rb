@@ -27,7 +27,7 @@ module Fox
 
     # Visual construction flags [Integer]
     attr_accessor :flags
-    
+
     # Hints [Integer]
     attr_accessor :hints
 
@@ -48,7 +48,7 @@ module Fox
 
     # Maximum number of colors [Integer]
     attr_accessor :maxColors
-    
+
     #
     # The visual type, one of +Mono+, +Gray+, +Index+ or +Color+.
     # The visual type may also be +Unknown+ before the visual is actually
@@ -66,12 +66,12 @@ module Fox
     # +hnt+::	  requested visual depth, in bits [Integer]
     #
     def initialize(a, flgs=VISUAL_DEFAULT, hnt=32); end
-  
+
     #
     # Get device pixel value for color value _clr_.
     #
     def getPixel(clr); end
-  
+
     #
     # Get color value for device pixel value _pix_.
     #

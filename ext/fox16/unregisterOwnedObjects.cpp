@@ -46,7 +46,7 @@ void FXRbFoldingList::unregisterOwnedObjects(FXFoldingList *self)
 {
     FXRbScrollArea::unregisterOwnedObjects(self);
     FXRbUnregisterRubyObj(self->getHeader());
-    
+
     // Save pointer(s) to the soon-to-be-destroyed items
     FXObjectListOf<FXFoldingItem> items;
     FXRbFoldingList::enumerateItems(self->getFirstItem(),self->getLastItem(),items);
@@ -106,7 +106,7 @@ void FXRbText::unregisterOwnedObjects(FXText *self)
 void FXRbTreeList::unregisterOwnedObjects(FXTreeList *self)
 {
     FXRbScrollArea::unregisterOwnedObjects(self);
-    
+
     // Save pointer(s) to the soon-to-be-destroyed items
     FXObjectListOf<FXTreeItem> items;
     FXRbTreeList::enumerateItems(self->getFirstItem(), self->getLastItem(), items);

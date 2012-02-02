@@ -51,28 +51,28 @@ module Fox
 
     # Slider head size, in pixels [Integer]
     attr_accessor :headSize
-    
+
     # Slider slot size, in pixels [Integer]
     attr_accessor :slotSize
-    
+
     # Slider auto-increment (or decrement) value [Float]
     attr_accessor :increment
-    
+
     # Granularity [Float]
     attr_accessor :granularity
-    
+
     # Delta between ticks [Float]
     attr_accessor :tickDelta
-    
+
     # Color of the slot that the slider head moves in [FXColor]
     attr_accessor :slotColor
-    
+
     # Status line help text for this slider [String]
     attr_accessor :helpText
-    
+
     # Tool tip text for this slider [String]
     attr_accessor :tipText
-    
+
     #
     # Return an initialized FXRealSlider instance.
     #

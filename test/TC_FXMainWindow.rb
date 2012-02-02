@@ -9,7 +9,7 @@ class TC_FXMainWindow < Test::Unit::TestCase
       FXMainWindow.new(nil, "title")
     end
   end
-  
+
   def test_non_created_app_raises_runtime_error
     app = FXApp.new
     assert_raise RuntimeError do

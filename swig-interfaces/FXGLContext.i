@@ -53,13 +53,13 @@ public:
 
   /// Make OpenGL context current prior to performing OpenGL commands
   FXbool begin(FXDrawable *drawable);
-  
-  /// Make OpenGL context non current 
+
+  /// Make OpenGL context non current
   FXbool end();
-  
+
   /// Swap front and back buffer
   void swapBuffers();
-  
+
   /// Return true if this window's context is current
   FXbool isCurrent() const;
 

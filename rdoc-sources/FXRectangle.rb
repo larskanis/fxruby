@@ -8,21 +8,21 @@ module Fox
     # Upper left corner's x-coordinate [Integer]
     #
     attr_accessor :x
-    
+
     # Upper left corner's y-coordinate [Integer]
     attr_accessor :y
-    
+
     # Rectangle width [Integer]
     attr_accessor :w
-    
+
     # Rectangle height [Integer]
     attr_accessor :h
-  
+
     #
     # Return an uninitialized FXRectangle instance.
     #
     def initialize; end
-    
+
     #
     # Return an initialized FXRectangle instance.
     #
@@ -34,7 +34,7 @@ module Fox
     # +hh+::	initial height [Integer]
     #
     def initialize(xx, yy, ww, hh); end
-    
+
     #
     # Return an initialized FXRectangle instance.
     #
@@ -54,29 +54,29 @@ module Fox
     # +bottomright+::	bottom right corner's initial position [FXPoint]
     #
     def initialize(topleft, bottomright); end
-  
+
     #
     # Return true if _p_ (an FXPoint instance) is contained within this rectangle.
     #
     def contains?(p); end
-    
+
     #
     # Return true if the point at (_xx_, _yy_) is contained within this rectangle.
     #
     def contains?(xx, yy); end
-  
+
     #
     # Return true if _r_ (another FXRectangle instance) is properly contained within
     # this rectangle.
     #
     def contains?(r); end
-  
+
     #
     # Shift each of the rectangle's corners by the amount _p_ (an FXPoint
     # instance) and return a reference to the rectangle.
     #
     def move!(p); end
-    
+
     #
     # Shift each of the rectangle's corners by the amount (_dx_, _dy_)
     # and return a reference to the rectangle.
@@ -113,7 +113,7 @@ module Fox
     # +bottommargin+::	number of units to grow on the bottom side [Integer]
     #
     def grow!(leftmargin, rightmargin, topmargin, bottommargin); end
-  
+
     #
     # Shrink the rectangle by _margin_ units, and return a reference to the rectangle.
     #

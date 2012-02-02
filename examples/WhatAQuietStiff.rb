@@ -40,11 +40,11 @@ class WhatAQuietWindow < FXMainWindow
     # Icons for list items
     File.open("icons/bluebullet14x14.gif", "rb") do |f|
       bytes = f.read
-      @itemIcon = FXGIFIcon.new(getApp(), bytes) 
+      @itemIcon = FXGIFIcon.new(getApp(), bytes)
     end
     File.open("icons/transpbullet14x14.gif", "rb") do |f|
       bytes = f.read
-      @transpIcon = FXGIFIcon.new(getApp(), bytes) 
+      @transpIcon = FXGIFIcon.new(getApp(), bytes)
     end
 
     # Menubar
@@ -89,12 +89,12 @@ class WhatAQuietWindow < FXMainWindow
         @itemList.setItemIcon(itemIndex, @transpIcon)
       end
     end
-    
+
     # Sunken border for image widget
     imagebox = FXHorizontalFrame.new(splitter,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y,
       :padding => 0)
-  
+
     # Make image widget
     @imageview = FXImageView.new(imagebox, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @imageview.enable
@@ -234,7 +234,7 @@ class WhatAQuietWindow < FXMainWindow
     rssItem.description =~ /src="(.*?)"/
     return $1
   end
-  
+
   # Return the URL listed in the href tag of the description's HTML text.
   def getLinkURL(rssItem)
     rssItem.description =~ /href="(.*?)"/
@@ -282,7 +282,7 @@ class WhatAQuietWindow < FXMainWindow
   def refreshList
     # Grab the latest RSS feed
     @rss = getRSSFeed(RSS_FEED_URL)
-    
+
     # Repopulate the list with this set of items
     populateItemList(@rss)
   end
@@ -325,14 +325,14 @@ class WhatAQuietWindow < FXMainWindow
 
     # Make the item list wide enough to show the longest item
     resizeItemList
-    
+
     # Resize main window
     # Resize main window client area to fit image size
 #    resize(@imageview.contentWidth, @imageview.contentHeight)
 
     # Now show it
     show(PLACEMENT_SCREEN)
-    
+
     # Start the updates timer
     getApp().addTimeout(1000*60*@refreshDelay, method(:onRefreshList))
   end

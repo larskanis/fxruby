@@ -1,32 +1,32 @@
 protected:
   // Overrides the base class version of draw()
   virtual void draw(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  
+
   // Overrides the base class version of hitItem()
   virtual FXint hitItem(const FXIconList* list,FXint rx,FXint ry,FXint rw=1,FXint rh=1) const;
-  
+
   // Overrides the base class version of drawBigIcon()
   virtual void drawBigIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  
+
   // Overrides the base class version of drawMiniIcon()
   virtual void drawMiniIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  
+
   // Overrides the base class version of drawDetails()
   virtual void drawDetails(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
 
 public:
   // Publically accessible version of draw()
   void public_draw(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  
+
   // Publically accessible version of hitItem()
   FXint public_hitItem(const FXIconList* list,FXint rx,FXint ry,FXint rw=1,FXint rh=1) const;
-  
+
   // Publically accessible version of drawBigIcon()
   void public_drawBigIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  
+
   // Publically accessible version of drawMiniIcon()
   void public_drawMiniIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  
+
   // Publically accessible version of drawDetails()
    void public_drawDetails(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
 

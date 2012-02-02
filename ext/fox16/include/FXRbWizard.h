@@ -47,10 +47,10 @@ public:
 
   /// Construct Wizard which will always float over the owner window
   FXRbWizard(FXWindow* owner,const FXString& name,FXImage *image,FXuint opts=DECOR_TITLE|DECOR_BORDER|DECOR_RESIZE,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=10,FXint pr=10,FXint pt=10,FXint pb=10,FXint hs=10,FXint vs=10) : FXWizard(owner,name,image,opts,x,y,w,h,pl,pr,pt,pb,hs,vs) {}
-  
+
   // Mark dependencies for the GC
   static void markfunc(FXWizard* self);
-  
+
   // Destructor
   virtual ~FXRbWizard(){
     FXRbUnregisterRubyObj(this);

@@ -27,7 +27,7 @@ class FXJPGImage : public FXImage {
 protected:
   FXint quality;
 protected:
-  FXJPGImage(){}      
+  FXJPGImage(){}
 public:
   %extend {
     static VALUE fileExt() {
@@ -54,7 +54,7 @@ public:
 
   /// Get image quality setting
   FXint getQuality() const;
-  
+
   /// Destroy
   virtual ~FXJPGImage();
   };

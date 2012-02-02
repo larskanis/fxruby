@@ -56,7 +56,7 @@ protected:
   FXbool writeToRegistryGroup(void* org,const char* groupname);
 #endif
 public:
-  
+
   /**
   * Construct registry object; akey and vkey must be string constants.
   * Regular applications SHOULD set a vendor key!
@@ -69,11 +69,11 @@ public:
 
   /// Read registry
   FXbool read();
-  
+
   /// Write registry
   FXbool write();
 
-  /// Return application key  
+  /// Return application key
   const FXString& getAppKey() const;
 
   /// Return vendor key

@@ -5,7 +5,7 @@ module Fox
   class NotifyHeader
     # idFrom [Integer]
     attr_reader :idFrom
-    
+
     # code [Integer]
     attr_reader :code
   end
@@ -16,16 +16,16 @@ module Fox
   class SCNotification
     # Header [NotifyHeader]
     attr_reader :nmhdr
-    
+
     # Position, one of SCN_STYLENEEDED, SCN_MODIFIED, SCN_DWELLSTART, SCN_DWELLEND [Integer]
     attr_reader :position
-    
+
     # Character, one of SCN_CHARADDED or SCN_KEY [Integer]
     attr_reader :ch
-    
+
     # Modifiers, one of SCN_KEY, ... [Integer]
     attr_reader :modifiers
-    
+
     # Modification type (SCN_MODIFIED) [Integer]
     attr_reader :modificationType
 
@@ -34,37 +34,37 @@ module Fox
 
     # Length [Integer]
     attr_reader :length
-    
+
     # Lines added [Integer]
     attr_reader :linesAdded
-    
+
     # Message [Integer]
     attr_reader :message
-    
+
     # Line [Integer]
     attr_reader :line
-    
+
     # Fold level now [Integer]
     attr_reader :foldLevelNow
-    
+
     # Previous fold level [Integer]
     attr_reader :foldLevelPrev
-    
+
     # Margin [Integer]
     attr_reader :margin
-    
+
     # List type [Integer]
     attr_reader :listType
-    
+
     # x [Integer]
     attr_reader :x
-    
+
     # y [Integer]
     attr_reader :y
 
     # wParam [Integer]
     attr_reader :wParam
-    
+
     # lParam [Integer]
     attr_reader :lParam
   end
@@ -109,7 +109,7 @@ module Fox
     # Set the identifier for this widget's embedded Scintilla component.
     #
     def setScintillaID(id); end
-  
+
     #
     # Send a message (_iMsg_) to the Scintilla control, with optional _wParam_
     # and _lParam_ values. Note that in most cases, it will be easier to use

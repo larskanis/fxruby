@@ -16,7 +16,7 @@ class TC_FXImage < Fox::TestCase
     assert_equal(1, img.width)
     assert_equal(1, img.height)
   end
-  
+
   def test_default_constructor_args_2
     img = FXImage.new(app, nil)
     assert_same(nil, img.data)
@@ -96,7 +96,7 @@ class TC_FXImage < Fox::TestCase
     assert_not_nil(img.data)
     assert_not_equal(0, img.options&IMAGE_OWNED)
   end
-  
+
   # Render client-side pixel buffer into pixmap
   def test_render
     # Test without client-side pixel buffer
@@ -110,46 +110,46 @@ class TC_FXImage < Fox::TestCase
     img.scale(2, 2, 0)
     img.scale(2, 2, 1)
   end
-  
+
   def test_mirror
   end
-  
+
   def test_rotate
   end
-  
+
   def test_crop
   end
-  
+
   def test_fill
   end
-  
+
   def test_fade
   end
-  
+
   def test_xshear
   end
-  
+
   def test_yshear
   end
-  
+
   def test_hgradient
   end
-  
+
   def test_vgradient
   end
-  
+
   def test_gradient
   end
-  
+
   def test_blend
   end
-  
+
   def test_savePixels
   end
-  
+
   def test_loadPixels
   end
-  
+
 =end
 
 end

@@ -23,14 +23,14 @@ module Fox
 
     # The color [FXColor]
     attr_accessor :rgba
-   
+
     # Only opaque colors allowed [Boolean]
     attr_writer :opaqueOnly
 
     # Construct color dialog
     def initialize(owner, title, opts=0, x=0, y=0, width=0, height=0) # :yields: theColorDialog
     end
-  
+
     # Return +true+ if only opaque colors allowed
     def opaqueOnly?() ; end
   end

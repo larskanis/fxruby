@@ -29,25 +29,25 @@ module Fox
   # +CHECKBUTTON_AUTOHIDE+::  Automatically hide when not updated
   # +CHECKBUTTON_PLUS+::      Draw a plus sign for unchecked and minus sign for checked
   # +CHECKBUTTON_NORMAL+::    <tt>JUSTIFY_NORMAL|ICON_BEFORE_TEXT</tt>
-  
+
   class FXCheckButton < FXLabel
 
     # Check button state (+TRUE+, +FALSE+ or +MAYBE+) [Integer]
     attr_accessor :checkState
-    
+
     # Check button style [Integer]
     attr_accessor :checkButtonStyle
-    
+
     # Box background color [FXColor]
     attr_accessor :boxColor
-    
+
     # Box check color [FXColor]
     attr_accessor :checkColor
 
     # Construct new check button
     def initialize(parent, text, target=nil, selector=0, opts=CHECKBUTTON_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theCheckButton
     end
-    
+
     #
     # Set the check button state to one of +TRUE+, +FALSE+ or +MAYBE+.
     # If _notify_ is +true+, send a +SEL_COMMAND+ message to the message target

@@ -199,13 +199,13 @@ public:
 
   /// Set lower color of a segment
   void setSegmentLowerColor(FXint SEG0,FXColor clr,FXbool notify=false);
-  
+
   /// Set upper color of a segment
   void setSegmentUpperColor(FXint SEG0,FXColor clr,FXbool notify=false);
 
   /// Get lower color of a segment
   FXColor getSegmentLowerColor(FXint SEG0) const;
-  
+
   /// Get upper color of a segment
   FXColor getSegmentUpperColor(FXint SEG0) const;
 
@@ -223,10 +223,10 @@ public:
 
   /// Get lower value of segment sg
   FXdouble getSegmentLower(FXint SEG0) const;
-  
+
   /// Get middle value of segment sg
   FXdouble getSegmentMiddle(FXint SEG0) const;
-  
+
   /// Get upper value of segment sg
   FXdouble getSegmentUpper(FXint SEG0) const;
 
@@ -281,16 +281,16 @@ public:
 
   /// Change control size
   void setControlSize(FXint cs);
-  
+
   /// Get control size
   FXint getControlSize() const;
 
   /// Change bar size
   void setBarSize(FXint bs);
-  
+
   /// Get bar size
   FXint getBarSize() const;
-  
+
   /// Get the gradient bar style
   FXuint getBarStyle() const;
 

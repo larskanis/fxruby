@@ -26,14 +26,14 @@ class ImageWindow < FXMainWindow
 
     # Make color dialog
     colordlg = FXColorDialog.new(self, "Color Dialog")
-  
+
     # Make menu bar
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X|FRAME_RAISED)
-  
+
     # Status bar
     statusbar = FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
-  
+
     # Docking sites
     topDockSite = FXDockSite.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
     FXDockSite.new(self, LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X)
@@ -43,7 +43,7 @@ class ImageWindow < FXMainWindow
     # Splitter
     splitter = FXSplitter.new(self, (LAYOUT_SIDE_TOP|LAYOUT_FILL_X|
       LAYOUT_FILL_Y| SPLITTER_TRACKING|SPLITTER_VERTICAL|SPLITTER_REVERSED))
-  
+
     # Tool bar is docked inside the top one for starters
     toolbarShell = FXToolBarShell.new(self)
     toolbar = FXToolBar.new(topDockSite, toolbarShell,
@@ -53,19 +53,19 @@ class ImageWindow < FXMainWindow
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-    
+
     # Edit Menu
     editmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Edit", nil, editmenu)
-  
+
     # Manipulation Menu
     manipmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar,"&Manipulation", nil, manipmenu)
-  
+
     # View menu
     viewmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&View", nil, viewmenu)
-    
+
     # Help menu
     helpmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Help", nil, helpmenu, LAYOUT_RIGHT)
@@ -74,15 +74,15 @@ class ImageWindow < FXMainWindow
     imagebox = FXHorizontalFrame.new(splitter,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y,
       :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0)
-  
+
     # Make image widget
     @imageview = FXImageView.new(imagebox, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     # Sunken border for file list
     @filebox = FXHorizontalFrame.new(splitter,
       LAYOUT_FILL_X|LAYOUT_FILL_Y,
       :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0)
-  
+
     # Make file list
     fileframe = FXHorizontalFrame.new(@filebox,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y,
@@ -93,7 +93,7 @@ class ImageWindow < FXMainWindow
     FXButton.new(@filebox, "\tUp one level\tGo up to higher directory.",
       uplevelicon, @filelist, FXFileList::ID_DIRECTORY_UP,
       BUTTON_TOOLBAR|FRAME_RAISED|LAYOUT_FILL_Y)
-  
+
     # Toobar buttons: File manipulation
     openBtn = FXButton.new(toolbar, "&Open\tOpen Image\tOpen image file.", fileopenicon,
       :opts => ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED)
@@ -101,7 +101,7 @@ class ImageWindow < FXMainWindow
     saveBtn = FXButton.new(toolbar, "&Save\tSave Image\tSave image file.", filesaveicon,
       :opts => ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED)
     saveBtn.connect(SEL_COMMAND, method(:onCmdSave))
-  
+
     # Toobar buttons: Editing
     FXButton.new(toolbar, "Cut\tCut", cuticon,
       :opts => ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED)
@@ -109,17 +109,17 @@ class ImageWindow < FXMainWindow
       :opts => ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED)
     FXButton.new(toolbar, "Paste\tPaste", pasteicon,
       :opts => ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED)
-  
+
     # Color
     FXButton.new(toolbar, "&Colors\tColors\tDisplay color dialog.", paletteicon,
       colordlg, FXWindow::ID_SHOW,
       ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED|LAYOUT_RIGHT)
-  
+
     # File Menu entries
     FXMenuCommand.new(filemenu, "&Open...\tCtl-O\tOpen image file.", fileopenicon).connect(SEL_COMMAND, method(:onCmdOpen))
     FXMenuCommand.new(filemenu, "&Save...\tCtl-S\tSave image file.", filesaveicon).connect(SEL_COMMAND, method(:onCmdSave))
     FXMenuCommand.new(filemenu, "Dump", nil, getApp(), FXApp::ID_DUMP)
-  
+
     # Recent file menu; this automatically hides if there are no files
     sep1 = FXMenuSeparator.new(filemenu)
     sep1.target = @mrufiles
@@ -140,7 +140,7 @@ class ImageWindow < FXMainWindow
     sep2.target = @mrufiles
     sep2.selector = FXRecentFiles::ID_ANYFILES
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q").connect(SEL_COMMAND, method(:onCmdQuit))
-  
+
     # Edit Menu entries
     FXMenuCommand.new(editmenu, "&Undo\tCtl-Z\tUndo last change.")
     FXMenuCommand.new(editmenu, "&Redo\tCtl-R\tRedo last undo.")
@@ -148,16 +148,16 @@ class ImageWindow < FXMainWindow
     FXMenuCommand.new(editmenu, "C&ut\tCtl-X\tCut selection to clipboard.", cuticon)
     FXMenuCommand.new(editmenu, "&Paste\tCtl-V\tPaste from clipboard.", pasteicon)
     FXMenuCommand.new(editmenu, "&Delete\t\tDelete selection.")
-  
+
     # Manipulation Menu entries
     rotate90Cmd = FXMenuCommand.new(manipmenu, "Rotate 90\t\tRotate 90 degrees.")
     rotate90Cmd.connect(SEL_COMMAND) { @imageview.image.rotate(90) }
     rotate90Cmd.connect(SEL_UPDATE, method(:onUpdImage))
-    
+
     rotate180Cmd = FXMenuCommand.new(manipmenu, "Rotate 180\t\tRotate 180 degrees.")
     rotate180Cmd.connect(SEL_COMMAND) { @imageview.image.rotate(180) }
     rotate180Cmd.connect(SEL_UPDATE, method(:onUpdImage))
-    
+
     rotate270Cmd = FXMenuCommand.new(manipmenu, "Rotate -90\t\tRotate -90 degrees.")
     rotate270Cmd.connect(SEL_COMMAND) { @imageview.image.rotate(270) }
     rotate270Cmd.connect(SEL_UPDATE, method(:onUpdImage))
@@ -165,19 +165,19 @@ class ImageWindow < FXMainWindow
     mirrorHorCmd = FXMenuCommand.new(manipmenu, "Mirror Hor.\t\tMirror Horizontally.")
     mirrorHorCmd.connect(SEL_COMMAND) { @imageview.image.mirror(true, false) }
     mirrorHorCmd.connect(SEL_UPDATE, method(:onUpdImage))
-    
+
     mirrorVerCmd = FXMenuCommand.new(manipmenu, "Mirror Ver.\t\tMirror Vertically.")
     mirrorVerCmd.connect(SEL_COMMAND) { @imageview.image.mirror(false, true) }
     mirrorVerCmd.connect(SEL_UPDATE, method(:onUpdImage))
-    
+
     scaleCmd = FXMenuCommand.new(manipmenu, "Scale...\t\tScale image.")
     scaleCmd.connect(SEL_COMMAND, method(:onCmdScale))
     scaleCmd.connect(SEL_UPDATE, method(:onUpdImage))
-    
+
     cropCmd = FXMenuCommand.new(manipmenu, "Crop...\t\tCrop image.")
     cropCmd.connect(SEL_COMMAND, method(:onCmdCrop))
     cropCmd.connect(SEL_UPDATE, method(:onUpdImage))
-  
+
     # View Menu entries
     FXMenuCheck.new(viewmenu, "File list\t\tDisplay file list.",
       @filebox, FXWindow::ID_TOGGLESHOWN)
@@ -202,18 +202,18 @@ class ImageWindow < FXMainWindow
     FXMenuSeparator.new(viewmenu)
     FXMenuCheck.new(viewmenu, "Toolbar\t\tDisplay toolbar.",
       toolbar, FXWindow::ID_TOGGLESHOWN)
-    
+
     FXMenuCommand.new(viewmenu, "Float toolbar\t\tUndock the toolbar.", nil, toolbar, FXToolBar::ID_DOCK_FLOAT)
     FXMenuCommand.new(viewmenu, "Dock toolbar top\t\tDock the toolbar on the top.", nil, toolbar, FXToolBar::ID_DOCK_TOP)
     FXMenuCommand.new(viewmenu, "Dock toolbar left\t\tDock the toolbar on the left.", nil, toolbar, FXToolBar::ID_DOCK_LEFT)
     FXMenuCommand.new(viewmenu, "Dock toolbar right\t\tDock the toolbar on the right.", nil, toolbar, FXToolBar::ID_DOCK_RIGHT)
     FXMenuCommand.new(viewmenu, "Dock toolbar bottom\t\tDock the toolbar on the bottom.", nil, toolbar, FXToolBar::ID_DOCK_BOTTOM)
-    
+
     FXMenuSeparator.new(viewmenu)
-    
+
     FXMenuCheck.new(viewmenu, "Status line\t\tDisplay status line.",
       statusbar, FXWindow::ID_TOGGLESHOWN)
- 
+
     # Help Menu entries
     FXMenuCommand.new(helpmenu, "&About FOX...").connect(SEL_COMMAND) {
       FXMessageBox.new(self, "About Image Viewer",
@@ -222,10 +222,10 @@ class ImageWindow < FXMainWindow
         "Copyright (C) 2000 Jeroen van der Zijp (jeroen@fox-toolkit.org)", nil,
         MBOX_OK|DECOR_TITLE|DECOR_BORDER).execute
     }
-  
+
     # Make a tool tip
     FXToolTip.new(getApp(), TOOLTIP_NORMAL)
-  
+
     # Recent files
     @mrufiles.connect(SEL_COMMAND) do |sender, sel, filename|
       @filename = filename
@@ -475,7 +475,7 @@ class ImageWindow < FXMainWindow
     if !fs
       @filebox.hide
     end
- 
+
     # Reposition window to specified x, y, w and h
     position(xx, yy, ww, hh)
 

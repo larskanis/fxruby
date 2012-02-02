@@ -31,7 +31,7 @@ enum {
 /**
 * A color well is a widget which controls color settings.
 * Colors may be dragged and dropped from one color well to another.
-* A double-click inside a color well will bring up the standard 
+* A double-click inside a color well will bring up the standard
 * color dialog panel to edit the color well's color.
 * Colors may be also pasted by name using middle-mouse click into/out of
 * color wells from/to other selection-capable applications; for example,

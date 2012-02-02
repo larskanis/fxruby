@@ -35,11 +35,11 @@ class MethodDescription
     @required_args = []
     @optional_args = []
   end
-  
+
   def generate_alias
     "    alias old_#{method_name} #{method_name}\n"
   end
-  
+
   def generate_body
     argument_names = optional_args.map { |arg| arg.name }
     defaults_hash = optional_args.map { |arg| ":#{arg.name} => #{arg.value}"}
@@ -66,21 +66,21 @@ class MethodDescription
     buffer << "    end\n"
     buffer
   end
-  
+
   def expects_block?
     method_name == "initialize"
   end
 end
 
-class ClassDescription  
+class ClassDescription
   attr_accessor :class_name
   attr_accessor :method_descriptions
-  
+
   def initialize
     @class_name = nil
     @method_descriptions = []
   end
-  
+
   def generate_class_initializer
     buffer = ""
     buffer << "  class #{class_name}\n"
@@ -91,7 +91,7 @@ class ClassDescription
     buffer << "  end\n\n"
     buffer
   end
-  
+
   def has_methods_with_optional_arguments?
     method_descriptions.each do |m|
       return true if m.optional_args.length > 0
@@ -126,13 +126,13 @@ END
     end
     generate_closing(out)
   end
-  
+
   def generate_closing(out)
     out.puts "end"
     out.puts ""
     out.puts "$VERBOSE = old_verbose"
   end
-  
+
   def scan_for_descriptions(filename)
     class_description = nil
     class_descriptions = []
@@ -164,7 +164,7 @@ END
     end
     class_descriptions
   end
-  
+
   def skip?(name)
     CLASSES_TO_SKIP.include? name
   end
@@ -181,7 +181,7 @@ __END__
     alias old_initialize initialize
     def initialize(p, *args, &blk)
       argument_names = %w{opts x y width height}
-      default_params = { :opts => FOURSPLITTER_NORMAL, :x => 0, :y => 0, :width => 0, :height => 0 }     
+      default_params = { :opts => FOURSPLITTER_NORMAL, :x => 0, :y => 0, :width => 0, :height => 0 }
       params = {}
       params = args.pop if args.last.is_a? Hash
       if args.length > 0 && (args.first.nil? || args.first.is_a?(FXObject))
@@ -203,7 +203,7 @@ __END__
     alias old_initialize initialize
     def initialize(p, *args, &blk)
       argument_names = %w{opts x y width height padLeft padRight padTop padBottom hSpacing vSpacing}
-      default_params = { :opts => LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, :x => 0, :y => 0, :width => 0, :height => 0, :padLeft => 3, :padRight => 3, :padTop => 2, :padBottom => 2, :hSpacing => DEFAULT_SPACING, :vSpacing => DEFAULT_SPACING }     
+      default_params = { :opts => LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, :x => 0, :y => 0, :width => 0, :height => 0, :padLeft => 3, :padRight => 3, :padTop => 2, :padBottom => 2, :hSpacing => DEFAULT_SPACING, :vSpacing => DEFAULT_SPACING }
       params = {}
       params = args.pop if args.last.is_a? Hash
       if args.length > 0 && (args.first.nil? || args.first.is_a?(FXComposite))
@@ -228,16 +228,16 @@ __END__
       end
     end
   end
-  
+
   class FXFont
 
     alias old_initialize initialize
-    
+
     def initialize(a, arg1, *args, &blk)
       if args.length > 0
         face, size = arg1, args[0]
         argument_names = %w{weight slant encoding setWidth hints}
-        default_params = { :weight => FXFont::Normal, :slant => FXFont::Straight, :encoding => FONTENCODING_DEFAULT, :setWidth => FXFont::NonExpanded, :hints => 0 }     
+        default_params = { :weight => FXFont::Normal, :slant => FXFont::Straight, :encoding => FONTENCODING_DEFAULT, :setWidth => FXFont::NonExpanded, :hints => 0 }
         params = {}
         params = args.pop if args.last.is_a? Hash
         args.each_with_index { |e, i| params[argument_names[i-1].intern] = e if i >= 1 }
@@ -252,10 +252,10 @@ __END__
     class << self
       alias old_listFonts listFonts
     end
-    
+
     def FXFont.listFonts(face, *args)
       argument_names = %w{weight slant setWidth encoding hints}
-      default_params = { :weight => 0, :slant => 0, :setWidth => 0, :encoding => 0, :hints => 0 }     
+      default_params = { :weight => 0, :slant => 0, :setWidth => 0, :encoding => 0, :hints => 0 }
       params = {}
       params = args.pop if args.last.is_a? Hash
       args.each_with_index { |e, i| params[argument_names[i].intern] = e }
@@ -265,7 +265,7 @@ __END__
     end
 
   end
-  
+
   class FXGLCanvas
     alias old_initialize initialize
     def initialize(parent, vis, *args, &blk)
@@ -331,7 +331,7 @@ __END__
       end
     end
   end
-  
+
   class FXMenuBar
     alias old_initialize initialize
     def initialize(p, *args, &blk)
@@ -366,7 +366,7 @@ __END__
     alias old_initialize initialize
     def initialize(p, *args, &blk)
       argument_names = %w{opts ns}
-      default_params = { :opts => SPLASH_SIMPLE, :ns => 2000000000 }     
+      default_params = { :opts => SPLASH_SIMPLE, :ns => 2000000000 }
       params = {}
       params = args.pop if args.last.is_a? Hash
       if args.first.is_a?(FXApp)
@@ -391,7 +391,7 @@ __END__
     alias old_initialize initialize
     def initialize(p, *args, &blk)
       argument_names = %w{opts x y width height}
-      default_params = { :opts => SPLITTER_NORMAL, :x => 0, :y => 0, :width => 0, :height => 0 }     
+      default_params = { :opts => SPLITTER_NORMAL, :x => 0, :y => 0, :width => 0, :height => 0 }
       params = {}
       params = args.pop if args.last.is_a? Hash
       if args.length > 0 && (args.first.nil? || args.first.is_a?(FXObject))
@@ -413,7 +413,7 @@ __END__
     alias old_initialize initialize
     def initialize(p, *args, &blk)
       argument_names = %w{opts x y width height padLeft padRight padTop padBottom hSpacing vSpacing}
-      default_params = { :opts => LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, :x => 0, :y => 0, :width => 0, :height => 0, :padLeft => 3, :padRight => 3, :padTop => 2, :padBottom => 2, :hSpacing => DEFAULT_SPACING, :vSpacing => DEFAULT_SPACING }     
+      default_params = { :opts => LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, :x => 0, :y => 0, :width => 0, :height => 0, :padLeft => 3, :padRight => 3, :padTop => 2, :padBottom => 2, :hSpacing => DEFAULT_SPACING, :vSpacing => DEFAULT_SPACING }
       params = {}
       params = args.pop if args.last.is_a? Hash
       if args.length > 0 && (args[0].nil? || args[0].is_a?(FXComposite))
@@ -438,7 +438,7 @@ __END__
       end
     end
   end
-  
+
   class FXWindow
     alias old_initialize initialize
     def initialize(p, *args, &blk)

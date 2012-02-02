@@ -44,7 +44,7 @@ public:
 
   // Default constructor
   FXRangef();
-  
+
   // Copy constructor
   FXRangef(const FXRangef& bounds);
 
@@ -65,7 +65,7 @@ public:
         }
       return (*self)[i];
       }
-    
+
     void __setitem__(FXint i,FXVec3f& slice){
       if(i<0||1<i){
         rb_raise(rb_eIndexError,"index %d out of bounds",i);
@@ -124,12 +124,12 @@ public:
   /// Test if box properly contains sphere
   FXbool contains(const FXSpheref& sphere) const;
 
-  // Include point 
+  // Include point
   FXRangef& include(FXfloat x,FXfloat y,FXfloat z);
 
-  // Include point 
+  // Include point
   FXRangef& include(const FXVec3f& v);
-  
+
   // Include given range into box
   FXRangef& include(const FXRangef& box);
 

@@ -101,7 +101,7 @@ class TextWindow < FXMainWindow
     FXMAPFUNC(SEL_CLOSE,              ID_TITLE,         :onCmdQuit)
     FXMAPFUNC(SEL_COMMAND,            ID_PRINT,         :onCmdPrint)
     FXMAPFUNC(SEL_COMMAND,            ID_TREELIST,      :onCmdTreeList)
-  
+
     FXMAPFUNC(SEL_COMMAND,            ID_TEXT_BACK,     :onCmdTextBackColor)
     FXMAPFUNC(SEL_CHANGED,            ID_TEXT_BACK,     :onCmdTextBackColor)
     FXMAPFUNC(SEL_UPDATE,             ID_TEXT_BACK,     :onUpdTextBackColor)
@@ -117,7 +117,7 @@ class TextWindow < FXMainWindow
     FXMAPFUNC(SEL_COMMAND,            ID_TEXT_CURSOR,   :onCmdTextCursorColor)
     FXMAPFUNC(SEL_CHANGED,            ID_TEXT_CURSOR,   :onCmdTextCursorColor)
     FXMAPFUNC(SEL_UPDATE,             ID_TEXT_CURSOR,   :onUpdTextCursorColor)
-  
+
     FXMAPFUNC(SEL_COMMAND,            ID_DIR_BACK,      :onCmdDirBackColor)
     FXMAPFUNC(SEL_CHANGED,            ID_DIR_BACK,      :onCmdDirBackColor)
     FXMAPFUNC(SEL_UPDATE,             ID_DIR_BACK,      :onUpdDirBackColor)
@@ -133,7 +133,7 @@ class TextWindow < FXMainWindow
     FXMAPFUNC(SEL_COMMAND,            ID_DIR_LINES,     :onCmdDirLineColor)
     FXMAPFUNC(SEL_CHANGED,            ID_DIR_LINES,     :onCmdDirLineColor)
     FXMAPFUNC(SEL_UPDATE,             ID_DIR_LINES,     :onUpdDirLineColor)
-  
+
     FXMAPFUNC(SEL_COMMAND,            ID_RECENTFILE,    :onCmdRecentFile)
     FXMAPFUNC(SEL_UPDATE,             ID_TOGGLE_WRAP,   :onUpdWrap)
     FXMAPFUNC(SEL_COMMAND,            ID_TOGGLE_WRAP,   :onCmdWrap)
@@ -181,7 +181,7 @@ class TextWindow < FXMainWindow
 
     # Default font
     @font = nil
-  
+
     # Make some icons
     @bigicon = loadIcon("big.png")
     @smallicon = loadIcon("small.png")
@@ -203,71 +203,71 @@ class TextWindow < FXMainWindow
     # Application icons
     setIcon(@bigicon)
     setMiniIcon(@smallicon)
-  
+
     # Make main window; set myself as the target
     setTarget(self)
     setSelector(ID_TITLE)
-  
+
     # Help window
     @helpwindow = HelpWindow.new(self)
-  
+
     # Make menu bar
     dragshell1 = FXToolBarShell.new(self, FRAME_RAISED|FRAME_THICK)
     menubar = FXMenuBar.new(self, dragshell1, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
     FXToolBarGrip.new(menubar, menubar, FXMenuBar::ID_TOOLBARGRIP,
       TOOLBARGRIP_DOUBLE)
-  
+
     # Tool bar
     dragshell2 = FXToolBarShell.new(self, FRAME_RAISED|FRAME_THICK)
     toolbar = FXToolBar.new(self, dragshell2,
       LAYOUT_SIDE_TOP|LAYOUT_FILL_X|PACK_UNIFORM_WIDTH|PACK_UNIFORM_HEIGHT)
     FXToolBarGrip.new(toolbar, toolbar, FXToolBar::ID_TOOLBARGRIP,
       TOOLBARGRIP_DOUBLE)
-  
+
     # Status bar
     statusbar = FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
-  
+
     # Info about the editor
     FXButton.new(statusbar, "\tThe FOX Text Editor\tAbout the FOX Text Editor.",
       @smallicon, self, ID_ABOUT, LAYOUT_FILL_Y|LAYOUT_RIGHT)
-  
+
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-  
+
     # Edit Menu
     editmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Edit", nil, editmenu)
-  
+
     # Goto Menu
     gotomenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Goto", nil, gotomenu)
-  
+
     # Search Menu
     searchmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Search", nil, searchmenu)
-  
+
     # Options Menu
     optionmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Options", nil, optionmenu)
-  
+
     # View menu
     viewmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&View", nil, viewmenu)
-  
+
     # Help menu
     helpmenu = FXMenuPane.new(self)
     FXMenuTitle.new(menubar, "&Help", nil, helpmenu, LAYOUT_RIGHT)
-  
+
     # Splitter
     splitter = FXSplitter.new(self,
       LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y|SPLITTER_TRACKING)
-  
+
     # Sunken border for tree
     @treebox = FXVerticalFrame.new(splitter, LAYOUT_FILL_X|LAYOUT_FILL_Y,
       0, 0, 0, 0, 0, 0, 0, 0)
-  
+
     # Make tree
     treeframe = FXHorizontalFrame.new(@treebox,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y,
@@ -280,15 +280,15 @@ class TextWindow < FXMainWindow
     @filter = FXComboBox.new(filterframe, 25, self, ID_FILEFILTER,
       COMBOBOX_STATIC|LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
     @filter.numVisible = 4
-  
+
     # Sunken border for text widget
     textbox = FXHorizontalFrame.new(splitter,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y, 0,0,0,0, 0,0,0,0)
-  
+
     # Make editor window
     @editor = FXText.new(textbox, self, ID_TEXT, LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @editor.hiliteMatchTime = 300000
-  
+
     # Show readonly state in status bar
     readonly = FXLabel.new(statusbar, nil, nil, FRAME_SUNKEN|LAYOUT_RIGHT|LAYOUT_CENTER_Y)
     readonly.padLeft = 2
@@ -297,7 +297,7 @@ class TextWindow < FXMainWindow
     readonly.padBottom = 1
     readonly.setTarget(self)
     readonly.setSelector(ID_READONLY)
-  
+
     # Show insert mode in status bar
     overstrike = FXLabel.new(statusbar, nil, nil, FRAME_SUNKEN|LAYOUT_RIGHT|LAYOUT_CENTER_Y)
     overstrike.padLeft = 2
@@ -306,34 +306,34 @@ class TextWindow < FXMainWindow
     overstrike.padBottom = 1
     overstrike.setTarget(self)
     overstrike.setSelector(ID_OVERSTRIKE)
-  
+
     # Show size of text in status bar
     numchars = FXTextField.new(statusbar, 6, self, ID_NUMCHARS,
       FRAME_SUNKEN|JUSTIFY_RIGHT|LAYOUT_RIGHT|LAYOUT_CENTER_Y,
       0, 0, 0, 0, 2, 2, 1, 1)
     numchars.backColor = statusbar.backColor
-  
+
     # Caption before number
     FXLabel.new(statusbar, "  Size:", nil, LAYOUT_RIGHT|LAYOUT_CENTER_Y)
-  
+
     # Show column number in status bar
     columnno = FXTextField.new(statusbar, 4, @editor, FXText::ID_CURSOR_COLUMN,
       FRAME_SUNKEN|JUSTIFY_RIGHT|LAYOUT_RIGHT|LAYOUT_CENTER_Y,
       0, 0, 0, 0, 2, 2, 1, 1)
     columnno.backColor = statusbar.backColor
-  
+
     # Caption before number
     FXLabel.new(statusbar, "  Col:", nil, LAYOUT_RIGHT|LAYOUT_CENTER_Y)
-  
+
     # Show line number in status bar
     rowno = FXTextField.new(statusbar, 4, @editor, FXText::ID_CURSOR_ROW,
       FRAME_SUNKEN|JUSTIFY_RIGHT|LAYOUT_RIGHT|LAYOUT_CENTER_Y,
       0, 0, 0, 0, 2, 2, 1, 1)
     rowno.backColor = statusbar.backColor
-  
+
     # Caption before number
     FXLabel.new(statusbar, "  Line:", nil, LAYOUT_RIGHT|LAYOUT_CENTER_Y)
-  
+
     # Toobar buttons: File manipulation
     FXButton.new(toolbar, "New\tNew\tCreate new document.", @newicon,
       self, ID_NEW, (ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED|
@@ -347,14 +347,14 @@ class TextWindow < FXMainWindow
     FXButton.new(toolbar, "Save as\tSave As\tSave document to another file.",
       @saveasicon, self, ID_SAVEAS, (ICON_ABOVE_TEXT|BUTTON_TOOLBAR|
       FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT))
-  
+
     # Toobar buttons: Print
     FXFrame.new(toolbar,
       LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, 0, 0, 5, 5)
     FXButton.new(toolbar, "Print\tPrint\tPrint document.", @printicon,
       self, ID_PRINT, (ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED|
       LAYOUT_TOP|LAYOUT_LEFT))
-  
+
     # Toobar buttons: Editing
     FXFrame.new(toolbar,
       LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, 0, 0, 5, 5)
@@ -373,18 +373,18 @@ class TextWindow < FXMainWindow
     FXButton.new(toolbar, "Redo\tRedo\tRedo last undo.", @redoicon,
       @undolist, FXUndoList::ID_REDO, (ICON_ABOVE_TEXT|BUTTON_TOOLBAR|
       FRAME_RAISED|LAYOUT_TOP|LAYOUT_LEFT))
-  
+
     # Color
     FXFrame.new(toolbar,
       LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, 0, 0, 5, 5)
     FXButton.new(toolbar, "Fonts\tFonts\tDisplay font dialog.", @fontsicon,
       self, ID_FONT, (ICON_ABOVE_TEXT|BUTTON_TOOLBAR|FRAME_RAISED|
       LAYOUT_TOP|LAYOUT_LEFT))
- 
+
     FXButton.new(toolbar, "Help\tHelp on editor\tDisplay help information.",
       @helpicon, self, ID_SHOW_HELP, (ICON_ABOVE_TEXT|BUTTON_TOOLBAR|
       FRAME_RAISED|LAYOUT_TOP|LAYOUT_RIGHT))
-  
+
     # File Menu entries
     FXMenuCommand.new(filemenu, "&Open...        \tCtl-O\tOpen document file.",
       @openicon, self, ID_OPEN)
@@ -410,7 +410,7 @@ class TextWindow < FXMainWindow
       @editor, FXText::ID_TOGGLE_EDITABLE)
     iconifyCmd = FXMenuCommand.new(filemenu, "&Iconify...\t\tIconify editor.")
     iconifyCmd.connect(SEL_COMMAND) { self.minimize }
-  
+
     # Recent file menu; this automatically hides if there are no files
     sep1 = FXMenuSeparator.new(filemenu)
     sep1.setTarget(@mrufiles)
@@ -431,7 +431,7 @@ class TextWindow < FXMainWindow
     sep2.setTarget(@mrufiles)
     sep2.setSelector(FXRecentFiles::ID_ANYFILES)
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q", nil, self, ID_QUIT)
-  
+
     # Edit Menu entries
     FXMenuCommand.new(editmenu, "&Undo\tCtl-Z\tUndo last change.", @undoicon,
       @undolist, FXUndoList::ID_UNDO)
@@ -471,7 +471,7 @@ class TextWindow < FXMainWindow
     FXMenuCommand.new(editmenu,
       "Shift tab right\t\tShift text right one tab position.", nil,
       @editor, FXText::ID_SHIFT_TABRIGHT)
- 
+
     # Goto Menu entries
     FXMenuCommand.new(gotomenu,
       "&Goto...\tCtl-G\tGoto line number.", nil,
@@ -496,7 +496,7 @@ class TextWindow < FXMainWindow
     FXMenuCommand.new(searchmenu,
       "Goto matching (..)\tCtl-M\tGoto matching brace or parenthesis.", nil,
       @editor, FXText::ID_GOTO_MATCHING)
-  
+
     # Search Menu entries
     FXMenuCommand.new(searchmenu,
       "Select matching (..)\tShift-Ctl-M\tSelect matching brace or parenthesis.", nil,
@@ -526,7 +526,7 @@ class TextWindow < FXMainWindow
     FXMenuCommand.new(searchmenu,
       "R&eplace...\tCtl-R\tSearch for a string.", nil,
       @editor, FXText::ID_REPLACE)
-  
+
     # Options menu
     FXMenuCommand.new(optionmenu,
       "Preferences...\t\tChange preferences.", nil,
@@ -542,7 +542,7 @@ class TextWindow < FXMainWindow
     FXMenuCommand.new(optionmenu,
       "Save Settings...\t\tSave settings now.", nil,
       self, TextWindow::ID_SAVE_SETTINGS)
-  
+
     # View Menu entries
     FXMenuCommand.new(viewmenu,
       "Hidden files\t\tShow hidden files and directories.", nil,
@@ -554,34 +554,34 @@ class TextWindow < FXMainWindow
       toolbar, FXWindow::ID_TOGGLESHOWN)
     FXMenuCommand.new(viewmenu, "Status line\t\tDisplay status line.", nil,
       statusbar, FXWindow::ID_TOGGLESHOWN)
-  
+
     # Help Menu entries
     FXMenuCommand.new(helpmenu, "&Help...\t\tDisplay help information.",
       @helpicon, self, ID_SHOW_HELP, 0)
     FXMenuSeparator.new(helpmenu)
     FXMenuCommand.new(helpmenu, "&About TextEdit...\t\tDisplay about panel.",
       @smallicon, self, ID_ABOUT, 0)
-  
+
     # Make a tool tip
     FXToolTip.new(getApp(), 0)
-  
+
     # Recent files
     @mrufiles = FXRecentFiles.new
     @mrufiles.setTarget(self)
     @mrufiles.setSelector(ID_RECENTFILE)
-  
+
     # Add some alternative accelerators
     if getAccelTable()
       getAccelTable().addAccel(MKUINT(KEY_Z, CONTROLMASK|SHIFTMASK),
                                @undolist,
                                MKUINT(FXUndoList::ID_REDO, SEL_COMMAND))
     end
-  
+
     # Initialize file name
     @filename = "untitled"
     @filetime = nil
     @filenameset = false
-  
+
     # Initialize other stuff
     @searchpath = "/usr/include"
     setPatterns(["All Files (*)"])
@@ -752,7 +752,7 @@ class TextWindow < FXMainWindow
 
     # File patterns
     patterns = getApp().reg().readStringEntry("SETTINGS", "filepatterns", "All Files (*)")
-    setPatterns(patterns.split("\n")) 
+    setPatterns(patterns.split("\n"))
     setCurrentPattern(getApp().reg().readIntEntry("SETTINGS", "filepatternno", 0))
 
     # Search path
@@ -764,57 +764,57 @@ class TextWindow < FXMainWindow
     @editor.selBackColor = textselback
     @editor.selTextColor = textselfore
     @editor.cursorColor  = textcursor
-  
+
     @dirlist.textColor    = dirfore
     @dirlist.backColor    = dirback
     @dirlist.selBackColor = dirselback
     @dirlist.selTextColor = dirselfore
     @dirlist.lineColor    = dirlines
-  
+
     # Change delimiters
     @editor.delimiters = delimiters
-  
+
     # Hide tree if asked for
     @treebox.hide if hidetree
-  
+
     # Set tree width
     @treebox.width = treewidth
-  
+
     # Open toward file
     @dirlist.currentFile = @filename
-  
+
     # Wrap mode
     if wrapping
       @editor.textStyle |=  TEXT_WORDWRAP
     else
       @editor.textStyle &= ~TEXT_WORDWRAP
     end
-  
+
     # Wrap fixed mode
     if fixedwrap
       @editor.textStyle |=  TEXT_FIXEDWRAP
     else
       @editor.textStyle &= ~TEXT_FIXEDWRAP
     end
-  
+
     # Autoindent
     if autoindent
       @editor.textStyle |=  TEXT_AUTOINDENT
     else
       @editor.textStyle &= ~TEXT_AUTOINDENT
     end
-  
+
     # Hard tabs
     if hardtabs
       @editor.textStyle &= ~TEXT_NO_TABS
     else
       @editor.textStyle |=  TEXT_NO_TABS
     end
-  
+
     # Wrap and tab columns
     @editor.wrapColumns = wrapcols
     @editor.tabColumns = tabcols
-  
+
     # Reposition window
     position(xx, yy, ww, hh)
   end
@@ -828,54 +828,54 @@ class TextWindow < FXMainWindow
     getApp().reg().writeColorEntry("SETTINGS", "textselbackground", @editor.selBackColor)
     getApp().reg().writeColorEntry("SETTINGS", "textselforeground", @editor.selTextColor)
     getApp().reg().writeColorEntry("SETTINGS", "textcursor", @editor.cursorColor)
-  
+
     # Colors of directory
     getApp().reg().writeColorEntry("SETTINGS", "browserbackground", @dirlist.backColor)
     getApp().reg().writeColorEntry("SETTINGS", "browserforeground", @dirlist.textColor)
     getApp().reg().writeColorEntry("SETTINGS", "browserselbackground", @dirlist.selBackColor)
     getApp().reg().writeColorEntry("SETTINGS", "browserselforeground", @dirlist.selTextColor)
     getApp().reg().writeColorEntry("SETTINGS", "browserlines", @dirlist.lineColor)
-  
+
     # Delimiters
     getApp().reg().writeStringEntry("SETTINGS", "delimiters", @editor.delimiters)
-  
+
     # Write new window size back to registry
     getApp().reg().writeIntEntry("SETTINGS", "x", getX())
     getApp().reg().writeIntEntry("SETTINGS", "y", getY())
     getApp().reg().writeIntEntry("SETTINGS", "width", getWidth())
     getApp().reg().writeIntEntry("SETTINGS", "height", getHeight())
-  
+
     # Were showing hidden files
     getApp().reg().writeIntEntry("SETTINGS", "showhiddenfiles", @dirlist.hiddenFilesShown? ? 1 : 0)
-  
+
     # Was tree shown?
     getApp().reg().writeIntEntry("SETTINGS", "hidetree", @treebox.shown() ? 0 : 1)
-  
+
     # Width of tree
     getApp().reg().writeIntEntry("SETTINGS", "treewidth", @treebox.getWidth())
-  
+
     # Wrap mode
     getApp().reg().writeIntEntry("SETTINGS", "wordwrap", (@editor.textStyle & TEXT_WORDWRAP) != 0 ? 1 : 0)
     getApp().reg().writeIntEntry("SETTINGS", "fixedwrap", (@editor.textStyle & TEXT_FIXEDWRAP) != 0 ? 1 : 0)
     getApp().reg().writeIntEntry("SETTINGS", "wrapcols", @editor.getWrapColumns())
-  
+
     # Tab settings, autoindent
     getApp().reg().writeIntEntry("SETTINGS", "autoindent", (@editor.textStyle & TEXT_AUTOINDENT) != 0 ? 1 : 0)
     getApp().reg().writeIntEntry("SETTINGS", "hardtabs", (@editor.textStyle & TEXT_NO_TABS) == 0 ? 1 : 0)
     getApp().reg().writeIntEntry("SETTINGS", "tabcols", @editor.getTabColumns())
-  
+
     # Strip returns
     getApp().reg().writeIntEntry("SETTINGS", "stripreturn", @stripcr ? 1 : 0)
     getApp().reg().writeIntEntry("SETTINGS", "stripspaces", @stripsp ? 1 : 0)
-  
+
     # File patterns
     getApp().reg().writeIntEntry("SETTINGS", "filepatternno", getCurrentPattern())
     patterns = getPatterns().join("\n")
     getApp().reg().writeStringEntry("SETTINGS", "filepatterns", patterns)
-  
+
     # Search path
     getApp().reg().writeStringEntry("SETTINGS", "searchpath", @searchpath)
-  
+
     # Font
     getApp().reg().writeStringEntry("SETTINGS", "font", @editor.font.font)
   end

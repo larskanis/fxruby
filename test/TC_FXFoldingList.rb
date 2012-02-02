@@ -5,7 +5,7 @@ require 'fox16'
 class TC_FXFoldingList < Fox::TestCase
   include Fox
 
-  
+
   def setup
     super(self.class.name)
     @foldingList = FXFoldingList.new(mainWindow)
@@ -16,7 +16,7 @@ class TC_FXFoldingList < Fox::TestCase
     @foldingList.each { |item| count += 1 }
     assert_equal(0, count, "count for empty list should be zero")
   end
-  
+
   def test_each
     @foldingList.appendItem(nil, "1")
     @foldingList.appendItem(nil, "2")
@@ -27,6 +27,6 @@ class TC_FXFoldingList < Fox::TestCase
     @foldingList.each { |item| count += 1 }
     assert_equal(5, count, "count didn't match expected number of items")
   end
-  
+
 end
 

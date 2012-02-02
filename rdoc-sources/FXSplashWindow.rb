@@ -15,7 +15,7 @@ module Fox
   class FXSplashWindow < FXTopWindow
     # The splash window's icon [FXIcon]
     attr_accessor :icon
-    
+
     # The delay before hiding the splash window, in milliseconds [Integer]
     attr_accessor :delay
 

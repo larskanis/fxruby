@@ -98,7 +98,7 @@ public:
       return new FXRbDockSite(p,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
   }
-  
+
   /// Change wrap option
   void wrapGalleys(FXbool wrap);
 

@@ -1,5 +1,5 @@
 module Fox
-  
+
   class FXApp
 
     alias addTimeoutOrig	addTimeout # :nodoc:
@@ -190,7 +190,7 @@ module Fox
       end
       ms = ns/1000 # FOX returns the time in nanoseconds
     end
-    
+
   end # class FXApp
-  
+
 end # module Fox

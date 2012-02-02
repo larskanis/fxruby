@@ -58,10 +58,10 @@ public:
 
   /// Change file name
   void setFilename(const FXString& path);
-  
+
   /// Return file name, if any
   FXString getFilename() const;
-  
+
   %extend {
     // Return list of selected file names.
     VALUE getFilenames() const {
@@ -81,10 +81,10 @@ public:
 
   /// Change file pattern
   void setPattern(const FXString& ptrn);
-  
+
   /// Return file pattern
   FXString getPattern() const;
-  
+
   /**
   * Change the list of file patterns shown in the file dialog.
   * Each pattern comprises an optional name, followed by a pattern in
@@ -180,7 +180,7 @@ public:
 
   /// Return wildcard matching mode
   FXuint getMatchMode() const;
- 
+
   /// Return TRUE if showing hidden files
   FXbool showHiddenFiles() const;
 
@@ -201,10 +201,10 @@ public:
 
   /// Show readonly button
   void showReadOnly(FXbool flag);
-  
+
   /// Return TRUE if readonly is shown
   FXbool shownReadOnly() const;
-  
+
   /// Set initial state of readonly button
   void setReadOnly(FXbool state);
 
@@ -219,7 +219,7 @@ public:
 
   /// Allow or disallow navigation
   void allowNavigation(FXbool flag);
-  
+
   /// Is navigation allowed?
   FXbool allowNavigation() const;
 

@@ -10,7 +10,7 @@ class TC_stress2 < Test::Unit::TestCase
     @countLabel = FXLabel.new(theMainWindow, "0", nil, LAYOUT_FILL_X|LAYOUT_FILL_Y)
     theMainWindow
   end
-  
+
   def on_timeout(sender, sel, ptr)
     safeToQuit = false
     $lock.synchronize {
@@ -27,7 +27,7 @@ class TC_stress2 < Test::Unit::TestCase
       @theApp.addTimeout(100, method(:on_timeout))
     end
   end
-  
+
   def test_run
     # Set up the counter thread
     $count = 0
@@ -48,4 +48,4 @@ class TC_stress2 < Test::Unit::TestCase
     @theApp.run
   end
 end
- 
+

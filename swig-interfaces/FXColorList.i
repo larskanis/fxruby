@@ -38,13 +38,13 @@ public:
       return new FXRbColorItem(text,clr,ITEMDATA);
       }
   }
-  
+
   /// Change item's color
   void setColor(FXColor clr);
 
   /// Return item's color
   FXColor getColor() const;
-  
+
   // Destructor
   virtual ~FXColorItem();
   };
@@ -66,7 +66,7 @@ public:
       return new FXRbColorList(p,tgt,sel,opts,x,y,w,h);
       }
   }
-  
+
   /// Fill list by appending color items from array of strings and array of colors
   FXint fillItems(const FXchar** strings,FXColor *colors=NULL,void* ITEMDATA=NULL,FXbool notify=false);
 
@@ -84,11 +84,11 @@ public:
 
   /// Return item color
   FXColor getItemColor(FXint index) const;
-  
+
   // Destructor
   virtual ~FXColorList();
   };
-  
+
 DECLARE_FXOBJECT_VIRTUALS(FXColorList)
 DECLARE_FXID_VIRTUALS(FXColorList)
 DECLARE_FXDRAWABLE_VIRTUALS(FXColorList)

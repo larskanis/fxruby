@@ -62,7 +62,7 @@ public:
   /// Destructor
   virtual ~FXSeparator();
   };
-  
+
 
 DECLARE_FXOBJECT_VIRTUALS(FXSeparator)
 DECLARE_FXID_VIRTUALS(FXSeparator)
@@ -101,7 +101,7 @@ public:
       return new FXRbHorizontalSeparator(p,opts,x,y,w,h,pl,pr,pt,pb);
       }
     }
-  
+
   /// Destructor
   virtual ~FXHorizontalSeparator();
   };
@@ -125,7 +125,7 @@ public:
       return new FXRbVerticalSeparator(p,opts,x,y,w,h,pl,pr,pt,pb);
       }
     }
-  
+
   /// Destructor
   virtual ~FXVerticalSeparator();
   };

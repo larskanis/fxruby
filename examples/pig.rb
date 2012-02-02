@@ -30,9 +30,9 @@ class PigBox < FXMainWindow
   def initialize(app)
     # Initialize base class
     super(app, "Pig")
-    
+
     @text = FXDataTarget.new("")
-    
+
     top = FXVerticalFrame.new(self, LAYOUT_FILL_X|LAYOUT_FILL_Y) do |theFrame|
       theFrame.padLeft = 10
       theFrame.padRight = 10
@@ -40,29 +40,29 @@ class PigBox < FXMainWindow
       theFrame.padTop = 10
       theFrame.vSpacing = 20
     end
-    
+
     p = proc { showPig }
-    
+
     FXLabel.new(top, 'Enter Text:') do |theLabel|
       theLabel.layoutHints = LAYOUT_FILL_X
     end
-    
+
     FXTextField.new(top, 20, @text, FXDataTarget::ID_VALUE) do |theTextField|
       theTextField.layoutHints = LAYOUT_FILL_X
       theTextField.setFocus()
     end
-    
+
     FXButton.new(top, 'Pig It') do |pigButton|
       pigButton.connect(SEL_COMMAND, p)
       pigButton.layoutHints = LAYOUT_CENTER_X
     end
-    
+
     FXButton.new(top, 'Exit') do |exitButton|
       exitButton.connect(SEL_COMMAND) { exit }
       exitButton.layoutHints = LAYOUT_CENTER_X
     end
   end
-  
+
   def create
     super
     show(PLACEMENT_SCREEN)

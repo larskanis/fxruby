@@ -8,7 +8,7 @@ module Fox
 
     # Index of top-most menu item [Integer]
     attr_accessor :topItem
-    
+
     # Number of visible items [Integer]
     attr_accessor :numVisible
 

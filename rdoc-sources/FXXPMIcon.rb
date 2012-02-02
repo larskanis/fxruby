@@ -28,7 +28,7 @@ module Fox
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: theXPMIcon
     end
   end
-  
+
   #
   # Load a XPM file from a stream.
   # If successful, returns an array containing the image pixel data (as an
@@ -56,7 +56,7 @@ module Fox
   # +fast+::	if +true+, use fast something
   #
   def fxsaveXPM(store, data, transp, width, height, fast=true); end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains an XPM image.
   #

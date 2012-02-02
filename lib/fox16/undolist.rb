@@ -3,9 +3,9 @@
 # FXCommand classes from the standard FOX distribution. Since those
 # classes are independent of the rest of FOX this is a simpler (and probably
 # more efficient) approach than trying to wrap the original C++ classes.
-# 
+#
 # Notes (by Jeroen, lifted from FXUndoList.cpp):
-# 
+#
 # * When a command is undone, it's moved to the redo list.
 # * When a command is redone, it's moved back to the undo list.
 # * Whenever adding a new command, the redo list is deleted.
@@ -16,16 +16,16 @@
 #   can be set. The <em>mark</em> is basically a counter which is incremented
 #   with every undo record added, and decremented when undoing a command.
 #   When we get back to 0, we are back to the unmodified state.
-# 
+#
 #   If, after setting the mark, we have called FXUndoList#undo, then
 #   the mark can be reached by calling FXUndoList#redo.
-# 
+#
 #   If the marked position is in the redo-list, then adding a new undo
 #   record will cause the redo-list to be deleted, and the marked position
 #   will become unreachable.
-# 
+#
 #   The marked state may also become unreachable when the undo list is trimmed.
-# 
+#
 # * You can call also kill the redo list without adding a new command
 #   to the undo list, although this may cause the marked position to
 #   become unreachable.
@@ -44,9 +44,9 @@ module Fox
   # code should implement any number of command classes and then add then to an
   # FXUndoList instance. For an example of how this works, see the textedit
   # example program from the FXRuby distribution.
-  # 
+  #
   # == Class Constants
-  # 
+  #
   # [FXUndoList::ID_UNDO]	Message identifier for the undo method.
   #				When a +SEL_COMMAND+ message with this identifier
   #				is sent to an undo list, it undoes the last command.
@@ -251,7 +251,7 @@ module Fox
         nil
       end
     end
-    
+
     #
     # Return the name of the first available redo command.
     # If no redo command is available, returns +nil+.

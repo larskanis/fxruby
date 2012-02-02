@@ -50,11 +50,11 @@ enum {
 * during the resizing of the panels; at the end of the resize interaction,
 * it sends a SEL_COMMAND to signify that the resize operation is complete.
 * Normally, children are resizable from 0 upwards; however, if the child
-* in a horizontally oriented splitter has LAYOUT_FILL_X in combination with 
+* in a horizontally oriented splitter has LAYOUT_FILL_X in combination with
 * LAYOUT_FIX_WIDTH, it will not be made smaller than its default width,
 * except when the child is the last visible widget (or first when the option
 * SPLITTER_REVERSED has been passed to the splitter).
-* In a vertically oriented splitter, children with LAYOUT_FILL_Y and 
+* In a vertically oriented splitter, children with LAYOUT_FILL_Y and
 * LAYOUT_FIX_HEIGHT behave analogously.
 */
 class FXSplitter : public FXComposite {
@@ -79,7 +79,7 @@ public:
   long onFocusLeft(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusRight(FXObject*,FXSelector,void* PTR_EVENT);
 public:
-  
+
   %extend {
     /// Construct new splitter widget
     FXSplitter(FXComposite* p,FXuint opts=SPLITTER_NORMAL,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
@@ -100,13 +100,13 @@ public:
 
   /// Change splitter style
   void setSplitterStyle(FXuint style);
-  
+
   /// Return current splitter style
   FXuint getSplitterStyle() const;
-  
+
   /// Change splitter bar size
   void setBarSize(FXint bs);
-  
+
   /// Return current bar size
   FXint getBarSize() const;
 

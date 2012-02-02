@@ -9,19 +9,19 @@ module Fox
   class FXGradient
     # Lower value [Float]
     attr_accessor :lower
-    
+
     # Middle value [Float]
     attr_accessor :middle
-    
+
     # Upper value [Float]
     attr_accessor :upper
-    
+
     # Lower color [FXColor]
     attr_accessor :lowerColor
-    
+
     # Upper color [FXColor]
     attr_accessor :upperColor
-    
+
     # Blend mode [Integer]
     attr_accessor :blend
   end
@@ -73,7 +73,7 @@ module Fox
   # +ID_UNIFORM+::			write me
   #
   class FXGradientBar < FXFrame
-  
+
     #
     # Gradient bar style, some combination of +GRADIENTBAR_HORIZONTAL+,
     # +GRADIENTBAR_VERTICAL+, +GRADIENTBAR_NO_CONTROLS+,
@@ -81,19 +81,19 @@ module Fox
     # +GRADIENTBAR_CONTROLS_LEFT+ and +GRADIENTBAR_CONTROLS_RIGHT+.
     #
     attr_accessor :barStyle
-    
+
     # Bar size [Integer]
     attr_accessor :barSize
-    
+
     # Control size [Integer]
     attr_accessor :controlSize
-    
+
     # Selection color [FXColor]
     attr_accessor :selectColor
-    
+
     # Status line help text [String]
     attr_accessor :helpText
-    
+
     # Tool tip text [String]
     attr_accessor :tipText
 
@@ -102,7 +102,7 @@ module Fox
     #
     def initialize(p, target=nil, selector=0, opts=FRAME_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theGradientBar
     end
-    
+
     #
     # Return the zero-based index of the segment containing location (_x_, _y_).
     # Returns -1 if no matching segment was found.
@@ -137,7 +137,7 @@ module Fox
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the gradient bar's
     # message target after the current segment is changed.
     # Raises IndexError if _index_ is out of bounds.
-    # 
+    #
     def setCurrentSegment(index, notify=false); end
 
     #
@@ -188,7 +188,7 @@ module Fox
     # Raises IndexError if _seg_ is out of bounds.
     #
     def setSegmentLowerColor(seg, clr, notify=false); end
-  
+
     #
     # Set upper color of the segment with index _seg_.
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the gradient bar's
@@ -202,7 +202,7 @@ module Fox
     # Raises IndexError if _seg_ is out of bounds.
     #
     def getSegmentLowerColor(seg); end
-  
+
     #
     # Return upper color of the segment with index _seg_.
     # Raises IndexError if _seg_ is out of bounds.
@@ -245,13 +245,13 @@ module Fox
     # Raises IndexError if _seg_ is out of bounds.
     #
     def getSegmentLower(seg); end
-  
+
     #
     # Return middle value of segment _seg_.
     # Raises IndexError if _seg_ is out of bounds.
     #
     def getSegmentMiddle(seg); end
-  
+
     #
     # Return upper value of segment _seg_.
     # Raises IndexError if _seg_ is out of bounds.

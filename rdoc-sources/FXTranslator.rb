@@ -7,7 +7,7 @@ module Fox
     # Return a new translator instance.
     #
     def initialize; end
-    
+
     #
     # Translate a message.
     #

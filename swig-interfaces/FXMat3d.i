@@ -37,13 +37,13 @@ public:
 
   /// Initialize from rotation and scaling part of 4x4 matrix
   FXMat3d(const FXMat4d& other);
-  
+
   /// Initialize matrix from scalar
   FXMat3d(FXdouble w);
 
-  /// Initialize diagonal matrix 
+  /// Initialize diagonal matrix
   FXMat3d(FXdouble a,FXdouble b,FXdouble c);
-  
+
   /// Initialize matrix from components
   FXMat3d(FXdouble a00,FXdouble a01,FXdouble a02,
           FXdouble a10,FXdouble a11,FXdouble a12,
@@ -87,7 +87,7 @@ public:
 
   /// Set to identity matrix
   FXMat3d& identity();
-  
+
   /// Return true if identity matrix
   FXbool isIdentity() const;
 

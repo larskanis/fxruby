@@ -7,13 +7,13 @@ module Fox
   class FXDockTitle < FXDockHandler
     # Caption text for the grip [String]
     attr_accessor :caption
-    
+
     # Caption font [FXFont]
     attr_accessor :font
-    
+
     # Caption color [FXColor]
     attr_accessor :captionColor
-    
+
     # Current justification mode [Integer]
     attr_accessor :justify
 

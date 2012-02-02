@@ -292,16 +292,16 @@ public:
 
   /// Change control size
   void setControlSize(FXint cs);
-  
+
   /// Get control size
   FXint getControlSize() const { return controlsize; }
 
   /// Change bar size
   void setBarSize(FXint bs);
-  
+
   /// Get bar size
   FXint getBarSize() const { return barsize; }
-  
+
   /// Get the gradient bar style
   FXuint getBarStyle() const;
 

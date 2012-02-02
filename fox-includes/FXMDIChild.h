@@ -262,7 +262,7 @@ public:
 
   /// Close MDI window, return true if actually closed
   virtual FXbool close(FXbool notify=false);
-  
+
   /// Return true if maximized
   FXbool isMaximized() const;
 

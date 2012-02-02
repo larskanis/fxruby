@@ -11,21 +11,21 @@ class FourSplitWindow < FXMainWindow
 
     # Menu bar, along the top
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-  
+
     # Status bar, along the bottom
     FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
-    
+
     # The top-level splitter takes up the rest of the space
     splitter = FX4Splitter.new(self,
       LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y|FOURSPLITTER_TRACKING)
-    
+
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q\tQuit the application.", nil,
       getApp(), FXApp::ID_QUIT)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-    
+
     # Expand menu
     expandmenu = FXMenuPane.new(self)
     FXMenuCommand.new(expandmenu, "All four", nil,
@@ -39,7 +39,7 @@ class FourSplitWindow < FXMainWindow
     FXMenuCommand.new(expandmenu, "Bottom/right", nil,
       splitter, FX4Splitter::ID_EXPAND_BOTTOMRIGHT)
     FXMenuTitle.new(menubar, "&Expand", nil, expandmenu)
-    
+
     # The 4-splitter accepts exactly four child widgets, and the
     # order in which they are added matters (top left, top right,
     # bottom left and bottom right, in that order). For our case,
@@ -76,7 +76,7 @@ class FourSplitWindow < FXMainWindow
       "&arbitrarily!\tThis splitter does NOT track", :opts => FRAME_SUNKEN|FRAME_THICK)
     button.backColor = FXRGB(128, 128, 0)
     button.textColor = FXRGB(255, 255, 255)
-    
+
     # Finally, create the tool tip object
     FXToolTip.new(getApp())
   end

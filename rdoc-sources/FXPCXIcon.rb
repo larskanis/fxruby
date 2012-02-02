@@ -7,7 +7,7 @@ module Fox
     # Return the suggested file extension for this image type ("pcx").
     #
     def FXPCXIcon.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #
@@ -54,7 +54,7 @@ module Fox
   # +height+::	height [Integer]
   #
   def Fox.fxsavePCX(store, data, transp, width, height); end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains a PCX image.
   #

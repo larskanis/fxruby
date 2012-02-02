@@ -38,8 +38,8 @@ enum {
   STYLE_POINTS          = 0x00000040,     // Draw as points
   STYLE_BOUNDBOX        = 0x00000080      // Draw bounding box
   };
-  
-  
+
+
 
 /// OpenGL Shape Object
 class FXGLShape : public FXGLObject {
@@ -91,7 +91,7 @@ public:
     FXGLShape(FXfloat x,FXfloat y,FXfloat z,FXuint opts){
       return new FXRbGLShape(x,y,z,opts);
       }
-  
+
     /// Construct with specified origin, options and front and back materials
     FXGLShape(FXfloat x,FXfloat y,FXfloat z,FXuint opts,const FXMaterial& front,const FXMaterial& back){
       return new FXRbGLShape(x,y,z,opts,front,back);
@@ -124,14 +124,14 @@ public:
       self->getMaterial(side, mtl);
       return mtl;
       }
-    
+
     // Set the range for this shape
     void setRange(const FXRangef& box){
       FXASSERT(self->isMemberOf(FXMETACLASS(FXRbGLShape)));
       dynamic_cast<FXRbGLShape*>(self)->setRange(box);
       }
     }
-  
+
   // Destructor
   virtual ~FXGLShape();
 };

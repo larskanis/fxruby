@@ -39,28 +39,28 @@ module Fox
 
     # Current item's index, or -1 if no current item [Integer]
     attr_accessor :currentItem
-    
+
     # Text font [FXFont]
     attr_accessor :font
-  
+
     # Background color [FXColor]
     attr_reader :backColor
-  
+
     # Text color [FXColor]
     attr_accessor :textColor
-    
+
     # Background color for selected items [FXColor]
     attr_accessor :selBackColor
-    
+
     # Text color for selected items [FXColor]
     attr_accessor :selTextColor
-  
+
     # Status line help text [String]
     attr_accessor :helpText
-  
+
     # Tool tip message [String]
     attr_accessor :tipText
-    
+
     # Shrinkwrap mode for popup pane [Boolean]
     attr_accessor :shrinkWrap
 
@@ -90,7 +90,7 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItem(index, text, icon=nil, ptr=nil, notify=false); end
-  
+
     #
     # Fill list by appending items from array of strings, and return the number
     # items added.
@@ -106,21 +106,21 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def insertItem(index, text, icon=nil, ptr=nil, notify=false); end
-  
+
     #
     # Add an item to the end of the list.
     # If _notify_ is  +true+, a +SEL_INSERTED+ message is sent to the list box's message target
     # after the item is appended.
     #
     def appendItem(text, icon=nil, ptr=nil, notify=false);
-  
+
     #
     # Prepend an item to the list
     # If _notify_ is  +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is prepended.
     #
     def prependItem(text, icon=nil, ptr=nil, notify=false); end
-  
+
     #
     # Move item from _oldIndex_ to _newIndex_ and return the new
     # index of the item.
@@ -146,14 +146,14 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def removeItem(index, notify=false); end
-  
+
     #
     # Remove all items from the list
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list box's message target
     # before each item is removed.
     #
     def clearItems(notify=false); end
-  
+
     #
     # Search items by _text_, beginning from item _start_. If the start
     # item is -1 the search will start at the first item in the list.
@@ -165,7 +165,7 @@ module Fox
     # Return -1 if no matching item is found.
     #
     def findItem(text, start=-1, flags=SEARCH_FORWARD|SEARCH_WRAP); end
-  
+
     #
     # Search items by associated user _data_, beginning from item _start_. If the
     # start item is -1 the search will start at the first item in the list.
@@ -180,25 +180,25 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemText(index, text); end
-  
+
     #
     # Return text for specified item.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemText(index); end
-  
+
     #
     # Set icon for specified item to _icon_.
     # Raises IndexError if _index_ is out of bounds.
     #
     def setItemIcon(index, icon, owned=false); end
-    
+
     #
     # Return icon for specified item.
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemIcon(index); end
-    
+
     #
     # Set user data object for specified item to _ptr_.
     # Raises IndexError if _index_ is out of bounds.
@@ -210,19 +210,19 @@ module Fox
     # Raises IndexError if _index_ is out of bounds.
     #
     def getItemData(index); end
-  
+
     # Return +true+ if the menu pane is shown
     def menuShown?; end
-    
+
     # Set the menu's visibility to shown (+true+) or hidden (+false+)
     def menuShown=(shown); end
-    
+
     # paneShown? is an alias for menuShown?
     alias paneShown? menuShown?
 
     # Sort items using current sort function
     def sortItems; end
-  
+
     alias appendItem <<
   end
 end

@@ -81,7 +81,7 @@ public:
 
   /// Set the radio background color
   void setRadioColor(FXColor clr);
-  
+
   /// Destructor
   virtual ~FXMenuRadio();
   };

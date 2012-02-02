@@ -24,8 +24,8 @@
 enum {
   STATUSBAR_WITH_DRAGCORNER = 0x00020000    /// Causes the DragCorner to be shown
   };
-  
-  
+
+
 class FXDragCorner;
 class FXStatusLine;
 
@@ -46,10 +46,10 @@ public:
 
   /// Show or hide the drag corner
   void setCornerStyle(FXbool withcorner=true);
-  
+
   /// Return true if drag corner shown
   FXbool getCornerStyle() const;
-  
+
   /// Acess the status line widget
   FXStatusLine *getStatusLine() const;
 

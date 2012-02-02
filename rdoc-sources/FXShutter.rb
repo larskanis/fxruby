@@ -14,15 +14,15 @@ module Fox
     # The scroll window for this shutter item [FXScrollWindow]
     #
     attr_reader :scrollWindow
-    
+
     #
     # The button for this shutter item [FXButton]
     #
     attr_reader :button
-    
+
     # The contents for this shutter item [FXVerticalFrame]
     attr_reader :content
-    
+
     # Status line help text for this shutter item [String]
     attr_accessor :helpText
 
@@ -74,7 +74,7 @@ module Fox
   # +ID_OPEN_LAST+::		x
   #
   class FXShutter < FXVerticalFrame
-  
+
     #
     # The currently displayed shutter item (a zero-based index) [Integer]
     #

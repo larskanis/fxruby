@@ -47,12 +47,12 @@ class FXFont;
 
 /**
 * A label widget can be used to place a text and/or icon for
-* explanation purposes.  The text label may have an optional tooltip 
+* explanation purposes.  The text label may have an optional tooltip
 * and/or help string.
 */
 class FXLabel : public FXFrame {
 protected:
-  FXString label; 
+  FXString label;
   FXIcon*  icon;
   FXFont*  font;
   FXHotKey hotkey;

@@ -10,22 +10,22 @@ class TC_FXFileAssoc < Test::Unit::TestCase
     @icon = FXIcon.new(@app)
     @fileassoc = FXFileAssoc.new
   end
-  
+
   def test_command
     @fileassoc.command = "netscape"
     assert_equal("netscape", @fileassoc.command)
   end
-  
+
   def test_extension
     @fileassoc.extension = ".html"
     assert_equal(".html", @fileassoc.extension)
   end
-  
+
   def test_mimetype
     @fileassoc.mimetype = "mimetype"
     assert_equal("mimetype", @fileassoc.mimetype)
   end
-  
+
   def test_bigicon
     @fileassoc.bigicon = @icon
     assert_kind_of(FXIcon, @fileassoc.bigicon)
@@ -54,7 +54,7 @@ class TC_FXFileAssoc < Test::Unit::TestCase
     @fileassoc.dragtype = 0
     assert_equal(0, @fileassoc.dragtype)
   end
-  
+
   def test_flags
     @fileassoc.flags = 0
     assert_equal(0, @fileassoc.flags)

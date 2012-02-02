@@ -12,12 +12,12 @@ module Fox
     # Return the suggested file extension for this image type ("bmp").
     #
     def FXBMPIcon.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #
     def FXBMPIcon.mimeType; end
-    
+
     #
     # Return an initialized FXBMPIcon instance.
     #
@@ -59,7 +59,7 @@ module Fox
   # +height+::	height [Integer]
   #
   def Fox.fxsaveBMP(store, data, transp, width, height); end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains a BMP image.
   #

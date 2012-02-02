@@ -7,13 +7,13 @@ include Fox
 =begin
 This is the "Cadillac" version of the classic "Hello, World" example;
 it has not only an icon, but also a tooltip, and an accelerator.
- 
+
 Executing an FXIcon's constructor will cause it to deserialize the pixel-
 data by associating a memory stream with the data array; the resulting icon
 object will contain a pixel-array, which will be converted to an off-screen
 X pixmap when the icons create() method is called.  At that point, the
 temporary (client-side) pixel storage will be freed.
-=end  
+=end
 
 # Construct the application object, with application name "Hello2"
 # and vendor key "FoxTest". These strings are primarily used for

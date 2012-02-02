@@ -28,7 +28,7 @@ namespace FX {
 
 /**
 * Generic catch-all exception.
-* An optional message may be passed in the constructor, which must be a string 
+* An optional message may be passed in the constructor, which must be a string
 * literal constant.
 */
 class FXAPI FXException {

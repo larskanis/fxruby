@@ -4,7 +4,7 @@ public:
 
   // Overrides the base class version of render()
   virtual void render();
-  
+
   // Overrides the base class version of release()
   virtual void release();
 

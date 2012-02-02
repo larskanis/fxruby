@@ -27,13 +27,13 @@ enum {
   BITMAP_SHMI       = 0x00000020,       // Using shared memory image
   BITMAP_SHMP       = 0x00000040        // Using shared memory pixmap
   };
-    
+
 
 
 /**
 * A Bitmap is a rectangular array of pixels.  It supports two representations
-* of these pixels: a client-side pixel buffer, and a server-side pixmap which 
-* is stored in an organization directly compatible with the screen, for fast 
+* of these pixels: a client-side pixel buffer, and a server-side pixmap which
+* is stored in an organization directly compatible with the screen, for fast
 * drawing onto the device.
 * The server-side representation is not directly accessible from the current
 * process as it lives in the process of the X Server or GDI.

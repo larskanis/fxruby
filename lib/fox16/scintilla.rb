@@ -3,7 +3,7 @@
 
 module Fox
   class FXScintilla
-    # 
+    #
 
 
 
@@ -3238,7 +3238,7 @@ module Fox
       sendMessage(2626, markerNumber, pixels)
     end
 
-    # Register an RGBA image for use in autocompletion lists. 
+    # Register an RGBA image for use in autocompletion lists.
     # It has the width and height from RGBAImageSetWidth/Height
     def registerRGBAImage(type, pixels)
       sendMessage(2627, type, pixels)

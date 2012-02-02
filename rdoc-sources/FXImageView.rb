@@ -18,10 +18,10 @@ module Fox
   # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
   #
   class FXImageView < FXScrollArea
-  
+
     # The image [FXImage]
     attr_accessor :image
-    
+
     # Current alignment [Integer]
     attr_accessor :alignment
 

@@ -15,7 +15,7 @@ class TC_FXAccelTable < Test::Unit::TestCase
     assert @accelTable.hasAccel?(@hotKey)
     assert_nil @accelTable.targetOfAccel(@hotKey)
   end
-  
+
   def test_add_accel_with_default_seldn_selup
     target = FXObject.new
     @accelTable.addAccel(@hotKey, target)
@@ -29,7 +29,7 @@ class TC_FXAccelTable < Test::Unit::TestCase
   def test_add_accel_with_no_defaults
     @accelTable.addAccel(@hotKey, FXObject.new, FXSEL(SEL_COMMAND, FXWindow::ID_SHOW), FXSEL(SEL_COMMAND, FXWindow::ID_HIDE))
   end
-  
+
   def test_add_accel_with_lambda_for_seldn
     @accelTable.addAccel(@hotKey, lambda { puts "hello" })
   end
@@ -47,7 +47,7 @@ class TC_FXAccelTable < Test::Unit::TestCase
     @accelTable.addAccel(@hotKey)
     assert(@accelTable.hasAccel?(@hotKey))
   end
-  
+
   def test_remove_accel
     @accelTable.addAccel(@hotKey)
     assert(@accelTable.hasAccel?(@hotKey))

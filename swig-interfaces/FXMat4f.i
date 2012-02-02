@@ -64,22 +64,22 @@ public:
 
     // Multiply by a matrix
     FXMat4f operator*(const FXMat4f& other) const { return (*self)*other; }
-    
+
     // Multiply by a scalar
     FXMat4f operator*(FXfloat x) const { return (*self)*x; }
-    
+
     // Multiply by a homogenous vector
     FXVec4f operator*(const FXVec4f& other) const { return (*self)*other; }
-    
+
     // Multiply by a non-homogeneous vector, for non-projective matrix
     FXVec3f operator*(const FXVec3f& other) const { return (*self)*other; }
-    
+
     // Divide by a scalar
     FXMat4f operator/(FXfloat x) const {
       if(x==0.0f) rb_raise(rb_eZeroDivError,"divided by 0");
       return (*self)/x;
       }
-    
+
     // Negation
     FXMat4f operator-() const { return -(*self); }
     }

@@ -14,101 +14,101 @@ class TC_FXDC < Test::Unit::TestCase
     end
     @dc = FXDC.new(@app)
   end
-  
+
   def testGetApp
     app = @dc.app
     assert(app)
     assert_kind_of(FXApp, app)
     assert_same(@app, app)
   end
-  
+
   def testReadPixel
     x, y = 0, 0
     pixel = @dc.readPixel(x, y)
     assert(pixel)
   end
-  
+
   def testDrawPoint
     @dc.drawPoint(0, 0)
   end
-  
+
   def testDrawPoints
     p1 = FXPoint.new
     p2 = FXPoint.new
     @dc.drawPoints([p1, p2])
   end
-  
+
   def testDrawPointsRel
     p1 = FXPoint.new
     p2 = FXPoint.new
     @dc.drawPointsRel([p1, p2])
   end
-  
+
   def testDrawLine
     x1, y1, x2, y2 = 0, 0, 5, 5
     @dc.drawLine(x1, y1, x2, y2)
   end
-  
+
   def testDrawLines
     points = [ FXPoint.new, FXPoint.new ]
     @dc.drawLines(points)
   end
-  
+
   def testDrawLinesRel
     points = [ FXPoint.new, FXPoint.new ]
     @dc.drawLinesRel(points)
   end
-  
+
   def testDrawLineSegments
     segments = [ FXSegment.new, FXSegment.new ]
     @dc.drawLineSegments(segments)
   end
-  
+
   def testDrawArc
     x, y, w, h, ang1, ang2 = 0, 0, 10, 10, 45, 135
     @dc.drawArc(x, y, w, h, ang1, ang2)
   end
-  
+
   def testDrawArcs
     arcs = [ FXArc.new, FXArc.new ]
     @dc.drawArcs(arcs)
   end
-  
+
   def testFillRectangle
     x, y, w, h = 0, 0, 20, 20
     @dc.fillRectangle(x, y, w, h)
   end
-  
+
   def testFillRectangles
     rectangles = [ FXRectangle.new, FXRectangle.new ]
     @dc.fillRectangles(rectangles)
   end
-  
+
   def testFillArc
     x, y, w, h, ang1, ang2 = 0, 0, 10, 10, 45, 135
     @dc.fillArc(x, y, w, h, ang1, ang2)
   end
-  
+
   def testFillArcs
     arcs = [ FXArc.new, FXArc.new ]
     @dc.fillArcs(arcs)
   end
-  
+
   def testFillPolygon
     points = [ FXPoint.new, FXPoint.new ]
     @dc.fillPolygon(points)
   end
-  
+
   def testFillConcavePolygon
     points = [ FXPoint.new, FXPoint.new ]
     @dc.fillConcavePolygon(points)
   end
-  
+
   def testFillComplexPolygon
     points = [ FXPoint.new, FXPoint.new ]
     @dc.fillComplexPolygon(points)
   end
-  
+
   def testFillPolygonRel
     points = [ FXPoint.new, FXPoint.new ]
     @dc.fillPolygonRel(points)
@@ -123,60 +123,60 @@ class TC_FXDC < Test::Unit::TestCase
     points = [ FXPoint.new, FXPoint.new ]
     @dc.fillComplexPolygonRel(points)
   end
-  
+
   def testDrawHashBox
     x, y, w, h, b = 0, 0, 20, 20, 2
     @dc.drawHashBox(x, y, w, h)
     @dc.drawHashBox(x, y, w, h, b)
   end
-  
+
   def testDrawFocusRectangle
     x, y, w, h = 0, 0, 5, 5
     @dc.drawFocusRectangle(x, y, w, h)
   end
-  
+
   def testDrawArea
     source = FXImage.new(@app)
     sx, sy, sw, sh = 0, 0, 10, 10
     dx, dy = 0, 0
     @dc.drawArea(source, sx, sy, sw, sh, dx, dy)
   end
-  
+
   def testDrawImage
     image, dx, dy = FXImage.new(@app), 0, 0
     @dc.drawImage(image, dx, dy)
   end
-  
+
   def testDrawBitmap
     bitmap, dx, dy = FXBitmap.new(@app), 0, 0
     @dc.drawBitmap(bitmap, dx, dy)
   end
-  
+
   def testDrawIcon
     icon, dx, dy = FXIcon.new(@app), 0, 0
     @dc.drawIcon(icon, dx, dy)
   end
-  
+
   def testDrawIconSunken
     icon, dx, dy = FXIcon.new(@app), 0, 0
     @dc.drawIconSunken(icon, dx, dy)
   end
-  
+
   def testDrawIconShaded
     icon, dx, dy = FXIcon.new(@app), 0, 0
     @dc.drawIconShaded(icon, dx, dy)
   end
-  
+
   def testDrawText
     x, y, str = 0, 0, "Hello"
     @dc.drawText(x, y, str)
   end
-  
+
   def testDrawImageText
     x, y, str = 0, 0, "Hello"
     @dc.drawImageText(x, y, str)
   end
-  
+
   def testForeground
     fg = FXRGB(192, 192, 192)
     @dc.setForeground(fg)
@@ -196,7 +196,7 @@ class TC_FXDC < Test::Unit::TestCase
     assert_equal(bg, @dc.background)
     assert_equal(bg, @dc.getBackground)
   end
-  
+
   def testDashes
     dashOffset, dashPattern = 0, [1, 2, 3, 4]
     @dc.setDashes(dashOffset, dashPattern)
@@ -205,7 +205,7 @@ class TC_FXDC < Test::Unit::TestCase
     assert_equal(dashOffset, @dc.dashOffset)
     assert_equal(dashOffset, @dc.getDashOffset())
   end
-  
+
   def testLineWidth
     lineWidth = 2
     @dc.setLineWidth(lineWidth)
@@ -270,7 +270,7 @@ class TC_FXDC < Test::Unit::TestCase
       assert_equal(fillRule, @dc.getFillRule())
     end
   end
-  
+
   def testFunction
     for func in [BLT_CLR, BLT_SRC_AND_DST, BLT_SRC_AND_NOT_DST, BLT_SRC,
                  BLT_NOT_SRC_AND_DST, BLT_DST, BLT_SRC_XOR_DST, BLT_SRC_OR_DST,
@@ -285,7 +285,7 @@ class TC_FXDC < Test::Unit::TestCase
       assert_equal(func, @dc.getFunction())
     end
   end
-  
+
   def testTile
     image, dx, dy = FXImage.new(@app), 0, 0
     @dc.setTile(image)
@@ -294,7 +294,7 @@ class TC_FXDC < Test::Unit::TestCase
     assert_same(image, @dc.tile)
     assert_same(image, @dc.getTile())
   end
-  
+
   def testStippleBitmap
     bitmap, dx, dy = FXBitmap.new(@app), 0, 0
     @dc.setStipple(bitmap)
@@ -303,7 +303,7 @@ class TC_FXDC < Test::Unit::TestCase
     assert_same(bitmap, @dc.stippleBitmap)
     assert_same(bitmap, @dc.getStippleBitmap())
   end
-  
+
   def testStipplePattern
     dx, dy = 0, 0
     patterns = [STIPPLE_0, STIPPLE_NONE, STIPPLE_BLACK, STIPPLE_1,
@@ -320,12 +320,12 @@ class TC_FXDC < Test::Unit::TestCase
       assert_equal(pat, @dc.getStipplePattern())
     end
   end
-  
+
 # def testClipRegion
 #   region = FXRegion.new(0, 0, 10, 10)
 #   @dc.setClipRegion(region)
 # end
-  
+
   def testClipRectangle
     clipX, clipY, clipWidth, clipHeight = 0, 0, 10, 20
     clipRectangle = FXRectangle.new(clipX, clipY, clipWidth, clipHeight)
@@ -343,10 +343,10 @@ class TC_FXDC < Test::Unit::TestCase
 #   assert_equal(clipWidth, @dc.clipWidth)
 #   assert_equal(clipHeight, @dc.clipHeight)
 #   assert_equal(clipRectangle, @dc.clipRectangle)
-    
+
     @dc.clearClipRectangle
   end
-  
+
   def testClipMask
     bitmap, dx, dy = FXBitmap.new(@app), 0, 0
     @dc.setClipMask(bitmap)
@@ -354,7 +354,7 @@ class TC_FXDC < Test::Unit::TestCase
     @dc.setClipMask(bitmap, dx, dy)
     @dc.clearClipMask
   end
-  
+
   def testTextFont
     textFont = @app.normalFont
     @dc.setFont(textFont)
@@ -364,7 +364,7 @@ class TC_FXDC < Test::Unit::TestCase
     assert_same(textFont, @dc.font)
     assert_same(textFont, @dc.getFont())
   end
-  
+
   def testClipChildren
     @dc.clipChildren(true)
     @dc.clipChildren(false)

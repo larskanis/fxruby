@@ -103,7 +103,7 @@ inline void cls ## _setData(cls* self,FXuchar* pix,FXuint opts,FXint w,FXint h){
   void cls::setData(FXuchar* pix,FXuint opts,FXint w,FXint h){ \
     FXRbCallVoidMethod(this,rb_intern("setData"),pix,opts,w,h); \
     }
-  
+
 
 
 class FXRbBitmap : public FXBitmap {

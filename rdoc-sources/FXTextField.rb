@@ -120,7 +120,7 @@ module Fox
     #
     def initialize(p, ncols, target=nil, selector=0, opts=TEXTFIELD_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theTextField
     end
-  
+
     #
     # Set the text for this field to _text_.
     # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the text field's target after the text is changed.
@@ -153,13 +153,13 @@ module Fox
 
     # Select all text
     def selectAll(); end
-  
+
     # Select _len_ characters starting at given position _pos_.
     def setSelection(pos, len) ; end
-  
+
     # Extend the selection from the anchor to the given position _pos_.
     def extendSelection(pos) ; end
-  
+
     #
     # Copy the primary selection to the clipboard, using the stringType, textType, utf8Type and utf16Type drag types.
     # Returns +false+ if there is no text selected, or if the text field can't acquire the clipboard; otherwise
@@ -205,22 +205,22 @@ module Fox
 
     # Unselect the text
     def killSelection() ; end
-  
+
     # Return +true+ if position _pos_ is selected.
     def posSelected?(pos) ; end
-  
+
     # Return +true+ if position _pos_ is fully visible.
     def posVisible?(pos) ; end
-  
+
     # Scroll text to make the given position _pos_ visible.
     def makePositionVisible(pos) ; end
 
     # Return +true+ if text field may be edited
     def editable?() ; end
-  
+
     # Set overstrike mode to +true+ or +false+.
     def overstrike=(os); end
-    
+
     # Return +true+ if overstrike mode is set.
     def overstrike?; end
   end

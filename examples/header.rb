@@ -20,7 +20,7 @@ class HeaderWindow < FXMainWindow
 
     # Status bar, stretched along the bottom
     FXStatusBar.new(self, LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X)
-  
+
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q\tQuit the application", nil,
@@ -40,9 +40,9 @@ class HeaderWindow < FXMainWindow
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y,
       :padLeft => 0, :padRight => 0, :padTop => 0, :padBottom => 0,
       :hSpacing => 0, :vSpacing => 0)
-  
+
     # Make header control
-    @header1 = FXHeader.new(contents, 
+    @header1 = FXHeader.new(contents,
       :opts => HEADER_BUTTON|HEADER_RESIZE|FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X)
     @header1.connect(SEL_CHANGED) do |sender, sel, which|
       @lists[which].width = @header1.getItemSize(which)
@@ -51,19 +51,19 @@ class HeaderWindow < FXMainWindow
       @lists[which].numItems.times do |i|
         @lists[which].selectItem(i)
       end
-    end 
+    end
 
     # Document icon
     doc = nil
     File.open(File.join("icons", "minidoc.png"), "rb") do |f|
       doc = FXPNGIcon.new(getApp(), f.read)
     end
-  
+
     @header1.appendItem("Name", doc, 150)
     @header1.appendItem("Type", nil, 140)
     @header1.appendItem("Layout Option", doc, 230)
     @header1.appendItem("Attributes", nil, 80)
- 
+
     # Below header
     panes = FXHorizontalFrame.new(contents,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y,

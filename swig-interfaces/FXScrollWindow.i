@@ -58,7 +58,7 @@ public:
 
   /// Return a pointer to the contents window
   FXWindow* contentWindow() const;
-  
+
   /// Destructor
   virtual ~FXScrollWindow();
   };

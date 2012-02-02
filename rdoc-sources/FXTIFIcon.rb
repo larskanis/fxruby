@@ -34,7 +34,7 @@ module Fox
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: theTIFIcon
     end
   end
-  
+
   #
   # Load a TIFF file from a stream.
   # If successful, returns an array containing the image pixel data (as a
@@ -61,7 +61,7 @@ module Fox
   # +codec+::	codec setting [Integer]
   #
   def Fox.fxsaveTIF(store, data, transp, width, height, codec); end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains a TIFF image.
   #

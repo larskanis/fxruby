@@ -59,7 +59,7 @@ public:
 
   /// Change image
   void setBitmap(FXBitmap* bmp);
-  
+
   /// Return image
   FXBitmap* getBitmap() const;
 

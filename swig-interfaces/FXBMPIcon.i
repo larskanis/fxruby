@@ -51,8 +51,8 @@ DECLARE_FXOBJECT_VIRTUALS(FXBMPIcon)
 DECLARE_FXID_VIRTUALS(FXBMPIcon)
 DECLARE_FXDRAWABLE_VIRTUALS(FXBMPIcon)
 DECLARE_FXIMAGE_VIRTUALS(FXBMPIcon)
-  
-  
+
+
 %inline %{
   /**
    * Load an BMP (Microsoft Bitmap) file from a stream.

@@ -27,7 +27,7 @@ module Fox
       @__FTNonModal_block = block
       execute(placement)
     end
- 
+
     #
     # Creates and shows the dialog, and registers the associated block to be
     # called when the dialog is closed. The block is passed a boolean argument

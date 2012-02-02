@@ -49,10 +49,10 @@ enum {
 * menu button; this is controlled by the flags MENUBUTTON_DOWN, etc.
 * Next, there are several attachment modes; the popup's left/bottom edge may
 * attach to the menu button's left/top edge, or the popup's right/top edge may
-* attach to the menu button's right/bottom edge, or both. 
+* attach to the menu button's right/bottom edge, or both.
 * Also, the popup may apear centered relative to the menu button.
 * Finally, a small offset may be specified to displace the location of the
-* popup by a few pixels so as to account for borders and so on. 
+* popup by a few pixels so as to account for borders and so on.
 * Normally, the menu button shows an arrow pointing to the direction where
 * the popup is set to appear; this can be turned off by passing the option
 * MENUBUTTON_NOARROWS.
@@ -116,19 +116,19 @@ public:
 
   /// Change menu button style
   void setButtonStyle(FXuint style);
-  
+
   /// Get menu button style
   FXuint getButtonStyle() const;
-  
+
   /// Change popup style
   void setPopupStyle(FXuint style);
-  
+
   /// Get popup style
   FXuint getPopupStyle() const;
-  
+
   /// Change attachment
   void setAttachment(FXuint att);
-  
+
   /// Get attachment
   FXuint getAttachment() const;
 

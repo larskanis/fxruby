@@ -13,22 +13,22 @@ module Fox
   # the Toolbar shell will change to fit narrowly around it.
   #
   class FXToolBarShell < FXTopWindow
-  
-    # Frame style [Integer]  
+
+    # Frame style [Integer]
     attr_accessor :frameStyle
-    
+
     # Border width [Integer]
     attr_reader	:borderWidth
-    
+
     # Highlight color [FXColor]
     attr_accessor :hiliteColor
-    
+
     # Shadow color [FXColor]
     attr_accessor :shadowColor
-    
+
     # Border color [FXColor]
     attr_accessor :borderColor
-    
+
     # Base GUI color [FXColor]
     attr_accessor :baseColor
 

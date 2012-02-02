@@ -70,22 +70,22 @@ public:
 
   /// Exponentiate quaternion
   FXQuatd exp() const;
-  
+
   /// Take logarithm of quaternion
   FXQuatd log() const;
-  
+
   /// Invert quaternion
   FXQuatd invert() const;
-  
+
   /// Invert unit quaternion
   FXQuatd unitinvert() const;
-    
+
   /// Conjugate quaternion
   FXQuatd conj() const;
-  
+
   /// Construct quaternion from arc a->b on unit sphere
   FXQuatd& arc(const FXVec3d& a,const FXVec3d& b);
-  
+
   /// Spherical lerp
   FXQuatd& lerp(const FXQuatd& u,const FXQuatd& v,FXdouble f);
 
@@ -99,7 +99,7 @@ public:
 
     /// Multiply quaternions
     FXQuatd operator*(const FXQuatd& other) const { return (*self)*other; }
-  
+
     // Rotation of a vector by a quaternion
     FXVec3d operator*(const FXVec3d& vec) const { return (*self)*vec; }
     }

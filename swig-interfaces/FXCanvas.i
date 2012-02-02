@@ -34,7 +34,7 @@ public:
       return new FXRbCanvas(p,tgt,sel,opts,x,y,w,h);
       }
     }
-    
+
     /// Destructor
     virtual ~FXCanvas();
   };

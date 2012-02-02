@@ -70,7 +70,7 @@ public:
     ID_LAST=ID_MODE+32
     };
 public:
-  enum {  
+  enum {
     DONE          = 0,    /// Cancel search
     SEARCH        = 1,    /// Search first occurrence
     REPLACE       = 1,    /// Replace first occurrence

@@ -54,15 +54,15 @@ DECLARE_FXCURSOR_VIRTUALS(FXGIFCursor)
 
 /**
  * Save an GIF (Graphics Interchange Format) file to a stream.  If flag
- * is true, the faster Floyd-Steinberg dither method instead of the slower Wu 
+ * is true, the faster Floyd-Steinberg dither method instead of the slower Wu
  * quantization algorithm.
  */
 FXbool fxsaveGIF(FXStream& store,const FXColor *data,FXint width,FXint height,FXbool fast=true);
 
 %inline %{
   /**
-   * Load an GIF (Graphics Interchange Format) file from a stream; if the flag 
-   * flag is true, the background color is considered transparent.  Upon successful return, 
+   * Load an GIF (Graphics Interchange Format) file from a stream; if the flag
+   * flag is true, the background color is considered transparent.  Upon successful return,
    * the pixel array and size are returned.  If an error occurred, the pixel array is set to NULL.
    */
   VALUE fxloadGIF(FXStream& store,FXbool flag=true){

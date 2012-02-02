@@ -9,7 +9,7 @@ class TC_FXButton < Fox::TestCase
     super("TC_FXButton")
     @button = FXButton.new(mainWindow, "buttonText")
   end
-  
+
   def testText
     assert(@button.text)
     assert_instance_of(String, @button.text)
@@ -19,11 +19,11 @@ class TC_FXButton < Fox::TestCase
     assert(@button.text)
     assert_instance_of(String, @button.text)
   end
-  
+
   def testStyle
     assert(@button.buttonStyle)
     assert_instance_of(Fixnum, @button.buttonStyle)
-    
+
     @button.buttonStyle |= BUTTON_AUTOGRAY
     assert((@button.buttonStyle & BUTTON_AUTOGRAY) != 0)
     @button.buttonStyle &= ~BUTTON_AUTOGRAY
@@ -49,23 +49,23 @@ class TC_FXButton < Fox::TestCase
     @button.buttonStyle &= ~BUTTON_INITIAL
     assert((@button.buttonStyle & BUTTON_INITIAL) == 0)
   end
-  
+
   def testState
     assert(@button.state)
     assert_kind_of(Fixnum, @button.state)
-    
+
     @button.state = STATE_UP
     assert_equal(STATE_UP, @button.state)
-    
+
     @button.state = STATE_DOWN
     assert_equal(STATE_DOWN, @button.state)
-    
+
     @button.state = STATE_ENGAGED
     assert_equal(STATE_ENGAGED, @button.state)
-    
+
     @button.state = STATE_CHECKED
     assert_equal(STATE_CHECKED, @button.state)
-    
+
     @button.state = STATE_UNCHECKED
     assert_equal(STATE_UNCHECKED, @button.state)
   end

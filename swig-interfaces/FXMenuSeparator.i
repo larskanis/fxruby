@@ -22,8 +22,8 @@
 
 
 /**
-* The menu separator is a simple decorative groove used to delineate items in a 
-* popup menu.  When a target/message is given, the menu separator is usually 
+* The menu separator is a simple decorative groove used to delineate items in a
+* popup menu.  When a target/message is given, the menu separator is usually
 * connected to an instance of the recent files class using the ID_ANYFILES
 * message.  This automatically hides the menu separator when no files are listed
 * in the recent files section.  Another possible target is the MDI client using
@@ -57,7 +57,7 @@ public:
 
   /// Get shadow color
   FXColor getShadowColor() const;
-  
+
   // Destructor
   virtual ~FXMenuSeparator();
   };

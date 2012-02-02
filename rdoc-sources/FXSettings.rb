@@ -12,10 +12,10 @@ module Fox
     #
     def initialize # :yields: theSettings
     end
-    
+
     # Return +true+ if modified.
     def modified? ; end
-    
+
     # Set modified state to +true+ or +false+.
     def modified=(m); end
 
@@ -56,7 +56,7 @@ module Fox
     #
     def each_section # :yields: aStringDict
     end
-    
+
     #
     # Read a string registry entry from the specified _section_ and _key_.
     # If no value is found, the _default_ value is returned.
@@ -94,13 +94,13 @@ module Fox
     def readUIntEntry(section, key, default=0) ; end
 
     alias :readUIntEntry :readUnsignedEntry
-    
+
     # Read a 64-bit long integer registry entry; if no value is found, the default value def is returned
     def readLongEntry(section, name, default=0); end
 
     # Read a 64-bit unsigned long integer registry entry; if no value is found, the default value def is returned
     def readULongEntry(section, name, default=0); end
-    
+
     #
     # Read a double-precision floating point registry entry from the specified _section_ and _key_.
     # If no value is found, the _default_ value is returned.
@@ -174,7 +174,7 @@ module Fox
     def writeUIntEntry(section, name, value); end
 
     alias :writeUIntEntry :writeUnsignedEntry
-    
+
     # Write a 64-bit long integer registry entry
     def writeLongEntry(section, name, value); end
 

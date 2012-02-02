@@ -10,7 +10,7 @@ public:
 
   // Overrides the base class version of extendSelection()
   virtual FXbool extendSelection(FXTreeItem* item,FXbool notify=false);
-  
+
   // Overrides the base class version of killSelection()
   virtual FXbool killSelection(FXbool notify=false);
 
@@ -28,15 +28,15 @@ public:
 
   // Overrides the base class version of setCurrentItem()
   virtual void setCurrentItem(FXTreeItem* item,FXbool notify=false);
-  
+
   // Overrides the base class version of getItemAt()
   virtual FXTreeItem* getItemAt(FXint x,FXint y) const;
-  
+
   // Overrides the base class version of makeItemVisible()
   virtual void makeItemVisible(FXTreeItem* item);
 
   // Overrides the base class version of enableItem()
   virtual FXbool enableItem(FXTreeItem* item);
-  
+
   // Overrides the base class version of disableItem()
   virtual FXbool disableItem(FXTreeItem* item);

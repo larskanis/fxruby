@@ -8,10 +8,10 @@ module Fox
   # OpenGL point object
   #
   class FXGLPoint < FXGLObject
-  
+
     # Point position, in model coordinates (a 3-element array)
     attr_accessor :pos
-    
+
     #
     # Returns an initialized FXGLPoint instance.
     # If no arguments are passed to #new, the initial point position is
@@ -34,14 +34,14 @@ module Fox
         @pos = args[0]
       end
     end
-    
+
     #
     # Return the bounding box (an FXRangef instance) for this point.
     #
     def bounds
       FXRangef.new(@pos[0], @pos[0], @pos[1], @pos[1], @pos[2], @pos[2])
     end
-    
+
     #
     # Draw this point into _viewer_ (an FXGLViewer instance).
     #
@@ -52,7 +52,7 @@ module Fox
       GL::Vertex(@pos)
       GL::End()
     end
-    
+
     #
     # Perform hit test for this point in _viewer_ (an FXGLViewer instance).
     #
@@ -67,13 +67,13 @@ module Fox
   # OpenGL line object
   #
   class FXGLLine < FXGLObject
-  
+
     # Starting point for line [FXGLPoint]
     attr_accessor :fm
-    
+
     # End point for line [FXGLPoint]
     attr_accessor :to
-    
+
     #
     # Return an initialized FXGLLine instance.
     #
@@ -102,7 +102,7 @@ module Fox
 	@to = FXGLPoint.new(args[3], args[4], args[5])
       end
     end
-    
+
     #
     # Return the bounding box (an FXRangef instance) for this line.
     #
@@ -114,7 +114,7 @@ module Fox
                   [@fm.pos[2], @to.pos[2]].min,
                   [@fm.pos[2], @to.pos[2]].max)
     end
-    
+
     #
     # Draw this line into _viewer_ (an FXGLViewer instance).
     #
@@ -126,7 +126,7 @@ module Fox
       GL::Vertex(@to.pos)
       GL::End()
     end
-    
+
     #
     # Perform hit-test for this line in _viewer_ (an FXGLViewer instance).
     #
@@ -145,10 +145,10 @@ module Fox
 
     # Cube width [Float]
     attr_accessor :width
-    
+
     # Cube height [Float]
     attr_accessor :height
-    
+
     # Cube depth [Float]
     attr_accessor :depth
 
@@ -260,16 +260,16 @@ module Fox
 
     # Cone height [Float]
     attr_accessor :height
-    
+
     # Cone base radius [Float]
     attr_accessor :radius
-    
+
     # Number of slices (default is 20) [Integer]
     attr_accessor :slices
-    
+
     # Number of stacks (default is 20) [Integer]
     attr_accessor :stacks
-    
+
     # Number of loops (default is 4) [Integer]
     attr_accessor :loops
 
@@ -304,7 +304,7 @@ module Fox
       @loops  = LOOPS
       setRange(FXRangef.new(-@radius, @radius, 0, @height, -@radius, @radius))
     end
-    
+
     #
     # Draw this cone into _viewer_ (an FXGLViewer instance).
     #
@@ -332,16 +332,16 @@ module Fox
 
     # Cylinder height [Float]
     attr_accessor :height
-    
+
     # Cylinder radius [Float]
     attr_accessor :radius
-    
+
     # Number of slices (default is 20) [Integer]
     attr_accessor :slices
-    
+
     # Number of stacks (default is 20) [Integer]
     attr_accessor :stacks
-    
+
     # Number of loops (default is 4) [Integer]
     attr_accessor :loops
 
@@ -376,7 +376,7 @@ module Fox
       @loops  = LOOPS
       setRange(FXRangef.new(-@radius, @radius, 0, @height, -@radius, @radius))
     end
-    
+
     #
     # Draw this cylinder into _viewer_ (an FXGLViewer instance).
     #
@@ -406,10 +406,10 @@ module Fox
 
     # Sphere radius [Float]
     attr_accessor :radius
-    
+
     # Number of slices (default is 20) [Integer]
     attr_accessor :slices
-    
+
     # Number of stacks (default is 20) [Integer]
     attr_accessor :stacks
 
@@ -442,7 +442,7 @@ module Fox
       @stacks = STACKS_NUMBER
       setRange(FXRangef.new(-@radius, @radius, -@radius, @radius, -@radius, @radius))
     end
-    
+
     #
     # Draw this sphere into _viewer_ (an FXGLViewer instance).
     #

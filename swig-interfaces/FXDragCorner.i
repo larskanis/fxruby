@@ -50,16 +50,16 @@ public:
 
   /// Change highlight color
   void setHiliteColor(FXColor clr);
-  
+
   /// Return current highlight color
   FXColor getHiliteColor() const;
 
   /// Change shadow color
   void setShadowColor(FXColor clr);
-  
+
   /// Return current shadow color
   FXColor getShadowColor() const;
-  
+
   /// Destructor
   virtual ~FXDragCorner();
   };

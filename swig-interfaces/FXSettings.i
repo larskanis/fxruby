@@ -61,13 +61,13 @@ public:
 
   /// Is it modified
   FXbool isModified() const;
-  
+
   /// Mark as changed
   void setModified(FXbool mdfy=true);
-  
+
   /// Parse a file containing a settings database.
   FXbool parseFile(const FXString& filename,FXbool mark);
-  
+
   /// Unparse settings database into given file.
   FXbool unparseFile(const FXString& filename);
 
@@ -88,10 +88,10 @@ public:
 
   /// Read a unsigned integer registry entry; if no value is found, the default value def is returned
   FXuint readUIntEntry(const FXchar *section,const FXchar *name,FXuint def=0) const;
-  
+
   /// Read a 64-bit long integer registry entry; if no value is found, the default value def is returned
   FXlong readLongEntry(const FXchar *section,const FXchar *name,FXlong def=0) const;
-  
+
   /// Read a 64-bit unsigned long integer registry entry; if no value is found, the default value def is returned
   FXulong readULongEntry(const FXchar *section,const FXchar *name,FXulong def=0) const;
 
@@ -115,10 +115,10 @@ public:
 
   /// Write a unsigned integer registry entry
   FXbool writeUIntEntry(const FXchar *section,const FXchar *name,FXuint val);
-  
+
   /// Write a 64-bit long integer registry entry
   FXbool writeLongEntry(const FXchar *section,const FXchar *name,FXlong val);
-  
+
   /// Write a 64-bit unsigned long integer registry entry
   FXbool writeULongEntry(const FXchar *section,const FXchar *name,FXulong val);
 
@@ -130,7 +130,7 @@ public:
 
   /// Write a boolean value entry
   FXbool writeBoolEntry(const FXchar *section,const FXchar *key,FXbool val);
- 
+
   /// Delete a registry entry
   FXbool deleteEntry(const FXchar *section,const FXchar *key);
 

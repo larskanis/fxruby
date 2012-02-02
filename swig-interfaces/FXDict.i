@@ -31,7 +31,7 @@
 
 /**
 * The dictionary class maintains a fast-access hash table of entities
-* indexed by a character string.  
+* indexed by a character string.
 * It is typically used to map strings to pointers; however, overloading
 * the createData() and deleteData() members allows any type of data to
 * be indexed by strings.
@@ -52,11 +52,11 @@ public:
   */
   FXint size() const;
 
-  /** 
+  /**
   * Resize the table to the given size.
   */
   void size(FXint m);
-  
+
   /**
   * Return the total number of entries in the table.
   */
@@ -68,19 +68,19 @@ public:
   * otherwise insert the new entry.
   */
   // void* insert(const FXchar* ky,const void* ptr,FXbool mrk=false);
-  
+
   /**
   * Replace data at key, if the entry's mark is less than
   * or equal to the given mark.  If there was no existing entry,
   * a new entry is inserted with the given mark.
   */
   // void* replace(const FXchar* ky,const void* ptr,FXbool mrk=false);
-  
+
   /**
   * Remove data given key.
   */
   void* remove(const FXchar* ky);
-  
+
   /**
   * Find data pointer given key.
   */
@@ -110,23 +110,23 @@ public:
   * Return position of last filled slot or -1
   */
   FXint last() const;
-  
+
   /**
   * Return position of next filled slot in hash table
-  * or a value greater than or equal to total if no filled 
+  * or a value greater than or equal to total if no filled
   * slot was found
   */
-  FXint next(FXint pos) const;  
-  
+  FXint next(FXint pos) const;
+
   /**
   * Return position of previous filled slot in hash table
   * or a -1 if no filled slot was found
   */
-  FXint prev(FXint pos) const;  
-  
+  FXint prev(FXint pos) const;
+
   /// Clear all entries
   void clear();
-  
+
   // Add methods similar to those for Ruby's Hash class
   %extend {
     // Returns true if the given key is present

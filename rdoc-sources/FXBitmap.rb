@@ -8,7 +8,7 @@ module Fox
   # of the X server or GDI (on Microsoft Windows).
   # The client-side pixel array is of size height x (width+7)/8 bytes; in other
   # words, 8 pixels packed into a single byte, starting with bit zero on the left.
-  # 
+  #
   # === Image rendering hints
   #
   # +BITMAP_KEEP+::	Keep pixel data in client
@@ -17,7 +17,7 @@ module Fox
   # +BITMAP_SHMP+::	Using shared memory pixmap
   #
   class FXBitmap < FXDrawable
-  
+
     alias data getData
 
     #
@@ -51,10 +51,10 @@ module Fox
 
     # Return the pixel data.
     def getData(); end
-    
+
     # Return the option flags.
     def options; end
-    
+
     # Set the options.
     def options=(opts); end
 
@@ -63,7 +63,7 @@ module Fox
 
     # Render the server-side representation of the bitmap from the client-side pixels.
     def render() ; end
-    
+
     #
     # Release the client-side pixels buffer and free it if it was owned.
     # If it is not owned, the image just forgets about the buffer.
@@ -79,7 +79,7 @@ module Fox
 
     # Save pixel data only
     def savePixels(stream); end
-    
+
     # Load pixel data from a stream
     def loadPixels(stream); end
 
@@ -88,19 +88,19 @@ module Fox
 
     # Change pixel at (_x_, _y_), where _color_ is either +true+ or +false+.
     def setPixel(x, y, color) ; end
-    
+
     #
     # Rescale pixels image to the specified width and height; this calls
     # #resize to adjust the client and server side representations.
     #
     def scale(w, h); end
-    
+
     # Mirror the bitmap horizontally and/or vertically
     def mirror(horizontal, vertical); end
-    
+
     # Rotate bitmap by _degrees_ degrees (counter-clockwise)
     def rotate(degrees); end
-    
+
     #
     # Crop bitmap to given rectangle; this calls #resize to adjust the client
     # and server side representations.  The new bitmap may be smaller or larger
@@ -108,7 +108,7 @@ module Fox
     # least one pixel of overlap between the old and the new bitmap.
     #
     def crop(x, y, w, h, color=false); end
-    
+
     # Fill bitmap with uniform value
     def fill(color); end
   end

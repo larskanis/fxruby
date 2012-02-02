@@ -247,7 +247,7 @@ public:
     };
 
 public:
-  
+
 enum {
   ID_CURSOR_TOP=FXScrollArea::ID_LAST,
   ID_CURSOR_BOTTOM,
@@ -416,7 +416,7 @@ public:
 
   /// Change delimiters of words
   void setDelimiters(const FXchar* delims=textDelimiters);
- 
+
   /// Return word delimiters
   const FXchar* getDelimiters() const;
 
@@ -509,7 +509,7 @@ public:
 
   /// Return number of rows in buffer
   FXint getNumRows() const;
-  
+
   /// Return text in the widget
   FXString getText() const;
 
@@ -593,10 +593,10 @@ public:
 
   /// Return y coordinate of pos
   FXint getYOfPos(FXint pos) const;
-  
+
   /// Return x coordinate of pos
   FXint getXOfPos(FXint pos) const;
-  
+
   /// Count number of rows; start should be on a row start
   FXint countRows(FXint start,FXint end) const;
 
@@ -647,7 +647,7 @@ public:
 
   /// Retreat to the previous valid utf8 character start
   FXint dec(FXint pos) const;
-  
+
   /// Advance to the next valid utf8 character start
   FXint inc(FXint pos) const;
 

@@ -99,10 +99,10 @@ public:
 
   /// Return a pointer to the "Cancel" button
   FXButton *cancelButton() const;
-  
+
   /// Change directory
   void setDirectory(const FXString& path);
-  
+
   /// Return directory
   FXString getDirectory() const;
 

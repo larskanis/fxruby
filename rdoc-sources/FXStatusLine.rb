@@ -26,16 +26,16 @@ module Fox
 
     # Temporary status message [String]
     attr_accessor :text
-    
+
     # Permanent status message [String]
     attr_accessor :normalText
-    
+
     # Text font [FXFont]
     attr_accessor :font
-    
+
     # Text color [FXColor]
     attr_accessor :textColor
-    
+
     # Highlight text color [FXColor]
     attr_accessor :textHighlightColor
 
@@ -50,7 +50,7 @@ module Fox
     #
     def initialize(p, target=nil, selector=0) # :yields: theStatusLine
     end
-    
+
     # Returns the temporary status message (i.e. same as _text_)
     def to_s
       text

@@ -52,7 +52,7 @@ protected:
   FXID     shape;             // Shape pixmap
   FXID     etch;              // Etch pixmap
   FXColor  transp;            // Transparency color
-  FXshort  thresh;            // Treshold for etch mask 
+  FXshort  thresh;            // Treshold for etch mask
 protected:
   FXIcon();
   FXColor guesstransp();
@@ -119,10 +119,10 @@ public:
 
   /// Get threshold value
   FXshort getThresholdValue() const { return thresh; }
-  
+
   /// Change threshold value
   void setThresholdValue(FXshort value){ thresh=value; }
-  
+
   /// Destructor
   virtual ~FXIcon();
   };

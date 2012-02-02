@@ -19,7 +19,7 @@
  * For further information please contact the author by e-mail
  * at "lyle@lylejohnson.name".
  ***********************************************************************/
-  
+
 %rename("visualType") FXVisual::getType() const;
 %rename("flags=")     FXVisual::setFlags(FXuint);
 %rename("flags")      FXVisual::getFlags() const;
@@ -89,16 +89,16 @@ public:
 
   /// Change flags
   void setFlags(FXuint flgs);
-  
+
   /// Get flags (see FXVisualOptions)
   FXuint getFlags() const;
 
   /// Change hints
   void setHint(FXuint hnt);
-  
+
   /// Get hints
   FXuint getHint() const;
-  
+
   /// Get depth, i.e. number of significant bits in color representation
   FXuint getDepth() const;
 

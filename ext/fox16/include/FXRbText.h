@@ -148,13 +148,13 @@ public:
     numStyles=0;
     styles=0;
     }
-  
+
   // Number of styles in style array
   FXint numStyles;
 
   // Style array
   FXHiliteStyle *styles;
-  
+
 
   // Mark dependencies for the GC
   static void markfunc(FXText* self);

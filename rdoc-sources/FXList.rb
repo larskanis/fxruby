@@ -6,60 +6,60 @@ module Fox
 
     # Text for this item [String]
     attr_accessor :text
-    
+
     # Icon for this item [FXIcon]
     attr_accessor :icon
-    
+
     # User data for this item [Object]
     attr_accessor :data
-    
+
     # Indicates whether this item has the focus [Boolean]
     attr_writer :focus
-    
+
     # Indicates whether this item is selected [Boolean]
     attr_writer :selected
-    
+
     # Indicates whether this item is enabled [Boolean]
     attr_writer :enabled
 
     # Indicates whether this item is draggable [Boolean]
     attr_writer :draggable
-    
+
     # Initialize
     def initialize(text, icon=nil, data=nil) # :yields: theListItem
     end
-    
+
     # Return the list item's text
     def to_s; text; end
-    
+
     # Returns +true+ if this item has the focus
     def hasFocus?() ; end
-    
+
     # Return +true+ if this item is selected
     def selected?() ; end
-    
+
     # Return +true+ if this item is enabled
     def enabled?() ; end
-    
+
     # Return +true+ if this item is draggable
     def draggable?() ; end
-    
+
     # Return the width of this item for a specified list
     def getWidth(list) ; end
-    
+
     # Return the height of this item for a specified list
     def getHeight(list) ; end
-    
+
     # Create the item
     def create() ; end
-    
+
     # Detach the item
     def detach() ; end
-    
+
     # Destroy the item
     def destroy( ); end
   end
-  
+
   #
   # A List Widget displays a list of items, each with a text and
   # optional icon.  When an item's selected state changes, the list sends
@@ -112,31 +112,31 @@ module Fox
 
     # Number of items in the list [Integer]
     attr_reader	:numItems
-    
+
     # Number of visible items [Integer]
     attr_accessor :numVisible
-    
+
     # Index of current item, or -1 if no current item [Integer]
     attr_accessor :currentItem
-    
+
     # Index of anchor item, or -1 if no anchor item [Integer]
     attr_reader	:anchorItem
-    
+
     # Text font [FXFont]
     attr_accessor :font
-    
+
     # Normal text color [FXColor]
     attr_accessor :textColor
-    
+
     # Selected text background color [FXColor]
     attr_accessor :selBackColor
-    
+
     # Selected text color [FXColor]
     attr_accessor :selTextColor
-    
+
     # List style [Integer]
     attr_accessor :listStyle
-    
+
     # Status line help text [String]
     attr_accessor :helpText
 
@@ -243,7 +243,7 @@ module Fox
     # Raises IndexError if either _oldIndex_ or _newIndex_ is out of bounds.
     #
     def moveItem(newIndex, oldIndex, notify=false); end
-    
+
     #
     # Extract item from list and return a reference to the item.
     # If _notify_ is  +true+, a +SEL_DELETED+ message is sent to the list's

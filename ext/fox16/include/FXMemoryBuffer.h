@@ -38,13 +38,13 @@ private:
 public:
   // Create an memory buffer object
   FXMemoryBuffer(FXColor *data,FXuint sz) : buffer(data),size(sz){}
-  
+
   // Returns a pointer to the data
   FXColor* getData() const { return buffer; }
-  
+
   // Returns the size (in bytes)
   FXuint getSize() const { return size; }
-  
+
   // Destructor
   ~FXMemoryBuffer(){}
   };

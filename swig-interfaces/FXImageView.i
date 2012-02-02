@@ -65,7 +65,7 @@ public:
 
   /// Change image
   void setImage(FXImage* img);
-  
+
   /// Return image
   FXImage* getImage() const;
 

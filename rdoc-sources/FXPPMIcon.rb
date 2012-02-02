@@ -7,7 +7,7 @@ module Fox
     # Return the suggested file extension for this image type ("ppm").
     #
     def FXPPMIcon.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #
@@ -28,7 +28,7 @@ module Fox
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: thePPMIcon
     end
   end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains a PPM image.
   #

@@ -14,7 +14,7 @@ module Fox
     # should print the text "SEL_COMMAND".
     #
     def FXDebugTarget.messageTypeName ; end
-    
+
     #
     # Construct a debug target.
     #

@@ -1,11 +1,11 @@
 module Fox
-  
+
   class FXApp
 
     alias addSignalOrig addSignal # :nodoc:
 
     #
-    # Register a signal processing message to be sent to target object when 
+    # Register a signal processing message to be sent to target object when
     # the specified signal is raised.
     #
     # There are several forms for #addSignal; the original form (from FOX)
@@ -65,7 +65,7 @@ module Fox
       end
       addSignalOrig(sig, tgt, sel, immediate, flags)
     end
-    
+
   end # class FXApp
-  
+
 end # module Fox

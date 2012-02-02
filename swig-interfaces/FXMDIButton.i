@@ -36,7 +36,7 @@ public:
       return new FXRbMDIDeleteButton(p,tgt,sel,opts,x,y,w,h);
       }
     }
-  
+
   /// Destructor
   virtual ~FXMDIDeleteButton();
   };
@@ -61,7 +61,7 @@ public:
       return new FXRbMDIRestoreButton(p,tgt,sel,opts,x,y,w,h);
       }
     }
-  
+
   /// Destructor
   virtual ~FXMDIRestoreButton();
   };
@@ -86,7 +86,7 @@ public:
       return new FXRbMDIMaximizeButton(p,tgt,sel,opts,x,y,w,h);
       }
     }
-  
+
   /// Destructor
   virtual ~FXMDIMaximizeButton();
   };
@@ -111,7 +111,7 @@ public:
       return new FXRbMDIMinimizeButton(p,tgt,sel,opts,x,y,w,h);
       }
     }
-  
+
   /// Destructor
   virtual ~FXMDIMinimizeButton();
   };
@@ -136,7 +136,7 @@ public:
       return new FXRbMDIWindowButton(p,pup,tgt,sel,opts,x,y,w,h);
       }
     }
-  
+
   /// Destructor
   virtual ~FXMDIWindowButton();
   };

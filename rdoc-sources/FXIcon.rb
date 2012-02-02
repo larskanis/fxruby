@@ -9,7 +9,7 @@ module Fox
 
     # Transparency color [FXColor]
     attr_accessor :transparentColor
-    
+
     # Threshold value [Integer]
     attr_accessor :thresholdValue
 

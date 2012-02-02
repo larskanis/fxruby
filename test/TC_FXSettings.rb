@@ -9,7 +9,7 @@ class TC_FXSettings < Fox::TestCase
   def setup
     super(self.class.name)
   end
-  
+
   def test_each_section_empty_settings
     empty = FXSettings.new
     num_sections = 0
@@ -18,7 +18,7 @@ class TC_FXSettings < Fox::TestCase
     end
     assert_equal(0, num_sections)
   end
-  
+
   def test_each_section
     settings = FXSettings.new
     settings.writeStringEntry('sect1', 'key1', 'value1')

@@ -83,7 +83,7 @@ DECLARE_FXIMAGE_VIRTUALS(FXXPMIcon)
     FXint width;
     FXint height;
     VALUE ary=Qnil;
-    
+
     // Confirm that the input is an array of strings
     Check_Type(strArray,T_ARRAY);
     len=RARRAY_LEN(strArray);

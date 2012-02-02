@@ -19,6 +19,6 @@ public:
 
   // Overrides the base class version of fullScreen()
   virtual FXbool fullScreen(FXbool notify=false);
-  
+
   // Overrides the base class version of stackingOrder()
   virtual FXbool stackingOrder(FXuint order);

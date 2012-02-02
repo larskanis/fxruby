@@ -41,49 +41,49 @@ module Fox
 
     # Editable state [Boolean]
     attr_writer	:editable
-    
+
     # Text [String]
     attr_accessor :text
-    
+
     # Number of columns [Integer]
     attr_accessor :numColumns
-    
+
     # Text justification mode; default is +JUSTIFY_LEFT+ [Integer]
     attr_accessor :justify
-    
+
     # Number of items in the list [Integer]
     attr_reader	:numItems
-    
+
     # Number of visible items in the drop-down list [Integer]
     attr_accessor :numVisible
-    
+
     # Index of current item, or -1 if no current item [Integer]
     attr_accessor :currentItem
-    
+
     # Text font [FXFont]
     attr_accessor :font
-    
+
     # Combo box style [Integer]
     attr_accessor :comboStyle
-    
+
     # Window background color [FXColor]
     attr_accessor :backColor
-    
+
     # Text color [FXColor]
     attr_accessor :textColor
-    
+
     # Background color for selected items [FXColor]
     attr_accessor :selBackColor
-    
+
     # Text color for selected items [FXColor]
     attr_accessor :selTextColor
-    
+
     # Status line help text [String]
     attr_accessor :helpText
-    
+
     # Tool tip message [String]
     attr_accessor :tipText
-    
+
     # Popup pane shrinkwrap mode [Boolean]
     attr_accessor :shrinkWrap
 
@@ -111,7 +111,7 @@ module Fox
 
     # Return the combo box text
     def to_s; end
-    
+
     # Return +true+ if combobox is editable
     def editable?() ; end
 
@@ -151,7 +151,7 @@ module Fox
     # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
     #
     def prependItem(text, data=nil, notify=false) ; end
-    
+
     #
     # Move item from _oldIndex_ to _newIndex_ and return the new index of the item.
     # If _notify_ is +true+, a +SEL_COMMAND+ message is sent to the combo box's message target.
@@ -217,16 +217,16 @@ module Fox
 
     # Return +true+ if the menu pane is shown
     def menuShown?; end
-    
+
     # Set the menu's visibility to shown (+true+) or hidden (+false+)
     def menuShown=(shown); end
-    
+
     # paneShown? is an alias for menuShown?
     alias paneShown? menuShown?
 
     # Sort items using current sort function
     def sortItems; end
-    
+
     #
     # Set current item to _index_, where _index_ is the zero-based index of
     # the item. If _notify_ is +true+, a +SEL_COMMAND+ message is sent

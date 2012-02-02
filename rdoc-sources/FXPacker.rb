@@ -13,43 +13,43 @@ module Fox
   # case it will be placed to take all remaining space.
   #
   class FXPacker < FXComposite
-  
+
     # Current frame style [Integer]
     attr_accessor :frameStyle
-    
+
     # Packing hints [Integer]
     attr_accessor :packingHints
-    
+
     # Border width, in pixels [Integer]
     attr_reader :borderWidth
-    
+
     # Top padding, in pixels [Integer]
     attr_accessor :padTop
-    
+
     # Bottom padding, in pixels [Integer]
     attr_accessor :padBottom
-    
+
     # Left padding, in pixels [Integer]
     attr_accessor :padLeft
-    
+
     # Right padding, in pixels [Integer]
     attr_accessor :padRight
-    
+
     # Highlight color [FXColor]
     attr_accessor :hiliteColor
-    
+
     # Shadow color [FXColor]
     attr_accessor :shadowColor
-    
+
     # Border color [FXColor]
     attr_accessor :borderColor
-    
+
     # Base GUI color [FXColor]
     attr_accessor :baseColor
-    
+
     # Horizontal inter-child spacing, in pixels [Integer]
     attr_accessor :hSpacing
-    
+
     # Vertical inter-child spacing, in pixels [Integer]
     attr_accessor :vSpacing
 

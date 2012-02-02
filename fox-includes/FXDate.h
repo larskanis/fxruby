@@ -117,7 +117,7 @@ public:
 
   /// Return days in this month
   FXint daysInMonth() const;
-  
+
   /// Add d days to this date
   FXDate& addDays(FXint d);
 
@@ -164,7 +164,7 @@ public:
   /// Pre-Increment and decrement
   FXDate& operator++(){ ++julian; return *this; }
   FXDate& operator--(){ --julian; return *this; }
-  
+
   /// Post-Increment and decrement
   FXDate operator++(int){ FXDate t(julian++); return t; }
   FXDate operator--(int){ FXDate t(julian--); return t; }

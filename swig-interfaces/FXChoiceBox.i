@@ -21,7 +21,7 @@
  ***********************************************************************/
 
 %apply const FXchar **strings { const FXchar** choices };
- 
+
 /**
 * The Choice Box provides a dialog panel to select one item out of a list
 * of choices.  The choices are provided as a list of text strings.
@@ -74,7 +74,7 @@ public:
   * The return value is -1 if cancelled, or the given choice
   */
   static FXint ask(FXApp* app,FXuint opts,const FXString& caption,const FXString& text,FXIcon* icon,const FXchar** choices);
-  
+
   // Destructor
   virtual ~FXChoiceBox();
   };

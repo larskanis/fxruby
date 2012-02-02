@@ -2,7 +2,7 @@ module Fox
   #
   # Highlight style entry
   #
-  class FXHiliteStyle 
+  class FXHiliteStyle
     # Normal text foreground color [FXColor]
     attr_accessor	:normalForeColor
 
@@ -37,16 +37,16 @@ module Fox
   class FXTextChange
     # Position in buffer [Integer]
     attr_accessor :pos
-    
+
     # Number of characters deleted at _pos_ [Integer]
     attr_accessor :ndel
-    
+
     # Number of characters inserted at _pos_ [Integer]
     attr_accessor :nins
-    
+
     # Text inserted at _pos_ [String]
     attr_accessor :ins
-    
+
     # Text deleted at _pos_ [String]
     attr_accessor :del
   end
@@ -197,7 +197,7 @@ module Fox
   # +ID_FLASH+::
 
   class FXText < FXScrollArea
-  
+
     # Top margin [Integer]
     attr_accessor	:marginTop
 
@@ -328,19 +328,19 @@ module Fox
     #
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2) # :yields: theText
     end
-    
+
     # Return the text buffer's value
     def to_s; text; end
-    
+
     # Return +true+ if text was modified
     def modified? ; end
-    
+
     # Return +true+ if text is editable
     def editable? ; end
-    
+
     # Set overstrike mode to +true+ or +false+.
     def overstrike=(os); end
-    
+
     # Return +true+ if overstrike mode is activated.
     def overstrike? ; end
 
@@ -349,7 +349,7 @@ module Fox
 
     # Get character at position _pos_ in text buffer
     def getByte(pos); end
-  
+
     # Get wide character at position _pos_.
     def getChar(pos); end
 
@@ -361,7 +361,7 @@ module Fox
 
     # Extract _n_ bytes of text from position _pos_ in the text buffer
     def extractText(pos, n); end
-    
+
     # Extract _n_ bytes of style info from position _pos_ in the style buffer
     def extractStyle(pos, n); end
 
@@ -371,32 +371,32 @@ module Fox
     # +SEL_INSERTED+ and +SEL_CHANGED+ message is sent after the new
     # text is inserted.
     def replaceText(pos, m, text, notify=false); end
-  
+
     # Replace the _m_ characters at _pos_ with _text_.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the text
     # widget's message target before the old text is removed, and a
     # +SEL_INSERTED+ and +SEL_CHANGED+ message is sent after the new
     # text is inserted.
     def replaceStyledText(pos, m, text, style=0, notify=false); end
-  
+
     # Append _text_ to the end of the text buffer.
     # If _notify_ is +true+, +SEL_INSERTED+ and +SEL_CHANGED+ messages
     # are sent to the text widget's message target after the new text is
     # added.
     def appendText(text, notify=false); end
-  
+
     # Append _text_ to the end of the text buffer.
     # If _notify_ is +true+, +SEL_INSERTED+ and +SEL_CHANGED+ messages
     # are sent to the text widget's message target after the new text is
     # added.
     def appendStyledText(text, style=0, notify=false); end
-  
+
     # Insert _text_ at position _pos_ in the text buffer.
     # If _notify_ is +true+, +SEL_INSERTED+ and +SEL_CHANGED+ messages
     # are sent to the text widget's message target after the new text is
     # inserted.
     def insertText(pos, text, notify=false); end
-  
+
     # Insert _text_ at position _pos_ in the text buffer.
     # If _notify_ is +true+, +SEL_INSERTED+ and +SEL_CHANGED+ messages
     # are sent to the text widget's message target after the new text is
@@ -408,12 +408,12 @@ module Fox
     # text widget's message target before the text is removed and a
     # +SEL_CHANGED+ message is sent after the change occurs.
     def removeText(pos, n, notify=false); end
-  
+
     # Change the style of _n_ characters at position _pos_ in the text
     # buffer to _style_. Here, _style_ is  an integer index into the
     # style table, indicating the new style for all the affected characters;
     def changeStyle(pos, n, style); end
-  
+
     # Change the style of text range at position _pos_ in the text
     # buffer to _style_. Here, _style_ an array of bytes indicating
     # the new style.
@@ -424,13 +424,13 @@ module Fox
     # are sent to the text widget's message target after the new text is
     # set.
     def setText(text, notify=false); end
-  
+
     # Change the text in the buffer to new text
     # If _notify_ is +true+, +SEL_INSERTED+ and +SEL_CHANGED+ messages
     # are sent to the text widget's message target after the new text is
     # set.
     def setStyledText(text, style=0, notify=false); end
-  
+
     # Shift block of lines from position _startPos_ up to _endPos_ by given _amount_.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the text
     # widget's message target before the old text is removed, and a
@@ -454,22 +454,22 @@ module Fox
 
     # Return +true+ if position _pos_ is selected
     def positionSelected?(pos); end
-  
+
     # Return +true+ if position _pos_ is fully visible
     def positionVisible?(pos); end
-  
+
     # Return text position containing x, y coordinate
     def getPosContaining(x, y); end
 
     # Return text position at given visible (_x_, _y_) coordinate
     def getPosAt(x, y); end
-  
+
     # Return y coordinate of pos
     def getYOfPos(pos); end
 
     # Return x coordinate of pos
     def getXOfPos(pos); end
-    
+
     # Count number of rows; _start_ should be on a row start
     def countRows(start, end); end
 
@@ -481,61 +481,61 @@ module Fox
 
     # Return position of beginning of line containing position _pos_
     def lineStart(pos); end
-  
+
     # Return position of end of line containing position _pos_
     def lineEnd(pos); end
-  
+
     # Return start of next line
     def nextLine(pos, nl=1); end
-  
+
     # Return start of previous line
     def prevLine(pos, nl=1); end
-  
+
     # Return row start
     def rowStart(pos); end
-  
+
     # Return row end
     def rowEnd(pos); end
 
     # Return start of next row
     def nextRow(pos, nr=1); end
-  
+
     # Return start of previous row
     def prevRow(pos, nr=1); end
-  
+
     # Return end of previous word
     def leftWord(pos); end
-  
+
     # Return begin of next word
     def rightWord(pos); end
-  
+
     # Return begin of word
     def wordStart(pos); end
-  
+
     # Return end of word
     def wordEnd(pos); end
-  
+
     # Return validated UTF8 character start position
     def validPos(pos); end
 
     # Retreat to the previous valid UTF8 character start
     def dec(pos); end
-  
+
     # Advance to the next valid UTF8 character start
     def inc(pos); end
 
     # Make line containing _pos_ the top line
     def setTopLine(pos); end
-  
+
     # Return position of top line
     def getTopLine(); end
-  
+
     # Make line containing _pos_ the bottom line
     def setBottomLine(pos); end
-  
+
     # Return the position of the bottom line
     def getBottomLine(); end
-  
+
     # Make line containing _pos_ the center line
     def setCenterLine(pos); end
 
@@ -543,7 +543,7 @@ module Fox
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text
     # widget's message target after the change occurs.
     def setCursorRow(row, notify=false); end
-  
+
     # Set cursor column.
     # If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the text
     # widget's message target after the change occurs.
@@ -560,21 +560,21 @@ module Fox
     # deselected, then a +SEL_SELECTED+ message is sent after the new text
     # is selected.
     def selectAll(notify=false); end
-  
+
     # Select _len_ characters starting at position _pos_.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the text
     # widget's message target before any previously selected text is
     # deselected, then a +SEL_SELECTED+ message is sent after the new text
     # is selected.
     def setSelection(pos, len, notify=false); end
-  
+
     # Extend selection to _pos_.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the text
     # widget's message target before any previously selected text is
     # deselected, then a +SEL_SELECTED+ message is sent after the new text
     # is selected.
     def extendSelection(pos, textSelectionMode=SELECT_CHARS, notify=false); end
-  
+
     # Kill the selection.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the text
     # widget's message target before the text is deselected.
@@ -582,13 +582,13 @@ module Fox
 
     # Highlight _len_ characters starting at position _pos_
     def setHighlight(pos, len); end
-  
+
     # Unhighlight the text
     def killHighlight(); end
-  
+
     # Scroll text to make the given position visible
     def makePositionVisible(pos); end
-    
+
     # Return number of rows in buffer.
     def numRows; end
   end

@@ -66,7 +66,7 @@ struct FXPSBounds {
   ~FXPSBounds();
   };
 
-  
+
 /// Describes printer
 struct FXPrinter {
   FXPrinter();
@@ -120,16 +120,16 @@ public:
 
   /// Generate print job prolog
   FXbool beginPrint(FXPrinter& job);
-  
+
   /// Generate print job epilog
   FXbool endPrint();
-  
+
   /// Generate begin of page
   FXbool beginPage(FXuint page=1);
-  
+
   /// Generate end of page
   FXbool endPage();
-  
+
   FXbool setContentRange(FXint pxmin, FXint pymin, FXint pxmax, FXint pymax);
 
   /// Cleanup

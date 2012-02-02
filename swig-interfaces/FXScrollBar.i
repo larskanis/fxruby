@@ -37,9 +37,9 @@ enum {
 * space available for the document.  The size of the scrollbar thumb is adjusted to give
 * feedback of the relative sizes of each.
 * The scroll bar may be manipulated by the left mouse button (normal scrolling), by the
-* middle mouse button (same as the left mouse only the scroll position can jump to the 
+* middle mouse button (same as the left mouse only the scroll position can jump to the
 * place where the click is made), or by the right mouse button (vernier- or fine-scrolling).
-* Holding down the control key while scrolling with the left or middle mouse button also 
+* Holding down the control key while scrolling with the left or middle mouse button also
 * enables vernier-scrolling mode.  The vernier-scrolling mode is very useful for accurate
 * positioning in large documents.
 * Finally, if the mouse sports a wheel, the scroll bar can be manipulated by means
@@ -115,7 +115,7 @@ public:
    * than the page size, the position will simply be equal to zero.
    */
   void setPosition(FXint p,FXbool notify=false);
-  
+
   %extend {
     /// Return current scroll position
     FXint position() const {
@@ -177,7 +177,7 @@ public:
       return new FXRbScrollCorner(p);
       }
     }
-  
+
   /// Destructor
   virtual ~FXScrollCorner();
   };

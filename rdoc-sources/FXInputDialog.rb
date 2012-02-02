@@ -26,15 +26,15 @@ module Fox
     #
     def initialize(owner, caption, label, icon=nil, opts=INPUTDIALOG_STRING, x=0, y=0, width=0, height=0) # :yields: theInputDialog
     end
-    
+
     # Return the input dialog's input string text
     def to_s; text; end
-  
+
     #
     # Change limits (where _lo_ and _hi_ are numbers).
     #
     def setLimits(lo, hi); end
-  
+
     #
     # Return limits (a two-element array of floats).
     #
@@ -46,19 +46,19 @@ module Fox
     # user clicks *OK*, else return +nil+.
     #
     def FXInputDialog.getString(initial, owner, caption, label, ic=nil); end
-  
+
     #
     # Prompt for a string, in a free-floating window..
     #
     def FXInputDialog.getString(initial, app, caption, label, ic=nil); end
-  
+
     #
     # Prompt the user for an integer number, starting from the specified _initial_ value.
     # Return the input value if the user clicks *OK*, else return +nil+.
     # The input is constrained between _lo_ and _hi_.
     #
     def FXInputDialog.getInteger(initial, owner, caption, label, ic=nil, lo=-2147483647, hi=2147483647); end
-  
+
     #
     # Prompt for an integer, in a free-floating window..
     #

@@ -32,16 +32,16 @@ class SplitterWindow < FXMainWindow
 
     # Menu bar
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-    
+
     # Status bar
     status = FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
-    
+
     # File menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "Quit\tCtl-Q", nil, getApp(), FXApp::ID_QUIT)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-    
+
     # Main window interior
     @splitter = FXSplitter.new(self, (LAYOUT_SIDE_TOP|LAYOUT_FILL_X|
       LAYOUT_FILL_Y|SPLITTER_REVERSED|SPLITTER_TRACKING))
@@ -51,7 +51,7 @@ class SplitterWindow < FXMainWindow
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     group3 = FXVerticalFrame.new(@splitter,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  
+
     # Mode menu
     modemenu = FXMenuPane.new(self)
     FXMenuCommand.new(modemenu, "Reverse\t\tReverse split order").connect(SEL_COMMAND) {
@@ -72,13 +72,13 @@ class SplitterWindow < FXMainWindow
     FXMenuCheck.new(modemenu, "Toggle pane 1", group1, FXWindow::ID_TOGGLESHOWN)
     FXMenuCheck.new(modemenu, "Toggle pane 2", group2, FXWindow::ID_TOGGLESHOWN)
     FXMenuCheck.new(modemenu, "Toggle pane 3", group3, FXWindow::ID_TOGGLESHOWN)
-   
+
     FXMenuTitle.new(menubar, "&Mode", nil, modemenu)
-      
+
     tree = FXTreeList.new(group1,
       :opts => (LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_TOP|LAYOUT_RIGHT|TREELIST_SHOWS_LINES|
       TREELIST_SHOWS_BOXES|TREELIST_ROOT_BOXES|TREELIST_EXTENDEDSELECT))
-  
+
     topmost = tree.appendItem(nil, "Top", folder_open, folder_closed)
     tree.expandTree(topmost)
       tree.appendItem(topmost, "First", doc, doc)
@@ -119,11 +119,11 @@ class SplitterWindow < FXMainWindow
         tree.appendItem(branch, "Seventh-Second", doc, doc)
         tree.appendItem(branch, "Seventh-Third", doc, doc)
       tree.appendItem(topmost, "Eighth", doc, doc)
-    
+
     FXLabel.new(group2, "Matrix", nil, LAYOUT_CENTER_X)
     FXHorizontalSeparator.new(group2, SEPARATOR_GROOVE|LAYOUT_FILL_X)
     matrix = FXMatrix.new(group2, 2, MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
-    
+
     FXLabel.new(matrix, "Alpha:", nil,
       JUSTIFY_RIGHT|LAYOUT_FILL_X|LAYOUT_CENTER_Y)
     FXTextField.new(matrix, 2, nil, 0, (FRAME_SUNKEN|FRAME_THICK|
@@ -136,16 +136,16 @@ class SplitterWindow < FXMainWindow
       JUSTIFY_RIGHT|LAYOUT_FILL_X|LAYOUT_CENTER_Y)
     FXTextField.new(matrix, 2, nil, 0, (FRAME_SUNKEN|FRAME_THICK|
       LAYOUT_FILL_X|LAYOUT_CENTER_Y|LAYOUT_FILL_COLUMN))
-   
+
     continuousCheck = FXCheckButton.new(group2,
       "Continuous Tracking\tSplitter continuously tracks split changes")
     continuousCheck.connect(SEL_COMMAND, method(:onCmdTracking))
     continuousCheck.connect(SEL_UPDATE, method(:onUpdTracking))
-    
+
     FXLabel.new(group3, "Quite a Stretch", nil, LAYOUT_CENTER_X)
     FXHorizontalSeparator.new(group3, SEPARATOR_GROOVE|LAYOUT_FILL_X)
     mat = FXMatrix.new(group3, 3, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     FXButton.new(mat, "One\nStretch the row\nStretch in Y\nStretch in X\t" +
       "The possibilities are endless..", nil, nil, 0,
       FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW)
@@ -154,7 +154,7 @@ class SplitterWindow < FXMainWindow
     FXButton.new(mat, "Three\nStretch the row\nStretch in Y\nStretch in X\t" +
       "The possibilities are endless..", nil, nil, 0,
       FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW)
-    
+
     FXButton.new(mat, "Four\nStretch the column\nStretch the row\n" +
       "Stretch in Y\nStretch in X\tThe possibilities are endless..", nil,
       nil, 0, (FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|
@@ -166,7 +166,7 @@ class SplitterWindow < FXMainWindow
       "Stretch in Y\nStretch in X\tThe possibilities are endless..", nil,
       nil, 0, (FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|
       LAYOUT_FILL_COLUMN|LAYOUT_FILL_ROW))
-    
+
     FXButton.new(mat, "Seven\nStretch the column\nStretch the row\n" +
       "Center in Y\nCenter in X\tThe possibilities are endless..", nil,
       nil, 0, (FRAME_RAISED|FRAME_THICK|LAYOUT_CENTER_Y|LAYOUT_CENTER_X|
@@ -178,7 +178,7 @@ class SplitterWindow < FXMainWindow
       "Stretch in Y\tThe possibilities are endless..", nil, nil, 0,
       (FRAME_RAISED|FRAME_THICK|LAYOUT_RIGHT|LAYOUT_FILL_Y|
       LAYOUT_FILL_ROW|LAYOUT_FILL_COLUMN))
-    
+
     # Make a tool tip
     FXToolTip.new(getApp(), 0)
   end

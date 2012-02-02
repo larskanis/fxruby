@@ -13,7 +13,7 @@ public:
 
   // Overrides the base class version of loadImageData()
   virtual FXImage *loadImageData(const void *pixels,const FXString& type=FXString::null) const;
-  
+
   // Overrides the base class version of loadImageStream()
   virtual FXImage *loadImageStream(FXStream& store,const FXString& type=FXString::null) const;
 

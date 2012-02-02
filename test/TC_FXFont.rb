@@ -7,7 +7,7 @@ class TC_FXFont < Test::Unit::TestCase
 
   def setup
     if FXApp.instance.nil?
-      @app = FXApp.new('TC_FXFont', 'FoxTest') 
+      @app = FXApp.new('TC_FXFont', 'FoxTest')
     else
       @app = FXApp.instance
     end
@@ -44,7 +44,7 @@ class TC_FXFont < Test::Unit::TestCase
   def testConstructFromFontString
     font = FXFont.new(@app, "")
   end
-  
+
   def testGetTextWidthAndHeight
     font = FXFont.new(@app, "Times", 10)
     assert(font.getTextWidth("Test") > 0)
@@ -56,7 +56,7 @@ class TC_FXFont < Test::Unit::TestCase
     assert_instance_of(Array, fonts)
     assert(fonts.length > 0)
   end
-  
+
   def test_hasChar?
     @app.normalFont.create
     assert(@app.normalFont.hasChar('a'))

@@ -20,7 +20,7 @@
  * at "lyle@lylejohnson.name".
  ***********************************************************************/
 
-/// Menu bar 
+/// Menu bar
 class FXMenuBar : public FXToolBar {
 protected:
   FXMenuBar(){}
@@ -37,7 +37,7 @@ public:
 
   %extend {
     /**
-    * Construct a floatable menubar 
+    * Construct a floatable menubar
     * Normally, the menubar is docked under window p.
     * When floated, the menubar can be docked under window q, which is
     * typically an FXToolBarShell window.
@@ -54,7 +54,7 @@ public:
       return new FXRbMenuBar(p,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
     }
-  
+
   // Destructor
   virtual ~FXMenuBar();
   };

@@ -78,7 +78,7 @@ class GroupWindow < FXMainWindow
       resize(getDefaultWidth(), getDefaultHeight())
     }
     FXMenuCommand.new(filemenu, "Dump Widgets", nil, getApp(), FXApp::ID_DUMP)
-  
+
     # Make edit popup menu
     editmenu = FXMenuPane.new(self)
       FXMenuCommand.new(editmenu, "Undo")
@@ -89,11 +89,11 @@ class GroupWindow < FXMainWindow
         FXMenuCommand.new(submenu1, "Th&ree")
         FXMenuCommand.new(submenu1, "&Four")
       FXMenuCascade.new(editmenu, "&Submenu1", nil, submenu1)
-  
+
     FXMenuCascade.new(filemenu, "&Edit", nil, editmenu)
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q", nil, getApp(), FXApp::ID_QUIT)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-    
+
     helpmenu = FXMenuPane.new(self)
     FXMenuCommand.new(helpmenu, "&About FOX...").connect(SEL_COMMAND) {
       FXMessageBox.information(self, MBOX_OK,
@@ -101,28 +101,28 @@ class GroupWindow < FXMainWindow
         "FOX is a really, really cool C++ library!\nExample written by Jeroen")
     }
     FXMenuTitle.new(menubar, "&Help", nil, helpmenu, LAYOUT_RIGHT)
-  
+
     @popupmenu = FXMenuPane.new(self)
       poptext = FXTextField.new(@popupmenu, 10, :opts => FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP)
       poptext.setText("Popup with text")
-    
+
     # Status bar
     status = FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
     @clockLabel = FXLabel.new(status, Time.now().strftime("%I:%M:%S %p"), nil,
       LAYOUT_FILL_Y|LAYOUT_RIGHT|FRAME_SUNKEN)
-  
+
     # Content
     contents = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_TOP|FRAME_NONE|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  
+
     group1 = FXGroupBox.new(contents, "Title Left",
       GROUPBOX_TITLE_LEFT|FRAME_RIDGE|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     group2 = FXGroupBox.new(contents, "Slider Tests",
       GROUPBOX_TITLE_CENTER|FRAME_RIDGE|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     group3 = FXGroupBox.new(contents, "Title Right",
       GROUPBOX_TITLE_RIGHT|FRAME_RIDGE|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     testlabel = FXLabel.new(group1,
       "&This is a multi-line\nlabel widget\nwith a big font", nil,
       LAYOUT_CENTER_X|JUSTIFY_CENTER_X)
@@ -135,7 +135,7 @@ class GroupWindow < FXMainWindow
       "O&pen\nState\tTooltip for open\tHelp for open",
       folder_closed, folder_open, nil, 0,
       ICON_BEFORE_TEXT|JUSTIFY_LEFT|FRAME_RAISED|FRAME_THICK)
-  
+
     pop = FXPopup.new(self)
     numbers =%w{first second third fourth}
     0.upto(3) do |idx|
@@ -143,10 +143,10 @@ class GroupWindow < FXMainWindow
           FXMessageBox.information(self, MBOX_OK, "Option Menu", "Chose option #{idx+1}")
       }
     end
-    
+
     FXOptionMenu.new(group1, pop,
       LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|JUSTIFY_HZ_APART|ICON_AFTER_TEXT)
-  
+
     FXLabel.new(group1, "Te&kstje", nil, LAYOUT_TOP|JUSTIFY_LEFT)
     FXButton.new(group1,
       "Add an `&&' by doubling\tTooltip\tHelp text for status", :opts => LAYOUT_TOP|FRAME_RAISED|FRAME_THICK)
@@ -154,10 +154,10 @@ class GroupWindow < FXMainWindow
       x, y, buttons = getRoot().getCursorPosition()
       @popupmenu.popup(nil, x, y)
     }
-    
+
     FXMenuButton.new(group1, "&Menu", :opts => MENUBUTTON_ATTACH_BOTH|MENUBUTTON_DOWN|JUSTIFY_HZ_APART|LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|ICON_AFTER_TEXT)
     FXMenuButton.new(group1, "&Menu", nil, filemenu, MENUBUTTON_UP|LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|ICON_AFTER_TEXT)
-  
+
     coolpop = FXPopup.new(self, POPUP_HORIZONTAL)
     FXButton.new(coolpop, "A\tTipA",
       :opts => FRAME_THICK|FRAME_RAISED|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT, :width => 30, :height => 30)
@@ -170,37 +170,37 @@ class GroupWindow < FXMainWindow
     FXMenuButton.new(group1, "&S\tSideways", nil, coolpop,
       (MENUBUTTON_ATTACH_BOTH|MENUBUTTON_LEFT|MENUBUTTON_NOARROWS|LAYOUT_TOP|
        FRAME_RAISED|FRAME_THICK|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT), :width => 30, :height => 30)
-    
+
     matrix = FXMatrix.new(group1, 3,
       FRAME_RAISED|LAYOUT_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     FXButton.new(matrix, "A", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW)
     FXButton.new(matrix, "&Wide button", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X)
     FXButton.new(matrix, "A", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X)
-    
+
     FXButton.new(matrix, "BBBB", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_ROW|LAYOUT_FILL_COLUMN)
     FXButton.new(matrix, "B", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
     FXButton.new(matrix, "BB", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
-    
+
     FXButton.new(matrix, "C", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_CENTER_Y|LAYOUT_CENTER_X|LAYOUT_FILL_ROW)
     FXButton.new(matrix, "&wide", :opts => FRAME_RAISED|FRAME_THICK)
     FXButton.new(matrix, "CC", :opts => FRAME_RAISED|FRAME_THICK|LAYOUT_RIGHT)
-    
+
     FXLabel.new(group2, "No Arrow")
     FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL, :width => 200, :height => 30)
-    
+
     FXLabel.new(group2, "Up Arrow")
     FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_ARROW_UP, :width => 200, :height => 30)
-    
+
     FXLabel.new(group2, "Down Arrow")
     FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FIX_WIDTH|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_ARROW_DOWN, :width => 200, :height => 30)
-    
+
     FXLabel.new(group2, "Inside Bar")
-    slider = FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FILL_X|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_INSIDE_BAR, :width => 200, :height => 20)  
+    slider = FXSlider.new(group2, :opts => LAYOUT_TOP|LAYOUT_FILL_X|LAYOUT_FIX_HEIGHT|SLIDER_HORIZONTAL|SLIDER_INSIDE_BAR, :width => 200, :height => 20)
     slider.range = 0..3
-    
+
     frame = FXHorizontalFrame.new(group2, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     FXSlider.new(frame, nil, 0,
       LAYOUT_FIX_HEIGHT|SLIDER_VERTICAL, 0, 0, 30, 200)
     FXSlider.new(frame, nil, 0,
@@ -211,7 +211,7 @@ class GroupWindow < FXMainWindow
       LAYOUT_FIX_HEIGHT|SLIDER_VERTICAL|SLIDER_INSIDE_BAR, 0, 0, 20, 200)
     FXScrollBar.new(frame, nil, 0,
       SCROLLBAR_VERTICAL|LAYOUT_FIX_HEIGHT|LAYOUT_FIX_WIDTH, 0, 0, 20, 300)
-  
+
     vframe1 = FXVerticalFrame.new(frame, LAYOUT_FILL_X|LAYOUT_FILL_Y)
     FXArrowButton.new(vframe1, nil, 0,
       LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_RAISED|FRAME_THICK|ARROW_UP)
@@ -221,7 +221,7 @@ class GroupWindow < FXMainWindow
       LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_RAISED|FRAME_THICK|ARROW_LEFT)
     FXArrowButton.new(vframe1, nil, 0,
       LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_RAISED|FRAME_THICK|ARROW_RIGHT)
-  
+
     vframe2 = FXVerticalFrame.new(frame, LAYOUT_FILL_X|LAYOUT_FILL_Y)
     FXArrowButton.new(vframe2, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y|FRAME_RAISED|FRAME_THICK|ARROW_UP|ARROW_TOOLBAR)
     FXArrowButton.new(vframe2, nil, 0, (LAYOUT_FILL_X|LAYOUT_FILL_Y|
@@ -230,7 +230,7 @@ class GroupWindow < FXMainWindow
       FRAME_RAISED|FRAME_THICK|ARROW_LEFT|ARROW_TOOLBAR))
     FXArrowButton.new(vframe2, nil, 0, (LAYOUT_FILL_X|LAYOUT_FILL_Y|
       FRAME_RAISED|FRAME_THICK|ARROW_RIGHT|ARROW_TOOLBAR))
-  
+
     gp_datatarget = FXDataTarget.new(0)
     gp = FXGroupBox.new(group3, "Group Box",
       LAYOUT_SIDE_TOP|FRAME_GROOVE|LAYOUT_FILL_X, 0, 0, 0, 0)
@@ -242,7 +242,7 @@ class GroupWindow < FXMainWindow
       JUSTIFY_LEFT|JUSTIFY_TOP|ICON_BEFORE_TEXT|LAYOUT_SIDE_TOP)
     FXRadioButton.new(gp, "Radio Stad Amsterdam", gp_datatarget, FXDataTarget::ID_OPTION+3,
       ICON_BEFORE_TEXT|LAYOUT_SIDE_TOP)
-    
+
     vv = FXGroupBox.new(group3, "Group Box",
       LAYOUT_SIDE_TOP|FRAME_GROOVE|LAYOUT_FILL_X, 0, 0, 0, 0)
     FXCheckButton.new(vv, "Hilversum 1", nil, 0,
@@ -253,25 +253,25 @@ class GroupWindow < FXMainWindow
       JUSTIFY_LEFT|JUSTIFY_TOP|ICON_BEFORE_TEXT|LAYOUT_SIDE_TOP)
     FXCheckButton.new(vv, "Radio Stad Amsterdam", nil, 0,
       ICON_BEFORE_TEXT|LAYOUT_SIDE_TOP)
-    
+
     spinner = FXSpinner.new(group3, 20, nil, 0,
       SPIN_NORMAL|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP)
     spinner.range = 1..20
-    
+
     combobox = FXComboBox.new(group3, 5, nil, 0,
       COMBOBOX_INSERT_LAST|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP)
     combobox.appendItem("Very Wide Item")
     for i in 0...3
       combobox.appendItem("%04d" % i)
     end
-    
+
     treebox = FXTreeListBox.new(group3, nil, 0,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP, 0, 0, 200, 0)
-  
+
     topmost = treebox.appendItem(nil, "Top", folder_open, folder_closed)
     topmost2 = treebox.appendItem(nil, "Top2", folder_open, folder_closed)
              treebox.appendItem(topmost2, "First", doc, doc)
-  
+
     treebox.appendItem(topmost, "First", doc, doc)
     treebox.appendItem(topmost, "Second", doc, doc)
     treebox.appendItem(topmost, "Third", doc, doc)
@@ -290,7 +290,7 @@ class GroupWindow < FXMainWindow
         treebox.appendItem(twig, "Fourth-Fourth-First", doc, doc)
         treebox.appendItem(twig, "Fourth-Fourth-Second", doc, doc)
         treebox.appendItem(twig, "Fourth-Fourth-Third", doc, doc)
-    
+
     FXLabel.new(group3, "H&it the hotkey", nil,
       LAYOUT_CENTER_X|JUSTIFY_CENTER_X|FRAME_RAISED)
     textfield1 = FXTextField.new(group3, 20, nil, 0,
@@ -306,7 +306,7 @@ class GroupWindow < FXMainWindow
       TEXTFIELD_READONLY|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP)
     textfield4.text = "Grayed out"
     textfield4.disable
-    
+
     realnumber = FXTextField.new(group3, 20, nil, 0,
       TEXTFIELD_REAL|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP|LAYOUT_FIX_HEIGHT,
       0, 0, 0, 30)
@@ -315,12 +315,12 @@ class GroupWindow < FXMainWindow
       TEXTFIELD_INTEGER|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_TOP|LAYOUT_FIX_HEIGHT,
       0, 0, 0, 30)
     intnumber.text = "1000"
-    
+
     dial2 = FXDial.new(group3, nil, 0, (DIAL_CYCLIC|DIAL_HAS_NOTCH|
       DIAL_HORIZONTAL|LAYOUT_FILL_X|FRAME_RAISED|FRAME_THICK), 0, 0, 120, 0)
     FXScrollBar.new(group3, nil, 0,
       SCROLLBAR_HORIZONTAL|LAYOUT_FIX_HEIGHT|LAYOUT_FIX_WIDTH, 0, 0, 300, 20)
-    
+
     pbar = FXProgressBar.new(group3, nil, 0,
       LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK|PROGRESSBAR_PERCENTAGE)
     pbar.progress = 48
@@ -335,7 +335,7 @@ class GroupWindow < FXMainWindow
     dial1.selector = FXWindow::ID_SETVALUE
     dial2.target = pbar
     dial2.selector = FXWindow::ID_SETVALUE
-  
+
     # Currently selected choice from the radio buttons
     @choice = 0
 
@@ -380,13 +380,13 @@ end
 if __FILE__ == $0
   # Make application
   application = FXApp.new("Groupbox", "FoxTest")
-  
+
   # Make window
   GroupWindow.new(application)
-  
+
   # Create app
   application.create
-  
+
   # Run
   application.run
 end

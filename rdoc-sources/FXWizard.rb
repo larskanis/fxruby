@@ -12,28 +12,28 @@ module Fox
   # +ID_BACK+::		Move to the previous panel in the wizard
   #
   class FXWizard < FXDialogBox
-  
+
     # The button frame [FXHorizontalFrame]
     attr_reader :buttonFrame
-    
+
     # The "Advance" button [FXButton]
     attr_reader :advanceButton
-    
+
     # The "Retreat" button [FXButton]
     attr_reader :retreatButton
-    
+
     # The "Finish" button [FXButton]
     attr_reader :finishButton
-    
+
     # The "Cancel" button [FXButton]
     attr_reader :cancelButton
-    
+
     # The container used as parent for the sub-panels [FXSwitcher]
     attr_reader :container
-    
+
     # The image being displayed [FXImage]
     attr_accessor :image
-    
+
     #
     # Return an initialized FXWizard instance.
     # If _owner_ is a window, the dialog box will float over that window.

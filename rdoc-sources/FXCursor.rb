@@ -22,13 +22,13 @@ module Fox
 
     # Width of cursor, in pixels (returns zero for stock cursors) [Integer]
     attr_reader	:width
-    
+
     # Height of cursor, in pixels (returns zero for stock cursors) [Integer]
     attr_reader	:height
-    
+
     # Hotspot x-coordinate (returns zero for stock cursors) [Integer]
     attr_accessor :hotX
-    
+
     # Hotspot y-coordinate (returns zero for stock cursors) [Integer]
     attr_accessor :hotY
 
@@ -38,13 +38,13 @@ module Fox
     #
     def initialize(a, curid=CURSOR_ARROW) # :yields: theCursor
     end
-  
+
     #
     # Make cursor from _src_ and _msk_; cursor size should be 32x32 for portability!
     #
     def initialize(a, pix, width=32, height=32, hotX=-1, hotY=-1) # :yields: theCursor
     end
-  
+
     #
     # Make cursor from FXColor pixels; cursor size should be 32x32 for portability!
     #
@@ -55,12 +55,12 @@ module Fox
     # Save pixel data only.
     #
     def savePixels(stream) ; end
-  
+
     #
     # Load pixel data only.
     #
     def loadPixels(stream) ; end
-    
+
     # Return +true+ if there is color in the cursor.
     def color?; end
   end

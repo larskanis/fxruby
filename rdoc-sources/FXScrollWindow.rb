@@ -33,7 +33,7 @@ module Fox
     #
     def initialize(p, opts=0, x=0, y=0, width=0, height=0) # :yields: theScrollWindow
     end
-  
+
     #
     # Return a reference to the contents window (an FXWindow instance).
     #

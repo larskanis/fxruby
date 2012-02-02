@@ -52,7 +52,7 @@ public:
 
   /// Return true if edge a-b crosses plane
   FXbool crosses(const FXVec3f& a,const FXVec3f& b) const;
-  
+
   FXfloat length() const;
   FXfloat length2() const;
 
@@ -67,33 +67,33 @@ public:
       (*self)[i]=f;
       return f;
       }
-    
+
     // Negation
     FXVec4f operator-() const { return -(*self); }
-    
+
     // Addition
     FXVec4f operator+(const FXVec4f& b) const { return (*self)+b; }
-    
+
     // Subtraction
     FXVec4f operator-(const FXVec4f& b) const { return (*self)-b; }
-    
+
     // Multiply by a scalar
     FXVec4f operator*(FXfloat n) const { return (*self)*n; }
-    
+
     // Divide by a scalar
     FXVec4f operator/(FXfloat n) const {
       if(n==0.0f) rb_raise(rb_eZeroDivError,"divided by 0");
       return (*self)/n;
       }
-    
+
     /// Dot product
     FXfloat operator*(const FXVec4f& a) const { return (*self)*a; }
     FXfloat dot(const FXVec4f& a) const { return (*self)*a; }
-    
+
     /// Equality tests
     FXbool operator==(const FXVec4f& b) const { return (*self == b); }
     FXbool operator==(FXfloat n) const { return (*self == n); }
-    
+
     // Other functions
     FXVec4f normalize() const { return normalize(*self); }
     FXVec4f lo(const FXVec4f& other) const { return lo(*self,other); }

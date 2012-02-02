@@ -37,7 +37,7 @@ public:
       return new FXRbVerticalFrame(p,opts,x,y,w,h,pl,pr,pt,pb,hs,vs);
       }
     }
-  
+
   /// Destructor
   virtual ~FXVerticalFrame();
   };

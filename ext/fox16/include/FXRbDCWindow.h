@@ -36,7 +36,7 @@ public:
     FXRbRegisterAppSensitiveObject(this);
     }
 
-  /// Construct for normal drawing; 
+  /// Construct for normal drawing;
   /// This sets clip rectangle to the whole drawable
   FXRbDCWindow(FXDrawable* drawable) : FXDCWindow(drawable){
     FXRbRegisterAppSensitiveObject(this);

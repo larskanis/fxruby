@@ -24,7 +24,7 @@ class FXIcon;
 class FXFont;
 class FXHeader;
 
- 
+
 /// Header style options
 enum {
   HEADER_BUTTON     = 0x00008000,     /// Button style can be clicked
@@ -34,7 +34,7 @@ enum {
   HEADER_RESIZE     = 0x00040000,     /// Allow resizing sections
   HEADER_NORMAL     = HEADER_HORIZONTAL|FRAME_NORMAL
   };
-  
+
 %rename("tipText=")     FXHeaderItem::setTipText(const FXString&);
 %rename("tipText")      FXHeaderItem::getTipText() const;
 
@@ -78,13 +78,13 @@ public:
 
   /// Return item's text label
   const FXString& getText() const;
- 
+
   /// Set the tool tip message for this item
   void setTipText(const FXString& text);
-  
+
   /// Get the tool tip message for this item
   const FXString& getTipText() const;
-  
+
   /// Return item's icon
   FXIcon* getIcon() const;
 
@@ -208,7 +208,7 @@ public:
 
   /// Return total size of all items
   FXint getTotalSize() const;
-  
+
   /// Set the current position
   void setPosition(FXint p);
 
@@ -261,7 +261,7 @@ public:
 
   /// Fill header by appending items from array of strings
   FXint fillItems(const FXchar** strings,FXIcon *icon=NULL,FXint size=0,void* ITEMDATA=NULL,FXbool notify=false);
-  
+
   %extend {
     /// Insert a new [possibly subclassed] item at the given index
     FXint insertItem(FXint index,FXHeaderItem* item,FXbool notify=false){
@@ -361,7 +361,7 @@ public:
       self->setItemData(index, (void*) ptr);
       }
 
-    /// Return data of item at index 
+    /// Return data of item at index
     VALUE getItemData(FXint index) const {
       return self->getItemData(index) ? (VALUE) self->getItemData(index) : Qnil;
       }
@@ -369,7 +369,7 @@ public:
 
   /// Change sort direction (ARROW_NONE, ARROW_UP, ARROW_DOWN)
   void setArrowDir(FXint index,FXuint dir=FXHeaderItem::ARROW_NONE);
-  
+
   /// Return sort direction (ARROW_NONE, ARROW_UP, ARROW_DOWN)
   FXuint getArrowDir(FXint index) const;
 

@@ -23,10 +23,10 @@ class TabBookWindow < FXMainWindow
     # Contents
     contents = FXHorizontalFrame.new(self,
       LAYOUT_SIDE_TOP|FRAME_NONE|LAYOUT_FILL_X|LAYOUT_FILL_Y|PACK_UNIFORM_WIDTH)
-  
+
     # Switcher
     @tabbook = FXTabBook.new(contents,:opts => LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_RIGHT)
-  
+
     # First item is a list
     @tab1 = FXTabItem.new(@tabbook, "&Simple List", nil)
     listframe = FXHorizontalFrame.new(@tabbook, FRAME_THICK|FRAME_RAISED)
@@ -35,18 +35,18 @@ class TabBookWindow < FXMainWindow
     simplelist.appendItem("Second Entry")
     simplelist.appendItem("Third Entry")
     simplelist.appendItem("Fourth Entry")
-      
+
     # Second item is a file list
     @tab2 = FXTabItem.new(@tabbook, "F&ile List", nil)
     @fileframe = FXHorizontalFrame.new(@tabbook, FRAME_THICK|FRAME_RAISED)
     filelist = FXFileList.new(@fileframe, :opts => ICONLIST_EXTENDEDSELECT|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     # Third item is a directory list
     @tab3 = FXTabItem.new(@tabbook, "T&ree List", nil)
     dirframe = FXHorizontalFrame.new(@tabbook, FRAME_THICK|FRAME_RAISED)
     dirlist = FXDirList.new(dirframe,
       :opts => DIRLIST_SHOWFILES|TREELIST_SHOWS_LINES|TREELIST_SHOWS_BOXES|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    
+
     # File Menu
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "&Simple List", nil,
@@ -58,7 +58,7 @@ class TabBookWindow < FXMainWindow
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q", nil,
       getApp(), FXApp::ID_QUIT)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-    
+
     # Tab side
     tabmenu = FXMenuPane.new(self)
     hideShow = FXMenuCheck.new(tabmenu, "Hide/Show Tab 2")
@@ -74,9 +74,9 @@ class TabBookWindow < FXMainWindow
       @fileframe.recalc
     }
     hideShow.connect(SEL_UPDATE) { hideShow.check = @tab2.shown? }
-    
+
     FXMenuSeparator.new(tabmenu)
-    
+
     topTabsCmd = FXMenuRadio.new(tabmenu, "&Top Tabs")
     topTabsCmd.connect(SEL_COMMAND) do
       @tabbook.tabStyle = TABBOOK_TOPTABS
@@ -87,7 +87,7 @@ class TabBookWindow < FXMainWindow
     topTabsCmd.connect(SEL_UPDATE) do |sender, sel, ptr|
       sender.check = (@tabbook.tabStyle == TABBOOK_TOPTABS)
     end
-    
+
     bottomTabsCmd = FXMenuRadio.new(tabmenu, "&Bottom Tabs")
     bottomTabsCmd.connect(SEL_COMMAND) do
       @tabbook.tabStyle = TABBOOK_BOTTOMTABS
@@ -98,7 +98,7 @@ class TabBookWindow < FXMainWindow
     bottomTabsCmd.connect(SEL_UPDATE) do |sender, sel, ptr|
       sender.check = (@tabbook.tabStyle == TABBOOK_BOTTOMTABS)
     end
-    
+
     leftTabsCmd = FXMenuRadio.new(tabmenu, "&Left Tabs")
     leftTabsCmd.connect(SEL_COMMAND) do
       @tabbook.tabStyle = TABBOOK_LEFTTABS
@@ -109,7 +109,7 @@ class TabBookWindow < FXMainWindow
     leftTabsCmd.connect(SEL_UPDATE) do |sender, sel, ptr|
       sender.check = (@tabbook.tabStyle == TABBOOK_LEFTTABS)
     end
-    
+
     rightTabsCmd = FXMenuRadio.new(tabmenu, "&Right Tabs")
     rightTabsCmd.connect(SEL_COMMAND) do
       @tabbook.tabStyle = TABBOOK_RIGHTTABS
@@ -120,9 +120,9 @@ class TabBookWindow < FXMainWindow
     rightTabsCmd.connect(SEL_UPDATE) do |sender, sel, ptr|
       sender.check = (@tabbook.tabStyle == TABBOOK_RIGHTTABS)
     end
-    
+
     FXMenuSeparator.new(tabmenu)
-    
+
     addTabCmd = FXMenuCommand.new(tabmenu, "Add Tab")
     addTabCmd.connect(SEL_COMMAND) do
       FXTabItem.new(@tabbook, "New Tab")
@@ -132,7 +132,7 @@ class TabBookWindow < FXMainWindow
       @tabbook.create # realize widgets
       @tabbook.recalc # mark parent layout dirty
     end
-    
+
     removeTabCmd = FXMenuCommand.new(tabmenu, "Remove Last Tab")
     removeTabCmd.connect(SEL_COMMAND) do
       numTabs = @tabbook.numChildren/2

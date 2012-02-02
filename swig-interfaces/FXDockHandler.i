@@ -27,7 +27,7 @@
 
 /**
 * The dock handler exists as a common base class for tool bar grip
-* and dock title.  
+* and dock title.
 */
 class FXDockHandler : public FXFrame {
 protected:

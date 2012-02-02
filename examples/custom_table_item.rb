@@ -19,7 +19,7 @@ class CustomTableItem < FXTableItem
 		beg, tw, th = 0, 0, 0
 		begin
 			_end = beg;
-			_end += 1 while _end < lbl.length && lbl[_end].chr != '\n' 
+			_end += 1 while _end < lbl.length && lbl[_end].chr != '\n'
 			t = font.getTextWidth(lbl[beg..._end])
 			tw = t if t > tw
 			th += font.fontHeight
@@ -117,7 +117,7 @@ class CustomTableItem < FXTableItem
 
 		# Paint icon
 		dc.drawIcon(icn, ix, iy) unless icn.nil?
-			
+
 		# Text color
 		if selected?
 			dc.foreground = table.selTextColor
@@ -131,7 +131,7 @@ class CustomTableItem < FXTableItem
 		beg = 0
 		begin
 			_end = beg
-			_end += 1 while _end < lbl.length && lbl[_end].chr != '\n' 
+			_end += 1 while _end < lbl.length && lbl[_end].chr != '\n'
 			if justify & LEFT == 1
 			  xx = tx
 			elsif justify & RIGHT == 1

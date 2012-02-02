@@ -33,7 +33,7 @@ public:
   enum {
     ID_TITLE=10000,                 // Don't interfere with viewer's message id's
     ID_FILENAME,
-    ID_LAST                
+    ID_LAST
     };
 public:
   %extend {

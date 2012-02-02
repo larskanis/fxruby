@@ -53,7 +53,7 @@ public:
 
   /// Set accelerator text
   void setAccelText(const FXString& text);
-  
+
   /// Return accelarator text
   FXString getAccelText() const;
 

@@ -72,13 +72,13 @@ public:
       if(n==0.0f) rb_raise(rb_eZeroDivError,"divided by 0");
       return (*self)/n;
       }
-  
+
     /// Dot and cross products
     FXfloat operator*(const FXVec3f& other) const { return (*self)*other; }
     FXfloat dot(const FXVec3f& other) const { return (*self)*other; }
     FXVec3f operator^(const FXVec3f& other) const  { return (*self)^other; }
     FXVec3f cross(const FXVec3f& other) const  { return (*self)^other; }
-  
+
     /// Equality tests
     FXbool operator==(const FXVec3f& other) const { return (*self)==other; }
 

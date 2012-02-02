@@ -33,35 +33,35 @@ module Fox
 
     # Knob value [Integer]
     attr_accessor :value
-    
+
     # Knob range [Range]
     attr_accessor :range
-    
+
     # Knob style [Integer]
     attr_accessor :knobStyle
-    
+
     # Knob auto-increment/decrement value [Integer]
     attr_accessor :increment
-    
+
     # Delta between ticks [Integer]
     attr_accessor :tickDelta
-    
+
     # Indicator needle color [FXColor]
     attr_accessor :lineColor
-    
+
     # Help text displayed on the status line [String]
     attr_accessor :helpText
-    
+
     # Tooltip text value [String]
     attr_accessor :tipText
-    
+
     #
     # Return a new FXKnob instance.
     #
     def initialize(p, target=nil, selector=0, opts=KNOB_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theKnob
     end
 
-    # 
+    #
     # Change the knob's movement limits (start and ending angles)
     # Accept values in degrees from 0 (south) to 360.
     #

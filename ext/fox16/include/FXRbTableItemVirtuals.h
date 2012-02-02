@@ -33,16 +33,16 @@ public:
 public:
   // Overrides the base class version of setText()
   virtual void setText(const FXString& txt);
-  
+
   // Overrides the base class of getText()
   virtual FXString getText() const;
-  
+
   // Overrides the base class version of setIcon()
   virtual void setIcon(FXIcon* icn,FXbool owned=FALSE);
-  
+
   // Overrides the base class version of getIcon()
   virtual FXIcon* getIcon() const;
-  
+
   // Overrides the base class version of setFocus()
   virtual void setFocus(FXbool focus);
 
@@ -54,16 +54,16 @@ public:
 
   // Overrides the base class version of setDraggable()
   virtual void setDraggable(FXbool draggable);
-  
+
   // Overrides the base class version of setJustify()
   virtual void setJustify(FXuint justify=RIGHT|CENTER_Y);
-  
+
   // Overrides the base class version of setIconPosition()
   virtual void setIconPosition(FXuint mode);
-  
+
   // Overrides the base class version of setBorders()
   virtual void setBorders(FXuint borders=0);
-  
+
   // Overrides the base class version of setStipple()
   virtual void setStipple(FXStipplePattern pattern);
 

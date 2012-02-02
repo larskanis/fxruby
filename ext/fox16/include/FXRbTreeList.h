@@ -266,7 +266,7 @@ public:
   // Enumerate items
   static void enumerateItem(FXTreeItem* item,FXObjectListOf<FXTreeItem>& items);
   static void enumerateItems(FXTreeItem* fm,FXTreeItem* to,FXObjectListOf<FXTreeItem>& items);
-  
+
   // Destructor
   virtual ~FXRbTreeList(){
     FXRbTreeList::unregisterOwnedObjects(this);

@@ -34,7 +34,7 @@ module Fox
     #
     def initialize(p, q, opts=LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theToolBar
     end
-  
+
     #
     # Return an initialized, stationary FXToolBar instance.
     # The tool bar can not be undocked.

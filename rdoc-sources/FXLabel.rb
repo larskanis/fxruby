@@ -40,32 +40,32 @@ module Fox
 
     # The text for this label [String]
     attr_accessor :text
-    
+
     # The icon for this label [FXIcon]
     attr_accessor :icon
-    
+
     # The text font [FXFont]
     attr_accessor :font
-    
+
     # The text color [FXColor]
     attr_accessor :textColor
-    
+
     # Text justification mode [Integer]
     attr_accessor :justify
-    
+
     # Icon position [Integer]
     attr_accessor :iconPosition
-    
+
     # Status line help text [String]
     attr_accessor :helpText
-    
+
     # Tool tip message [String]
     attr_accessor :tipText
 
     # Construct label with given text and icon
     def initialize(parent, text, icon=nil, opts=LABEL_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theLabel
     end
-    
+
     # Return the label's text
     def to_s; text; end
   end

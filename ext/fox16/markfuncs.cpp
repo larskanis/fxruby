@@ -74,7 +74,7 @@ void FXRbObject::freefunc(FXObject* self){
 void FXRbIconSource::markfunc(FXIconSource* iconSource){
   FXRbObject::markfunc(iconSource);
   }
-  
+
 void FXRbTranslator::markfunc(FXTranslator* translator){
   FXRbObject::markfunc(translator);
   }
@@ -327,11 +327,11 @@ void FXRbApp::markfunc(FXApp *self){
     FXRbGcMark(self->getDefaultCursor(DEF_CORNERSE_CURSOR));
     FXRbGcMark(self->getDefaultCursor(DEF_CORNERSW_CURSOR));
     FXRbGcMark(self->getDefaultCursor(DEF_ROTATE_CURSOR));
-  
+
     // Other windows
     FXRbGcMark(self->getFocusWindow());
     FXRbGcMark(self->getCursorWindow());
-  
+
     /**
      * Root window is a special case; popups (like FXTooltip) can be created
      * without an "owner" by passing FXApp as the first argument to their
@@ -343,7 +343,7 @@ void FXRbApp::markfunc(FXApp *self){
       FXRbGcMark(self->getRootWindow());
       FXRbRootWindow::markfunc(self->getRootWindow());
       }
-  
+
     // Registry
     FXRbGcMark(&(self->reg()));
 
@@ -504,7 +504,7 @@ void FXRbColorList::markfunc(FXColorList* self){
   FXRbList::markfunc(self);
   }
 
-  
+
 void FXRbTableItem::markfunc(FXTableItem* self){
   FXRbObject::markfunc(self);
   if(self){
@@ -981,8 +981,8 @@ void FXRbSeparator::markfunc(FXSeparator* self){
   FXTRACE((100,"FXRbSeparator::markfunc() %p\n",self));
   FXRbFrame::markfunc(self);
  }
- 
- 
+
+
 void FXRbHorizontalSeparator::markfunc(FXHorizontalSeparator *self){
   FXTRACE((100,"FXRbHorizontalSeparator::markfunc() %p\n",self));
   FXRbSeparator::markfunc(self);
@@ -1630,7 +1630,7 @@ void FXRbRulerView::markfunc(FXRulerView* self){
     }
   }
 
-  
+
 void FXRbPPMIcon::markfunc(FXPPMIcon* self){
   FXTRACE((100,"FXRbPPMIcon::markfunc() %p\n",self));
   FXRbIcon::markfunc(self);

@@ -19,14 +19,14 @@ private
       @iconList.send(meth, 0, *args)
     }
   end
-  
+
 public
 
   def setup
     super('TC_FXIconList')
     @iconList = FXIconList.new(mainWindow)
   end
-  
+
   def test_appendItem_byItem
     items = []
     0.upto(4) do |i|
@@ -54,17 +54,17 @@ public
     @iconList << FXIconItem.new("item3")
     assert_equal(3, @iconList.numItems)
   end
-  
+
   def test_removeHeader
     @iconList.appendHeader("One")
     checkBounds(:removeHeader)
   end
-  
+
   def test_setHeaderText
     @iconList.appendHeader("One")
     checkBounds(:setHeaderText, "Foo")
   end
-  
+
   def test_getHeaderText
     @iconList.appendHeader("Boo")
     checkBounds(:getHeaderText)
@@ -74,22 +74,22 @@ public
     @iconList.appendHeader("Boo")
     checkBounds(:setHeaderIcon, nil)
   end
-  
+
   def test_getHeaderIcon
     @iconList.appendHeader("Boo")
     checkBounds(:getHeaderIcon)
   end
-  
+
   def test_setHeaderSize
     @iconList.appendHeader("Boo")
     checkBounds(:setHeaderSize, 0)
   end
-  
+
   def test_getHeaderSize
     @iconList.appendHeader("Boo")
     checkBounds(:getHeaderSize)
   end
-  
+
   def test_getItem
     @iconList.appendItem("Foo")
     assert_equal(1, @iconList.numItems)
@@ -131,7 +131,7 @@ public
     @iconList.setItem(1, "", nil, nil, nil, true)
     assert_equal(1, itemIndex)
   end
-  
+
   def test_SEL_INSERTED
     @iconList.appendItem("One")
     @iconList.appendItem("Two")
@@ -142,7 +142,7 @@ public
     @iconList.insertItem(1, "One Point Five", nil, nil, nil, true)
     assert_equal(1, itemIndex)
   end
-  
+
   def test_SEL_DELETED
     @iconList.appendItem("One")
     @iconList.appendItem("Two")
@@ -176,7 +176,7 @@ public
     @iconList.deselectItem(1, true)
     assert_equal(1, itemIndex)
   end
-  
+
   def test_makeItemVisible
     items = []
     0.upto(2) { |i|

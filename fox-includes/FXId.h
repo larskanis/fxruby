@@ -57,7 +57,7 @@ public:
 
   /// Get resource handle
   FXID res() const { return rsc; }
-  
+
   /// Create resource
   virtual void create(){}
 

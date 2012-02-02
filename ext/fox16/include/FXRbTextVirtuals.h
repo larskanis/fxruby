@@ -31,7 +31,7 @@ public:
 
   /// Overrides the base class version of changeStyle()
   virtual void changeStyle(FXint pos,FXint n,FXint style);
- 
+
   /// Overrides the base class versions of changeStyle()
   virtual void changeStyle(FXint pos,const FXchar* style,FXint n);
   virtual void changeStyle(FXint pos,const FXString& style);
@@ -39,7 +39,7 @@ public:
   /// Overrides the base class versions of setText()
   virtual void setText(const FXchar* text,FXint n,FXbool notify=false);
   virtual void setText(const FXString& text,FXbool notify=false);
- 
+
   /// Overrides the base class versions of setStyledText()
   virtual void setStyledText(const FXchar* text,FXint n,FXint style=0,FXbool notify=false);
   virtual void setStyledText(const FXString& text,FXint style=0,FXbool notify=false);

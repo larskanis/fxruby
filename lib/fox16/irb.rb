@@ -29,7 +29,7 @@ module IRB
     trap("SIGINT") do
       irb.signal_handle
     end
-    
+
     catch(:IRB_EXIT) do
       irb.eval_input
     end
@@ -43,7 +43,7 @@ class Redirect < IRB::StdioInputMethod
 		@dest = dest
 	end
 
-	def gets 
+	def gets
 		close
 		@dest.write(prompt)
 		str = @dest.gets(@prompt)

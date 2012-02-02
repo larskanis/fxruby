@@ -73,7 +73,7 @@ public:
     ID_LAST=ID_CHOICE+1000
     };
 public:
-  
+
   /// Construct popup pane
   %extend {
     FXPopup(FXWindow* owner,FXuint opts=POPUP_VERTICAL|FRAME_RAISED|FRAME_THICK,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
@@ -83,58 +83,58 @@ public:
 
   /// Return a pointer to the prior active popup
   FXPopup* getPrevActive() const;
-  
+
   /// Return a pointer to the next active popup
   FXPopup* getNextActive() const;
 
   /// Change frame style
   void setFrameStyle(FXuint style);
-  
+
   /// Return frame style
   FXuint getFrameStyle() const;
-  
+
   /// Return border width
   FXint getBorderWidth() const;
 
   /// Change highlight color
   void setHiliteColor(FXColor clr);
-  
+
   /// Return highlight color
   FXColor getHiliteColor() const;
 
   /// Change shadow color
   void setShadowColor(FXColor clr);
-  
+
   /// Return shadow color
   FXColor getShadowColor() const;
 
   /// Change border color
   void setBorderColor(FXColor clr);
-  
+
   /// Return border color
   FXColor getBorderColor() const;
-  
+
   /// Change base color
   void setBaseColor(FXColor clr);
-  
+
   /// Return base color
   FXColor getBaseColor() const;
-  
+
   /// Return current grab owner
   FXWindow* getGrabOwner() const;
-  
+
   /// Change popup orientation
   void setOrientation(FXuint orient);
 
   /// Return popup orientation
   FXuint getOrientation() const;
-  
+
   /// Change shrinkwrap mode
   void setShrinkWrap(FXbool sw);
 
   /// Return shrinkwrap mode
   FXbool getShrinkWrap() const;
-  
+
   /// Destructor
   virtual ~FXPopup();
   };

@@ -83,7 +83,7 @@ public:
     FXMessageBox(FXWindow* owner,const FXString& caption,const FXString& text,FXIcon* ic=NULL,FXuint opts=0,FXint x=0,FXint y=0){
       return new FXRbMessageBox(owner,caption,text,ic,opts,x,y);
       }
-  
+
     /// Construct free floating message box with given caption, icon, and message text
     FXMessageBox(FXApp* app,const FXString& caption,const FXString& text,FXIcon* ic=NULL,FXuint opts=0,FXint x=0,FXint y=0){
       return new FXRbMessageBox(app,caption,text,ic,opts,x,y);

@@ -43,7 +43,7 @@ class TC_FXHeader < Fox::TestCase
     @header.setArrowDir(0, FXHeaderItem::ARROW_NONE)
     assert(@header.arrowNone?(0))
   end
-  
+
   def test_SEL_REPLACED
     @header.appendItem("One")
     @header.appendItem("Two")
@@ -54,7 +54,7 @@ class TC_FXHeader < Fox::TestCase
     @header.setItem(1, "", nil, 0, nil, true)
     assert_equal(1, itemIndex)
   end
-  
+
   def test_SEL_INSERTED
     @header.appendItem("One")
     @header.appendItem("Two")
@@ -65,7 +65,7 @@ class TC_FXHeader < Fox::TestCase
     @header.insertItem(1, "One Point Five", nil, 0, nil, true)
     assert_equal(1, itemIndex)
   end
-  
+
   def test_SEL_DELETED
     @header.appendItem("One")
     @header.appendItem("Two")

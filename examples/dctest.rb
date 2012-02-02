@@ -46,9 +46,9 @@ $bitmap_bits = [
    0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x90, 0xff, 0xff, 0x00, 0x00,
    0x00, 0x00, 0x00, 0xa0, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0,
    0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff]
-   
+
 $bitmap_bits = $bitmap_bits.pack("c*")
-   
+
 $blit_modes = {
   BLT_CLR => "Clear\tBLT_CLR",
   BLT_SRC_AND_DST => "And\tBLT_SRC_AND_DST",
@@ -108,14 +108,14 @@ class DCTestWindow < FXMainWindow
   def initialize(app)
     # Initialize base class first
     super(app, "Device Context Test", :opts => DECOR_ALL, :width => 850, :height => 740)
-        
+
     opts = FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y
-        
+
     # Preferred line attributes
     @lineStyle = LINE_SOLID
     @capStyle = CAP_BUTT
     @joinStyle = JOIN_MITER
-        
+
     # Create a tooltip
     tooltip = FXToolTip.new(getApp())
 
@@ -135,7 +135,7 @@ class DCTestWindow < FXMainWindow
     FXLabel.new(controls, "BLIT Function:", nil, LAYOUT_LEFT)
     blitgrid = FXMatrix.new(controls, 4, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X|PACK_UNIFORM_WIDTH,
       :padLeft => 2, :padRight => 2, :padTop => 2, :padBottom => 2)
-	
+
     # One button for each mode
     $blit_modes.each do |blit_mode, desc|
       btn = FXButton.new(blitgrid, desc, :opts => BUTTON_TOOLBAR|FRAME_RAISED|LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_FILL_COLUMN)
@@ -152,7 +152,7 @@ class DCTestWindow < FXMainWindow
         end
       end
     end
-	
+
     # Line dash style
     FXLabel.new(controls, "Line Style:", nil, LAYOUT_LEFT)
     linestyle = FXMatrix.new(controls, 3, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X,
@@ -193,7 +193,7 @@ class DCTestWindow < FXMainWindow
         sender.handle(self, MKUINT(ID_UNCHECK, SEL_COMMAND), nil)
       end
     end
-    
+
     # Line cap style
     FXLabel.new(controls, "Cap Style:", nil, LAYOUT_LEFT)
     capstyle = FXMatrix.new(controls, 4, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
@@ -249,7 +249,7 @@ class DCTestWindow < FXMainWindow
         sender.handle(self, MKUINT(ID_UNCHECK, SEL_COMMAND), nil)
       end
     end
-  	
+
     # Line join style
     FXLabel.new(controls, "Join Style:", nil, LAYOUT_LEFT)
     joinstyle = FXMatrix.new(controls, 3, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
@@ -293,7 +293,7 @@ class DCTestWindow < FXMainWindow
         sender.handle(self, MKUINT(ID_UNCHECK, SEL_COMMAND), nil)
       end
     end
-  
+
     # Colors
     FXLabel.new(controls, "Colors:", nil, LAYOUT_LEFT)
     pairs = FXMatrix.new(controls, 2, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
@@ -303,7 +303,7 @@ class DCTestWindow < FXMainWindow
     pairs.padBottom = 2
     pairs.hSpacing = 5
     pairs.vSpacing = 5
-    
+
     # Back Color
     FXLabel.new(pairs, "Back Color:")
     @backWell = FXColorWell.new(pairs, FXRGB(0, 0, 255), nil, 0, FRAME_SUNKEN|FRAME_THICK|ICON_AFTER_TEXT|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
@@ -322,7 +322,7 @@ class DCTestWindow < FXMainWindow
     @backWell.connect(SEL_UPDATE) do |sender, sel, ptr|
       sender.handle(self, MKUINT(ID_SETVALUE, SEL_COMMAND), @backcolor)
     end
-  
+
     # Fore Color
     FXLabel.new(pairs, "Fore Color:")
     @foreWell = FXColorWell.new(pairs, FXRGB(255, 0, 0), nil, 0, FRAME_SUNKEN|FRAME_THICK|ICON_AFTER_TEXT|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
@@ -341,7 +341,7 @@ class DCTestWindow < FXMainWindow
     @foreWell.connect(SEL_UPDATE) do |sender, sel, ptr|
       sender.handle(self, MKUINT(ID_SETVALUE, SEL_COMMAND), @forecolor)
     end
-    
+
     # Erase Color
     FXLabel.new(pairs, "Erase Color:")
     @eraseWell = FXColorWell.new(pairs, FXRGB(255, 255, 255), nil, 0, FRAME_SUNKEN|FRAME_THICK|ICON_AFTER_TEXT|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
@@ -360,19 +360,19 @@ class DCTestWindow < FXMainWindow
     @eraseWell.connect(SEL_UPDATE) do |sender, sel, ptr|
       sender.handle(self, MKUINT(ID_SETVALUE, SEL_COMMAND), @erasecolor)
     end
-    
+
     # Line width
     linew = FXMatrix.new(controls, 2, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
     linew.padLeft = 2
     linew.padRight = 2
     linew.padTop = 2
-    linew.padBottom = 2    
+    linew.padBottom = 2
     FXLabel.new(linew, "Line Width:")
     @lineWidthSpinner = FXSpinner.new(linew, 4, nil, 0, SPIN_NORMAL|FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_COLUMN)
     @lineWidthSpinner.connect(SEL_COMMAND) { @linesCanvas.update(0, 0, @linesCanvas.width, @linesCanvas.height) }
     @lineWidthSpinner.range = 1..255
     @lineWidthSpinner.value = 1
-  
+
     # Stipple
     stip = FXMatrix.new(controls, 2, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
     stip.padLeft = 2
@@ -381,7 +381,7 @@ class DCTestWindow < FXMainWindow
     stip.padBottom = 2
     FXLabel.new(stip, "Stipples:")
     pop = FXPopup.new(self)
-    
+
     $stipples.each do |pat, desc|
       opt = FXOption.new(pop, desc, nil, nil, 0, JUSTIFY_HZ_APART|ICON_AFTER_TEXT)
       opt.userData = pat
@@ -391,7 +391,7 @@ class DCTestWindow < FXMainWindow
       end
     end
     FXOptionMenu.new(stip, pop, LAYOUT_TOP|FRAME_RAISED|FRAME_THICK|JUSTIFY_HZ_APART|ICON_AFTER_TEXT)
-  
+
     # Fill Style
     FXLabel.new(controls, "Fill Style:", nil, LAYOUT_LEFT)
     fillstyle = FXMatrix.new(controls, 2, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
@@ -414,7 +414,7 @@ class DCTestWindow < FXMainWindow
         end
       end
     end
-  
+
     # Angles for arcs
     FXLabel.new(controls, "Arc angles:", nil, LAYOUT_LEFT)
     arcangles = FXMatrix.new(controls, 3, FRAME_RIDGE|MATRIX_BY_COLUMNS|LAYOUT_FILL_X)
@@ -430,13 +430,13 @@ class DCTestWindow < FXMainWindow
     FXTextField.new(arcangles, 4, @ang1, FXDataTarget::ID_VALUE, TEXTFIELD_INTEGER|JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK)
     sang1 = FXSlider.new(arcangles, @ang1, FXDataTarget::ID_VALUE, LAYOUT_CENTER_Y|LAYOUT_FILL_X|SLIDER_INSIDE_BAR|LAYOUT_FILL_COLUMN)
     sang1.range = -360..360
-    
+
     @ang2 = FXDataTarget.new(90)
     FXLabel.new(arcangles, "Ang2:", nil, LAYOUT_LEFT)
     FXTextField.new(arcangles, 4, @ang2, FXDataTarget::ID_VALUE, TEXTFIELD_INTEGER|JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK)
     sang2 = FXSlider.new(arcangles, @ang2, FXDataTarget::ID_VALUE, LAYOUT_CENTER_Y|LAYOUT_FILL_X|SLIDER_INSIDE_BAR|LAYOUT_FILL_COLUMN)
     sang2.range = -360..360
-  
+
     # Font
     fonts = FXHorizontalFrame.new(controls, FRAME_RIDGE|LAYOUT_FILL_X|PACK_UNIFORM_WIDTH)
     fonts.padLeft = 2
@@ -445,7 +445,7 @@ class DCTestWindow < FXMainWindow
     fonts.padBottom = 2
     btn = FXButton.new(fonts, "Font Dialog...\tChange the text font", nil, nil, 0, BUTTON_TOOLBAR|JUSTIFY_CENTER_X|FRAME_RAISED|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     btn.connect(SEL_COMMAND, method(:onCmdFont))
-  
+
     # Printing
     printer = FXHorizontalFrame.new(controls, FRAME_RIDGE|LAYOUT_FILL_X|PACK_UNIFORM_WIDTH)
     printer.padLeft = 2
@@ -454,7 +454,7 @@ class DCTestWindow < FXMainWindow
     printer.padBottom = 2
     btn = FXButton.new(printer, "Print Dialog...\tPrint it out", nil, nil, 0, BUTTON_TOOLBAR|JUSTIFY_CENTER_X|FRAME_RAISED|LAYOUT_FILL_X|LAYOUT_FILL_Y)
     btn.connect(SEL_COMMAND, method(:onCmdPrint))
-  
+
     # Quit
     quitter = FXHorizontalFrame.new(controls, FRAME_RIDGE|LAYOUT_FILL_X|PACK_UNIFORM_WIDTH)
     quitter.padLeft = 2
@@ -462,10 +462,10 @@ class DCTestWindow < FXMainWindow
     quitter.padTop = 2
     quitter.padBottom = 2
     FXButton.new(quitter, "Bye Bye!\tHasta la vista, baby!", nil, getApp(), FXApp::ID_QUIT, BUTTON_TOOLBAR|JUSTIFY_CENTER_X|FRAME_RAISED|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  
+
     # Switcher
     tabbook = FXTabBook.new(contents, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y|LAYOUT_RIGHT)
-    
+
     # First page shows various line styles
     linesTab = FXTabItem.new(tabbook, "&Lines", nil)
     linesPage = FXPacker.new(tabbook, FRAME_THICK|FRAME_RAISED)
@@ -479,7 +479,7 @@ class DCTestWindow < FXMainWindow
       dc = FXDCWindow.new(canvas, ev)
       drawPage(dc, canvas.width, canvas.height)
     end
-  
+
     # Second page shows various shapes
     shapesTab = FXTabItem.new(tabbook, "&Shapes", nil)
     shapesPage = FXPacker.new(tabbook, FRAME_THICK|FRAME_RAISED)
@@ -493,22 +493,22 @@ class DCTestWindow < FXMainWindow
       dc = FXDCWindow.new(canvas, ev)
       dc.foreground = @eraseWell.rgba
       dc.fillRectangle(0, 0, canvas.width, canvas.height)
-      
+
       dc.foreground = @foreWell.rgba
       dc.background = @backWell.rgba
       dc.drawRectangle(5, 5, 50, 50)
       dc.fillRectangle(60, 5, 50, 50)
-      
+
       dc.foreground = @foreWell.rgba
       dc.background = @backWell.rgba
       dc.drawArc(5, 60, 50, 50, 0, 64*90)
       dc.fillArc(60, 60, 50, 50, 64*90, 64*180)
-      
+
       dc.foreground = @foreWell.rgba
       dc.background = @backWell.rgba
       dc.drawBitmap(@bitmap, 115, 5)
     end
-    
+
     # Third page shows images
     imagesTab = FXTabItem.new(tabbook, "&Images", nil)
     imagesPage = FXPacker.new(tabbook, FRAME_THICK|FRAME_RAISED)
@@ -524,17 +524,17 @@ class DCTestWindow < FXMainWindow
       dc.fillRectangle(0, 0, canvas.width, canvas.height)
       dc.drawImage(@birdImage, 0, 0)
     end
-  
+
     # File menu
     @filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(@filemenu, "&Print...\tCtl-P").connect(SEL_COMMAND, method(:onCmdPrint))
     FXMenuCommand.new(@filemenu, "&Font...\tCtl-F").connect(SEL_COMMAND, method(:onCmdFont))
     FXMenuCommand.new(@filemenu, "&Quit\tCtl-Q", nil, getApp(), FXApp::ID_QUIT)
     FXMenuTitle.new(menubar, "&File", nil, @filemenu)
-    
+
     @birdImage = FXPNGImage.new(getApp(), File.open("icons/dippy.png", "rb").read)
     @bitmap = FXBitmap.new(getApp(), $bitmap_bits, 0, 64, 64)
-    
+
     @function = BLT_SRC
     @lineStyle = LINE_SOLID
     @capStyle = CAP_BUTT
@@ -547,7 +547,7 @@ class DCTestWindow < FXMainWindow
     @erasecolor = FXRGB(255, 255, 255) # white
     @testFont = FXFont.new(getApp(), "helvetica", 20)
   end
-  
+
   def create
     super
     @birdImage.create
@@ -555,33 +555,33 @@ class DCTestWindow < FXMainWindow
     @bitmap.create
     show(PLACEMENT_SCREEN)
   end
-  
+
   def detach
     super
     @birdImage.detach
     @testFont.detach
     @bitmap.detach
   end
-  
+
   def drawPage(dc, w, h)
     dc.foreground = @erasecolor
     dc.fillRectangle(0, 0, w, h)
-    
+
     dc.foreground = @forecolor
     dc.background = @backcolor
-    
+
     dc.lineStyle = @lineStyle
     dc.lineCap = @capStyle
     dc.lineJoin = @joinStyle
     dc.function = @function
-    
+
     dc.stipple = @stipple
     dc.fillStyle = @fillStyle
     dc.lineWidth = @lineWidthSpinner.value
-    
+
     # Here's a single line
     dc.drawLine(20, 200, w - 20, 200)
-    
+
     # Here are some connected lines (to show join styles)
     points = []
     points << FXPoint.new(10, 3*h/4)
@@ -591,22 +591,22 @@ class DCTestWindow < FXMainWindow
     points << FXPoint.new(points[3].x+w/6, points[0].y)
     points << FXPoint.new(points[4].x+w/6, points[1].y)
     dc.drawLines(points)
-    
+
     dc.font = @testFont
     dc.foreground = @forecolor
     dc.background = @backcolor
     s = "Font: #{@testFont.name}  Size: #{@testFont.size/10}"
     dc.drawText(30, h-70, s)
     dc.drawImageText(30, h-30, s)
-    
+
     dc.foreground = @forecolor
     dc.background = @backcolor
     dc.drawRectangle(20, 20, 200, 100)
     dc.fillRectangle(300, 20, 200, 100)
-    
+
     dc.drawArc(20, 120, 100, 100, 64*@ang1.value, 64*@ang2.value)
     dc.fillArc(300, 120, 100, 100, 64*@ang1.value, 64*@ang2.value)
-    
+
     poly = []
     poly << FXPoint.new(200, 230)
     poly << FXPoint.new(poly[0].x+40, poly[0].y+20)
@@ -614,7 +614,7 @@ class DCTestWindow < FXMainWindow
     poly << FXPoint.new(poly[0].x-30, poly[0].y+60)
     poly << FXPoint.new(poly[0].x-40, poly[0].y+20)
     dc.fillPolygon(poly)
-    
+
     poly = []
     poly << FXPoint.new(300, 230)
     poly << FXPoint.new(poly[0].x+30, poly[0].y+60)
@@ -631,19 +631,19 @@ class DCTestWindow < FXMainWindow
     poly << FXPoint.new(poly[0].x-30, poly[0].y+60)
     dc.fillRule = RULE_WINDING
     dc.fillComplexPolygon(poly)
-    
+
     concave = []
     concave << FXPoint.new(w-100, h-100)
     concave << FXPoint.new(concave[0].x+40, concave[0].y-20)
     concave << FXPoint.new(concave[0].x   , concave[0].y+40)
     concave << FXPoint.new(concave[0].x-40, concave[0].y-20)
     dc.fillConcavePolygon(concave)
-    
+
     # Draw a pale blue dot ;)
     dc.foreground = FXRGB(128, 128, 255)
     dc.drawPoint(w-20, h-20)
   end
-  
+
   def onCmdFont(sender, sel, ptr)
     fontdlg = FXFontDialog.new(self, "Change Font", DECOR_BORDER|DECOR_TITLE)
     fontdlg.fontSelection = @testFont.fontDesc
@@ -654,7 +654,7 @@ class DCTestWindow < FXMainWindow
     end
     return 1
   end
-  
+
   def onCmdPrint(sender, sel, ptr)
     dlg = FXPrintDialog.new(self, "Print Graphics")
     if dlg.execute != 0
@@ -671,7 +671,7 @@ class DCTestWindow < FXMainWindow
     end
     return 1
   end
-  
+
   # Load the named icon from a file
   def loadIcon(filename, clr = FXRGB(192, 192, 192), opts = 0)
     begin

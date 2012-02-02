@@ -19,7 +19,7 @@ class TC_FXGLGroup < Test::Unit::TestCase
     @group << FXGLObject.new
     assert_equal(1, @group.size)
   end
-  
+
   def test_each_child_yields_to_block
     @group << FXGLObject.new
     @group << FXGLObject.new

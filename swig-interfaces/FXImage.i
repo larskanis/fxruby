@@ -88,7 +88,7 @@ public:
 	}
       }
   }
-  
+
   /// To get to the option flags
   FXuint getOptions() const;
 
@@ -116,7 +116,7 @@ public:
 
   /// Change pixel at x,y
   void setPixel(FXint x,FXint y,FXColor color);
-  
+
   /// Scan the image and return FALSE if fully opaque
   FXbool hasAlpha() const;
 

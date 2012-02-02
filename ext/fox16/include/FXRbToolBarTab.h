@@ -36,7 +36,7 @@ protected:
 #include "FXRbDrawableVirtuals.h"
 #include "FXRbWindowVirtuals.h"
 public:
-  /// Construct toolbar tab 
+  /// Construct toolbar tab
   FXRbToolBarTab(FXComposite* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=FRAME_RAISED,FXint x=0,FXint y=0,FXint w=0,FXint h=0) : FXToolBarTab(p,tgt,sel,opts,x,y,w,h){}
 
   // Destructor

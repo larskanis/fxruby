@@ -14,7 +14,7 @@ module Fox
 
     FLT_MAX =  1.0e+20
     FLT_MIN = -1.0e+20
-    
+
     #
     # Returns an initialized FXGLGroup instance
     #
@@ -22,21 +22,21 @@ module Fox
       super
       @list = []
     end
-    
+
     #
     # Return number of objects in this group.
     #
     def size
       @list.size
     end
-    
+
     #
     # Return child at position _pos_.
     #
     def [](pos)
       @list[pos]
     end
-    
+
     #
     # Set child at position _pos_ to _obj_.
     #
@@ -67,14 +67,14 @@ module Fox
       end
       box
     end
-    
+
     #
     # Draw this group into _viewer_ (an FXGLViewer instance).
     #
     def draw(viewer)
       @list.each { |obj| obj.draw(viewer) }
     end
-    
+
     #
     # Perform hit test in _viewer_ (an FXGLViewer instance).
     #
@@ -87,7 +87,7 @@ module Fox
       end
       GL.PopName
     end
-    
+
     #
     # Identify object by means of _path_.
     #
@@ -102,7 +102,7 @@ module Fox
     def canDrag
       true
     end
-    
+
     #
     # Drag group object around in _viewer_ (an FXGLViewer instance),
     # from (_fx_, _fy_) to (_tx_, _ty_).
@@ -110,37 +110,37 @@ module Fox
     def drag(viewer, fx, fy, tx, ty)
       @list.each { |obj| obj.drag(viewer, fx, fy, tx, ty) }
     end
-    
+
     #
     # Insert child object (_obj_) at position _pos_.
     #
     def insert(pos, obj)
       raise NotImplementedError
     end
-    
+
     #
     # Prepend child object (_obj_).
     #
     def prepend(obj)
       @list.unshift(obj)
     end
-    
+
     #
     # Append child object
     #
     def append(obj)
       @list << obj
     end
-    
+
     alias <<	append
-    
+
     #
     # Replace child object at position _pos_ with _obj_.
     #
     def replace(pos, obj)
       @list[pos] = obj
     end
-    
+
     #
     # If _obj_ is a reference to an FXGLObject in this group, remove the
     # child object from the list. If _obj_ is an integer, remove the child
@@ -153,9 +153,9 @@ module Fox
         @list.delete_at(obj)
       end
     end
-    
+
     alias erase remove
-  
+
     #
     # Remove all children from this group.
     #

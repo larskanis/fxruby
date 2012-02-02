@@ -16,7 +16,7 @@ module Fox
 
     # Check state, one of +TRUE+, +FALSE+ or +MAYBE+
     attr_accessor :check
-    
+
     # Box background color [FXColor]
     attr_accessor :boxColor
 

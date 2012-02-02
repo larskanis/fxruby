@@ -7,7 +7,7 @@ module Fox
     # Return the suggested file extension for this image type ("rgb").
     #
     def FXRGBIcon.fileExt; end
-    
+
     #
     # Return the MIME type for this image type
     #
@@ -28,7 +28,7 @@ module Fox
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: theRGBIcon
     end
   end
-  
+
   #
   # Load a RGB file from a stream.
   # If successful, returns an array containing the image pixel data (as a
@@ -55,7 +55,7 @@ module Fox
   # +height+::	height [Integer]
   #
   def Fox.fxsaveRGB(store, data, transp, width, height); end
-  
+
   #
   # Return +true+ if _store_ (an FXStream instance) contains a RGB image.
   #

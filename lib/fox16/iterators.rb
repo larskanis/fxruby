@@ -10,7 +10,7 @@ module Fox
     def first
       getFirst
     end
-    
+
     #
     # Calls block once for each item in the list, passing the item's text and
     # user data as parameters.
@@ -374,7 +374,7 @@ module Fox
       end
     end
   end
-  
+
   class FXDCPrint
 
     alias beginPrint0 beginPrint # :nodoc:

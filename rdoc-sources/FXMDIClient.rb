@@ -26,13 +26,13 @@ module Fox
   #   sent when the active child changes; the message data is a reference to the new active child window (or +nil+ if there is none)
   #
   class FXMDIClient < FXComposite
-  
+
     # Active MDI child window, or +nil+ if none [FXMDIChild].
     attr_accessor :activeChild
-  
+
     # Cascade offset X [Integer]
     attr_accessor :cascadeX
-  
+
     # Cascade offset Y [Integer]
     attr_accessor :cascadeY
 
@@ -45,7 +45,7 @@ module Fox
     # the MDI windows fails to handle the message.
     #
     def forallWindows(sender, sel, ptr); end
-  
+
     #
     # Pass message once to all MDI windows with the same document,
     # stopping when one of the MDI windows fails to handle the message.
@@ -57,7 +57,7 @@ module Fox
     # stopping when one of the MDI windows fails to handle the message.
     #
     def forallDocWindows(document, sender, sel, ptr); end
-  
+
     #
     # Set active MDI child window for this MDI client to _child_.
     #

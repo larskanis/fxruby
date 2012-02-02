@@ -54,7 +54,7 @@ public:
     FXInputDialog(FXWindow* owner,const FXString& caption,const FXString& label,FXIcon* icon=NULL,FXuint opts=INPUTDIALOG_STRING,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbInputDialog(owner,caption,label,icon,opts,x,y,w,h);
       }
-    
+
     /// Construct free floating input dialog box with given caption, icon, and prompt text
     FXInputDialog(FXApp* app,const FXString& caption,const FXString& label,FXIcon* icon=NULL,FXuint opts=INPUTDIALOG_STRING,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbInputDialog(app,caption,label,icon,opts,x,y,w,h);
@@ -69,7 +69,7 @@ public:
 
   /// Change number of visible columns of text
   void setNumColumns(FXint num);
-  
+
   /// Return number of visible columns of text
   FXint getNumColumns() const;
 
@@ -102,7 +102,7 @@ public:
         return Qnil;
         }
     }
-    
+
    /**
     * Prompt for a string, in free floating window.
     */

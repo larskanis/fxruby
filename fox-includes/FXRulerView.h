@@ -86,7 +86,7 @@ public:
 
   /// Return default height
   virtual FXint getDefaultHeight();
-  
+
   /// Return visible area x position
   virtual FXint getVisibleX() const;
 

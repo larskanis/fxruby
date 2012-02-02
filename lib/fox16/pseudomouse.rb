@@ -18,7 +18,7 @@ module Fox
     def initialize(tgt=nil)
       @target = tgt
     end
-    
+
     def doMotion
       unless @target.nil?
         evt = FXEvent.new

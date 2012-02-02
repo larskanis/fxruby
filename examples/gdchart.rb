@@ -22,18 +22,18 @@ class GDChartViewer < FXMainWindow
     # Sunken border for image widget
     imagebox = FXHorizontalFrame.new(self,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  
+
     # Make image widget
     @imageview = FXImageView.new(imagebox,
       :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y|HSCROLLER_NEVER|VSCROLLER_NEVER)
-      
+
     # Construct a PNG image and store it in the image viewer
     @imageview.image = createChart
 
     # Resize main window client area to fit image size
     resize(@imageview.contentWidth, @imageview.contentHeight)
   end
-  
+
   def createChart
     # Create a simple chart
     GDChart.title = "A Chart"
@@ -41,12 +41,12 @@ class GDChartViewer < FXMainWindow
     GDChart.ytitle = "Y-axis"
     data = [1, 2, 3, 4, 5, 6]
     labels = ["label 1", "label 2", "label 3", "label 4", "label 5", "label 6"]
-    
+
     # Write chart data out as GIF to a temporary file
     File.open('gdchart.gif', 'w') do |f|
       GDChart.out_graph(200, 200, f, GDChart::LINE, labels.length, labels, 1, data)
     end
-    
+
     # Reopen it and construct image
     img = nil
     File.open('gdchart.gif', 'rb') do |f|
@@ -54,7 +54,7 @@ class GDChartViewer < FXMainWindow
     end
     img
   end
-  
+
   def create
     super
     show(PLACEMENT_SCREEN)

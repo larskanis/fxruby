@@ -82,7 +82,7 @@ public:
 
   /// Set the dial value
   void setValue(FXint value,FXbool notify=false);
-  
+
   /// Return the dial value
   FXint getValue() const;
 
@@ -93,7 +93,7 @@ public:
       FXRbRange2LoHi(range,lo,hi);
       self->setRange(lo,hi,notify);
       }
-        
+
     /// Obtain the current range of the dial
     VALUE getRange() const {
       FXint lo,hi;
@@ -115,7 +115,7 @@ public:
   FXint getRevolutionIncrement() const;
 
   /**
-  * Change the spacing for the small notches; this should be set 
+  * Change the spacing for the small notches; this should be set
   * in tenths of degrees in the range [1,3600], and the value should
   * be a divisor of 3600, so as to make the notches come out evenly
   */
@@ -125,8 +125,8 @@ public:
   FXint getNotchSpacing() const;
 
   /**
-  * Change the notch offset, which is the position of the 
-  * center notch; the value should be tenths of degrees 
+  * Change the notch offset, which is the position of the
+  * center notch; the value should be tenths of degrees
   * in the range [-3600,3600]
   */
   void setNotchOffset(FXint offset);
@@ -148,16 +148,16 @@ public:
 
   /// Set the help text to be displayed on the status line
   void setHelpText(const FXString& text);
-  
+
   /// Get the current help text
   const FXString& getHelpText() const;
 
   /// Set the tip text to be displayed in the tooltip
   void setTipText(const FXString& text);
-  
+
   /// Get the current tooltip text value
   const FXString& getTipText() const;
-  
+
   /// Destructor
   virtual ~FXDial();
   };

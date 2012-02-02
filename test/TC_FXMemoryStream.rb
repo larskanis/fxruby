@@ -8,7 +8,7 @@ class TC_FXMemoryStream < Test::Unit::TestCase
   DEFAULT_BUFFER_SIZE = 16
 
   private
-  
+
   def assert_closed(stream)
     stream.open(FXStreamSave, nil) == false
   end
@@ -89,7 +89,7 @@ class TC_FXMemoryStream < Test::Unit::TestCase
 
   def test_giveBuffer
     FXMemoryStream.open(FXStreamLoad, nil) do |stream|
-      assert_equal(DEFAULT_BUFFER_SIZE, stream.space) 
+      assert_equal(DEFAULT_BUFFER_SIZE, stream.space)
       stream.giveBuffer("foo")
       assert_equal(3, stream.space)
     end

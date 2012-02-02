@@ -37,7 +37,7 @@ public:
     FXGLCanvas(FXComposite* p,FXGLVisual *vis,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=0,FXint x=0,FXint y=0,FXint w=0,FXint h=0){
       return new FXRbGLCanvas(p,vis,tgt,sel,opts,x,y,w,h);
       }
-  
+
     /**
     * Construct a GL canvas with its private context but shared display lists.
     */
@@ -61,7 +61,7 @@ public:
 
   /// Return TRUE if it is sharing display lists
   FXbool isShared() const;
-  
+
   /// Destructor
   virtual ~FXGLCanvas();
   };

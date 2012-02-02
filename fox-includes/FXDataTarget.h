@@ -43,7 +43,7 @@ namespace FX {
 * A Data Target may be subclassed to handle additional, user-defined data types; to
 * this end, the message handlers return 1 if the type is one of DT_VOID...DT_STRING
 * and 0 otherwise.  Thus subclasses can handle any data types not dealt with in the
-* default implementation. 
+* default implementation.
 */
 class FXAPI FXDataTarget : public FXObject {
   FXDECLARE(FXDataTarget)

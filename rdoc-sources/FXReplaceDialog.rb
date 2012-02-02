@@ -28,13 +28,13 @@ module Fox
     # +REPLACE_ALL+::	Replace all occurrences
     #
     attr_accessor :searchMode
-    
+
     # Text or pattern to search for [String]
     attr_accessor :searchText
-    
+
     # Replacement text [String]
     attr_accessor :replaceText
-  
+
     #
     # Return an initialized FXReplaceDialog instance.
     #

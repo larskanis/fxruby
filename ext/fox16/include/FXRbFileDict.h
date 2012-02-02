@@ -70,7 +70,7 @@ inline FXFileAssoc* klass ## _findExecBinding(klass* self,const FXchar* pathname
     return FXRbCallFileAssocMethod(this,rb_intern("findExecBinding"),pathname); \
     }
 
-    
+
 /// File Association dictionary
 class FXRbFileDict : public FXFileDict {
   FXDECLARE(FXRbFileDict)
@@ -99,6 +99,6 @@ public:
     FXRbUnregisterRubyObj(this);
     }
   };
-  
+
 
 #endif

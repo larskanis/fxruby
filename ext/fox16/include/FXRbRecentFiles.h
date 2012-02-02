@@ -36,7 +36,7 @@ public:
 
   /// Make new recent files group with default groupname
   FXRbRecentFiles(FXApp* a) : FXRecentFiles(a){}
-  
+
   /// Make new Recent Files Group with groupname gp
   FXRbRecentFiles(FXApp* a,const FXString& gp,FXObject *tgt=NULL,FXSelector sel=0) : FXRecentFiles(a,gp,tgt,sel){}
 

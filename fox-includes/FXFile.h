@@ -54,10 +54,10 @@ public:
 
   /// Open device with access mode and handle
   virtual FXbool open(FXInputHandle h,FXuint m);
-  
+
   /// Return true if serial access only
   virtual FXbool isSerial() const;
-  
+
   /// Get current file position
   virtual FXlong position() const;
 

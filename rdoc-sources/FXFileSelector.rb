@@ -43,37 +43,37 @@ module Fox
   # +ID_REMOVE+::		x
   #
   class FXFileSelector < FXPacker
-  
+
     # The "Accept" button [FXButton]
     attr_reader :acceptButton
-    
+
     # The "Cancel" button [FXButton]
     attr_reader :cancelButton
 
     # File name [String]
     attr_accessor :filename
-    
+
     # File pattern [String]
     attr_accessor :pattern
-    
+
     # Directory [String]
     attr_accessor :directory
-    
+
     # Current pattern number [Integer]
     attr_accessor :currentPattern
 
     # Inter-item spacing (in pixels) [Integer]
     attr_accessor :itemSpace
-  
+
     # Change file list style [Integer]
     attr_accessor :fileBoxStyle
-  
+
     # Change file selection mode [Integer]
     attr_accessor :selectMode
-    
+
     # Wildcard matching mode [Integer]
     attr_accessor :matchMode
-  
+
     # Image size for preview images [Integer]
     attr_accessor :imageSize
 
@@ -85,12 +85,12 @@ module Fox
     #
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0) # :yields: theFileSelector
     end
-  
+
     #
     # Returns an array of the selected file names.
     #
     def filenames; end
-  
+
     #
     # Change the list of file patterns shown in the file selector.
     # The _patterns_ argument is an array of strings, and each string
@@ -116,7 +116,7 @@ module Fox
     #   aFileSelector.setPatternList(patterns)
     #
     def setPatternList(patterns); end
-  
+
     #
     # Returns the list of patterns (an Array of Strings).
     #
@@ -124,28 +124,28 @@ module Fox
 
     # Get pattern text for given pattern number
     def getPatternText(patno); end
-  
+
     # Change pattern text for pattern number
     def setPatternText(patno, text); end
-  
+
     # Return number of patterns.
     def numPatterns; end
 
     # Show read-only button.
     def readOnlyShown=(shown); end
-    
+
     # Return +true+ if the read-only button is shown.
     def readOnlyShown?; end
-    
+
     # Set state of read-only button.
     def readOnly=(state); end
-  
+
     # Return +true+ if in read-only mode.
     def readOnly?; end
 
     # Return +true+ if showing hidden files and directories
     def hiddenFilesShown?; end
-    
+
     #
     # If _state_ is +true+, the file selector will show hidden files and
     # directories; otherwise, it won't.
@@ -157,7 +157,7 @@ module Fox
     # otherwise it won't.
     #
     def imagesShown=(shown); end
-    
+
     #
     # Return +true+ if the file selector is showing preview images.
     #
@@ -168,10 +168,10 @@ module Fox
 
     # Set navigation to allowed (+true+) or disallowed (+false+)
     def navigationAllowed=(allowed); end
-    
+
     # Set draggable files state to +true+ or +false+.
     def draggableFiles=(flag); end
-    
+
     # Return +true+ if draggable files is set.
     def draggableFiles?; end
 
@@ -182,7 +182,7 @@ module Fox
     # input pattern.
     #
     def FXFileSelector.patternFromText(pattern) ; end
-    
+
     #
     # Given a pattern of the form "*.gif,*.GIF", return
     # the first extension of the pattern, i.e. "gif" in this

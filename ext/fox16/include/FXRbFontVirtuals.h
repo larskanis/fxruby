@@ -10,37 +10,37 @@ public:
 
   // Overrides the base class version of isFontMono()
   virtual FXbool isFontMono() const;
-  
+
   // Overrides the base class version of hasChar()
   virtual FXbool hasChar(FXwchar ch) const;
 
   // Overrides the base class version of getMinChar()
   virtual FXwchar getMinChar() const;
-  
+
   // Overrides the base class version of getMaxChar()
   virtual FXwchar getMaxChar() const;
 
   // Overrides the base class version of leftBearing()
   virtual FXint leftBearing(FXwchar ch) const;
-  
+
   // Overrides the base class version of rightBearing()
   virtual FXint rightBearing(FXwchar ch) const;
-  
+
   // Overrides the base class version of getFontWidth()
   virtual FXint getFontWidth() const;
-  
+
   // Overrides the base class version of getFontHeight()
   virtual FXint getFontHeight() const;
-  
+
   // Overrides the base class version of getFontAscent()
   virtual FXint getFontAscent() const;
-  
+
   // Overrides the base class version of getFontDescent()
   virtual FXint getFontDescent() const;
-  
+
   // Overrides the base class version of getFontLeading()
   virtual FXint getFontLeading() const;
-  
+
   // Overrides the base class version of getFontSpacing()
   virtual FXint getFontSpacing() const;
 

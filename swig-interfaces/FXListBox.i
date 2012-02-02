@@ -163,10 +163,10 @@ public:
 
   /// Change item icon
   void setItemIcon(FXint index,FXIcon* icon,FXbool owned=false);
-  
+
   /// Return icon of item at index
   FXIcon* getItemIcon(FXint index) const;
-  
+
   %extend {
     /// Set data pointer for specified item
     void setItemData(FXint index,VALUE ptr) {
@@ -181,7 +181,7 @@ public:
 
 	/// Show or hide menu
 	void showMenu(FXbool shw);
-	
+
 	/// Is the menu pane shown
 	FXbool isMenuShown() const;
 
@@ -196,28 +196,28 @@ public:
 
   /// Change popup pane shrinkwrap mode
   void setShrinkWrap(FXbool flag);
-  
+
   /// Return popup pane shrinkwrap mode
   FXbool getShrinkWrap() const;
-  
+
   /// Get background color
   FXColor getBackColor() const;
 
   /// Change text color
   void setTextColor(FXColor clr);
-  
+
   /// Return text color
   FXColor getTextColor() const;
 
   /// Change selected background color
   void setSelBackColor(FXColor clr);
-  
+
   /// Return selected background color
   FXColor getSelBackColor() const;
 
   /// Change selected text color
   void setSelTextColor(FXColor clr);
-  
+
   /// Return selected text color
   FXColor getSelTextColor() const;
 

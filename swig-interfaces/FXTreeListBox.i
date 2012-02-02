@@ -25,7 +25,7 @@ enum {
   TREELISTBOX_NORMAL         = 0          /// Normal style
   };
 
-  
+
 class FXButton;
 class FXMenuButton;
 class FXTreeList;
@@ -74,7 +74,7 @@ public:
     ID_LAST
     };
 public:
-  
+
   /// Construct tree list box
   %extend {
     FXTreeListBox(FXComposite* p,FXObject* tgt=NULL,FXSelector sel=0,FXuint opts=FRAME_SUNKEN|FRAME_THICK|TREELISTBOX_NORMAL,FXint x=0,FXint y=0,FXint w=0,FXint h=0,FXint pl=DEFAULT_PAD,FXint pr=DEFAULT_PAD,FXint pt=DEFAULT_PAD,FXint pb=DEFAULT_PAD){
@@ -84,16 +84,16 @@ public:
 
   /// Return number of items
   FXint getNumItems() const;
-  
+
   /// Return number of visible items
   FXint getNumVisible() const;
-  
+
   /// Set number of visible items to determine default height
   void setNumVisible(FXint nvis);
-  
+
   /// Return first top-level item
   FXTreeItem* getFirstItem() const;
-  
+
   /// Return last top-level item
   FXTreeItem* getLastItem() const;
 
@@ -114,8 +114,8 @@ public:
         }
       return self->insertItem(other,father,item,notify);
       }
-  
-    
+
+
     /// Insert item with given text and optional icons, and user-data pointer under father before other item
     FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->insertItem(other,father,text,oi,ci,ITEMDATA,notify);
@@ -124,7 +124,7 @@ public:
         }
       return item;
       }
-    
+
     /// Append [possibly subclassed] item as last child of father
     FXTreeItem* appendItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
@@ -132,7 +132,7 @@ public:
         }
       return self->appendItem(father,item,notify);
       }
-  
+
     /// Append item with given text and optional icons, and user-data pointer as last child of father
     FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->appendItem(father,text,oi,ci,ITEMDATA,notify);
@@ -141,7 +141,7 @@ public:
         }
       return item;
       }
-    
+
     /// Prepend [possibly subclassed] item as first child of father
     FXTreeItem* prependItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=false){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
@@ -149,7 +149,7 @@ public:
         }
       return self->prependItem(father,item,notify);
       }
-  
+
     /// Prepend item with given text and optional icons, and user-data pointer as first child of father
     FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=false){
       FXTreeItem* item=self->prependItem(father,text,oi,ci,ITEMDATA,notify);
@@ -164,16 +164,16 @@ public:
       // Save pointer(s) to the soon-to-be-destroyed items
       FXObjectListOf<FXTreeItem> items;
       FXRbTreeList::enumerateItem(item,items);
-      
+
       // Do the deed
       self->removeItem(item,notify);
-      
+
       // Now zero-out pointers held by still-alive Ruby objects
       for(FXint i=0;i<items.no();i++){
         FXRbUnregisterRubyObj(items[i]);
         }
       }
-    
+
     /// Remove all items in range [fm...to]
     void removeItems(FXTreeItem* fm,FXTreeItem* to,FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
@@ -188,7 +188,7 @@ public:
         FXRbUnregisterRubyObj(items[i]);
         }
       }
-    
+
     /// Remove all items from list
     void clearItems(FXbool notify=false){
       // Save pointer(s) to the soon-to-be-destroyed items
@@ -204,7 +204,7 @@ public:
         }
       }
   }
-  
+
   /// Move item under father before other item
   FXTreeItem *moveItem(FXTreeItem* other,FXTreeItem* father,FXTreeItem* item);
 
@@ -234,22 +234,22 @@ public:
 
   /// Return TRUE if item is leaf-item, i.e. has no children
   FXbool isItemLeaf(const FXTreeItem* item) const;
-  
+
   /// Sort the toplevel items with the sort function
   void sortRootItems();
- 
+
   /// Sort all items recursively
   void sortItems();
 
   /// Sort child items of item
   void sortChildItems(FXTreeItem* item);
-  
+
   /// Change item label
   void setItemText(FXTreeItem* item,const FXString& text);
-  
+
   /// Return item label
   FXString getItemText(const FXTreeItem* item) const;
-  
+
   /// Change item's closed icon, deleting the old one if owned
   void setItemOpenIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=FALSE);
 
@@ -258,22 +258,22 @@ public:
 
   /// Change item's closed icon, deleting the old one if it was owned
   void setItemClosedIcon(FXTreeItem* item,FXIcon* icon,FXbool owned=FALSE);
-  
+
   /// Return item's closed icon
   FXIcon* getItemClosedIcon(const FXTreeItem* item) const;
-  
+
   %extend {
     /// Change item's user data
     void setItemData(FXTreeItem* item,VALUE ptr){
       self->setItemData(item,(void*) ptr);
       }
-  
+
     /// Return item's user data
     VALUE getItemData(const FXTreeItem* item) const {
       return self->getItemData(item) ? (VALUE) self->getItemData(item) : Qnil;
       }
   }
-  
+
 	/// Show or hide menu
 	void showMenu(FXbool shw);
 
@@ -282,16 +282,16 @@ public:
 
   /// Change font
   void setFont(FXFont* fnt);
-  
+
   /// Return font
   FXFont* getFont() const;
-  
+
   /// Return list style
   FXuint getListStyle() const;
-  
+
   /// Change list style
   void setListStyle(FXuint style);
-  
+
   /// Change popup pane shrinkwrap mode
   void setShrinkWrap(FXbool flag);
 
@@ -300,13 +300,13 @@ public:
 
   /// Change help text
   void setHelpText(const FXString& txt);
-  
+
   /// Return help text
   const FXString& getHelpText() const;
-  
+
   /// Change tip text
   void setTipText(const FXString& txt);
-  
+
   /// Return tip text
   const FXString& getTipText() const;
 

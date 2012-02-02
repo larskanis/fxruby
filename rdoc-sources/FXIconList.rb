@@ -24,11 +24,11 @@ module Fox
 
     # Indicates whether this item is draggable or not [Boolean]
     attr_writer	:draggable
-    
+
     # Constructor
     def initialize(text, bigIcon=nil, miniIcon=nil, data=nil) # :yields: theIconItem
     end
-    
+
     # Return the icon item's text
     def to_s; text; end
 
@@ -37,28 +37,28 @@ module Fox
 
     # Returns +true+ if this item has the focus
     def hasFocus? ; end
-    
+
     # Return +true+ if this item is selected
     def selected? ; end
-    
+
     # Return +true+ if this item is enabled
     def enabled? ; end
-    
+
     # Return +true+ if this item is draggable
     def draggable? ; end
-    
+
     # Return the width of this item
     def getWidth(iconList); end
-    
+
     # Return the height of this item
     def getHeight(iconList); end
-    
+
     # Create this item
     def create; end
-    
+
     # Detach this item
     def detach; end
-    
+
     # Destroy this item
     def destroy; end
   end
@@ -83,9 +83,9 @@ module Fox
   # In each of these cases, the index to the item, if any, is passed in the
   # 3rd argument of the message.
   # The text in each item is a string separated by tabs for each column;
-  # in mini- or big-icon mode, only the text before the first tab is shown.  
+  # in mini- or big-icon mode, only the text before the first tab is shown.
   # In detail-mode, the text before the first tab is shown in the first column,
-  # the text between the first and second tab is shown in the second column, 
+  # the text between the first and second tab is shown in the second column,
   # and so on.
   #
   # === Events
@@ -136,54 +136,54 @@ module Fox
   # +ID_SELECT_ALL+::		x
   # +ID_DESELECT_ALL+::		x
   # +ID_SELECT_INVERSE+::	x
-  
+
   class FXIconList < FXScrollArea
 
     # Number of items [Integer]
     attr_reader	:numItems
-    
+
     # Number of rows [Integer]
     attr_reader	:numRows
-    
+
     # Number of columns [Integer]
     attr_reader	:numCols
-    
+
     # The header control [FXHeader]
     attr_reader	:header
-    
+
     # The number of header items in the header control [Integer]
     attr_reader	:numHeaders
-    
+
     # Item width [Integer]
     attr_reader	:itemWidth
-    
+
     # Item height [Integer]
     attr_reader	:itemHeight
-    
+
     # Index of current item, or -1 if none [Integer]
     attr_accessor :currentItem
-    
+
     # Index of anchor item, or -1 if none [Integer]
     attr_accessor :anchorItem
-    
+
     # Text font [FXFont]
     attr_accessor :font
-    
+
     # Normal text color [FXColor]
     attr_accessor :textColor
-    
+
     # Background color for selected item(s) [FXColor]
     attr_accessor :selBackColor
-    
+
     # Text color for selected item(s) [FXColor]
     attr_accessor :selTextColor
-    
+
     # Maximum item space (in pixels) for each item [Integer]
     attr_accessor :itemSpace
-    
+
     # Icon list style [Integer]
     attr_accessor :listStyle
-    
+
     # Status line help text [String]
     attr_accessor :helpText
 
@@ -196,39 +196,39 @@ module Fox
 
     # Append header with given _text_ and optional _icon_.
     def appendHeader(text, icon=nil, size=1); end
-    
+
     # Remove header at _headerIndex_.
     # Raises IndexError if _headerIndex_ is out of bounds.
     def removeHeader(headerIndex); end
-    
+
     # Change text of header at _headerIndex_.
     # Raises IndexError if _headerIndex_ is out of bounds.
     def setHeaderText(headerIndex, text); end
-    
+
     # Return text of header at _headerIndex_.
     # Raises IndexError if _headerIndex_ is out of bounds.
     def getHeaderText(headerIndex); end
-  
+
     # Change icon of header at _headerIndex_.
     # Raises IndexError if _headerIndex_ is out of bounds.
     def setHeaderIcon(headerIndex, icon); end
-  
+
     # Return icon of header at _headerIndex_.
     # Raises IndexError if _headerIndex_ is out of bounds.
     def getHeaderIcon(headerIndex); end
-  
+
     # Change size of header at _headerIndex_.
     # Raises IndexError if _headerIndex_ is out of bounds.
     def setHeaderSize(headerIndex, size); end
-    
+
     # Return size of header at _headerIndex_.
     # Raises IndexError if _headerIndex_ is out of bounds.
     def getHeaderSize(headerIndex); end
-  
+
     # Return the item at the given _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getItem(itemIndex); end
-  
+
     # Replace the item at _index_ with a (possibly subclassed) _item_.
     # If _notify_ is +true+, a +SEL_REPLACED+ message is sent to the list's message target
     # before the item is replaced.
@@ -246,24 +246,24 @@ module Fox
     # of items appended.
     #
     def fillItems(strings, big=nil, mini=nil, data=nil, notify=false); end
-  
+
     # Insert a new (possibly subclassed) _item_ at the given _index_.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is inserted.
     # Raises IndexError if _index_ is out of bounds.
     def insertItem(index, item, notify=false); end
-  
+
     # Insert item at _index_ with given _text_, _bigIcon_, _miniIcon_ and user _data_.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is inserted.
     # Raises IndexError if _index_ is out of bounds.
     def insertItem(index, text, bigIcon=nil, miniIcon=nil, data=nil, notify=false); end
-  
+
     # Append a new (possibly subclassed) _item_ to the end of the list.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is appended.
     def appendItem(item, notify=false); end
-  
+
     # Append a new item with given _text_ and optional _bigIcon_, _miniIcon_ and user _data_.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is appended.
@@ -273,7 +273,7 @@ module Fox
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is prepended.
     def prependItem(item, notify=false); end
-  
+
     # Prepend a new item with given _text_ and optional _bigIcon_, _miniIcon_ and user _data_.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is prepended.
@@ -302,15 +302,15 @@ module Fox
     # before the item is removed.
     # Raises IndexError if _index_ is out of bounds.
     def removeItem(index, notify=false); end
-  
+
     # Remove all items from list.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message target
     # before each item is removed.
     def clearItems(notify=false); end
-  
+
     # Return index of item at (_x_, _y_), or -1 if none
     def getItemAt(x, y); end
-  
+
     #
     # Search items by _text_, beginning from item _start_.  If the start
     # item is -1 the search will start at the first item in the list.
@@ -322,7 +322,7 @@ module Fox
     # Return -1 if no matching item is found.
     #
     def findItem(text, start=-1, flags=SEARCH_FORWARD|SEARCH_WRAP); end
-  
+
     #
     # Search items by associated user _data_, beginning from item _start_. If the
     # start item is -1 the search will start at the first item in the list.
@@ -339,112 +339,112 @@ module Fox
     # is out of bounds.
     #
     def makeItemVisible(itemOrIndex); end
-    
+
     # Change text for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def setItemText(index, text); end
-    
+
     # Return text for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getItemText(index); end
-    
+
     # Change big icon for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def setItemBigIcon(index, bigIcon, owned=false); end
-    
+
     # Return big icon for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getItemBigIcon(index); end
-    
+
     # Change mini icon for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def setItemMiniIcon(index, miniIcon, owned=false); end
-    
+
     # Return mini icon for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getItemMiniIcon(index); end
-  
+
     # Change user _data_ for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def setItemData(index, data);
-  
+
     # Return user data for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def getItemData(index); end
-  
+
     # Return +true+ if item at _index_ is selected.
     # Raises IndexError if _index_ is out of bounds.
     def itemSelected?(index); end
-    
+
     # Return +true+ if item at _index_ is the current item.
     # Raises IndexError if _index_ is out of bounds.
     def itemCurrent?(index); end
-    
+
     # Return +true+ if item at _index_ is visible.
     # Raises IndexError if _index_ is out of bounds.
     def itemVisible?(index); end
-    
+
     # Return +true+ if item at _index_ is enabled.
     # Raises IndexError if _index_ is out of bounds.
     def itemEnabled?(index); end
-    
+
     # Return item hit code: 0 outside, 1 icon, 2 text.
     # Raises IndexError if _index_ is out of bounds.
     def hitItem(index, x, y, ww=1, hh=1); end
-  
+
     # Repaint item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def updateItem(index); end
-    
+
     # Select items in rectangle.
     # If _notify_ is +true+, a +SEL_SELECTED+ message is sent to the list's
     # message target after each previously unselected item is selected.
     def selectInRectangle(x, y, w, h, notify=false); end
-  
+
     # Enable item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def enableItem(index);
-    
+
     # Disable item at _index_.
     # Raises IndexError if _index_ is out of bounds.
     def disableItem(index);
-    
+
     # Select item at _index_.
     # If _notify_ is +true+, a +SEL_SELECTED+ message is sent to the list's
     # message target after the item is selected.
     # Raises IndexError if _index_ is out of bounds.
     def selectItem(index, notify=false); end
-    
+
     # Deselect item at _index_.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the list's
     # message target after the item is deselected.
     # Raises IndexError if _index_ is out of bounds.
     def deselectItem(index, notify=false); end
-  
+
     # Toggle item at _index_.
     # If _notify_ is  +true+, either a +SEL_SELECTED+ or +SEL_DESELECTED+
     # message is sent to the list's message target to indicate the item's
     # new state.
     # Raises IndexError if _index_ is out of bounds.
     def toggleItem(index, notify=false); end
-    
+
     # Change current item index.
     # If _notify_ is  +true+, a +SEL_CHANGED+ message is sent to the list's message target
     # after the current item changes.
     # Raises IndexError if _index_ is out of bounds.
     def setCurrentItem(index, notify=false); end
-    
+
     # Extend selection from anchor index to _index_.
     # If _notify_ is  +true+, a series of +SEL_SELECTED+ and +SEL_DESELECTED+ messages
     # are sent to the list's message target as the selected-state of different items changes.
     # Raises IndexError if _index_ is out of bounds.
     def extendSelection(index, notify=false); end
-    
+
     # Deselect all items.
     # If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the list's message
     # target for all the items that were selected before killSelection was called.
     def killSelection(notify=false); end
-  
+
     # Sort items
     def sortItems(); end
   end

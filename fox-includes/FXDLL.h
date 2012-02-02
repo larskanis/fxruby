@@ -53,7 +53,7 @@ public:
   /// True if library was loaded
   FXbool loaded() const { return hnd!=NULL; }
 
-  /// Load the library module from the name 
+  /// Load the library module from the name
   FXbool load(const FXString& nm);
 
   /// Unload the library module
@@ -81,7 +81,7 @@ public:
 
 
 /**
-* Auto DLL wraps a library module handle but also owns it; thus, the library 
+* Auto DLL wraps a library module handle but also owns it; thus, the library
 * module will automatically be unloaded when auto-dll is destroyed.
 */
 class FXAPI FXAUTODLL : public FXDLL {
@@ -90,7 +90,7 @@ private:
   FXAUTODLL &operator=(const FXAUTODLL&);
 public:
 
-  /// Initialize by loading given library name 
+  /// Initialize by loading given library name
   FXAUTODLL(const FXString& nm);
 
   /// Unload library if we have one

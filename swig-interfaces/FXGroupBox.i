@@ -29,7 +29,7 @@ enum {
   };
 
 
-/** 
+/**
 * A group box widget provides a nice raised or sunken border
 * around a group of widgets, providing a visual delineation.
 * Typically, a title is placed over the border to provide some
@@ -40,7 +40,7 @@ enum {
 */
 class FXGroupBox : public FXPacker {
 protected:
-  FXString  label; 
+  FXString  label;
   FXFont   *font;
   FXColor   textColor;
 protected:
@@ -81,7 +81,7 @@ public:
 
   /// Return text color
   FXColor getTextColor() const;
-  
+
   /// Destructor
   virtual ~FXGroupBox();
   };

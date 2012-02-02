@@ -39,7 +39,7 @@ public:
 
   /// Set current drive
   FXbool setDrive(const FXString& drive);
-  
+
   /// Return current drive
   FXString getDrive() const;
 

@@ -22,7 +22,7 @@ public:
 
   // Overrides the base class version of drawLineSegments()
   virtual void drawLineSegments(const FXSegment* segments,FXuint nsegments);
-  
+
   // Overrides the base class version of drawRectangle()
   virtual void drawRectangle(FXint x,FXint y,FXint w,FXint h);
 
@@ -85,10 +85,10 @@ public:
 
   // Overrides the base class version of drawHashBox()
   virtual void drawHashBox(FXint x,FXint y,FXint w,FXint h,FXint b=1);
-  
+
   // Overrides the base class version of drawFocusRectangle()
   virtual void drawFocusRectangle(FXint x,FXint y,FXint w,FXint h);
-  
+
   // Overrides the base class version of drawArea()
   virtual void drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy);
 
@@ -100,7 +100,7 @@ public:
 
   // Overrides the base class version of drawBitmap()
   virtual void drawBitmap(const FXBitmap* bitmap,FXint dx,FXint dy);
-  
+
   // Overrides the base class version of drawIcon()
   virtual void drawIcon(const FXIcon* icon,FXint dx,FXint dy);
 
@@ -124,64 +124,64 @@ public:
 
   // Overrides the base class version of setForeground()
   virtual void setForeground(FXColor clr);
-  
+
   // Overrides the base class version of setBackground()
   virtual void setBackground(FXColor clr);
-  
+
   // Overrides the base class version of setDashes()
   virtual void setDashes(FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength);
-  
+
   // Overrides the base class version of setLineWidth()
   virtual void setLineWidth(FXuint linewidth=0);
-  
+
   // Overrides the base class version of setLineCap()
   virtual void setLineCap(FXCapStyle capstyle=CAP_BUTT);
-  
+
   // Overrides the base class version of setLineJoin()
   virtual void setLineJoin(FXJoinStyle joinstyle=JOIN_MITER);
-  
+
   // Overrides the base class version of setLineStyle()
   virtual void setLineStyle(FXLineStyle linestyle=LINE_SOLID);
-  
+
   // Overrides the base class version of setFillStyle()
   virtual void setFillStyle(FXFillStyle fillstyle=FILL_SOLID);
-  
+
   // Overrides the base class version of setFillRule()
   virtual void setFillRule(FXFillRule fillrule=RULE_EVEN_ODD);
-  
+
   // Overrides the base class version of setFunction()
   virtual void setFunction(FXFunction func=BLT_SRC);
-  
+
   // Overrides the base class version of setTile()
   virtual void setTile(FXImage* image,FXint dx=0,FXint dy=0);
-  
+
   // Overrides the base class version of setStipple()
   virtual void setStipple(FXBitmap *bitmap,FXint dx=0,FXint dy=0);
-  
+
   // Overrides the base class version of setStipple()
   virtual void setStipple(FXStipplePattern pat,FXint dx=0,FXint dy=0);
-  
+
   // Overrides the base class version of setClipRegion()
   virtual void setClipRegion(const FXRegion& region);
-  
+
   // Overrides the base class version of setClipRectangle()
   virtual void setClipRectangle(FXint x,FXint y,FXint w,FXint h);
-  
+
   // Overrides the base class version of setClipRectangle()
   virtual void setClipRectangle(const FXRectangle& rectangle);
-  
+
   // Overrides the base class version of clearClipRectangle()
   virtual void clearClipRectangle();
-  
+
   // Overrides the base class version of setClipMask()
   virtual void setClipMask(FXBitmap* bitmap,FXint dx=0,FXint dy=0);
-  
+
   // Overrides the base class version of clearClipMask()
   virtual void clearClipMask();
-  
+
   // Overrides the base class version of setFont()
   virtual void setFont(FXFont *fnt);
-  
+
   // Overrides the base class version of clipChildren()
   virtual void clipChildren(FXbool yes);
 

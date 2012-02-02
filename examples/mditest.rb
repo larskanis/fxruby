@@ -51,17 +51,17 @@ class MDITestWindow  < FXMainWindow
 
     # Create the font
     @font = FXFont.new(getApp(), "courier", 15, FONTWEIGHT_BOLD)
-  
+
     # Menubar
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
-  
+
     # Status bar
     FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
-  
+
     # MDI Client
     @mdiclient = FXMDIClient.new(self, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  
+
     # Icon for MDI Child
     @mdiicon = nil
     File.open(File.join("icons", "penguin.png"), "rb") do |f|
@@ -70,7 +70,7 @@ class MDITestWindow  < FXMainWindow
 
     # Make MDI Menu
     @mdimenu = FXMDIMenu.new(self, @mdiclient)
-  
+
     # MDI buttons in menu:- note the message ID's!!!!!
     # Normally, MDI commands are simply sensitized or desensitized;
     # Under the menubar, however, they're hidden if the MDI Client is
@@ -83,13 +83,13 @@ class MDITestWindow  < FXMainWindow
       FRAME_RAISED|LAYOUT_RIGHT)
     FXMDIMinimizeButton.new(menubar, @mdiclient,
       FXMDIClient::ID_MDI_MENUMINIMIZE, FRAME_RAISED|LAYOUT_RIGHT)
-  
+
     # Create a few test windows to get started
     mdichild = createTestWindow(10, 10, 400, 300)
     @mdiclient.setActiveChild(mdichild)
     createTestWindow(20, 20, 400, 300)
     createTestWindow(30, 30, 400, 300)
-  
+
     # File menu
     filemenu = FXMenuPane.new(self)
     newCmd = FXMenuCommand.new(filemenu, "&New\tCtl-N\tCreate new document.")
@@ -97,7 +97,7 @@ class MDITestWindow  < FXMainWindow
     FXMenuCommand.new(filemenu, "&Quit\tCtl-Q\tQuit application.", nil,
       getApp(), FXApp::ID_QUIT, 0)
     FXMenuTitle.new(menubar, "&File", nil, filemenu)
-      
+
     # Window menu
     windowmenu = FXMenuPane.new(self)
     FXMenuCommand.new(windowmenu, "Tile &Horizontally", nil,
@@ -117,7 +117,7 @@ class MDITestWindow  < FXMainWindow
     FXMenuCommand.new(windowmenu, nil, nil, @mdiclient, FXMDIClient::ID_MDI_4)
     FXMenuCommand.new(windowmenu, "&Others...", nil, @mdiclient, FXMDIClient::ID_MDI_OVER_5)
     FXMenuTitle.new(menubar,"&Window", nil, windowmenu)
-    
+
     # Help menu
     helpmenu = FXMenuPane.new(self)
     FXMenuCommand.new(helpmenu, "&About FOX...").connect(SEL_COMMAND) {
@@ -168,13 +168,13 @@ end
 if __FILE__ == $0
   # Make application
   application = FXApp.new("MDIApp", "FoxTest")
-  
+
   # Make window
   MDITestWindow.new(application)
-  
+
   # Create app
   application.create
-  
+
   # Run
   application.run
 end

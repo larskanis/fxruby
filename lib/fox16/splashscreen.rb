@@ -26,7 +26,7 @@ module Fox
 
       # Store the action block
       @action = action
-    
+
       # Construct the window contents
       FXVerticalFrame.new( self ) do |frame|
         text.each_line do |line|
@@ -49,7 +49,7 @@ module Fox
       end
       super
     end
-  
+
     def update_status(msg)
       @status.text = msg
     end
@@ -65,7 +65,7 @@ if $0 == __FILE__
     end
   end
   fake_site = FakeSite.new
-  
+
   include Fox
 
   FXApp.new( "Test SplashScreen" ) do |theApp|

@@ -30,7 +30,7 @@
 * by their file name.  When first encountering a new file name, the icon is
 * located by searching the icon search path for the icon file.  If found, the
 * services of the icon source object are used to load the icon from the file.
-* A custom icon source may be installed to furnish support for additonal 
+* A custom icon source may be installed to furnish support for additonal
 * image file formats.
 * Once the icon is loaded, an association between the icon name and the icon
 * is entered into the icon dictionary.  Subsequent searches for an icon with

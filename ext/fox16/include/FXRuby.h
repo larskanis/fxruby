@@ -76,7 +76,7 @@ VALUE showHelper(VALUE self, int argc, VALUE *argv, TYPE *p, swig_type_info *typ
 	}
 	return Qnil;
 }
-    
+
 // Wrapper around SWIG_Ruby_NewPointerObj()
 VALUE FXRbNewPointerObj(void *ptr, swig_type_info *typeinfo);
 bool FXRbIsBorrowed(void* ptr);
@@ -254,7 +254,7 @@ extern VALUE to_ruby(const FXObject* obj);
 inline VALUE to_ruby(const FXPoint* point){
   return FXRbNewPointerObj(static_cast<void*>(const_cast<FXPoint*>(point)),FXRbTypeQuery("FXPoint *"));
   }
- 
+
 inline VALUE to_ruby(const FXRangef& range){
   return FXRbNewPointerObj(static_cast<void*>(const_cast<FXRangef*>(&range)),FXRbTypeQuery("FXRangef *"));
   }
@@ -315,7 +315,7 @@ inline FXID int_to_fxid(VALUE value){
 #ifndef WIN32
   return static_cast<FXID>(NUM2UINT(value));
 #else
-  return reinterpret_cast<FXID>(NUM2ULONG(value)); 
+  return reinterpret_cast<FXID>(NUM2ULONG(value));
 #endif
   }
 
@@ -342,7 +342,7 @@ void FXRbCallVoidMethod(FXDC* recv,ID func,TYPE arg){
   FXASSERT(!NIL_P(obj));
   rb_funcall(obj,func,1,to_ruby(arg));
   }
- 
+
 template<class TYPE>
 void FXRbCallVoidMethod(const FXObject* recv, ID func, TYPE& arg){
   VALUE obj=FXRbGetRubyObj(recv,false);

@@ -23,7 +23,7 @@
 /***********************************************************************
  * $Id: FXRbImageFrame.h 2190 2005-08-24 07:58:47Z lyle $
  ***********************************************************************/
- 
+
 #ifndef FXRBIMAGEFRAME_H
 #define FXRBIMAGEFRAME_H
 
@@ -46,7 +46,7 @@ public:
 
   // Mark dependencies for the GC
   static void markfunc(FXImageFrame* self);
-  
+
   /// Destroy the widget, but do not destroy the image
   virtual ~FXRbImageFrame(){
     FXRbUnregisterRubyObj(this);

@@ -133,22 +133,22 @@ public:
 
   /// Change base gui color
   void setBaseColor(FXColor clr);
-  
+
   /// Get base gui color
   FXColor getBaseColor() const;
-  
+
   /// Change horizontal inter-child spacing
   void setHSpacing(FXint hs);
-  
+
   /// Return current horizontal inter-child spacing
   FXint getHSpacing() const;
-  
+
   /// Change vertical inter-child spacing
   void setVSpacing(FXint vs);
-  
+
   /// Return current vertical inter-child spacing
   FXint getVSpacing() const;
-  
+
   /// Destructor
   virtual ~FXPacker();
   };

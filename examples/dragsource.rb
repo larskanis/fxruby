@@ -3,15 +3,15 @@ require 'fox16'
 include Fox
 
 class DragSource < FXMainWindow
-  
+
   def initialize(anApp)
     # Initialize base class
     super(anApp, "Drag Source", :opts => DECOR_ALL, :width => 400, :height => 300)
-    
+
     # Fill main window with canvas
     @canvas = FXCanvas.new(self, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
     @canvas.backColor = "red"
-    
+
     # Handle expose events on the canvas
     @canvas.connect(SEL_PAINT) do |sender, sel, event|
       FXDCWindow.new(@canvas, event) do |dc|
@@ -33,7 +33,7 @@ class DragSource < FXMainWindow
       dragTypes = [FXWindow.colorType]
       @canvas.beginDrag(dragTypes)
     end
-    
+
     # Handle mouse motion events
     @canvas.connect(SEL_MOTION) do |sender, sel, event|
       if @canvas.dragging?
@@ -51,7 +51,7 @@ class DragSource < FXMainWindow
       @canvas.ungrab
       @canvas.endDrag
     end
-    
+
     # Handle request for DND data
     @canvas.connect(SEL_DND_REQUEST) do |sender, sel, event|
       @canvas.setDNDData(FROM_DRAGNDROP, FXWindow.colorType, Fox.fxencodeColorData(@canvas.backColor)) if event.target == FXWindow.colorType
@@ -61,7 +61,7 @@ class DragSource < FXMainWindow
   def create
     # Create the main window and canvas
     super
-    
+
     # Register the drag type for colors
     FXWindow.colorType = getApp().registerDragType(FXWindow.colorTypeName)
 

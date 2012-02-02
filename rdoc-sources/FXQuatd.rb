@@ -2,7 +2,7 @@ module Fox
   class FXQuatd < FXVec4d
     # Return an initialized FXQuatd instance.
     def initialize; end
-    
+
     #
     # Construct an FXQuatd instance from a rotation axis and angle.
     #
@@ -12,7 +12,7 @@ module Fox
     # +angle+::		the rotation angle (in radians) [Float]
     #
     def initialize(axis, phi=0.0); end
-    
+
     #
     # Construct an FXQuatd from components.
     #
@@ -24,7 +24,7 @@ module Fox
     # +width+::		w [Float]
     #
     def initialize(x, y, z, w); end
-    
+
     # Construct an FXQuatd from an array of Floats.
     def initialize(floats); end
 
@@ -38,14 +38,14 @@ module Fox
     # +yaw+::		yaw angle in radians [Float]
     #
     def initialize(roll, pitch, yaw); end
-    
+
     # Construct quaternion from axes; _ex_, _ey_ and _ez_ are all FXVec3d
     # instances.
     def initialize(ex, ey, ez); end
 
     # Adjust quaternion length; returns a reference to self.
     def adjust!; end
-    
+
     #
     # Set quaternion from rotation axis and angle.
     #
@@ -55,7 +55,7 @@ module Fox
     # +angle+::		the rotation angle (in radians) [Float]
     #
     def setAxisAngle(axis, phi=0.0); end
-    
+
     #
     # Return the rotation axis and angle for this quaternion, i.e.
     #
@@ -65,7 +65,7 @@ module Fox
     # of rotation in radians.
     #
     def getAxisAngle(); end
-    
+
     #
     # Set quaternion from yaw (z), pitch (y) and roll (x).
     #
@@ -76,14 +76,14 @@ module Fox
     # +yaw+::		yaw angle in radians [Float]
     #
     def setRollPitchYaw(roll, pitch, yaw); end
-    
+
     #
     # Obtain roll, pitch and yaw angles (in radians) from quaternion, e.g.
     #
     #     roll, pitch, yaw = aQuaternion.getRollPitchYaw()
     #
     def getRollPitchYaw(); end
-    
+
     # Set quaternion from axes; _ex_, _ey_ and _ez_ are all FXVec3d instances.
     def setAxes(ex, ey, ez); end
 
@@ -103,32 +103,32 @@ module Fox
     # Return the exponentiation of this quaternion (a new FXQuatd instance).
     #
     def exp; end
-    
+
     #
     # Return the logarithm of this quaternion (a new FXQuatd instance).
     #
     def log; end
-    
+
     #
     # Return the inverse of this quaternion (a new FXQuatd instance).
     #
     def invert; end
-    
+
     #
     # Invert unit quaternion (returns a new FXQuatd instance).
     #
     def unitinvert; end
-    
+
     #
     # Return the conjugate of this quaternion (a new FXQuatd instance).
     #
     def conj; end
-    
+
     #
     # Return the product of this quaternion and _other_ (another FXQuatd instance).
     #
     def *(other); end
-    
+
     #
     # Compute the rotation of a vector _vec_ by this quaternion; returns the
     # rotated vector (a new FXVec3d instance).
@@ -138,7 +138,7 @@ module Fox
     # +vec+::		the vector to be rotated [FXVec3d]
     #
     def *(vec); end
-    
+
     #
     # Construct a quaternion from arc a->b on unit sphere and return a reference
     # to self.
@@ -149,7 +149,7 @@ module Fox
     # +b+::	[FXVec3d]
     #
     def arc!(a, b); end
-    
+
     #
     # Spherical lerp and return a reference to self.
     #

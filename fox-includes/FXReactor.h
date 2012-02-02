@@ -50,7 +50,7 @@ public:
   };
 
 
-/// Timer dispatchable 
+/// Timer dispatchable
 class FXAPI FXTimerDispatchable : public FXDispatchable {
   friend class FXReactor;
 private:
@@ -62,7 +62,7 @@ private:
 public:
   FXTimerDispatchable(FXTime d=0):next(NULL),due(d){}
   };
-  
+
 
 /// Chore dispatchable
 class FXAPI FXChoreDispatchable : public FXDispatchable {
@@ -167,7 +167,7 @@ public:
   */
   FXTimerDispatchable* addTimer(FXTimerDispatchable* timer);
 
-  /** 
+  /**
   * Remove timer dispatchable.
   */
   FXTimerDispatchable* remTimer(FXTimerDispatchable* timer);

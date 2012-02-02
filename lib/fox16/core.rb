@@ -6,7 +6,7 @@ module Fox
       not shared.nil?
     end
   end
-  
+
   class FXGLViewer
     #
     # Set the top background color to _clr_ (an FXVec4f instance).
@@ -14,7 +14,7 @@ module Fox
     def topBackgroundColor=(clr)
       setBackgroundColor(clr, false)
     end
-    
+
     #
     # Set the bottom background color to _clr_ (an FXVec4f instance).
     #
@@ -28,7 +28,7 @@ module Fox
     def topBackgroundColor
       getBackgroundColor(false)
     end
-    
+
     #
     # Return the bottom background color (an FXVec4f instance).
     #
@@ -51,13 +51,13 @@ module Fox
       text <=> otherItem.text
     end
   end
-  
+
   class FXTreeItem
     def <=>(otherItem)
       text <=> otherItem.text
     end
   end
-  
+
   class FXTreeList
     def addItemFirst(*args) # :nodoc:
       warn "addItemFirst() is deprecated; use prependItem() instead"
@@ -83,12 +83,12 @@ module Fox
       warn "reparentItem() is deprecated; use moveItem() instead"
       moveItem(nil, father, item)
     end
-  
+
     def moveItemBefore(other, item) # :nodoc:
       warn "moveItemBefore() is deprecated; use moveItem() instead"
       moveItem(other, other.parent, item)
     end
-  
+
     def moveItemAfter(other, item) # :nodoc:
       warn "moveItemAfter() is deprecated; use moveItem() instead"
       moveItem(other.next, other.parent, item)
@@ -123,20 +123,20 @@ module Fox
       value.to_s
     end
   end
-  
+
   class FXDockBar
     # Allow docking on the specified side, where _side_ is one of the +ALLOW+
     # constants listed above.
     def allowSide(side)
       self.allowedSides = self.allowedSides | side
     end
-    
+
     # Disallow docking on the specified side, where _side_ is one of the
     # +ALLOW+ constants listed above.
     def disallowSide(side)
       self.allowedSides = self.allowedSides & ~side
     end
-    
+
     # Return +true+ if docking is allowed on the specified side, where _side_
     # is one of the +ALLOW+ constants listed above.
     #
@@ -144,19 +144,19 @@ module Fox
       (allowedSides & side) != 0
     end
   end
-  
+
   class FXFileDialog
     # Allow navigation for this file dialog
     def allowNavigation
       self.navigationAllowed = true
     end
-    
+
     # Disallow navigation for this file dialog
     def disallowNavigation
       self.navigationAllowed = false
     end
   end
-  
+
   class FXFileList
     #
     # Show parent directories.
@@ -164,7 +164,7 @@ module Fox
     def showParentDirs
       self.parentDirsShown = true
     end
-    
+
     #
     # Hide parent directories
     #
@@ -172,13 +172,13 @@ module Fox
       self.parentDirsShown = false
     end
   end
-  
+
   class FXFileSelector
     # Allow navigation for this file selector
     def allowNavigation
       self.navigationAllowed = true
     end
-    
+
     # Disallow navigation for this file selector
     def disallowNavigation
       self.navigationAllowed = false
@@ -191,7 +191,7 @@ module Fox
     # up. Raises IndexError if _index_ is out of bounds.
     #
     def arrowUp?(index)
-      if index < 0 || index >= numItems 
+      if index < 0 || index >= numItems
         raise IndexError, "header item index out of bounds"
       else
         getArrowDir(index) == FXHeaderItem::ARROW_UP
@@ -203,7 +203,7 @@ module Fox
     # down. Raises IndexError if _index_ is out of bounds.
     #
     def arrowDown?(index)
-      if index < 0 || index >= numItems 
+      if index < 0 || index >= numItems
         raise IndexError, "header item index out of bounds"
       else
         getArrowDir(index) == FXHeaderItem::ARROW_DOWN
@@ -215,14 +215,14 @@ module Fox
     # any arrow. Raises IndexError if _index_ is out of bounds.
     #
     def arrowNone?(index)
-      if index < 0 || index >= numItems 
+      if index < 0 || index >= numItems
         raise IndexError, "header item index out of bounds"
       else
         getArrowDir(index) == FXHeaderItem::ARROW_NONE
       end
     end
   end
-  
+
   class FXHiliteStyle
     #
     # Construct a new FXHiliteStyle instance, with fields initialized from
@@ -258,7 +258,7 @@ module Fox
       default = default ? 1 : 0
       readIntEntry(section, key, default) != 0
     end
-    
+
     #
     # Write a boolean registry _value_ to the specified _section_ and _key_.
     #
@@ -266,68 +266,68 @@ module Fox
       writeIntEntry(section, key, value ? 1 : 0)
     end
   end
-  
+
   class FXVec2d
     # Convert to array
     def to_a
       [x, y]
     end
-    
+
     # Convert to string
     def to_s
       to_a.to_s
     end
-    
+
     def inspect; to_a.inspect; end
   end
-  
+
   class FXVec2f
     # Convert to array
     def to_a; [x, y]; end
-    
+
     # Convert to string
     def to_s; to_a.to_s; end
-    
+
     def inspect; to_a.inspect; end
   end
-  
+
   class FXVec3d
     # Convert to array
     def to_a; [x, y, z]; end
-    
+
     # Convert to string
     def to_s; to_a.to_s; end
-    
+
     def inspect; to_a.inspect; end
   end
-  
+
   class FXVec3f
     # Convert to array
     def to_a; [x, y, z]; end
-    
+
     # Convert to string
     def to_s; to_a.to_s; end
-    
+
     def inspect; to_a.inspect; end
   end
-  
+
   class FXVec4d
     # Convert to array
     def to_a; [x, y, z, w]; end
-    
+
     # Convert to string
     def to_s; to_a.to_s; end
-    
+
     def inspect; to_a.inspect; end
   end
-  
+
   class FXVec4f
     # Convert to array
     def to_a; [x, y, z, w]; end
-    
+
     # Convert to string
     def to_s; to_a.to_s; end
-    
+
     def inspect; to_a.inspect; end
   end
 
@@ -346,11 +346,11 @@ module Fox
         child = next_child
       end
     end
-    
+
     #
     # Traverse the widget tree starting from this window
     # using depth-first traversal.
-    # 
+    #
     def each_child_recursive # :yields: child
       each_child do |child|
         yield child
@@ -359,14 +359,14 @@ module Fox
         end
       end
     end
-    
+
     # Returns an array containing all child windows of this window
     def children
       kids = []
       each_child { |kid| kids << kid }
       kids
     end
-    
+
     # Return +true+ if this window (self) comes before sibling window _other_.
     def before?(other)
       FXWindow.before?(other)
@@ -381,12 +381,12 @@ module Fox
     def linkBefore(other)
       reparent(self.parent, other)
     end
-    
+
     # Relink this window after sibling window _other_, in the parent's window list.
     def linkAfter(other)
       reparent(self.parent, other.next)
     end
-    
+
     # Setting visible to +true+ calls #show, setting it to +false+ calls #hide.
     def visible=(vis)
       if vis
@@ -448,11 +448,11 @@ module Fox
       str
     end
   end
-  
+
   def self.fxcolorfromname(name)
     colorFromName(name)
   end
-  
+
   def self.fxnamefromcolor(color)
     nameFromColor(color)
   end
@@ -489,48 +489,48 @@ module Fox
       end
     end
   end
-  
+
   # Tried to read past the end of a stream
   class FXStreamEndError < FXStreamError ; end
-  
+
   # Filled up a stream's internal buffer, or the disk is full
   class FXStreamFullError < FXStreamError ; end
-  
+
   # Unable to open for write
   class FXStreamNoWriteError < FXStreamError ; end
-  
+
   # Unable to open for read
   class FXStreamNoReadError < FXStreamError ; end
-  
+
   # Stream format error
   class FXStreamFormatError < FXStreamError ; end
-  
+
   # Trying to read unknown class
   class FXStreamUnknownError < FXStreamError ; end
-  
+
   # Alloc failed
   class FXStreamAllocError < FXStreamError ; end
-  
+
   # General failure
   class FXStreamFailureError < FXStreamError ; end
-  
+
   class FXCheckButton
     # Return +true+ if this check button is in the checked state.
     def checked?
       self.checkState == TRUE
     end
-    
+
     # Return +true+ if this check button is in the unchecked state.
     def unchecked?
       self.checkState == FALSE
     end
-    
+
     # Return +true+ if this check button is in the indeterminate, or "maybe", state.
     def maybe?
       self.checkState == MAYBE
     end
   end
-  
+
   class FXComboTableItem < FXTableItem
     #
     # Construct new combobox table item
@@ -565,7 +565,7 @@ module Fox
     def setFromControl(comboBox)
       self.text = comboBox.text
     end
-  
+
     # Set selections as an array of strings
     def selections=(strings)
       @selections = strings
@@ -575,30 +575,30 @@ module Fox
         self.text = @selections[0]
       end
     end
-  
+
     # Return selections
     def selections
       @selections
     end
   end
-  
+
   class FXMenuCheck
     # Return +true+ if this menu check button is in the checked state.
     def checked?
       self.checkState == TRUE
     end
-    
+
     # Return +true+ if this menu check button is in the unchecked state.
     def unchecked?
       self.checkState == FALSE
     end
-    
+
     # Return +true+ if this menu check button is in the indeterminate, or "maybe", state.
     def maybe?
       self.checkState == MAYBE
     end
   end
-  
+
   class FXRadioButton
     # Return +true+ if this radio button is in the checked state.
     def checked?
@@ -615,7 +615,7 @@ module Fox
       self.checkState == MAYBE
     end
   end
-  
+
   class FXMenuRadio
     # Return +true+ if this menu radio button is in the checked state.
     def checked?
@@ -632,7 +632,7 @@ module Fox
       self.checkState == MAYBE
     end
   end
-  
+
   class FXObject
     require 'enumerator'
     def self.subclasses
@@ -671,7 +671,7 @@ module Fox
       fillArc(x-r, y-r, 2*r, 2*r, 0, 360*64)
     end
   end
-  
+
   class FXHVec
     def normalize!
       normalized = self.normalize
@@ -679,7 +679,7 @@ module Fox
       self
     end
   end
-  
+
   class FXTable
     #
     # Append _numColumns_ columns to the right of the table..
@@ -689,7 +689,7 @@ module Fox
     def appendColumns(numColumns=1, notify=false)
       insertColumns(self.numColumns, numColumns, notify)
     end
-    
+
     #
     # Append _numRows_ rows to the bottom of the table..
     # If _notify_ is +true+, a <tt>SEL_INSERTED</tt> message is sent to the
@@ -698,7 +698,7 @@ module Fox
     def appendRows(numRows=1, notify=false)
       insertRows(self.numRows, numRows, notify)
     end
-    
+
     # Select cell at (_row_, _col_).
     # If _notify_ is +true+, a +SEL_SELECTED+ message is sent to the table's message target
     # after the item is selected.
@@ -739,7 +739,7 @@ module Fox
       end
       changes
     end
-    
+
 =end
 
   end
