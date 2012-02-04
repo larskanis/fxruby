@@ -125,10 +125,11 @@ namespace :swig do
 
   # add dependencies for compile *.i to *_wrap.cpp
   SWIG_MODULES.each do |ifile, cppfile|
-    ifile_path = File.join("swig-interfaces", ifile)
     cppfile_path = File.join("ext/fox16", cppfile)
 
-    file cppfile_path => [ifile_path] do
+    file cppfile_path => [ifile, 'macros.i', 'common.i', 'fxdefs.i', 'ruby-typemaps.i',
+                          'markfuncs.i', 'exceptions.i', 'freefuncs.i', 'macros.i', 'handlers.i'
+                         ].map{|f| File.join("swig-interfaces", f) } do
       Dir.chdir "swig-interfaces" do
         swig(ifile, cppfile)
       end
