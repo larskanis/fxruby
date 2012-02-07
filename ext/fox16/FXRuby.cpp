@@ -112,10 +112,12 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
     FXRubyObjDesc *desc;
     if(FXMALLOC(&desc,FXRubyObjDesc,1)){
       obj=SWIG_Ruby_NewPointerObj(ptr,ty,1);
+      FXTRACE((1,"FXRbNewPointerObj(rubyObj=%d,foxObj=%p)\n",static_cast<int>(obj),ptr));
       desc->obj=obj;
       desc->borrowed=true;
       desc->in_gc=false;
-      st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
+      int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
+      FXASSERT(!overwritten);
       return obj;
       }
     else{
@@ -236,7 +238,8 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
     desc->obj=rubyObj;
     desc->borrowed=false;
     desc->in_gc=false;
-    st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
+    int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
+    FXASSERT(!overwritten);
     }
   else{
     FXASSERT(FALSE);
