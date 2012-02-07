@@ -85,11 +85,15 @@ static st_table * FXRuby_Objects;
  * struct. It identifies the Ruby instance associated with a C++ object.
  * It also indicates whether this is merely a "borrowed" reference to
  * some C++ object (i.e. it's not one we need to destroy later).
+ *
+ * in_gc is set for FXWindows that are in garbage collection and must
+ * not call ruby code anymore.
  */
 
 struct FXRubyObjDesc {
   VALUE obj;
   bool borrowed;
+  bool in_gc;
   };
 
 
@@ -110,6 +114,7 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
       obj=SWIG_Ruby_NewPointerObj(ptr,ty,1);
       desc->obj=obj;
       desc->borrowed=true;
+      desc->in_gc=false;
       st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
       return obj;
       }
@@ -138,6 +143,25 @@ bool FXRbIsBorrowed(void* ptr){
   else{
     return true;
     }
+  }
+
+bool FXRbSetInGC(const void* ptr, bool enabled){
+  FXASSERT(ptr!=0);
+  FXRubyObjDesc *desc;
+  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
+    desc->in_gc=enabled;
+    return enabled;
+    }
+  return false;
+  }
+
+bool FXRbIsInGC(const void* ptr){
+  FXASSERT(ptr!=0);
+  FXRubyObjDesc *desc;
+  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
+    return desc->in_gc;
+    }
+  return false;
   }
 
 
@@ -211,6 +235,7 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
   if(FXMALLOC(&desc,FXRubyObjDesc,1)){
     desc->obj=rubyObj;
     desc->borrowed=false;
+    desc->in_gc=false;
     st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
     }
   else{
@@ -1301,6 +1326,7 @@ void FXRbRange2LoHi(VALUE range,FXdouble& lo,FXdouble& hi){
 void FXRbCallVoidMethod(FXObject* recv, ID func) {
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
+  FXASSERT(!FXRbIsInGC(recv));
   rb_funcall(obj,func,0,NULL);
   }
 

@@ -149,7 +149,7 @@ inline void klass ## _dropDisable(klass* self){ \
     FXRbCallVoidMethod(this,rb_intern("killFocus")); \
     } \
   void cls::changeFocus(FXWindow* child){ \
-    FXRbCallVoidMethod(this,rb_intern("changeFocus"),child); \
+    if(!FXRbIsInGC(this)) FXRbCallVoidMethod(this,rb_intern("changeFocus"),child); \
     } \
   void cls::setDefault(FXbool enable){ \
     FXRbCallVoidMethod(this,rb_intern("setDefault"),enable); \
@@ -173,7 +173,7 @@ inline void klass ## _dropDisable(klass* self){ \
     FXRbCallVoidMethod(this,rb_intern("position"),x,y,w,h); \
     } \
   void cls::recalc(){ \
-    FXRbCallVoidMethod(this,rb_intern("recalc")); \
+    if(!FXRbIsInGC(this)) FXRbCallVoidMethod(this,rb_intern("recalc")); \
     } \
   void cls::reparent(FXWindow* father,FXWindow* other){ \
     FXRbCallVoidMethod(this,rb_intern("reparent"),father,other); \

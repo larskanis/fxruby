@@ -73,6 +73,8 @@ VALUE showHelper(VALUE self, int argc, VALUE *argv, TYPE *p, swig_type_info *typ
 // Wrapper around SWIG_Ruby_NewPointerObj()
 VALUE FXRbNewPointerObj(void *ptr, swig_type_info *typeinfo);
 bool FXRbIsBorrowed(void* ptr);
+bool FXRbSetInGC(const void* ptr, bool enabled);
+bool FXRbIsInGC(const void* ptr);
 
 // Wrapper around SWIG_TypeQuery()
 swig_type_info *FXRbTypeQuery(const char *name);
@@ -322,6 +324,7 @@ template<class TYPE>
 void FXRbCallVoidMethod(FXObject* recv,ID func, TYPE& arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
+  FXASSERT(!FXRbIsInGC(recv));
   rb_funcall(obj,func,1,to_ruby(arg));
   }
 
@@ -336,6 +339,7 @@ template<class TYPE>
 void FXRbCallVoidMethod(const FXObject* recv, ID func, TYPE& arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
+  FXASSERT(!FXRbIsInGC(recv));
   rb_funcall(obj,func,1,to_ruby(arg));
   }
 
