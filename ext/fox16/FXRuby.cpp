@@ -234,19 +234,33 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
   FXASSERT(foxObj!=0);
   FXRubyObjDesc* desc;
   FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%d,foxObj=%p)\n",static_cast<int>(rubyObj),foxObj));
-  if(FXMALLOC(&desc,FXRubyObjDesc,1)){
+  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
+    FXASSERT(desc->borrowed);
+    /* There is already a Ruby object registered for this foxObj.
+     * This can happen, if libfox calls methods out of the C++ object constructor,
+     * that can be overwritten in Ruby (like changeFocus) with the object as
+     * parameter. FXFileSelector is one example.
+     * To avoid double references to the same foxObj from different Ruby objects,
+     * we decouple the foxObj from previoius ruby object and point to the new one.
+     */
+    DATA_PTR(desc->obj) = 0;
     desc->obj=rubyObj;
     desc->borrowed=false;
-    desc->in_gc=false;
-    int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
-    FXASSERT(!overwritten);
     }
   else{
-    FXASSERT(FALSE);
+    if(FXMALLOC(&desc,FXRubyObjDesc,1)){
+      desc->obj=rubyObj;
+      desc->borrowed=false;
+      desc->in_gc=false;
+      int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
+      FXASSERT(!overwritten);
+      }
+    else{
+      FXASSERT(FALSE);
+      }
     }
   FXASSERT(FXRbGetRubyObj(foxObj,false)==rubyObj);
   }
-
 
 /**
  * Remove this mapping between a Ruby instance and a C++ object
