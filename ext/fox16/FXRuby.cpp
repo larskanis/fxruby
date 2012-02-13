@@ -1536,7 +1536,7 @@ FXwchar FXRbCallWCharMethod(const FXObject* recv, ID func){
 FXRbMenuCommand::~FXRbMenuCommand(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey){
+  if(acckey && !FXRbIsInGC(this)){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
@@ -1552,7 +1552,7 @@ FXRbMenuCommand::~FXRbMenuCommand(){
 FXRbMenuCheck::~FXRbMenuCheck(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey){
+  if(acckey && !FXRbIsInGC(this)){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
@@ -1568,7 +1568,7 @@ FXRbMenuCheck::~FXRbMenuCheck(){
 FXRbMenuRadio::~FXRbMenuRadio(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey){
+  if(acckey && !FXRbIsInGC(this)){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();

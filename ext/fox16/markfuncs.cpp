@@ -53,9 +53,16 @@ void FXRbObject::markfunc(FXObject* obj){
   FXTRACE((100,"%s::markfunc(%p)\n",obj?obj->getClassName():"FXRbObject",obj));
   }
 
-static void FXRbSetInGCRecursive(FXWindow *window, bool enabled){
+static void FXRbSetInGCParentsRecursive(FXWindow *window, bool enabled){
   FXRbSetInGC( window, true );
-  if(window->getParent()) FXRbSetInGCRecursive( window->getParent(), enabled );
+  if(window->getParent()) FXRbSetInGCParentsRecursive( window->getParent(), enabled );
+  }
+
+static void FXRbSetInGCChildrenRecursive(FXWindow *window, bool enabled){
+  FXRbSetInGC( window, true );
+  for(FXWindow* child=window->getFirst(); child; child=child->getNext()){
+    FXRbSetInGCChildrenRecursive( child, enabled );
+    }
   }
 
 
@@ -78,9 +85,9 @@ void FXRbObject::freefunc(FXObject* self){
       // The parent window should also be scheduled to be free'd. In the other case,
       // the child window would have been marked as used.
       if(self->isMemberOf(FXMETACLASS(FXWindow))){
-        if(FXWindow *parent = dynamic_cast<FXWindow*>(self)->getParent()){
-          FXRbSetInGCRecursive( parent, true );
-          }
+        FXWindow *window = dynamic_cast<FXWindow*>(self);
+        FXRbSetInGCParentsRecursive( window, true );
+        FXRbSetInGCChildrenRecursive( window, true );
         }
       delete self;
       }
