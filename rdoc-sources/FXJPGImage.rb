@@ -30,8 +30,9 @@ module Fox
     # +opts+::	options [Integer]
     # +width+::	width [Integer]
     # +height+::	height [Integer]
+    # +quality+:: JPEG image quality [Integer]
     #
-    def initialize(a, pix=nil, opts=0, width=1, height=1) # :yields: theJPGImage
+    def initialize(a, pix=nil, opts=0, width=1, height=1, quality=75) # :yields: theJPGImage
     end
   end
 end
