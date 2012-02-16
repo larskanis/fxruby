@@ -223,9 +223,6 @@ module Fox
     # The active top-level window, if any [FXWindow]
     attr_reader :activeWindow
 
-    # The main window, if any [FXWindow]
-    attr_reader :mainWindow
-
     # The window of the current modal loop [FXWindow]
     attr_reader :modalWindow
 
