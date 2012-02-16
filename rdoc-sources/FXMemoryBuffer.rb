@@ -1,4 +1,5 @@
 module Fox
+  # This class is deprecated. Use FXImage methods instead.
   class FXMemoryBuffer
 
     #

@@ -55,29 +55,28 @@ public:
     * large images to instruct render() to use shared memory to communicate
     * with the server.
     */
-    FXImage(FXApp* a,VALUE ary=Qnil,FXuint opts=0,FXint w=1,FXint h=1){
+    FXImage(FXApp* a,VALUE string_or_ary=Qnil,FXuint opts=0,FXint w=1,FXint h=1){
       FXColor* pix=0;
-      if(!NIL_P(ary)){
-        Check_Type(ary,T_ARRAY);
-        if(FXMALLOC(&pix,FXColor,RARRAY_LEN(ary))){
-          for(long i=0; i<RARRAY_LEN(ary); i++){
-            pix[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry(ary,i)));
-	    }
-          }
-	  opts&=IMAGE_OWNED;
+      if(!NIL_P(string_or_ary)){
+        FXuint len=FXRbNumberOfFXColors(string_or_ary);
+        if(w*h != len){
+          rb_raise( rb_eArgError, "Array size does not match image size" );
         }
-      return new FXRbImage(a,pix,opts,w,h);
+        pix=FXRbConvertToFXColors(string_or_ary);
+        opts|=IMAGE_OWNED;
       }
+      return new FXRbImage(a,pix,opts,w,h);
+    }
 
     /// To get to the pixel data
     FXMemoryBuffer *getData() const {
       if(self->getData()){
         return new FXMemoryBuffer(self->getData(),self->getWidth()*self->getHeight());
-	}
+      }
       else{
         return 0;
-	}
       }
+    }
   }
 
   /// To get to the option flags
@@ -93,23 +92,41 @@ public:
     * The server-side representation of the image, if it exists, is not updated.
     * This can be done by calling render().
     */
-    void setData(VALUE ary,FXuint opts=0,VALUE w=Qnil,VALUE h=Qnil){
-      FXColor* pix=0;
-      Check_Type(ary,T_ARRAY);
-      if( ( (NIL_P(w) || NIL_P(h)) && self->getWidth()*self->getHeight() != RARRAY_LEN(ary)) ||
-          (!(NIL_P(w) || NIL_P(h)) && NUM2UINT(w)*NUM2UINT(h) != RARRAY_LEN(ary))){
-        rb_raise( rb_eArgError, "array size does not match image size" );
+    void setPixels(VALUE string_or_ary,FXuint opts=0,VALUE w=Qnil,VALUE h=Qnil){
+      FXuint len=FXRbNumberOfFXColors(string_or_ary);
+      if( ( (NIL_P(w) || NIL_P(h)) && self->getWidth()*self->getHeight() != len) ||
+          (!(NIL_P(w) || NIL_P(h)) && NUM2UINT(w)*NUM2UINT(h) != len)){
+        rb_raise( rb_eArgError, "Array size does not match image size" );
       }
-      if(FXMALLOC(&pix,FXColor,RARRAY_LEN(ary))){
-        for(long i=0; i<RARRAY_LEN(ary); i++){
-          pix[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry(ary,i)));
-        }
-      }
+
+      FXColor* pix=FXRbConvertToFXColors(string_or_ary);
       opts|=IMAGE_OWNED;
       if( NIL_P(w) || NIL_P(h) ){
         self->setData(pix,opts);
       }else{
         self->setData(pix,opts,NUM2UINT(w),NUM2UINT(h));
+      }
+    }
+
+    VALUE pixels(){
+      FXColor* data = self->getData();
+      if (data) {
+        FXuint size = self->getWidth()*self->getHeight();
+        VALUE ary = rb_ary_new2(size);
+        for (int i = 0; i < size; i++)
+          rb_ary_store(ary, i, UINT2NUM(data[i]));
+        return ary;
+      } else {
+        return Qnil;
+      }
+    }
+
+    VALUE pixel_string(){
+      FXColor* data = self->getData();
+      if (data) {
+        return rb_str_new((char*)data, self->getWidth()*self->getHeight()*sizeof(FXColor));
+      } else {
+        return Qnil;
       }
     }
   }

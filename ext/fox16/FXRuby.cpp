@@ -448,6 +448,36 @@ VALUE FXRbMakeColorArray(const FXColor* colors,FXint w,FXint h){
   return result;
   }
 
+FXuint FXRbNumberOfFXColors(VALUE string_or_ary){
+  FXuint len;
+
+  if(TYPE(string_or_ary) == T_ARRAY){
+    len = RARRAY_LEN(string_or_ary);
+  }else{
+    Check_Type(string_or_ary,T_STRING);
+    if(RSTRING_LEN(string_or_ary) % sizeof(FXColor) != 0 )
+      rb_raise( rb_eArgError, "String size is no multiple of %lu", sizeof(FXColor) );
+    len = RSTRING_LEN(string_or_ary) / sizeof(FXColor);
+  }
+  return len;
+}
+
+FXColor *FXRbConvertToFXColors(VALUE string_or_ary){
+  FXColor* pix=0;
+  if(TYPE(string_or_ary) == T_ARRAY){
+    if(FXMALLOC(&pix,FXColor,RARRAY_LEN(string_or_ary))){
+      for(long i=0; i<RARRAY_LEN(string_or_ary); i++){
+        pix[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry(string_or_ary,i)));
+      }
+    }
+  }else{
+    if(FXMALLOC(&pix,FXColor,RSTRING_LEN(string_or_ary)/sizeof(FXColor))){
+      memcpy(pix, RSTRING_PTR(string_or_ary), RSTRING_LEN(string_or_ary));
+    }
+  }
+  return pix;
+}
+
 //----------------------------------------------------------------------
 
 /**

@@ -11,7 +11,7 @@ class TC_FXImage < Fox::TestCase
 
   def test_default_constructor_args_1
     img = FXImage.new(app)
-    assert_same(nil, img.data)
+    assert_same(nil, img.pixels)
     assert_equal(0, img.options)
     assert_equal(1, img.width)
     assert_equal(1, img.height)
@@ -19,7 +19,7 @@ class TC_FXImage < Fox::TestCase
 
   def test_default_constructor_args_2
     img = FXImage.new(app, nil)
-    assert_same(nil, img.data)
+    assert_same(nil, img.pixels)
     assert_equal(0, img.options)
     assert_equal(1, img.width)
     assert_equal(1, img.height)
@@ -27,7 +27,7 @@ class TC_FXImage < Fox::TestCase
 
   def test_default_constructor_args_3
     img = FXImage.new(app, nil, 0)
-    assert_same(nil, img.data)
+    assert_same(nil, img.pixels)
     assert_equal(0, img.options)
     assert_equal(1, img.width)
     assert_equal(1, img.height)
@@ -35,7 +35,7 @@ class TC_FXImage < Fox::TestCase
 
   def test_default_constructor_args_4
     img = FXImage.new(app, nil, 0, 1)
-    assert_same(nil, img.data)
+    assert_same(nil, img.pixels)
     assert_equal(0, img.options)
     assert_equal(1, img.width)
     assert_equal(1, img.height)
@@ -43,7 +43,7 @@ class TC_FXImage < Fox::TestCase
 
   def test_default_constructor_args_5
     img = FXImage.new(app, nil, 0, 1, 1)
-    assert_same(nil, img.data)
+    assert_same(nil, img.pixels)
     assert_equal(0, img.options)
     assert_equal(1, img.width)
     assert_equal(1, img.height)
@@ -59,20 +59,25 @@ class TC_FXImage < Fox::TestCase
     assert_equal(IMAGE_OWNED, img.options)
   end
 
-  def test_setData
+  def test_setPixels
     img = FXImage.new(app, nil, 0, 2, 2)
-    img.setData([0x12345678, 2, 3, 4])
+    img.pixels = [0x12345678, 2, 3, 4]
     assert_equal(IMAGE_OWNED, img.options)
-    assert_equal(2*2, img.data.size)
-    assert_equal([0x12345678, 2, 3, 4], img.data.to_a)
+    assert_equal([0x12345678, 2, 3, 4], img.pixels)
   end
 
-  def test_setData2
+  def test_setPixels2
     img = FXImage.new(app)
-    img.setData([0x12345678, 2], 0, 2, 1)
+    img.setPixels([0x12345678, 2], 0, 2, 1)
     assert_equal(IMAGE_OWNED, img.options)
-    assert_equal(2*1, img.data.size)
-    assert_equal([0x12345678, 2], img.data.to_a)
+    assert_equal([0x12345678, 2], img.pixels)
+  end
+
+  def test_setPixels_string
+    img = FXImage.new(app, nil, 0, 2, 1)
+    img.pixels = "rgbaRGBA"
+    assert_equal(IMAGE_OWNED, img.options)
+    assert_equal("rgbaRGBA", img.pixel_string)
   end
 
   def test_create
@@ -81,18 +86,30 @@ class TC_FXImage < Fox::TestCase
     # the data should go away after we call create.
     #
     img = FXImage.new(app, nil, IMAGE_OWNED)
-    assert_not_nil(img.data)
+    assert_not_nil(img.pixels)
     img.create
-    assert_nil(img.data)
+    assert_nil(img.pixels)
 
     #
     # If the image owns its pixel data and IMAGE_KEEP was specified,
     # the data should stay after we call create.
     #
     img = FXImage.new(app, nil, IMAGE_KEEP|IMAGE_OWNED)
-    assert_not_nil(img.data)
+    assert_not_nil(img.pixels)
     img.create
-    assert_not_nil(img.data)
+    assert_not_nil(img.pixels)
+  end
+
+  def test_create_with_data
+    img = FXImage.new(app, "rgbaRGBA", 0, 1, 2)
+    assert_equal("rgbaRGBA", img.pixel_string)
+    img.create
+    assert_nil(img.pixels)
+
+    img = FXImage.new(app, [0x12345678], IMAGE_KEEP|IMAGE_OWNED)
+    assert_equal([0x12345678], img.pixels)
+    img.create
+    assert_not_nil(img.pixels)
   end
 
   #
@@ -106,10 +123,10 @@ class TC_FXImage < Fox::TestCase
     #
     img = FXImage.new(app)
     img.create
-    assert_nil(img.data)
+    assert_nil(img.pixels)
     assert_equal(0, img.options&IMAGE_OWNED)
     img.restore
-    assert_not_nil(img.data)
+    assert_not_nil(img.pixels)
     assert_not_equal(0, img.options&IMAGE_OWNED)
   end
 

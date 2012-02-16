@@ -39,16 +39,20 @@ module Fox
 
   class FXImage < FXDrawable
 
-    # Pixel data [FXMemoryBuffer]
+    # [deprecated] Pixel data [FXMemoryBuffer]
     attr_reader	:data
+
+    # Array of colors of all image pixels. Can also be written as String of raw [RGBA] values.
+    attr_accessor :pixels
+
 
     # Option flags [Integer]
     attr_accessor :options
 
     #
     # Create an image.  If a client-side pixel buffer has been specified,
-    # the image does not own the pixel buffer unless the +IMAGE_OWNED+ flag is
-    # set.  If the +IMAGE_OWNED+ flag is set but a +nil+ pixel buffer is
+    # the image owns the pixel buffer.
+    # If the +IMAGE_OWNED+ flag is set but a +nil+ pixel buffer is
     # passed, a pixel buffer will be automatically created and will be owned
     # by the image. The flags +IMAGE_SHMI+ and +IMAGE_SHMP+ may be specified for
     # large images to instruct #render to use shared memory to communicate
@@ -57,7 +61,7 @@ module Fox
     # ==== Parameters:
     #
     # +a+::		an application instance [FXApp]
-    # +pixels+::	pixels [Array of FXColor values]
+    # +pixels+::	pixels [Array of FXColor values or string of raw [RGBA] values]
     # +opts+::		image options [Integer]
     # +width+::		image width [Integer]
     # +height+::		image height [Integer]
@@ -75,13 +79,20 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +pix+::  the array of FXColor values.
+    # +pixels+::  pixels [Array of FXColor values or string of raw [RGBA] values]
     # +opts+::    image options [Integer]
     # +width+::   image width [Integer]
     # +height+::    image height [Integer]
     #
-    def setData(pix, opts=0, width=nil, height=nil)
+    def setPixels(pixels, opts=0, width=nil, height=nil)
     end
+
+    #
+    # Return a String of the raw color representation of all image pixels.
+    #
+    # Image pixels are stored bytewise as [RGBA] values.
+    #
+    def pixel_string ; end
 
     #
     # Return the color of the pixel at (_x_, _y_).

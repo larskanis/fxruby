@@ -151,6 +151,12 @@ extern VALUE FXRbMakeArray(const FXSegment* segments,FXuint nsegments);
 // Returns a Ruby array of FXColor values
 extern VALUE FXRbMakeColorArray(const FXColor* colors,FXint w,FXint h);
 
+// Returns a number of FXColor elements in the argument
+extern FXuint FXRbNumberOfFXColors(VALUE string_or_ary);
+
+// Allocate a FXColor buffer and populate with data
+extern FXColor *FXRbConvertToFXColors(VALUE string_or_ary);
+
 extern void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE data);
 
 // Returns the name of the message handler function (or NULL)
