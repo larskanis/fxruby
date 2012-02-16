@@ -147,6 +147,9 @@ module Fox
     def cursorWindow(*args) # :nodoc:
       getCursorWindow(*args)
     end
+    def modalWindow(*args) # :nodoc:
+      getModalWindow(*args)
+    end
     def modal?(*args) # :nodoc:
       isModal(*args)
     end
