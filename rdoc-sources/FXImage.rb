@@ -66,6 +66,24 @@ module Fox
     end
 
     #
+    # Populate the image with new pixel data of the same size or of a new size
+    #
+    # Pixel data is copied and IMAGE_OWNED option is set.
+    # If called with +width+ and +height+, the size of the serverside representation
+    # of the image, if it exists, is adjusted but the contents are not updated yet.
+    # This can be done by calling render().
+    #
+    # ==== Parameters:
+    #
+    # +pix+::  the array of FXColor values.
+    # +opts+::    image options [Integer]
+    # +width+::   image width [Integer]
+    # +height+::    image height [Integer]
+    #
+    def setData(pix, opts=0, width=nil, height=nil)
+    end
+
+    #
     # Return the color of the pixel at (_x_, _y_).
     #
     # ==== Parameters:

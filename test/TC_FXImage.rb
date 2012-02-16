@@ -59,6 +59,22 @@ class TC_FXImage < Fox::TestCase
     assert_equal(IMAGE_OWNED, img.options)
   end
 
+  def test_setData
+    img = FXImage.new(app, nil, 0, 2, 2)
+    img.setData([0x12345678, 2, 3, 4])
+    assert_equal(IMAGE_OWNED, img.options)
+    assert_equal(2*2, img.data.size)
+    assert_equal([0x12345678, 2, 3, 4], img.data.to_a)
+  end
+
+  def test_setData2
+    img = FXImage.new(app)
+    img.setData([0x12345678, 2], 0, 2, 1)
+    assert_equal(IMAGE_OWNED, img.options)
+    assert_equal(2*1, img.data.size)
+    assert_equal([0x12345678, 2], img.data.to_a)
+  end
+
   def test_create
     #
     # If the image owns its pixel data and IMAGE_KEEP was not specified,

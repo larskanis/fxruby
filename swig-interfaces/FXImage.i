@@ -86,21 +86,33 @@ public:
   /// Change options
   void setOptions(FXuint opts);
 
-  /**
-  * Populate the image with new pixel data of the same size; it will assume
-  * ownership of the pixel data if image IMAGE_OWNED option is passed.
-  * The server-side representation of the image, if it exists, is not updated.
-  * This can be done by calling render().
-  */
-  virtual void setData(FXColor *pix,FXuint opts=0);
-
-  /**
-  * Populate the image with new pixel data of a new size; it will assume ownership
-  * of the pixel data if image IMAGE_OWNED option is passed.  The size of the server-
-  * side representation of the image, if it exists, is adjusted but the contents are
-  * not updated yet. This can be done by calling render().
-  */
-  virtual void setData(FXColor *pix,FXuint opts,FXint w,FXint h);
+  %extend {
+    /**
+    * Populate the image with new pixel data of the same size; it will assume
+    * ownership of the pixel data if image IMAGE_OWNED option is passed.
+    * The server-side representation of the image, if it exists, is not updated.
+    * This can be done by calling render().
+    */
+    void setData(VALUE ary,FXuint opts=0,VALUE w=Qnil,VALUE h=Qnil){
+      FXColor* pix=0;
+      Check_Type(ary,T_ARRAY);
+      if( ( (NIL_P(w) || NIL_P(h)) && self->getWidth()*self->getHeight() != RARRAY_LEN(ary)) ||
+          (!(NIL_P(w) || NIL_P(h)) && NUM2UINT(w)*NUM2UINT(h) != RARRAY_LEN(ary))){
+        rb_raise( rb_eArgError, "array size does not match image size" );
+      }
+      if(FXMALLOC(&pix,FXColor,RARRAY_LEN(ary))){
+        for(long i=0; i<RARRAY_LEN(ary); i++){
+          pix[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry(ary,i)));
+        }
+      }
+      opts|=IMAGE_OWNED;
+      if( NIL_P(w) || NIL_P(h) ){
+        self->setData(pix,opts);
+      }else{
+        self->setData(pix,opts,NUM2UINT(w),NUM2UINT(h));
+      }
+    }
+  }
 
   /// Get pixel at x,y
   FXColor getPixel(FXint x,FXint y) const;
