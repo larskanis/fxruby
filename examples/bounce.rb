@@ -25,7 +25,7 @@ class Ball
     @x = @center.x - @radius
     @y = @center.y - @radius
     @color = FXRGB(255, 0, 0) # red
-    @dir = FXPoint.new(-1, 0)
+    @dir = FXPoint.new(-1, -1)
     setWorldSize(1000, 1000)
   end
 
@@ -38,12 +38,20 @@ class Ball
     dc.fillArc(x, y, w, h, 64*270, 64*360)
   end
 
-  def bounce
-    @dir = -@dir
+  def bounce_x
+    @dir.x=-@dir.x
   end
 
-  def collision?
-    (x < 0) || (x+w > worldWidth) || (y < 0) || (y+h > worldHeight)
+  def bounce_y
+    @dir.y=-@dir.y
+  end
+
+  def collision_y?
+    (y<0 && dir.y<0) || (y+h>worldHeight && dir.y>0)
+  end
+
+  def collision_x?
+    (x<0 && dir.x<0) || (x+w>worldWidth && dir.x>0)
   end
 
   def setWorldSize(ww, wh)
@@ -58,8 +66,12 @@ class Ball
     center.y += dy
     @x += dx
     @y += dy
-    if collision?
-      bounce
+    if collision_x?
+      bounce_x
+      move(units)
+    end
+    if collision_y?
+      bounce_y
       move(units)
     end
   end
