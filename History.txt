@@ -1,3 +1,23 @@
+
+=== 1.6.22 / 2012-02-21
+
+* Allow better access to raw pixel data of FXImage and derivatives
+* Build Windows binary gem per cross compiler on Linux
+* Add support for Rubinius (currently requires rubinius from git)
+* Add alias FXApp#modalWindow, as described in rdoc
+* Add quality parameter to FXJPGImage and FXJPGIcon
+* Fix invalid memory access in final GC call when using FXMenuCommand with acckey
+* Fix double referenced foxObj when borrowed object registration is triggered from C++
+* Fix Segfault while GC'ing FXWindows
+* Fix 'object allocation not allowed while garbage collection' bug
+* Fix clipboard handling on windows
+* Add missing namespace qualifier to FXSEL in FXAccelTable
+* Fix GC bug in FXAccelTable
+* Fix double free in FXMemoryStream#giveBuffer
+* Fix invalid memory access in typemap to zero terminated FXchar* (such as fillItems methods)
+* Fix FXApp#addInput for Ruby 1.9 on Linux
+* Fix "ruby_code case not handled: Regexp" issue with newer rubygems
+
 === 1.6.20 / 2009-03-06
 
 * Integrated the Hoe and rake-compiler extensions into the Rakefile and
