@@ -39,7 +39,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this spring [FXComposite]
+    # +p+:: the parent widget for this spring {FXComposite}
     # +relw+:: the relative width [Integer]
     # +relh+:: the relative height [Integer]
     # +opts+:: the options [Integer]

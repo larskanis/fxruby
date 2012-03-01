@@ -32,16 +32,16 @@ module Fox
     # Number of visible items [Integer]
     attr_accessor :numVisible
 
-    # First root-level item [FXTreeItem]
+    # First root-level item {FXTreeItem}
     attr_reader :firstItem
 
-    # Last root-level item [FXTreeItem]
+    # Last root-level item {FXTreeItem}
     attr_reader :lastItem
 
-    # Current item, if any [FXTreeItem]
+    # Current item, if any {FXTreeItem}
     attr_accessor :currentItem
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
     # Tree list box style
@@ -58,8 +58,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this tree list box [FXComposite]
-    # +target+:: the message target, if any, for this tree list box [FXObject]
+    # +p+:: the parent window for this tree list box {FXComposite}
+    # +target+:: the message target, if any, for this tree list box {FXObject}
     # +selector+:: the message identifier for this tree list box [Integer]
     # +opts+:: tree list options [Integer]
     # +x+:: initial x-position [Integer]

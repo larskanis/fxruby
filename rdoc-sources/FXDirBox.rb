@@ -24,7 +24,7 @@ module Fox
     # Current directory [String]
     attr_accessor :directory
 
-    # File associations [FXFileDict]
+    # File associations {FXFileDict}
     attr_accessor :associations
 
     # Return an initialized FXDirBox instance.

@@ -16,19 +16,19 @@ module Fox
     # Border width [Integer]
     attr_reader :borderWidth
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
-    # Border color [FXColor]
+    # Border color {FXColor}
     attr_accessor :borderColor
 
-    # Base color [FXColor]
+    # Base color {FXColor}
     attr_accessor :baseColor
 
-    # Current grab owner [FXWindow]
+    # Current grab owner {FXWindow}
     attr_reader :grabOwner
 
     # Popup orientation [Integer]

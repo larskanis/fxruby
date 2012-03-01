@@ -163,67 +163,67 @@ module Fox
     # Display [Integer]
     attr_reader :display
 
-    # Border color [FXColor]
+    # Border color {FXColor}
     attr_accessor :borderColor
 
-    # Background color of GUI controls [FXColor]
+    # Background color of GUI controls {FXColor}
     attr_accessor :baseColor
 
-    # Hilite color of GUI controls [FXColor]
+    # Hilite color of GUI controls {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color of GUI controls [FXColor]
+    # Shadow color of GUI controls {FXColor}
     attr_accessor :shadowColor
 
-    # Default background color [FXColor]
+    # Default background color {FXColor}
     attr_accessor :backColor
 
-    # Default foreground color [FXColor]
+    # Default foreground color {FXColor}
     attr_accessor :foreColor
 
-    # Default foreground color for selected objects [FXColor]
+    # Default foreground color for selected objects {FXColor}
     attr_accessor :selforeColor
 
-    # Default background color for selected objects [FXColor]
+    # Default background color for selected objects {FXColor}
     attr_accessor :selbackColor
 
-    # Default foreground color for tooltips [FXColor]
+    # Default foreground color for tooltips {FXColor}
     attr_accessor :tipforeColor
 
-    # Default background color for tooltips [FXColor]
+    # Default background color for tooltips {FXColor}
     attr_accessor :tipbackColor
 
-    # Default text color for selected menu items [FXColor]
+    # Default text color for selected menu items {FXColor}
     attr_accessor :selMenuTextColor
 
-    # Default background color for selected menu items [FXColor]
+    # Default background color for selected menu items {FXColor}
     attr_accessor :selMenuBackColor
 
-    # Default visual [FXVisual]
+    # Default visual {FXVisual}
     attr_accessor :defaultVisual
 
-    # Default font [FXFont]
+    # Default font {FXFont}
     attr_accessor :normalFont
 
-    # Wait cursor [FXCursor]
+    # Wait cursor {FXCursor}
     attr_accessor :waitCursor
 
-    # Monochrome visual [FXVisual]
+    # Monochrome visual {FXVisual}
     attr_reader :monoVisual
 
-    # Root window [FXRootWindow]
+    # Root window {FXRootWindow}
     attr_reader :rootWindow
 
-    # The window under the cursor, if any [FXWindow]
+    # The window under the cursor, if any {FXWindow}
     attr_reader :cursorWindow
 
-    # The window at the end of the focus chain, if any [FXWindow]
+    # The window at the end of the focus chain, if any {FXWindow}
     attr_reader :focusWindow
 
-    # The active top-level window, if any [FXWindow]
+    # The active top-level window, if any {FXWindow}
     attr_reader :activeWindow
 
-    # The window of the current modal loop [FXWindow]
+    # The window of the current modal loop {FXWindow}
     attr_reader :modalWindow
 
     # Mode of current modal loop [Integer]
@@ -269,7 +269,7 @@ module Fox
     # Amount of time (in milliseconds) to yield to Ruby's thread scheduler [Integer]
     attr_accessor :sleepTime
 
-    # Message translator [FXTranslator]
+    # Message translator {FXTranslator}
     attr_accessor :translator
 
     # Copyright notice for library
@@ -492,8 +492,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+::  [FXStream]
-    # +window+:: [FXWindow]
+    # +store+::  {FXStream}
+    # +window+:: {FXWindow}
     #
     def writeWindow(store, window); end
 
@@ -504,9 +504,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+::  [FXStream]
-    # +father+:: [FXWindow]
-    # +owner+::  [FXWindow]
+    # +store+::  {FXStream}
+    # +father+:: {FXWindow}
+    # +owner+::  {FXWindow}
     #
     def readWindow(store, father, owner); end
 

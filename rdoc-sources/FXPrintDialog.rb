@@ -26,7 +26,7 @@ module Fox
   # +ID_NUM_COPIES+::  x
   #
   class FXPrintDialog < FXDialogBox
-    # Printer information [FXPrinter]
+    # Printer information {FXPrinter}
     attr_accessor :printer
 
     # Construct print dialog

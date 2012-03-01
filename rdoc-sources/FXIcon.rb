@@ -7,7 +7,7 @@ module Fox
   #
   class FXIcon < FXImage
 
-    # Transparency color [FXColor]
+    # Transparency color {FXColor}
     attr_accessor :transparentColor
 
     #
@@ -25,9 +25,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+:: an application instance [FXApp]
+    # +a+:: an application instance {FXApp}
     # +pix+:: initial pixel buffer [String]
-    # +clr+:: transparency color [FXColor]
+    # +clr+:: transparency color {FXColor}
     # +opts+:: options [Integer]
     # +width+:: width [Integer]
     # +height+:: height [Integer]

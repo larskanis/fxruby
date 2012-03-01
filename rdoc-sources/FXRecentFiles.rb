@@ -35,7 +35,7 @@ module Fox
   # <tt>ID_FILE_10</tt>:: x
   #
   class FXRecentFiles < FXObject
-    # Application associated with this recent files group [FXApp]
+    # Application associated with this recent files group {FXApp}
     attr_reader :app
 
     # Maximum number of files to track [Integer]
@@ -44,7 +44,7 @@ module Fox
     # Group name [String]
     attr_accessor :groupName
 
-    # Message target [FXObject]
+    # Message target {FXObject}
     attr_accessor :target
 
     # Message identifier [Integer]

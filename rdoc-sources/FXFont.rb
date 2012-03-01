@@ -214,7 +214,7 @@ module Fox
     # Hints [Integer]
     attr_reader :hints
 
-    # Font description [FXFontDesc]
+    # Font description {FXFontDesc}
     attr_accessor :fontDesc
 
     # Font angle [Integer]
@@ -252,8 +252,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::  an application instance [FXApp]
-    # +fontDesc+:: a font description [FXFontDesc]
+    # +a+::  an application instance {FXApp}
+    # +fontDesc+:: a font description {FXFontDesc}
     #
     def initialize(a, fontDesc) # :yields: theFont
     end
@@ -266,7 +266,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::  an application instance [FXApp]
+    # +a+::  an application instance {FXApp}
     # +face+::  font face name [String]
     # +size+::  requested font size, in points [Integer]
     # +weight+:: requested font weight [Integer]

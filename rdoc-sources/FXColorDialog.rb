@@ -21,7 +21,7 @@ module Fox
 
   class FXColorDialog < FXDialogBox
 
-    # The color [FXColor]
+    # The color {FXColor}
     attr_accessor :rgba
 
     # Only opaque colors allowed [Boolean]

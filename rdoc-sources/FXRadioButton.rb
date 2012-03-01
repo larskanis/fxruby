@@ -34,10 +34,10 @@ module Fox
     # Radio button style [Integer]
     attr_accessor :radioButtonStyle
 
-    # Radio ball color [FXColor]
+    # Radio ball color {FXColor}
     attr_accessor :radioColor
 
-    # Radio disk color [FXColor]
+    # Radio disk color {FXColor}
     attr_accessor :diskColor
 
     #

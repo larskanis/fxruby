@@ -18,10 +18,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::  an application instance [FXApp]
+    # +a+::  an application instance {FXApp}
     # +pixels+:: a memory buffer formatted in XBM file format [String]
     # +mask+::  a memory buffer formatted in XBM file format [String]
-    # +clr+::  transparency color [FXColor]
+    # +clr+::  transparency color {FXColor}
     # +opts+::  options [Integer]
     # +width+::  width [Integer]
     # +height+::  height [Integer]

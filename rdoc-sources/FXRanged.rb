@@ -4,10 +4,10 @@ module Fox
   #
   class FXRanged
 
-    # Lower corner of range [FXVec3d]
+    # Lower corner of range {FXVec3d}
     attr_accessor :lower
 
-    # Upper corner of range [FXVec3d]
+    # Upper corner of range {FXVec3d}
     attr_accessor :upper
 
     # Default constructor

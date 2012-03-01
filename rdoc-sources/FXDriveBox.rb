@@ -14,7 +14,7 @@ module Fox
     # Current drive [String]
     attr_accessor :drive
 
-    # File associations [FXFileDict]
+    # File associations {FXFileDict}
     attr_accessor :associations
 
     # Returns an initialized FXDriveBox instance

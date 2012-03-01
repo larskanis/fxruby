@@ -53,7 +53,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this switcher [FXComposite]
+    # +p+:: the parent window for this switcher {FXComposite}
     # +opts+:: switcher options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

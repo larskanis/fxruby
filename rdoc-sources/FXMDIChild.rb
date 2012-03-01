@@ -79,37 +79,37 @@ module Fox
     # Iconified height [Integer]
     attr_accessor :iconHeight
 
-    # Content window [FXWindow]
+    # Content window {FXWindow}
     attr_reader :contentWindow
 
     # Window title [String]
     attr_accessor :title
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
-    # Base color [FXColor]
+    # Base color {FXColor}
     attr_accessor :baseColor
 
-    # Border color [FXColor]
+    # Border color {FXColor}
     attr_accessor :borderColor
 
-    # Title color [FXColor]
+    # Title color {FXColor}
     attr_accessor :titleColor
 
-    # Title background color [FXColor]
+    # Title background color {FXColor}
     attr_accessor :titleBackColor
 
-    # Window icon [FXIcon]
+    # Window icon {FXIcon}
     attr_accessor :icon
 
-    # Window menu [FXPopup]
+    # Window menu {FXPopup}
     attr_accessor :menu
 
-    # Title font [FXFont]
+    # Title font {FXFont}
     attr_accessor :font
 
     # Construct MDI Child window with given name and icon

@@ -11,16 +11,16 @@ module Fox
     # Border width [Integer]
     attr_reader :borderWidth
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
-    # Border color [FXColor]
+    # Border color {FXColor}
     attr_accessor :borderColor
 
-    # Base GUI color [FXColor]
+    # Base GUI color {FXColor}
     attr_accessor :baseColor
 
     #
@@ -28,7 +28,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+:: the owner window for this tool bar shell [FXWindow]
+    # +owner+:: the owner window for this tool bar shell {FXWindow}
     # +opts+:: tool bar shell options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

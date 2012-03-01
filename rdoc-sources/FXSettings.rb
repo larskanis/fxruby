@@ -107,7 +107,7 @@ module Fox
     #
     # +section+:: the section name [String]
     # +key+::  the key for the setting of interest [String]
-    # +default+:: the default value to return if _key_ is not found [FXColor]
+    # +default+:: the default value to return if _key_ is not found {FXColor}
     #
     def readColorEntry(section, key, default=0) ; end
 
@@ -179,7 +179,7 @@ module Fox
     #
     # +section+:: the section name [String]
     # +key+::  the key for this setting [String]
-    # +value+::  the value for this setting [FXColor]
+    # +value+::  the value for this setting {FXColor}
     #
     def writeColorEntry(section, key, value) ; end
 

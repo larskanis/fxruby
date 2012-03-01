@@ -5,10 +5,10 @@ module Fox
   #
   class FXDragCorner < FXWindow
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
     # Construct a drag corner

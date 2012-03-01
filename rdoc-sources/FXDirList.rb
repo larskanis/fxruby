@@ -3,7 +3,7 @@ module Fox
   # Directory item
   #
   class FXDirItem < FXTreeItem
-    # File associations [FXFileAssoc]
+    # File associations {FXFileAssoc}
     attr_reader :assoc
 
     # File size [Integer]
@@ -86,7 +86,7 @@ module Fox
     # Wildcard matching mode, some combination of file matching flags [Integer]
     attr_accessor :matchMode
 
-    # File associations [FXFileDict]
+    # File associations {FXFileDict}
     attr_accessor :associations
 
     # Returns an initialized FXDirList instance

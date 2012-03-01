@@ -1,7 +1,7 @@
 module Fox
   # Color item
   class FXColorItem < FXListItem
-    # Item color [FXColor]
+    # Item color {FXColor}
     attr_accessor :color
 
     # Return a new color item, initialized with the given text, color and

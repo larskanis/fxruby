@@ -8,10 +8,10 @@ module Fox
     # Caption text for the grip [String]
     attr_accessor :caption
 
-    # Caption font [FXFont]
+    # Caption font {FXFont}
     attr_accessor :font
 
-    # Caption color [FXColor]
+    # Caption color {FXColor}
     attr_accessor :captionColor
 
     # Current justification mode [Integer]

@@ -61,7 +61,7 @@ module Fox
     # Delta between ticks [Float]
     attr_accessor :tickDelta
 
-    # Color of the slot that the slider head moves in [FXColor]
+    # Color of the slot that the slider head moves in {FXColor}
     attr_accessor :slotColor
 
     # Status line help text for this slider [String]
@@ -75,8 +75,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this slider [FXComposite]
-    # +target+:: the message target, if any, for this slider [FXObject]
+    # +p+:: the parent window for this slider {FXComposite}
+    # +target+:: the message target, if any, for this slider {FXObject}
     # +selector+:: the message identifier for this slider [Integer]
     # +opts+:: slider options [Integer]
     # +x+:: initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]

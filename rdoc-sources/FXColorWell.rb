@@ -35,7 +35,7 @@ module Fox
 
   class FXColorWell < FXFrame
 
-    # The color [FXColor]
+    # The color {FXColor}
     attr_accessor :rgba
 
     # Status line help text [String]

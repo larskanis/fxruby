@@ -46,7 +46,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this splitter [FXComposite]
+    # +p+:: the parent widget for this splitter {FXComposite}
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]
@@ -61,8 +61,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this splitter [FXComposite]
-    # +target+:: the message target for this splitter [FXObject]
+    # +p+:: the parent widget for this splitter {FXComposite}
+    # +target+:: the message target for this splitter {FXObject}
     # +selector+:: the message identifier for this splitter [Integer]
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]

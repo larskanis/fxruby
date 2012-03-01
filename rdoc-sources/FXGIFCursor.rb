@@ -23,7 +23,7 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+:: stream to which to write the image data [FXStream]
+  # +store+:: stream to which to write the image data {FXStream}
   # +data+:: the image pixel data [Array of FXColor]
   # +width+:: width [Integer]
   # +height+:: height [Integer]
@@ -39,7 +39,7 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+:: stream from which to read the file data [FXStream]
+  # +store+:: stream from which to read the file data {FXStream}
   #
   def Fox.fxloadGIF(store); end
 

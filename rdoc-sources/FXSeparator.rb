@@ -32,7 +32,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this separator [FXComposite]
+    # +p+:: the parent widget for this separator {FXComposite}
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]
@@ -56,7 +56,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this separator [FXComposite]
+    # +p+:: the parent widget for this separator {FXComposite}
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

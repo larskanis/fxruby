@@ -4,7 +4,7 @@ module Fox
   #
   class FXId < FXObject
 
-    # Application [FXApp]
+    # Application {FXApp}
     attr_reader :app
 
     # User data [Object]

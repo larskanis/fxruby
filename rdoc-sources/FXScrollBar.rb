@@ -59,13 +59,13 @@ module Fox
     # Current scroll position [Integer]
     attr_accessor :position
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
-    # Border color [FXColor]
+    # Border color {FXColor}
     attr_accessor :borderColor
 
     # Scroll bar style [Integer]
@@ -79,8 +79,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this scroll bar [FXComposite]
-    # +target+:: the initial message target (if any) for this scroll bar [FXObject]
+    # +p+:: the parent widget for this scroll bar {FXComposite}
+    # +target+:: the initial message target (if any) for this scroll bar {FXObject}
     # +selector+:: the message identifier for this scroll bar [Integer]
     # +opts+:: the options [Integer]
     # +x+:: initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]

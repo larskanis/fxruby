@@ -37,7 +37,7 @@ module Fox
     # Spinner range (low and high values) [Range]
     attr_accessor :range
 
-    # Text font for this spinner [FXFont]
+    # Text font for this spinner {FXFont}
     attr_accessor :font
 
     # Status line help text for this spinner [String]
@@ -49,22 +49,22 @@ module Fox
     # Spinner style [Integer]
     attr_accessor :spinnerStyle
 
-    # Color of the "up" arrow [FXColor]
+    # Color of the "up" arrow {FXColor}
     attr_accessor :upArrowColor
 
-    # Color of the "down" arrow [FXColor]
+    # Color of the "down" arrow {FXColor}
     attr_accessor :downArrowColor
 
-    # Normal text color [FXColor]
+    # Normal text color {FXColor}
     attr_accessor :textColor
 
-    # Background color for selected text [FXColor]
+    # Background color for selected text {FXColor}
     attr_accessor :selBackColor
 
-    # Foreground color for selected text [FXColor]
+    # Foreground color for selected text {FXColor}
     attr_accessor :selTextColor
 
-    # Cursor color [FXColor]
+    # Cursor color {FXColor}
     attr_accessor :cursorColor
 
     # Number of columns (i.e. width of spinner's text field, in terms of number of columns of 'm') [Integer]
@@ -78,9 +78,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this spinner [FXComposite]
+    # +p+:: the parent window for this spinner {FXComposite}
     # +cols+:: number of columns to display in the text field [Integer]
-    # +target+:: the message target, if any, for this spinner [FXObject]
+    # +target+:: the message target, if any, for this spinner {FXObject}
     # +selector+:: the message identifier for this spinner [Integer]
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]

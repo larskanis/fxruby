@@ -35,7 +35,7 @@ module Fox
     # Tool tip message for this shape [String]
     attr_accessor :tipText
 
-    # Position [FXVec3f]
+    # Position {FXVec3f}
     attr_accessor :position
 
     #

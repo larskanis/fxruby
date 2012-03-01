@@ -37,19 +37,19 @@ module Fox
     # Current item's index, or -1 if no current item [Integer]
     attr_accessor :currentItem
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
-    # Background color [FXColor]
+    # Background color {FXColor}
     attr_reader :backColor
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
-    # Background color for selected items [FXColor]
+    # Background color for selected items {FXColor}
     attr_accessor :selBackColor
 
-    # Text color for selected items [FXColor]
+    # Text color for selected items {FXColor}
     attr_accessor :selTextColor
 
     # Status line help text [String]

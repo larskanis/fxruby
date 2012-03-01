@@ -14,7 +14,7 @@ module Fox
   #
   class FXMenuTitle < FXMenuCaption
 
-    # The popup menu [FXPopup]
+    # The popup menu {FXPopup}
     attr_accessor :menu
 
     #

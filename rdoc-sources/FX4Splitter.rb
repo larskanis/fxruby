@@ -68,16 +68,16 @@ module Fox
     # Currently expanded child (some combination of the expansion flags, or zero if no panes are expanded)
     attr_accessor :expanded
 
-    # Top left child window, if any [FXWindow]
+    # Top left child window, if any {FXWindow}
     attr_reader :topLeft
 
-    # Top right child window, if any [FXWindow]
+    # Top right child window, if any {FXWindow}
     attr_reader :topRight
 
-    # Bottom left child window, if any [FXWindow]
+    # Bottom left child window, if any {FXWindow}
     attr_reader :bottomLeft
 
-    # Bottom right child window, if any [FXWindow]
+    # Bottom right child window, if any {FXWindow}
     attr_reader :bottomRight
 
     #
@@ -85,7 +85,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this splitter [FXComposite]
+    # +p+:: the parent widget for this splitter {FXComposite}
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]
@@ -101,8 +101,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this splitter [FXComposite]
-    # +target+:: message target [FXObject]
+    # +p+:: the parent widget for this splitter {FXComposite}
+    # +target+:: message target {FXObject}
     # +selector+:: message identifier [Integer]
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]

@@ -8,10 +8,10 @@ module Fox
   #
   class FXStatusBar < FXHorizontalFrame
 
-    # The status line widget [FXStatusLine]
+    # The status line widget {FXStatusLine}
     attr_reader :statusLine
 
-    # The drag corner widget [FXDragCorner]
+    # The drag corner widget {FXDragCorner}
     attr_reader :dragCorner
 
     # If +true+, the drag corner is shown [Boolean]
@@ -22,7 +22,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this status bar [FXComposite]
+    # +p+:: the parent window for this status bar {FXComposite}
     # +opts+:: status bar options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

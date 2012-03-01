@@ -163,7 +163,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +owner+::  the owner window for the dialog box {FXWindow}
     # +caption+:: the caption for the dialog box [String]
     # +path+::  the initial filename [String]
     # +patterns+:: the pattern list [String]
@@ -178,7 +178,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +owner+::  the owner window for the dialog box {FXWindow}
     # +caption+:: the caption for the dialog box [String]
     # +path+::  the initial filename [String]
     # +patterns+:: the pattern list [String]
@@ -193,7 +193,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +owner+::  the owner window for the dialog box {FXWindow}
     # +caption+:: the caption for the dialog box [String]
     # +path+::  the initial filename [String]
     # +patterns+:: the pattern list [String]
@@ -207,7 +207,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +owner+::  the owner window for the dialog box {FXWindow}
     # +caption+:: the caption for the dialog box [String]
     # +path+::  the initial directory path [String]
     #

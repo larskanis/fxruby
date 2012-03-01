@@ -27,7 +27,7 @@ module Fox
     # Alternate text, shown when toggled [String]
     attr_accessor :altText
 
-    # Alternate icon, shown when toggled [FXIcon]
+    # Alternate icon, shown when toggled {FXIcon}
     attr_accessor :altIcon
 
     # Toggled state [+true+ or +false+]
@@ -47,12 +47,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::  the parent window for this toggle button [FXComposite]
+    # +p+::  the parent window for this toggle button {FXComposite}
     # <tt>text1</tt>:: the text for this toggle button's first state [String]
     # <tt>text2</tt>:: the text for this toggle button's second state [String]
-    # <tt>icon1</tt>:: the icon, if any, for this toggle button's first state [FXIcon]
-    # <tt>icon2</tt>:: the icon, if any, for this toggle button's second state [FXIcon]
-    # +target+::  the message target, if any, for this toggle button [FXObject]
+    # <tt>icon1</tt>:: the icon, if any, for this toggle button's first state {FXIcon}
+    # <tt>icon2</tt>:: the icon, if any, for this toggle button's second state {FXIcon}
+    # +target+::  the message target, if any, for this toggle button {FXObject}
     # +selector+::  the message identifier for this toggle button [Integer]
     # +opts+::  toggle button options [Integer]
     # +x+::  initial x-position [Integer]

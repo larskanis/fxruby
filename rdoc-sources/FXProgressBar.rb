@@ -20,19 +20,19 @@ module Fox
     # Bar width [Integer]
     attr_accessor :barSize
 
-    # Bar color [FXColor]
+    # Bar color {FXColor}
     attr_accessor :barColor
 
-    # Bar background color [FXColor]
+    # Bar background color {FXColor}
     attr_accessor :barBGColor
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
-    # Alternate text color [FXColor]
+    # Alternate text color {FXColor}
     attr_accessor :textAltColor
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
     # Progress bar style [Integer]

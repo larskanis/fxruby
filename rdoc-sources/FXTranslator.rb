@@ -4,7 +4,7 @@ module Fox
   #
   class FXTranslator
 
-    # The application associated with this translator [FXApp]
+    # The application associated with this translator {FXApp}
     attr_reader :app
 
     #

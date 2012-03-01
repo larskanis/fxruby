@@ -59,7 +59,7 @@ module Fox
     # Justification mode
     attr_accessor :justify
 
-    # Fill color for the arrow [FXColor]
+    # Fill color for the arrow {FXColor}
     attr_accessor :arrowColor
 
     # Construct arrow button

@@ -3,25 +3,25 @@ module Fox
   # Highlight style entry
   #
   class FXHiliteStyle
-    # Normal text foreground color [FXColor]
+    # Normal text foreground color {FXColor}
     attr_accessor :normalForeColor
 
-    # Normal text background color [FXColor]
+    # Normal text background color {FXColor}
     attr_accessor :normalBackColor
 
-    # Selected text foreground color [FXColor]
+    # Selected text foreground color {FXColor}
     attr_accessor :selectForeColor
 
-    # Selected text background color [FXColor]
+    # Selected text background color {FXColor}
     attr_accessor :selectBackColor
 
-    # Highlight text foreground color [FXColor]
+    # Highlight text foreground color {FXColor}
     attr_accessor :hiliteForeColor
 
-    # Highlight text background color [FXColor]
+    # Highlight text background color {FXColor}
     attr_accessor :hiliteBackColor
 
-    # Active text background color [FXColor]
+    # Active text background color {FXColor}
     attr_accessor :activeBackColor
 
     # Highlight text style [Integer]
@@ -229,34 +229,34 @@ module Fox
     # Word delimiters [String]
     attr_accessor :delimiters
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
-    # Selected text background color [FXColor]
+    # Selected text background color {FXColor}
     attr_accessor :selBackColor
 
-    # Selected text color [FXColor]
+    # Selected text color {FXColor}
     attr_accessor :selTextColor
 
-    # Highlight text color [FXColor]
+    # Highlight text color {FXColor}
     attr_accessor :hiliteTextColor
 
-    # Highlight text background color [FXColor]
+    # Highlight text background color {FXColor}
     attr_accessor :hiliteBackColor
 
-    # Active background color [FXColor]
+    # Active background color {FXColor}
     attr_accessor :activeBackColor
 
-    # Cursor color [FXColor]
+    # Cursor color {FXColor}
     attr_accessor :cursorColor
 
-    # Line number color [FXColor]
+    # Line number color {FXColor}
     attr_accessor :numberColor
 
-    # Bar color [FXColor]
+    # Bar color {FXColor}
     attr_accessor :barColor
 
     # Status line help text [String]
@@ -312,8 +312,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this text widget [FXComposite]
-    # +target+:: the message target, if any, for this text widget [FXObject]
+    # +p+:: the parent window for this text widget {FXComposite}
+    # +target+:: the message target, if any, for this text widget {FXObject}
     # +selector+:: the message identifier for this text widget [Integer]
     # +opts+:: text options [Integer]
     # +x+:: initial x-position [Integer]

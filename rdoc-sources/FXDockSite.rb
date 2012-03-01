@@ -42,7 +42,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+::  a reference to the dockbar that's being dragged [FXDockBar]
+    # +bar+::  a reference to the dockbar that's being dragged {FXDockBar}
     # +barx+::  current x-coordinate of the dockbar [Integer]
     # +bary+  current y-coordinate of the dockbar [Integer]
     #
@@ -56,8 +56,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+::  a reference to the newly docked dockbar [FXDockBar]
-    # +before+:: a reference to the window that the dockbar was added before [FXWindow]
+    # +bar+::  a reference to the newly docked dockbar {FXDockBar}
+    # +before+:: a reference to the window that the dockbar was added before {FXWindow}
     #
     def dockToolBar(bar, before); end
 
@@ -69,7 +69,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+::  a reference to the newly docked dockbar [FXDockBar][FXDockBar]
+    # +bar+::  a reference to the newly docked dockbar {FXDockBar}{FXDockBar}
     # +barx+::  x-coordinate of the docking position [Integer]
     # +bary+::  y-coordinate of the docking position [Integer]
     #
@@ -83,7 +83,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+:: a reference to the removed dockbar [FXDockBar]
+    # +bar+:: a reference to the removed dockbar {FXDockBar}
     #
     def undockToolBar(bar); end
 

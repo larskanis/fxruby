@@ -13,7 +13,7 @@ module Fox
   # +SPLASH_DESTROY+::  Splash window will destroy itself when timer expires
   #
   class FXSplashWindow < FXTopWindow
-    # The splash window's icon [FXIcon]
+    # The splash window's icon {FXIcon}
     attr_accessor :icon
 
     # The delay before hiding the splash window, in milliseconds [Integer]

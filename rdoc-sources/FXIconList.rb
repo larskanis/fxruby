@@ -7,10 +7,10 @@ module Fox
     # Item text [String]
     attr_accessor :text
 
-    # Big icon [FXIcon]
+    # Big icon {FXIcon}
     attr_accessor :bigIcon
 
-    # Mini icon [FXIcon]
+    # Mini icon {FXIcon}
     attr_accessor :miniIcon
 
     # Item user data [Object]
@@ -143,7 +143,7 @@ module Fox
     # Number of columns [Integer]
     attr_reader :numCols
 
-    # The header control [FXHeader]
+    # The header control {FXHeader}
     attr_reader :header
 
     # The number of header items in the header control [Integer]
@@ -164,16 +164,16 @@ module Fox
     # Index of item under the cursor, or -1 if none [Integer]
     attr_reader :cursorItem
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
-    # Normal text color [FXColor]
+    # Normal text color {FXColor}
     attr_accessor :textColor
 
-    # Background color for selected item(s) [FXColor]
+    # Background color for selected item(s) {FXColor}
     attr_accessor :selBackColor
 
-    # Text color for selected item(s) [FXColor]
+    # Text color for selected item(s) {FXColor}
     attr_accessor :selTextColor
 
     # Maximum item space (in pixels) for each item [Integer]

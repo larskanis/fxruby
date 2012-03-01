@@ -31,19 +31,19 @@ module Fox
 
   # OpenGL Light Source
   class FXLight
-    # Ambient light color [FXVec4f]
+    # Ambient light color {FXVec4f}
     attr_accessor :ambient
 
-    # Diffuse light color [FXVec4f]
+    # Diffuse light color {FXVec4f}
     attr_accessor :diffuse
 
-    # Specular light color [FXVec4f]
+    # Specular light color {FXVec4f}
     attr_accessor :specular
 
-    # Light position [FXVec4f]
+    # Light position {FXVec4f}
     attr_accessor :position
 
-    # Spot direction [FXVec3f]
+    # Spot direction {FXVec3f}
     attr_accessor :direction
 
     # Spotlight exponent [Float]
@@ -67,16 +67,16 @@ module Fox
 
   # OpenGL Material Description
   class FXMaterial
-    # Ambient material color [FXVec4f]
+    # Ambient material color {FXVec4f}
     attr_accessor :ambient
 
-    # Diffuse material color [FXVec4f]
+    # Diffuse material color {FXVec4f}
     attr_accessor :diffuse
 
-    # Specular material color [FXVec4f]
+    # Specular material color {FXVec4f}
     attr_accessor :specular
 
-    # Emissive material color [FXVec4f]
+    # Emissive material color {FXVec4f}
     attr_accessor :emission
 
     # Specular shininess [Float]
@@ -179,10 +179,10 @@ module Fox
     # Size of pixel in model coordinates [Float]
     attr_reader :modelPix
 
-    # The viewport for this viewer [FXViewport]
+    # The viewport for this viewer {FXViewport}
     attr_reader :viewport
 
-    # Default object material setting [FXMaterial]
+    # Default object material setting {FXMaterial}
     attr_accessor :material
 
     # Camera field of view angle (in degrees) [Float]
@@ -194,19 +194,19 @@ module Fox
     # Target point distance [Float]
     attr_accessor :distance
 
-    # Current scaling factors [FXVec3f]
+    # Current scaling factors {FXVec3f}
     attr_accessor :scale
 
-    # Camera orientation [FXQuatf]
+    # Camera orientation {FXQuatf}
     attr_accessor :orientation
 
-    # Object center [FXVec3f]
+    # Object center {FXVec3f}
     attr_accessor :center
 
-    # Eyesight vector [FXVec3f]
+    # Eyesight vector {FXVec3f}
     attr_reader :eyeVector
 
-    # Eye position [FXVec3f]
+    # Eye position {FXVec3f}
     attr_reader :eyePosition
 
     # Status line help text [String]
@@ -215,22 +215,22 @@ module Fox
     # Tool tip text [String]
     attr_accessor :tipText
 
-    # The current transformation matrix [FXMat4f]
+    # The current transformation matrix {FXMat4f}
     attr_reader :transform
 
-    # The inverse of the current transformation matrix [FXMat4f]
+    # The inverse of the current transformation matrix {FXMat4f}
     attr_reader :invTransform
 
-    # The current scene object [FXGLObject]
+    # The current scene object {FXGLObject}
     attr_accessor :scene
 
-    # The selection [FXGLObject]
+    # The selection {FXGLObject}
     attr_accessor :selection
 
     # The projection mode (either +FXGLViewer::PERSPECTIVE+ or +FXGLViewer::PARALLEL+)
     attr_accessor :projection
 
-    # Global ambient light color [FXMat4f]
+    # Global ambient light color {FXMat4f}
     attr_accessor :ambientColor
 
     # The maximum hits, i.e. the maximum size of the pick buffer [Integer].
@@ -240,7 +240,7 @@ module Fox
     # Set turbo mode [Boolean]
     attr_writer :turboMode
 
-    # Light source settings [FXLight]
+    # Light source settings {FXLight}
     attr_accessor :light
 
     # Returns the FXDragType for FXGLObject

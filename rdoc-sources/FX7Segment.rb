@@ -13,7 +13,7 @@ module Fox
     # The text for this label [String]
     attr_accessor :text
 
-    # The text color [FXColor]
+    # The text color {FXColor}
     attr_accessor :textColor
 
     # Cell width, in pixels [Integer]

@@ -44,7 +44,7 @@ module Fox
   #
   class FXDataTarget < FXObject
 
-    # The message target object for this data target [FXObject]
+    # The message target object for this data target {FXObject}
     attr_accessor :target
 
     # The message identifier for this data target [Integer]

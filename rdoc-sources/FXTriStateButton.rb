@@ -10,7 +10,7 @@ module Fox
     # Maybe text, shown when toggled [String]
     attr_accessor :maybeText
 
-    # Maybe icon, shown when toggled [FXIcon]
+    # Maybe icon, shown when toggled {FXIcon}
     attr_accessor :maybeIcon
 
     # Maybe status line help text, shown when toggled [String]
@@ -24,14 +24,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::  the parent window for this tri-state button [FXComposite]
+    # +p+::  the parent window for this tri-state button {FXComposite}
     # <tt>text1</tt>:: the text for this tri-state button's first state [String]
     # <tt>text2</tt>:: the text for this tri-state button's second state [String]
     # <tt>text3</tt>:: the text for this tri-state button's third state [String]
-    # <tt>icon1</tt>:: the icon, if any, for this tri-state button's first state [FXIcon]
-    # <tt>icon2</tt>:: the icon, if any, for this tri-state button's second state [FXIcon]
-    # <tt>icon3</tt>:: the icon, if any, for this tri-state button's third state [FXIcon]
-    # +target+::  the message target, if any, for this tri-state button [FXObject]
+    # <tt>icon1</tt>:: the icon, if any, for this tri-state button's first state {FXIcon}
+    # <tt>icon2</tt>:: the icon, if any, for this tri-state button's second state {FXIcon}
+    # <tt>icon3</tt>:: the icon, if any, for this tri-state button's third state {FXIcon}
+    # +target+::  the message target, if any, for this tri-state button {FXObject}
     # +selector+::  the message identifier for this tri-state button [Integer]
     # +opts+::  tri-state button options [Integer]
     # +x+::  initial x-position [Integer]

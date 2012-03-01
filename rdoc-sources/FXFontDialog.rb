@@ -4,7 +4,7 @@ module Fox
   #
   class FXFontDialog < FXDialogBox
 
-    # Current font selection [FXFontDesc]
+    # Current font selection {FXFontDesc}
     attr_accessor :fontSelection
 
     # Return an initialized FXFontDialog instance.

@@ -39,7 +39,7 @@ module Fox
 
   class FXImage < FXDrawable
 
-    # [deprecated] Pixel data [FXMemoryBuffer]
+    # [deprecated] Pixel data {FXMemoryBuffer}
     attr_reader :data
 
     # Array of colors of all image pixels. Can also be written as String of raw [RGBA] values.
@@ -60,7 +60,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::  an application instance [FXApp]
+    # +a+::  an application instance {FXApp}
     # +pixels+:: pixels [Array of FXColor values or string of raw [RGBA] values]
     # +opts+::  image options [Integer]
     # +width+::  image width [Integer]
@@ -111,7 +111,7 @@ module Fox
     #
     # +x+:: x-coordinate of the pixel of interest [Integer]
     # +y+:: y-coordinate of the pixel of interest [Integer]
-    # +clr+:: new color value for this pixel [FXColor]
+    # +clr+:: new color value for this pixel {FXColor}
     #
     def setPixel(x, y, clr) ; end
 
@@ -195,7 +195,7 @@ module Fox
     # +y+:: y-coordinate for top left corner of the clip rectangle [Integer]
     # +width+:: width of the clip rectangle [Integer]
     # +height+:: height of the clip rectangle [Integer]
-    # +color+:: fill color for blank areas after crop [FXColor]
+    # +color+:: fill color for blank areas after crop {FXColor}
     #
     def crop(x, y, w, h, color=0) ; end
 
@@ -209,7 +209,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +color+::   the fade color [FXColor]
+    # +color+::   the fade color {FXColor}
     # +factor+:: fading factor [Integer]
     #
     def fade(color, factor=255); end
@@ -223,7 +223,7 @@ module Fox
     # ==== Parameters:
     #
     # +shear+::   how far to shear [Integer]
-    # +color+::   fill color for areas outside the sheared image [FXColor]
+    # +color+::   fill color for areas outside the sheared image {FXColor}
     #
     def xshear(shear, color=0); end
 
@@ -236,7 +236,7 @@ module Fox
     # ==== Parameters:
     #
     # +shear+::   how far to shear [Integer]
-    # +color+::   fill color for areas outside the sheared image [FXColor]
+    # +color+::   fill color for areas outside the sheared image {FXColor}
     #
     def yshear(shear, color=0); end
 
@@ -245,8 +245,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +left+::   starting color, for leftmost pixels [FXColor]
-    # +right+::  ending color, for rightmost pixels [FXColor]
+    # +left+::   starting color, for leftmost pixels {FXColor}
+    # +right+::  ending color, for rightmost pixels {FXColor}
     #
     def hgradient(left, right); end
 
@@ -255,8 +255,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +top+::      starting color, for topmost pixels [FXColor]
-    # +bottom+::  ending color, for bottommost pixels [FXColor]
+    # +top+::      starting color, for topmost pixels {FXColor}
+    # +bottom+::  ending color, for bottommost pixels {FXColor}
     #
     def vgradient(top, bottom); end
 
@@ -265,10 +265,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +topleft+::      pixel color for top-left corner [FXColor]
-    # +topright+::    pixel color for top-right corner [FXColor]
-    # +bottomleft+::   pixel color for bottom-left corner [FXColor]
-    # +bottomright+::  pixel color for bottom-right corner [FXColor]
+    # +topleft+::      pixel color for top-left corner {FXColor}
+    # +topright+::    pixel color for top-right corner {FXColor}
+    # +bottomleft+::   pixel color for bottom-left corner {FXColor}
+    # +bottomright+::  pixel color for bottom-right corner {FXColor}
     #
     def gradient(topleft, topright, bottomleft, bottomright); end
 
@@ -277,7 +277,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +color+::   the blended color [FXColor]
+    # +color+::   the blended color {FXColor}
     #
     def blend(color); end
 
@@ -295,7 +295,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+:: opened stream to which to save the pixel data [FXStream]
+    # +store+:: opened stream to which to save the pixel data {FXStream}
     #
     def savePixels(store) ; end
 
@@ -314,7 +314,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+:: opened stream from which to read the pixel data [FXStream]
+    # +store+:: opened stream from which to read the pixel data {FXStream}
     #
     def loadPixels(store) ; end
   end

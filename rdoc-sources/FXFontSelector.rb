@@ -18,13 +18,13 @@ module Fox
   #
   class FXFontSelector < FXPacker
 
-    # The "Accept" button [FXButton]
+    # The "Accept" button {FXButton}
     attr_reader :acceptButton
 
-    # The "Cancel" button [FXButton]
+    # The "Cancel" button {FXButton}
     attr_reader :cancelButton
 
-    # Font selection [FXFontDesc]
+    # Font selection {FXFontDesc}
     attr_accessor :fontSelection
 
     #

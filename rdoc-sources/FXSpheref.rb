@@ -3,7 +3,7 @@ module Fox
   # Spherical bounds
   #
   class FXSpheref
-    # Sphere center [FXVec3f]
+    # Sphere center {FXVec3f}
     attr_accessor :center
 
     # Sphere radius [Float]

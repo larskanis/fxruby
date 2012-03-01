@@ -11,7 +11,7 @@ module Fox
     # Height of drawable, in pixels [Integer]
     attr_reader :height
 
-    # Visual [FXVisual]
+    # Visual {FXVisual}
     attr_accessor :visual
 
     #

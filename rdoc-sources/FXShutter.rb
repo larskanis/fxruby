@@ -11,11 +11,11 @@ module Fox
   #
   class FXShutterItem < FXVerticalFrame
     #
-    # The button for this shutter item [FXButton]
+    # The button for this shutter item {FXButton}
     #
     attr_reader :button
 
-    # The contents for this shutter item [FXVerticalFrame]
+    # The contents for this shutter item {FXVerticalFrame}
     attr_reader :content
 
     # Status line help text for this shutter item [String]
@@ -29,9 +29,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent shutter for this shutter item [FXShutter]
+    # +p+:: the parent shutter for this shutter item {FXShutter}
     # +text+:: the text, if any [String]
-    # +icon+:: the icon, if any [FXIcon]
+    # +icon+:: the icon, if any {FXIcon}
     # +opts+:: options [Integer]
     # +x+:: initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
     # +y+:: initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
@@ -80,8 +80,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this shutter [FXComposite]
-    # +target+:: the message target, if any, for this shutter [FXObject]
+    # +p+:: the parent window for this shutter {FXComposite}
+    # +target+:: the message target, if any, for this shutter {FXObject}
     # +selector+:: the message identifier for this shutter [Integer]
     # +opts+:: shutter options [Integer]
     # +x+:: initial x-position [Integer]

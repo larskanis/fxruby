@@ -68,16 +68,16 @@ module Fox
     # Text [String]
     attr_accessor :text
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
-    # Background color for selected text [FXColor]
+    # Background color for selected text {FXColor}
     attr_accessor :selBackColor
 
-    # Foreground color for selected text [FXColor]
+    # Foreground color for selected text {FXColor}
     attr_accessor :selTextColor
 
     # Default width of this text field, in terms of a number of columns times the width of the numeral '8' [Integer]
@@ -101,9 +101,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this text field [FXComposite]
+    # +p+:: the parent window for this text field {FXComposite}
     # +ncols+:: number of visible items [Integer]
-    # +target+:: the message target, if any, for this text field [FXObject]
+    # +target+:: the message target, if any, for this text field {FXObject}
     # +selector+:: the message identifier for this text field [Integer]
     # +opts+:: text field options [Integer]
     # +x+:: initial x-position [Integer]

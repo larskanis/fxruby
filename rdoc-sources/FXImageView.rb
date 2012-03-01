@@ -19,7 +19,7 @@ module Fox
   #
   class FXImageView < FXScrollArea
 
-    # The image [FXImage]
+    # The image {FXImage}
     attr_accessor :image
 
     # Current alignment [Integer]

@@ -152,37 +152,37 @@ module Fox
 
   class FXWindow < FXDrawable
 
-    # This window's parent window [FXWindow]
+    # This window's parent window {FXWindow}
     attr_reader :parent
 
-    # This window's owner window [FXWindow]
+    # This window's owner window {FXWindow}
     attr_reader  :owner
 
-    # The shell window for this window [FXWindow]
+    # The shell window for this window {FXWindow}
     attr_reader  :shell
 
-    # Root window [FXWindow]
+    # Root window {FXWindow}
     attr_reader  :root
 
-    # Next (sibling) window, if any [FXWindow]
+    # Next (sibling) window, if any {FXWindow}
     attr_reader  :next
 
-    # Previous (sibling) window, if any [FXWindow]
+    # Previous (sibling) window, if any {FXWindow}
     attr_reader  :prev
 
-    # This window's first child window, if any [FXWindow]
+    # This window's first child window, if any {FXWindow}
     attr_reader  :first
 
-    # This window's last child window, if any [FXWindow]
+    # This window's last child window, if any {FXWindow}
     attr_reader  :last
 
-    # Currently focused child window, if any [FXWindow]
+    # Currently focused child window, if any {FXWindow}
     attr_reader  :focus
 
     # Window key [Integer]
     attr_accessor :key
 
-    # Message target object for this window [FXObject]
+    # Message target object for this window {FXObject}
     attr_accessor :target
 
     # Message identifier for this window [Integer]
@@ -194,7 +194,7 @@ module Fox
     # This window's y-coordinate, in the parent's coordinate system [Integer]
     attr_accessor :y
 
-    # The accelerator table for this window [FXAccelTable]
+    # The accelerator table for this window {FXAccelTable}
     attr_accessor :accelTable
 
     # Layout hints for this window [Integer]
@@ -203,13 +203,13 @@ module Fox
     # Number of child windows for this window [Integer]
     attr_reader  :numChildren
 
-    # Default cursor for this window [FXCursor]
+    # Default cursor for this window {FXCursor}
     attr_accessor :defaultCursor
 
-    # Drag cursor for this window [FXCursor]
+    # Drag cursor for this window {FXCursor}
     attr_accessor :dragCursor
 
-    # Window background color [FXColor]
+    # Window background color {FXColor}
     attr_accessor :backColor
 
     # Common DND type: Raw octet stream
@@ -265,7 +265,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this window [FXComposite]
+    # +p+:: the parent window for this window {FXComposite}
     # +opts+:: window options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]
@@ -280,8 +280,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+:: an application instance [FXApp]
-    # +vis+:: the visual to use for this window [FXVisual]
+    # +a+:: an application instance {FXApp}
+    # +vis+:: the visual to use for this window {FXVisual}
     #
     def initialize(a, vis) # :yields: theWindow
     end
@@ -291,8 +291,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+:: an application instance [FXApp]
-    # +own+:: the owner window for this window [FXWindow]
+    # +a+:: an application instance {FXApp}
+    # +own+:: the owner window for this window {FXWindow}
     # +opts+:: window options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

@@ -35,7 +35,7 @@ module Fox
     # The tab style [Integer]
     attr_accessor :tabStyle
 
-    # The active color [FXColor]
+    # The active color {FXColor}
     attr_accessor :activeColor
 
     # Tooltip message [String]
@@ -46,8 +46,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::  the parent window for this toolbar tab [FXWindow]
-    # +target+:: the message target [FXObject]
+    # +p+::  the parent window for this toolbar tab {FXWindow}
+    # +target+:: the message target {FXObject}
     # +selector+:: the message identifier [Integer]
     # +opts+:: the options [Integer]
     # +x+::  x-coordinate of window upper left corner [Integer]

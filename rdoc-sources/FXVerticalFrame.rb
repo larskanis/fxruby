@@ -10,7 +10,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this vertical frame [FXComposite]
+    # +p+:: the parent window for this vertical frame {FXComposite}
     # +opts+:: frame options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

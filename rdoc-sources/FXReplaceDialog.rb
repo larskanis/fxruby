@@ -40,9 +40,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::  the owner window for this dialog box [FXWindow]
+    # +owner+::  the owner window for this dialog box {FXWindow}
     # +caption+:: the caption (title) string for this dialog box [String]
-    # +ic+::  the icon [FXIcon]
+    # +ic+::  the icon {FXIcon}
     # +opts+::  the options [Integer]
     # +x+::  initial x-position [Integer]
     # +y+::  initial y-position [Integer]

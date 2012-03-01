@@ -23,10 +23,10 @@ module Fox
   #
   class FXDirSelector < FXPacker
 
-    # The "Accept" button [FXButton]
+    # The "Accept" button {FXButton}
     attr_reader :acceptButton
 
-    # The "Cancel" button [FXButton]
+    # The "Cancel" button {FXButton}
     attr_reader :cancelButton
 
     # Directory [String]

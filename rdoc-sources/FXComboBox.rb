@@ -60,22 +60,22 @@ module Fox
     # Index of current item, or -1 if no current item [Integer]
     attr_accessor :currentItem
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
     # Combo box style [Integer]
     attr_accessor :comboStyle
 
-    # Window background color [FXColor]
+    # Window background color {FXColor}
     attr_accessor :backColor
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
-    # Background color for selected items [FXColor]
+    # Background color for selected items {FXColor}
     attr_accessor :selBackColor
 
-    # Text color for selected items [FXColor]
+    # Text color for selected items {FXColor}
     attr_accessor :selTextColor
 
     # Status line help text [String]
@@ -89,9 +89,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent widget for this combo-box [FXComposite]
+    # +p+:: the parent widget for this combo-box {FXComposite}
     # +cols+:: number of columns [Integer]
-    # +target+:: message target [FXObject]
+    # +target+:: message target {FXObject}
     # +selector+:: message identifier [Integer]
     # +opts+:: the options [Integer]
     # +x+:: initial x-position [Integer]

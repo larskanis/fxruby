@@ -13,25 +13,25 @@ module Fox
     # The text for this menu [String]
     attr_accessor :text
 
-    # The icon for this menu [FXIcon]
+    # The icon for this menu {FXIcon}
     attr_accessor :icon
 
-    # The text font [FXFont]
+    # The text font {FXFont}
     attr_accessor :font
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
-    # Selection background color [FXColor]
+    # Selection background color {FXColor}
     attr_accessor :selBackColor
 
-    # Selection text color [FXColor]
+    # Selection text color {FXColor}
     attr_accessor :selTextColor
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
     # Status line help text for this menu [String]

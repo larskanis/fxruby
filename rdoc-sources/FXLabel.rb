@@ -41,13 +41,13 @@ module Fox
     # The text for this label [String]
     attr_accessor :text
 
-    # The icon for this label [FXIcon]
+    # The icon for this label {FXIcon}
     attr_accessor :icon
 
-    # The text font [FXFont]
+    # The text font {FXFont}
     attr_accessor :font
 
-    # The text color [FXColor]
+    # The text color {FXColor}
     attr_accessor :textColor
 
     # Text justification mode [Integer]

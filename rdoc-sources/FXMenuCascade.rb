@@ -5,7 +5,7 @@ module Fox
   #
   class FXMenuCascade < FXMenuCaption
 
-    # The popup menu [FXPopup]
+    # The popup menu {FXPopup}
     attr_accessor :menu
 
     #

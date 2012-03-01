@@ -18,9 +18,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+:: an application instance [FXApp]
+    # +a+:: an application instance {FXApp}
     # +pix+:: a memory buffer formatted in Targa file format [String]
-    # +clr+:: transparency color [FXColor]
+    # +clr+:: transparency color {FXColor}
     # +opts+:: options [Integer]
     # +width+:: width [Integer]
     # +height+:: height [Integer]
@@ -37,7 +37,7 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+:: stream from which to read the file data [FXStream]
+  # +store+:: stream from which to read the file data {FXStream}
   #
   def Fox.fxloadTGA(store); end
 
@@ -47,7 +47,7 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+::  stream to which to write the image data [FXStream]
+  # +store+::  stream to which to write the image data {FXStream}
   # +data+::  the image pixel data [String]
   # +channels+:: number of channels in the image pixel data: 3 for RGB data, or 4 for RGBA data [Integer]
   # +width+::  width [Integer]

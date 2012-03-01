@@ -11,7 +11,7 @@ module Fox
   #
   class FXGLContext < FXId
 
-    # The visual [FXGLVisual]
+    # The visual {FXGLVisual}
     attr_reader :visual
 
     # Construct an OpenGL context.

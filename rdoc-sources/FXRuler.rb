@@ -94,7 +94,7 @@ module Fox
     # Pixels per tick spacing [Float]
     attr_accessor :pixelsPerTick
 
-    # The text font [FXFont]
+    # The text font {FXFont}
     attr_accessor :font
 
     # The slider value [Integer]
@@ -106,7 +106,7 @@ module Fox
     # Ruler alignment [Integer]
     attr_accessor :rulerAlignment
 
-    # The current text color [FXColor]
+    # The current text color {FXColor}
     attr_accessor :textColor
 
     # The status line help text for this ruler [String]

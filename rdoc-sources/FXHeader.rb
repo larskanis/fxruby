@@ -30,7 +30,7 @@ module Fox
     # Item's text label [String]
     attr_accessor :text
 
-    # Item's icon [FXIcon]
+    # Item's icon {FXIcon}
     attr_accessor :icon
 
     # Item's user data [Object]
@@ -146,10 +146,10 @@ module Fox
     # Current position [Integer]
     attr_accessor :position
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
     # Header style options [Integer]

@@ -19,10 +19,10 @@ module Fox
     # Group box style [Integer]
     attr_accessor :groupBoxStyle
 
-    # Title font [FXFont]
+    # Title font {FXFont}
     attr_accessor :font
 
-    # Title text color [FXColor]
+    # Title text color {FXColor}
     attr_accessor :textColor
 
     # Construct group box layout manager

@@ -18,9 +18,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+:: an application instance [FXApp]
+    # +a+:: an application instance {FXApp}
     # +pix+:: a memory buffer formatted in GIF file format [String]
-    # +clr+:: transparency color [FXColor]
+    # +clr+:: transparency color {FXColor}
     # +opts+:: options [Integer]
     # +width+:: width [Integer]
     # +height+:: height [Integer]

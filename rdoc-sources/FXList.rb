@@ -7,7 +7,7 @@ module Fox
     # Text for this item [String]
     attr_accessor :text
 
-    # Icon for this item [FXIcon]
+    # Icon for this item {FXIcon}
     attr_accessor :icon
 
     # User data for this item [Object]
@@ -125,16 +125,16 @@ module Fox
     # Index of item under the cursor, or -1 if none [Integer]
     attr_reader :cursorItem
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
-    # Normal text color [FXColor]
+    # Normal text color {FXColor}
     attr_accessor :textColor
 
-    # Selected text background color [FXColor]
+    # Selected text background color {FXColor}
     attr_accessor :selBackColor
 
-    # Selected text color [FXColor]
+    # Selected text color {FXColor}
     attr_accessor :selTextColor
 
     # List style [Integer]

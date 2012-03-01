@@ -16,10 +16,10 @@ module Fox
     # Upper value [Float]
     attr_accessor :upper
 
-    # Lower color [FXColor]
+    # Lower color {FXColor}
     attr_accessor :lowerColor
 
-    # Upper color [FXColor]
+    # Upper color {FXColor}
     attr_accessor :upperColor
 
     # Blend mode [Integer]
@@ -82,7 +82,7 @@ module Fox
     #
     attr_accessor :barStyle
 
-    # Selection color [FXColor]
+    # Selection color {FXColor}
     attr_accessor :selectColor
 
     # Status line help text [String]

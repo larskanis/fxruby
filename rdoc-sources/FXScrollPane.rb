@@ -17,7 +17,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+:: owner window for this menu pane [FXWindow]
+    # +owner+:: owner window for this menu pane {FXWindow}
     # +nvis+:: maximum number of visible items [Integer]
     # +opts+:: options [Integer]
     #

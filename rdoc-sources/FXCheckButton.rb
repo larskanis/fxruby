@@ -38,10 +38,10 @@ module Fox
     # Check button style [Integer]
     attr_accessor :checkButtonStyle
 
-    # Box background color [FXColor]
+    # Box background color {FXColor}
     attr_accessor :boxColor
 
-    # Box check color [FXColor]
+    # Box check color {FXColor}
     attr_accessor :checkColor
 
     # Construct new check button

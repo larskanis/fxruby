@@ -60,7 +60,7 @@ module Fox
     # Current dial style [Integer]
     attr_accessor :dialStyle
 
-    # Center notch color [FXColor]
+    # Center notch color {FXColor}
     attr_accessor :notchColor
 
     # Status line help text for this dial [String]
@@ -74,8 +74,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: parent widget for this dial [FXComposite]
-    # +target+:: message target object for this dial [FXObject]
+    # +p+:: parent widget for this dial {FXComposite}
+    # +target+:: message target object for this dial {FXObject}
     # +selector+:: message identifier [Integer]
     # +opts+::
     # +x+::

@@ -43,13 +43,13 @@ module Fox
 
   class FXColorSelector < FXPacker
 
-    # The "Accept" button [FXButton]
+    # The "Accept" button {FXButton}
     attr_reader :acceptButton
 
-    # The "Cancel" button [FXButton]
+    # The "Cancel" button {FXButton}
     attr_reader :cancelButton
 
-    # The color [FXColor]
+    # The color {FXColor}
     attr_accessor :rgba
 
     # Only opaque colors allowed [Boolean]

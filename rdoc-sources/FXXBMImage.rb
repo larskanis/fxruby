@@ -18,7 +18,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::  an application instance [FXApp]
+    # +a+::  an application instance {FXApp}
     # +pixels+:: a memory buffer formatted in XBM file format [String]
     # +mask+::  a memory buffer formatted in XBM file format [String]
     # +opts+::  options [Integer]

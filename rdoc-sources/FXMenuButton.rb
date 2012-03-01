@@ -57,7 +57,7 @@ module Fox
   #
   class FXMenuButton < FXLabel
 
-    # The popup menu [FXPopup]
+    # The popup menu {FXPopup}
     attr_accessor :menu
 
     # X-offset where menu pops up relative to button [Integer]

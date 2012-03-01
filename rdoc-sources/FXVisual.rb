@@ -11,8 +11,8 @@ module Fox
   # +VISUAL_GRAYSCALE+:: Gray scale visual
   # +VISUAL_TRUECOLOR+:: Must be true color visual
   # +VISUAL_OWNCOLORMAP+:: Allocate private colormap
-  # +VISUAL_DOUBLEBUFFER+:: Double-buffered [FXGLVisual]
-  # +VISUAL_STEREO+::  Stereo [FXGLVisual]
+  # +VISUAL_DOUBLEBUFFER+:: Double-buffered {FXGLVisual}
+  # +VISUAL_STEREO+::  Stereo {FXGLVisual}
   # +VISUAL_NOACCEL+::  No hardware acceleration [for broken h/w]
   # +VISUAL_SWAP_COPY+:: Buffer swap by copying (for FXGLVisual)
   #
@@ -59,7 +59,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+:: an application instance [FXApp]
+    # +a+:: an application instance {FXApp}
     # +flgs+:: visual construction flags [Integer]
     # +d+:: requested visual depth, in bits [Integer]
     #

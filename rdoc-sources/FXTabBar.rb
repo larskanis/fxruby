@@ -53,8 +53,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this tar bar [FXComposite]
-    # +target+:: the message target, if any, for this tar bar [FXObject]
+    # +p+:: the parent window for this tar bar {FXComposite}
+    # +target+:: the message target, if any, for this tar bar {FXObject}
     # +selector+:: the message identifier for this tab bar [Integer]
     # +opts+:: tar bar options [Integer]
     # +x+:: initial x-position [Integer]

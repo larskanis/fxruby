@@ -13,25 +13,25 @@ module Fox
   #
   class FXWizard < FXDialogBox
 
-    # The button frame [FXHorizontalFrame]
+    # The button frame {FXHorizontalFrame}
     attr_reader :buttonFrame
 
-    # The "Advance" button [FXButton]
+    # The "Advance" button {FXButton}
     attr_reader :advanceButton
 
-    # The "Retreat" button [FXButton]
+    # The "Retreat" button {FXButton}
     attr_reader :retreatButton
 
-    # The "Finish" button [FXButton]
+    # The "Finish" button {FXButton}
     attr_reader :finishButton
 
-    # The "Cancel" button [FXButton]
+    # The "Cancel" button {FXButton}
     attr_reader :cancelButton
 
-    # The container used as parent for the sub-panels [FXSwitcher]
+    # The container used as parent for the sub-panels {FXSwitcher}
     attr_reader :container
 
-    # The image being displayed [FXImage]
+    # The image being displayed {FXImage}
     attr_accessor :image
 
     #

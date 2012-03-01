@@ -52,7 +52,7 @@ module Fox
     # Stream direction, one of +FXStreamSave+, +FXStreamLoad+ or +FXStreamDead+.
     attr_reader :direction
 
-    # Parent object [FXObject]
+    # Parent object {FXObject}
     attr_reader :container
 
     # Available buffer space
@@ -69,7 +69,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +cont+:: the container object, or +nil+ if there is none [FXObject].
+    # +cont+:: the container object, or +nil+ if there is none {FXObject}.
     #
     def initialize(cont=nil) # :yields: theStream
     end

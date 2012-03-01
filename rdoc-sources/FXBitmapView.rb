@@ -22,13 +22,13 @@ module Fox
   #
   class FXBitmapView < FXScrollArea
 
-    # The bitmap [FXBitmap]
+    # The bitmap {FXBitmap}
     attr_accessor :bitmap
 
-    # The color used for the "on" bits in the bitmap [FXColor]
+    # The color used for the "on" bits in the bitmap {FXColor}
     attr_accessor :onColor
 
-    # The color used for the "off" bits in the bitmap [FXColor]
+    # The color used for the "off" bits in the bitmap {FXColor}
     attr_accessor :offColor
 
     # Current alignment [Integer]

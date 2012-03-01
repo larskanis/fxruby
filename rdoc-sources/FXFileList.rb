@@ -4,7 +4,7 @@ module Fox
   #
   class FXFileItem < FXIconItem
 
-    # The file association object for this item [FXFileAssoc]
+    # The file association object for this item {FXFileAssoc}
     attr_reader :assoc
 
     # The file size for this item [Integer]
@@ -98,7 +98,7 @@ module Fox
     # Wildcard matching mode [Integer]
     attr_accessor :matchMode
 
-    # File associations [FXFileDict]
+    # File associations {FXFileDict}
     attr_accessor :associations
 
     # Image size for preview images [Integer]

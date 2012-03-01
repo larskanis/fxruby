@@ -16,7 +16,7 @@ module Fox
     # +owner+::  Owner for this dialog box [FXWindow or FXApp]
     # +caption+:: Caption for this dialog box [String]
     # +text+::  Message text for this dialog box [String]
-    # +icon+::  Icon for this dialog box [FXIcon]
+    # +icon+::  Icon for this dialog box {FXIcon}
     # +choices+:: Array of strings containing choices [Array]
     # +opts+::  Dialog box options [Integer]
     # +x+::  x-coordinate
@@ -39,7 +39,7 @@ module Fox
     # +opts+::  Dialog box options [Integer]
     # +caption+:: Caption for this dialog box [String]
     # +text+::  Message text for this dialog box [String]
-    # +icon+::  Icon for this dialog box [FXIcon]
+    # +icon+::  Icon for this dialog box {FXIcon}
     # +choices+:: Array of strings containing choices [Array]
     #
     def FXChoiceBox.ask(owner, opts, caption, text, icon, choices); end

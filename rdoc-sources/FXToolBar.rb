@@ -18,8 +18,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the "dry dock" window for this tool bar [FXComposite]
-    # +q+:: the "wet dock" window for this tool bar [FXComposite]
+    # +p+:: the "dry dock" window for this tool bar {FXComposite}
+    # +q+:: the "wet dock" window for this tool bar {FXComposite}
     # +opts+:: tool bar options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]
@@ -41,7 +41,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this tool bar [FXComposite]
+    # +p+:: the parent window for this tool bar {FXComposite}
     # +opts+:: tool bar options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

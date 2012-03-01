@@ -46,7 +46,7 @@ module Fox
     # Delta between ticks [Integer]
     attr_accessor :tickDelta
 
-    # Indicator needle color [FXColor]
+    # Indicator needle color {FXColor}
     attr_accessor :lineColor
 
     # Help text displayed on the status line [String]

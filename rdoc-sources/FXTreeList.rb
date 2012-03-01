@@ -214,37 +214,37 @@ module Fox
     # Number of visible items [Integer]
     attr_accessor :numVisible
 
-    # First root-level item [FXTreeItem]
+    # First root-level item {FXTreeItem}
     attr_reader  :firstItem
 
-    # Last root-level item [FXTreeItem]
+    # Last root-level item {FXTreeItem}
     attr_reader  :lastItem
 
-    # Current item, if any [FXTreeItem]
+    # Current item, if any {FXTreeItem}
     attr_accessor :currentItem
 
-    # Anchor item, if any [FXTreeItem]
+    # Anchor item, if any {FXTreeItem}
     attr_accessor :anchorItem
 
-    # Item under the cursor, if any [FXTreeItem]
+    # Item under the cursor, if any {FXTreeItem}
     attr_reader  :cursorItem
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
     # Parent-child indent amount, in pixels [Integer]
     attr_accessor :indent
 
-    # Normal text color [FXColor]
+    # Normal text color {FXColor}
     attr_accessor :textColor
 
-    # Selected text background color [FXColor]
+    # Selected text background color {FXColor}
     attr_accessor :selBackColor
 
-    # Selected text color [FXColor]
+    # Selected text color {FXColor}
     attr_accessor :selTextColor
 
-    # Line color [FXColor]
+    # Line color {FXColor}
     attr_accessor :lineColor
 
     # List style [Integer]
@@ -258,8 +258,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this tree list [FXComposite]
-    # +target+:: the message target, if any, for this tree list [FXObject]
+    # +p+:: the parent window for this tree list {FXComposite}
+    # +target+:: the message target, if any, for this tree list {FXObject}
     # +selector+:: the message identifier for this tree list [Integer]
     # +opts+:: tree list options [Integer]
     # +x+:: initial x-position [Integer]

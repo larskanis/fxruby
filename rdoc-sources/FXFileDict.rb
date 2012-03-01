@@ -12,19 +12,19 @@ module Fox
     # Mime type name [String]
     attr_accessor :mimetype
 
-    # Big normal icon [FXIcon]
+    # Big normal icon {FXIcon}
     attr_accessor :bigicon
 
-    # Big open icon [FXIcon]
+    # Big open icon {FXIcon}
     attr_accessor :bigiconopen
 
-    # Mini normal icon [FXIcon]
+    # Mini normal icon {FXIcon}
     attr_accessor :miniicon
 
-    # Mini open icon [FXIcon]
+    # Mini open icon {FXIcon}
     attr_accessor :miniiconopen
 
-    # Registered drag type [FXDragType]
+    # Registered drag type {FXDragType}
     attr_accessor :dragtype
 
     # Flags [Integer]
@@ -65,10 +65,10 @@ module Fox
   #
   class FXFileDict < FXDict
 
-    # Settings database [FXSettings]
+    # Settings database {FXSettings}
     attr_accessor :settings
 
-    # Current icon search path [FXIconDict]
+    # Current icon search path {FXIconDict}
     attr_accessor :iconDict
 
     # Current icon search path [String]
@@ -91,8 +91,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +app+: Application [FXApp]
-    # +db+:: Settings database [FXSettings]
+    # +app+: Application {FXApp}
+    # +db+:: Settings database {FXSettings}
     #
     def initialize(app, db=nil); end
 

@@ -35,16 +35,16 @@ module Fox
     # Right padding, in pixels [Integer]
     attr_accessor :padRight
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
-    # Border color [FXColor]
+    # Border color {FXColor}
     attr_accessor :borderColor
 
-    # Base GUI color [FXColor]
+    # Base GUI color {FXColor}
     attr_accessor :baseColor
 
     # Horizontal inter-child spacing, in pixels [Integer]

@@ -40,8 +40,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: upper left corner's initial position [FXPoint]
-    # +s+:: initial size [FXSize]
+    # +p+:: upper left corner's initial position {FXPoint}
+    # +s+:: initial size {FXSize}
     #
     def initialize(p, s); end
 
@@ -50,8 +50,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +topleft+:: upper left corner's initial position [FXPoint]
-    # +bottomright+:: bottom right corner's initial position [FXPoint]
+    # +topleft+:: upper left corner's initial position {FXPoint}
+    # +bottomright+:: bottom right corner's initial position {FXPoint}
     #
     def initialize(topleft, bottomright); end
 

@@ -41,8 +41,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the "dry dock" window for this dock bar [FXComposite]
-    # +q+:: the "wet dock" window for this dock bar [FXComposite]
+    # +p+:: the "dry dock" window for this dock bar {FXComposite}
+    # +q+:: the "wet dock" window for this dock bar {FXComposite}
     # +opts+:: dock bar options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]
@@ -64,7 +64,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this dock bar [FXComposite]
+    # +p+:: the parent window for this dock bar {FXComposite}
     # +opts+:: dock bar options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]

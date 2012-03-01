@@ -21,8 +21,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this tar book [FXComposite]
-    # +target+:: the message target, if any, for this tar book [FXObject]
+    # +p+:: the parent window for this tar book {FXComposite}
+    # +target+:: the message target, if any, for this tar book {FXObject}
     # +selector+:: the message identifier for this tab book [Integer]
     # +opts+:: tar book options [Integer]
     # +x+:: initial x-position [Integer]

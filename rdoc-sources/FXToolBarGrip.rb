@@ -20,7 +20,7 @@ module Fox
     # Indicates whether the grip is displayed as a double-bar [Boolean]
     attr_writer :doubleBar
 
-    # Active color [FXColor]
+    # Active color {FXColor}
     attr_accessor :activeColor
 
     #
@@ -28,8 +28,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this tool bar grip [FXComposite]
-    # +target+:: the message target, if any, for this tool bar grip [FXObject]
+    # +p+:: the parent window for this tool bar grip {FXComposite}
+    # +target+:: the message target, if any, for this tool bar grip {FXObject}
     # +selector+:: the message identifier for this tool bar grip [Integer]
     # +opts+:: tool bar grip options [Integer]
     # +x+:: initial x-position [Integer]

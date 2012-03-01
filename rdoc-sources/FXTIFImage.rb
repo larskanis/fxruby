@@ -24,7 +24,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+:: an application instance [FXApp]
+    # +a+:: an application instance {FXApp}
     # +pix+:: a memory buffer formatted in TIF file format [String]
     # +opts+:: options [Integer]
     # +width+:: width [Integer]

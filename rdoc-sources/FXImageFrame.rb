@@ -4,7 +4,7 @@ module Fox
   #
   class FXImageFrame < FXFrame
 
-    # The current image being displayed [FXImage]
+    # The current image being displayed {FXImage}
     attr_accessor :image
 
     #
@@ -18,8 +18,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::         the parent window for this image frame [FXComposite]
-    # +img+::       the image to display [FXImage]
+    # +p+::         the parent window for this image frame {FXComposite}
+    # +img+::       the image to display {FXImage}
     # +opts+::     frame options [Integer]
     # +x+::         initial x-position [Integer]
     # +y+::         initial y-position [Integer]

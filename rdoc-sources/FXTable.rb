@@ -19,10 +19,10 @@ module Fox
   # Represents a range of cells in an FXTable.
   #
   class FXTableRange
-    # Starting position for this range of cells [FXTablePos]
+    # Starting position for this range of cells {FXTablePos}
     attr_accessor :fm
 
-    # Ending position for this range of cells [FXTablePos]
+    # Ending position for this range of cells {FXTablePos}
     attr_accessor :to
 
     #
@@ -39,7 +39,7 @@ module Fox
     # Text associated with this cell [String]
     attr_accessor :text
 
-    # Icon associated with this cell [FXIcon]
+    # Icon associated with this cell {FXIcon}
     attr_accessor :icon
 
     # User data associated with this cell [Object]
@@ -82,7 +82,7 @@ module Fox
     # ==== Parameters:
     #
     # +text+:: the text for this table item [String]
-    # +icon+:: the icon, if any, for this table item [FXIcon]
+    # +icon+:: the icon, if any, for this table item {FXIcon}
     # +data+:: the user data for this table item [Object]
     #
     def initialize(text, icon=nil, data=nil); end
@@ -261,13 +261,13 @@ module Fox
 
   class FXTable < FXScrollArea
 
-    # Button in the upper left corner [FXButton]
+    # Button in the upper left corner {FXButton}
     attr_reader :cornerButton
 
-    # Column header control [FXHeader]
+    # Column header control {FXHeader}
     attr_reader :columnHeader
 
-    # Row header control [FXHeader]
+    # Row header control {FXHeader}
     attr_reader :rowHeader
 
     # Number of visible rows [Integer]
@@ -309,10 +309,10 @@ module Fox
     # attribute.
     attr_accessor :rowHeaderMode
 
-    # Row header font [FXFont]
+    # Row header font {FXFont}
     attr_accessor :rowHeaderFont
 
-    # Column header font [FXFont]
+    # Column header font {FXFont}
     attr_accessor :columnHeaderFont
 
     # The fixed column header height, if _columnHeaderMode_ is +LAYOUT_FIX_HEIGHT+.
@@ -351,37 +351,37 @@ module Fox
     # Ending column number for selection, or -1 if there is no selection [Integer]
     attr_reader  :selEndColumn
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
-    # Text color [FXColor]
+    # Text color {FXColor}
     attr_accessor :textColor
 
-    # Base GUI color [FXColor]
+    # Base GUI color {FXColor}
     attr_accessor :baseColor
 
-    # Highlight color [FXColor]
+    # Highlight color {FXColor}
     attr_accessor :hiliteColor
 
-    # Shadow color [FXColor]
+    # Shadow color {FXColor}
     attr_accessor :shadowColor
 
-    # Border color [FXColor]
+    # Border color {FXColor}
     attr_accessor :borderColor
 
-    # Background color for selected cell(s) [FXColor]
+    # Background color for selected cell(s) {FXColor}
     attr_accessor :selBackColor
 
-    # Text color for selected cell(s) [FXColor]
+    # Text color for selected cell(s) {FXColor}
     attr_accessor :selTextColor
 
-    # Grid color [FXColor]
+    # Grid color {FXColor}
     attr_accessor :gridColor
 
-    # Stipple color [FXColor]
+    # Stipple color {FXColor}
     attr_accessor :stippleColor
 
-    # Cell border color [FXColor]
+    # Cell border color {FXColor}
     attr_accessor :cellBorderColor
 
     # Cell border width, in pixels [Integer]
@@ -403,8 +403,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this table [FXComposite]
-    # +target+:: the message target (if any) for this table [FXObject]
+    # +p+:: the parent window for this table {FXComposite}
+    # +target+:: the message target (if any) for this table {FXObject}
     # +selector+:: the message identifier for this table [Integer]
     # +opts+:: table options [Integer]
     # +x+:: initial x-position [Integer]

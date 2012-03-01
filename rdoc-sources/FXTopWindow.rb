@@ -109,10 +109,10 @@ module Fox
     # Title and border decorations (see above) [Integer]
     attr_accessor :decorations
 
-    # Window icon [FXIcon]
+    # Window icon {FXIcon}
     attr_accessor :icon
 
-    # Window mini (title) icon [FXIcon]
+    # Window mini (title) icon {FXIcon}
     attr_accessor :miniIcon
 
     # Show this window with given _placement_

@@ -20,7 +20,7 @@ module Fox
     # Radio button state, one of +TRUE+, +FALSE+ or +MAYBE+
     attr_accessor :check
 
-    # Radio background color [FXColor]
+    # Radio background color {FXColor}
     attr_accessor :radioColor
 
     #

@@ -10,7 +10,7 @@ module Fox
   #
   class FXDelegator < FXObject
 
-    # The object to which all messages are delegated [FXObject]
+    # The object to which all messages are delegated {FXObject}
     attr_accessor :delegate
 
     #

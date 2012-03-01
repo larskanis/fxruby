@@ -19,7 +19,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this scroll window [FXComposite]
+    # +p+:: the parent window for this scroll window {FXComposite}
     # +opts+:: the options [Integer]
     # +x+:: initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
     # +y+:: initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]

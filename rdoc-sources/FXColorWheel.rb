@@ -35,8 +35,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: Parent widget [FXComposite]
-    # +target+:: Message target object [FXObject]
+    # +p+:: Parent widget {FXComposite}
+    # +target+:: Message target object {FXObject}
     # +selector+:: Message identifier [Integer]
     # +opts+:: Options [Integer]
     # +x+::

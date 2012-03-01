@@ -9,10 +9,10 @@ module Fox
   #
   class FXRulerView < FXScrollArea
 
-    # Return a reference to the horizontal ruler [FXRuler]
+    # Return a reference to the horizontal ruler {FXRuler}
     attr_reader :horizontalRuler
 
-    # Return a reference to the vertical ruler [FXRuler]
+    # Return a reference to the vertical ruler {FXRuler}
     attr_reader :verticalRuler
 
     # Get document position X [Integer]
@@ -21,7 +21,7 @@ module Fox
     # Get document position Y [Integer]
     attr_reader :documentY
 
-    # Current document color [FXColor]
+    # Current document color {FXColor}
     attr_accessor :documentColor
 
     # X arrow position, relative to document position [Integer]
@@ -72,10 +72,10 @@ module Fox
     # Vertical alignment; the default is +RULER_ALIGN_NORMAL+ [Integer]
     attr_accessor :vAlignment
 
-    # Horizontal ruler font [FXFont]
+    # Horizontal ruler font {FXFont}
     attr_accessor :hRulerFont
 
-    # Vertical ruler font [FXFont]
+    # Vertical ruler font {FXFont}
     attr_accessor :vRulerFont
 
     # Horizontal document number placement [Integer]

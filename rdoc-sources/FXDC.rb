@@ -129,13 +129,13 @@ module Fox
 
   class FXDC
 
-    # Application [FXApp]
+    # Application {FXApp}
     attr_reader :app
 
-    # Foreground drawing color [FXColor]
+    # Foreground drawing color {FXColor}
     attr_accessor :foreground
 
-    # Background drawing color [FXColor]
+    # Background drawing color {FXColor}
     attr_accessor :background
 
     # Dash pattern [String]
@@ -168,16 +168,16 @@ module Fox
     # Raster op function, one of +BLT_CLR+, +BLT_SRC+, +BLT_DST+, etc. (see list above) [Integer]
     attr_accessor :function
 
-    # Tile image [FXImage]
+    # Tile image {FXImage}
     attr_accessor :tile
 
     # Stipple pattern [FXBitmap or Integer]
     attr_accessor :stipple
 
-    # Clip region [FXRegion]
+    # Clip region {FXRegion}
     attr_writer :clipRegion
 
-    # Clip rectangle [FXRectangle]
+    # Clip rectangle {FXRectangle}
     attr_reader :clipRectangle
 
     # X-coordinate of clip rectangle [Integer]
@@ -192,7 +192,7 @@ module Fox
     # Height of clip rectangle, in pixels [Integer]
     attr_reader :clipHeight
 
-    # Font to draw text with [FXFont]
+    # Font to draw text with {FXFont}
     attr_accessor :font
 
     # Construct dummy DC
@@ -530,7 +530,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +source+:: the source drawable from which to copy [FXDrawable]
+    # +source+:: the source drawable from which to copy {FXDrawable}
     # +sx+::  x-coordinate of the upper left corner of the source rectangle [Integer]
     # +sy+::  y-coordinate of the upper left corner of the source rectangle [Integer]
     # +sw+::  width of the source rectangle, in pixels [Integer]
@@ -546,7 +546,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +source+:: the source drawable from which to copy [FXDrawable]
+    # +source+:: the source drawable from which to copy {FXDrawable}
     # +sx+::  x-coordinate of the upper left corner of the source rectangle [Integer]
     # +sy+::  y-coordinate of the upper left corner of the source rectangle [Integer]
     # +sw+::  width of the source rectangle, in pixels [Integer]
@@ -563,7 +563,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +image+:: image to draw [FXImage]
+    # +image+:: image to draw {FXImage}
     # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
     # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
@@ -574,7 +574,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +bitmap+:: bitmap to draw [FXBitmap]
+    # +bitmap+:: bitmap to draw {FXBitmap}
     # +dx+::  x-coordinate of the the destination point in this drawable [Integer]
     # +dy+::  y-coordinate of the the destination point in this drawable [Integer]
     #
@@ -585,7 +585,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +icon+:: icon to draw [FXIcon]
+    # +icon+:: icon to draw {FXIcon}
     # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
     # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
@@ -597,7 +597,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +icon+:: icon to draw [FXIcon]
+    # +icon+:: icon to draw {FXIcon}
     # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
     # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
@@ -608,7 +608,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +icon+:: icon to draw [FXIcon]
+    # +icon+:: icon to draw {FXIcon}
     # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
     # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
@@ -689,7 +689,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +bitmap+:: a bitmap to use for clipping [FXBitmap]
+    # +bitmap+:: a bitmap to use for clipping {FXBitmap}
     # +dx+::  [Integer]
     # +dy+::  [Integer]
     #

@@ -25,7 +25,7 @@ module Fox
   #
   class FXMDIClient < FXComposite
 
-    # Active MDI child window, or +nil+ if none [FXMDIChild].
+    # Active MDI child window, or +nil+ if none {FXMDIChild}.
     attr_accessor :activeChild
 
     # Cascade offset X [Integer]

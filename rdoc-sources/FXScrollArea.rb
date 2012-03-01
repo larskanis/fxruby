@@ -44,10 +44,10 @@ module Fox
     # Scroll style [Integer]
     attr_accessor :scrollStyle
 
-    # Horizontal scrollbar [FXScrollBar]
+    # Horizontal scrollbar {FXScrollBar}
     attr_reader :horizontalScrollBar
 
-    # Vertical scrollbar [FXScrollBar]
+    # Vertical scrollbar {FXScrollBar}
     attr_reader :verticalScrollBar
 
     # Current x-position [Integer]
@@ -61,7 +61,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +parent+:: the parent widget for this scroll area [FXComposite]
+    # +parent+:: the parent widget for this scroll area {FXComposite}
     # +opts+::  the options [Integer]
     # +x+::  initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
     # +y+::  initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]

@@ -6,13 +6,13 @@ module Fox
   #
   class FXBitmapFrame < FXFrame
 
-    # The current image being displayed [FXBitmap]
+    # The current image being displayed {FXBitmap}
     attr_accessor :bitmap
 
-    # The color used for the "on" bits in the bitmap [FXColor]
+    # The color used for the "on" bits in the bitmap {FXColor}
     attr_accessor :onColor
 
-    # The color used for the "off" bits in the bitmap [FXColor]
+    # The color used for the "off" bits in the bitmap {FXColor}
     attr_accessor :offColor
 
     #

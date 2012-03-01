@@ -43,10 +43,10 @@ module Fox
   #
   class FXFileSelector < FXPacker
 
-    # The "Accept" button [FXButton]
+    # The "Accept" button {FXButton}
     attr_reader :acceptButton
 
-    # The "Cancel" button [FXButton]
+    # The "Cancel" button {FXButton}
     attr_reader :cancelButton
 
     # File name [String]

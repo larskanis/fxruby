@@ -4,25 +4,25 @@ module Fox
   #
   class FXFoldingItem < FXObject
 
-    # Parent item [FXFoldingItem]
+    # Parent item {FXFoldingItem}
     attr_reader  :parent
 
-    # Next sibling item [FXFoldingItem]
+    # Next sibling item {FXFoldingItem}
     attr_reader  :next
 
-    # Previous sibling item [FXFoldingItem]
+    # Previous sibling item {FXFoldingItem}
     attr_reader  :prev
 
-    # First child item [FXFoldingItem]
+    # First child item {FXFoldingItem}
     attr_reader  :first
 
-    # Last child item [FXFoldingItem]
+    # Last child item {FXFoldingItem}
     attr_reader  :last
 
-    # Item logically below this item [FXFoldingItem]
+    # Item logically below this item {FXFoldingItem}
     attr_reader  :below
 
-    # Item logically above this item [FXFoldingItem]
+    # Item logically above this item {FXFoldingItem}
     attr_reader  :above
 
     # Number of child items [Integer]
@@ -31,10 +31,10 @@ module Fox
     # Item text [String]
     attr_accessor :text
 
-    # Open icon [FXIcon]
+    # Open icon {FXIcon}
     attr_accessor :openIcon
 
-    # Closed icon [FXIcon]
+    # Closed icon {FXIcon}
     attr_accessor :closedIcon
 
     # User data [Object]
@@ -188,7 +188,7 @@ module Fox
 
   class FXFoldingList < FXScrollArea
 
-    # Header control [FXHeader]
+    # Header control {FXHeader}
     attr_reader :header
 
     # Number of header items [Integer]
@@ -200,37 +200,37 @@ module Fox
     # Number of visible items [Integer]
     attr_accessor :numVisible
 
-    # First root-level item [FXFoldingItem]
+    # First root-level item {FXFoldingItem}
     attr_reader :firstItem
 
-    # Last root-level item [FXFoldingItem]
+    # Last root-level item {FXFoldingItem}
     attr_reader :lastItem
 
-    # Current item, if any [FXFoldingItem]
+    # Current item, if any {FXFoldingItem}
     attr_accessor :currentItem
 
-    # Anchor item, if any [FXFoldingItem]
+    # Anchor item, if any {FXFoldingItem}
     attr_accessor :anchorItem
 
-    # Item under the cursor, if any [FXFoldingItem]
+    # Item under the cursor, if any {FXFoldingItem}
     attr_reader :cursorItem
 
-    # Text font [FXFont]
+    # Text font {FXFont}
     attr_accessor :font
 
     # Parent-child indent amount, in pixels [Integer]
     attr_accessor :indent
 
-    # Normal text color [FXColor]
+    # Normal text color {FXColor}
     attr_accessor :textColor
 
-    # Selected text background color [FXColor]
+    # Selected text background color {FXColor}
     attr_accessor :selBackColor
 
-    # Selected text color [FXColor]
+    # Selected text color {FXColor}
     attr_accessor :selTextColor
 
-    # Line color [FXColor]
+    # Line color {FXColor}
     attr_accessor :lineColor
 
     # List style [Integer]
@@ -244,8 +244,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent window for this folding list [FXComposite]
-    # +target+:: the message target, if any, for this folding list [FXObject]
+    # +p+:: the parent window for this folding list {FXComposite}
+    # +target+:: the message target, if any, for this folding list {FXObject}
     # +selector+:: the message identifier for this folding list [Integer]
     # +opts+:: folding list options [Integer]
     # +x+:: initial x-position [Integer]

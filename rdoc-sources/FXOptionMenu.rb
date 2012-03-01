@@ -13,10 +13,10 @@ module Fox
   # +SEL_COMMAND+::  sent when this option is clicked; the message data is an FXEvent instance.
   #
   class FXOption < FXLabel
-    # Selection background color [FXColor]
+    # Selection background color {FXColor}
     attr_accessor :selBackColor
 
-    # Selection text color [FXColor]
+    # Selection text color {FXColor}
     attr_accessor :selTextColor
 
     #
@@ -41,13 +41,13 @@ module Fox
   #
   class FXOptionMenu < FXLabel
 
-    # The current option, or +nil+ if none [FXOption]
+    # The current option, or +nil+ if none {FXOption}
     attr_accessor :current
 
     # The current option number, or -1 if none [Integer]
     attr_accessor :currentNo
 
-    # The pane which will be popped up [FXPopup]
+    # The pane which will be popped up {FXPopup}
     attr_accessor :menu
 
     #

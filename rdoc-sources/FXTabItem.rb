@@ -38,9 +38,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+:: the parent tab book (or tab bar) for this tab item [FXTabBar]
+    # +p+:: the parent tab book (or tab bar) for this tab item {FXTabBar}
     # +text+:: the text for this tab item [String]
-    # +ic+:: the icon for this tab item, if any [FXIcon]
+    # +ic+:: the icon for this tab item, if any {FXIcon}
     # +opts+:: tab item options [Integer]
     # +x+:: initial x-position [Integer]
     # +y+:: initial y-position [Integer]
