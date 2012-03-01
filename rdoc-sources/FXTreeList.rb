@@ -174,98 +174,98 @@ module Fox
   #
   # The following messages are sent by FXTreeList to its target:
   #
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_COMMAND+::		sent when a list item is clicked on; the message data is a reference to the item (an FXTreeItem instance).
-  # +SEL_CLICKED+::		sent when the left mouse button is single-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or +nil+ if no item was clicked.
-  # +SEL_DOUBLECLICKED+::	sent when the left mouse button is double-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or +nil+ if no item was clicked.
-  # +SEL_TRIPLECLICKED+::	sent when the left mouse button is triple-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or +nil+ if no item was clicked.
-  # +SEL_OPENED+::		sent when an item is opened; the message data is a reference to the item (an FXTreeItem instance).
-  # +SEL_CLOSED+::		sent when an item is closed; the message data is a reference to the item (an FXTreeItem instance).
-  # +SEL_EXPANDED+::		sent when a sub-tree is expanded; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).
-  # +SEL_COLLAPSED+::		sent when a sub-tree is collapsed; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).
-  # +SEL_SELECTED+::		sent when an item is selected; the message data is a reference to the item (an FXTreeItem instance).
-  # +SEL_DESELECTED+::		sent when an item is deselected; the message data is a reference to the item (an FXTreeItem instance).
-  # +SEL_CHANGED+::		sent when the current item changes; the message data is a reference to the current item (an FXTreeItem instance).
-  # +SEL_INSERTED+::		sent after an item is added to the list; the message data is a reference to the item (an FXTreeItem instance).
-  # +SEL_DELETED+::		sent before an item is removed from the list; the message data is a reference to the item (an FXTreeItem instance).
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_COMMAND+::  sent when a list item is clicked on; the message data is a reference to the item (an FXTreeItem instance).
+  # +SEL_CLICKED+::  sent when the left mouse button is single-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or +nil+ if no item was clicked.
+  # +SEL_DOUBLECLICKED+:: sent when the left mouse button is double-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or +nil+ if no item was clicked.
+  # +SEL_TRIPLECLICKED+:: sent when the left mouse button is triple-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or +nil+ if no item was clicked.
+  # +SEL_OPENED+::  sent when an item is opened; the message data is a reference to the item (an FXTreeItem instance).
+  # +SEL_CLOSED+::  sent when an item is closed; the message data is a reference to the item (an FXTreeItem instance).
+  # +SEL_EXPANDED+::  sent when a sub-tree is expanded; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).
+  # +SEL_COLLAPSED+::  sent when a sub-tree is collapsed; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).
+  # +SEL_SELECTED+::  sent when an item is selected; the message data is a reference to the item (an FXTreeItem instance).
+  # +SEL_DESELECTED+::  sent when an item is deselected; the message data is a reference to the item (an FXTreeItem instance).
+  # +SEL_CHANGED+::  sent when the current item changes; the message data is a reference to the current item (an FXTreeItem instance).
+  # +SEL_INSERTED+::  sent after an item is added to the list; the message data is a reference to the item (an FXTreeItem instance).
+  # +SEL_DELETED+::  sent before an item is removed from the list; the message data is a reference to the item (an FXTreeItem instance).
   #
   # === Tree list styles
   #
-  # +TREELIST_EXTENDEDSELECT+::		Extended selection mode allows for drag-selection of ranges of items
-  # +TREELIST_SINGLESELECT+::		Single selection mode allows up to one item to be selected
-  # +TREELIST_BROWSESELECT+::		Browse selection mode enforces one single item to be selected at all times
-  # +TREELIST_MULTIPLESELECT+::		Multiple selection mode is used for selection of individual items
-  # +TREELIST_AUTOSELECT+::		Automatically select under cursor
-  # +TREELIST_SHOWS_LINES+::		Lines shown
-  # +TREELIST_SHOWS_BOXES+::		Boxes to expand shown
-  # +TREELIST_ROOT_BOXES+::		Display root boxes also
-  # +TREELIST_NORMAL+::			same as +TREELIST_EXTENDEDLIST+
+  # +TREELIST_EXTENDEDSELECT+::  Extended selection mode allows for drag-selection of ranges of items
+  # +TREELIST_SINGLESELECT+::  Single selection mode allows up to one item to be selected
+  # +TREELIST_BROWSESELECT+::  Browse selection mode enforces one single item to be selected at all times
+  # +TREELIST_MULTIPLESELECT+::  Multiple selection mode is used for selection of individual items
+  # +TREELIST_AUTOSELECT+::  Automatically select under cursor
+  # +TREELIST_SHOWS_LINES+::  Lines shown
+  # +TREELIST_SHOWS_BOXES+::  Boxes to expand shown
+  # +TREELIST_ROOT_BOXES+::  Display root boxes also
+  # +TREELIST_NORMAL+::   same as +TREELIST_EXTENDEDLIST+
 
   class FXTreeList < FXScrollArea
 
     # Number of items [Integer]
-    attr_reader		:numItems
+    attr_reader  :numItems
 
     # Number of visible items [Integer]
-    attr_accessor	:numVisible
+    attr_accessor :numVisible
 
     # First root-level item [FXTreeItem]
-    attr_reader		:firstItem
+    attr_reader  :firstItem
 
     # Last root-level item [FXTreeItem]
-    attr_reader		:lastItem
+    attr_reader  :lastItem
 
     # Current item, if any [FXTreeItem]
-    attr_accessor	:currentItem
+    attr_accessor :currentItem
 
     # Anchor item, if any [FXTreeItem]
-    attr_accessor	:anchorItem
+    attr_accessor :anchorItem
 
     # Item under the cursor, if any [FXTreeItem]
-    attr_reader		:cursorItem
+    attr_reader  :cursorItem
 
     # Text font [FXFont]
-    attr_accessor	:font
+    attr_accessor :font
 
     # Parent-child indent amount, in pixels [Integer]
-    attr_accessor	:indent
+    attr_accessor :indent
 
     # Normal text color [FXColor]
-    attr_accessor	:textColor
+    attr_accessor :textColor
 
     # Selected text background color [FXColor]
-    attr_accessor	:selBackColor
+    attr_accessor :selBackColor
 
     # Selected text color [FXColor]
-    attr_accessor	:selTextColor
+    attr_accessor :selTextColor
 
     # Line color [FXColor]
-    attr_accessor	:lineColor
+    attr_accessor :lineColor
 
     # List style [Integer]
-    attr_accessor	:listStyle
+    attr_accessor :listStyle
 
     # Status line help text for this list [String]
-    attr_accessor	:helpText
+    attr_accessor :helpText
 
     #
     # Construct a new, initially empty tree list.
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this tree list [FXComposite]
-    # +target+::	the message target, if any, for this tree list [FXObject]
-    # +selector+::	the message identifier for this tree list [Integer]
-    # +opts+::	tree list options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent window for this tree list [FXComposite]
+    # +target+:: the message target, if any, for this tree list [FXObject]
+    # +selector+:: the message identifier for this tree list [Integer]
+    # +opts+:: tree list options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=TREELIST_NORMAL, x=0, y=0, width=0, height=0) # :yields: theTreeList
     end
@@ -331,7 +331,7 @@ module Fox
     # Remove item.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message
     # target before the item is removed.
-    def removeItem(item, notify=false);
+    def removeItem(item, notify=false); end
 
     # Remove items in range [_fromItem_, _toItem_] inclusively.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message

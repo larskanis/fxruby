@@ -18,13 +18,13 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +pix+::	a memory buffer formatted in BMP file format [String]
-    # +opts+::	options [Integer]
-    # +width+::	width [Integer]
-    # +height+::	height [Integer]
+    # +a+:: an application instance [FXApp]
+    # +pix+:: a memory buffer formatted in BMP file format [String]
+    # +opts+:: options [Integer]
+    # +width+:: width [Integer]
+    # +height+:: height [Integer]
     #
-    def initialize(a, pix=nil, opts=0, width=1, height=1)	# :yields: theBMPImage
+    def initialize(a, pix=nil, opts=0, width=1, height=1) # :yields: theBMPImage
     end
   end
 end

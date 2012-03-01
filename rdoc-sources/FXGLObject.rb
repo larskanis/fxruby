@@ -24,7 +24,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +viewer+::	the viewer window into which we're drawing [FXGLViewer]
+    # +viewer+:: the viewer window into which we're drawing [FXGLViewer]
     #
     def draw(viewer); end
 
@@ -33,7 +33,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +viewer+::	the viewer window into which we're drawing [FXGLViewer]
+    # +viewer+:: the viewer window into which we're drawing [FXGLViewer]
     #
     def hit(viewer); end
 
@@ -53,11 +53,11 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +viewer+::	the viewer window in which we're dragging [FXGLViewer]
-    # +fx+::		x-coordinate for position we're dragging from [Integer]
-    # +fy+::		y-coordinate for position we're dragging from [Integer]
-    # +tx+::		x-coordinate for position we're dragging to [Integer]
-    # +ty+::		y-coordinate for position we're dragging to [Integer]
+    # +viewer+:: the viewer window in which we're dragging [FXGLViewer]
+    # +fx+::  x-coordinate for position we're dragging from [Integer]
+    # +fy+::  y-coordinate for position we're dragging from [Integer]
+    # +tx+::  x-coordinate for position we're dragging to [Integer]
+    # +ty+::  y-coordinate for position we're dragging to [Integer]
     #
     def drag(viewer, fx, fy, tx, ty); end
 
@@ -67,7 +67,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +path+::	an array of integers [Array]
+    # +path+:: an array of integers [Array]
     #
     def identify(path); end
   end

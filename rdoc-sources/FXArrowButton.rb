@@ -11,10 +11,10 @@ module Fox
   #
   # The following messages are sent by FXArrowButton to its target:
   #
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
   # +SEL_COMMAND+::
   #   sent when the button is clicked (or repeatedly while the button is held
   #   down, if the +ARROW_REPEAT+ option is in effect).
@@ -26,7 +26,7 @@ module Fox
   # +ARROW_DOWN+::      arrow points down
   # +ARROW_LEFT+::      arrow points left
   # +ARROW_RIGHT+::     arrow points right
-  # +ARROW_AUTO+::	automatically fire when hovering mouse over button
+  # +ARROW_AUTO+:: automatically fire when hovering mouse over button
   # +ARROW_REPEAT+::    button repeats if held down
   # +ARROW_AUTOGRAY+::  automatically gray out when not updated
   # +ARROW_AUTOHIDE+::  automatically hide when not updated

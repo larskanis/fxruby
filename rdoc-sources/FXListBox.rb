@@ -19,7 +19,7 @@ module Fox
   #
   # === List Box styles
   #
-  # +LISTBOX_NORMAL+::		Normal style
+  # +LISTBOX_NORMAL+::  Normal style
   #
   # === Message identifiers
   #
@@ -96,7 +96,7 @@ module Fox
     def insertItem(index, text, icon=nil, ptr=nil); end
 
     # Add an item to the end of the list.
-    def appendItem(text, icon=nil, ptr=nil);
+    def appendItem(text, icon=nil, ptr=nil); end
 
     # Prepend an item to the list
     def prependItem(text, icon=nil, ptr=nil); end

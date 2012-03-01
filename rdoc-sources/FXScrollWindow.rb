@@ -19,12 +19,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this scroll window [FXComposite]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
-    # +y+::	initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
-    # +width+::	initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
-    # +height+::	initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
+    # +p+:: the parent window for this scroll window [FXComposite]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
+    # +y+:: initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
+    # +width+:: initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
+    # +height+:: initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
     #
     def initialize(p, opts=0, x=0, y=0, width=0, height=0) # :yields: theScrollWindow
     end

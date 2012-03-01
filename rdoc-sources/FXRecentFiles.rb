@@ -21,18 +21,18 @@ module Fox
   #
   # === Message identifiers
   #
-  # <tt>ID_CLEAR</tt>::		Clear the list of files
-  # <tt>ID_ANYFILES</tt>::	x
-  # <tt>ID_FILE_1</tt>::	x
-  # <tt>ID_FILE_2</tt>::	x
-  # <tt>ID_FILE_3</tt>::	x
-  # <tt>ID_FILE_4</tt>::	x
-  # <tt>ID_FILE_5</tt>::	x
-  # <tt>ID_FILE_6</tt>::	x
-  # <tt>ID_FILE_7</tt>::	x
-  # <tt>ID_FILE_8</tt>::	x
-  # <tt>ID_FILE_9</tt>::	x
-  # <tt>ID_FILE_10</tt>::	x
+  # <tt>ID_CLEAR</tt>::  Clear the list of files
+  # <tt>ID_ANYFILES</tt>:: x
+  # <tt>ID_FILE_1</tt>:: x
+  # <tt>ID_FILE_2</tt>:: x
+  # <tt>ID_FILE_3</tt>:: x
+  # <tt>ID_FILE_4</tt>:: x
+  # <tt>ID_FILE_5</tt>:: x
+  # <tt>ID_FILE_6</tt>:: x
+  # <tt>ID_FILE_7</tt>:: x
+  # <tt>ID_FILE_8</tt>:: x
+  # <tt>ID_FILE_9</tt>:: x
+  # <tt>ID_FILE_10</tt>:: x
   #
   class FXRecentFiles < FXObject
     # Application associated with this recent files group [FXApp]

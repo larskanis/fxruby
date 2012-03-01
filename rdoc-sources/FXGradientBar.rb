@@ -34,43 +34,43 @@ module Fox
   #
   # The following messages are sent by FXGradientBar to its target:
   #
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_CHANGED+::		sent when anything about a segment changes; the message data is an integer indicating the segment number
-  # +SEL_SELECTED+::		sent when one or more segments are selected.
-  # +SEL_DESELECTED+::		sent when one or more segments are deselected.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_CHANGED+::  sent when anything about a segment changes; the message data is an integer indicating the segment number
+  # +SEL_SELECTED+::  sent when one or more segments are selected.
+  # +SEL_DESELECTED+::  sent when one or more segments are deselected.
   #
   # === Gradient bar orientation
   #
-  # +GRADIENTBAR_HORIZONTAL+::		Gradient bar shown horizontally
-  # +GRADIENTBAR_VERTICAL+::		Gradient bar shown vertically
-  # +GRADIENTBAR_NO_CONTROLS+::		No controls shown
-  # +GRADIENTBAR_CONTROLS_TOP+::	Controls on top
-  # +GRADIENTBAR_CONTROLS_BOTTOM+::	Controls on bottom
-  # +GRADIENTBAR_CONTROLS_LEFT+::	Controls on left
-  # +GRADIENTBAR_CONTROLS_RIGHT+::	Controls on right
+  # +GRADIENTBAR_HORIZONTAL+::  Gradient bar shown horizontally
+  # +GRADIENTBAR_VERTICAL+::  Gradient bar shown vertically
+  # +GRADIENTBAR_NO_CONTROLS+::  No controls shown
+  # +GRADIENTBAR_CONTROLS_TOP+:: Controls on top
+  # +GRADIENTBAR_CONTROLS_BOTTOM+:: Controls on bottom
+  # +GRADIENTBAR_CONTROLS_LEFT+:: Controls on left
+  # +GRADIENTBAR_CONTROLS_RIGHT+:: Controls on right
   #
   # === Blend modes
   #
-  # +GRADIENT_BLEND_LINEAR+::		Linear blend
-  # +GRADIENT_BLEND_POWER+::		Power law blend
-  # +GRADIENT_BLEND_SINE+::		Sine blend
-  # +GRADIENT_BLEND_INCREASING+::	Quadratic increasing blend
-  # +GRADIENT_BLEND_DECREASING+::	Quadratic decreasing blend
+  # +GRADIENT_BLEND_LINEAR+::  Linear blend
+  # +GRADIENT_BLEND_POWER+::  Power law blend
+  # +GRADIENT_BLEND_SINE+::  Sine blend
+  # +GRADIENT_BLEND_INCREASING+:: Quadratic increasing blend
+  # +GRADIENT_BLEND_DECREASING+:: Quadratic decreasing blend
   #
   # === Message identifiers
   #
-  # +ID_LOWER_COLOR+::			write me
-  # +ID_UPPER_COLOR+::			write me
-  # +ID_BLEND_LINEAR+::			write me
-  # +ID_BLEND_POWER+::			write me
-  # +ID_BLEND_SINE+::			write me
-  # +ID_BLEND_INCREASING+::		write me
-  # +ID_BLEND_DECREASING+::		write me
-  # +ID_RECENTER+::			write me
-  # +ID_SPLIT+::			write me
-  # +ID_MERGE+::		 	write me
-  # +ID_UNIFORM+::			write me
+  # +ID_LOWER_COLOR+::   write me
+  # +ID_UPPER_COLOR+::   write me
+  # +ID_BLEND_LINEAR+::   write me
+  # +ID_BLEND_POWER+::   write me
+  # +ID_BLEND_SINE+::   write me
+  # +ID_BLEND_INCREASING+::  write me
+  # +ID_BLEND_DECREASING+::  write me
+  # +ID_RECENTER+::   write me
+  # +ID_SPLIT+::   write me
+  # +ID_MERGE+::    write me
+  # +ID_UNIFORM+::   write me
   #
   class FXGradientBar < FXFrame
 

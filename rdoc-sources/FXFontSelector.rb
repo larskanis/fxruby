@@ -4,17 +4,17 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_FAMILY+::	x
-  # +ID_WEIGHT+::	x
-  # +ID_STYLE+::	x
-  # +ID_STYLE_TEXT+::	x
-  # +ID_SIZE+::		x
-  # +ID_SIZE_TEXT+::	x
-  # +ID_CHARSET+::	x
-  # +ID_SETWIDTH+::	x
-  # +ID_PITCH+::	x
-  # +ID_SCALABLE+::	x
-  # +ID_ALLFONTS+::	x
+  # +ID_FAMILY+:: x
+  # +ID_WEIGHT+:: x
+  # +ID_STYLE+:: x
+  # +ID_STYLE_TEXT+:: x
+  # +ID_SIZE+::  x
+  # +ID_SIZE_TEXT+:: x
+  # +ID_CHARSET+:: x
+  # +ID_SETWIDTH+:: x
+  # +ID_PITCH+:: x
+  # +ID_SCALABLE+:: x
+  # +ID_ALLFONTS+:: x
   #
   class FXFontSelector < FXPacker
 

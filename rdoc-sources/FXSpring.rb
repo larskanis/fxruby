@@ -39,20 +39,20 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this spring [FXComposite]
-    # +relw+::	the relative width [Integer]
-    # +relh+::	the relative height [Integer]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	left-side padding (in pixels) [Integer]
-    # +padRight+::	right-side padding (in pixels) [Integer]
-    # +padTop+::	top-side padding (in pixels) [Integer]
-    # +padBottom+::	bottom-side padding (in pixels) [Integer]
-    # +hSpacing+::	horizontal spacing (in pixels) [Integer]
-    # +vSpacing+::	vertical spacing (in pixels) [Integer]
+    # +p+:: the parent widget for this spring [FXComposite]
+    # +relw+:: the relative width [Integer]
+    # +relh+:: the relative height [Integer]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: left-side padding (in pixels) [Integer]
+    # +padRight+:: right-side padding (in pixels) [Integer]
+    # +padTop+:: top-side padding (in pixels) [Integer]
+    # +padBottom+:: bottom-side padding (in pixels) [Integer]
+    # +hSpacing+:: horizontal spacing (in pixels) [Integer]
+    # +vSpacing+:: vertical spacing (in pixels) [Integer]
     #
     def initialize(p, opts=0, relw=0, relh=0, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theSpring
     end

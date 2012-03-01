@@ -8,8 +8,8 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_NEXT+::		Move to the next panel in the wizard
-  # +ID_BACK+::		Move to the previous panel in the wizard
+  # +ID_NEXT+::  Move to the next panel in the wizard
+  # +ID_BACK+::  Move to the previous panel in the wizard
   #
   class FXWizard < FXDialogBox
 

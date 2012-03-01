@@ -77,31 +77,31 @@ module Fox
   #
   # The following messages are sent by FXList to its target:
   #
-  # +SEL_CHANGED+::		sent when the current list item changes; the message data is an Integer indicating the index of the current item.
-  # +SEL_COMMAND+::		sent when the current list item changes; the message data is an Integer indicating the index of the current item.
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_CLICKED+::		sent when a list item is single-clicked; the message data is an Integer indicating the index of the current item.
-  # +SEL_DOUBLECLICKED+::	sent when a list item is double-clicked; the message data is an Integer indicating the index of the current item.
-  # +SEL_TRIPLECLICKED+::	sent when a list item is triple-clicked; the message data is an Integer indicating the index of the current item.
-  # +SEL_SELECTED+::		sent when a list item is selected; the message data is an Integer indicating the index of the selected item.
-  # +SEL_DESELECTED+::		sent when a list item is deselected; the message data is an Integer indicating the index of the deselected item.
-  # +SEL_REPLACED+::		sent when a list item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
-  # +SEL_INSERTED+::		sent after a list item is inserted; the message data is an Integer indicating the index of the item that was inserted.
-  # +SEL_DELETED+::		sent when a list item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
+  # +SEL_CHANGED+::  sent when the current list item changes; the message data is an Integer indicating the index of the current item.
+  # +SEL_COMMAND+::  sent when the current list item changes; the message data is an Integer indicating the index of the current item.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_CLICKED+::  sent when a list item is single-clicked; the message data is an Integer indicating the index of the current item.
+  # +SEL_DOUBLECLICKED+:: sent when a list item is double-clicked; the message data is an Integer indicating the index of the current item.
+  # +SEL_TRIPLECLICKED+:: sent when a list item is triple-clicked; the message data is an Integer indicating the index of the current item.
+  # +SEL_SELECTED+::  sent when a list item is selected; the message data is an Integer indicating the index of the selected item.
+  # +SEL_DESELECTED+::  sent when a list item is deselected; the message data is an Integer indicating the index of the deselected item.
+  # +SEL_REPLACED+::  sent when a list item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
+  # +SEL_INSERTED+::  sent after a list item is inserted; the message data is an Integer indicating the index of the item that was inserted.
+  # +SEL_DELETED+::  sent when a list item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
   #
   # === List styles
   #
-  # +LIST_EXTENDEDSELECT+::	Extended selection mode allows for drag-selection of ranges of items
-  # +LIST_SINGLESELECT+::	Single selection mode allows up to one item to be selected
-  # +LIST_BROWSESELECT+::	Browse selection mode enforces one single item to be selected at all times
-  # +LIST_MULTIPLESELECT+::	Multiple selection mode is used for selection of individual items
-  # +LIST_AUTOSELECT+::		Automatically select under cursor
-  # +LIST_NORMAL+::		same as +LIST_EXTENDEDSELECT+
+  # +LIST_EXTENDEDSELECT+:: Extended selection mode allows for drag-selection of ranges of items
+  # +LIST_SINGLESELECT+:: Single selection mode allows up to one item to be selected
+  # +LIST_BROWSESELECT+:: Browse selection mode enforces one single item to be selected at all times
+  # +LIST_MULTIPLESELECT+:: Multiple selection mode is used for selection of individual items
+  # +LIST_AUTOSELECT+::  Automatically select under cursor
+  # +LIST_NORMAL+::  same as +LIST_EXTENDEDSELECT+
   #
   # === Message identifiers
   #
@@ -111,7 +111,7 @@ module Fox
   class FXList < FXScrollArea
 
     # Number of items in the list [Integer]
-    attr_reader	:numItems
+    attr_reader :numItems
 
     # Number of visible items [Integer]
     attr_accessor :numVisible
@@ -120,10 +120,10 @@ module Fox
     attr_accessor :currentItem
 
     # Index of anchor item, or -1 if no anchor item [Integer]
-    attr_reader	:anchorItem
+    attr_reader :anchorItem
 
     # Index of item under the cursor, or -1 if none [Integer]
-    attr_reader	:cursorItem
+    attr_reader :cursorItem
 
     # Text font [FXFont]
     attr_accessor :font

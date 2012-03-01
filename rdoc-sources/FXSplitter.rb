@@ -20,10 +20,10 @@ module Fox
   #
   # The following messages are sent by FXSplitter to its target:
   #
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_COMMAND+::		sent at the end of a resize operation, to signal that the resize is complete
-  # +SEL_CHANGED+::		sent continuously while a resize operation is occurring
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_COMMAND+::  sent at the end of a resize operation, to signal that the resize is complete
+  # +SEL_CHANGED+::  sent continuously while a resize operation is occurring
   #
   # === Splitter options
   #
@@ -46,12 +46,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this splitter [FXComposite]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent widget for this splitter [FXComposite]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, opts=SPLITTER_NORMAL, x=0, y=0, width=0, height=0) # :yields: theSplitter
     end
@@ -61,14 +61,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this splitter [FXComposite]
-    # +target+::	the message target for this splitter [FXObject]
-    # +selector+::	the message identifier for this splitter [Integer]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent widget for this splitter [FXComposite]
+    # +target+:: the message target for this splitter [FXObject]
+    # +selector+:: the message identifier for this splitter [Integer]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, tgt, sel, opts=SPLITTER_NORMAL, x=0, y=0, width=0, height=0) # :yields: theSplitter
     end

@@ -7,10 +7,10 @@ module Fox
   #
   # The following messages are sent by FXMenuTitle to its target:
   #
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
   #
   class FXMenuTitle < FXMenuCaption
 

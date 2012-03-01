@@ -93,44 +93,44 @@ module Fox
   #
   # The following messages are sent by FXGLViewer to its message target:
   #
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONPRESS+::	sent when the middle mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONRELEASE+::	sent when the middle mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_MOTION+::		sent when the mouse pointer is moved; the message data is an FXEvent instance.
-  # +SEL_MOUSEWHEEL+::		sent when the mouse wheel is spun; the message data is an FXEvent instance.
-  # +SEL_CLICKED+::		sent when the mouse is single-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
-  # +SEL_DOUBLECLICKED+::	sent when the mouse is double-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
-  # +SEL_TRIPLECLICKED+::	sent when the mouse is triple-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
-  # +SEL_PICKED+::		sent when an object is picked; the message data is an FXEvent instance.
-  # +SEL_SELECTED+::		sent when object(s) are selected in the viewer; the message data is an array of references to the selected objects.
-  # +SEL_DESELECTED+::		sent when object(s) are deselected in the viewer; the message data is an array of references to the deselected objects.
-  # +SEL_LASSOED+::		sent when a lasso-selection has been completed; the message data is an FXEvent instance.
-  # +SEL_INSERTED+::		sent when the viewer receives a +SEL_INSERTED+ message.
-  # +SEL_DELETED+::		sent when the viewer receives a +SEL_COMMAND+ message with the +ID_DELETE_SEL+ identifier; the message data is an array of references to the selected object(s).
-  # +SEL_DRAGGED+::		sent when the selected object is dragged around in the viewer; the message data is a reference to the selected object.
-  # +SEL_COMMAND+::		sent when the mouse is clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
-  # +SEL_CHANGED+::		sent when the selection changes; the message data is a reference to the newly selected object (or +nil+).
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONPRESS+:: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONRELEASE+:: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_MOTION+::  sent when the mouse pointer is moved; the message data is an FXEvent instance.
+  # +SEL_MOUSEWHEEL+::  sent when the mouse wheel is spun; the message data is an FXEvent instance.
+  # +SEL_CLICKED+::  sent when the mouse is single-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
+  # +SEL_DOUBLECLICKED+:: sent when the mouse is double-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
+  # +SEL_TRIPLECLICKED+:: sent when the mouse is triple-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
+  # +SEL_PICKED+::  sent when an object is picked; the message data is an FXEvent instance.
+  # +SEL_SELECTED+::  sent when object(s) are selected in the viewer; the message data is an array of references to the selected objects.
+  # +SEL_DESELECTED+::  sent when object(s) are deselected in the viewer; the message data is an array of references to the deselected objects.
+  # +SEL_LASSOED+::  sent when a lasso-selection has been completed; the message data is an FXEvent instance.
+  # +SEL_INSERTED+::  sent when the viewer receives a +SEL_INSERTED+ message.
+  # +SEL_DELETED+::  sent when the viewer receives a +SEL_COMMAND+ message with the +ID_DELETE_SEL+ identifier; the message data is an array of references to the selected object(s).
+  # +SEL_DRAGGED+::  sent when the selected object is dragged around in the viewer; the message data is a reference to the selected object.
+  # +SEL_COMMAND+::  sent when the mouse is clicked somewhere in the widget; the message data is a reference to the clicked object (possibly +nil+)
+  # +SEL_CHANGED+::  sent when the selection changes; the message data is a reference to the newly selected object (or +nil+).
   #
   # === FXGLViewer options
   #
-  # +VIEWER_LIGHTING+::	Lighting is on
-  # +VIEWER_FOG+::	Fog mode on
-  # +VIEWER_DITHER+::	Dithering
+  # +VIEWER_LIGHTING+:: Lighting is on
+  # +VIEWER_FOG+:: Fog mode on
+  # +VIEWER_DITHER+:: Dithering
   #
   # === Projection modes (class constants)
   #
-  # +PARALLEL+::	Parallel projection
-  # +PERSPECTIVE+::	Perspective projection
+  # +PARALLEL+:: Parallel projection
+  # +PERSPECTIVE+:: Perspective projection
   #
   # === Message identifiers
   #
-  # +ID_PERSPECTIVE+::		x
-  # +ID_PARALLEL+::		x
+  # +ID_PERSPECTIVE+::  x
+  # +ID_PARALLEL+::  x
   # +ID_FRONT+:: x
   # +ID_BACK+:: x
   # +ID_LEFT+:: x

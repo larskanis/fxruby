@@ -6,9 +6,9 @@ module Fox
   #
   # === Options
   #
-  # +PROGRESSDIALOG_NOCANCEL+::		Default is no cancel button
-  # +PROGRESSDIALOG_CANCEL+::		Enable the cancel button
-  # +PROGRESSDIALOG_NORMAL+::		same as <tt>DECOR_TITLE|DECOR_BORDER</tt>
+  # +PROGRESSDIALOG_NOCANCEL+::  Default is no cancel button
+  # +PROGRESSDIALOG_CANCEL+::  Enable the cancel button
+  # +PROGRESSDIALOG_NORMAL+::  same as <tt>DECOR_TITLE|DECOR_BORDER</tt>
   #
   class FXProgressDialog < FXDialogBox
     # Progress message [String]

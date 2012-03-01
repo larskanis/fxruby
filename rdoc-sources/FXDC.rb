@@ -99,38 +99,38 @@ module Fox
   #
   # === Stipple/dither patterns
   #
-  # <tt>STIPPLE_0</tt>::		Stipple pattern 0
-  # <tt>STIPPLE_NONE</tt>::		Stipple pattern 0
-  # <tt>STIPPLE_BLACK</tt>::		All ones
-  # <tt>STIPPLE_1</tt>::		Stipple pattern 1
-  # <tt>STIPPLE_2</tt>::		Stipple pattern 2
-  # <tt>STIPPLE_3</tt>::		Stipple pattern 3
-  # <tt>STIPPLE_4</tt>::		Stipple pattern 4
-  # <tt>STIPPLE_5</tt>::		Stipple pattern 5
-  # <tt>STIPPLE_6</tt>::		Stipple pattern 6
-  # <tt>STIPPLE_7</tt>::		Stipple pattern 7
-  # <tt>STIPPLE_8</tt>::		Stipple pattern 8
-  # <tt>STIPPLE_GRAY</tt>::		50% gray
-  # <tt>STIPPLE_9</tt>::		Stipple pattern 9
-  # <tt>STIPPLE_10</tt>::		Stipple pattern 10
-  # <tt>STIPPLE_11</tt>::		Stipple pattern 11
-  # <tt>STIPPLE_12</tt>::		Stipple pattern 12
-  # <tt>STIPPLE_13</tt>::		Stipple pattern 13
-  # <tt>STIPPLE_14</tt>::		Stipple pattern 14
-  # <tt>STIPPLE_15</tt>::		Stipple pattern 15
-  # <tt>STIPPLE_16</tt>::		Stipple pattern 16
-  # <tt>STIPPLE_WHITE</tt>::		All zeroes
-  # <tt>STIPPLE_HORZ</tt>::		Horizontal hatch pattern
-  # <tt>STIPPLE_VERT</tt>::		Vertical hatch pattern
-  # <tt>STIPPLE_CROSS</tt>::		Cross-hatch pattern
-  # <tt>STIPPLE_DIAG</tt>::		Diagonal // hatch pattern
-  # <tt>STIPPLE_REVDIAG</tt>::		Reverse diagonal \\ hatch pattern
-  # <tt>STIPPLE_CROSSDIAG</tt>::	Cross-diagonal hatch pattern
+  # <tt>STIPPLE_0</tt>::  Stipple pattern 0
+  # <tt>STIPPLE_NONE</tt>::  Stipple pattern 0
+  # <tt>STIPPLE_BLACK</tt>::  All ones
+  # <tt>STIPPLE_1</tt>::  Stipple pattern 1
+  # <tt>STIPPLE_2</tt>::  Stipple pattern 2
+  # <tt>STIPPLE_3</tt>::  Stipple pattern 3
+  # <tt>STIPPLE_4</tt>::  Stipple pattern 4
+  # <tt>STIPPLE_5</tt>::  Stipple pattern 5
+  # <tt>STIPPLE_6</tt>::  Stipple pattern 6
+  # <tt>STIPPLE_7</tt>::  Stipple pattern 7
+  # <tt>STIPPLE_8</tt>::  Stipple pattern 8
+  # <tt>STIPPLE_GRAY</tt>::  50% gray
+  # <tt>STIPPLE_9</tt>::  Stipple pattern 9
+  # <tt>STIPPLE_10</tt>::  Stipple pattern 10
+  # <tt>STIPPLE_11</tt>::  Stipple pattern 11
+  # <tt>STIPPLE_12</tt>::  Stipple pattern 12
+  # <tt>STIPPLE_13</tt>::  Stipple pattern 13
+  # <tt>STIPPLE_14</tt>::  Stipple pattern 14
+  # <tt>STIPPLE_15</tt>::  Stipple pattern 15
+  # <tt>STIPPLE_16</tt>::  Stipple pattern 16
+  # <tt>STIPPLE_WHITE</tt>::  All zeroes
+  # <tt>STIPPLE_HORZ</tt>::  Horizontal hatch pattern
+  # <tt>STIPPLE_VERT</tt>::  Vertical hatch pattern
+  # <tt>STIPPLE_CROSS</tt>::  Cross-hatch pattern
+  # <tt>STIPPLE_DIAG</tt>::  Diagonal // hatch pattern
+  # <tt>STIPPLE_REVDIAG</tt>::  Reverse diagonal \\ hatch pattern
+  # <tt>STIPPLE_CROSSDIAG</tt>:: Cross-diagonal hatch pattern
 
   class FXDC
 
     # Application [FXApp]
-    attr_reader	:app
+    attr_reader :app
 
     # Foreground drawing color [FXColor]
     attr_accessor :foreground
@@ -139,13 +139,13 @@ module Fox
     attr_accessor :background
 
     # Dash pattern [String]
-    attr_reader	:dashPattern
+    attr_reader :dashPattern
 
     # Dash offset [Integer]
-    attr_reader	:dashOffset
+    attr_reader :dashOffset
 
     # Dash length [Integer]
-    attr_reader	:dashLength
+    attr_reader :dashLength
 
     # Line width; a line width of zero means thinnest and fastest possible [Integer]
     attr_accessor :lineWidth
@@ -175,22 +175,22 @@ module Fox
     attr_accessor :stipple
 
     # Clip region [FXRegion]
-    attr_writer	:clipRegion
+    attr_writer :clipRegion
 
     # Clip rectangle [FXRectangle]
-    attr_reader	:clipRectangle
+    attr_reader :clipRectangle
 
     # X-coordinate of clip rectangle [Integer]
-    attr_reader	:clipX
+    attr_reader :clipX
 
     # Y-coordinate of clip rectangle [Integer]
-    attr_reader	:clipY
+    attr_reader :clipY
 
     # Width of clip rectangle, in pixels [Integer]
-    attr_reader	:clipWidth
+    attr_reader :clipWidth
 
     # Height of clip rectangle, in pixels [Integer]
-    attr_reader	:clipHeight
+    attr_reader :clipHeight
 
     # Font to draw text with [FXFont]
     attr_accessor :font
@@ -203,8 +203,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +x+::	x-coordinate of the pixel of interest [Integer]
-    # +y+::	y-coordinate of the pixel of interest [Integer]
+    # +x+:: x-coordinate of the pixel of interest [Integer]
+    # +y+:: y-coordinate of the pixel of interest [Integer]
     #
     def readPixel(x, y) ; end
 
@@ -213,8 +213,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +x+::	x-coordinate of the point [Integer]
-    # +y+::	y-coordinate of the point [Integer]
+    # +x+:: x-coordinate of the point [Integer]
+    # +y+:: y-coordinate of the point [Integer]
     #
     # See also #drawPoints and #drawPointsRel.
     #
@@ -225,7 +225,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +points+::	array of FXPoint instances [Array]
+    # +points+:: array of FXPoint instances [Array]
     #
     # See also #drawPoint and #drawPointsRel.
     #
@@ -239,7 +239,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +points+::	array of FXPoint instances [Array]
+    # +points+:: array of FXPoint instances [Array]
     #
     # See also #drawPoint and #drawPoints.
     #
@@ -250,10 +250,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # <tt>x1</tt>::	x-coordinate of the starting point [Integer]
-    # <tt>y1</tt>::	y-coordinate of the starting point [Integer]
-    # <tt>x2</tt>::	x-coordinate of the ending point [Integer]
-    # <tt>y2</tt>::	y-coordinate of the ending point [Integer]
+    # <tt>x1</tt>:: x-coordinate of the starting point [Integer]
+    # <tt>y1</tt>:: y-coordinate of the starting point [Integer]
+    # <tt>x2</tt>:: x-coordinate of the ending point [Integer]
+    # <tt>y2</tt>:: y-coordinate of the ending point [Integer]
     #
     # See also #drawLines and #drawLinesRel.
     #
@@ -267,7 +267,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +points+::	array of FXPoint instances that defines all points on the line [Array]
+    # +points+:: array of FXPoint instances that defines all points on the line [Array]
     #
     # See also #drawLine and #drawLinesRel.
     #
@@ -282,7 +282,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +points+::	array of FXPoint instances that defines all points on the line [Array]
+    # +points+:: array of FXPoint instances that defines all points on the line [Array]
     #
     # See also #drawLine and #drawLines.
     #
@@ -294,7 +294,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +segments+::	an array of FXSegment instances [Array]
+    # +segments+:: an array of FXSegment instances [Array]
     #
     def drawLineSegments(segments) ; end
 
@@ -303,10 +303,10 @@ module Fox
     #
     # === Parameters:
     #
-    # +x+::	x-coordinate of upper-left corner of the rectangle [Integer]
-    # +y+::	y-coordinate of upper-left corner of the rectangle [Integer]
-    # +width+::	width of the rectangle, in pixels [Integer]
-    # +height+::	height of the rectangle, in pixels [Integer]
+    # +x+:: x-coordinate of upper-left corner of the rectangle [Integer]
+    # +y+:: y-coordinate of upper-left corner of the rectangle [Integer]
+    # +width+:: width of the rectangle, in pixels [Integer]
+    # +height+:: height of the rectangle, in pixels [Integer]
     #
     # See also #drawRectangles, #fillRectangle and #fillRectangles.
     #
@@ -317,7 +317,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +rectangles+::	an array of FXRectangle instances [Array]
+    # +rectangles+:: an array of FXRectangle instances [Array]
     #
     # See also #drawRectangle, #fillRectangle and #fillRectangles.
     #
@@ -328,10 +328,10 @@ module Fox
     #
     # === Parameters:
     #
-    # <tt>x</tt>::	x-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>y</tt>::	y-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>w</tt>::	width of the bounding rectangle, in pixels [Integer]
-    # <tt>h</tt>::	height of the bounding rectangle, in pixels [Integer]
+    # <tt>x</tt>:: x-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>y</tt>:: y-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>w</tt>:: width of the bounding rectangle, in pixels [Integer]
+    # <tt>h</tt>:: height of the bounding rectangle, in pixels [Integer]
     #
     def drawRoundRectangle(x, y, w, h, ew, eh); end
 
@@ -346,12 +346,12 @@ module Fox
     #
     # === Parameters:
     #
-    # <tt>x</tt>::	x-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>y</tt>::	y-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>w</tt>::	width of the bounding rectangle, in pixels [Integer]
-    # <tt>h</tt>::	height of the bounding rectangle, in pixels [Integer]
-    # <tt>start</tt>::	starting angle of the arc, in 64ths of a degree [Integer]
-    # <tt>extent</tt>::	the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]
+    # <tt>x</tt>:: x-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>y</tt>:: y-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>w</tt>:: width of the bounding rectangle, in pixels [Integer]
+    # <tt>h</tt>:: height of the bounding rectangle, in pixels [Integer]
+    # <tt>start</tt>:: starting angle of the arc, in 64ths of a degree [Integer]
+    # <tt>extent</tt>:: the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]
     #
     # See also #drawArcs, #fillArc and #fillArcs.
     #
@@ -362,7 +362,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +arcs+::	an array of FXArc instances [Array]
+    # +arcs+:: an array of FXArc instances [Array]
     #
     # See also #drawArc, #fillArc and #fillArcs.
     #
@@ -378,10 +378,10 @@ module Fox
     #
     # === Parameters:
     #
-    # +x+::	x-coordinate of the upper left corner of the rectangle [Integer]
-    # +y+::	y-coordinate of the upper left corner of the rectangle [Integer]
-    # +width+::	width of the rectangle, in pixels [Integer]
-    # +height+::	height of the rectangle, in pixels [Integer]
+    # +x+:: x-coordinate of the upper left corner of the rectangle [Integer]
+    # +y+:: y-coordinate of the upper left corner of the rectangle [Integer]
+    # +width+:: width of the rectangle, in pixels [Integer]
+    # +height+:: height of the rectangle, in pixels [Integer]
     #
     # See also #drawRectangle, #drawRectangles and #fillRectangles.
     #
@@ -392,7 +392,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +rectangles+::	an array of FXRectangle instances [Array]
+    # +rectangles+:: an array of FXRectangle instances [Array]
     #
     # See also #drawRectangle, #drawRectangles and #fillRectangle.
     #
@@ -403,10 +403,10 @@ module Fox
     #
     # === Parameters:
     #
-    # <tt>x</tt>::	x-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>y</tt>::	y-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>w</tt>::	width of the bounding rectangle, in pixels [Integer]
-    # <tt>h</tt>::	height of the bounding rectangle, in pixels [Integer]
+    # <tt>x</tt>:: x-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>y</tt>:: y-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>w</tt>:: width of the bounding rectangle, in pixels [Integer]
+    # <tt>h</tt>:: height of the bounding rectangle, in pixels [Integer]
     #
     def fillRoundRectangle(x, y, w, h, ew, eh); end
 
@@ -418,12 +418,12 @@ module Fox
     #
     # === Parameters:
     #
-    # <tt>x</tt>::	x-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>y</tt>::	y-coordinate of the upper left corner of the bounding rectangle [Integer]
-    # <tt>w</tt>::	width of the bounding rectangle, in pixels [Integer]
-    # <tt>h</tt>::	height of the bounding rectangle, in pixels [Integer]
-    # <tt>start</tt>::	starting angle of the arc, in 64ths of a degree [Integer]
-    # <tt>extent</tt>::	the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]
+    # <tt>x</tt>:: x-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>y</tt>:: y-coordinate of the upper left corner of the bounding rectangle [Integer]
+    # <tt>w</tt>:: width of the bounding rectangle, in pixels [Integer]
+    # <tt>h</tt>:: height of the bounding rectangle, in pixels [Integer]
+    # <tt>start</tt>:: starting angle of the arc, in 64ths of a degree [Integer]
+    # <tt>extent</tt>:: the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]
     #
     # See also #drawArc, #drawArcs and #fillArcs.
     #
@@ -434,7 +434,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +arcs+::	an array of FXArc instances [Array]
+    # +arcs+:: an array of FXArc instances [Array]
     #
     # See also #drawArc, #drawArcs and #fillArc.
     #
@@ -450,7 +450,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +points+::	an array of FXPoint instances [Array]
+    # +points+:: an array of FXPoint instances [Array]
     #
     def fillPolygon(points) ; end
 
@@ -459,7 +459,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +points+::	an array of FXPoint instances [Array]
+    # +points+:: an array of FXPoint instances [Array]
     #
     def fillConcavePolygon(points) ; end
 
@@ -468,7 +468,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +points+::	an array of FXPoint instances [Array]
+    # +points+:: an array of FXPoint instances [Array]
     #
     def fillComplexPolygon(points) ; end
 
@@ -477,7 +477,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +points+::	an array of FXPoint instances [Array]
+    # +points+:: an array of FXPoint instances [Array]
     #
     def fillPolygonRel(points) ; end
 
@@ -486,7 +486,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +points+::	an array of FXPoint instances [Array]
+    # +points+:: an array of FXPoint instances [Array]
     #
     def fillConcavePolygonRel(points) ; end
 
@@ -495,7 +495,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +points+::	an array of FXPoint instances [Array]
+    # +points+:: an array of FXPoint instances [Array]
     #
     def fillComplexPolygonRel(points) ; end
 
@@ -504,11 +504,11 @@ module Fox
     #
     # === Parameters:
     #
-    # +x+::	x-coordinate of the upper left corner [Integer]
-    # +y+::	y-coordinate of the upper left corner [Integer]
-    # +width+::	width of the box, in pixels [Integer]
-    # +height+::	height of the box, in pixels [Integer]
-    # +b+::	border width, in pixels [Integer]
+    # +x+:: x-coordinate of the upper left corner [Integer]
+    # +y+:: y-coordinate of the upper left corner [Integer]
+    # +width+:: width of the box, in pixels [Integer]
+    # +height+:: height of the box, in pixels [Integer]
+    # +b+:: border width, in pixels [Integer]
     #
     def drawHashBox(x, y, w, h, b=1) ; end
 
@@ -517,10 +517,10 @@ module Fox
     #
     # === Parameters:
     #
-    # +x+::	x-coordinate of the upper left corner [Integer]
-    # +y+::	y-coordinate of the upper left corner [Integer]
-    # +width+::	width of the rectangle, in pixels [Integer]
-    # +height+::	height of the rectangle, in pixels [Integer]
+    # +x+:: x-coordinate of the upper left corner [Integer]
+    # +y+:: y-coordinate of the upper left corner [Integer]
+    # +width+:: width of the rectangle, in pixels [Integer]
+    # +height+:: height of the rectangle, in pixels [Integer]
     #
     def drawFocusRectangle(x, y, w, h) ; end
 
@@ -530,13 +530,13 @@ module Fox
     #
     # === Parameters:
     #
-    # +source+::	the source drawable from which to copy [FXDrawable]
-    # +sx+::		x-coordinate of the upper left corner of the source rectangle [Integer]
-    # +sy+::		y-coordinate of the upper left corner of the source rectangle [Integer]
-    # +sw+::		width of the source rectangle, in pixels [Integer]
-    # +sh+::		height of the source rectangle, in pixels [Integer]
-    # +dx+::		x-coordinate of the the destination point in this drawable [Integer]
-    # +dy+::		y-coordinate of the the destination point in this drawable [Integer]
+    # +source+:: the source drawable from which to copy [FXDrawable]
+    # +sx+::  x-coordinate of the upper left corner of the source rectangle [Integer]
+    # +sy+::  y-coordinate of the upper left corner of the source rectangle [Integer]
+    # +sw+::  width of the source rectangle, in pixels [Integer]
+    # +sh+::  height of the source rectangle, in pixels [Integer]
+    # +dx+::  x-coordinate of the the destination point in this drawable [Integer]
+    # +dy+::  y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawArea(source, sx, sy, sw, sh, dx, dy) ; end
 
@@ -546,15 +546,15 @@ module Fox
     #
     # === Parameters:
     #
-    # +source+::	the source drawable from which to copy [FXDrawable]
-    # +sx+::		x-coordinate of the upper left corner of the source rectangle [Integer]
-    # +sy+::		y-coordinate of the upper left corner of the source rectangle [Integer]
-    # +sw+::		width of the source rectangle, in pixels [Integer]
-    # +sh+::		height of the source rectangle, in pixels [Integer]
-    # +dx+::		x-coordinate of the the destination point in this drawable [Integer]
-    # +dy+::		y-coordinate of the the destination point in this drawable [Integer]
-    # +dw+::		destination width, in pixels [Integer]
-    # +dh+::		destination height, in pixels [Integer]
+    # +source+:: the source drawable from which to copy [FXDrawable]
+    # +sx+::  x-coordinate of the upper left corner of the source rectangle [Integer]
+    # +sy+::  y-coordinate of the upper left corner of the source rectangle [Integer]
+    # +sw+::  width of the source rectangle, in pixels [Integer]
+    # +sh+::  height of the source rectangle, in pixels [Integer]
+    # +dx+::  x-coordinate of the the destination point in this drawable [Integer]
+    # +dy+::  y-coordinate of the the destination point in this drawable [Integer]
+    # +dw+::  destination width, in pixels [Integer]
+    # +dh+::  destination height, in pixels [Integer]
     #
     def drawArea(source, sx, sy, sw, sh, dx, dy, dw, dh) ; end
 
@@ -563,9 +563,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +image+::	image to draw [FXImage]
-    # +dx+::	x-coordinate of the the destination point in this drawable [Integer]
-    # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
+    # +image+:: image to draw [FXImage]
+    # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
+    # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawImage(image, dx, dy) ; end
 
@@ -574,9 +574,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +bitmap+::	bitmap to draw [FXBitmap]
-    # +dx+::		x-coordinate of the the destination point in this drawable [Integer]
-    # +dy+::		y-coordinate of the the destination point in this drawable [Integer]
+    # +bitmap+:: bitmap to draw [FXBitmap]
+    # +dx+::  x-coordinate of the the destination point in this drawable [Integer]
+    # +dy+::  y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawBitmap(bitmap, dx, dy) ; end
 
@@ -585,9 +585,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +icon+::	icon to draw [FXIcon]
-    # +dx+::	x-coordinate of the the destination point in this drawable [Integer]
-    # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
+    # +icon+:: icon to draw [FXIcon]
+    # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
+    # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawIcon(icon, dx, dy) ; end
 
@@ -597,9 +597,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +icon+::	icon to draw [FXIcon]
-    # +dx+::	x-coordinate of the the destination point in this drawable [Integer]
-    # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
+    # +icon+:: icon to draw [FXIcon]
+    # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
+    # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawIconShaded(icon, dx, dy) ; end
 
@@ -608,9 +608,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +icon+::	icon to draw [FXIcon]
-    # +dx+::	x-coordinate of the the destination point in this drawable [Integer]
-    # +dy+::	y-coordinate of the the destination point in this drawable [Integer]
+    # +icon+:: icon to draw [FXIcon]
+    # +dx+:: x-coordinate of the the destination point in this drawable [Integer]
+    # +dy+:: y-coordinate of the the destination point in this drawable [Integer]
     #
     def drawIconSunken(icon, dx, dy) ; end
 
@@ -619,9 +619,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +x+::		x-coordinate of the upper left corner [Integer]
-    # +y+::		y-coordinate of the upper left corner [Integer]
-    # +string+::	the text string to draw [String]
+    # +x+::  x-coordinate of the upper left corner [Integer]
+    # +y+::  y-coordinate of the upper left corner [Integer]
+    # +string+:: the text string to draw [String]
     #
     # See also #drawImageText.
     #
@@ -632,9 +632,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +x+::		x-coordinate of the upper left corner [Integer]
-    # +y+::		y-coordinate of the upper left corner [Integer]
-    # +string+::	the text string to draw [String]
+    # +x+::  x-coordinate of the upper left corner [Integer]
+    # +y+::  y-coordinate of the upper left corner [Integer]
+    # +string+:: the text string to draw [String]
     #
     # See also #drawText.
     #
@@ -649,8 +649,8 @@ module Fox
     #
     # === Parameters:
     #
-    # +dashOffset+::	indicates which element of the dash pattern to start with (zero for the beginning) [Integer]
-    # +dashPattern+::	array of integers indicating the dash pattern [Array]
+    # +dashOffset+:: indicates which element of the dash pattern to start with (zero for the beginning) [Integer]
+    # +dashPattern+:: array of integers indicating the dash pattern [Array]
     #
     def setDashes(dashOffset, dashPattern) ; end
 
@@ -659,10 +659,10 @@ module Fox
     #
     # === Parameters:
     #
-    # +x+::	x-coordinate of the upper left corner of the clip rectangle [Integer]
-    # +y+::	y-coordinate of the upper left corner of the clip rectangle [Integer]
-    # +width+::	width of the clip rectangle, in pixels [Integer]
-    # +height+::	height of the clip rectangle, in pixels [Integer]
+    # +x+:: x-coordinate of the upper left corner of the clip rectangle [Integer]
+    # +y+:: y-coordinate of the upper left corner of the clip rectangle [Integer]
+    # +width+:: width of the clip rectangle, in pixels [Integer]
+    # +height+:: height of the clip rectangle, in pixels [Integer]
     #
     # See also #setClipMask.
     #
@@ -673,7 +673,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +rectangle+::	a rectangle that defines the clipping region [Integer]
+    # +rectangle+:: a rectangle that defines the clipping region [Integer]
     #
     # See also #setClipMask.
     #
@@ -689,9 +689,9 @@ module Fox
     #
     # === Parameters:
     #
-    # +bitmap+::	a bitmap to use for clipping [FXBitmap]
-    # +dx+::		[Integer]
-    # +dy+::		[Integer]
+    # +bitmap+:: a bitmap to use for clipping [FXBitmap]
+    # +dx+::  [Integer]
+    # +dy+::  [Integer]
     #
     # See also #setClipRectangle.
     #
@@ -712,7 +712,7 @@ module Fox
     #
     # === Parameters:
     #
-    # +yes+::	if +true+, drawing is clipped against child windows [Boolean]
+    # +yes+:: if +true+, drawing is clipped against child windows [Boolean]
     #
     def clipChildren(yes) ; end
   end

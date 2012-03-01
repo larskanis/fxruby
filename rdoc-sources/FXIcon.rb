@@ -25,12 +25,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +pix+::	initial pixel buffer [String]
-    # +clr+::	transparency color [FXColor]
-    # +opts+::	options [Integer]
-    # +width+::	width [Integer]
-    # +height+::	height [Integer]
+    # +a+:: an application instance [FXApp]
+    # +pix+:: initial pixel buffer [String]
+    # +clr+:: transparency color [FXColor]
+    # +opts+:: options [Integer]
+    # +width+:: width [Integer]
+    # +height+:: height [Integer]
     #
     def initialize(app, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: theIcon
     end

@@ -18,12 +18,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +pix+::	a memory buffer formatted in IRIS RGB file format [String]
-    # +clr+::	transparency color [FXColor]
-    # +opts+::	options [Integer]
-    # +width+::	width [Integer]
-    # +height+::	height [Integer]
+    # +a+:: an application instance [FXApp]
+    # +pix+:: a memory buffer formatted in IRIS RGB file format [String]
+    # +clr+:: transparency color [FXColor]
+    # +opts+:: options [Integer]
+    # +width+:: width [Integer]
+    # +height+:: height [Integer]
     #
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: theRGBIcon
     end
@@ -37,7 +37,7 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+::	stream from which to read the file data [FXStream]
+  # +store+:: stream from which to read the file data [FXStream]
   #
   def Fox.fxloadRGB(store); end
 
@@ -47,12 +47,12 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+::	stream to which to write the file data [FXStream]
-  # +data+::	the image pixel data [String]
-  # +transp+::	transparency color [FXColor]
-  # +opts+::	options [Integer]
-  # +width+::	width [Integer]
-  # +height+::	height [Integer]
+  # +store+:: stream to which to write the file data [FXStream]
+  # +data+:: the image pixel data [String]
+  # +transp+:: transparency color [FXColor]
+  # +opts+:: options [Integer]
+  # +width+:: width [Integer]
+  # +height+:: height [Integer]
   #
   def Fox.fxsaveRGB(store, data, transp, width, height); end
 

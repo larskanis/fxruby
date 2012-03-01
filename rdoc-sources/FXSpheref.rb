@@ -55,7 +55,7 @@ module Fox
     def include!(box); end
 
     # Expand radius to include box (an FXRangef instance) and return a reference to self.
-    def includeInRadius!(box);
+    def includeInRadius!(box); end
 
     # Include the sphere _sphere_ (an FXSpheref instance) into this sphere and return self.
     def include!(sphere); end

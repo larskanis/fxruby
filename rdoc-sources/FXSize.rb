@@ -34,7 +34,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +margin+::	number of units to grow on each side [Integer]
+    # +margin+:: number of units to grow on each side [Integer]
     #
     def grow!(margin); end
 
@@ -43,8 +43,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +hormargin+::	number of units to grow on the left and right sides [Integer]
-    # +vermargin+::	number of units to grow on the top and bottom sides [Integer]
+    # +hormargin+:: number of units to grow on the left and right sides [Integer]
+    # +vermargin+:: number of units to grow on the top and bottom sides [Integer]
     #
     def grow!(hormargin, vermargin); end
 
@@ -53,10 +53,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +leftmargin+::	number of units to grow on the left side [Integer]
-    # +rightmargin+::	number of units to grow on the right side [Integer]
-    # +topmargin+::	number of units to grow on the top side [Integer]
-    # +bottommargin+::	number of units to grow on the bottom side [Integer]
+    # +leftmargin+:: number of units to grow on the left side [Integer]
+    # +rightmargin+:: number of units to grow on the right side [Integer]
+    # +topmargin+:: number of units to grow on the top side [Integer]
+    # +bottommargin+:: number of units to grow on the bottom side [Integer]
     #
     def grow!(leftmargin, rightmargin, topmargin, bottommargin); end
 
@@ -65,7 +65,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +margin+::	number of units to shrink on each side [Integer]
+    # +margin+:: number of units to shrink on each side [Integer]
     #
     def shrink!(margin); end
 
@@ -74,8 +74,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +hormargin+::	number of units to shrink on the left and right sides [Integer]
-    # +vermargin+::	number of units to shrink on the top and bottom sides [Integer]
+    # +hormargin+:: number of units to shrink on the left and right sides [Integer]
+    # +vermargin+:: number of units to shrink on the top and bottom sides [Integer]
     #
     def shrink!(hormargin, vermargin); end
 
@@ -84,10 +84,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +leftmargin+::	number of units to shrink on the left side [Integer]
-    # +rightmargin+::	number of units to shrink on the right side [Integer]
-    # +topmargin+::	number of units to shrink on the top side [Integer]
-    # +bottommargin+::	number of units to shrink on the bottom side [Integer]
+    # +leftmargin+:: number of units to shrink on the left side [Integer]
+    # +rightmargin+:: number of units to shrink on the right side [Integer]
+    # +topmargin+:: number of units to shrink on the top side [Integer]
+    # +bottommargin+:: number of units to shrink on the bottom side [Integer]
     #
     def shrink!(leftmargin, rightmargin, topmargin, bottommargin); end
   end

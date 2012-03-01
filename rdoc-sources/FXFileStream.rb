@@ -17,9 +17,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +filename+::	name of the file to open [String]
-    # +save_or_load+::	access mode, either +FXStreamSave+ or +FXStreamLoad+ [Integer]
-    # +size+::		buffer size [Integer]
+    # +filename+:: name of the file to open [String]
+    # +save_or_load+:: access mode, either +FXStreamSave+ or +FXStreamLoad+ [Integer]
+    # +size+::  buffer size [Integer]
     #
     def open(filename, save_or_load, size=8192); end
   end

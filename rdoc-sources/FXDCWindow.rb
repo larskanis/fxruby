@@ -16,7 +16,7 @@ module Fox
     # If an optional code block is provided, the new device context will be passed into the block as an
     # argument and #end will be called automatically when the block terminates.
     #
-    def initialize(drawable, event=nil)	# :yields: dc
+    def initialize(drawable, event=nil) # :yields: dc
     end
 
     #

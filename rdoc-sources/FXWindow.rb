@@ -6,54 +6,54 @@ module Fox
   #
   # The following messages are sent by FXWindow to its target:
   #
-  # +SEL_MAP+::			sent when the window is mapped to the screen; the message data is an FXEvent instance.
-  # +SEL_UNMAP+::		sent when the window is unmapped; the message data is an FXEvent instance.
-  # +SEL_CONFIGURE+::		sent when the window's size changes; the message data is an FXEvent instance.
-  # +SEL_ENTER+::		sent when the mouse cursor enters this window
-  # +SEL_LEAVE+::		sent when the mouse cursor leaves this window
-  # +SEL_FOCUSIN+::		sent when this window gains the focus
-  # +SEL_FOCUSOUT+::		sent when this window loses the focus
-  # +SEL_UPDATE+::		sent when this window needs an update
-  # +SEL_UNGRABBED+::		sent when this window loses the mouse grab (or capture)
+  # +SEL_MAP+::   sent when the window is mapped to the screen; the message data is an FXEvent instance.
+  # +SEL_UNMAP+::  sent when the window is unmapped; the message data is an FXEvent instance.
+  # +SEL_CONFIGURE+::  sent when the window's size changes; the message data is an FXEvent instance.
+  # +SEL_ENTER+::  sent when the mouse cursor enters this window
+  # +SEL_LEAVE+::  sent when the mouse cursor leaves this window
+  # +SEL_FOCUSIN+::  sent when this window gains the focus
+  # +SEL_FOCUSOUT+::  sent when this window loses the focus
+  # +SEL_UPDATE+::  sent when this window needs an update
+  # +SEL_UNGRABBED+::  sent when this window loses the mouse grab (or capture)
   #
   # For each of the following keyboard-related events, the message data is an FXEvent instance:
   #
-  # +SEL_KEYPRESS+::		sent when a key is pressed
-  # +SEL_KEYRELEASE+::		sent when a key is released
+  # +SEL_KEYPRESS+::  sent when a key is pressed
+  # +SEL_KEYRELEASE+::  sent when a key is released
   #
   # For each of the following mouse-related events, the message data is an FXEvent instance:
   #
-  # +SEL_MOTION+::		sent when the mouse moves
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up
-  # +SEL_MIDDLEBUTTONPRESS+::	sent when the middle mouse button goes down
-  # +SEL_MIDDLEBUTTONRELEASE+::	sent when the middle mouse button goes up
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up
-  # +SEL_MOUSEWHEEL+::		sent when the mouse wheel is scrolled
+  # +SEL_MOTION+::  sent when the mouse moves
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up
+  # +SEL_MIDDLEBUTTONPRESS+:: sent when the middle mouse button goes down
+  # +SEL_MIDDLEBUTTONRELEASE+:: sent when the middle mouse button goes up
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up
+  # +SEL_MOUSEWHEEL+::  sent when the mouse wheel is scrolled
   #
   # For each of the following selection-related events, the message data is an FXEvent instance:
   #
-  # +SEL_SELECTION_GAINED+::	sent when this window acquires the selection
-  # +SEL_SELECTION_LOST+::	sent when this window loses the selection
-  # +SEL_SELECTION_REQUEST+::	sent when this window's selection is requested
+  # +SEL_SELECTION_GAINED+:: sent when this window acquires the selection
+  # +SEL_SELECTION_LOST+:: sent when this window loses the selection
+  # +SEL_SELECTION_REQUEST+:: sent when this window's selection is requested
   #
   # For each of the following clipboard-related events, the message data is an FXEvent instance:
   #
-  # +SEL_CLIPBOARD_GAINED+::	sent when this window acquires the clipboard
-  # +SEL_CLIPBOARD_LOST+::	sent when this window loses the clipboard
-  # +SEL_CLIPBOARD_REQUEST+::	sent when this window's clipboard data is requested
+  # +SEL_CLIPBOARD_GAINED+:: sent when this window acquires the clipboard
+  # +SEL_CLIPBOARD_LOST+:: sent when this window loses the clipboard
+  # +SEL_CLIPBOARD_REQUEST+:: sent when this window's clipboard data is requested
   #
   # For each of the following drag-and-drop events, the message data is an FXEvent instance:
   #
-  # +SEL_BEGINDRAG+::		sent at the beginning of a drag operation
-  # +SEL_DRAGGED+::		sent while stuff is being dragged around
-  # +SEL_ENDDRAG+::		sent at the end of a drag operation
-  # +SEL_DND_ENTER+::		drag-and-drop enter
-  # +SEL_DND_LEAVE+::		drag-and-drop leave
-  # +SEL_DND_MOTION+::		drag-and-drop motion
-  # +SEL_DND_DROP+::		drag-and-drop motion
-  # +SEL_DND_REQUEST+::		drag-and-drop request
+  # +SEL_BEGINDRAG+::  sent at the beginning of a drag operation
+  # +SEL_DRAGGED+::  sent while stuff is being dragged around
+  # +SEL_ENDDRAG+::  sent at the end of a drag operation
+  # +SEL_DND_ENTER+::  drag-and-drop enter
+  # +SEL_DND_LEAVE+::  drag-and-drop leave
+  # +SEL_DND_MOTION+::  drag-and-drop motion
+  # +SEL_DND_DROP+::  drag-and-drop motion
+  # +SEL_DND_REQUEST+::  drag-and-drop request
   #
   # === Layout hints for child widgets
   #
@@ -153,64 +153,64 @@ module Fox
   class FXWindow < FXDrawable
 
     # This window's parent window [FXWindow]
-    attr_reader	:parent
+    attr_reader :parent
 
     # This window's owner window [FXWindow]
-    attr_reader		:owner
+    attr_reader  :owner
 
     # The shell window for this window [FXWindow]
-    attr_reader		:shell
+    attr_reader  :shell
 
     # Root window [FXWindow]
-    attr_reader		:root
+    attr_reader  :root
 
     # Next (sibling) window, if any [FXWindow]
-    attr_reader		:next
+    attr_reader  :next
 
     # Previous (sibling) window, if any [FXWindow]
-    attr_reader		:prev
+    attr_reader  :prev
 
     # This window's first child window, if any [FXWindow]
-    attr_reader		:first
+    attr_reader  :first
 
     # This window's last child window, if any [FXWindow]
-    attr_reader		:last
+    attr_reader  :last
 
     # Currently focused child window, if any [FXWindow]
-    attr_reader		:focus
+    attr_reader  :focus
 
     # Window key [Integer]
-    attr_accessor	:key
+    attr_accessor :key
 
     # Message target object for this window [FXObject]
-    attr_accessor	:target
+    attr_accessor :target
 
     # Message identifier for this window [Integer]
-    attr_accessor	:selector
+    attr_accessor :selector
 
     # This window's x-coordinate, in the parent's coordinate system [Integer]
-    attr_accessor	:x
+    attr_accessor :x
 
     # This window's y-coordinate, in the parent's coordinate system [Integer]
-    attr_accessor	:y
+    attr_accessor :y
 
     # The accelerator table for this window [FXAccelTable]
-    attr_accessor	:accelTable
+    attr_accessor :accelTable
 
     # Layout hints for this window [Integer]
-    attr_accessor	:layoutHints
+    attr_accessor :layoutHints
 
     # Number of child windows for this window [Integer]
-    attr_reader		:numChildren
+    attr_reader  :numChildren
 
     # Default cursor for this window [FXCursor]
-    attr_accessor	:defaultCursor
+    attr_accessor :defaultCursor
 
     # Drag cursor for this window [FXCursor]
-    attr_accessor	:dragCursor
+    attr_accessor :dragCursor
 
     # Window background color [FXColor]
-    attr_accessor	:backColor
+    attr_accessor :backColor
 
     # Common DND type: Raw octet stream
     def FXWindow.octetType; end
@@ -265,12 +265,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this window [FXComposite]
-    # +opts+::	window options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent window for this window [FXComposite]
+    # +opts+:: window options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, opts=0, x=0, y=0, width=0, height=0) # :yields: theWindow
     end
@@ -280,8 +280,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +vis+::	the visual to use for this window [FXVisual]
+    # +a+:: an application instance [FXApp]
+    # +vis+:: the visual to use for this window [FXVisual]
     #
     def initialize(a, vis) # :yields: theWindow
     end
@@ -291,13 +291,13 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +own+::	the owner window for this window [FXWindow]
-    # +opts+::	window options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +a+:: an application instance [FXApp]
+    # +own+:: the owner window for this window [FXWindow]
+    # +opts+:: window options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(a, own, opts, x, y, w, h) # :yields: theWindow
     end
@@ -613,12 +613,12 @@ module Fox
     # When dragging, inform the drop target of the new position and
     # the drag action. The _action_ is a constant, one of:
     #
-    # +DRAG_REJECT+::	reject all drop actions
-    # +DRAG_ACCEPT+::	accept any drop action
-    # +DRAG_COPY+::	accept this drop as a copy
-    # +DRAG_MOVE+::	accept this drop as a move
-    # +DRAG_LINK+::	accept this drop as a link
-    # +DRAG_PRIVATE+::	private
+    # +DRAG_REJECT+:: reject all drop actions
+    # +DRAG_ACCEPT+:: accept any drop action
+    # +DRAG_COPY+:: accept this drop as a copy
+    # +DRAG_MOVE+:: accept this drop as a move
+    # +DRAG_LINK+:: accept this drop as a link
+    # +DRAG_PRIVATE+:: private
 
     def handleDrag(x, y, action=DRAG_COPY) ; end
 
@@ -637,17 +637,17 @@ module Fox
 
     # When being dragged over, indicate we want to receive +SEL_DND_MOTION+ messages
     # every time the cursor moves
-    def clearDragRectangle();
+    def clearDragRectangle(); end
 
     # When being dragged over, indicate acceptance or rejection of the dragged data.
     # The _action_ is a constant indicating the suggested drag action, one of:
     #
-    # +DRAG_REJECT+::	reject all drop actions
-    # +DRAG_ACCEPT+::	accept any drop action
-    # +DRAG_COPY+::	accept this drop as a copy
-    # +DRAG_MOVE+::	accept this drop as a move
-    # +DRAG_LINK+::	accept this drop as a link
-    # +DRAG_PRIVATE+::	private
+    # +DRAG_REJECT+:: reject all drop actions
+    # +DRAG_ACCEPT+:: accept any drop action
+    # +DRAG_COPY+:: accept this drop as a copy
+    # +DRAG_MOVE+:: accept this drop as a move
+    # +DRAG_LINK+:: accept this drop as a link
+    # +DRAG_PRIVATE+:: private
 
     def acceptDrop(action=DRAG_ACCEPT); end
 

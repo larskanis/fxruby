@@ -4,11 +4,11 @@ module Fox
   #
   # === Progress bar styles
   #
-  # +PROGRESSBAR_HORIZONTAL+::	Horizontal display
-  # +PROGRESSBAR_VERTICAL+::	Vertical display
-  # +PROGRESSBAR_PERCENTAGE+::	Show percentage done
-  # +PROGRESSBAR_DIAL+::	Show as a dial instead of bar
-  # +PROGRESSBAR_NORMAL+::	same as <tt>FRAME_SUNKEN|FRAME_THICK</tt>
+  # +PROGRESSBAR_HORIZONTAL+:: Horizontal display
+  # +PROGRESSBAR_VERTICAL+:: Vertical display
+  # +PROGRESSBAR_PERCENTAGE+:: Show percentage done
+  # +PROGRESSBAR_DIAL+:: Show as a dial instead of bar
+  # +PROGRESSBAR_NORMAL+:: same as <tt>FRAME_SUNKEN|FRAME_THICK</tt>
   #
   class FXProgressBar < FXFrame
     # Amount of progress [Integer]

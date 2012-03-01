@@ -96,16 +96,16 @@ module Fox
   #
   # === File input modes for #addInput
   #
-  # +INPUT_NONE+::		inactive
-  # +INPUT_READ+::		read input fd
-  # +INPUT_WRITE+::		write input fd
-  # +INPUT_EXCEPT+::		except input fd
+  # +INPUT_NONE+::  inactive
+  # +INPUT_READ+::  read input fd
+  # +INPUT_WRITE+::  write input fd
+  # +INPUT_EXCEPT+::  except input fd
   #
   # === All ways of being modal
   #
-  # +MODAL_FOR_NONE+::		Non modal event loop (dispatch normally)
-  # +MODAL_FOR_WINDOW+::	Modal dialog (beep if outside of modal dialog)
-  # +MODAL_FOR_POPUP+::		Modal for popup (always dispatch to popup)
+  # +MODAL_FOR_NONE+::  Non modal event loop (dispatch normally)
+  # +MODAL_FOR_WINDOW+:: Modal dialog (beep if outside of modal dialog)
+  # +MODAL_FOR_POPUP+::  Modal for popup (always dispatch to popup)
   #
   # === Default cursors provided by the application
   #
@@ -136,8 +136,8 @@ module Fox
   # +DEF_CORNERNW_CURSOR+::   North-west cursor
   # +DEF_CORNERSE_CURSOR+::   South-east cursor
   # +DEF_CORNERSW_CURSOR+::   South-west cursor
-  # +DEF_HELP_CURSOR+::	      Help arrow cursor
-  # +DEF_HAND_CURSOR+::	      Hand cursor
+  # +DEF_HELP_CURSOR+::       Help arrow cursor
+  # +DEF_HAND_CURSOR+::       Hand cursor
   # +DEF_ROTATE_CURSOR+::     Rotate cursor
   # +DEF_WAIT_CURSOR+::       Wait cursor
   #
@@ -492,8 +492,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+::		[FXStream]
-    # +window+::	[FXWindow]
+    # +store+::  [FXStream]
+    # +window+:: [FXWindow]
     #
     def writeWindow(store, window); end
 
@@ -504,9 +504,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+::		[FXStream]
-    # +father+::	[FXWindow]
-    # +owner+::		[FXWindow]
+    # +store+::  [FXStream]
+    # +father+:: [FXWindow]
+    # +owner+::  [FXWindow]
     #
     def readWindow(store, father, owner); end
 

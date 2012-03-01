@@ -13,16 +13,16 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::		Owner for this dialog box [FXWindow or FXApp]
-    # +caption+::	Caption for this dialog box [String]
-    # +text+::		Message text for this dialog box [String]
-    # +icon+::		Icon for this dialog box [FXIcon]
-    # +choices+::	Array of strings containing choices [Array]
-    # +opts+::		Dialog box options [Integer]
-    # +x+::		x-coordinate
-    # +y+::		y-coordinate
-    # +width+::		width
-    # +height+::		height
+    # +owner+::  Owner for this dialog box [FXWindow or FXApp]
+    # +caption+:: Caption for this dialog box [String]
+    # +text+::  Message text for this dialog box [String]
+    # +icon+::  Icon for this dialog box [FXIcon]
+    # +choices+:: Array of strings containing choices [Array]
+    # +opts+::  Dialog box options [Integer]
+    # +x+::  x-coordinate
+    # +y+::  y-coordinate
+    # +width+::  width
+    # +height+::  height
     #
     def initialize(owner, caption, text, icon, choices, opts=0, x=0, y=0, width=0, height=0) # :yields: theChoiceBox
     end
@@ -35,12 +35,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::		Owner for this dialog box [FXWindow or FXApp]
-    # +opts+::		Dialog box options [Integer]
-    # +caption+::	Caption for this dialog box [String]
-    # +text+::		Message text for this dialog box [String]
-    # +icon+::		Icon for this dialog box [FXIcon]
-    # +choices+::	Array of strings containing choices [Array]
+    # +owner+::  Owner for this dialog box [FXWindow or FXApp]
+    # +opts+::  Dialog box options [Integer]
+    # +caption+:: Caption for this dialog box [String]
+    # +text+::  Message text for this dialog box [String]
+    # +icon+::  Icon for this dialog box [FXIcon]
+    # +choices+:: Array of strings containing choices [Array]
     #
     def FXChoiceBox.ask(owner, opts, caption, text, icon, choices); end
 

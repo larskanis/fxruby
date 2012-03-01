@@ -12,26 +12,26 @@ module Fox
   #
   # The following messages are sent from FXColorWell to its target:
   #
-  # +SEL_COMMAND+::		sent when a new color is applied; the message data is the color value.
-  # +SEL_CHANGED+::		sent when the color changes; the message data is the color value.
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONPRESS+::	sent when the middle mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONRELEASE+::	sent when the middle mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_CLICKED+::		sent when the color well is single-clicked; the message data is the color value.
-  # +SEL_DOUBLECLICKED+::	sent when the color well is double-clicked; the message data is the color value.
+  # +SEL_COMMAND+::  sent when a new color is applied; the message data is the color value.
+  # +SEL_CHANGED+::  sent when the color changes; the message data is the color value.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONPRESS+:: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONRELEASE+:: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_CLICKED+::  sent when the color well is single-clicked; the message data is the color value.
+  # +SEL_DOUBLECLICKED+:: sent when the color well is double-clicked; the message data is the color value.
   #
   # === Color Well Styles
   #
-  # +COLORWELL_OPAQUEONLY+::	Colors must be opaque
-  # +COLORWELL_SOURCEONLY+::	This color well is never a target
-  # +COLORWELL_NORMAL+::	Same as +JUSTIFY_NORMAL+
+  # +COLORWELL_OPAQUEONLY+:: Colors must be opaque
+  # +COLORWELL_SOURCEONLY+:: This color well is never a target
+  # +COLORWELL_NORMAL+:: Same as +JUSTIFY_NORMAL+
   #
   # === Message identifiers
   #
-  # +ID_COLORDIALOG+::		x
+  # +ID_COLORDIALOG+::  x
 
   class FXColorWell < FXFrame
 

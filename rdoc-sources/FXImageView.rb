@@ -4,18 +4,18 @@ module Fox
   #
   # === Image alignment styles
   #
-  # +IMAGEVIEW_NORMAL+::	Normal mode is centered
-  # +IMAGEVIEW_CENTER_X+::	Centered horizontally
-  # +IMAGEVIEW_LEFT+::		Left-aligned
-  # +IMAGEVIEW_RIGHT+::		Right-aligned
-  # +IMAGEVIEW_CENTER_Y+::	Centered vertically
-  # +IMAGEVIEW_TOP+::		Top-aligned
-  # +IMAGEVIEW_BOTTOM+::	Bottom-aligned
+  # +IMAGEVIEW_NORMAL+:: Normal mode is centered
+  # +IMAGEVIEW_CENTER_X+:: Centered horizontally
+  # +IMAGEVIEW_LEFT+::  Left-aligned
+  # +IMAGEVIEW_RIGHT+::  Right-aligned
+  # +IMAGEVIEW_CENTER_Y+:: Centered vertically
+  # +IMAGEVIEW_TOP+::  Top-aligned
+  # +IMAGEVIEW_BOTTOM+:: Bottom-aligned
   #
   # === Events
   #
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
   #
   class FXImageView < FXScrollArea
 

@@ -4,26 +4,26 @@ module Fox
   #
   # === Alignment hints
   #
-  # +RIGHT+::		Align on right
-  # +LEFT+::		Align on left
-  # +CENTER_X+::	Align centered horizontally (default)
-  # +TOP+::		Align on top
-  # +BOTTOM+::		Align on bottom
-  # +CENTER_Y+::	Align centered vertically (default)
+  # +RIGHT+::  Align on right
+  # +LEFT+::  Align on left
+  # +CENTER_X+:: Align centered horizontally (default)
+  # +TOP+::  Align on top
+  # +BOTTOM+::  Align on bottom
+  # +CENTER_Y+:: Align centered vertically (default)
   #
   # === Icon position
   #
-  # +BEFORE+::		Icon before the text
-  # +AFTER+::		Icon after the text
-  # +ABOVE+::		Icon above the text
-  # +BELOW+::		Icon below the text
+  # +BEFORE+::  Icon before the text
+  # +AFTER+::  Icon after the text
+  # +ABOVE+::  Icon above the text
+  # +BELOW+::  Icon below the text
   #
   # === Arrow
   #
-  # +ARROW_NONE+::	No arrow
-  # +ARROW_UP+::	Arrow pointing up
-  # +ARROW_DOWN+::	Arrow pointing down
-  # +PRESSED+::		Pressed down
+  # +ARROW_NONE+:: No arrow
+  # +ARROW_UP+:: Arrow pointing up
+  # +ARROW_DOWN+:: Arrow pointing down
+  # +PRESSED+::  Pressed down
   #
   class FXHeaderItem < FXObject
 
@@ -116,24 +116,24 @@ module Fox
   # +SEL_CLICKED+::
   #   sent when a header item is clicked; the message data is an integer
   #   indicating the index of the current item.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_REPLACED+::		sent when a header item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
-  # +SEL_INSERTED+::		sent after a header item is inserted; the message data is an Integer indicating the index of the item that was inserted.
-  # +SEL_DELETED+::		sent when a header item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_REPLACED+::  sent when a header item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
+  # +SEL_INSERTED+::  sent after a header item is inserted; the message data is an Integer indicating the index of the item that was inserted.
+  # +SEL_DELETED+::  sent when a header item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
   #
   # === Header style options
   #
-  # +HEADER_BUTTON+::		Button style can be clicked
-  # +HEADER_HORIZONTAL+::	Horizontal header control (default)
-  # +HEADER_VERTICAL+::		Vertical header control
-  # +HEADER_TRACKING+::		Tracks continuously while moving
-  # +HEADER_RESIZE+::		Allow resizing sections
-  # +HEADER_NORMAL+::		Normal options, same as <tt>HEADER_HORIZONTAL|FRAME_NORMAL</tt>
+  # +HEADER_BUTTON+::  Button style can be clicked
+  # +HEADER_HORIZONTAL+:: Horizontal header control (default)
+  # +HEADER_VERTICAL+::  Vertical header control
+  # +HEADER_TRACKING+::  Tracks continuously while moving
+  # +HEADER_RESIZE+::  Allow resizing sections
+  # +HEADER_NORMAL+::  Normal options, same as <tt>HEADER_HORIZONTAL|FRAME_NORMAL</tt>
   #
   # === Message identifiers
   #
-  # +ID_TIPTIMER+::		x
+  # +ID_TIPTIMER+::  x
   #
   class FXHeader < FXFrame
 

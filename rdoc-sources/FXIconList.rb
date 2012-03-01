@@ -17,13 +17,13 @@ module Fox
     attr_accessor :data
 
     # Indicates whether this item is selected or not [Boolean]
-    attr_writer	:selected
+    attr_writer :selected
 
     # Indicates whether this item is enabled or not [Boolean]
-    attr_writer	:enabled
+    attr_writer :enabled
 
     # Indicates whether this item is draggable or not [Boolean]
-    attr_writer	:draggable
+    attr_writer :draggable
 
     # Constructor
     def initialize(text, bigIcon=nil, miniIcon=nil, data=nil) # :yields: theIconItem
@@ -87,73 +87,73 @@ module Fox
   #
   # The following messages are sent by FXIconList to its target:
   #
-  # +SEL_CHANGED+::		sent when the current list item changes; the message data is an Integer indicating the index of the current item.
-  # +SEL_COMMAND+::		sent when the current list item changes; the message data is an Integer indicating the index of the current item.
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_CLICKED+::		sent when a list item is single-clicked; the message data is an Integer indicating the index of the current item.
-  # +SEL_DOUBLECLICKED+::	sent when a list item is double-clicked; the message data is an Integer indicating the index of the current item.
-  # +SEL_TRIPLECLICKED+::	sent when a list item is triple-clicked; the message data is an Integer indicating the index of the current item.
-  # +SEL_SELECTED+::		sent when a list item is selected; the message data is an Integer indicating the index of the selected item.
-  # +SEL_DESELECTED+::		sent when a list item is deselected; the message data is an Integer indicating the index of the deselected item.
-  # +SEL_REPLACED+::		sent when a list item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
-  # +SEL_INSERTED+::		sent after a list item is inserted; the message data is an Integer indicating the index of the item that was inserted.
-  # +SEL_DELETED+::		sent when a list item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
+  # +SEL_CHANGED+::  sent when the current list item changes; the message data is an Integer indicating the index of the current item.
+  # +SEL_COMMAND+::  sent when the current list item changes; the message data is an Integer indicating the index of the current item.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_CLICKED+::  sent when a list item is single-clicked; the message data is an Integer indicating the index of the current item.
+  # +SEL_DOUBLECLICKED+:: sent when a list item is double-clicked; the message data is an Integer indicating the index of the current item.
+  # +SEL_TRIPLECLICKED+:: sent when a list item is triple-clicked; the message data is an Integer indicating the index of the current item.
+  # +SEL_SELECTED+::  sent when a list item is selected; the message data is an Integer indicating the index of the selected item.
+  # +SEL_DESELECTED+::  sent when a list item is deselected; the message data is an Integer indicating the index of the deselected item.
+  # +SEL_REPLACED+::  sent when a list item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
+  # +SEL_INSERTED+::  sent after a list item is inserted; the message data is an Integer indicating the index of the item that was inserted.
+  # +SEL_DELETED+::  sent when a list item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
   #
   # === Icon list styles
   #
-  # +ICONLIST_EXTENDEDSELECT+::		Extended selection mode
-  # +ICONLIST_SINGLESELECT+::		At most one selected item
-  # +ICONLIST_BROWSESELECT+::		Always exactly one selected item
-  # +ICONLIST_MULTIPLESELECT+::		Multiple selection mode
-  # +ICONLIST_AUTOSIZE+::		Automatically size item spacing
-  # +ICONLIST_DETAILED+::		List mode
-  # +ICONLIST_MINI_ICONS+::		Mini Icon mode
-  # +ICONLIST_BIG_ICONS+::		Big Icon mode
-  # +ICONLIST_ROWS+::			Row-wise mode
-  # +ICONLIST_COLUMNS+::		Column-wise mode
-  # +ICONLIST_NORMAL+::			same as +ICONLIST_EXTENDEDSELECT+
+  # +ICONLIST_EXTENDEDSELECT+::  Extended selection mode
+  # +ICONLIST_SINGLESELECT+::  At most one selected item
+  # +ICONLIST_BROWSESELECT+::  Always exactly one selected item
+  # +ICONLIST_MULTIPLESELECT+::  Multiple selection mode
+  # +ICONLIST_AUTOSIZE+::  Automatically size item spacing
+  # +ICONLIST_DETAILED+::  List mode
+  # +ICONLIST_MINI_ICONS+::  Mini Icon mode
+  # +ICONLIST_BIG_ICONS+::  Big Icon mode
+  # +ICONLIST_ROWS+::   Row-wise mode
+  # +ICONLIST_COLUMNS+::  Column-wise mode
+  # +ICONLIST_NORMAL+::   same as +ICONLIST_EXTENDEDSELECT+
   #
   # === Message identifiers
   #
-  # +ID_SHOW_DETAILS+::		x
-  # +ID_SHOW_MINI_ICONS+::	x
-  # +ID_SHOW_BIG_ICONS+::	x
-  # +ID_ARRANGE_BY_ROWS+::	x
-  # +ID_ARRANGE_BY_COLUMNS+::	x
-  # +ID_HEADER_CHANGE+::	x
-  # +ID_TIPTIMER+::		x
-  # +ID_LOOKUPTIMER+::		x
-  # +ID_SELECT_ALL+::		x
-  # +ID_DESELECT_ALL+::		x
-  # +ID_SELECT_INVERSE+::	x
+  # +ID_SHOW_DETAILS+::  x
+  # +ID_SHOW_MINI_ICONS+:: x
+  # +ID_SHOW_BIG_ICONS+:: x
+  # +ID_ARRANGE_BY_ROWS+:: x
+  # +ID_ARRANGE_BY_COLUMNS+:: x
+  # +ID_HEADER_CHANGE+:: x
+  # +ID_TIPTIMER+::  x
+  # +ID_LOOKUPTIMER+::  x
+  # +ID_SELECT_ALL+::  x
+  # +ID_DESELECT_ALL+::  x
+  # +ID_SELECT_INVERSE+:: x
 
   class FXIconList < FXScrollArea
 
     # Number of items [Integer]
-    attr_reader	:numItems
+    attr_reader :numItems
 
     # Number of rows [Integer]
-    attr_reader	:numRows
+    attr_reader :numRows
 
     # Number of columns [Integer]
-    attr_reader	:numCols
+    attr_reader :numCols
 
     # The header control [FXHeader]
-    attr_reader	:header
+    attr_reader :header
 
     # The number of header items in the header control [Integer]
-    attr_reader	:numHeaders
+    attr_reader :numHeaders
 
     # Item width [Integer]
-    attr_reader	:itemWidth
+    attr_reader :itemWidth
 
     # Item height [Integer]
-    attr_reader	:itemHeight
+    attr_reader :itemHeight
 
     # Index of current item, or -1 if none [Integer]
     attr_accessor :currentItem
@@ -162,7 +162,7 @@ module Fox
     attr_accessor :anchorItem
 
     # Index of item under the cursor, or -1 if none [Integer]
-    attr_reader	:cursorItem
+    attr_reader :cursorItem
 
     # Text font [FXFont]
     attr_accessor :font
@@ -364,7 +364,7 @@ module Fox
 
     # Change user _data_ for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
-    def setItemData(index, data);
+    def setItemData(index, data); end
 
     # Return user data for item at _index_.
     # Raises IndexError if _index_ is out of bounds.
@@ -401,11 +401,11 @@ module Fox
 
     # Enable item at _index_.
     # Raises IndexError if _index_ is out of bounds.
-    def enableItem(index);
+    def enableItem(index); end
 
     # Disable item at _index_.
     # Raises IndexError if _index_ is out of bounds.
-    def disableItem(index);
+    def disableItem(index); end
 
     # Select item at _index_.
     # If _notify_ is +true+, a +SEL_SELECTED+ message is sent to the list's

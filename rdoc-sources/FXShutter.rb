@@ -7,7 +7,7 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_SHUTTERITEM_BUTTON+::	x
+  # +ID_SHUTTERITEM_BUTTON+:: x
   #
   class FXShutterItem < FXVerticalFrame
     #
@@ -29,20 +29,20 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent shutter for this shutter item [FXShutter]
-    # +text+::	the text, if any [String]
-    # +icon+::	the icon, if any [FXIcon]
-    # +opts+::	options [Integer]
-    # +x+::	initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
-    # +y+::	initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
-    # +width+::	initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
-    # +height+::	initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
-    # +hSpacing+::	horizontal spacing between widgets, in pixels [Integer]
-    # +vSpacing+::	vertical spacing between widgets, in pixels [Integer]
+    # +p+:: the parent shutter for this shutter item [FXShutter]
+    # +text+:: the text, if any [String]
+    # +icon+:: the icon, if any [FXIcon]
+    # +opts+:: options [Integer]
+    # +x+:: initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
+    # +y+:: initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
+    # +width+:: initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
+    # +height+:: initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
+    # +hSpacing+:: horizontal spacing between widgets, in pixels [Integer]
+    # +vSpacing+:: vertical spacing between widgets, in pixels [Integer]
     #
     def initialize(p, text="", icon=nil, opts=0, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theShutterItem
     end
@@ -63,10 +63,10 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_SHUTTER_TIMEOUT+::	x
-  # +ID_OPEN_SHUTTERITEM+::	x
-  # +ID_OPEN_FIRST+::		x
-  # +ID_OPEN_LAST+::		x
+  # +ID_SHUTTER_TIMEOUT+:: x
+  # +ID_OPEN_SHUTTERITEM+:: x
+  # +ID_OPEN_FIRST+::  x
+  # +ID_OPEN_LAST+::  x
   #
   class FXShutter < FXVerticalFrame
 
@@ -80,20 +80,20 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this shutter [FXComposite]
-    # +target+::	the message target, if any, for this shutter [FXObject]
-    # +selector+::	the message identifier for this shutter [Integer]
-    # +opts+::	shutter options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
-    # +hSpacing+::	horizontal spacing between widgets, in pixels [Integer]
-    # +vSpacing+::	vertical spacing between widgets, in pixels [Integer]
+    # +p+:: the parent window for this shutter [FXComposite]
+    # +target+:: the message target, if any, for this shutter [FXObject]
+    # +selector+:: the message identifier for this shutter [Integer]
+    # +opts+:: shutter options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
+    # +hSpacing+:: horizontal spacing between widgets, in pixels [Integer]
+    # +vSpacing+:: vertical spacing between widgets, in pixels [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theShutter
     end

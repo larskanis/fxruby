@@ -26,32 +26,32 @@ module Fox
   #
   # The following messages are sent by FXMDIChild to its target:
   #
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONPRESS+::	sent when the middle mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONRELEASE+::	sent when the middle mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONPRESS+:: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONRELEASE+:: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
   # +SEL_SELECTED+::
   #   sent when the window is selected; the message data is a reference to the MDI client's previous active
   #   child window, or +nil+ if there was no active child window.
   # +SEL_DESELECTED+::
   #   sent when the window is deselected; the message data is a reference to the MDI client's new active child window,
   #   or +nil+ if there is no active child window.
-  # +SEL_MAXIMIZE+::		sent when the window is maximized
-  # +SEL_MINIMIZE+::		sent when the window is minimized
-  # +SEL_RESTORE+::		sent when the window is restored to its normal size and position
+  # +SEL_MAXIMIZE+::  sent when the window is maximized
+  # +SEL_MINIMIZE+::  sent when the window is minimized
+  # +SEL_RESTORE+::  sent when the window is restored to its normal size and position
   # +SEL_CLOSE+::
   #   sent when the user is trying to close this window. The message handler for this message should
   #   return 1 (or true) if the target objects to closing the window; otherwise it should just return false (or zero).
-  # +SEL_DELETE+::		sent immediately before this window is destroyed
+  # +SEL_DELETE+::  sent immediately before this window is destroyed
   #
   # === MDI Child Window styles
   #
-  # +MDI_NORMAL+::	Normal display mode
-  # +MDI_MAXIMIZED+::	Window appears maximized
-  # +MDI_MINIMIZED+::	Window is iconified or minimized
-  # +MDI_TRACKING+::	Track continuously during dragging
+  # +MDI_NORMAL+:: Normal display mode
+  # +MDI_MAXIMIZED+:: Window appears maximized
+  # +MDI_MINIMIZED+:: Window is iconified or minimized
+  # +MDI_TRACKING+:: Track continuously during dragging
   #
   class FXMDIChild < FXComposite
 

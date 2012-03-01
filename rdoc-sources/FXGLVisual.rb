@@ -68,6 +68,7 @@ module Fox
     # Construct default visual
     #
     def initialize(app, flags) # :yields: theGLVisual
+    end
 
     #
     # Test if OpenGL is possible, and what level is supported.

@@ -11,10 +11,10 @@ module Fox
   #
   # The following messages are sent by FXColorRing to its target:
   #
-  # +SEL_CHANGED+::		sent continuously while the user is dragging the spot around; the message data is a three-element array containing the hue, saturation and value values.
-  # +SEL_COMMAND+::		sent when the user releases the mouse button and "drops" the spot at its new location; the message data is a three-element array containing the hue, saturation and value values.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_CHANGED+::  sent continuously while the user is dragging the spot around; the message data is a three-element array containing the hue, saturation and value values.
+  # +SEL_COMMAND+::  sent when the user releases the mouse button and "drops" the spot at its new location; the message data is a three-element array containing the hue, saturation and value values.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
   #
   class FXColorRing < FXFrame
 

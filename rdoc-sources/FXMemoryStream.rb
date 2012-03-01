@@ -17,7 +17,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +cont+::	the container object, or +nil+ if there is none [FXObject].
+    # +cont+:: the container object, or +nil+ if there is none [FXObject].
     #
     def initialize(cont=nil) # :yields: theMemoryStream
     end

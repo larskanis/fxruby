@@ -14,10 +14,10 @@ SOURCES = *.rb \
         ../lib/fox/version.rb
 
 rdoc:
-	@rdoc --op ../doc/api --main README.rdoc $(SOURCES) README.rdoc
+ @rdoc --op ../doc/api --main README.rdoc $(SOURCES) README.rdoc
 
 ri:
-	@rdoc --ri $(SOURCES)
+ @rdoc --ri $(SOURCES)
 
 clean:
-	@rm -rf ../doc/api
+ @rm -rf ../doc/api

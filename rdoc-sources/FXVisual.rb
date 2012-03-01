@@ -4,25 +4,25 @@ module Fox
   #
   # === Construction options for FXVisual
   #
-  # +VISUAL_DEFAULT+::		Default visual
-  # +VISUAL_MONOCHROME+::	Must be monochrome visual
-  # +VISUAL_BEST+::		Best (deepest) visual
-  # +VISUAL_INDEXCOLOR+::	Palette visual
-  # +VISUAL_GRAYSCALE+::	Gray scale visual
-  # +VISUAL_TRUECOLOR+::	Must be true color visual
-  # +VISUAL_OWNCOLORMAP+::	Allocate private colormap
-  # +VISUAL_DOUBLEBUFFER+::	Double-buffered [FXGLVisual]
-  # +VISUAL_STEREO+::		Stereo [FXGLVisual]
-  # +VISUAL_NOACCEL+::		No hardware acceleration [for broken h/w]
-  # +VISUAL_SWAP_COPY+::	Buffer swap by copying (for FXGLVisual)
+  # +VISUAL_DEFAULT+::  Default visual
+  # +VISUAL_MONOCHROME+:: Must be monochrome visual
+  # +VISUAL_BEST+::  Best (deepest) visual
+  # +VISUAL_INDEXCOLOR+:: Palette visual
+  # +VISUAL_GRAYSCALE+:: Gray scale visual
+  # +VISUAL_TRUECOLOR+:: Must be true color visual
+  # +VISUAL_OWNCOLORMAP+:: Allocate private colormap
+  # +VISUAL_DOUBLEBUFFER+:: Double-buffered [FXGLVisual]
+  # +VISUAL_STEREO+::  Stereo [FXGLVisual]
+  # +VISUAL_NOACCEL+::  No hardware acceleration [for broken h/w]
+  # +VISUAL_SWAP_COPY+:: Buffer swap by copying (for FXGLVisual)
   #
   # === Visual type
   #
-  # +VISUALTYPE_UNKNOWN+::	Undetermined visual type
-  # +VISUALTYPE_MONO+::		Visual for drawing into 1-bpp surfaces
-  # +VISUALTYPE_TRUE+::		True color
-  # +VISUALTYPE_INDEX+::	Index [palette] color
-  # +VISUALTYPE_GRAY+::		Gray scale
+  # +VISUALTYPE_UNKNOWN+:: Undetermined visual type
+  # +VISUALTYPE_MONO+::  Visual for drawing into 1-bpp surfaces
+  # +VISUALTYPE_TRUE+::  True color
+  # +VISUALTYPE_INDEX+:: Index [palette] color
+  # +VISUALTYPE_GRAY+::  Gray scale
   #
   class FXVisual < FXId
     # Visual construction flags [Integer]
@@ -59,9 +59,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +flgs+::	visual construction flags [Integer]
-    # +d+::	requested visual depth, in bits [Integer]
+    # +a+:: an application instance [FXApp]
+    # +flgs+:: visual construction flags [Integer]
+    # +d+:: requested visual depth, in bits [Integer]
     #
     def initialize(a, flgs, d=32); end
 

@@ -57,32 +57,32 @@ module Fox
   #
   # === File List options
   #
-  # +FILELIST_SHOWHIDDEN+::	Show hidden files or directories
-  # +FILELIST_SHOWDIRS+::	Show only directories
-  # +FILELIST_SHOWFILES+::	Show only files
-  # +FILELIST_SHOWIMAGES+::	Show preview of images
-  # +FILELIST_NO_OWN_ASSOC+::	Do not create associations for files
-  # +FILELIST_NO_PARENT+::	Suppress display of '.' and '..'
+  # +FILELIST_SHOWHIDDEN+:: Show hidden files or directories
+  # +FILELIST_SHOWDIRS+:: Show only directories
+  # +FILELIST_SHOWFILES+:: Show only files
+  # +FILELIST_SHOWIMAGES+:: Show preview of images
+  # +FILELIST_NO_OWN_ASSOC+:: Do not create associations for files
+  # +FILELIST_NO_PARENT+:: Suppress display of '.' and '..'
   #
   # === Message identifiers
   #
-  # +ID_SORT_BY_NAME+::		Sort by name
-  # +ID_SORT_BY_TYPE+::		Sort by type
-  # +ID_SORT_BY_SIZE+::		Sort by size
-  # +ID_SORT_BY_TIME+::		Sort by access time
-  # +ID_SORT_BY_USER+::		Sort by user name
-  # +ID_SORT_BY_GROUP+::	Sort by group name
-  # +ID_SORT_REVERSE+::		Reverse sort order
-  # +ID_DIRECTORY_UP+::		Move up one directory
-  # +ID_SET_PATTERN+::		Set match pattern
-  # +ID_SET_DIRECTORY+::	Set directory
-  # +ID_SHOW_HIDDEN+::		Show hidden files
-  # +ID_HIDE_HIDDEN+::		Hide hidden files
-  # +ID_TOGGLE_HIDDEN+::	Toggle visibility of hidden files
-  # +ID_REFRESHTIMER+:: 	x
-  # +ID_OPENTIMER+:: 		x
-  # +ID_TOGGLE_IMAGES+::	Toggle display of images
-  # +ID_REFRESH+::		Refresh immediately
+  # +ID_SORT_BY_NAME+::  Sort by name
+  # +ID_SORT_BY_TYPE+::  Sort by type
+  # +ID_SORT_BY_SIZE+::  Sort by size
+  # +ID_SORT_BY_TIME+::  Sort by access time
+  # +ID_SORT_BY_USER+::  Sort by user name
+  # +ID_SORT_BY_GROUP+:: Sort by group name
+  # +ID_SORT_REVERSE+::  Reverse sort order
+  # +ID_DIRECTORY_UP+::  Move up one directory
+  # +ID_SET_PATTERN+::  Set match pattern
+  # +ID_SET_DIRECTORY+:: Set directory
+  # +ID_SHOW_HIDDEN+::  Show hidden files
+  # +ID_HIDE_HIDDEN+::  Hide hidden files
+  # +ID_TOGGLE_HIDDEN+:: Toggle visibility of hidden files
+  # +ID_REFRESHTIMER+::  x
+  # +ID_OPENTIMER+::   x
+  # +ID_TOGGLE_IMAGES+:: Toggle display of images
+  # +ID_REFRESH+::  Refresh immediately
   #
   class FXFileList < FXIconList
 

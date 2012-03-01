@@ -18,12 +18,12 @@ module Fox
   #
   # The following messages are sent by FXScrollBar to its target:
   #
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONPRESS+::	sent when the middle mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONRELEASE+::	sent when the middle mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONPRESS+:: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONRELEASE+:: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
   # +SEL_CHANGED+::
   #   sent continuously while the scroll bar is moving; the message data is an integer
   #   indicating the current position of the scroll bar.
@@ -33,18 +33,18 @@ module Fox
   #
   # === Scrollbar styles
   #
-  # +SCROLLBAR_HORIZONTAL+::	Horizontally oriented
-  # +SCROLLBAR_VERTICAL+::	Vertically oriented (the default)
+  # +SCROLLBAR_HORIZONTAL+:: Horizontally oriented
+  # +SCROLLBAR_VERTICAL+:: Vertically oriented (the default)
   #
   # === Message identifiers
   #
-  # +ID_TIMEWHEEL+::	x
-  # +ID_AUTOINC_LINE+::	x
-  # +ID_AUTODEC_LINE+::	x
-  # +ID_AUTOINC_PAGE+::	x
-  # +ID_AUTODEC_PAGE+::	x
-  # +ID_AUTOINC_PIX+::	x
-  # +ID_AUTODEC_PIX+::	x
+  # +ID_TIMEWHEEL+:: x
+  # +ID_AUTOINC_LINE+:: x
+  # +ID_AUTODEC_LINE+:: x
+  # +ID_AUTOINC_PAGE+:: x
+  # +ID_AUTODEC_PAGE+:: x
+  # +ID_AUTOINC_PIX+:: x
+  # +ID_AUTODEC_PIX+:: x
   #
   class FXScrollBar < FXWindow
     # Content size range [Integer]
@@ -79,14 +79,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this scroll bar [FXComposite]
-    # +target+::	the initial message target (if any) for this scroll bar [FXObject]
-    # +selector+::	the message identifier for this scroll bar [Integer]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
-    # +y+::	initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
-    # +width+::	initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
-    # +height+::	initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
+    # +p+:: the parent widget for this scroll bar [FXComposite]
+    # +target+:: the initial message target (if any) for this scroll bar [FXObject]
+    # +selector+:: the message identifier for this scroll bar [Integer]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
+    # +y+:: initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
+    # +width+:: initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
+    # +height+:: initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=SCROLLBAR_VERTICAL, x=0, y=0, width=0, height=0) # :yields: theScrollBar
     end

@@ -81,9 +81,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +text+::	the text for this table item [String]
-    # +icon+::	the icon, if any, for this table item [FXIcon]
-    # +data+::	the user data for this table item [Object]
+    # +text+:: the text for this table item [String]
+    # +icon+:: the icon, if any, for this table item [FXIcon]
+    # +data+:: the user data for this table item [Object]
     #
     def initialize(text, icon=nil, data=nil); end
 
@@ -196,68 +196,68 @@ module Fox
   #
   # The following messages are sent by FXTable to its target:
   #
-  # +SEL_COMMAND+::		sent when a new item is clicked; the message data is an FXTablePos instance indicating the current cell.
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_SELECTED+::		sent when a cell is selected; the message data is an FXTablePos instance indicating the position of the selected cell.
-  # +SEL_DESELECTED+::		sent when a cell is deselected; the message data is an FXTablePos instance indicating the position of the deselected cell.
-  # +SEL_CHANGED+::		sent when the current cell changes; the message data is an FXTablePos instance indicating the current cell.
-  # +SEL_CLICKED+::		sent when a cell is single-clicked; the message data is an FXTablePos instance indicating the current cell.
-  # +SEL_DOUBLECLICKED+::	sent when a cell is double-clicked; the message data is an FXTablePos instance indicating the current cell.
-  # +SEL_TRIPLECLICKED+::	sent when a cell is triple-clicked; the message data is an FXTablePos instance indicating the current cell.
-  # +SEL_DELETED+::		sent when a range of cells is about to be removed; the message data is an FXTableRange instance indicating the cells to be removed.
-  # +SEL_INSERTED+::		sent when a range of cells has been inserted; the message data is an FXTableRange instance indicating the cells inserted.
-  # +SEL_REPLACED+::		sent when a range of cells has been replaced; the message data is an FXTableRange instance indicating the cells replaced.
+  # +SEL_COMMAND+::  sent when a new item is clicked; the message data is an FXTablePos instance indicating the current cell.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_SELECTED+::  sent when a cell is selected; the message data is an FXTablePos instance indicating the position of the selected cell.
+  # +SEL_DESELECTED+::  sent when a cell is deselected; the message data is an FXTablePos instance indicating the position of the deselected cell.
+  # +SEL_CHANGED+::  sent when the current cell changes; the message data is an FXTablePos instance indicating the current cell.
+  # +SEL_CLICKED+::  sent when a cell is single-clicked; the message data is an FXTablePos instance indicating the current cell.
+  # +SEL_DOUBLECLICKED+:: sent when a cell is double-clicked; the message data is an FXTablePos instance indicating the current cell.
+  # +SEL_TRIPLECLICKED+:: sent when a cell is triple-clicked; the message data is an FXTablePos instance indicating the current cell.
+  # +SEL_DELETED+::  sent when a range of cells is about to be removed; the message data is an FXTableRange instance indicating the cells to be removed.
+  # +SEL_INSERTED+::  sent when a range of cells has been inserted; the message data is an FXTableRange instance indicating the cells inserted.
+  # +SEL_REPLACED+::  sent when a range of cells has been replaced; the message data is an FXTableRange instance indicating the cells replaced.
   #
   # === Table options
   #
-  # +TABLE_COL_SIZABLE+::	Columns are resizable
-  # +TABLE_ROW_SIZABLE+::	Rows are resizable
-  # +TABLE_NO_COLSELECT+::	Disallow column selections
-  # +TABLE_NO_ROWSELECT+::	Disallow row selections
-  # +TABLE_READONLY+::		Table is not editable
-  # +TABLE_COL_RENUMBER+::	Renumber columns
-  # +TABLE_ROW_RENUMBER+::	Renumber rows
+  # +TABLE_COL_SIZABLE+:: Columns are resizable
+  # +TABLE_ROW_SIZABLE+:: Rows are resizable
+  # +TABLE_NO_COLSELECT+:: Disallow column selections
+  # +TABLE_NO_ROWSELECT+:: Disallow row selections
+  # +TABLE_READONLY+::  Table is not editable
+  # +TABLE_COL_RENUMBER+:: Renumber columns
+  # +TABLE_ROW_RENUMBER+:: Renumber rows
   #
   # === Message identifiers
   #
-  # +ID_HORZ_GRID+::		x
-  # +ID_VERT_GRID+::		x
-  # +ID_TOGGLE_EDITABLE+::	x
-  # +ID_DELETE_COLUMN+::	x
-  # +ID_DELETE_ROW+::		x
-  # +ID_INSERT_COLUMN+::	x
-  # +ID_INSERT_ROW+::		x
-  # +ID_SELECT_COLUMN_INDEX+::	x
-  # +ID_SELECT_ROW_INDEX+::		x
-  # +ID_SELECT_COLUMN+::	x
-  # +ID_SELECT_ROW+::		x
-  # +ID_SELECT_CELL+::		x
-  # +ID_SELECT_ALL+::		x
-  # +ID_DESELECT_ALL+::		x
-  # +ID_MOVE_LEFT+::		x
-  # +ID_MOVE_RIGHT+::		x
-  # +ID_MOVE_UP+::		x
-  # +ID_MOVE_DOWN+::		x
-  # +ID_MOVE_HOME+::		x
-  # +ID_MOVE_END+::		x
-  # +ID_MOVE_TOP+::		x
-  # +ID_MOVE_BOTTOM+::		x
-  # +ID_MOVE_PAGEDOWN+::	x
-  # +ID_MOVE_PAGEUP+::		x
-  # +ID_START_INPUT+::		x
-  # +ID_CANCEL_INPUT+::		x
-  # +ID_ACCEPT_INPUT+::		x
-  # +ID_MARK+::			x
-  # +ID_EXTEND+::		x
-  # +ID_CUT_SEL+::		x
-  # +ID_COPY_SEL+::		x
-  # +ID_PASTE_SEL+::		x
-  # +ID_DELETE_SEL+::	x
+  # +ID_HORZ_GRID+::  x
+  # +ID_VERT_GRID+::  x
+  # +ID_TOGGLE_EDITABLE+:: x
+  # +ID_DELETE_COLUMN+:: x
+  # +ID_DELETE_ROW+::  x
+  # +ID_INSERT_COLUMN+:: x
+  # +ID_INSERT_ROW+::  x
+  # +ID_SELECT_COLUMN_INDEX+:: x
+  # +ID_SELECT_ROW_INDEX+::  x
+  # +ID_SELECT_COLUMN+:: x
+  # +ID_SELECT_ROW+::  x
+  # +ID_SELECT_CELL+::  x
+  # +ID_SELECT_ALL+::  x
+  # +ID_DESELECT_ALL+::  x
+  # +ID_MOVE_LEFT+::  x
+  # +ID_MOVE_RIGHT+::  x
+  # +ID_MOVE_UP+::  x
+  # +ID_MOVE_DOWN+::  x
+  # +ID_MOVE_HOME+::  x
+  # +ID_MOVE_END+::  x
+  # +ID_MOVE_TOP+::  x
+  # +ID_MOVE_BOTTOM+::  x
+  # +ID_MOVE_PAGEDOWN+:: x
+  # +ID_MOVE_PAGEUP+::  x
+  # +ID_START_INPUT+::  x
+  # +ID_CANCEL_INPUT+::  x
+  # +ID_ACCEPT_INPUT+::  x
+  # +ID_MARK+::   x
+  # +ID_EXTEND+::  x
+  # +ID_CUT_SEL+::  x
+  # +ID_COPY_SEL+::  x
+  # +ID_PASTE_SEL+::  x
+  # +ID_DELETE_SEL+:: x
 
   class FXTable < FXScrollArea
 
@@ -271,124 +271,124 @@ module Fox
     attr_reader :rowHeader
 
     # Number of visible rows [Integer]
-    attr_accessor	:visibleRows
+    attr_accessor :visibleRows
 
     # Number of visible columns [Integer]
-    attr_accessor	:visibleColumns
+    attr_accessor :visibleColumns
 
     # Number of rows [Integer]
-    attr_reader		:numRows
+    attr_reader  :numRows
 
     # Number of columns [Integer]
-    attr_reader		:numColumns
+    attr_reader  :numColumns
 
     # Top cell margin, in pixels [Integer]
-    attr_accessor	:marginTop
+    attr_accessor :marginTop
 
     # Bottom cell margin, in pixels [Integer]
-    attr_accessor	:marginBottom
+    attr_accessor :marginBottom
 
     # Left cell margin, in pixels [Integer]
-    attr_accessor	:marginLeft
+    attr_accessor :marginLeft
 
     # Right cell margin, in pixels [Integer]
-    attr_accessor	:marginRight
+    attr_accessor :marginRight
 
     # Table style [Integer]
-    attr_accessor	:tableStyle
+    attr_accessor :tableStyle
 
     # The column header height mode is either fixed (LAYOUT_FIX_HEIGHT) or variable.
     # In variable height mode, the column header will size to fit the contents in it.
     # In fixed height mode, the size is explicitly set via the _columnHeaderHeight_
     # attribute.
-    attr_accessor	:columnHeaderMode
+    attr_accessor :columnHeaderMode
 
     # The row header width mode is either fixed (LAYOUT_FIX_WIDTH) or variable.
     # In variable width mode, the row header will size to fit the contents in it.
     # In fixed width mode, the size is explicitly set via the _rowHeaderWidth_
     # attribute.
-    attr_accessor	:rowHeaderMode
+    attr_accessor :rowHeaderMode
 
     # Row header font [FXFont]
-    attr_accessor	:rowHeaderFont
+    attr_accessor :rowHeaderFont
 
     # Column header font [FXFont]
-    attr_accessor	:columnHeaderFont
+    attr_accessor :columnHeaderFont
 
     # The fixed column header height, if _columnHeaderMode_ is +LAYOUT_FIX_HEIGHT+.
-    attr_accessor	:columnHeaderHeight
+    attr_accessor :columnHeaderHeight
 
     # The fixed row header width, if _rowHeaderMode_ is +LAYOUT_FIX_WIDTH+.
-    attr_accessor	:rowHeaderWidth
+    attr_accessor :rowHeaderWidth
 
     # Default column width, in pixels [Integer]
-    attr_accessor	:defColumnWidth
+    attr_accessor :defColumnWidth
 
     # Default row height, in pixels [Integer]
-    attr_accessor	:defRowHeight
+    attr_accessor :defRowHeight
 
     # Row number for current cell [Integer]
-    attr_reader		:currentRow
+    attr_reader  :currentRow
 
     # Column number for current cell [Integer]
-    attr_reader		:currentColumn
+    attr_reader  :currentColumn
 
     # Row number for anchor cell [Integer]
-    attr_reader		:anchorRow
+    attr_reader  :anchorRow
 
     # Column number for anchor cell [Integer]
-    attr_reader		:anchorColumn
+    attr_reader  :anchorColumn
 
     # Starting row number for selection, or -1 if there is no selection [Integer]
-    attr_reader		:selStartRow
+    attr_reader  :selStartRow
 
     # Starting column number for selection, or -1 if there is no selection [Integer]
-    attr_reader		:selStartColumn
+    attr_reader  :selStartColumn
 
     # Ending row number for selection, or -1 if there is no selection [Integer]
-    attr_reader		:selEndRow
+    attr_reader  :selEndRow
 
     # Ending column number for selection, or -1 if there is no selection [Integer]
-    attr_reader		:selEndColumn
+    attr_reader  :selEndColumn
 
     # Text font [FXFont]
-    attr_accessor	:font
+    attr_accessor :font
 
     # Text color [FXColor]
-    attr_accessor	:textColor
+    attr_accessor :textColor
 
     # Base GUI color [FXColor]
-    attr_accessor	:baseColor
+    attr_accessor :baseColor
 
     # Highlight color [FXColor]
-    attr_accessor	:hiliteColor
+    attr_accessor :hiliteColor
 
     # Shadow color [FXColor]
-    attr_accessor	:shadowColor
+    attr_accessor :shadowColor
 
     # Border color [FXColor]
-    attr_accessor	:borderColor
+    attr_accessor :borderColor
 
     # Background color for selected cell(s) [FXColor]
-    attr_accessor	:selBackColor
+    attr_accessor :selBackColor
 
     # Text color for selected cell(s) [FXColor]
-    attr_accessor	:selTextColor
+    attr_accessor :selTextColor
 
     # Grid color [FXColor]
-    attr_accessor	:gridColor
+    attr_accessor :gridColor
 
     # Stipple color [FXColor]
-    attr_accessor	:stippleColor
+    attr_accessor :stippleColor
 
     # Cell border color [FXColor]
-    attr_accessor	:cellBorderColor
+    attr_accessor :cellBorderColor
 
     # Cell border width, in pixels [Integer]
-    attr_accessor	:cellBorderWidth
+    attr_accessor :cellBorderWidth
 
     # Status line help text [String]
-    attr_accessor	:helpText
+    attr_accessor :helpText
 
     # Returns the drag type for CSV data
     def FXTable.csvType; end
@@ -403,18 +403,18 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this table [FXComposite]
-    # +target+::	the message target (if any) for this table [FXObject]
-    # +selector+::	the message identifier for this table [Integer]
-    # +opts+::	table options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent window for this table [FXComposite]
+    # +target+:: the message target (if any) for this table [FXObject]
+    # +selector+:: the message identifier for this table [Integer]
+    # +opts+:: table options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0, padLeft=DEFAULT_MARGIN, padRight=DEFAULT_MARGIN, padTop=DEFAULT_MARGIN, padBottom=DEFAULT_MARGIN) # :yields: theTable
     end
@@ -654,7 +654,7 @@ module Fox
 
     # Change column header icon.
     # Raises IndexError if _index_ is out of bounds.
-    def setColumnIcon(FXint index,FXIcon* icon);
+    def setColumnIcon(index, icon); end
 
     # Return icon of column header at _index_.
     # Raises IndexError if _index_ is out of bounds.
@@ -745,12 +745,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +startrow+::	the starting row for the range [Integer]
-    # +endrow+::	the ending row for the range [Integer]
-    # +startcol+::	the starting column for the range [Integer]
-    # +endcol+::	the ending column for the range [Integer]
-    # +cs+::		the string to insert at each column break [String]
-    # +rs+::		the string to insert at each row break [String]
+    # +startrow+:: the starting row for the range [Integer]
+    # +endrow+:: the ending row for the range [Integer]
+    # +startcol+:: the starting column for the range [Integer]
+    # +endcol+:: the ending column for the range [Integer]
+    # +cs+::  the string to insert at each column break [String]
+    # +rs+::  the string to insert at each row break [String]
     #
     def extractText(startrow, endrow, startcol, endcol, cs="\t", rs="\n"); end
 
@@ -767,13 +767,13 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +startrow+::	the starting row for the range [Integer]
-    # +endrow+::	the ending row for the range [Integer]
-    # +startcol+::	the starting column for the range [Integer]
-    # +endcol+::	the ending column for the range [Integer]
-    # +text+::		the text containing the new cell text [String]
-    # +cs+::		the character to insert at each column break [String]
-    # +rs+::		the character to insert at each row break [String]
+    # +startrow+:: the starting row for the range [Integer]
+    # +endrow+:: the ending row for the range [Integer]
+    # +startcol+:: the starting column for the range [Integer]
+    # +endcol+:: the ending column for the range [Integer]
+    # +text+::  the text containing the new cell text [String]
+    # +cs+::  the character to insert at each column break [String]
+    # +rs+::  the character to insert at each row break [String]
     #
     def overlayText(startrow, endrow, startcol, endcol, text, cs="\t", rs="\n", notify=false); end
 

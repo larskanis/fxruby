@@ -8,10 +8,10 @@ module Fox
   #
   # The following messages are sent by FXColorWheel to its target:
   #
-  # +SEL_CHANGED+::		sent continuously, while the color is changing; the message data is a 3-element array of floats containing the hue, saturation and value.
-  # +SEL_COMMAND+::		sent when the new color is set; the message data is a 3-element array of floats containing the hue, saturation and value.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_CHANGED+::  sent continuously, while the color is changing; the message data is a 3-element array of floats containing the hue, saturation and value.
+  # +SEL_COMMAND+::  sent when the new color is set; the message data is a 3-element array of floats containing the hue, saturation and value.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
   #
   class FXColorWheel < FXFrame
 
@@ -35,10 +35,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	Parent widget [FXComposite]
-    # +target+::	Message target object [FXObject]
-    # +selector+::	Message identifier [Integer]
-    # +opts+::	Options [Integer]
+    # +p+:: Parent widget [FXComposite]
+    # +target+:: Message target object [FXObject]
+    # +selector+:: Message identifier [Integer]
+    # +opts+:: Options [Integer]
     # +x+::
     # +y+::
     # +width+::

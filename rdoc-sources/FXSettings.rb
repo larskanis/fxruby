@@ -30,7 +30,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +pos+::	the section number of interest [Integer]
+    # +pos+:: the section number of interest [Integer]
     #
     def data(pos) ; end
 
@@ -41,7 +41,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name of interest [String]
+    # +section+:: the section name of interest [String]
     #
     def find(section) ; end
 
@@ -57,9 +57,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for the setting of interest [String]
-    # +default+::	the default value to return if _key_ is not found [String]
+    # +section+:: the section name [String]
+    # +key+::  the key for the setting of interest [String]
+    # +default+:: the default value to return if _key_ is not found [String]
     #
     def readStringEntry(section, key, default="") ; end
 
@@ -69,9 +69,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for the setting of interest [String]
-    # +default+::	the default value to return if _key_ is not found [Integer]
+    # +section+:: the section name [String]
+    # +key+::  the key for the setting of interest [String]
+    # +default+:: the default value to return if _key_ is not found [Integer]
     #
     def readIntEntry(section, key, default=0) ; end
 
@@ -81,9 +81,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for the setting of interest [String]
-    # +default+::	the default value to return if _key_ is not found [Integer]
+    # +section+:: the section name [String]
+    # +key+::  the key for the setting of interest [String]
+    # +default+:: the default value to return if _key_ is not found [Integer]
     #
     def readUnsignedEntry(section, key, default=0) ; end
 
@@ -93,9 +93,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for the setting of interest [String]
-    # +default+::	the default value to return if _key_ is not found [Float]
+    # +section+:: the section name [String]
+    # +key+::  the key for the setting of interest [String]
+    # +default+:: the default value to return if _key_ is not found [Float]
     #
     def readRealEntry(section, key, default=0.0) ; end
 
@@ -105,9 +105,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for the setting of interest [String]
-    # +default+::	the default value to return if _key_ is not found [FXColor]
+    # +section+:: the section name [String]
+    # +key+::  the key for the setting of interest [String]
+    # +default+:: the default value to return if _key_ is not found [FXColor]
     #
     def readColorEntry(section, key, default=0) ; end
 
@@ -117,9 +117,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for the setting of interest [String]
-    # +default+::	the default value to return if _key_ is not found [true or false]
+    # +section+:: the section name [String]
+    # +key+::  the key for the setting of interest [String]
+    # +default+:: the default value to return if _key_ is not found [true or false]
     #
     def readBoolEntry(section, key, default=false) ; end
 
@@ -129,9 +129,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for this setting [String]
-    # +value+::		the value for this setting [String]
+    # +section+:: the section name [String]
+    # +key+::  the key for this setting [String]
+    # +value+::  the value for this setting [String]
     #
     def writeStringEntry(section, key, value) ; end
 
@@ -141,9 +141,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for this setting [String]
-    # +value+::		the value for this setting [Integer]
+    # +section+:: the section name [String]
+    # +key+::  the key for this setting [String]
+    # +value+::  the value for this setting [Integer]
     #
     def writeIntEntry(section, key, value) ; end
 
@@ -153,9 +153,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for this setting [String]
-    # +value+::		the value for this setting [Integer]
+    # +section+:: the section name [String]
+    # +key+::  the key for this setting [String]
+    # +value+::  the value for this setting [Integer]
     #
     def writeUnsignedEntry(section, key, value) ; end
 
@@ -165,9 +165,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for this setting [String]
-    # +value+::		the value for this setting [Float]
+    # +section+:: the section name [String]
+    # +key+::  the key for this setting [String]
+    # +value+::  the value for this setting [Float]
     #
     def writeRealEntry(section, key, value) ; end
 
@@ -177,9 +177,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for this setting [String]
-    # +value+::		the value for this setting [FXColor]
+    # +section+:: the section name [String]
+    # +key+::  the key for this setting [String]
+    # +value+::  the value for this setting [FXColor]
     #
     def writeColorEntry(section, key, value) ; end
 
@@ -189,9 +189,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section name [String]
-    # +key+::		the key for this setting [String]
-    # +value+::		the value for this setting [true or false]
+    # +section+:: the section name [String]
+    # +key+::  the key for this setting [String]
+    # +value+::  the value for this setting [true or false]
     #
     def writeBoolEntry(section, key, value) ; end
 
@@ -201,8 +201,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section containing the key to be deleted [String]
-    # +key+::		the key to be deleted [String]
+    # +section+:: the section containing the key to be deleted [String]
+    # +key+::  the key to be deleted [String]
     #
     def deleteEntry(section, key) ; end
 
@@ -211,8 +211,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the section containing the key of interest [String]
-    # +key+::		the key of interest [String]
+    # +section+:: the section containing the key of interest [String]
+    # +key+::  the key of interest [String]
     #
     def existingEntry?(section, key) ; end
 
@@ -222,7 +222,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the name of the section to be deleted [String]
+    # +section+:: the name of the section to be deleted [String]
     #
     def deleteSection(section) ; end
 
@@ -231,7 +231,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +section+::	the name of the section of interest [String]
+    # +section+:: the name of the section of interest [String]
     #
     def existingSection?(section) ; end
 

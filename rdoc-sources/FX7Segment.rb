@@ -6,8 +6,8 @@ module Fox
   #
   # === 7 Segment styles
   #
-  # +SEVENSEGMENT_NORMAL+::	Draw segments normally
-  # +SEVENSEGMENT_SHADOW+::	Draw shadow under the segments
+  # +SEVENSEGMENT_NORMAL+:: Draw segments normally
+  # +SEVENSEGMENT_SHADOW+:: Draw shadow under the segments
   #
   class FX7Segment < FXFrame
     # The text for this label [String]

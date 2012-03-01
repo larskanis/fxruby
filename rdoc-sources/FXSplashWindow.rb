@@ -7,10 +7,10 @@ module Fox
   #
   # === Splash window options
   #
-  # +SPLASH_SIMPLE+::		Simple rectangular splash window
-  # +SPLASH_SHAPED+::		Shaped splash window
-  # +SPLASH_OWNS_ICON+::	Splash window will own the icon and destroy it
-  # +SPLASH_DESTROY+::		Splash window will destroy itself when timer expires
+  # +SPLASH_SIMPLE+::  Simple rectangular splash window
+  # +SPLASH_SHAPED+::  Shaped splash window
+  # +SPLASH_OWNS_ICON+:: Splash window will own the icon and destroy it
+  # +SPLASH_DESTROY+::  Splash window will destroy itself when timer expires
   #
   class FXSplashWindow < FXTopWindow
     # The splash window's icon [FXIcon]

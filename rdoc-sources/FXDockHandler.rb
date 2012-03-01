@@ -7,8 +7,8 @@ module Fox
   #
   # The following messages are sent by FXDockHandler to its target:
   #
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
   #
   class FXDockHandler < FXFrame
     # Status line help text [String]

@@ -7,18 +7,18 @@ module Fox
   #
   # === Bitmap alignment styles
   #
-  # +BITMAPVIEW_NORMAL+::	Normal mode is centered
-  # +BITMAPVIEW_CENTER_X+::	Centered horizontally
-  # +BITMAPVIEW_LEFT+::		Left-aligned
-  # +BITMAPVIEW_RIGHT+::	Right-aligned
-  # +BITMAPVIEW_CENTER_Y+::	Centered vertically
-  # +BITMAPVIEW_TOP+::		Top-aligned
-  # +BITMAPVIEW_BOTTOM+::	Bottom-aligned
+  # +BITMAPVIEW_NORMAL+:: Normal mode is centered
+  # +BITMAPVIEW_CENTER_X+:: Centered horizontally
+  # +BITMAPVIEW_LEFT+::  Left-aligned
+  # +BITMAPVIEW_RIGHT+:: Right-aligned
+  # +BITMAPVIEW_CENTER_Y+:: Centered vertically
+  # +BITMAPVIEW_TOP+::  Top-aligned
+  # +BITMAPVIEW_BOTTOM+:: Bottom-aligned
   #
   # === Events
   #
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
   #
   class FXBitmapView < FXScrollArea
 

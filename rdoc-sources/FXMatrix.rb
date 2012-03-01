@@ -18,8 +18,8 @@ module Fox
   #
   # === Matrix packing options
   #
-  # +MATRIX_BY_ROWS+::		Fixed number of rows, add columns as needed
-  # +MATRIX_BY_COLUMNS+::	Fixed number of columns, adding rows as needed
+  # +MATRIX_BY_ROWS+::  Fixed number of rows, add columns as needed
+  # +MATRIX_BY_COLUMNS+:: Fixed number of columns, adding rows as needed
   #
   class FXMatrix < FXPacker
 

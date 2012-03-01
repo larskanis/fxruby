@@ -18,12 +18,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +pix+::	a memory buffer formatted in PPM file format [String]
-    # +clr+::	transparency color [FXColor]
-    # +opts+::	options [Integer]
-    # +width+::	width [Integer]
-    # +height+::	height [Integer]
+    # +a+:: an application instance [FXApp]
+    # +pix+:: a memory buffer formatted in PPM file format [String]
+    # +clr+:: transparency color [FXColor]
+    # +opts+:: options [Integer]
+    # +width+:: width [Integer]
+    # +height+:: height [Integer]
     #
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: thePPMIcon
     end

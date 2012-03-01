@@ -18,8 +18,8 @@ module Fox
   #
   # The following messages are sent by FXComboBox to its target:
   #
-  # +SEL_CHANGED+::		sent when the text in the text field changes; the message data is a String containing the new text.
-  # +SEL_COMMAND+::		sent when a new item is selected from the list, or when a command message is sent from the text field; the message data is a String containing the new text.
+  # +SEL_CHANGED+::  sent when the text in the text field changes; the message data is a String containing the new text.
+  # +SEL_COMMAND+::  sent when a new item is selected from the list, or when a command message is sent from the text field; the message data is a String containing the new text.
   #
   # === ComboBox styles
   #
@@ -34,13 +34,13 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_LIST+::			identifier associated with the embedded FXList instance
-  # +ID_TEXT+::			identifier associated with the embedded FXTextField instance
+  # +ID_LIST+::   identifier associated with the embedded FXList instance
+  # +ID_TEXT+::   identifier associated with the embedded FXTextField instance
   #
   class FXComboBox < FXPacker
 
     # Editable state [Boolean]
-    attr_writer	:editable
+    attr_writer :editable
 
     # Text [String]
     attr_accessor :text
@@ -52,7 +52,7 @@ module Fox
     attr_accessor :justify
 
     # Number of items in the list [Integer]
-    attr_reader	:numItems
+    attr_reader :numItems
 
     # Number of visible items in the drop-down list [Integer]
     attr_accessor :numVisible
@@ -89,19 +89,19 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this combo-box [FXComposite]
-    # +cols+::	number of columns [Integer]
-    # +target+::	message target [FXObject]
-    # +selector+::	message identifier [Integer]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	left-side padding, in pixels [Integer]
-    # +padRight+::	right-side padding, in pixels [Integer]
-    # +padTop+::	top-side padding, in pixels [Integer]
-    # +padBottom+::	bottom-side padding, in pixels [Integer]
+    # +p+:: the parent widget for this combo-box [FXComposite]
+    # +cols+:: number of columns [Integer]
+    # +target+:: message target [FXObject]
+    # +selector+:: message identifier [Integer]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: left-side padding, in pixels [Integer]
+    # +padRight+:: right-side padding, in pixels [Integer]
+    # +padTop+:: top-side padding, in pixels [Integer]
+    # +padBottom+:: bottom-side padding, in pixels [Integer]
     #
     def initialize(p, cols, target=nil, selector=0, opts=COMBOBOX_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theComboBox
     end

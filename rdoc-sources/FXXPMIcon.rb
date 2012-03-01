@@ -18,12 +18,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +pix+::	a memory buffer formatted in XPM file format [String]
-    # +clr+::	transparency color [FXColor]
-    # +opts+::	options [Integer]
-    # +width+::	width [Integer]
-    # +height+::	height [Integer]
+    # +a+:: an application instance [FXApp]
+    # +pix+:: a memory buffer formatted in XPM file format [String]
+    # +clr+:: transparency color [FXColor]
+    # +opts+:: options [Integer]
+    # +width+:: width [Integer]
+    # +height+:: height [Integer]
     #
     def initialize(a, pix=nil, clr=0, opts=0, width=1, height=1) # :yields: theXPMIcon
     end
@@ -38,7 +38,7 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+::	stream from which to read the file data [FXStream]
+  # +store+:: stream from which to read the file data [FXStream]
   #
   def Fox.fxloadXPM(store); end
 
@@ -48,12 +48,12 @@ module Fox
   #
   # ==== Parameters:
   #
-  # +store+::	stream to which to write the file data [FXStream]
-  # +data+::	the image pixel data, an array of FXColor values
-  # +transp+::	transparency color [FXColor]
-  # +width+::	width [Integer]
-  # +height+::	height [Integer]
-  # +fast+::	if +true+, use fast something
+  # +store+:: stream to which to write the file data [FXStream]
+  # +data+:: the image pixel data, an array of FXColor values
+  # +transp+:: transparency color [FXColor]
+  # +width+:: width [Integer]
+  # +height+:: height [Integer]
+  # +fast+:: if +true+, use fast something
   #
   def fxsaveXPM(store, data, transp, width, height, fast=true); end
 

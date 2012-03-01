@@ -9,7 +9,7 @@ module Fox
     attr_accessor :frameStyle
 
     # Border width [Integer]
-    attr_reader	:borderWidth
+    attr_reader :borderWidth
 
     # Highlight color [FXColor]
     attr_accessor :hiliteColor
@@ -28,14 +28,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::	the owner window for this tool bar shell [FXWindow]
-    # +opts+::	tool bar shell options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +hSpacing+::	horizontal spacing between widgets, in pixels [Integer]
-    # +vSpacing+::	vertical spacing between widgets, in pixels [Integer]
+    # +owner+:: the owner window for this tool bar shell [FXWindow]
+    # +opts+:: tool bar shell options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +hSpacing+:: horizontal spacing between widgets, in pixels [Integer]
+    # +vSpacing+:: vertical spacing between widgets, in pixels [Integer]
     #
     def initialize(owner, opts=FRAME_RAISED|FRAME_THICK, x=0, y=0, width=0, height=0, hSpacing=4, vSpacing=4) # :yields: theToolBarShell
     end

@@ -12,12 +12,12 @@ module Fox
   #
   # The following messages are sent by FXColorDialog to its target:
   #
-  # +SEL_CHANGED+::	sent continuously, while the color selector's color is changing
-  # +SEL_COMMAND+::	sent when the new color is set
+  # +SEL_CHANGED+:: sent continuously, while the color selector's color is changing
+  # +SEL_COMMAND+:: sent when the new color is set
   #
   # === Message identifiers
   #
-  # +ID_COLORSELECTOR+::	used internally to identify messages from the FXColorSelector
+  # +ID_COLORSELECTOR+:: used internally to identify messages from the FXColorSelector
 
   class FXColorDialog < FXDialogBox
 

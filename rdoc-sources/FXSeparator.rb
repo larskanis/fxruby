@@ -8,10 +8,10 @@ module Fox
   #
   # === Separator options
   #
-  # +SEPARATOR_NONE+::		Nothing visible
-  # +SEPARATOR_GROOVE+::	Etched-in looking groove
-  # +SEPARATOR_RIDGE+::		Embossed looking ridge
-  # +SEPARATOR_LINE+::		Simple line
+  # +SEPARATOR_NONE+::  Nothing visible
+  # +SEPARATOR_GROOVE+:: Etched-in looking groove
+  # +SEPARATOR_RIDGE+::  Embossed looking ridge
+  # +SEPARATOR_LINE+::  Simple line
   #
   class FXSeparator < FXFrame
 
@@ -32,16 +32,16 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this separator [FXComposite]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent widget for this separator [FXComposite]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, opts=SEPARATOR_GROOVE|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=1, padRight=1, padTop=0, padBottom=0) # :yields: theHorizontalSeparator
     end
@@ -56,16 +56,16 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this separator [FXComposite]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent widget for this separator [FXComposite]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, opts=SEPARATOR_GROOVE|LAYOUT_FILL_Y, x=0, y=0, width=0, height=0, padLeft=0, padRight=0, padTop=1, padBottom=1) # :yields: theVerticalSeparator
     end

@@ -16,19 +16,19 @@ module Fox
   #
   # The following messages are sent by FXToolBarTab to its target:
   #
-  # +SEL_KEYPRESS+::	Sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::	Sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_COMMAND+::	Sent after the toolbar tab is collapsed (or uncollapsed). The message data indicates the new collapsed state (i.e. it's +true+ if the toolbar tab is now collapsed, +false+ if it is now uncollapsed).
+  # +SEL_KEYPRESS+:: Sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+:: Sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_COMMAND+:: Sent after the toolbar tab is collapsed (or uncollapsed). The message data indicates the new collapsed state (i.e. it's +true+ if the toolbar tab is now collapsed, +false+ if it is now uncollapsed).
   #
   # === Toolbar tab styles
   #
-  # +TOOLBARTAB_HORIZONTAL+::		Default is for horizontal toolbar
-  # +TOOLBARTAB_VERTICAL+::		For vertical toolbar
+  # +TOOLBARTAB_HORIZONTAL+::  Default is for horizontal toolbar
+  # +TOOLBARTAB_VERTICAL+::  For vertical toolbar
   #
   # === Message identifiers
   #
-  # +ID_COLLAPSE+::					Collapse the toolbar tab
-  # +ID_UNCOLLAPSE+::				Uncollapse the toolbar tab
+  # +ID_COLLAPSE+::     Collapse the toolbar tab
+  # +ID_UNCOLLAPSE+::    Uncollapse the toolbar tab
   #
   class FXToolBarTab < FXFrame
 
@@ -46,14 +46,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::		the parent window for this toolbar tab [FXWindow]
-    # +target+::	the message target [FXObject]
-    # +selector+::	the message identifier [Integer]
-    # +opts+::	the options [Integer]
-    # +x+::		x-coordinate of window upper left corner [Integer]
-    # +y+::		y-coordinate of window upper left corner [Integer]
-    # +width+::		window width [Integer]
-    # +height+::		window height [Integer]
+    # +p+::  the parent window for this toolbar tab [FXWindow]
+    # +target+:: the message target [FXObject]
+    # +selector+:: the message identifier [Integer]
+    # +opts+:: the options [Integer]
+    # +x+::  x-coordinate of window upper left corner [Integer]
+    # +y+::  y-coordinate of window upper left corner [Integer]
+    # +width+::  window width [Integer]
+    # +height+::  window height [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=FRAME_RAISED, x=0, y=0, width=0, height=0) # :yield: theToolBarTab
     end

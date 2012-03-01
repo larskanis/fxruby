@@ -4,8 +4,8 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_TITLE+::	x
-  # +ID_FILENAME+::	x
+  # +ID_TITLE+:: x
+  # +ID_FILENAME+:: x
   #
   class FXDocument < FXObject
 

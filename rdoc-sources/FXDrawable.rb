@@ -6,10 +6,10 @@ module Fox
   class FXDrawable < FXId
 
     # Width of drawable, in pixels [Integer]
-    attr_reader	:width
+    attr_reader :width
 
     # Height of drawable, in pixels [Integer]
-    attr_reader	:height
+    attr_reader :height
 
     # Visual [FXVisual]
     attr_accessor :visual
@@ -19,8 +19,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +width+::	new drawable width, in pixels [Integer]
-    # +height+::	new drawable height, in pixels [Integer]
+    # +width+:: new drawable width, in pixels [Integer]
+    # +height+:: new drawable height, in pixels [Integer]
     #
     def resize(w, h); end
   end

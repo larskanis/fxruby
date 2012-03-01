@@ -44,9 +44,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this shutter [FXComposite]
-    # +target+::	the message target, if any, for this shutter [FXObject]
-    # +selector+::	the message identifier for this shutter [Integer]
+    # +p+:: the parent window for this shutter [FXComposite]
+    # +target+:: the message target, if any, for this shutter [FXObject]
+    # +selector+:: the message identifier for this shutter [Integer]
     #
     def initialize(p, target=nil, selector=0) # :yields: theStatusLine
     end

@@ -10,7 +10,7 @@ module Fox
   #
   # === Options
   #
-  # +DIRBOX_NO_OWN_ASSOC+::	do not create associations for files
+  # +DIRBOX_NO_OWN_ASSOC+:: do not create associations for files
   #
   # === Events
   #

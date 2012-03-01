@@ -1,0 +1,8 @@
+--exclude '/aliases|kwargs|missingdep|responder/'
+--protected
+--no-private
+rdoc-sources/*.rb
+lib/fox16/*.rb
+-
+History.txt
+rdoc-sources/*.rdoc

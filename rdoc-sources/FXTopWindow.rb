@@ -73,47 +73,47 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_MAXIMIZE+::		Maximize the window
-  # +ID_MINIMIZE+::		Minimize the window
-  # +ID_RESTORE+::		Restore the window
-  # +ID_CLOSE+::		Close the window
-  # +ID_QUERY_DOCK+::		Toolbar asks to dock
+  # +ID_MAXIMIZE+::  Maximize the window
+  # +ID_MINIMIZE+::  Minimize the window
+  # +ID_RESTORE+::  Restore the window
+  # +ID_CLOSE+::  Close the window
+  # +ID_QUERY_DOCK+::  Toolbar asks to dock
   #
 
   class FXTopWindow < FXShell
 
     # Window title [String]
-    attr_accessor	:title
+    attr_accessor :title
 
     # Top padding, in pixels [Integer]
-    attr_accessor	:padTop
+    attr_accessor :padTop
 
     # Bottom padding, in pixels [Integer]
-    attr_accessor	:padBottom
+    attr_accessor :padBottom
 
     # Left padding, in pixels [Integer]
-    attr_accessor	:padLeft
+    attr_accessor :padLeft
 
     # Right padding, in pixels [Integer]
-    attr_accessor	:padRight
+    attr_accessor :padRight
 
     # Horizontal spacing between child widgets, in pixels [Integer]
-    attr_accessor	:hSpacing
+    attr_accessor :hSpacing
 
     # Vertical spacing between child widgets, in pixels [Integer]
-    attr_accessor	:vSpacing
+    attr_accessor :vSpacing
 
     # Packing hints for child widgets [Integer]
-    attr_accessor	:packingHints
+    attr_accessor :packingHints
 
     # Title and border decorations (see above) [Integer]
-    attr_accessor	:decorations
+    attr_accessor :decorations
 
     # Window icon [FXIcon]
-    attr_accessor	:icon
+    attr_accessor :icon
 
     # Window mini (title) icon [FXIcon]
-    attr_accessor	:miniIcon
+    attr_accessor :miniIcon
 
     # Show this window with given _placement_
     # (one of +PLACEMENT_DEFAULT+, +PLACEMENT_VISIBLE+, +PLACEMENT_CURSOR+, +PLACEMENT_OWNER+, +PLACEMENT_SCREEN+ or +PLACEMENT_MAXIMIZED+).

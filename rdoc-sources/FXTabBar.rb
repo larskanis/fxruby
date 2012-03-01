@@ -19,27 +19,27 @@ module Fox
   #
   # === Tab book options
   #
-  # +TABBOOK_TOPTABS+::		Tabs on top (default)
-  # +TABBOOK_BOTTOMTABS+::	Tabs on bottom
-  # +TABBOOK_SIDEWAYS+::	Tabs on left
-  # +TABBOOK_LEFTTABS+::	Tabs on left
-  # +TABBOOK_RIGHTTABS+::	Tabs on right
-  # +TABBOOK_NORMAL+::		same as <tt>TABBOOK_TOPTABS</tt>
+  # +TABBOOK_TOPTABS+::  Tabs on top (default)
+  # +TABBOOK_BOTTOMTABS+:: Tabs on bottom
+  # +TABBOOK_SIDEWAYS+:: Tabs on left
+  # +TABBOOK_LEFTTABS+:: Tabs on left
+  # +TABBOOK_RIGHTTABS+:: Tabs on right
+  # +TABBOOK_NORMAL+::  same as <tt>TABBOOK_TOPTABS</tt>
   #
   # === Message identifiers
   #
-  # +ID_OPEN_ITEM+::	Sent from one of the FXTabItems
-  # +ID_OPEN_FIRST+::	Switch to the first panel
-  # +ID_OPEN_SECOND+::	x
-  # +ID_OPEN_THIRD+::	x
-  # +ID_OPEN_FOURTH+::	x
-  # +ID_OPEN_FIFTH+::	x
-  # +ID_OPEN_SIXTH+::	x
-  # +ID_OPEN_SEVENTH+::	x
-  # +ID_OPEN_EIGHTH+::	x
-  # +ID_OPEN_NINETH+::	x
-  # +ID_OPEN_TENTH+::	x
-  # +ID_OPEN_LAST+::	x
+  # +ID_OPEN_ITEM+:: Sent from one of the FXTabItems
+  # +ID_OPEN_FIRST+:: Switch to the first panel
+  # +ID_OPEN_SECOND+:: x
+  # +ID_OPEN_THIRD+:: x
+  # +ID_OPEN_FOURTH+:: x
+  # +ID_OPEN_FIFTH+:: x
+  # +ID_OPEN_SIXTH+:: x
+  # +ID_OPEN_SEVENTH+:: x
+  # +ID_OPEN_EIGHTH+:: x
+  # +ID_OPEN_NINETH+:: x
+  # +ID_OPEN_TENTH+:: x
+  # +ID_OPEN_LAST+:: x
   #
   class FXTabBar < FXPacker
     # Currently active tab item's index [Integer]
@@ -53,18 +53,18 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this tar bar [FXComposite]
-    # +target+::	the message target, if any, for this tar bar [FXObject]
-    # +selector+::	the message identifier for this tab bar [Integer]
-    # +opts+::	tar bar options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent window for this tar bar [FXComposite]
+    # +target+:: the message target, if any, for this tar bar [FXObject]
+    # +selector+:: the message identifier for this tab bar [Integer]
+    # +opts+:: tar bar options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=TABBOOK_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING) # :yields: theTabBar
     end

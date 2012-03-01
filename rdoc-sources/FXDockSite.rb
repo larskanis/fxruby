@@ -23,8 +23,8 @@ module Fox
   #
   # === Dock Site Options
   #
-  # +DOCKSITE_WRAP+::		Dockbars are wrapped to another galley when not enough space on current galley
-  # +DOCKSITE_NO_WRAP+::	Never wrap dockbars to another galley even if not enough space
+  # +DOCKSITE_WRAP+::  Dockbars are wrapped to another galley when not enough space on current galley
+  # +DOCKSITE_NO_WRAP+:: Never wrap dockbars to another galley even if not enough space
   #
   class FXDockSite < FXPacker
     #
@@ -42,9 +42,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+::		a reference to the dockbar that's being dragged [FXDockBar]
-    # +barx+::		current x-coordinate of the dockbar [Integer]
-    # +bary+		current y-coordinate of the dockbar [Integer]
+    # +bar+::  a reference to the dockbar that's being dragged [FXDockBar]
+    # +barx+::  current x-coordinate of the dockbar [Integer]
+    # +bary+  current y-coordinate of the dockbar [Integer]
     #
     def moveToolBar(bar, barx, bary); end
 
@@ -56,8 +56,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+::		a reference to the newly docked dockbar [FXDockBar]
-    # +before+::	a reference to the window that the dockbar was added before [FXWindow]
+    # +bar+::  a reference to the newly docked dockbar [FXDockBar]
+    # +before+:: a reference to the window that the dockbar was added before [FXWindow]
     #
     def dockToolBar(bar, before); end
 
@@ -69,9 +69,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+::		a reference to the newly docked dockbar [FXDockBar][FXDockBar]
-    # +barx+::		x-coordinate of the docking position [Integer]
-    # +bary+::		y-coordinate of the docking position [Integer]
+    # +bar+::  a reference to the newly docked dockbar [FXDockBar][FXDockBar]
+    # +barx+::  x-coordinate of the docking position [Integer]
+    # +bary+::  y-coordinate of the docking position [Integer]
     #
     def dockToolBar(bar, barx, bary); end
 
@@ -83,7 +83,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +bar+::	a reference to the removed dockbar [FXDockBar]
+    # +bar+:: a reference to the removed dockbar [FXDockBar]
     #
     def undockToolBar(bar); end
 

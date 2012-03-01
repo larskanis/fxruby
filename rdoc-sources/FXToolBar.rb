@@ -18,19 +18,19 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the "dry dock" window for this tool bar [FXComposite]
-    # +q+::	the "wet dock" window for this tool bar [FXComposite]
-    # +opts+::	tool bar options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
-    # +hSpacing+::	horizontal spacing between widgets, in pixels [Integer]
-    # +vSpacing+::	vertical spacing between widgets, in pixels [Integer]
+    # +p+:: the "dry dock" window for this tool bar [FXComposite]
+    # +q+:: the "wet dock" window for this tool bar [FXComposite]
+    # +opts+:: tool bar options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
+    # +hSpacing+:: horizontal spacing between widgets, in pixels [Integer]
+    # +vSpacing+:: vertical spacing between widgets, in pixels [Integer]
     #
     def initialize(p, q, opts=LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theToolBar
     end
@@ -41,18 +41,18 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this tool bar [FXComposite]
-    # +opts+::	tool bar options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
-    # +hSpacing+::	horizontal spacing between widgets, in pixels [Integer]
-    # +vSpacing+::	vertical spacing between widgets, in pixels [Integer]
+    # +p+:: the parent window for this tool bar [FXComposite]
+    # +opts+:: tool bar options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
+    # +hSpacing+:: horizontal spacing between widgets, in pixels [Integer]
+    # +vSpacing+:: vertical spacing between widgets, in pixels [Integer]
     #
     def initialize(p, opts=LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theToolBar
     end

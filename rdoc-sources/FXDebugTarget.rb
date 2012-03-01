@@ -9,7 +9,7 @@ module Fox
     # Returns an array of strings containing the names of the message types.
     # So, for example,
     #
-    #	puts FXDebugTarget.messageTypeName[SEL_COMMAND]
+    # puts FXDebugTarget.messageTypeName[SEL_COMMAND]
     #
     # should print the text "SEL_COMMAND".
     #

@@ -22,27 +22,27 @@ module Fox
   #
   # === Stream status codes
   #
-  # +FXStreamOK+::		OK
-  # +FXStreamEnd+::		Try read past end of stream
-  # +FXStreamFull+::		Filled up stream buffer or disk full
-  # +FXStreamNoWrite+::		Unable to open for write
-  # +FXStreamNoRead+::		Unable to open for read
-  # +FXStreamFormat+::		Stream format error
-  # +FXStreamUnknown+::		Trying to read unknown class
-  # +FXStreamAlloc+::		Alloc failed
-  # +FXStreamFailure+::		General failure
+  # +FXStreamOK+::  OK
+  # +FXStreamEnd+::  Try read past end of stream
+  # +FXStreamFull+::  Filled up stream buffer or disk full
+  # +FXStreamNoWrite+::  Unable to open for write
+  # +FXStreamNoRead+::  Unable to open for read
+  # +FXStreamFormat+::  Stream format error
+  # +FXStreamUnknown+::  Trying to read unknown class
+  # +FXStreamAlloc+::  Alloc failed
+  # +FXStreamFailure+::  General failure
   #
   # === Stream data flow direction
   #
-  # +FXStreamDead+::		Unopened stream
-  # +FXStreamSave+::		Saving stuff to stream
-  # +FXStreamLoad+::		Loading stuff from stream
+  # +FXStreamDead+::  Unopened stream
+  # +FXStreamSave+::  Saving stuff to stream
+  # +FXStreamLoad+::  Loading stuff from stream
   #
   # === Stream seeking
   #
-  # +FXFromStart+::		Seek from start position
-  # +FXFromCurrent+::		Seek from current position
-  # +FXFromEnd+::		Seek from end position
+  # +FXFromStart+::  Seek from start position
+  # +FXFromCurrent+::  Seek from current position
+  # +FXFromEnd+::  Seek from end position
   #
   class FXStream
 
@@ -69,7 +69,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +cont+::	the container object, or +nil+ if there is none [FXObject].
+    # +cont+:: the container object, or +nil+ if there is none [FXObject].
     #
     def initialize(cont=nil) # :yields: theStream
     end
@@ -83,9 +83,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +save_or_load+::	access mode, either +FXStreamSave+ or +FXStreamLoad+ [Integer]
-    # +size+::		initial buffer size [Integer]
-    # +data+::		external data buffer (if any) [String]
+    # +save_or_load+:: access mode, either +FXStreamSave+ or +FXStreamLoad+ [Integer]
+    # +size+::  initial buffer size [Integer]
+    # +data+::  external data buffer (if any) [String]
     #
     def open(save_or_load, size=8192, data=nil); end
 

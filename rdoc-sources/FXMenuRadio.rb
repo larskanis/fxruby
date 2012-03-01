@@ -13,7 +13,7 @@ module Fox
   #
   # The following messages are sent by FXMenuRadio to its target:
   #
-  # +SEL_COMMAND+::		sent when the command is activated
+  # +SEL_COMMAND+::  sent when the command is activated
   #
   class FXMenuRadio < FXMenuCommand
 

@@ -5,8 +5,8 @@ module Fox
   #
   # === Menu caption options
   #
-  # +MENU_AUTOGRAY+::	Automatically gray out when not updated
-  # +MENU_AUTOHIDE+::	Automatically hide button when not updated
+  # +MENU_AUTOGRAY+:: Automatically gray out when not updated
+  # +MENU_AUTOHIDE+:: Automatically hide button when not updated
   #
   class FXMenuCaption < FXWindow
 

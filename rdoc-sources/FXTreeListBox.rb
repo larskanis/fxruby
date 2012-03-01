@@ -17,12 +17,12 @@ module Fox
   #
   # === Tree list box styles
   #
-  # +TREELISTBOX_NORMAL+::	Normal style
+  # +TREELISTBOX_NORMAL+:: Normal style
   #
   # === Message identifiers
   #
-  # +ID_TREE+::		x
-  # +ID_FIELD+::	x
+  # +ID_TREE+::  x
+  # +ID_FIELD+:: x
   #
   class FXTreeListBox < FXPacker
 
@@ -58,18 +58,18 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this tree list box [FXComposite]
-    # +target+::	the message target, if any, for this tree list box [FXObject]
-    # +selector+::	the message identifier for this tree list box [Integer]
-    # +opts+::	tree list options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent window for this tree list box [FXComposite]
+    # +target+:: the message target, if any, for this tree list box [FXObject]
+    # +selector+:: the message identifier for this tree list box [Integer]
+    # +opts+:: tree list options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=FRAME_SUNKEN|FRAME_THICK|TREELISTBOX_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theTreeListBox
     end
@@ -121,7 +121,7 @@ module Fox
     # Remove item.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message
     # target before the item is removed.
-    def removeItem(item, notify=false);
+    def removeItem(item, notify=false); end
 
     # Remove items in range [_fromItem_, _toItem_] inclusively.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message

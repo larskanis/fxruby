@@ -11,19 +11,19 @@ module Fox
   #
   # The following messages are sent by FXDockBar to its target:
   #
-  # +SEL_DOCKED+::		sent when the dock bar is docked; the message data is a reference to the new dock site (an FXDockSite instance).
-  # +SEL_FLOATED+::		sent when the dock bar is undocked; the message data is a reference to the previous dock site.
+  # +SEL_DOCKED+::  sent when the dock bar is docked; the message data is a reference to the new dock site (an FXDockSite instance).
+  # +SEL_FLOATED+::  sent when the dock bar is undocked; the message data is a reference to the previous dock site.
   #
   # === Dock Bar Options
   #
-  # +ALLOW_NOWHERE+::		Don't allow docking anywhere
-  # +ALLOW_TOP+::		Docking at the top only
-  # +ALLOW_BOTTOM+::		Docking at the bottom only
-  # +ALLOW_LEFT+::		Docking at the left only
-  # +ALLOW_RIGHT+::		Docking at the right only
-  # +ALLOW_HORIZONTAL+::	Docking at the top and bottom
-  # +ALLOW_VERTICAL+::		Docking at the left and right
-  # +ALLOW_EVERYWHERE+::	Docking can be everywhere
+  # +ALLOW_NOWHERE+::  Don't allow docking anywhere
+  # +ALLOW_TOP+::  Docking at the top only
+  # +ALLOW_BOTTOM+::  Docking at the bottom only
+  # +ALLOW_LEFT+::  Docking at the left only
+  # +ALLOW_RIGHT+::  Docking at the right only
+  # +ALLOW_HORIZONTAL+:: Docking at the top and bottom
+  # +ALLOW_VERTICAL+::  Docking at the left and right
+  # +ALLOW_EVERYWHERE+:: Docking can be everywhere
   #
   class FXDockBar < FXPacker
 
@@ -41,19 +41,19 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the "dry dock" window for this dock bar [FXComposite]
-    # +q+::	the "wet dock" window for this dock bar [FXComposite]
-    # +opts+::	dock bar options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
-    # +hSpacing+::	horizontal spacing between widgets, in pixels [Integer]
-    # +vSpacing+::	vertical spacing between widgets, in pixels [Integer]
+    # +p+:: the "dry dock" window for this dock bar [FXComposite]
+    # +q+:: the "wet dock" window for this dock bar [FXComposite]
+    # +opts+:: dock bar options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
+    # +hSpacing+:: horizontal spacing between widgets, in pixels [Integer]
+    # +vSpacing+:: vertical spacing between widgets, in pixels [Integer]
     #
     def initialize(p, q, opts=LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theDockBar
     end
@@ -64,18 +64,18 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this dock bar [FXComposite]
-    # +opts+::	dock bar options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
-    # +hSpacing+::	horizontal spacing between widgets, in pixels [Integer]
-    # +vSpacing+::	vertical spacing between widgets, in pixels [Integer]
+    # +p+:: the parent window for this dock bar [FXComposite]
+    # +opts+:: dock bar options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
+    # +hSpacing+:: horizontal spacing between widgets, in pixels [Integer]
+    # +vSpacing+:: vertical spacing between widgets, in pixels [Integer]
     #
     def initialize(p, opts=LAYOUT_TOP|LAYOUT_LEFT|LAYOUT_FILL_X, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=DEFAULT_SPACING, vSpacing=DEFAULT_SPACING) # :yields: theDockBar
     end

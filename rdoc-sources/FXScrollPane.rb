@@ -17,9 +17,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::	owner window for this menu pane [FXWindow]
-    # +nvis+::	maximum number of visible items [Integer]
-    # +opts+::	options [Integer]
+    # +owner+:: owner window for this menu pane [FXWindow]
+    # +nvis+:: maximum number of visible items [Integer]
+    # +opts+:: options [Integer]
     #
     def initialize(owner, nvis, opts=0) # :yields: theScrollPane
     end

@@ -4,28 +4,28 @@ module Fox
   #
   class FXHiliteStyle
     # Normal text foreground color [FXColor]
-    attr_accessor	:normalForeColor
+    attr_accessor :normalForeColor
 
     # Normal text background color [FXColor]
-    attr_accessor	:normalBackColor
+    attr_accessor :normalBackColor
 
     # Selected text foreground color [FXColor]
-    attr_accessor	:selectForeColor
+    attr_accessor :selectForeColor
 
     # Selected text background color [FXColor]
-    attr_accessor	:selectBackColor
+    attr_accessor :selectBackColor
 
     # Highlight text foreground color [FXColor]
-    attr_accessor	:hiliteForeColor
+    attr_accessor :hiliteForeColor
 
     # Highlight text background color [FXColor]
-    attr_accessor	:hiliteBackColor
+    attr_accessor :hiliteBackColor
 
     # Active text background color [FXColor]
-    attr_accessor	:activeBackColor
+    attr_accessor :activeBackColor
 
     # Highlight text style [Integer]
-    attr_accessor	:style
+    attr_accessor :style
   end
 
   #
@@ -65,14 +65,14 @@ module Fox
   #
   # The following messages are sent by FXText to its target:
   #
-  # +SEL_KEYPRESS+::		sent when a key is pressed; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key is released; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONPRESS+::	sent when the middle mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONRELEASE+::	sent when the middle mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_KEYPRESS+::  sent when a key is pressed; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key is released; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONPRESS+:: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONRELEASE+:: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
   # +SEL_INSERTED+::
   #   sent after text is inserted into the text buffer; the message data
   #   is a reference to an FXTextChange instance.
@@ -96,14 +96,14 @@ module Fox
   #
   # === Text widget options
   #
-  # +TEXT_READONLY+::	Text is _not_ editable
-  # +TEXT_WORDWRAP+::	Wrap at word breaks
-  # +TEXT_OVERSTRIKE+::	Overstrike mode
-  # +TEXT_FIXEDWRAP+::	Fixed wrap columns
-  # +TEXT_NO_TABS+::	Insert spaces for tabs
-  # +TEXT_AUTOINDENT+::	Autoindent
-  # +TEXT_SHOWACTIVE+::	Show active line
-  # +TEXT_AUTOSCROLL+::	Logging mode, keeping last line visible
+  # +TEXT_READONLY+:: Text is _not_ editable
+  # +TEXT_WORDWRAP+:: Wrap at word breaks
+  # +TEXT_OVERSTRIKE+:: Overstrike mode
+  # +TEXT_FIXEDWRAP+:: Fixed wrap columns
+  # +TEXT_NO_TABS+:: Insert spaces for tabs
+  # +TEXT_AUTOINDENT+:: Autoindent
+  # +TEXT_SHOWACTIVE+:: Show active line
+  # +TEXT_AUTOSCROLL+:: Logging mode, keeping last line visible
   #
   # === Selection modes
   #
@@ -113,9 +113,9 @@ module Fox
   #
   # === Text styles
   #
-  # +STYLE_UNDERLINE+::		underline text
-  # +STYLE_STRIKEOUT+::		strike out text
-  # +STYLE_BOLD_+::			bold text
+  # +STYLE_UNDERLINE+::  underline text
+  # +STYLE_STRIKEOUT+::  strike out text
+  # +STYLE_BOLD_+::   bold text
   #
   # === Message identifiers
   #
@@ -197,129 +197,129 @@ module Fox
   class FXText < FXScrollArea
 
     # Top margin [Integer]
-    attr_accessor	:marginTop
+    attr_accessor :marginTop
 
     # Bottom margin [Integer]
-    attr_accessor	:marginBottom
+    attr_accessor :marginBottom
 
     # Left margin [Integer]
-    attr_accessor	:marginLeft
+    attr_accessor :marginLeft
 
     # Right margin [Integer]
-    attr_accessor	:marginRight
+    attr_accessor :marginRight
 
     # Wrap columns [Integer]
-    attr_accessor	:wrapColumns
+    attr_accessor :wrapColumns
 
     # Tab columns [Integer]
-    attr_accessor	:tabColumns
+    attr_accessor :tabColumns
 
     # Number of columns used for line numbers [Integer]
-    attr_accessor	:barColumns
+    attr_accessor :barColumns
 
     # Indicates whether text is modified [Boolean]
-    attr_writer		:modified
+    attr_writer  :modified
 
     # Indicates whether text is editable [Boolean]
-    attr_writer		:editable
+    attr_writer  :editable
 
     # Indicates whether text is styled [Boolean]
-    attr_writer		:styled
+    attr_writer  :styled
 
     # Word delimiters [String]
-    attr_accessor	:delimiters
+    attr_accessor :delimiters
 
     # Text font [FXFont]
-    attr_accessor	:font
+    attr_accessor :font
 
     # Text color [FXColor]
-    attr_accessor	:textColor
+    attr_accessor :textColor
 
     # Selected text background color [FXColor]
-    attr_accessor	:selBackColor
+    attr_accessor :selBackColor
 
     # Selected text color [FXColor]
-    attr_accessor	:selTextColor
+    attr_accessor :selTextColor
 
     # Highlight text color [FXColor]
-    attr_accessor	:hiliteTextColor
+    attr_accessor :hiliteTextColor
 
     # Highlight text background color [FXColor]
-    attr_accessor	:hiliteBackColor
+    attr_accessor :hiliteBackColor
 
     # Active background color [FXColor]
-    attr_accessor	:activeBackColor
+    attr_accessor :activeBackColor
 
     # Cursor color [FXColor]
-    attr_accessor	:cursorColor
+    attr_accessor :cursorColor
 
     # Line number color [FXColor]
-    attr_accessor	:numberColor
+    attr_accessor :numberColor
 
     # Bar color [FXColor]
-    attr_accessor	:barColor
+    attr_accessor :barColor
 
     # Status line help text [String]
-    attr_accessor	:helpText
+    attr_accessor :helpText
 
     # Tool tip message [String]
-    attr_accessor	:tipText
+    attr_accessor :tipText
 
     # The text buffer [String]
-    attr_accessor	:text
+    attr_accessor :text
 
     # The length of the text buffer [Integer]
-    attr_reader		:length
+    attr_reader  :length
 
     # Anchor position [Integer]
-    attr_accessor	:anchorPos
+    attr_accessor :anchorPos
 
     # Cursor row [Integer]
-    attr_accessor	:cursorRow
+    attr_accessor :cursorRow
 
     # Cursor column [Integer]
-    attr_accessor	:cursorCol
+    attr_accessor :cursorCol
 
     # Cursor position [Integer]
-    attr_reader		:cursorPos
+    attr_reader  :cursorPos
 
     # Selection start position [Integer]
-    attr_reader		:selStartPos
+    attr_reader  :selStartPos
 
     # Selection end position [Integer]
-    attr_reader		:selEndPos
+    attr_reader  :selEndPos
 
     # Text widget style [Integer]
-    attr_accessor	:textStyle
+    attr_accessor :textStyle
 
     # Number of visible rows [Integer]
-    attr_accessor	:visibleRows
+    attr_accessor :visibleRows
 
     # Number of visible columns [Integer]
-    attr_accessor	:visibleColumns
+    attr_accessor :visibleColumns
 
     #
     # Brace and parenthesis match highlighting time, in milliseconds [Integer].
     # A _hiliteMatchTime_ of 0 disables brace matching.
     #
-    attr_accessor	:hiliteMatchTime
+    attr_accessor :hiliteMatchTime
 
     # Array of hilite styles [an Array of FXHiliteStyle instances]
-    attr_accessor	:hiliteStyles
+    attr_accessor :hiliteStyles
 
     #
     # Return an initialized FXText instance.
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this text widget [FXComposite]
-    # +target+::	the message target, if any, for this text widget [FXObject]
-    # +selector+::	the message identifier for this text widget [Integer]
-    # +opts+::	text options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent window for this text widget [FXComposite]
+    # +target+:: the message target, if any, for this text widget [FXObject]
+    # +selector+:: the message identifier for this text widget [Integer]
+    # +opts+:: text options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=0, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2) # :yields: theText
     end
@@ -457,13 +457,13 @@ module Fox
     def getPosAt(x, y); end
 
     # Count number of rows; _start_ should be on a row start
-    def countRows(start, end); end
+    def countRows(start, end_); end
 
     # Count number of columns; _start_ should be on a row start
-    def countCols(start, end); end
+    def countCols(start, end_); end
 
     # Count number of newlines
-    def countLines(start, end); end
+    def countLines(start, end_); end
 
     # Return position of beginning of line containing position _pos_
     def lineStart(pos); end

@@ -15,10 +15,10 @@ module Fox
   #
   # The following messages are sent by FX4Splitter to its target:
   #
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_COMMAND+::		sent at the end of a resize operation, to signal that the resize is complete
-  # +SEL_CHANGED+::		sent continuously while a resize operation is occurring
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_COMMAND+::  sent at the end of a resize operation, to signal that the resize is complete
+  # +SEL_CHANGED+::  sent continuously while a resize operation is occurring
   #
   # === Splitter options
   #
@@ -27,29 +27,29 @@ module Fox
   #
   # === Expansion options
   #
-  # +ExpandNone+::		None expanded
-  # +ExpandTopLeft+::		Expand top left child
-  # +ExpandTopRight+::		Expand top right child
-  # +ExpandBottomLeft+::	Expand bottom left child
-  # +ExpandBottomRight+::	Expand bottom right child
-  # +ExpandTop+::		Expand top children
-  # +ExpandBottom+::		Expand bottom children
-  # +ExpandLeft+::		Expand left children
-  # +ExpandRight+::		Expand right children
-  # +ExpandAll+::		Expand all children
+  # +ExpandNone+::  None expanded
+  # +ExpandTopLeft+::  Expand top left child
+  # +ExpandTopRight+::  Expand top right child
+  # +ExpandBottomLeft+:: Expand bottom left child
+  # +ExpandBottomRight+:: Expand bottom right child
+  # +ExpandTop+::  Expand top children
+  # +ExpandBottom+::  Expand bottom children
+  # +ExpandLeft+::  Expand left children
+  # +ExpandRight+::  Expand right children
+  # +ExpandAll+::  Expand all children
   #
   # === Message identifiers
   #
-  # +ID_EXPAND_NONE+::		None expanded
-  # +ID_EXPAND_TOP+::		Expand top left and top right panes
-  # +ID_EXPAND_BOTTOM+::	Expand bottom left and bottom right panes
-  # +ID_EXPAND_LEFT+::		Expand leftmost panes
-  # +ID_EXPAND_RIGHT+::		Expand rightmost panes
-  # +ID_EXPAND_TOPLEFT+::	Expand top left pane
-  # +ID_EXPAND_TOPRIGHT+::	Expand top right pane
-  # +ID_EXPAND_BOTTOMLEFT+::	Expand bottom left pane
-  # +ID_EXPAND_BOTTOMRIGHT+::	Expand bottom right pane
-  # +ID_EXPAND_ALL+::		Expand all panes
+  # +ID_EXPAND_NONE+::  None expanded
+  # +ID_EXPAND_TOP+::  Expand top left and top right panes
+  # +ID_EXPAND_BOTTOM+:: Expand bottom left and bottom right panes
+  # +ID_EXPAND_LEFT+::  Expand leftmost panes
+  # +ID_EXPAND_RIGHT+::  Expand rightmost panes
+  # +ID_EXPAND_TOPLEFT+:: Expand top left pane
+  # +ID_EXPAND_TOPRIGHT+:: Expand top right pane
+  # +ID_EXPAND_BOTTOMLEFT+:: Expand bottom left pane
+  # +ID_EXPAND_BOTTOMRIGHT+:: Expand bottom right pane
+  # +ID_EXPAND_ALL+::  Expand all panes
   #
   class FX4Splitter < FXComposite
 
@@ -85,12 +85,12 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this splitter [FXComposite]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent widget for this splitter [FXComposite]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, opts=FOURSPLITTER_NORMAL, x=0, y=0, width=0, height=0) # :yields: theSplitter
     end
@@ -101,14 +101,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent widget for this splitter [FXComposite]
-    # +target+::	message target [FXObject]
-    # +selector+::	message identifier [Integer]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent widget for this splitter [FXComposite]
+    # +target+:: message target [FXObject]
+    # +selector+:: message identifier [Integer]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, tgt, sel, opts=FOURSPLITTER_NORMAL, x=0, y=0, width=0, height=0) # :yields: theSplitter
     end

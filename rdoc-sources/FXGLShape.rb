@@ -4,31 +4,31 @@ module Fox
   #
   # === Shape drawing options
   #
-  # +SURFACE_SINGLESIDED+::	Single-sided [both sides same]
-  # +SURFACE_DUALSIDED+::	Dual-sided surface
-  # +SHADING_NONE+::		No light source
-  # +SHADING_SMOOTH+::		Smooth shaded
-  # +SHADING_FLAT+::		Flag shaded
-  # +FACECULLING_OFF+::		No face culling
-  # +FACECULLING_ON+::		Cull backward facing surfaces
-  # +STYLE_SURFACE+::		Draw filled surfaces
-  # +STYLE_WIREFRAME+::		Draw wire frame
-  # +STYLE_POINTS+::		Draw as points
-  # +STYLE_BOUNDBOX+::		Draw bounding box
+  # +SURFACE_SINGLESIDED+:: Single-sided [both sides same]
+  # +SURFACE_DUALSIDED+:: Dual-sided surface
+  # +SHADING_NONE+::  No light source
+  # +SHADING_SMOOTH+::  Smooth shaded
+  # +SHADING_FLAT+::  Flag shaded
+  # +FACECULLING_OFF+::  No face culling
+  # +FACECULLING_ON+::  Cull backward facing surfaces
+  # +STYLE_SURFACE+::  Draw filled surfaces
+  # +STYLE_WIREFRAME+::  Draw wire frame
+  # +STYLE_POINTS+::  Draw as points
+  # +STYLE_BOUNDBOX+::  Draw bounding box
   #
   # === Message identifiers
   #
-  # +ID_SHADEOFF+::		x
-  # +ID_SHADEON+::		x
-  # +ID_SHADESMOOTH+::		x
-  # +ID_TOGGLE_SIDED+::		x
-  # +ID_TOGGLE_CULLING+::	x
-  # +ID_STYLE_POINTS+::		x
-  # +ID_STYLE_WIREFRAME+::	x
-  # +ID_STYLE_SURFACE+::	x
-  # +ID_STYLE_BOUNDINGBOX+::	x
-  # +ID_FRONT_MATERIAL+::	x
-  # +ID_BACK_MATERIAL+::	x
+  # +ID_SHADEOFF+::  x
+  # +ID_SHADEON+::  x
+  # +ID_SHADESMOOTH+::  x
+  # +ID_TOGGLE_SIDED+::  x
+  # +ID_TOGGLE_CULLING+:: x
+  # +ID_STYLE_POINTS+::  x
+  # +ID_STYLE_WIREFRAME+:: x
+  # +ID_STYLE_SURFACE+:: x
+  # +ID_STYLE_BOUNDINGBOX+:: x
+  # +ID_FRONT_MATERIAL+:: x
+  # +ID_BACK_MATERIAL+:: x
   #
   class FXGLShape < FXGLObject
 

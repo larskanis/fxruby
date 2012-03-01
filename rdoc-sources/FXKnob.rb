@@ -9,12 +9,12 @@ module Fox
   #
   # The following messages are sent by FXKnob to its target:
   #
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONPRESS+::	sent when the middle mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_MIDDLEBUTTONRELEASE+::	sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONPRESS+:: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_MIDDLEBUTTONRELEASE+:: sent when the middle mouse button goes up; the message data is an FXEvent instance.
   # +SEL_COMMAND+::
   #   sent at the end of a knob move; the message data is the new value of the knob.
   # +SEL_CHANGED+::
@@ -23,11 +23,11 @@ module Fox
   #
   # === Knob Control styles
   #
-  # +KNOB_NEEDLE+::	Use a needle as indicator
-  # +KNOB_DOT+::	Use a dot as indicator
-  # +KNOB_TICKS+::	Show ticks around the knob
-  # +KNOB_INDICATOR+::	Show only the indicator (like a speedometer)
-  # +KNOB_NORMAL+::	Normal knob looks
+  # +KNOB_NEEDLE+:: Use a needle as indicator
+  # +KNOB_DOT+:: Use a dot as indicator
+  # +KNOB_TICKS+:: Show ticks around the knob
+  # +KNOB_INDICATOR+:: Show only the indicator (like a speedometer)
+  # +KNOB_NORMAL+:: Normal knob looks
   #
   class FXKnob < FXFrame
 

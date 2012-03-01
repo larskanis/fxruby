@@ -21,18 +21,18 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this tar book [FXComposite]
-    # +target+::	the message target, if any, for this tar book [FXObject]
-    # +selector+::	the message identifier for this tab book [Integer]
-    # +opts+::	tar book options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent window for this tar book [FXComposite]
+    # +target+:: the message target, if any, for this tar book [FXObject]
+    # +selector+:: the message identifier for this tab book [Integer]
+    # +opts+:: tar book options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=TABBOOK_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING) # :yields: theTabBook
     end

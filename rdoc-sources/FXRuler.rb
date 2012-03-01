@@ -17,38 +17,38 @@ module Fox
   #
   # The following messages are sent by FXRuler to its target:
   #
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_CHANGED+::		sent whenever something about the ruler changes
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_CHANGED+::  sent whenever something about the ruler changes
   #
   # === Ruler options
   #
-  # +RULER_NORMAL+::		Default appearance (default)
-  # +RULER_HORIZONTAL+::	Ruler is horizontal (default)
-  # +RULER_VERTICAL+::		Ruler is vertical
-  # +RULER_TICKS_OFF+::		Tick marks off (default)
-  # +RULER_TICKS_TOP+::		Ticks on the top (if horizontal)
-  # +RULER_TICKS_BOTTOM+::	Ticks on the bottom (if horizontal)
-  # +RULER_TICKS_LEFT+::	Ticks on the left (if vertical)
-  # +RULER_TICKS_RIGHT+::	Ticks on the right (if vertical)
-  # +RULER_TICKS_CENTER+::	Tickmarks centered
-  # +RULER_NUMBERS+::		Show numbers
-  # +RULER_ARROW+::		Draw small arrow for cursor position
-  # +RULER_MARKERS+::		Draw markers for indentation settings
-  # +RULER_METRIC+::		Metric subdivision (default)
-  # +RULER_ENGLISH+::		English subdivision
-  # +RULER_MARGIN_ADJUST+::	Allow margin adjustment
-  # +RULER_ALIGN_CENTER+::	Center document horizontally
-  # +RULER_ALIGN_LEFT+::	Align document to the left
-  # +RULER_ALIGN_RIGHT+::	Align document to the right
-  # +RULER_ALIGN_TOP+::		Align document to the top
-  # +RULER_ALIGN_BOTTOM+::	Align document to the bottom
-  # +RULER_ALIGN_STRETCH+::	Stretch document to fit horizontally
-  # +RULER_ALIGN_NORMAL+::	Normally, document is centered both ways
+  # +RULER_NORMAL+::  Default appearance (default)
+  # +RULER_HORIZONTAL+:: Ruler is horizontal (default)
+  # +RULER_VERTICAL+::  Ruler is vertical
+  # +RULER_TICKS_OFF+::  Tick marks off (default)
+  # +RULER_TICKS_TOP+::  Ticks on the top (if horizontal)
+  # +RULER_TICKS_BOTTOM+:: Ticks on the bottom (if horizontal)
+  # +RULER_TICKS_LEFT+:: Ticks on the left (if vertical)
+  # +RULER_TICKS_RIGHT+:: Ticks on the right (if vertical)
+  # +RULER_TICKS_CENTER+:: Tickmarks centered
+  # +RULER_NUMBERS+::  Show numbers
+  # +RULER_ARROW+::  Draw small arrow for cursor position
+  # +RULER_MARKERS+::  Draw markers for indentation settings
+  # +RULER_METRIC+::  Metric subdivision (default)
+  # +RULER_ENGLISH+::  English subdivision
+  # +RULER_MARGIN_ADJUST+:: Allow margin adjustment
+  # +RULER_ALIGN_CENTER+:: Center document horizontally
+  # +RULER_ALIGN_LEFT+:: Align document to the left
+  # +RULER_ALIGN_RIGHT+:: Align document to the right
+  # +RULER_ALIGN_TOP+::  Align document to the top
+  # +RULER_ALIGN_BOTTOM+:: Align document to the bottom
+  # +RULER_ALIGN_STRETCH+:: Stretch document to fit horizontally
+  # +RULER_ALIGN_NORMAL+:: Normally, document is centered both ways
   #
   # === Message identifiers:
   #
-  # +ID_ARROW+::		write me
+  # +ID_ARROW+::  write me
   #
   class FXRuler < FXFrame
 

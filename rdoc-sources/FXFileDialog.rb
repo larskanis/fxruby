@@ -22,11 +22,11 @@ module Fox
   #
   # === Wildcard matching modes
   #
-  # +FILEMATCH_FILE_NAME+::		No wildcard can ever match "/" (or "\","/" under Windows).
-  # +FILEMATCH_NOESCAPE+::		Backslashes don't quote special chars ("\" is treated as "\").
-  # +FILEMATCH_PERIOD+::		Leading "." is matched only explicitly (Useful to match hidden files on Unix).
-  # +FILEMATCH_LEADING_DIR+::	Ignore "/..." after a match.
-  # +FILEMATCH_CASEFOLD+::		Compare without regard to case.
+  # +FILEMATCH_FILE_NAME+::  No wildcard can ever match "/" (or "\","/" under Windows).
+  # +FILEMATCH_NOESCAPE+::  Backslashes don't quote special chars ("\" is treated as "\").
+  # +FILEMATCH_PERIOD+::  Leading "." is matched only explicitly (Useful to match hidden files on Unix).
+  # +FILEMATCH_LEADING_DIR+:: Ignore "/..." after a match.
+  # +FILEMATCH_CASEFOLD+::  Compare without regard to case.
   #
   # Note that under Windows, +FILEMATCH_NOESCAPE+ must be passed.
   #
@@ -163,11 +163,11 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::		the owner window for the dialog box [FXWindow]
-    # +caption+::	the caption for the dialog box [String]
-    # +path+::		the initial filename [String]
-    # +patterns+::	the pattern list [String]
-    # +initial+::	the initial pattern to be used (an index into the pattern list) [Integer]
+    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +caption+:: the caption for the dialog box [String]
+    # +path+::  the initial filename [String]
+    # +patterns+:: the pattern list [String]
+    # +initial+:: the initial pattern to be used (an index into the pattern list) [Integer]
     #
     def FXFileDialog.getOpenFilename(owner, caption, path, patterns="*", initial=0); end
 
@@ -178,11 +178,11 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::		the owner window for the dialog box [FXWindow]
-    # +caption+::	the caption for the dialog box [String]
-    # +path+::		the initial filename [String]
-    # +patterns+::	the pattern list [String]
-    # +initial+::	the initial pattern to be used (an index into the pattern list) [Integer]
+    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +caption+:: the caption for the dialog box [String]
+    # +path+::  the initial filename [String]
+    # +patterns+:: the pattern list [String]
+    # +initial+:: the initial pattern to be used (an index into the pattern list) [Integer]
     #
     def FXFileDialog.getOpenFilenames(owner, caption, path, patterns="*", initial=0); end
 
@@ -193,11 +193,11 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::		the owner window for the dialog box [FXWindow]
-    # +caption+::	the caption for the dialog box [String]
-    # +path+::		the initial filename [String]
-    # +patterns+::	the pattern list [String]
-    # +initial+::	the initial pattern to be used (an index into the pattern list) [Integer]
+    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +caption+:: the caption for the dialog box [String]
+    # +path+::  the initial filename [String]
+    # +patterns+:: the pattern list [String]
+    # +initial+:: the initial pattern to be used (an index into the pattern list) [Integer]
     #
     def FXFileDialog.getSaveFilename(owner, caption, path, patterns="*", initial=0); end
 
@@ -207,9 +207,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +owner+::		the owner window for the dialog box [FXWindow]
-    # +caption+::	the caption for the dialog box [String]
-    # +path+::		the initial directory path [String]
+    # +owner+::  the owner window for the dialog box [FXWindow]
+    # +caption+:: the caption for the dialog box [String]
+    # +path+::  the initial directory path [String]
     #
     def FXFileDialog.getOpenDirectory(owner, caption, path); end
   end

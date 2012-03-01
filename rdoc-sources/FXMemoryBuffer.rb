@@ -8,7 +8,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +data+::	the initial array of FXColor values.
+    # +data+:: the initial array of FXColor values.
     #
     def initialize(data); end
 

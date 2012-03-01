@@ -23,13 +23,13 @@ module Fox
   class FXRegistry < FXSettings
 
     # Application key [String]
-    attr_reader	:appKey
+    attr_reader :appKey
 
     # Vendor key [String]
-    attr_reader	:vendorKey
+    attr_reader :vendorKey
 
     # Use file-based registry instead of Windows Registry [Boolean]
-    attr_writer	:asciiMode
+    attr_writer :asciiMode
 
     #
     # Construct registry object; _appKey_ and _vendorKey_ must be string constants.

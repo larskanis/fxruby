@@ -5,55 +5,55 @@ module Fox
   class FXFoldingItem < FXObject
 
     # Parent item [FXFoldingItem]
-    attr_reader		:parent
+    attr_reader  :parent
 
     # Next sibling item [FXFoldingItem]
-    attr_reader		:next
+    attr_reader  :next
 
     # Previous sibling item [FXFoldingItem]
-    attr_reader		:prev
+    attr_reader  :prev
 
     # First child item [FXFoldingItem]
-    attr_reader		:first
+    attr_reader  :first
 
     # Last child item [FXFoldingItem]
-    attr_reader		:last
+    attr_reader  :last
 
     # Item logically below this item [FXFoldingItem]
-    attr_reader		:below
+    attr_reader  :below
 
     # Item logically above this item [FXFoldingItem]
-    attr_reader		:above
+    attr_reader  :above
 
     # Number of child items [Integer]
-    attr_reader		:numChildren
+    attr_reader  :numChildren
 
     # Item text [String]
-    attr_accessor	:text
+    attr_accessor :text
 
     # Open icon [FXIcon]
-    attr_accessor	:openIcon
+    attr_accessor :openIcon
 
     # Closed icon [FXIcon]
-    attr_accessor	:closedIcon
+    attr_accessor :closedIcon
 
     # User data [Object]
-    attr_accessor	:data
+    attr_accessor :data
 
     # Indicates whether the item is selected [Boolean]
-    attr_writer		:selected
+    attr_writer  :selected
 
     # Indicates whether the item is opened [Boolean]
-    attr_writer		:opened
+    attr_writer  :opened
 
     # Indicates whether the item is expanded [Boolean]
-    attr_writer		:expanded
+    attr_writer  :expanded
 
     # Indicates whether the item is enabled [Boolean]
-    attr_writer		:enabled
+    attr_writer  :enabled
 
     # Indicates whether the item is draggable [Boolean]
-    attr_writer		:draggable
+    attr_writer  :draggable
 
     # Construct a new folding item
     def initialize(text, openIcon=nil, closedIcon=nil, data=nil) # :yields: theItem
@@ -154,37 +154,37 @@ module Fox
   #
   # The following messages are sent by FXFoldingList to its target:
   #
-  # +SEL_KEYPRESS+::		sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::		sent when a key goes up; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONPRESS+::	sent when the left mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_LEFTBUTTONRELEASE+::	sent when the left mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONPRESS+::	sent when the right mouse button goes down; the message data is an FXEvent instance.
-  # +SEL_RIGHTBUTTONRELEASE+::	sent when the right mouse button goes up; the message data is an FXEvent instance.
-  # +SEL_COMMAND+::		sent when a list item is clicked on; the message data is a reference to the item (an FXFoldingItem instance).
-  # +SEL_CLICKED+::		sent when the left mouse button is single-clicked in the list; the message data is a reference to the item clicked (an FXFoldingItem instance) or +nil+ if no item was clicked.
-  # +SEL_DOUBLECLICKED+::	sent when the left mouse button is double-clicked in the list; the message data is a reference to the item clicked (an FXFoldingItem instance) or +nil+ if no item was clicked.
-  # +SEL_TRIPLECLICKED+::	sent when the left mouse button is triple-clicked in the list; the message data is a reference to the item clicked (an FXFoldingItem instance) or +nil+ if no item was clicked.
-  # +SEL_OPENED+::		sent when an item is opened; the message data is a reference to the item (an FXFoldingItem instance).
-  # +SEL_CLOSED+::		sent when an item is closed; the message data is a reference to the item (an FXFoldingItem instance).
-  # +SEL_EXPANDED+::		sent when a sub-tree is expanded; the message data is a reference to the root item for the sub-tree (an FXFoldingItem instance).
-  # +SEL_COLLAPSED+::		sent when a sub-tree is collapsed; the message data is a reference to the root item for the sub-tree (an FXFoldingItem instance).
-  # +SEL_SELECTED+::		sent when an item is selected; the message data is a reference to the item (an FXFoldingItem instance).
-  # +SEL_DESELECTED+::		sent when an item is deselected; the message data is a reference to the item (an FXFoldingItem instance).
-  # +SEL_CHANGED+::		sent when the current item changes; the message data is a reference to the current item (an FXFoldingItem instance).
-  # +SEL_INSERTED+::		sent after an item is added to the list; the message data is a reference to the item (an FXFoldingItem instance).
-  # +SEL_DELETED+::		sent before an item is removed from the list; the message data is a reference to the item (an FXFoldingItem instance).
+  # +SEL_KEYPRESS+::  sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+::  sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONPRESS+:: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_LEFTBUTTONRELEASE+:: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONPRESS+:: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  # +SEL_RIGHTBUTTONRELEASE+:: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  # +SEL_COMMAND+::  sent when a list item is clicked on; the message data is a reference to the item (an FXFoldingItem instance).
+  # +SEL_CLICKED+::  sent when the left mouse button is single-clicked in the list; the message data is a reference to the item clicked (an FXFoldingItem instance) or +nil+ if no item was clicked.
+  # +SEL_DOUBLECLICKED+:: sent when the left mouse button is double-clicked in the list; the message data is a reference to the item clicked (an FXFoldingItem instance) or +nil+ if no item was clicked.
+  # +SEL_TRIPLECLICKED+:: sent when the left mouse button is triple-clicked in the list; the message data is a reference to the item clicked (an FXFoldingItem instance) or +nil+ if no item was clicked.
+  # +SEL_OPENED+::  sent when an item is opened; the message data is a reference to the item (an FXFoldingItem instance).
+  # +SEL_CLOSED+::  sent when an item is closed; the message data is a reference to the item (an FXFoldingItem instance).
+  # +SEL_EXPANDED+::  sent when a sub-tree is expanded; the message data is a reference to the root item for the sub-tree (an FXFoldingItem instance).
+  # +SEL_COLLAPSED+::  sent when a sub-tree is collapsed; the message data is a reference to the root item for the sub-tree (an FXFoldingItem instance).
+  # +SEL_SELECTED+::  sent when an item is selected; the message data is a reference to the item (an FXFoldingItem instance).
+  # +SEL_DESELECTED+::  sent when an item is deselected; the message data is a reference to the item (an FXFoldingItem instance).
+  # +SEL_CHANGED+::  sent when the current item changes; the message data is a reference to the current item (an FXFoldingItem instance).
+  # +SEL_INSERTED+::  sent after an item is added to the list; the message data is a reference to the item (an FXFoldingItem instance).
+  # +SEL_DELETED+::  sent before an item is removed from the list; the message data is a reference to the item (an FXFoldingItem instance).
   #
   # === Folding list styles
   #
-  # +FOLDINGLIST_EXTENDEDSELECT+::		Extended selection mode allows for drag-selection of ranges of items
-  # +FOLDINGLIST_SINGLESELECT+::		Single selection mode allows up to one item to be selected
-  # +FOLDINGLIST_BROWSESELECT+::		Browse selection mode enforces one single item to be selected at all times
-  # +FOLDINGLIST_MULTIPLESELECT+::		Multiple selection mode is used for selection of individual items
-  # +FOLDINGLIST_AUTOSELECT+::			Automatically select under cursor
-  # +FOLDINGLIST_SHOWS_LINES+::			Lines shown
-  # +FOLDINGLIST_SHOWS_BOXES+::			Boxes to expand shown
-  # +FOLDINGLIST_ROOT_BOXES+::			Display root boxes also
-  # +FOLDINGLIST_NORMAL+::			same as +FOLDINGLIST_EXTENDEDSELECT+
+  # +FOLDINGLIST_EXTENDEDSELECT+::  Extended selection mode allows for drag-selection of ranges of items
+  # +FOLDINGLIST_SINGLESELECT+::  Single selection mode allows up to one item to be selected
+  # +FOLDINGLIST_BROWSESELECT+::  Browse selection mode enforces one single item to be selected at all times
+  # +FOLDINGLIST_MULTIPLESELECT+::  Multiple selection mode is used for selection of individual items
+  # +FOLDINGLIST_AUTOSELECT+::   Automatically select under cursor
+  # +FOLDINGLIST_SHOWS_LINES+::   Lines shown
+  # +FOLDINGLIST_SHOWS_BOXES+::   Boxes to expand shown
+  # +FOLDINGLIST_ROOT_BOXES+::   Display root boxes also
+  # +FOLDINGLIST_NORMAL+::   same as +FOLDINGLIST_EXTENDEDSELECT+
 
   class FXFoldingList < FXScrollArea
 
@@ -195,7 +195,7 @@ module Fox
     attr_reader :numHeaders
 
     # Number of items [Integer]
-    attr_reader	:numItems
+    attr_reader :numItems
 
     # Number of visible items [Integer]
     attr_accessor :numVisible
@@ -213,7 +213,7 @@ module Fox
     attr_accessor :anchorItem
 
     # Item under the cursor, if any [FXFoldingItem]
-    attr_reader	:cursorItem
+    attr_reader :cursorItem
 
     # Text font [FXFont]
     attr_accessor :font
@@ -244,14 +244,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this folding list [FXComposite]
-    # +target+::	the message target, if any, for this folding list [FXObject]
-    # +selector+::	the message identifier for this folding list [Integer]
-    # +opts+::	folding list options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent window for this folding list [FXComposite]
+    # +target+:: the message target, if any, for this folding list [FXObject]
+    # +selector+:: the message identifier for this folding list [Integer]
+    # +opts+:: folding list options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=TREELIST_NORMAL, x=0, y=0, width=0, height=0) # :yields: theFoldingList
     end
@@ -343,7 +343,7 @@ module Fox
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message
     # target before the item is removed.
     #
-    def removeItem(item, notify=false);
+    def removeItem(item, notify=false); end
 
     # Remove items in range [_fromItem_, _toItem_] inclusively.
     # If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message

@@ -28,10 +28,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +xx+::	upper left corner's initial x-coordinate [Integer]
-    # +yy+::	upper left corner's initial y-coordinate [Integer]
-    # +ww+::	initial width [Integer]
-    # +hh+::	initial height [Integer]
+    # +xx+:: upper left corner's initial x-coordinate [Integer]
+    # +yy+:: upper left corner's initial y-coordinate [Integer]
+    # +ww+:: initial width [Integer]
+    # +hh+:: initial height [Integer]
     #
     def initialize(xx, yy, ww, hh); end
 
@@ -40,8 +40,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	upper left corner's initial position [FXPoint]
-    # +s+::	initial size [FXSize]
+    # +p+:: upper left corner's initial position [FXPoint]
+    # +s+:: initial size [FXSize]
     #
     def initialize(p, s); end
 
@@ -50,8 +50,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +topleft+::	upper left corner's initial position [FXPoint]
-    # +bottomright+::	bottom right corner's initial position [FXPoint]
+    # +topleft+:: upper left corner's initial position [FXPoint]
+    # +bottomright+:: bottom right corner's initial position [FXPoint]
     #
     def initialize(topleft, bottomright); end
 
@@ -88,7 +88,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +margin+::	number of units to grow on each side [Integer]
+    # +margin+:: number of units to grow on each side [Integer]
     #
     def grow!(margin); end
 
@@ -97,8 +97,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +hormargin+::	number of units to grow on the left and right sides [Integer]
-    # +vermargin+::	number of units to grow on the top and bottom sides [Integer]
+    # +hormargin+:: number of units to grow on the left and right sides [Integer]
+    # +vermargin+:: number of units to grow on the top and bottom sides [Integer]
     #
     def grow!(hormargin, vermargin); end
 
@@ -107,10 +107,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +leftmargin+::	number of units to grow on the left side [Integer]
-    # +rightmargin+::	number of units to grow on the right side [Integer]
-    # +topmargin+::	number of units to grow on the top side [Integer]
-    # +bottommargin+::	number of units to grow on the bottom side [Integer]
+    # +leftmargin+:: number of units to grow on the left side [Integer]
+    # +rightmargin+:: number of units to grow on the right side [Integer]
+    # +topmargin+:: number of units to grow on the top side [Integer]
+    # +bottommargin+:: number of units to grow on the bottom side [Integer]
     #
     def grow!(leftmargin, rightmargin, topmargin, bottommargin); end
 
@@ -119,7 +119,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +margin+::	number of units to shrink on each side [Integer]
+    # +margin+:: number of units to shrink on each side [Integer]
     #
     def shrink!(margin); end
 
@@ -128,8 +128,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +hormargin+::	number of units to shrink on the left and right sides [Integer]
-    # +vermargin+::	number of units to shrink on the top and bottom sides [Integer]
+    # +hormargin+:: number of units to shrink on the left and right sides [Integer]
+    # +vermargin+:: number of units to shrink on the top and bottom sides [Integer]
     #
     def shrink!(hormargin, vermargin); end
 
@@ -138,10 +138,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +leftmargin+::	number of units to shrink on the left side [Integer]
-    # +rightmargin+::	number of units to shrink on the right side [Integer]
-    # +topmargin+::	number of units to shrink on the top side [Integer]
-    # +bottommargin+::	number of units to shrink on the bottom side [Integer]
+    # +leftmargin+:: number of units to shrink on the left side [Integer]
+    # +rightmargin+:: number of units to shrink on the right side [Integer]
+    # +topmargin+:: number of units to shrink on the top side [Integer]
+    # +bottommargin+:: number of units to shrink on the bottom side [Integer]
     #
     def shrink!(leftmargin, rightmargin, topmargin, bottommargin); end
   end

@@ -4,27 +4,27 @@ module Fox
   #
   # === Stock cursors
   #
-  # +CURSOR_ARROW+::		Default left pointing arrow
-  # +CURSOR_RARROW+::		Right arrow
-  # +CURSOR_IBEAM+::		Text I-Beam
-  # +CURSOR_WATCH+::		Stopwatch or hourglass
-  # +CURSOR_CROSS+::		Crosshair
-  # +CURSOR_UPDOWN+::		Move up, down
-  # +CURSOR_LEFTRIGHT+::	Move left, right
-  # +CURSOR_MOVE+::		    Move up, down, left, right
+  # +CURSOR_ARROW+::  Default left pointing arrow
+  # +CURSOR_RARROW+::  Right arrow
+  # +CURSOR_IBEAM+::  Text I-Beam
+  # +CURSOR_WATCH+::  Stopwatch or hourglass
+  # +CURSOR_CROSS+::  Crosshair
+  # +CURSOR_UPDOWN+::  Move up, down
+  # +CURSOR_LEFTRIGHT+:: Move left, right
+  # +CURSOR_MOVE+::      Move up, down, left, right
   #
   # === Cursor options
   #
-  # +CURSOR_KEEP+::			Keep pixel data in client
-  # +CURSOR_OWNED+::		Pixel data is owned by cursor
+  # +CURSOR_KEEP+::   Keep pixel data in client
+  # +CURSOR_OWNED+::  Pixel data is owned by cursor
   #
   class FXCursor < FXId
 
     # Width of cursor, in pixels (returns zero for stock cursors) [Integer]
-    attr_reader	:width
+    attr_reader :width
 
     # Height of cursor, in pixels (returns zero for stock cursors) [Integer]
-    attr_reader	:height
+    attr_reader :height
 
     # Hotspot x-coordinate (returns zero for stock cursors) [Integer]
     attr_accessor :hotX

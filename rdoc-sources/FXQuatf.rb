@@ -8,8 +8,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +axis+::		the rotation axis [FXVec3f]
-    # +angle+::		the rotation angle (in radians) [Float]
+    # +axis+::  the rotation axis [FXVec3f]
+    # +angle+::  the rotation angle (in radians) [Float]
     #
     def initialize(axis, phi=0.0); end
 
@@ -18,9 +18,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +roll+::		roll angle in radians [Float]
-    # +pitch+::		pitch angle in radians [Float]
-    # +yaw+::		yaw angle in radians [Float]
+    # +roll+::  roll angle in radians [Float]
+    # +pitch+::  pitch angle in radians [Float]
+    # +yaw+::  yaw angle in radians [Float]
     #
     def initialize(roll, pitch, yaw); end
 
@@ -29,9 +29,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +ex+::	x-axis [FXVec3f]
-    # +ey+::	y-axis [FXVec3f]
-    # +ez+::	z-axis [FXVec3f]
+    # +ex+:: x-axis [FXVec3f]
+    # +ey+:: y-axis [FXVec3f]
+    # +ez+:: z-axis [FXVec3f]
     #
     def initialize(ex, ey, ez); end
 
@@ -45,10 +45,10 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +x+::		x [Float]
-    # +y+::		y [Float]
-    # +z+::		z [Float]
-    # +width+::		w [Float]
+    # +x+::  x [Float]
+    # +y+::  y [Float]
+    # +z+::  z [Float]
+    # +width+::  w [Float]
     #
     def initialize(x, y, z, w); end
 
@@ -60,8 +60,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +axis+::		the rotation axis [FXVec3f]
-    # +angle+::		the rotation angle (in radians) [Float]
+    # +axis+::  the rotation axis [FXVec3f]
+    # +angle+::  the rotation angle (in radians) [Float]
     #
     def setAxisAngle(axis, phi=0.0); end
 
@@ -80,9 +80,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +roll+::		roll angle in radians [Float]
-    # +pitch+::		pitch angle in radians [Float]
-    # +yaw+::		yaw angle in radians [Float]
+    # +roll+::  roll angle in radians [Float]
+    # +pitch+::  pitch angle in radians [Float]
+    # +yaw+::  yaw angle in radians [Float]
     #
     def setRollPitchYaw(roll, pitch, yaw); end
 
@@ -144,7 +144,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +vec+::		the vector to be rotated [FXVec3f]
+    # +vec+::  the vector to be rotated [FXVec3f]
     #
     def *(vec); end
 
@@ -154,8 +154,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	[FXVec3f]
-    # +b+::	[FXVec3f]
+    # +a+:: [FXVec3f]
+    # +b+:: [FXVec3f]
     #
     def arc!(a, b); end
 
@@ -164,9 +164,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +u+::	[FXQuatf]
-    # +v+::	[FXQuatf]
-    # +f+:: 	[Float]
+    # +u+:: [FXQuatf]
+    # +v+:: [FXQuatf]
+    # +f+::  [Float]
     #
     def lerp!(u, v, f); end
   end

@@ -11,10 +11,10 @@ module Fox
   #
   # === Image rendering hints
   #
-  # +BITMAP_KEEP+::	Keep pixel data in client
-  # +BITMAP_OWNED+::	Pixel data is owned by image
-  # +BITMAP_SHMI+::	Using shared memory image
-  # +BITMAP_SHMP+::	Using shared memory pixmap
+  # +BITMAP_KEEP+:: Keep pixel data in client
+  # +BITMAP_OWNED+:: Pixel data is owned by image
+  # +BITMAP_SHMI+:: Using shared memory image
+  # +BITMAP_SHMP+:: Using shared memory pixmap
   #
   class FXBitmap < FXDrawable
 

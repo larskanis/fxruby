@@ -6,10 +6,10 @@ module Fox
   #
   # === Group box options
   #
-  # +GROUPBOX_TITLE_LEFT+::	Title is left-justified
-  # +GROUPBOX_TITLE_CENTER+::	Title is centered
-  # +GROUPBOX_TITLE_RIGHT+::	Title is right-justified
-  # +GROUPBOX_NORMAL+::		same as <tt>GROUPBOX_TITLE_LEFT</tt>
+  # +GROUPBOX_TITLE_LEFT+:: Title is left-justified
+  # +GROUPBOX_TITLE_CENTER+:: Title is centered
+  # +GROUPBOX_TITLE_RIGHT+:: Title is right-justified
+  # +GROUPBOX_NORMAL+::  same as <tt>GROUPBOX_TITLE_LEFT</tt>
 
   class FXGroupBox < FXPacker
 

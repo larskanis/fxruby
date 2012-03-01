@@ -91,8 +91,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +app+:	Application [FXApp]
-    # +db+::	Settings database [FXSettings]
+    # +app+: Application [FXApp]
+    # +db+:: Settings database [FXSettings]
     #
     def initialize(app, db=nil); end
 
@@ -102,8 +102,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +ext+::	Extension [String]
-    # +str+::	String [String]
+    # +ext+:: Extension [String]
+    # +str+:: String [String]
     #
     def replace(ext, str); end
 

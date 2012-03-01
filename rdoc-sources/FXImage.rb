@@ -40,7 +40,7 @@ module Fox
   class FXImage < FXDrawable
 
     # [deprecated] Pixel data [FXMemoryBuffer]
-    attr_reader	:data
+    attr_reader :data
 
     # Array of colors of all image pixels. Can also be written as String of raw [RGBA] values.
     attr_accessor :pixels
@@ -60,11 +60,11 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::		an application instance [FXApp]
-    # +pixels+::	pixels [Array of FXColor values or string of raw [RGBA] values]
-    # +opts+::		image options [Integer]
-    # +width+::		image width [Integer]
-    # +height+::		image height [Integer]
+    # +a+::  an application instance [FXApp]
+    # +pixels+:: pixels [Array of FXColor values or string of raw [RGBA] values]
+    # +opts+::  image options [Integer]
+    # +width+::  image width [Integer]
+    # +height+::  image height [Integer]
     #
     def initialize(a, pixels=nil, opts=0, width=1, height=1) # :yields: theImage
     end
@@ -99,8 +99,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +x+::	x-coordinate of the pixel of interest [Integer]
-    # +y+::	y-coordinate of the pixel of interest [Integer]
+    # +x+:: x-coordinate of the pixel of interest [Integer]
+    # +y+:: y-coordinate of the pixel of interest [Integer]
     #
     def getPixel(x, y) ; end
 
@@ -109,9 +109,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +x+::	x-coordinate of the pixel of interest [Integer]
-    # +y+::	y-coordinate of the pixel of interest [Integer]
-    # +clr+::	new color value for this pixel [FXColor]
+    # +x+:: x-coordinate of the pixel of interest [Integer]
+    # +y+:: y-coordinate of the pixel of interest [Integer]
+    # +clr+:: new color value for this pixel [FXColor]
     #
     def setPixel(x, y, clr) ; end
 
@@ -155,9 +155,9 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +width+::		new image width, in pixels [Integer]
-    # +height+::		new image height, in pixels [Integer]
-    # +quality+::	scaling algorithm quality, either 0 or 1 (see above) [Integer]
+    # +width+::  new image width, in pixels [Integer]
+    # +height+::  new image height, in pixels [Integer]
+    # +quality+:: scaling algorithm quality, either 0 or 1 (see above) [Integer]
     #
     def scale(w, h, quality=0) ; end
 
@@ -167,8 +167,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +horizontal+::	if +true+, the image will be flipped from left to right [Boolean]
-    # +vertical+::	if +true+, the image will be flipped from top to bottom [Boolean]
+    # +horizontal+:: if +true+, the image will be flipped from left to right [Boolean]
+    # +vertical+:: if +true+, the image will be flipped from top to bottom [Boolean]
     #
     def mirror(horizontal, vertical) ; end
 
@@ -178,7 +178,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +degrees+::	number of degrees by which to rotate the image [Integer]
+    # +degrees+:: number of degrees by which to rotate the image [Integer]
     #
     def rotate(degrees) ; end
 
@@ -191,11 +191,11 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +x+::	x-coordinate for top left corner of the clip rectangle [Integer]
-    # +y+::	y-coordinate for top left corner of the clip rectangle [Integer]
-    # +width+::	width of the clip rectangle [Integer]
-    # +height+::	height of the clip rectangle [Integer]
-    # +color+::	fill color for blank areas after crop [FXColor]
+    # +x+:: x-coordinate for top left corner of the clip rectangle [Integer]
+    # +y+:: y-coordinate for top left corner of the clip rectangle [Integer]
+    # +width+:: width of the clip rectangle [Integer]
+    # +height+:: height of the clip rectangle [Integer]
+    # +color+:: fill color for blank areas after crop [FXColor]
     #
     def crop(x, y, w, h, color=0) ; end
 
@@ -210,7 +210,7 @@ module Fox
     # ==== Parameters:
     #
     # +color+::   the fade color [FXColor]
-    # +factor+::	fading factor [Integer]
+    # +factor+:: fading factor [Integer]
     #
     def fade(color, factor=255); end
 
@@ -223,7 +223,7 @@ module Fox
     # ==== Parameters:
     #
     # +shear+::   how far to shear [Integer]
-    # +color+::	  fill color for areas outside the sheared image [FXColor]
+    # +color+::   fill color for areas outside the sheared image [FXColor]
     #
     def xshear(shear, color=0); end
 
@@ -236,7 +236,7 @@ module Fox
     # ==== Parameters:
     #
     # +shear+::   how far to shear [Integer]
-    # +color+::	  fill color for areas outside the sheared image [FXColor]
+    # +color+::   fill color for areas outside the sheared image [FXColor]
     #
     def yshear(shear, color=0); end
 
@@ -256,7 +256,7 @@ module Fox
     # ==== Parameters:
     #
     # +top+::      starting color, for topmost pixels [FXColor]
-    # +bottom+::	 ending color, for bottommost pixels [FXColor]
+    # +bottom+::  ending color, for bottommost pixels [FXColor]
     #
     def vgradient(top, bottom); end
 
@@ -266,7 +266,7 @@ module Fox
     # ==== Parameters:
     #
     # +topleft+::      pixel color for top-left corner [FXColor]
-    # +topright+::	   pixel color for top-right corner [FXColor]
+    # +topright+::    pixel color for top-right corner [FXColor]
     # +bottomleft+::   pixel color for bottom-left corner [FXColor]
     # +bottomright+::  pixel color for bottom-right corner [FXColor]
     #
@@ -277,7 +277,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +color+::	  the blended color [FXColor]
+    # +color+::   the blended color [FXColor]
     #
     def blend(color); end
 
@@ -295,7 +295,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+::	opened stream to which to save the pixel data [FXStream]
+    # +store+:: opened stream to which to save the pixel data [FXStream]
     #
     def savePixels(store) ; end
 
@@ -314,7 +314,7 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +store+::	opened stream from which to read the pixel data [FXStream]
+    # +store+:: opened stream from which to read the pixel data [FXStream]
     #
     def loadPixels(store) ; end
   end

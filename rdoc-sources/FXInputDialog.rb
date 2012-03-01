@@ -6,10 +6,10 @@ module Fox
   #
   # === Input dialog options
   #
-  # +INPUTDIALOG_STRING+::	Ask for a string
-  # +INPUTDIALOG_INTEGER+::	Ask for an integer number
-  # +INPUTDIALOG_REAL+::	Ask for a real number
-  # +INPUTDIALOG_PASSWORD+::	Do not reveal key-in
+  # +INPUTDIALOG_STRING+:: Ask for a string
+  # +INPUTDIALOG_INTEGER+:: Ask for an integer number
+  # +INPUTDIALOG_REAL+:: Ask for a real number
+  # +INPUTDIALOG_PASSWORD+:: Do not reveal key-in
   #
   class FXInputDialog < FXDialogBox
 

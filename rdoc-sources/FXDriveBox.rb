@@ -6,8 +6,8 @@ module Fox
   #
   # The following messages are sent by FXDriveBox to its target:
   #
-  # +SEL_CHANGED+::	sent when the current item changes; the message data is the current drive
-  # +SEL_COMMAND+::	sent when a new item is selected from the list; the message data is the drive
+  # +SEL_CHANGED+:: sent when the current item changes; the message data is the current drive
+  # +SEL_COMMAND+:: sent when a new item is selected from the list; the message data is the drive
   #
   class FXDriveBox < FXListBox
 

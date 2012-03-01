@@ -18,7 +18,7 @@ module Fox
     attr_accessor :frameStyle
 
     # Border width, in pixels [Integer]
-    attr_reader	:borderWidth
+    attr_reader :borderWidth
 
     # Top interior padding, in pixels [Integer]
     attr_accessor :padTop

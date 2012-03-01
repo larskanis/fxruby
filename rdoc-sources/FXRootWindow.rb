@@ -8,8 +8,8 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +a+::	an application instance [FXApp]
-    # +vis+::	a visual [FXVisual]
+    # +a+:: an application instance [FXApp]
+    # +vis+:: a visual [FXVisual]
     #
     def initialize(a, vis) # :yield: theRootWindow
     end

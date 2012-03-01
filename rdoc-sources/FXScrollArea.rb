@@ -15,58 +15,58 @@ module Fox
   #
   # === Scrollbar options
   #
-  # +SCROLLERS_NORMAL+::	Show the scrollbars when needed
-  # +HSCROLLER_ALWAYS+::	Always show horizontal scrollers
-  # +HSCROLLER_NEVER+::		Never show horizontal scrollers
-  # +VSCROLLER_ALWAYS+::	Always show vertical scrollers
-  # +VSCROLLER_NEVER+::		Never show vertical scrollers
-  # +HSCROLLING_ON+::		Horizontal scrolling turned on (default)
-  # +HSCROLLING_OFF+::		Horizontal scrolling turned off
-  # +VSCROLLING_ON+::		Vertical scrolling turned on (default)
-  # +VSCROLLING_OFF+::		Vertical scrolling turned off
-  # +SCROLLERS_TRACK+::		Scrollers track continuously for smooth scrolling
-  # +SCROLLERS_DONT_TRACK+::	Scrollers don't track continuously
+  # +SCROLLERS_NORMAL+:: Show the scrollbars when needed
+  # +HSCROLLER_ALWAYS+:: Always show horizontal scrollers
+  # +HSCROLLER_NEVER+::  Never show horizontal scrollers
+  # +VSCROLLER_ALWAYS+:: Always show vertical scrollers
+  # +VSCROLLER_NEVER+::  Never show vertical scrollers
+  # +HSCROLLING_ON+::  Horizontal scrolling turned on (default)
+  # +HSCROLLING_OFF+::  Horizontal scrolling turned off
+  # +VSCROLLING_ON+::  Vertical scrolling turned on (default)
+  # +VSCROLLING_OFF+::  Vertical scrolling turned off
+  # +SCROLLERS_TRACK+::  Scrollers track continuously for smooth scrolling
+  # +SCROLLERS_DONT_TRACK+:: Scrollers don't track continuously
   #
   class FXScrollArea < FXComposite
 
     # Viewport width, in pixels [Integer]
-    attr_reader	:viewportWidth
+    attr_reader :viewportWidth
 
     # Viewport height, in pixels [Integer]
-    attr_reader	:viewportHeight
+    attr_reader :viewportHeight
 
     # Content width, in pixels [Integer]
-    attr_reader	:contentWidth
+    attr_reader :contentWidth
 
     # Content height, in pixels [Integer]
-    attr_reader	:contentHeight
+    attr_reader :contentHeight
 
     # Scroll style [Integer]
     attr_accessor :scrollStyle
 
     # Horizontal scrollbar [FXScrollBar]
-    attr_reader	:horizontalScrollBar
+    attr_reader :horizontalScrollBar
 
     # Vertical scrollbar [FXScrollBar]
-    attr_reader	:verticalScrollBar
+    attr_reader :verticalScrollBar
 
     # Current x-position [Integer]
-    attr_reader	:xPosition
+    attr_reader :xPosition
 
     # Current y-position [Integer]
-    attr_reader	:yPosition
+    attr_reader :yPosition
 
     #
     # Return an initialized FXScrollArea instance.
     #
     # ==== Parameters:
     #
-    # +parent+::	the parent widget for this scroll area [FXComposite]
-    # +opts+::		the options [Integer]
-    # +x+::		initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
-    # +y+::		initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
-    # +width+::		initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
-    # +height+::	initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
+    # +parent+:: the parent widget for this scroll area [FXComposite]
+    # +opts+::  the options [Integer]
+    # +x+::  initial x-position, when the +LAYOUT_FIX_X+ layout hint is in effect [Integer]
+    # +y+::  initial y-position, when the +LAYOUT_FIX_Y+ layout hint is in effect [Integer]
+    # +width+::  initial width, when the +LAYOUT_FIX_WIDTH+ layout hint is in effect [Integer]
+    # +height+:: initial height, when the +LAYOUT_FIX_HEIGHT+ layout hint is in effect [Integer]
     #
     def initialize(parent, opts=0, x=0, y=0, width=0, height=0) # :yields: theScrollArea
     end

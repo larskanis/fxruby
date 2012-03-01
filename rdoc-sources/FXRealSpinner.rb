@@ -6,8 +6,8 @@ module Fox
   #
   # The following messages are sent by FXRealSpinner to its target:
   #
-  # +SEL_KEYPRESS+::	sent when a key goes down; the message data is an FXEvent instance.
-  # +SEL_KEYRELEASE+::	sent when a key goes up; the message data is an FXEvent instance.
+  # +SEL_KEYPRESS+:: sent when a key goes down; the message data is an FXEvent instance.
+  # +SEL_KEYRELEASE+:: sent when a key goes up; the message data is an FXEvent instance.
   # +SEL_COMMAND+::
   #   sent whenever the spinner's value changes; the message data is a Float
   #   indicating the new spinner value.
@@ -17,18 +17,18 @@ module Fox
   #
   # === Spinner options
   #
-  # +REALSPIN_NORMAL+::	Normal, non-cyclic
-  # +REALSPIN_CYCLIC+::	Cyclic spinner
-  # +REALSPIN_NOTEXT+::	No text visible
-  # +REALSPIN_NOMAX+::	Spin all the way up to infinity
-  # +REALSPIN_NOMIN+::	Spin all the way down to -infinity
-  # +REALSPIN_LOG+::	Logarithmic rather than linear
+  # +REALSPIN_NORMAL+:: Normal, non-cyclic
+  # +REALSPIN_CYCLIC+:: Cyclic spinner
+  # +REALSPIN_NOTEXT+:: No text visible
+  # +REALSPIN_NOMAX+:: Spin all the way up to infinity
+  # +REALSPIN_NOMIN+:: Spin all the way down to -infinity
+  # +REALSPIN_LOG+:: Logarithmic rather than linear
   #
   # === Message identifiers
   #
-  # +ID_INCREMENT+::	x
-  # +ID_DECREMENT+::	x
-  # +ID_ENTRY+::	x
+  # +ID_INCREMENT+:: x
+  # +ID_DECREMENT+:: x
+  # +ID_ENTRY+:: x
   #
   class FXRealSpinner < FXPacker
     # Current value [Float]
@@ -78,19 +78,19 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this spinner [FXComposite]
-    # +cols+::	number of columns to display in the text field [Integer]
-    # +target+::	the message target, if any, for this spinner [FXObject]
-    # +selector+::	the message identifier for this spinner [Integer]
-    # +opts+::	the options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent window for this spinner [FXComposite]
+    # +cols+:: number of columns to display in the text field [Integer]
+    # +target+:: the message target, if any, for this spinner [FXObject]
+    # +selector+:: the message identifier for this spinner [Integer]
+    # +opts+:: the options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, cols, target=nil, selector=0, opts=REALSPIN_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) # :yields: theRealSpinner
     end

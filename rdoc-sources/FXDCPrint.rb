@@ -26,27 +26,27 @@ module Fox
   #
   # === Printer flags
   #
-  # +PRINT_DEST_PAPER+::	Send print to paper
-  # +PRINT_DEST_FILE+::		Send print to file
-  # +PRINT_PAGES_ALL+::		Print all pages
-  # +PRINT_PAGES_EVEN+::	Print even pages only
-  # +PRINT_PAGES_ODD+::		Print odd pages only
-  # +PRINT_PAGES_RANGE+::	Print range of pages
-  # +PRINT_COLLATE_NORMAL+::	Normal collate order
-  # +PRINT_COLLATE_REVERSED+::	Reversed collate order
-  # +PRINT_PORTRAIT+::		Portrait orientation
-  # +PRINT_LANDSCAPE+::		Landscape orientation
-  # +PRINT_BLACKANDWHITE+::	Black and white output
-  # +PRINT_COLOR+::		Color output
-  # +PRINT_NOBOUNDS+::		Must determine bounding box
+  # +PRINT_DEST_PAPER+:: Send print to paper
+  # +PRINT_DEST_FILE+::  Send print to file
+  # +PRINT_PAGES_ALL+::  Print all pages
+  # +PRINT_PAGES_EVEN+:: Print even pages only
+  # +PRINT_PAGES_ODD+::  Print odd pages only
+  # +PRINT_PAGES_RANGE+:: Print range of pages
+  # +PRINT_COLLATE_NORMAL+:: Normal collate order
+  # +PRINT_COLLATE_REVERSED+:: Reversed collate order
+  # +PRINT_PORTRAIT+::  Portrait orientation
+  # +PRINT_LANDSCAPE+::  Landscape orientation
+  # +PRINT_BLACKANDWHITE+:: Black and white output
+  # +PRINT_COLOR+::  Color output
+  # +PRINT_NOBOUNDS+::  Must determine bounding box
   #
   # === Printer media size
   #
-  # +MEDIA_CUSTOM+::		Custom paper size
-  # +MEDIA_USLETTER+::		US Letter size
-  # +MEDIA_LEGAL+::		US Legal size
-  # +MEDIA_A4+::		A4
-  # +MEDIA_ENVELOPE+::		#10 Envelope
+  # +MEDIA_CUSTOM+::  Custom paper size
+  # +MEDIA_USLETTER+::  US Letter size
+  # +MEDIA_LEGAL+::  US Legal size
+  # +MEDIA_A4+::  A4
+  # +MEDIA_ENVELOPE+::  #10 Envelope
   #
   class FXPrinter
     # Printer name [String]

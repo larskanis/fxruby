@@ -4,42 +4,42 @@ module Fox
   #
   # === File selection modes
   #
-  # +SELECTFILE_ANY+::		A single file, existing or not (to save to)
-  # +SELECTFILE_EXISTING+::	An existing file (to load)
-  # +SELECTFILE_MULTIPLE+::	Multiple existing files
-  # +SELECTFILE_MULTIPLE_ALL+::	Multiple existing files or directories, but not '.' and '..'
-  # +SELECTFILE_DIRECTORY+::	Existing directory, including '.' or '..'
+  # +SELECTFILE_ANY+::  A single file, existing or not (to save to)
+  # +SELECTFILE_EXISTING+:: An existing file (to load)
+  # +SELECTFILE_MULTIPLE+:: Multiple existing files
+  # +SELECTFILE_MULTIPLE_ALL+:: Multiple existing files or directories, but not '.' and '..'
+  # +SELECTFILE_DIRECTORY+:: Existing directory, including '.' or '..'
   #
   # === Wildcard matching modes
   #
-  # +FILEMATCH_FILE_NAME+::		No wildcard can ever match "/" (or "\","/" under Windows).
-  # +FILEMATCH_NOESCAPE+::		Backslashes don't quote special chars ("\" is treated as "\").
-  # +FILEMATCH_PERIOD+::		Leading "." is matched only explicitly (Useful to match hidden files on Unix).
-  # +FILEMATCH_LEADING_DIR+::	Ignore "/..." after a match.
-  # +FILEMATCH_CASEFOLD+::		Compare without regard to case.
+  # +FILEMATCH_FILE_NAME+::  No wildcard can ever match "/" (or "\","/" under Windows).
+  # +FILEMATCH_NOESCAPE+::  Backslashes don't quote special chars ("\" is treated as "\").
+  # +FILEMATCH_PERIOD+::  Leading "." is matched only explicitly (Useful to match hidden files on Unix).
+  # +FILEMATCH_LEADING_DIR+:: Ignore "/..." after a match.
+  # +FILEMATCH_CASEFOLD+::  Compare without regard to case.
   #
   # Note that under Windows, +FILEMATCH_NOESCAPE+ must be passed.
   #
   # === Message identifiers
   #
-  # +ID_FILEFILTER+::		x
-  # +ID_ACCEPT+::		x
-  # +ID_FILELIST+::		x
-  # +ID_DIRECTORY_UP+::		x
-  # +ID_DIRTREE+::		x
-  # +ID_NORMAL_SIZE+::		x
-  # +ID_MEDIUM_SIZE+::		x
-  # +ID_GIANT_SIZE+::		x
-  # +ID_HOME+::			x
-  # +ID_WORK+::			x
-  # +ID_BOOKMARK+::		x
-  # +ID_BOOKMENU+::		x
-  # +ID_VISIT+::		x
-  # +ID_NEW+::			x
-  # +ID_DELETE+::		x
-  # +ID_MOVE+::			x
-  # +ID_COPY+::			x
-  # +ID_LINK+::			x
+  # +ID_FILEFILTER+::  x
+  # +ID_ACCEPT+::  x
+  # +ID_FILELIST+::  x
+  # +ID_DIRECTORY_UP+::  x
+  # +ID_DIRTREE+::  x
+  # +ID_NORMAL_SIZE+::  x
+  # +ID_MEDIUM_SIZE+::  x
+  # +ID_GIANT_SIZE+::  x
+  # +ID_HOME+::   x
+  # +ID_WORK+::   x
+  # +ID_BOOKMARK+::  x
+  # +ID_BOOKMENU+::  x
+  # +ID_VISIT+::  x
+  # +ID_NEW+::   x
+  # +ID_DELETE+::  x
+  # +ID_MOVE+::   x
+  # +ID_COPY+::   x
+  # +ID_LINK+::   x
   #
   class FXFileSelector < FXPacker
 

@@ -12,13 +12,13 @@ module Fox
   #
   # === Toolbar Grip styles
   #
-  # +TOOLBARGRIP_SINGLE+::	Single bar mode for movable tool bars
-  # +TOOLBARGRIP_DOUBLE+::	Double bar mode for dockable tool bars
+  # +TOOLBARGRIP_SINGLE+:: Single bar mode for movable tool bars
+  # +TOOLBARGRIP_DOUBLE+:: Double bar mode for dockable tool bars
   #
   class FXToolBarGrip < FXDockHandler
 
     # Indicates whether the grip is displayed as a double-bar [Boolean]
-    attr_writer	:doubleBar
+    attr_writer :doubleBar
 
     # Active color [FXColor]
     attr_accessor :activeColor
@@ -28,14 +28,14 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this tool bar grip [FXComposite]
-    # +target+::	the message target, if any, for this tool bar grip [FXObject]
-    # +selector+::	the message identifier for this tool bar grip [Integer]
-    # +opts+::	tool bar grip options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
+    # +p+:: the parent window for this tool bar grip [FXComposite]
+    # +target+:: the message target, if any, for this tool bar grip [FXObject]
+    # +selector+:: the message identifier for this tool bar grip [Integer]
+    # +opts+:: tool bar grip options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
     #
     def initialize(p, target=nil, selector=0, opts=TOOLBARGRIP_SINGLE, x=0, y=0, width=0, height=0) # :yields: theToolBarGrip
     end

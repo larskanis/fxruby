@@ -10,7 +10,7 @@ module Fox
   #
   # The following messages are sent by FXMenuCheck to its target:
   #
-  # +SEL_COMMAND+::		sent when the command is activated
+  # +SEL_COMMAND+::  sent when the command is activated
   #
   class FXMenuCheck < FXMenuCommand
 

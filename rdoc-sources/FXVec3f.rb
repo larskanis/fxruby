@@ -28,7 +28,7 @@ module Fox
     def []=(index, value); end
 
     # Returns a new FXVec3f instance which is the negation of this one.
-    def @-(); end
+    def -@(); end
 
     #
     # Returns a new FXVec3f instance obtained by memberwise

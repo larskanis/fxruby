@@ -56,21 +56,21 @@ module Fox
   #
   # === Directory List options
   #
-  # +DIRLIST_SHOWFILES+::	Show files as well as directories
-  # +DIRLIST_SHOWHIDDEN+::	Show hidden files or directories
-  # +DIRLIST_NO_OWN_ASSOC+::	Do not create associations for files
+  # +DIRLIST_SHOWFILES+:: Show files as well as directories
+  # +DIRLIST_SHOWHIDDEN+:: Show hidden files or directories
+  # +DIRLIST_NO_OWN_ASSOC+:: Do not create associations for files
   #
   # === Message identifiers
   #
-  # +ID_REFRESH+::		x
-  # +ID_SHOW_FILES+::		x
-  # +ID_HIDE_FILES+::		x
-  # +ID_TOGGLE_FILES+::		x
-  # +ID_SHOW_HIDDEN+::		x
-  # +ID_HIDE_HIDDEN+::		x
-  # +ID_TOGGLE_HIDDEN+::	x
-  # +ID_SET_PATTERN+::		x
-  # +ID_SORT_REVERSE+::		x
+  # +ID_REFRESH+::  x
+  # +ID_SHOW_FILES+::  x
+  # +ID_HIDE_FILES+::  x
+  # +ID_TOGGLE_FILES+::  x
+  # +ID_SHOW_HIDDEN+::  x
+  # +ID_HIDE_HIDDEN+::  x
+  # +ID_TOGGLE_HIDDEN+:: x
+  # +ID_SET_PATTERN+::  x
+  # +ID_SORT_REVERSE+::  x
   #
   class FXDirList < FXTreeList
 

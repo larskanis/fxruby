@@ -22,6 +22,7 @@ module Fox
     # creates a default icon source object.
     #
     def initialize(app, path=FXIconDict.defaultIconPath);
+    end
 
     # Change icon source to _src_ (an FXIconSource instance).
     def iconSource=(src); end

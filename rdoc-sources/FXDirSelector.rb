@@ -8,18 +8,18 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_DIRNAME+::	x
-  # +ID_DIRLIST+::	x
-  # +ID_HOME+::		x
-  # +ID_WORK+::		x
-  # +ID_DIRECTORY_UP+::	x
-  # +ID_BOOKMARK+::	x
-  # +ID_VISIT+::	x
-  # +ID_NEW+::		x
-  # +ID_DELETE+::	x
-  # +ID_MOVE+::		x
-  # +ID_COPY+::		x
-  # +ID_LINK+::		x
+  # +ID_DIRNAME+:: x
+  # +ID_DIRLIST+:: x
+  # +ID_HOME+::  x
+  # +ID_WORK+::  x
+  # +ID_DIRECTORY_UP+:: x
+  # +ID_BOOKMARK+:: x
+  # +ID_VISIT+:: x
+  # +ID_NEW+::  x
+  # +ID_DELETE+:: x
+  # +ID_MOVE+::  x
+  # +ID_COPY+::  x
+  # +ID_LINK+::  x
   #
   class FXDirSelector < FXPacker
 

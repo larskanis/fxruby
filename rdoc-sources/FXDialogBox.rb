@@ -11,8 +11,8 @@ module Fox
   #
   # === Message identifiers
   #
-  # +ID_CANCEL+::	Close the dialog, cancel the entry
-  # +ID_ACCEPT+::	Close the dialog, accept the entry
+  # +ID_CANCEL+:: Close the dialog, cancel the entry
+  # +ID_ACCEPT+:: Close the dialog, accept the entry
   #
   class FXDialogBox < FXTopWindow
     #

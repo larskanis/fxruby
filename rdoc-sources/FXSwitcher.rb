@@ -24,22 +24,22 @@ module Fox
   #
   # === Switcher options
   #
-  # +SWITCHER_HCOLLAPSE+::	Collapse horizontally to width of current child
-  # +SWITCHER_VCOLLAPSE+::	Collapse vertically to height of current child
+  # +SWITCHER_HCOLLAPSE+:: Collapse horizontally to width of current child
+  # +SWITCHER_VCOLLAPSE+:: Collapse vertically to height of current child
   #
   # === Message identifiers
   #
-  # +ID_OPEN_FIRST+::	x
-  # +ID_OPEN_SECOND+::	x
-  # +ID_OPEN_THIRD+::	x
-  # +ID_OPEN_FOURTH+::	x
-  # +ID_OPEN_FIFTH+::	x
-  # +ID_OPEN_SIXTH+::	x
-  # +ID_OPEN_SEVENTH+::	x
-  # +ID_OPEN_EIGHTH+::	x
-  # +ID_OPEN_NINETH+::	x
-  # +ID_OPEN_TENTH+::	x
-  # +ID_OPEN_LAST+::	x
+  # +ID_OPEN_FIRST+:: x
+  # +ID_OPEN_SECOND+:: x
+  # +ID_OPEN_THIRD+:: x
+  # +ID_OPEN_FOURTH+:: x
+  # +ID_OPEN_FIFTH+:: x
+  # +ID_OPEN_SIXTH+:: x
+  # +ID_OPEN_SEVENTH+:: x
+  # +ID_OPEN_EIGHTH+:: x
+  # +ID_OPEN_NINETH+:: x
+  # +ID_OPEN_TENTH+:: x
+  # +ID_OPEN_LAST+:: x
   #
   class FXSwitcher < FXPacker
     # Current child window's index [Integer]
@@ -53,16 +53,16 @@ module Fox
     #
     # ==== Parameters:
     #
-    # +p+::	the parent window for this switcher [FXComposite]
-    # +opts+::	switcher options [Integer]
-    # +x+::	initial x-position [Integer]
-    # +y+::	initial y-position [Integer]
-    # +width+::	initial width [Integer]
-    # +height+::	initial height [Integer]
-    # +padLeft+::	internal padding on the left side, in pixels [Integer]
-    # +padRight+::	internal padding on the right side, in pixels [Integer]
-    # +padTop+::	internal padding on the top side, in pixels [Integer]
-    # +padBottom+::	internal padding on the bottom side, in pixels [Integer]
+    # +p+:: the parent window for this switcher [FXComposite]
+    # +opts+:: switcher options [Integer]
+    # +x+:: initial x-position [Integer]
+    # +y+:: initial y-position [Integer]
+    # +width+:: initial width [Integer]
+    # +height+:: initial height [Integer]
+    # +padLeft+:: internal padding on the left side, in pixels [Integer]
+    # +padRight+:: internal padding on the right side, in pixels [Integer]
+    # +padTop+:: internal padding on the top side, in pixels [Integer]
+    # +padBottom+:: internal padding on the bottom side, in pixels [Integer]
     #
     def initialize(p, opts=0, x=0, y=0, width=0, height=0, padLeft=DEFAULT_SPACING, padRight=DEFAULT_SPACING, padTop=DEFAULT_SPACING, padBottom=DEFAULT_SPACING) # :yields: theSwitcher
     end
