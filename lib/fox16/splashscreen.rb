@@ -57,6 +57,7 @@ module Fox
 end
 
 if $0 == __FILE__
+  # @private
   class FakeSite # :nodoc:
     def open( &status )
       yield ">>>>> Opening Site" if block_given?

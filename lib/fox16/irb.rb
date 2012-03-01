@@ -37,6 +37,7 @@ module IRB
   end
 end
 
+# @private
 class Redirect < IRB::StdioInputMethod
 	def initialize(dest)
 		super()
