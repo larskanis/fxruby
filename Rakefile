@@ -9,6 +9,31 @@ load 'Rakefile.cross'
 PKG_VERSION = Fox.fxrubyversion
 FXSCINTILLA_INSTALL_DIR = Pathname( "build/builds/fxscintilla-#{LIBFXSCINTILLA_VERSION}" ).expand_path
 
+SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig-1.3.22.exe" : "swig-1.3.22"
+SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
+SWIG_LIB = `#{SWIG} -swiglib`.chomp
+SWIG_MODULES = {
+  "core.i" => "core_wrap.cpp",
+  "dcmodule.i" => "dc_wrap.cpp",
+  "dialogs.i" => "dialogs_wrap.cpp",
+  "framesmodule.i" => "frames_wrap.cpp",
+  "iconlistmodule.i" => "iconlist_wrap.cpp",
+  "icons.i" => "icons_wrap.cpp",
+  "image.i" => "image_wrap.cpp",
+  "labelmodule.i" => "label_wrap.cpp",
+  "layout.i" => "layout_wrap.cpp",
+  "listmodule.i" => "list_wrap.cpp",
+  "mdi.i" => "mdi_wrap.cpp",
+  "menumodule.i" => "menu_wrap.cpp",
+  "fx3d.i" => "fx3d_wrap.cpp",
+  "scintilla.i" => "scintilla_wrap.cpp",
+  "table-module.i" => "table_wrap.cpp",
+  "text-module.i" => "text_wrap.cpp",
+  "treelist-module.i" => "treelist_wrap.cpp",
+  "ui.i" => "ui_wrap.cpp"
+}
+
+
 hoe = Hoe.spec "fxruby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
@@ -25,6 +50,15 @@ hoe = Hoe.spec "fxruby" do
   }
   self.test_globs = ["test/**/TC_*.rb"]
   self.version = PKG_VERSION
+  self.readme_file = 'README.rdoc'
+  self.extra_rdoc_files << self.readme_file
+
+  spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
+  spec_extras[:files] += SWIG_MODULES.values.map{|f| File.join("ext/fox16", f) }
+  spec_extras[:files] << 'ext/fox16/include/inlinestubs.h'
+  spec_extras[:files] << 'ext/fox16/librb.c'
+  spec_extras[:files] << 'doap.rdf'
+  spec_extras[:files] << 'lib/fox16/kwargs.rb'
 end
 
 # Make sure extension is built before tests are run
@@ -58,30 +92,6 @@ end
 # c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
 # before running swig on MinGW.
 namespace :swig do
-  SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig-1.3.22.exe" : "swig-1.3.22"
-  SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
-  SWIG_LIB = `#{SWIG} -swiglib`.chomp
-  SWIG_MODULES = {
-    "core.i" => "core_wrap.cpp",
-    "dcmodule.i" => "dc_wrap.cpp",
-    "dialogs.i" => "dialogs_wrap.cpp",
-    "framesmodule.i" => "frames_wrap.cpp",
-    "iconlistmodule.i" => "iconlist_wrap.cpp",
-    "icons.i" => "icons_wrap.cpp",
-    "image.i" => "image_wrap.cpp",
-    "labelmodule.i" => "label_wrap.cpp",
-    "layout.i" => "layout_wrap.cpp",
-    "listmodule.i" => "list_wrap.cpp",
-    "mdi.i" => "mdi_wrap.cpp",
-    "menumodule.i" => "menu_wrap.cpp",
-    "fx3d.i" => "fx3d_wrap.cpp",
-    "scintilla.i" => "scintilla_wrap.cpp",
-    "table-module.i" => "table_wrap.cpp",
-    "text-module.i" => "text_wrap.cpp",
-    "treelist-module.i" => "treelist_wrap.cpp",
-    "ui.i" => "ui_wrap.cpp"
-  }
-
   def wrapper_src_file_path(wrapper_src_file_name)
     File.join("..", "ext", "fox16", wrapper_src_file_name)
   end
