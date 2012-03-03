@@ -92,10 +92,6 @@ end
 # c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
 # before running swig on MinGW.
 namespace :swig do
-  def wrapper_src_file_path(wrapper_src_file_name)
-    File.join("..", "ext", "fox16", wrapper_src_file_name)
-  end
-
   def sed(wrapper_src_file_name)
     results = []
     IO.readlines(wrapper_src_file_name).each do |line|
@@ -114,20 +110,21 @@ namespace :swig do
   end
 
   def swig(swig_interface_file_name, wrapper_src_file_name)
-    system "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_path(wrapper_src_file_name)} #{swig_interface_file_name}"
-    sed wrapper_src_file_path(wrapper_src_file_name)
+    cmd = "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_name} #{swig_interface_file_name}"
+    puts cmd
+    system cmd
+    sed wrapper_src_file_name
   end
 
   task :swig_librb => ["ext/fox16/librb.c"]
-  file "ext/fox16/librb.c" do
-    Dir.chdir "swig-interfaces" do
-      File.open(wrapper_src_file_path("librb.c"), "w") do |io|
-        io.puts "#define SWIG_GLOBAL 1"
-        io.write(IO.read(File.join(SWIG_LIB, "ruby", "precommon.swg")))
-        io.write(IO.read(File.join(SWIG_LIB, "common.swg")))
-        io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubyhead.swg")))
-        io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubydef.swg")))
-      end
+  file "ext/fox16/librb.c" do |task|
+    puts "generate #{task.name}"
+    File.open(task.name, "w") do |io|
+      io.puts "#define SWIG_GLOBAL 1"
+      io.write(IO.read(File.join(SWIG_LIB, "ruby", "precommon.swg")))
+      io.write(IO.read(File.join(SWIG_LIB, "common.swg")))
+      io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubyhead.swg")))
+      io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubydef.swg")))
     end
   end
 
@@ -140,10 +137,8 @@ namespace :swig do
 
     file cppfile_path => [ifile, 'macros.i', 'common.i', 'fxdefs.i', 'ruby-typemaps.i',
                           'markfuncs.i', 'exceptions.i', 'freefuncs.i', 'macros.i', 'handlers.i'
-                         ].map{|f| File.join("swig-interfaces", f) } do
-      Dir.chdir "swig-interfaces" do
-        swig(ifile, cppfile)
-      end
+                         ].map{|f| File.join("swig-interfaces", f) } do |task|
+      swig(File.join("swig-interfaces", ifile), cppfile_path)
     end
   end
 end
@@ -181,9 +176,7 @@ namespace :fxruby do
   end
 
   def make_impl
-    Dir.chdir "ext/fox16" do
-      ruby "make_impl.rb"
-    end
+    ruby '-Cext/fox16', "make_impl.rb"
   end
 
   task :configure => [:scintilla, :setversions, :generate_kwargs_lib]
