@@ -11,7 +11,7 @@ module Fox
   # Thus, a tab book can be used to present many GUI controls
   # in a small space by placing several panels on top of each
   # other and using tab items to select the desired panel.
-  # When one of the tab items is pressed, the tab book's #setCurrent method
+  # When one of the tab items is pressed, the tab book's {#setCurrent} method
   # is called with _notify+=true. This causes the tab book to send a
   # +SEL_COMMAND+ message to its target.
   #

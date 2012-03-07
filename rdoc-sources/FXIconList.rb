@@ -333,7 +333,7 @@ module Fox
     #
     # Scroll to bring item into view. The argument is either a reference to
     # an FXIconItem instance, or the integer index of an item in the list.
-    # For the latter case, #makeItemVisible raises IndexError if the index
+    # For the latter case, {#makeItemVisible} raises IndexError if the index
     # is out of bounds.
     #
     def makeItemVisible(itemOrIndex); end

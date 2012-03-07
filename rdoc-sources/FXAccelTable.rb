@@ -56,7 +56,7 @@ module Fox
 
   #
   # Unparse hot key comprising modifier and key code back
-  # into a string suitable for parsing with #parseHotKey.
+  # into a string suitable for parsing with {#parseHotKey}.
   #
   def unparseAccel(key); end
 

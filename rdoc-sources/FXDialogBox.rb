@@ -7,7 +7,7 @@ module Fox
   # loop and returns a completion code of either 0 or 1, respectively.
   #
   # To close a dialog box when it's not running modally, simply call
-  # FXDialogBox#hide (or send it the +ID_HIDE+ command message).
+  # {#hide} (or send it the +ID_HIDE+ command message).
   #
   # === Message identifiers
   #

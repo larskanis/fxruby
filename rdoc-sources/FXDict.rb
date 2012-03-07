@@ -2,9 +2,8 @@ module Fox
   #
   # The dictionary class maintains a fast-access hash table of entities
   # indexed by a character string.
-  # It is typically used to map strings to pointers; however, overloading
-  # the #createData and #deleteData members allows any type of data to
-  # be indexed by strings.
+  # It is typically used to map strings to pointers; however, derived classes
+  # may allow any type of data to be indexed by strings.
   #
   class FXDict < FXObject
 

@@ -94,7 +94,7 @@ module Fox
   #   the addSignal method, a +SEL_SIGNAL+ message may be sent to the message
   #   target.
   #
-  # === File input modes for #addInput
+  # === File input modes for {#addInput}
   #
   # +INPUT_NONE+::  inactive
   # +INPUT_READ+::  read input fd
@@ -111,7 +111,7 @@ module Fox
   #
   # These constants symbolically represent the different cursor shapes used
   # in FOX applications, and can be used as the _which_ arguments for
-  # #getDefaultCursor and #setDefaultCursor.
+  # {#getDefaultCursor} and {#setDefaultCursor}.
   #
   # +DEF_ARROW_CURSOR+::      Arrow cursor
   # +DEF_RARROW_CURSOR+::     Reverse arrow cursor
@@ -284,7 +284,7 @@ module Fox
     end
 
     #
-    # Open connection to display; this is called by #init.
+    # Open connection to display; this is called by {#init}.
     #
     def openDisplay(dpyname=nil) ; end
 
@@ -344,8 +344,8 @@ module Fox
     # Perform one event dispatch; return +true+ if event was dispatched.
     def runOneEvent(blocking=true); end
 
-    # Run the main application event loop until #stop is called,
-    # and return the exit code passed as argument to #stop.
+    # Run the main application event loop until {#stop} is called,
+    # and return the exit code passed as argument to {#stop}.
     def run(); end
 
     #
@@ -363,27 +363,27 @@ module Fox
     #
     # Run event loop while there are events are available in the queue.
     # Returns 1 when all events in the queue have been handled, and 0 when
-    # the event loop was terminated due to #stop or #stopModal.
+    # the event loop was terminated due to {#stop} or {#stopModal}.
     # Except for the modal window and its children, user input to all windows
     # is blocked; if the modal window is +nil+, all user input is blocked.
     #
     def runModalWhileEvents(window=nil); end
 
     # Run modal event loop, blocking keyboard and mouse events to all windows
-    # until #stopModal is called.
+    # until {#stopModal} is called.
     def runModal(); end
 
-    # Run a modal event loop for the given window, until #stop or #stopModal is
+    # Run a modal event loop for the given window, until {#stop} or {#stopModal} is
     # called. Except for the modal window and its children, user input to all
     # windows is blocked; if the modal window is +nil+ all user input is blocked.
     def runModalFor(window); end
 
-    # Run modal while window is shown, or until #stop or #stopModal is called.
+    # Run modal while window is shown, or until {#stop} or {#stopModal} is called.
     # Except for the modal window and its children, user input to all windows
     # is blocked; if the modal window is +nil+ all user input is blocked.
     def runModalWhileShown(window); end
 
-    # Run popup menu while shown, until #stop or #stopModal is called.
+    # Run popup menu while shown, until {#stop} or {#stopModal} is called.
     # Also returns when entering previous cascading popup menu.
     def runPopup(window); end
 
@@ -443,7 +443,7 @@ module Fox
     #
     #   yamlDragType = app.registerDragType("application/x-yaml")
     #
-    # See also #getDragTypeName.
+    # See also {#getDragTypeName}.
     #
     def registerDragType(name) ; end
 
@@ -452,7 +452,7 @@ module Fox
     #
     #   dragTypeName = app.getDragTypeName(yamlDragType)
     #
-    # See also #registerDragType.
+    # See also {#registerDragType}.
     #
     def getDragTypeName(dragType) ; end
 
@@ -463,7 +463,7 @@ module Fox
     def FXApp.instance(); end
 
     # End the most deeply nested wait-cursor block.
-    # See also #beginWaitCursor.
+    # See also {#beginWaitCursor}.
     def endWaitCursor(); end
 
     #
@@ -473,7 +473,7 @@ module Fox
     #
     #   rotateCursor = app.getDefaultCursor(DEF_ROTATE_CURSOR)
     #
-    # See also #setDefaultCursor.
+    # See also {#setDefaultCursor}.
     #
     def getDefaultCursor(which) ; end
 
@@ -482,7 +482,7 @@ module Fox
     #
     #   app.setDefaultCursor(DEF_ROTATE_CURSOR, myRotateCursor)
     #
-    # See also #getDefaultCursor.
+    # See also {#getDefaultCursor}.
     #
     def setDefaultCursor(which, cursor); end
 

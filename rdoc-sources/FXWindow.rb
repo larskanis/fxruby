@@ -663,7 +663,7 @@ module Fox
     # This function notifies the drag source that its part of the drop transaction
     # is finished, and that it is free to release any resources involved in the
     # drag operation.
-    # Calling #dropFinished is advisable in cases where the drop target needs
+    # Calling {#dropFinished} is advisable in cases where the drop target needs
     # to perform complex processing on the data received from the drag source,
     # prior to returning from the +SEL_DND_DROP+ message handler.
     #

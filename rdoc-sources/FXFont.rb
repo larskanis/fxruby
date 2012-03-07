@@ -305,7 +305,7 @@ module Fox
 
     #
     # Return the font description as a string suitable for
-    # parsing with #setFont, see above.
+    # parsing with {#setFont}, see above.
     #
     def getFont(); end
 

@@ -433,13 +433,13 @@ module Fox
 
     #
     # Show or hide horizontal grid.
-    # Note that this is equivalent to the #horizontalGridShown=() method.
+    # Note that this is equivalent to the {#horizontalGridShown=} method.
     #
     def showHorzGrid(on=true) ; end
 
     #
     # Show or hide vertical grid.
-    # Note that this is equivalent to the #verticalGridShown=() method.
+    # Note that this is equivalent to the {#verticalGridShown=} method.
     #
     def showVertGrid(on=true) ; end
 
@@ -739,7 +739,7 @@ module Fox
     # the string specified by _cs_, and each row is delimited by
     # the string specified by _rs_.
     # To reverse this operation (i.e. set the table cells' text
-    # from a string), see #overlayText.
+    # from a string), see {#overlayText}.
     # Raises IndexError if any of _startrow_, _endrow_, _startcol_
     # or _endcol_ is out of bounds.
     #
@@ -761,7 +761,7 @@ module Fox
     # the character specified by _cs_, and each row should be delimited by
     # the character specified by _rs_.
     # To reverse this operation (i.e. extract the table cells' text
-    # into a string), see #extractText.
+    # into a string), see {#extractText}.
     # Raises IndexError if any of _startrow_, _endrow_, _startcol_
     # or _endcol_ is out of bounds.
     #
@@ -936,7 +936,7 @@ module Fox
     # If the value is zero, this background color is used for even-numbered
     # rows (columns). If the value is one, this background color is used
     # for odd-numbered rows (columns).
-    # See also #getCellColor.
+    # See also {#getCellColor}.
     #
     def setCellColor(row, column, color) ; end
 
@@ -946,7 +946,7 @@ module Fox
     # If the value is zero, returns the background color used for even-numbered
     # rows (columns). If the value is one, returns the background color used
     # for odd-numbered rows (columns).
-    # See also #setCellColor.
+    # See also {#setCellColor}.
     #
     def getCellColor(row, column) ; end
 

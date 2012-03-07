@@ -216,7 +216,7 @@ module Fox
     # +x+:: x-coordinate of the point [Integer]
     # +y+:: y-coordinate of the point [Integer]
     #
-    # See also #drawPoints and #drawPointsRel.
+    # See also {#drawPoints} and {#drawPointsRel}.
     #
     def drawPoint(x, y) ; end
 
@@ -227,21 +227,21 @@ module Fox
     #
     # +points+:: array of FXPoint instances [Array]
     #
-    # See also #drawPoint and #drawPointsRel.
+    # See also {#drawPoint} and {#drawPointsRel}.
     #
     def drawPoints(points) ; end
 
     #
     # Draw multiple points, where _points_ is an array of FXPoint instances.
-    # Unlike #drawPoints, where each of the points is drawn relative to the
-    # origin, #drawPointsRel treats all coordinates after the first as relative
+    # Unlike {#drawPoints}, where each of the points is drawn relative to the
+    # origin, {#drawPointsRel} treats all coordinates after the first as relative
     # to the previous point.
     #
     # ==== Parameters:
     #
     # +points+:: array of FXPoint instances [Array]
     #
-    # See also #drawPoint and #drawPoints.
+    # See also {#drawPoint} and {#drawPoints}.
     #
     def drawPointsRel(points) ; end
 
@@ -255,7 +255,7 @@ module Fox
     # <tt>x2</tt>:: x-coordinate of the ending point [Integer]
     # <tt>y2</tt>:: y-coordinate of the ending point [Integer]
     #
-    # See also #drawLines and #drawLinesRel.
+    # See also {#drawLines} and {#drawLinesRel}.
     #
     def drawLine(x1, y1, x2, y2) ; end
 
@@ -269,7 +269,7 @@ module Fox
     #
     # +points+:: array of FXPoint instances that defines all points on the line [Array]
     #
-    # See also #drawLine and #drawLinesRel.
+    # See also {#drawLine} and {#drawLinesRel}.
     #
     def drawLines(points) ; end
 
@@ -284,7 +284,7 @@ module Fox
     #
     # +points+:: array of FXPoint instances that defines all points on the line [Array]
     #
-    # See also #drawLine and #drawLines.
+    # See also {#drawLine} and {#drawLines}.
     #
     def drawLinesRel(points) ; end
 
@@ -308,7 +308,7 @@ module Fox
     # +width+:: width of the rectangle, in pixels [Integer]
     # +height+:: height of the rectangle, in pixels [Integer]
     #
-    # See also #drawRectangles, #fillRectangle and #fillRectangles.
+    # See also {#drawRectangles}, {#fillRectangle} and {#fillRectangles}.
     #
     def drawRectangle(x, y, w, h) ; end
 
@@ -319,7 +319,7 @@ module Fox
     #
     # +rectangles+:: an array of FXRectangle instances [Array]
     #
-    # See also #drawRectangle, #fillRectangle and #fillRectangles.
+    # See also {#drawRectangle}, {#fillRectangle} and {#fillRectangles}.
     #
     def drawRectangles(rectangles) ; end
 
@@ -353,7 +353,7 @@ module Fox
     # <tt>start</tt>:: starting angle of the arc, in 64ths of a degree [Integer]
     # <tt>extent</tt>:: the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]
     #
-    # See also #drawArcs, #fillArc and #fillArcs.
+    # See also {#drawArcs}, {#fillArc} and {#fillArcs}.
     #
     def drawArc(x, y, w, h, start, extent) ; end
 
@@ -364,7 +364,7 @@ module Fox
     #
     # +arcs+:: an array of FXArc instances [Array]
     #
-    # See also #drawArc, #fillArc and #fillArcs.
+    # See also {#drawArc}, {#fillArc} and {#fillArcs}.
     #
     def drawArcs(arcs) ; end
 
@@ -383,7 +383,7 @@ module Fox
     # +width+:: width of the rectangle, in pixels [Integer]
     # +height+:: height of the rectangle, in pixels [Integer]
     #
-    # See also #drawRectangle, #drawRectangles and #fillRectangles.
+    # See also {#drawRectangle}, {#drawRectangles} and {#fillRectangles}.
     #
     def fillRectangle(x, y, w, h) ; end
 
@@ -394,7 +394,7 @@ module Fox
     #
     # +rectangles+:: an array of FXRectangle instances [Array]
     #
-    # See also #drawRectangle, #drawRectangles and #fillRectangle.
+    # See also {#drawRectangle}, {#drawRectangles} and {#fillRectangle}.
     #
     def fillRectangles(rectangles) ; end
 
@@ -414,7 +414,7 @@ module Fox
     def fillChords(chords, nchords) ; end
 
     #
-    # Draw filled arc (see documentation for #drawArc).
+    # Draw filled arc (see documentation for {#drawArc}).
     #
     # === Parameters:
     #
@@ -425,7 +425,7 @@ module Fox
     # <tt>start</tt>:: starting angle of the arc, in 64ths of a degree [Integer]
     # <tt>extent</tt>:: the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]
     #
-    # See also #drawArc, #drawArcs and #fillArcs.
+    # See also {#drawArc}, {#drawArcs} and {#fillArcs}.
     #
     def fillArc(x, y, w, h, start, extent) ; end
 
@@ -436,7 +436,7 @@ module Fox
     #
     # +arcs+:: an array of FXArc instances [Array]
     #
-    # See also #drawArc, #drawArcs and #fillArc.
+    # See also {#drawArc}, {#drawArcs} and {#fillArc}.
     #
     def fillArcs(arcs) ; end
 
@@ -623,7 +623,7 @@ module Fox
     # +y+::  y-coordinate of the upper left corner [Integer]
     # +string+:: the text string to draw [String]
     #
-    # See also #drawImageText.
+    # See also {#drawImageText}.
     #
     def drawText(x, y, string) ; end
 
@@ -636,7 +636,7 @@ module Fox
     # +y+::  y-coordinate of the upper left corner [Integer]
     # +string+:: the text string to draw [String]
     #
-    # See also #drawText.
+    # See also {#drawText}.
     #
     def drawImageText(x, y, string) ; end
 
@@ -664,7 +664,7 @@ module Fox
     # +width+:: width of the clip rectangle, in pixels [Integer]
     # +height+:: height of the clip rectangle, in pixels [Integer]
     #
-    # See also #setClipMask.
+    # See also {#setClipMask}.
     #
     def setClipRectangle(x, y, w, h) ; end
 
@@ -675,7 +675,7 @@ module Fox
     #
     # +rectangle+:: a rectangle that defines the clipping region [Integer]
     #
-    # See also #setClipMask.
+    # See also {#setClipMask}.
     #
     def setClipRectangle(rectangle) ; end
 
@@ -693,7 +693,7 @@ module Fox
     # +dx+::  [Integer]
     # +dy+::  [Integer]
     #
-    # See also #setClipRectangle.
+    # See also {#setClipRectangle}.
     #
     def setClipMask(bitmap, dx=0, dy=0) ; end
 
@@ -703,10 +703,10 @@ module Fox
     def clearClipMask() ; end
 
     #
-    # When you call #clipChildren with the argument +true+, anything that you
+    # When you call {#clipChildren} with the argument +true+, anything that you
     # draw into this window will be clipped by its child windows. In other words,
     # the child windows "obscure" the parent window. This is the default behavior.
-    # If you call #clipChildren with +false+, anything that you draw into this
+    # If you call {#clipChildren} with +false+, anything that you draw into this
     # window will be visible in its child windows (i.e. the drawing will *not*
     # be clipped).
     #

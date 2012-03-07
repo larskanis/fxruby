@@ -6,7 +6,7 @@ module Fox
   #
   # The third and fourth arguments to the FXSpring.new method (+relw+ and +relh+)
   # determine the "length" of the spring. You can also change these settings after
-  # the widget is constructed using the FXSpring#relativeWidth and FXSpring#relativeHeight
+  # the widget is constructed using the {FXSpring#relativeWidth} and {FXSpring#relativeHeight}
   # accessor methods.
   # The actual length that you specify is not really
   # important; the only thing that counts is the relative length of one

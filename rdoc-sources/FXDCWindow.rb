@@ -14,7 +14,7 @@ module Fox
     # If _event_ is a reference to an FXEvent, the device context is constructed for
     # painting in response to an expose; this sets the clip rectangle to the exposed rectangle.
     # If an optional code block is provided, the new device context will be passed into the block as an
-    # argument and #end will be called automatically when the block terminates.
+    # argument and {#end} will be called automatically when the block terminates.
     #
     def initialize(drawable, event=nil) # :yields: dc
     end

@@ -190,7 +190,7 @@ module Fox
     #
     # Replace the item at _index_ with a new item with the specified
     # text, icon, size and user data object, and return the index of the replaced
-    # item. The new item is created by calling the FXHeader#createItem method.
+    # item.
     # If _notify_ is +true+, a +SEL_REPLACED+ message is sent to the header's
     # message target before the item is replaced.
     # Raises IndexError if _index_ is out of bounds.
@@ -215,7 +215,6 @@ module Fox
     #
     # Insert a new item at the specified _index_ with the specified text, icon, size
     # and user data object, and return the index of the inserted item.
-    # The new item is created by calling the FXHeader#createItem method.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the header's
     # message target after the item is inserted.
     # Raises IndexError if _index_ is out of bounds.
@@ -233,7 +232,6 @@ module Fox
     #
     # Append a new item with the specified text, icon, size and user data object,
     # and return the index of the appended item.
-    # The new item is created by calling the FXHeader#createItem method.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the header's
     # message target after the item is appended.
     #
@@ -250,7 +248,6 @@ module Fox
     #
     # Prepend a new item with the specified text, icon, size and user data object,
     # and return the index of the appended item.
-    # The new item is created by calling the FXHeader#createItem method.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the header's
     # message target after the item is appended.
     #

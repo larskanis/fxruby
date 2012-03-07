@@ -111,13 +111,13 @@ module Fox
 
     #
     # Generate print job epilog.
-    # See also #beginPrint.
+    # See also {#beginPrint}.
     #
     def endPrint(); end
 
     #
     # Generate end of page.
-    # See also #beginPage.
+    # See also {#beginPage}.
     #
     def endPage(); end
 

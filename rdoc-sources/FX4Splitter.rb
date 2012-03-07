@@ -129,7 +129,7 @@ module Fox
 
     #
     # Return the horizontal split fraction, an integer between 0 and
-    # 10000 inclusive. See FX4Splitter#setHSplit for more information.
+    # 10000 inclusive. See {FX4Splitter#setHSplit} for more information.
     #
     def getHSplit(); end
 
@@ -149,7 +149,7 @@ module Fox
 
     #
     # Return the vertical split fraction, an integer between 0 and
-    # 10000 inclusive. See FX4Splitter#setVSplit for more information.
+    # 10000 inclusive. See {FX4Splitter#setVSplit} for more information.
     #
     def getVSplit(); end
   end

@@ -55,7 +55,7 @@ module Fox
     # If the +IMAGE_OWNED+ flag is set but a +nil+ pixel buffer is
     # passed, a pixel buffer will be automatically created and will be owned
     # by the image. The flags +IMAGE_SHMI+ and +IMAGE_SHMP+ may be specified for
-    # large images to instruct #render to use shared memory to communicate
+    # large images to instruct {#render} to use shared memory to communicate
     # with the server.
     #
     # ==== Parameters:
@@ -122,7 +122,7 @@ module Fox
     # Restore client-side pixel buffer from image.
     # This operation overwrites any current values for the client-side
     # pixel buffer with values corresponding to the server-side image.
-    # If the image data is +nil+ at the time #restore is called, the
+    # If the image data is +nil+ at the time {#restore} is called, the
     # image will first allocate an (owned) pixel buffer to use for this
     # operation.
     #
@@ -149,9 +149,9 @@ module Fox
     # transform the image.
     #
     # The optional third argument specifies the _quality_ of the scaling algorithm
-    # used. By default, #scale uses a fast (but low quality) nearest-neighbor algorithm
+    # used. By default, {#scale} uses a fast (but low quality) nearest-neighbor algorithm
     # for scaling the image to its new size. To use the higher-quality scaling algorithm
-    # from FOX 1.0, you should pass in a value of 1 as the third argument to #scale.
+    # from FOX 1.0, you should pass in a value of 1 as the third argument to {#scale}.
     #
     # ==== Parameters:
     #
@@ -285,12 +285,12 @@ module Fox
     # Save pixel data to a stream.
     #
     # Note that the base class version of
-    # #savePixels saves the pixel data as-is, without any image format
+    # {#savePixels} saves the pixel data as-is, without any image format
     # specific information. For example, if you have a 1024x768 image
     # without an alpha channel (and thus only the red, green and blue
     # channels) the total number of bytes written to the stream will be
-    # 1024*768*3*8. The behavior of #savePixels is different for subclasses
-    # such as FXPNGImage, where #savePixels will instead save the image
+    # 1024*768*3*8. The behavior of {#savePixels} is different for subclasses
+    # such as FXPNGImage, where {#savePixels} will instead save the image
     # data in a specific image file format (i.e. the PNG file format).
     #
     # ==== Parameters:
@@ -303,12 +303,12 @@ module Fox
     # Load pixel data from a stream.
     #
     # Note that the base class version of
-    # #loadPixels expects to read the the pixel data in a neutral format
+    # {#loadPixels} expects to read the the pixel data in a neutral format
     # (i.e. without any image format specific information). For example, if
     # you have a 1024x768 image without an alpha channel (and thus only the
-    # red, green and blue channels), #loadPixels will attempt to read a total
-    # of 1024*768*3*8 bytes from the stream. The behavior of #loadPixels is
-    # different for subclasses such as FXPNGImage, where #loadPixels will instead
+    # red, green and blue channels), {#loadPixels} will attempt to read a total
+    # of 1024*768*3*8 bytes from the stream. The behavior of {#loadPixels} is
+    # different for subclasses such as FXPNGImage, where {#loadPixels} will instead
     # expects to read the image data in a specific image file format (i.e. the
     # PNG file format).
     #

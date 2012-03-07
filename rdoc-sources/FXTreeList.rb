@@ -3,8 +3,8 @@ module Fox
   # Each item in an FXTreeList is an instance of FXTreeItem.
   #
   # A tree item can contain zero or more child items, and those items are arranged
-  # as a linked list. The FXTreeItem#first method returns the a reference to the
-  # first child item, if any, and the FXTreeItem#last method returns a reference to
+  # as a linked list. The {FXTreeItem#first} method returns the a reference to the
+  # first child item, if any, and the {FXTreeItem#last} method returns a reference to
   # the last child item.
   #
   class FXTreeItem < FXObject
@@ -455,7 +455,7 @@ module Fox
     #
     # Set this item's state to opened. The primary result of this change is
     # that the item's icon will change to its "open" icon.
-    # This is different from the #expandTree method, which actually
+    # This is different from the {#expandTree} method, which actually
     # collapses part of the tree list, making some items invisible.
     # If _notify_ is +true+, a +SEL_OPENED+ message is sent to the list's
     # message target after the item is opened.
@@ -465,7 +465,7 @@ module Fox
     #
     # Set this item's state to closed. The primary result of this change is
     # that the item's icon will change to its "closed" icon.
-    # This is different from the #collapseTree method, which actually
+    # This is different from the {#collapseTree} method, which actually
     # collapses part of the tree list, making some items invisible.
     # If _notify_ is +true+, a +SEL_CLOSED+ message is sent to the list's
     # message target after the item is closed.

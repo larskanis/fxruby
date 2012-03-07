@@ -5,7 +5,7 @@ module Fox
   # In a the horizontal arrangement, the tab bar can have the tab
   # items on the top or on the bottom.  In the vertical arrangement,
   # the tabs can be on the left or on the right.
-  # When one of the tab items is pressed, the tab bar's #setCurrent()
+  # When one of the tab items is pressed, the tab bar's {#setCurrent}()
   # method is called with _notify_ of +true+. This in turn causes the tab bar
   # to send a +SEL_COMMAND+ message to its target.
   #

@@ -104,7 +104,7 @@ module Fox
     #
     # will both set the same three patterns, but the former shows no pattern names.
     #
-    # For compatibility with the FOX C++ library API of the same name, #setPatternList
+    # For compatibility with the FOX C++ library API of the same name, {#setPatternList}
     # also accepts a _patterns_ value that is a single string, with each pattern
     # separated by newline characters, e.g.
     #

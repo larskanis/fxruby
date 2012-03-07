@@ -24,7 +24,7 @@ module Fox
     # Mini open icon {FXIcon}
     attr_accessor :miniiconopen
 
-    # Registered drag type {FXDragType}
+    # Registered drag type [Integer]
     attr_accessor :dragtype
 
     # Flags [Integer]

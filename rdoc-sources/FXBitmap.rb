@@ -27,7 +27,7 @@ module Fox
     # is set. If the +BITMAP_OWNED+ flag _is_ set, but a +nil+ value for _pixels_
     # is passed in, a pixel buffer will be automatically created and will be
     # owned by the bitmap. The flags +BITMAP_SHMI+ and +BITMAP_SHMP+ may be
-    # specified for large bitmaps to instruct FXBitmap#render to use shared
+    # specified for large bitmaps to instruct {FXBitmap#render} to use shared
     # memory to communicate with the server.
     #
     def initialize(app, pixels=nil, opts=0, width=1, height=1) # :yields: theBitmap
@@ -37,7 +37,7 @@ module Fox
     # Populate the bitmap with new pixel data of the same size; it will assume
     # ownership of the pixel data if the +BITMAP_OWNED+ option is passed in the _opts_.
     # The server-side representation of the image, if it exists, is not updated;
-    # to update ther server-side representation, call #render.
+    # to update ther server-side representation, call {#render}.
     #
     def setData(pix, opts=0); end
 
@@ -45,7 +45,7 @@ module Fox
     # Populate the bitmap with new pixel data of a new size; it will assume ownership
     # of the pixel data if the +BITMAP_OWNED+ option is passed in the _opts_. The size of the server-
     # side representation of the image, if it exists, is adjusted but the contents are
-    # not updated; to update the server-side representation, call #render.
+    # not updated; to update the server-side representation, call {#render}.
     #
     def setData(pix, opts, w, h); end
 
@@ -91,7 +91,7 @@ module Fox
 
     #
     # Rescale pixels image to the specified width and height; this calls
-    # #resize to adjust the client and server side representations.
+    # {#resize} to adjust the client and server side representations.
     #
     def scale(w, h); end
 
@@ -102,7 +102,7 @@ module Fox
     def rotate(degrees); end
 
     #
-    # Crop bitmap to given rectangle; this calls #resize to adjust the client
+    # Crop bitmap to given rectangle; this calls {#resize} to adjust the client
     # and server side representations.  The new bitmap may be smaller or larger
     # than the old one; blank areas are filled with _color_. There must be at
     # least one pixel of overlap between the old and the new bitmap.

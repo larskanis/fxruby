@@ -8,7 +8,7 @@ module Fox
   # If this query does not result in a new status string, the target of
   # the status line is tried via an ordinary +SEL_UPDATE+ message.
   # If _none_ of the above work, the status line will display the normal text
-  # (i.e. the string set via the #normalText= accessor method).
+  # (i.e. the string set via the {#normalText}= accessor method).
   # If the message contains a newline character, then the part before the newline
   # will be displayed in the highlight color, while the part after the newline
   # will be shown using the normal text color.
