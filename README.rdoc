@@ -16,11 +16,23 @@ featureful, highly optimized C++ toolkit.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+FXRuby supportes everything of FOX, that is useful in Ruby:
+* MDI/SDI application window layouts, floating toolbars
+* Rich set of controls (tables, imagelists, menus, canvas, ...)
+* Flexible layout management
+* Image read/write support in many formats
+* Embedded OpenGL graphic
 
 == INSTALL:
 
-* sudo gem install fxruby
+FXRuby runs on Linux, Windows and OS-X. Installation on *nix requires
+FOX development headers and libraries installed:
+* on Debian/Ubuntu: <tt>sudo apt-get install libfox-1.6-dev</tt>
+* see detailed installation instructions in the {https://github.com/lylejohnson/fxruby/wiki Wiki}
+
+On Windows the binary gem is downloaded.
+
+* gem install fxruby
 
 == DIRECTORIES
 The directory structure is:
