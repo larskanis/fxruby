@@ -1,7 +1,7 @@
 = FXRuby
 
-* http://github.com/larskanis/fxruby/tree/1.6
-* http://rubyforge.org/projects/fxruby
+* http://github.com/larskanis/fxruby
+* API: http://rubydoc.info/gems/fxruby/frames
 
 == DESCRIPTION:
 
@@ -21,26 +21,21 @@ FXRuby supportes everything of FOX, that is useful in Ruby:
 * Rich set of controls (tables, imagelists, menus, canvas, ...)
 * Flexible layout management
 * Image read/write support in many formats
-* Embedded OpenGL graphic
+* Embedded OpenGL graphics
 
 == INSTALL:
 
 FXRuby runs on Linux, Windows and OS-X. Installation on *nix requires
 FOX development headers and libraries installed:
 * on Debian/Ubuntu: <tt>sudo apt-get install libfox-1.6-dev</tt>
-* on Windows the binary gem is downloaded
-* see detailed installation instructions in the {https://github.com/lylejohnson/fxruby/wiki Wiki}
+* see also detailed installation instructions in the {https://github.com/lylejohnson/fxruby/wiki Wiki}
+* no preparation needed on Windows - the binary gem can be used
 
-Install the gem:
+Then, install the gem:
 * gem install fxruby
 
 == DIRECTORIES
 The directory structure is:
-
-* doc/
-
-  Contains the documentation (a.k.a. the FXRuby User's Guide) in
-  HTML format.
 
 * examples/
 
