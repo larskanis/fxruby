@@ -51,6 +51,7 @@ hoe = Hoe.spec "fxruby" do
   self.blog_categories = %w{FXRuby}
   self.clean_globs = [".config", "ext/fox16/Makefile", "ext/fox16/*.o", "ext/fox16/*.bundle", "ext/fox16/mkmf.log", "ext/fox16/conftest.dSYM", "ext/fox16/include/swigrubyrun.h"]
   developer("Lyle Johnson", "lyle@lylejohnson.name")
+  developer("Lars Kanis", "kanis@comcard.de")
   self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
   self.remote_rdoc_dir = "doc/api"
   self.spec_extras = {
