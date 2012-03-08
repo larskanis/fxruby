@@ -1,8 +1,12 @@
+--readme          README.rdoc
+--title           "FXRuby API Documentation"
 --exclude '/aliases|kwargs|missingdep|responder/'
 --protected
 --no-private
+--charset utf-8
 rdoc-sources/*.rb
 lib/fox16/*.rb
 -
 History.txt
 rdoc-sources/*.rdoc
+README.rdoc
