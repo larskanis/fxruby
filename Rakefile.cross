@@ -93,7 +93,6 @@ CLEAN.include( STATIC_BUILDDIR.to_s )
 ### C R O S S - C O M P I L A T I O N - T A S K S
 #####################################################################
 
-
 directory STATIC_SOURCESDIR.to_s
 
 #
@@ -123,7 +122,7 @@ LIBZ_ENV = [
 
 # generate the makefile in a clean build location
 file LIBZ_MAKEFILE => [STATIC_LIBZ_BUILDDIR] do |t|
-  Dir.chdir( STATIC_LIBZ_BUILDDIR ) do
+  chdir( STATIC_LIBZ_BUILDDIR ) do
     options = [
       "--prefix=#{STATIC_INSTALLDIR}",
     ]
@@ -135,7 +134,7 @@ end
 
 # generate the makefile in a clean build location
 task LIBZ_A => LIBZ_MAKEFILE do |t|
-  Dir.chdir( STATIC_LIBZ_BUILDDIR ) do
+  chdir( STATIC_LIBZ_BUILDDIR ) do
     sh "make -j#{NUM_CPUS} install 'LDSHAREDLIBC=-lmsvcrt'"
   end
 end
@@ -164,7 +163,7 @@ LIBPNG_ENV = [
 ]
 # generate the makefile in a clean build location
 file LIBPNG_MAKEFILE => [STATIC_LIBPNG_BUILDDIR, LIBZ_A] do |t|
-  Dir.chdir( STATIC_LIBPNG_BUILDDIR ) do
+  chdir( STATIC_LIBPNG_BUILDDIR ) do
     options = [
       "--target=#{CROSS_PREFIX}",
       "--host=#{CROSS_PREFIX}",
@@ -180,7 +179,7 @@ end
 
 # generate the makefile in a clean build location
 task LIBPNG_A => [LIBPNG_MAKEFILE, LIBZ_A] do |t|
-  Dir.chdir( STATIC_LIBPNG_BUILDDIR ) do
+  chdir( STATIC_LIBPNG_BUILDDIR ) do
     sh "make -j#{NUM_CPUS} install"
   end
 end
@@ -205,7 +204,7 @@ end
 
 # generate the makefile in a clean build location
 file LIBJPEG_MAKEFILE => STATIC_LIBJPEG_BUILDDIR do |t|
-  Dir.chdir( STATIC_LIBJPEG_BUILDDIR ) do
+  chdir( STATIC_LIBJPEG_BUILDDIR ) do
     options = [
       "--target=#{CROSS_PREFIX}",
       "--host=#{CROSS_PREFIX}",
@@ -222,7 +221,7 @@ end
 
 # build libjpeg.a
 task LIBJPEG_A => [LIBJPEG_MAKEFILE] do |t|
-  Dir.chdir( STATIC_LIBJPEG_BUILDDIR ) do
+  chdir( STATIC_LIBJPEG_BUILDDIR ) do
     sh "make -j#{NUM_CPUS} install"
   end
 end
@@ -252,7 +251,7 @@ LIBTIFF_ENV = [
 
 # generate the makefile in a clean build location
 file LIBTIFF_MAKEFILE => [STATIC_LIBTIFF_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
-  Dir.chdir( STATIC_LIBTIFF_BUILDDIR ) do
+  chdir( STATIC_LIBTIFF_BUILDDIR ) do
     options = [
       "--target=#{CROSS_PREFIX}",
       "--host=#{CROSS_PREFIX}",
@@ -272,7 +271,7 @@ end
 
 # build libtiff.a
 task LIBTIFF_A => [LIBTIFF_MAKEFILE] do |t|
-  Dir.chdir( STATIC_LIBTIFF_BUILDDIR ) do
+  chdir( STATIC_LIBTIFF_BUILDDIR ) do
     sh "make -j#{NUM_CPUS} install"
   end
 end
@@ -303,7 +302,7 @@ LIBFOX_ENV = [
 
 # generate the makefile in a clean build location
 file LIBFOX_MAKEFILE => [STATIC_LIBFOX_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
-  Dir.chdir( STATIC_LIBFOX_BUILDDIR ) do
+  chdir( STATIC_LIBFOX_BUILDDIR ) do
     options = [
       "--target=#{CROSS_PREFIX}",
       "--host=#{CROSS_PREFIX}",
@@ -321,7 +320,7 @@ end
 
 # build libfox.a
 task LIBFOX_A => [LIBFOX_MAKEFILE] do |t|
-  Dir.chdir( STATIC_LIBFOX_BUILDDIR ) do
+  chdir( STATIC_LIBFOX_BUILDDIR ) do
     sh "make -j#{NUM_CPUS} #{FOX_ENV.join(" ")} install"
   end
 end
@@ -354,8 +353,8 @@ FOX_ENV = [
 ]
 
 # generate the makefile in a clean build location
-file LIBFXSCINTILLA_MAKEFILE => [STATIC_LIBFXSCINTILLA_BUILDDIR, LIBJPEG_A, LIBZ_A] do |t|
-  Dir.chdir( STATIC_LIBFXSCINTILLA_BUILDDIR ) do
+file LIBFXSCINTILLA_MAKEFILE => [STATIC_LIBFXSCINTILLA_BUILDDIR, LIBFOX_A] do |t|
+  chdir( STATIC_LIBFXSCINTILLA_BUILDDIR ) do
     options = [
       "--target=#{CROSS_PREFIX}",
       "--host=#{CROSS_PREFIX}",
@@ -371,7 +370,7 @@ end
 
 # build libfxscintilla.a
 task LIBFXSCINTILLA_A => [LIBFXSCINTILLA_MAKEFILE] do |t|
-  Dir.chdir( STATIC_LIBFXSCINTILLA_BUILDDIR ) do
+  chdir( STATIC_LIBFXSCINTILLA_BUILDDIR ) do
     sh "make -j#{NUM_CPUS} #{FOX_ENV.join(" ")} install"
   end
 end
