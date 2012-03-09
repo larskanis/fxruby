@@ -3,7 +3,6 @@
 .yardopts
 History.txt
 Manifest.txt
-README.git
 README.rdoc
 Rakefile
 Rakefile.cross
