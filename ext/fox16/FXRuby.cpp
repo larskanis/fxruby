@@ -269,6 +269,7 @@ void FXRbUnregisterRubyObj(const void* foxObj){
   if(foxObj!=0){
     FXRubyObjDesc* desc;
     if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
+      FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%d,foxObj=%p)\n",static_cast<int>(desc->obj),foxObj));
       DATA_PTR(desc->obj)=0;
       FXFREE(&desc);
       st_delete(FXRuby_Objects,reinterpret_cast<st_data_t *>(const_cast<void**>(&foxObj)),reinterpret_cast<st_data_t *>(0));
