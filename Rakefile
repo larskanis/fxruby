@@ -7,10 +7,10 @@ load 'Rakefile.cross'
 
 # Use forked process for chdir'ed environment, to allow parallel execution with drake
 module FileUtils
-  alias old_fileutils_cd cd
+  alias unforked_fileutils_cd cd
   def cd(dir, options={}, &block)
-    raise "forked_chdir called without block" unless block_given?
-    Process.waitpid(fork{ old_fileutils_cd(dir, options, &block) })
+    raise "chdir called without block" unless block_given?
+    Process.waitpid(fork{ unforked_fileutils_cd(dir, options, &block) })
   end
   module_function :cd
   alias chdir cd
