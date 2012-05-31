@@ -34,7 +34,7 @@ end
 
 
 # Fetch zlib tarball
-LIBZ_VERSION            = ENV['LIBZ_VERSION'] || '1.2.5'
+LIBZ_VERSION            = ENV['LIBZ_VERSION'] || '1.2.7'
 LIBZ_SOURCE_URI         = URI( "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.bz2" )
 LIBZ_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBZ_SOURCE_URI.path )
 STATIC_LIBZ_BUILDDIR    = STATIC_BUILDDIR + LIBZ_TARBALL.basename(".tar.bz2")
@@ -42,7 +42,7 @@ LIBZ_MAKEFILE           = STATIC_LIBZ_BUILDDIR + 'Makefile'
 LIBZ_A                  = STATIC_INSTALLDIR + 'lib' + 'libz.a'
 
 # Fetch libpng tarball
-LIBPNG_VERSION            = ENV['LIBPNG_VERSION'] || '1.5.4'
+LIBPNG_VERSION            = ENV['LIBPNG_VERSION'] || '1.5.10'
 LIBPNG_SOURCE_URI         = URI( "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz?download" )
 LIBPNG_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBPNG_SOURCE_URI.path )
 STATIC_LIBPNG_BUILDDIR    = STATIC_BUILDDIR + LIBPNG_TARBALL.basename(".tar.gz")
@@ -51,7 +51,7 @@ LIBPNG_A                  = STATIC_INSTALLDIR + 'lib' + 'libpng.a'
 
 
 # Fetch libjpeg tarball
-LIBJPEG_VERSION            = ENV['LIBJPEG_VERSION'] || '8c'
+LIBJPEG_VERSION            = ENV['LIBJPEG_VERSION'] || '8d'
 LIBJPEG_SOURCE_URI         = URI( "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz" )
 LIBJPEG_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBJPEG_SOURCE_URI.path )
 STATIC_LIBJPEG_BUILDDIR    = STATIC_BUILDDIR + "jpeg-#{LIBJPEG_VERSION}"
@@ -60,7 +60,7 @@ LIBJPEG_A                  = STATIC_INSTALLDIR + 'lib' + 'libjpeg.a'
 
 
 # Fetch libtiff tarball
-LIBTIFF_VERSION            = ENV['LIBTIFF_VERSION'] || '3.9.5'
+LIBTIFF_VERSION            = ENV['LIBTIFF_VERSION'] || '4.0.1'
 LIBTIFF_SOURCE_URI         = URI( "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz" )
 LIBTIFF_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBTIFF_SOURCE_URI.path )
 STATIC_LIBTIFF_BUILDDIR    = STATIC_BUILDDIR + LIBTIFF_TARBALL.basename(".tar.gz")
@@ -69,7 +69,7 @@ LIBTIFF_A                  = STATIC_INSTALLDIR + 'lib' + 'libtiff.a'
 
 
 # Fetch libfox tarball
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.44'
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.45'
 LIBFOX_SOURCE_URI         = URI( "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz" )
 LIBFOX_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBFOX_SOURCE_URI.path )
 STATIC_LIBFOX_BUILDDIR    = STATIC_BUILDDIR + LIBFOX_TARBALL.basename(".tar.gz")
