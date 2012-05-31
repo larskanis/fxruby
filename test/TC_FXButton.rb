@@ -10,6 +10,10 @@ class TC_FXButton < Fox::TestCase
     @button = FXButton.new(mainWindow, "buttonText")
   end
 
+  def test_nil_parent_raises_argument_error
+    assert_raise(ArgumentError){ FXButton.new(nil, "buttonText") }
+  end
+
   def testText
     assert(@button.text)
     assert_instance_of(String, @button.text)

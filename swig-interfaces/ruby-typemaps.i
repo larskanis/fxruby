@@ -24,8 +24,14 @@
 
 %apply Pointer NONNULL {
   FXApp* APP,
-	FXComposite* PARENT,
-	FXWindow* OWNER
+  FXApp* a,
+  FXApp* app,
+  FXApp* application,
+  FXComposite* PARENT,
+  FXComposite* p,
+  FXWindow* OWNER,
+  FXWindow* own,
+  FXWindow* owner
 }
 
 /* Type-checking rules */

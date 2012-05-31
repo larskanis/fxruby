@@ -53,10 +53,10 @@ public:
 public:
 
   /// Construct splash window
-  FXSplashWindow(FXApp* ap,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+  FXSplashWindow(FXApp* a,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
 
   /// Construct splash window
-  FXSplashWindow(FXWindow* ow,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+  FXSplashWindow(FXWindow* own,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
 
   /// Set the icon for the splash window
   void setIcon(FXIcon* ic);

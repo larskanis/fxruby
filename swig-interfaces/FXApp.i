@@ -464,7 +464,7 @@ public:
   * Run popup menu while shown, until stop() or stopModal() is called.
   * Also returns when entering previous cascading popup menu.
   */
-  FXint runPopup(FXWindow* window);
+  FXint runPopup(FXWindow* owner);
 
   /// True if the window is modal
   bool isModal(FXWindow* window) const;

@@ -15,6 +15,10 @@ class TC_FXShell < Test::Unit::TestCase
     @mainWin = FXMainWindow.new(@app, 'TC_FXShell')
   end
 
+  def test_nil_parent_raises_argument_error
+    assert_raise(ArgumentError){ FXShell.new(nil, 0, 0, 0, 0, 0) }
+  end
+
   def test_new
     # Free-floating
     shell1 = FXShell.new(@app, 0, 0, 0, 0, 0)

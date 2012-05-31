@@ -10,6 +10,10 @@ class TC_FXScrollArea < Fox::TestCase
     @scrollArea = FXScrollArea.new(mainWindow)
   end
 
+  def test_nil_parent_raises_argument_error
+    assert_raise(ArgumentError){ FXScrollArea.new(nil) }
+  end
+
   def test_position_get
     pos = @scrollArea.position
     assert_instance_of(Array, pos)

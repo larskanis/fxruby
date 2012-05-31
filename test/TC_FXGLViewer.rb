@@ -10,6 +10,15 @@ class TC_FXGLViewer < Fox::TestCase
     vis = FXGLVisual.new(app, VISUAL_DOUBLEBUFFER)
     @viewer = FXGLViewer.new(mainWindow, vis)
   end
+
+  def test_supported
+    assert FXGLVisual.supported?(app)
+  end
+
+  def test_nil_app_raises_argument_error
+    assert_raise(ArgumentError){ FXGLVisual.supported?(nil) }
+  end
+
 =begin
   def test_readPixels
     pixels = @viewer.readPixels(0, 0, @viewer.width, @viewer.height)

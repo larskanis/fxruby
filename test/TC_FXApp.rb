@@ -23,6 +23,10 @@ class TC_FXApp2 < Fox::TestCase
     super(self.class.name)
   end
 
+  def test_nil_window_raises_argument_error
+    assert_raise(ArgumentError){ app.runPopup(nil) }
+  end
+
   def check_events(pipe_rd, pipe_wr)
     app.addInput(pipe_wr, INPUT_WRITE, app, FXApp::ID_QUIT)
     app.run
