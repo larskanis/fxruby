@@ -1,3 +1,7 @@
+=== 1.6.24 / HEAD
+
+* Update libraries for win32 build: libz-1.2.7 libpng-1.5.10 libjpeg-8d libtiff-4.0.1 libfox-1.6.45
+* Avoid Segfauls in lots of methods when called with nil instead of FXApp, FXComposite or FXWindow objects
 
 === 1.6.23 / 2012-03-08
 
