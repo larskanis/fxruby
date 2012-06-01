@@ -80,7 +80,8 @@ def do_rake_compiler_setup
     have_library( 'winspool', 'EnumPrintersA') && append_library( $libs, 'winspool' )
 
     CONFIG['CC'] += "\nCXX=#{ENV['CROSS_PREFIX']}-g++" # Hack CXX into Makefile for cross compilation
-    $CFLAGS += " -D_SYS_TIME_H_" # fix incompatible types for gettimeofday()
+    CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
+    $LDFLAGS += " -static-libgcc -static-libstdc++" # mingw-w64 v4.7 defaults to dynamic linking
   elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
     $LDFLAGS = $LDFLAGS + " -I/usr/local/lib"
@@ -92,8 +93,8 @@ def do_rake_compiler_setup
     $LDFLAGS = $LDFLAGS + " -L/usr/local/lib"   # for libjpeg and libtiff
     %w{Xft}.each {|lib| $libs = append_library($libs, lib) }
   end
-  $libs = append_library($libs, "stdc++")
-  have_header("sys/time.h") unless RUBY_PLATFORM =~ /mingw/
+  $libs = append_library($libs, "stdc++") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
+  have_header("sys/time.h") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
   have_header("signal.h")
   if have_library("z", "deflate")
     have_library("png", "png_create_read_struct")
