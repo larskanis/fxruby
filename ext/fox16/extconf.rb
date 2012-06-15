@@ -81,7 +81,7 @@ def do_rake_compiler_setup
 
     CONFIG['CC'] += "\nCXX=#{ENV['CROSS_PREFIX']}-g++" # Hack CXX into Makefile for cross compilation
     CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
-    $LDFLAGS += " -static-libgcc -static-libstdc++" # mingw-w64 v4.7 defaults to dynamic linking
+    $LDFLAGS += " -s -static-libgcc -static-libstdc++" # mingw-w64 v4.7 defaults to dynamic linking
   elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
     $LDFLAGS = $LDFLAGS + " -I/usr/local/lib"
