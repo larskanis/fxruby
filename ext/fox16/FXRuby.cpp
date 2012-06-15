@@ -2019,12 +2019,6 @@ extern "C" void Init_text(void);
 extern "C" void Init_treelist(void);
 extern "C" void Init_ui(void);
 
-#ifdef USE_RB_REQUIRE
-#define REQUIRE(fname) rb_require((fname))
-#else
-#define REQUIRE(fname) rb_funcall(rb_mKernel,rb_intern("require"),1,rb_str_new2((fname)))
-#endif
-
 extern "C" void
 #if defined _WIN32
 __declspec(dllexport)
@@ -2050,18 +2044,6 @@ Init_fox16(void) {
   Init_table();
   Init_text();
   Init_treelist();
-  REQUIRE("fox16/core");
-  REQUIRE("fox16/dict");
-  REQUIRE("fox16/settings");
-  REQUIRE("fox16/iterators");
-  REQUIRE("fox16/keys");
-  REQUIRE("fox16/aliases");
-  REQUIRE("fox16/responder2");
-  REQUIRE("fox16/glgroup");
-  REQUIRE("fox16/execute_nonmodal");
-  REQUIRE("fox16/version");
-  REQUIRE("fox16/kwargs");
-  REQUIRE("fox16/exceptions_for_fxerror");
 
   id_assocs=rb_intern("@assocs");
   id_backtrace=rb_intern("backtrace");
