@@ -148,6 +148,7 @@ include/FXRbShutter.h
 include/FXRbShutterVirtuals.h
 include/FXRbSlider.h
 include/FXRbSpinner.h
+include/FXRbSplashWindow.h
 include/FXRbSplitter.h
 include/FXRbStatusbar.h
 include/FXRbStatusline.h

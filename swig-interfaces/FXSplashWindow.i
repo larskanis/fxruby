@@ -52,11 +52,17 @@ public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
 
-  /// Construct splash window
-  FXSplashWindow(FXApp* a,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+  %extend {
+    /// Construct splash window
+    FXSplashWindow(FXApp* a,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000){
+      return new FXRbSplashWindow(a,ic,opts,ms);
+      }
 
-  /// Construct splash window
-  FXSplashWindow(FXWindow* own,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000);
+    /// Construct splash window
+    FXSplashWindow(FXWindow* own,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000){
+      return new FXRbSplashWindow(own,ic,opts,ms);
+      }
+    }
 
   /// Set the icon for the splash window
   void setIcon(FXIcon* ic);
