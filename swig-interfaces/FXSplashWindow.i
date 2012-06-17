@@ -55,11 +55,15 @@ public:
   %extend {
     /// Construct splash window
     FXSplashWindow(FXApp* a,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000){
+      /* Icon will be free`d by Rubys GC. */
+      opts &= ~SPLASH_OWNS_ICON;
       return new FXRbSplashWindow(a,ic,opts,ms);
       }
 
     /// Construct splash window
     FXSplashWindow(FXWindow* own,FXIcon* ic,FXuint opts=SPLASH_SIMPLE,FXuint ms=5000){
+      /* Icon will be free`d by Rubys GC. */
+      opts &= ~SPLASH_OWNS_ICON;
       return new FXRbSplashWindow(own,ic,opts,ms);
       }
     }

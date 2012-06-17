@@ -17,8 +17,7 @@ module Fox
   #   if you intend to do repeated re-rendering of the image after it has been
   #   created.
   # +IMAGE_OWNED+::
-  #   If the +IMAGE_OWNED+ option is set, the FXImage object assumes ownership
-  #   of its client-side pixel data (if any).
+  #   Does nothing - for backward compatibility only.
   # +IMAGE_DITHER+::
   #   Dither image to look better
   # +IMAGE_NEAREST+::
