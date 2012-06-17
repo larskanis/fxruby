@@ -1,3 +1,9 @@
+=== 1.6.25 / 2012-06-17
+
+* Windows: Fix slow loading of fox16.so by using a more recent mingw-w64 compiler
+  (reported by Allen Doug and Igor Jorobus)
+* Fix two possible segfaults in conjunction with FXSplashWindow (reported by Igor Jorobus)
+
 === 1.6.24 / 2012-06-06
 
 * Update libraries for win32 build: libz-1.2.7 libpng-1.5.10 libjpeg-8d libtiff-4.0.1 libfox-1.6.45
