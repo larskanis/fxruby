@@ -9,7 +9,7 @@ require 'uri'
 require 'rbconfig'
 require 'pathname'
 
-ENV['RUBY_CC_VERSION'] ||= '1.8.7:1.9.2'
+ENV['RUBY_CC_VERSION'] ||= '1.8.7:1.9.3'
 
 # Cross-compilation constants
 COMPILE_HOME               = Pathname( "build" ).expand_path
@@ -42,7 +42,7 @@ LIBZ_MAKEFILE           = STATIC_LIBZ_BUILDDIR + 'Makefile'
 LIBZ_A                  = STATIC_INSTALLDIR + 'lib' + 'libz.a'
 
 # Fetch libpng tarball
-LIBPNG_VERSION            = ENV['LIBPNG_VERSION'] || '1.5.10'
+LIBPNG_VERSION            = ENV['LIBPNG_VERSION'] || '1.5.13'
 LIBPNG_SOURCE_URI         = URI( "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz?download" )
 LIBPNG_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBPNG_SOURCE_URI.path )
 STATIC_LIBPNG_BUILDDIR    = STATIC_BUILDDIR + LIBPNG_TARBALL.basename(".tar.gz")
@@ -60,7 +60,7 @@ LIBJPEG_A                  = STATIC_INSTALLDIR + 'lib' + 'libjpeg.a'
 
 
 # Fetch libtiff tarball
-LIBTIFF_VERSION            = ENV['LIBTIFF_VERSION'] || '4.0.1'
+LIBTIFF_VERSION            = ENV['LIBTIFF_VERSION'] || '4.0.3'
 LIBTIFF_SOURCE_URI         = URI( "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz" )
 LIBTIFF_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBTIFF_SOURCE_URI.path )
 STATIC_LIBTIFF_BUILDDIR    = STATIC_BUILDDIR + LIBTIFF_TARBALL.basename(".tar.gz")
@@ -69,7 +69,7 @@ LIBTIFF_A                  = STATIC_INSTALLDIR + 'lib' + 'libtiff.a'
 
 
 # Fetch libfox tarball
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.45'
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.47'
 LIBFOX_SOURCE_URI         = URI( "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz" )
 LIBFOX_TARBALL            = STATIC_SOURCESDIR + File.basename( LIBFOX_SOURCE_URI.path )
 STATIC_LIBFOX_BUILDDIR    = STATIC_BUILDDIR + LIBFOX_TARBALL.basename(".tar.gz")
