@@ -2023,7 +2023,7 @@ extern "C" void
 #if defined _WIN32
 __declspec(dllexport)
 #endif
-Init_fox16(void) {
+Init_fox16_c(void) {
   Init_core();
   Init_dc();
   Init_frames();
