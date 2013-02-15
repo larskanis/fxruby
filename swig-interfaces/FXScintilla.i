@@ -40,10 +40,10 @@ struct SCNotification {
     // Need to be careful about when this field's value is actually defined
     VALUE text() const {
       if (self->nmhdr.code==SCN_MODIFIED){
-        return (self->text) ? rb_str_new(self->text,self->length) : Qnil;
+        return (self->text) ? to_ruby(self->text,self->length) : Qnil;
         }
       else if (self->nmhdr.code==SCN_USERLISTSELECTION || self->nmhdr.code==SCN_URIDROPPED){
-        return (self->text) ? rb_str_new2(self->text) : Qnil;
+        return (self->text) ? to_ruby(self->text) : Qnil;
       } else {
         return Qnil;
       }

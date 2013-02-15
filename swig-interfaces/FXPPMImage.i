@@ -28,11 +28,11 @@ protected:
 public:
   %extend {
     static VALUE fileExt() {
-      return rb_str_new2(FXPPMImage::fileExt);
+      return to_ruby(FXPPMImage::fileExt);
       }
 
     static VALUE mimeType() {
-      return rb_str_new2(FXPPMImage::mimeType);
+      return to_ruby(FXPPMImage::mimeType);
       }
     }
 public:

@@ -81,10 +81,10 @@ struct FXTextChange {
   FXint   nins;         /// Number characters inserted at position
   %extend {
     VALUE ins() const {
-      return rb_str_new(self->ins,self->nins);
+      return to_ruby(self->ins,self->nins);
       }
     VALUE del() const {
-      return rb_str_new(self->del,self->ndel);
+      return to_ruby(self->del,self->ndel);
       }
     }
   };
@@ -488,7 +488,7 @@ public:
       VALUE str;
       FXString buffer;
       self->extractText(buffer,pos,n);
-      str=rb_str_new(buffer.text(),n);
+      str=to_ruby(buffer.text(),n);
       return str;
       }
 
@@ -498,8 +498,8 @@ public:
       VALUE str=Qnil;
       if(self->isStyled()){
         self->extractStyle(style,pos,n);
-        str=rb_str_new(style.text(),n);
-	}
+        str=to_ruby(style.text(),n);
+        }
       return str;
       }
 

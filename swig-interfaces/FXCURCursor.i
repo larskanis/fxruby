@@ -28,7 +28,7 @@ protected:
 public:
   %extend {
     static VALUE fileExt() {
-      return rb_str_new2(FXCURCursor::fileExt);
+      return to_ruby(FXCURCursor::fileExt);
       }
     }
 public:

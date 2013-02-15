@@ -106,13 +106,13 @@ inline FXbool to_FXbool(VALUE obj){
 %typemap(out) FXbool "$result = $1 ? Qtrue : Qfalse;";
 
 /* Convert FXString struct members to Ruby strings */
-%typemap(out) FXString * "$result = rb_str_new2($1->text());";
+%typemap(out) FXString * "$result = to_ruby($1->text());";
 
 /* Convert FXString return values to Ruby strings */
-%typemap(out) FXString "$result = rb_str_new2($1.text());";
+%typemap(out) FXString "$result = to_ruby($1.text());";
 
 /* Convert const FXString& return values to Ruby strings */
-%typemap(out) const FXString& "$result = rb_str_new2($1->text());";
+%typemap(out) const FXString& "$result = to_ruby($1->text());";
 
 /**
  * Used by constructors for icons and images that require an array

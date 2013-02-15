@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'test/unit'
 require 'fox16'
 require 'fox16/colors'
@@ -93,4 +94,12 @@ public
     assert_equal([8, 6, 8], endIndex)
   end
 
+  if ''.respond_to?(:encoding)
+    def test_encoding
+      @text.text = "世界線航跡蔵"
+      assert_equal(Encoding::UTF_8, @text.text.encoding)
+      assert_equal('世界線航跡蔵', @text.text)
+      assert_equal('線航', @text.extractText(@text.text[0,2].bytesize, @text.text[2,2].bytesize))
+    end
+  end
 end

@@ -31,11 +31,11 @@ protected:
 public:
   %extend {
     static VALUE fileExt() {
-      return rb_str_new2(FXJPGImage::fileExt);
+      return to_ruby(FXJPGImage::fileExt);
       }
 
     static VALUE mimeType() {
-      return rb_str_new2(FXJPGImage::mimeType);
+      return to_ruby(FXJPGImage::mimeType);
       }
 
     /// True if format is supported

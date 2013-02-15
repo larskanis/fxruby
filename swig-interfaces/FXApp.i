@@ -161,7 +161,7 @@ public:
   %extend {
     // Copyright notice for library
     static VALUE copyright() {
-      return rb_str_new2((const char *) FXApp::copyright);
+      return to_ruby(FXApp::copyright);
     }
   }
 

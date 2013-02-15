@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'test/unit'
 require 'testcase'
 require 'fox16'
@@ -58,6 +59,14 @@ class TC_FXComboBox < Fox::TestCase
     assert_equal("one", items[0])
     assert_equal("two", items[1])
     assert_equal("three", items[2])
+  end
+
+  if ''.respond_to?(:encoding)
+    def test_encoding
+      assert_equal(3, @comboBox.fillItems(%w{"世界 線航跡 蔵"}))
+      assert_equal(Encoding::UTF_8, @comboBox.getItem(2).encoding)
+      assert_equal('線航跡', @comboBox.getItem(1))
+    end
   end
 end
 

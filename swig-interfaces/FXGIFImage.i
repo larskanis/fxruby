@@ -28,10 +28,10 @@ protected:
 public:
   %extend {
     static VALUE fileExt() {
-      return rb_str_new2(FXGIFImage::fileExt);
+      return to_ruby(FXGIFImage::fileExt);
       }
     static VALUE mimeType() {
-      return rb_str_new2(FXGIFImage::mimeType);
+      return to_ruby(FXGIFImage::mimeType);
       }
     }
 public:

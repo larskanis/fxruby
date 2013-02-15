@@ -171,6 +171,11 @@ FXint FXRbSignalNameToNumber(const char* name);
 // Fox module instance
 extern VALUE mFox;
 
+#ifdef HAVE_RUBY_ENCODING_H
+// UTF-8 encoding index
+extern int utf8_enc_idx;
+#endif
+
 // Convert from FOX datatypes to Ruby objects
 inline VALUE to_ruby(const void* ptr){
   return Qnil; // FIXME: Used for some FXIconSource methods
@@ -223,11 +228,28 @@ inline VALUE to_ruby(unsigned long l){
 #endif
 
 inline VALUE to_ruby(const FXString& s){
-  return rb_str_new2(s.text());
+  VALUE str = rb_str_new(s.text(), s.length());
+#ifdef HAVE_RUBY_ENCODING_H
+  rb_enc_associate_index(str, utf8_enc_idx);
+#endif
+  return str;
   }
 
 inline VALUE to_ruby(const FXchar* s){
-  return s ? rb_str_new2(s) : Qnil;
+  if(!s) return Qnil;
+  VALUE str = rb_str_new2(s);
+#ifdef HAVE_RUBY_ENCODING_H
+  rb_enc_associate_index(str, utf8_enc_idx);
+#endif
+  return str;
+  }
+
+inline VALUE to_ruby(const FXchar* s, int length){
+  VALUE str = rb_str_new(s, length);
+#ifdef HAVE_RUBY_ENCODING_H
+  rb_enc_associate_index(str, utf8_enc_idx);
+#endif
+  return str;
   }
 
 extern VALUE to_ruby(const FXObject* obj);

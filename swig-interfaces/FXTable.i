@@ -656,7 +656,7 @@ public:
       VALUE result;
       if(startrow<0 || startcol<0 || self->getNumRows()<=endrow || self->getNumColumns()<=endcol) rb_raise(rb_eIndexError,"index out of bounds");
       self->extractText(str,startrow,endrow,startcol,endcol,cs,rs);
-      result=rb_str_new2(str.text());
+      result=to_ruby(str);
       return result;
       }
 

@@ -31,11 +31,11 @@ protected:
 public:
   %extend {
     static VALUE fileExt() {
-      return rb_str_new2(FXTIFIcon::fileExt);
+      return to_ruby(FXTIFIcon::fileExt);
       }
 
     static VALUE mimeType() {
-      return rb_str_new2(FXTIFIcon::mimeType);
+      return to_ruby(FXTIFIcon::mimeType);
       }
 
     /// True if format is supported

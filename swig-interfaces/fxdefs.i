@@ -408,7 +408,7 @@ FXbool fxisconsole(const FXchar *path);
 /// Version number that the library has been compiled with
 VALUE _fxversion(){
   FXString version=FXStringFormat("%d.%d.%d",fxversion[0],fxversion[1],fxversion[2]);
-  return rb_str_new2(version.text());
+  return to_ruby(version);
   }
 %}
 

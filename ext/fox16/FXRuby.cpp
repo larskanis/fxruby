@@ -1484,10 +1484,10 @@ FXFoldingItem* FXRbCallFoldingItemMethod(const FXFoldingList* recv,ID func,FXint
 
 //----------------------------------------------------------------------
 
-FXFileAssoc* FXRbCallFileAssocMethod(const FXFileDict* recv,ID func,const char* pathname){
+FXFileAssoc* FXRbCallFileAssocMethod(const FXFileDict* recv,ID func,const FXchar* pathname){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,func,1,rb_str_new2(pathname));
+  VALUE result=rb_funcall(obj,func,1,to_ruby(pathname));
   return NIL_P(result) ? 0 : reinterpret_cast<FXFileAssoc*>(DATA_PTR(result));
   }
 
@@ -1996,6 +1996,8 @@ void FXRbDestroyAppSensitiveObjects(){
   FXTRACE((100,"%s:%d: Finished destroying objects that hold references to the FXApp.\n",__FILE__,__LINE__));
   }
 
+int utf8_enc_idx;
+
 //----------------------------------------------------------------------
 
 extern "C" void Init_core(void);
@@ -2051,6 +2053,9 @@ Init_fox16(void) {
   id_begin=rb_intern("begin");
   id_end=rb_intern("end");
   id_exclude_endp=rb_intern("exclude_end?");
+#ifdef HAVE_RUBY_ENCODING_H
+  utf8_enc_idx = rb_enc_find_index("UTF-8");
+#endif
 
   FXRuby_Objects=st_init_numtable();
   appSensitiveObjs=st_init_numtable();

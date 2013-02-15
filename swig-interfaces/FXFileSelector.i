@@ -167,10 +167,10 @@ public:
         if (filenames) {
             register FXString *p = filenames;
             while ((*p) != FXString::null) {
-                rb_ary_push(result, rb_str_new2((*p).text()));
-		p++;
+                rb_ary_push(result, to_ruby(*p));
+                p++;
             }
-	    delete [] filenames;
+            delete [] filenames;
         }
         return result;
     }

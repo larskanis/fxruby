@@ -27,7 +27,7 @@ class FXGIFCursor : public FXCursor {
 public:
   %extend {
     static VALUE fileExt() {
-      return rb_str_new2(FXGIFCursor::fileExt);
+      return to_ruby(FXGIFCursor::fileExt);
       }
     }
 public:

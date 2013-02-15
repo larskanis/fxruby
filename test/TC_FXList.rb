@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'test/unit'
 require 'testcase'
 require 'fox16'
@@ -112,5 +113,13 @@ class TC_FXList < Fox::TestCase
     assert_raises(IndexError) {
       @list.makeItemVisible(3)
     }
+  end
+
+  if ''.respond_to?(:encoding)
+    def test_encoding
+      @list.appendItem("世界線航跡蔵")
+      assert_equal(Encoding::UTF_8, @list.getItem(0).text.encoding)
+      assert_equal('世界線航跡蔵', @list.getItem(0).text)
+    end
   end
 end
