@@ -1,9 +1,9 @@
 if RUBY_PLATFORM =~ /(mswin|mingw)/i
-  require "#{RUBY_VERSION.sub(/\.\d+$/, '')}/fox16.so"
+  require "#{RUBY_VERSION.sub(/\.\d+$/, '')}/fox16_c.so"
 elsif RUBY_PLATFORM =~ /darwin/
-  require "fox16.bundle"
+  require "fox16_c.bundle"
 else
-  require "fox16.so"
+  require "fox16_c.so"
 end
 
 require "fox16/core"

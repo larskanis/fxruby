@@ -42,7 +42,7 @@ The directory structure is:
   Contains example programs demonstrating how to use FXRuby and
   its many wonderful features.
 
-* ext/fox16
+* ext/fox16_c
 
   Contains the C++ source code for the shared library part of FXRuby.
   These files are required to build FXRuby from the source code.

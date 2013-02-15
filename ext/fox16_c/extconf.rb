@@ -149,4 +149,4 @@ do_rake_compiler_setup
 $CFLAGS += " -DRUBY_1_9" if RUBY_VERSION =~ /1\.9\./
 
 # Last step: build the makefile
-create_makefile("fox16")
+create_makefile("fox16_c")
