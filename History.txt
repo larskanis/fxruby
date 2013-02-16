@@ -1,4 +1,4 @@
-=== 1.6.26 / YYYY-MM-DD
+=== 1.6.26 / 2013-02-16
 
 * Mark all text strings retrieved from fox as UTF-8 when running on Ruby 1.9
 * Fix loading error on Ruby 1.8.7 by renaming the C++ extension to fox16_c
