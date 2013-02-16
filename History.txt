@@ -1,3 +1,9 @@
+=== 1.6.26 / YYYY-MM-DD
+
+* Mark all text strings retrieved from fox as UTF-8 when running on Ruby 1.9
+* Fix loading error on Ruby 1.8.7 by renaming the C++ extension to fox16_c
+* Update libraries for windows cross compilation
+
 === 1.6.25 / 2012-06-17
 
 * Windows: Fix slow loading of fox16.so by using a more recent mingw-w64 compiler
