@@ -145,6 +145,7 @@ end
 # Platform-specific modifications
 do_rake_compiler_setup
 
+$CFLAGS += " -DRUBY_1_8" if RUBY_VERSION =~ /1\.8\./
 $CFLAGS += " -DRUBY_1_9" if RUBY_VERSION =~ /1\.9\./
 $CFLAGS += " -DRUBY_2_0" if RUBY_VERSION =~ /2\.0\./
 
