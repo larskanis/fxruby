@@ -145,8 +145,8 @@ end
 # Platform-specific modifications
 do_rake_compiler_setup
 
-# Check for Ruby 1.9
 $CFLAGS += " -DRUBY_1_9" if RUBY_VERSION =~ /1\.9\./
+$CFLAGS += " -DRUBY_2_0" if RUBY_VERSION =~ /2\.0\./
 
 # Last step: build the makefile
 create_makefile("fox16_c")

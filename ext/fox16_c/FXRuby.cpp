@@ -39,7 +39,7 @@
 #include <signal.h>	// for definitions of SIGINT, etc.
 #endif
 
-#ifdef RUBY_1_9
+#if defined(RUBY_1_9) || defined(RUBY_2_0)
 
 #include "ruby/io.h"
 #include "ruby/st.h"
@@ -51,7 +51,7 @@ extern "C" {
 #include "rubyio.h"     // for GetOpenFile(), etc.
 }
 
-#endif /* RUBY_1_9 */
+#endif /* RUBY_1_9 || RUBY_2_0 */
 
 
 // Opaque type declaration from SWIG runtime
@@ -204,7 +204,7 @@ FXInputHandle FXRbGetWriteFileHandle(VALUE obj) {
   VALUE vwrite = rb_intern("@write");
   if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
   fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
-#elif defined(RUBY_1_9)
+#elif defined(RUBY_1_9) || defined(RUBY_2_0)
   rb_io_t *fptr;
   GetOpenFile(obj, fptr);
   VALUE wrio = fptr->tied_io_for_writing;

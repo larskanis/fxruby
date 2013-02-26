@@ -26,7 +26,7 @@
 
 #include "FXRbCommon.h"
 
-#ifndef RUBY_1_9
+#if !(defined(RUBY_1_9) || defined(RUBY_2_0))
 extern "C" {
 #include "rubysig.h" /* For CHECK_INTS */
 }
@@ -97,14 +97,14 @@ long FXRbApp::onChoreThreads(FXObject*,FXSelector,void*){
   wait.tv_usec=100*sleepTime;
 
   // Confirm that this thread can be interrupted, then go to sleep
-#ifndef RUBY_1_9
+#if !(defined(RUBY_1_9) || defined(RUBY_2_0))
   CHECK_INTS;
   if(!rb_thread_critical)
     rb_thread_wait_for(wait);
 #else
   // if(!rb_thread_critical) rb_thread_wait_for(wait);
   rb_thread_wait_for(wait);
-#endif /* RUBY_1_9 */
+#endif /* RUBY_1_9 || RUBY_2_0 */
 
   // Re-register this chore for next time
   addChore(this,ID_CHORE_THREADS);
