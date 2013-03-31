@@ -197,8 +197,8 @@ public:
 
   %extend {
     /// Return pointer to display
-    unsigned long getDisplay() const {
-      return reinterpret_cast<unsigned long>(self->getDisplay());
+    FXuval getDisplay() const {
+      return reinterpret_cast<FXuval>(self->getDisplay());
       }
     }
 

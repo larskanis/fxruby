@@ -139,11 +139,12 @@ public:
       // Convert wParam argument
       uptr_t wp;
       switch(TYPE(wParam)){
+        case T_BIGNUM:
         case T_FIXNUM:
-          wp=static_cast<uptr_t>(NUM2UINT(wParam));
+          wp=static_cast<uptr_t>(NUM2SIZET(wParam));
           break;
         case T_STRING:
-          wp=static_cast<uptr_t>(reinterpret_cast<long>(RSTRING_PTR(wParam)));
+          wp=static_cast<uptr_t>(reinterpret_cast<FXuval>(RSTRING_PTR(wParam)));
           break;
         case T_TRUE:
         case T_FALSE:
@@ -157,11 +158,12 @@ public:
       // Convert lParam argument
       sptr_t lp;
       switch(TYPE(lParam)){
+        case T_BIGNUM:
         case T_FIXNUM:
-          lp=static_cast<sptr_t>(NUM2UINT(lParam));
+          lp=static_cast<sptr_t>(NUM2SIZET(lParam));
           break;
         case T_STRING:
-          lp=static_cast<sptr_t>(reinterpret_cast<long>(RSTRING_PTR(lParam)));
+          lp=static_cast<sptr_t>(reinterpret_cast<FXival>(RSTRING_PTR(lParam)));
           break;
         case T_TRUE:
         case T_FALSE:

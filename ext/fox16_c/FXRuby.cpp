@@ -552,7 +552,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
     return to_ruby(reinterpret_cast<FXEvent*>(ptr));
     }
   else if(type==SEL_SIGNAL){
-    return to_ruby(static_cast<int>(reinterpret_cast<long>(ptr)));
+    return to_ruby(static_cast<int>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(type==SEL_IO_READ ||
           type==SEL_IO_WRITE ||
@@ -600,7 +600,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorDialog))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXColor>(reinterpret_cast<unsigned long>(ptr)));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorRing))){
     if(type==SEL_CHANGED || type==SEL_COMMAND){
@@ -609,7 +609,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorSelector))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXColor>(reinterpret_cast<unsigned long>(ptr)));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorWell))){
     if(type==SEL_CHANGED ||
@@ -617,7 +617,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_CLICKED ||
        type==SEL_DOUBLECLICKED ||
        type==SEL_TRIPLECLICKED) {
-	       VALUE v=to_ruby(static_cast<FXColor>(reinterpret_cast<unsigned long>(ptr)));
+	       VALUE v=to_ruby(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
 	       return v;
     }
     }
@@ -819,7 +819,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
     }
   else if(sender->isMemberOf(FXMETACLASS(FXSpinner))){
     if(type==SEL_CHANGED || type==SEL_COMMAND)
-      return to_ruby(static_cast<FXint>(reinterpret_cast<long>(ptr)));
+      return to_ruby(static_cast<FXint>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXSplitter))){
     if(type==SEL_CHANGED || type==SEL_COMMAND)

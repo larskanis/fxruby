@@ -53,13 +53,13 @@ public:
 
   %extend {
     /// Return current context, if any
-    static unsigned long getCurrentContext(){
-      return reinterpret_cast<unsigned long>(FXGLCanvas::getCurrentContext());
+    static FXuval getCurrentContext(){
+      return reinterpret_cast<FXuval>(FXGLCanvas::getCurrentContext());
       }
 
     /// Get GL context handle
-    unsigned long getContext() const {
-      return reinterpret_cast<unsigned long>(self->getContext());
+    FXuval getContext() const {
+      return reinterpret_cast<FXuval>(self->getContext());
       }
     }
 

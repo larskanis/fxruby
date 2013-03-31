@@ -41,6 +41,13 @@
 #define RSTRING_PTR(s) RSTRING((s))->ptr
 #endif
 
+#ifndef NUM2SIZET
+#define NUM2SIZET(s) NUM2ULONG(s)
+#endif
+#ifndef SIZET2NUM
+#define SIZET2NUM(s) ULONG2NUM(s)
+#endif
+
 // Opaque type declaration for SWIG runtime support
 struct swig_type_info;
 
@@ -322,7 +329,7 @@ inline VALUE fxid_to_int(FXID id){
 #ifndef WIN32
   return UINT2NUM(static_cast<unsigned int>(id));
 #else
-  return ULONG2NUM(reinterpret_cast<unsigned long>(id));
+  return SIZET2NUM(reinterpret_cast<size_t>(id));
 #endif
   }
 
@@ -334,7 +341,7 @@ inline FXID int_to_fxid(VALUE value){
 #ifndef WIN32
   return static_cast<FXID>(NUM2UINT(value));
 #else
-  return reinterpret_cast<FXID>(NUM2ULONG(value));
+  return reinterpret_cast<FXID>(NUM2SIZET(value));
 #endif
   }
 

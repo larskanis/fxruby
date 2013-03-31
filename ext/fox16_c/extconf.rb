@@ -79,7 +79,7 @@ def do_rake_compiler_setup
     have_library( 'opengl32' ) && append_library( $libs, 'opengl32' )
     have_library( 'winspool', 'EnumPrintersA') && append_library( $libs, 'winspool' )
 
-    CONFIG['CC'] += "\nCXX=#{ENV['CROSS_PREFIX']}-g++" # Hack CXX into Makefile for cross compilation
+    CONFIG['CC'] += "\nCXX=#{RbConfig::CONFIG["host"]}-g++" # Hack CXX into Makefile for cross compilation
     CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
     $LDFLAGS += " -s -static-libgcc -static-libstdc++" # mingw-w64 v4.7 defaults to dynamic linking
   elsif RUBY_PLATFORM =~ /mingw/

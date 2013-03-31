@@ -19,7 +19,8 @@ end
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-FXSCINTILLA_INSTALL_DIR = Pathname( "build/builds/fxscintilla-#{LIBFXSCINTILLA_VERSION}" ).expand_path
+# TODO: Don't depend on cross compilation task
+FXSCINTILLA_INSTALL_DIR = Pathname( CrossLibraries.first.static_libfxscintilla_builddir ).expand_path
 
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig-1.3.22.exe" : "swig-1.3.22"
 SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
@@ -91,14 +92,29 @@ task :test => [:compile]
 
 Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
   ext.cross_compile = true
-  ext.cross_platform = ['i386-mingw32']
-  ext.cross_config_options += [
-    "--with-fox-include=#{STATIC_INSTALLDIR}/include/fox-1.6",
-    "--with-fxscintilla-include=#{STATIC_INSTALLDIR}/include/fxscintilla",
-    "--with-installed-dir=#{STATIC_INSTALLDIR}",
-    "--enable-win32-static-build",
-    "--with-fxscintilla",
-  ]
+  ext.cross_platform = CrossLibraries.map &:ruby_platform
+
+  ext.cross_config_options += CrossLibraries.map do |lib|
+    {
+      lib.ruby_platform => [
+        "--with-fox-include=#{lib.static_installdir}/include/fox-1.6",
+        "--with-fxscintilla-include=#{lib.static_installdir}/include/fxscintilla",
+        "--with-installed-include=#{lib.static_installdir}/include",
+        "--with-installed-lib=#{lib.static_installdir}/lib",
+        "--enable-win32-static-build",
+        "--with-fxscintilla",
+      ]
+    }
+  end
+
+end
+
+CrossLibraries.each do |lib|
+  ENV['RUBY_CC_VERSION'].split(":").each do |ruby_version|
+    task "copy:fox16_c:#{lib.ruby_platform}:#{ruby_version}" do |t|
+      sh "#{lib.host_platform}-strip -S tmp/#{lib.ruby_platform}/stage/lib/#{ruby_version[0,3]}/fox16_c.so"
+    end
+  end
 end
 
 # Set environment variable SWIG_LIB to
