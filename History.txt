@@ -1,3 +1,8 @@
+=== 1.6.27 / 2013-04-05
+
+* Add support for Ruby-2.0.
+* Add cross compilation for x64-mingw32 target.
+
 === 1.6.26 / 2013-02-16
 
 * Mark all text strings retrieved from fox as UTF-8 when running on Ruby 1.9
