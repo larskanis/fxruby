@@ -1,3 +1,7 @@
+=== 1.6.28 / 2013-06-28
+
+* Fix build for Ruby-2.0.0-p127+
+
 === 1.6.27 / 2013-04-05
 
 * Add support for Ruby-2.0.
