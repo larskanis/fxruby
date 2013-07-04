@@ -80,7 +80,7 @@ class CrossLibrary < OpenStruct
 
 
     # Fetch libfox tarball
-    self.libfox_version            = ENV['libfox_version'] || '1.6.47'
+    self.libfox_version            = ENV['libfox_version'] || '1.6.49'
     self.libfox_source_uri         = URI( "http://ftp.fox-toolkit.org/pub/fox-#{libfox_version}.tar.gz" )
     self.libfox_tarball            = static_sourcesdir + File.basename( libfox_source_uri.path )
     self.static_libfox_builddir    = static_builddir + libfox_tarball.basename(".tar.gz")
