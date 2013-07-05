@@ -1,6 +1,7 @@
-=== 1.6.28 / 2013-06-28
+=== 1.6.28 / 2013-07-05
 
 * Fix build for Ruby-2.0.0-p127+
+* Update libraries for win32 build: libfox-1.6.49
 
 === 1.6.27 / 2013-04-05
 
