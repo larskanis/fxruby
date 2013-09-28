@@ -233,11 +233,11 @@ public:
       if(FXMALLOC(&strings,FXchar*,len+1)){
         for(long i=0;i<len;i++){
           VALUE s=rb_ary_entry(stringArray,i);
-	  strings[i]=StringValuePtr(s);
+          strings[i]=StringValuePtr(s);
           }
-	strings[len]=0;
+        strings[len]=0;
         self->setHeaders(strings,size);
-	FXFREE(&strings);
+        FXFREE(&strings);
         }
       }
   }
@@ -296,7 +296,7 @@ public:
     FXFoldingItem* insertItem(FXFoldingItem* other,FXFoldingItem* father,FXFoldingItem* item,FXbool notify=FALSE){
       if(item->isMemberOf(FXMETACLASS(FXRbFoldingItem))){
         dynamic_cast<FXRbFoldingItem*>(item)->owned=TRUE;
-	}
+        }
       return self->insertItem(other,father,item,notify);
       }
   }
@@ -309,7 +309,7 @@ public:
     FXFoldingItem* appendItem(FXFoldingItem* father,FXFoldingItem* item,FXbool notify=FALSE){
       if(item->isMemberOf(FXMETACLASS(FXRbFoldingItem))){
         dynamic_cast<FXRbFoldingItem*>(item)->owned=TRUE;
-	}
+        }
       return self->appendItem(father,item,notify);
       }
   }
@@ -322,7 +322,7 @@ public:
     FXFoldingItem* prependItem(FXFoldingItem* father,FXFoldingItem* item,FXbool notify=FALSE){
       if(item->isMemberOf(FXMETACLASS(FXRbFoldingItem))){
         dynamic_cast<FXRbFoldingItem*>(item)->owned=TRUE;
-	}
+        }
       return self->prependItem(father,item,notify);
       }
   }

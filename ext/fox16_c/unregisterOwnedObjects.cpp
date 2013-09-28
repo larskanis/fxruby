@@ -96,7 +96,7 @@ void FXRbTable::unregisterOwnedObjects(FXTable *self)
     FXRbUnregisterRubyObj(self->getColumnHeader());
     for(r=0; r<self->getNumRows(); r++){
       for(c=0; c<self->getNumColumns(); c++){
-	FXRbUnregisterRubyObj(self->getItem(r,c));
+        FXRbUnregisterRubyObj(self->getItem(r,c));
         }
       }
 }
@@ -117,4 +117,3 @@ void FXRbTreeList::unregisterOwnedObjects(FXTreeList *self)
     // Now zero-out pointers held by still-alive Ruby objects
     for (FXint i = 0; i < items.no(); i++) FXRbUnregisterRubyObj(items[i]);
 }
-
