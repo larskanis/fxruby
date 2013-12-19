@@ -1,4 +1,10 @@
-require 'soap/mapping'
+begin
+  require 'soap/mapping'
+rescue LoadError
+  warn("Sorry, at the moment this example is not working.")
+  sleep(5)
+  exit(false)
+end
 
 
 module RAA; extend SOAP

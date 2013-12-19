@@ -1,5 +1,11 @@
 require 'fox16'
-require 'RMagick'
+begin
+  require 'RMagick'
+rescue LoadError
+  warn("LoadError: To execute this app you need to have 'RMagick' gem installed.")
+  sleep(5)
+  exit(false)
+end
 
 include Fox
 

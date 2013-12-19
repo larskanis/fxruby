@@ -1,6 +1,13 @@
 require 'fox16'
-require 'google_chart'
-require 'open-uri'
+
+begin
+  require 'google_chart'
+  require 'open-uri'
+rescue LoadError
+  warn("LoadError: To execute this app you need to have 'google_chart' gem installed.")
+  sleep(5)
+  exit(false)
+end
 
 include Fox
 
