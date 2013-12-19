@@ -10,7 +10,7 @@ class CanvasDemo < FXMainWindow
     super(app, "Canvas Demo", nil, nil, DECOR_ALL, 0, 0, 800, 600)
 
     # Menu bar
-    menu_bar = FXMenubar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
+    menu_bar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
 
     # File menu
     file_menu = FXMenuPane.new(self)
@@ -53,7 +53,7 @@ class CanvasDemo < FXMainWindow
     FXMenuTitle.new(menu_bar, "&Help", nil, help_menu)
 
     # Status bar
-    FXStatusbar.new(self,
+    FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
 
     # Shapes canvas fills the remainder

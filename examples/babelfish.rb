@@ -1,7 +1,14 @@
 #!/usr/bin/env ruby
 
 require 'fox16'
-require 'tranexp'
+
+begin
+  require 'tranexp'
+rescue LoadError
+  warn("LoadError: To execute this app you need to have 'tranexp' gem installed.")
+  sleep(5)
+  exit(false)
+end
 
 include Fox
 
