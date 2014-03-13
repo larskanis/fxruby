@@ -778,4 +778,3 @@ inline void* to_FXEvent(VALUE obj){
 // FXulong values
 %typemap(in)  FXulong "$1 = static_cast<FXulong>(NUM2ULONG($input));";
 %typemap(out) FXulong "$result = ULONG2NUM($1);";
-

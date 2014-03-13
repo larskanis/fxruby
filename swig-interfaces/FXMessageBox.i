@@ -90,29 +90,34 @@ public:
       }
     }
 
+  %typemap(in) (const char* message_format, const char* message_string) {
+    $1 = (char*)"%s";
+    $2 = RSTRING_PTR($input);
+  }
+
   /// Show a modal error message
-  static FXuint error(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+  static FXuint error(FXWindow* owner,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   // Show modal error message, in free floating window.
-  static FXuint error(FXApp* app,FXuint opts,const char* caption,const char* message);
+  static FXuint error(FXApp* app,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   /// Show a modal warning message
-  static FXuint warning(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+  static FXuint warning(FXWindow* owner,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   /// Show a modal warning message, in a free-floating window
-  static FXuint warning(FXApp* app,FXuint opts,const char* caption,const char* message);
+  static FXuint warning(FXApp* app,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   /// Show a modal question dialog
-  static FXuint question(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+  static FXuint question(FXWindow* owner,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   /// Show a modal question dialog, in a free-floating window
-  static FXuint question(FXApp* app,FXuint opts,const char* caption,const char* message);
+  static FXuint question(FXApp* app,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   /// Show a modal information dialog
-  static FXuint information(FXWindow* owner,FXuint opts,const char* caption,const char* message);
+  static FXuint information(FXWindow* owner,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   /// Show a modal information dialog, in a free-floating window
-  static FXuint information(FXApp* app,FXuint opts,const char* caption,const char* message);
+  static FXuint information(FXApp* app,FXuint opts,const char* caption,const char* message_format, const char* message_string);
 
   // Destructor
   virtual ~FXMessageBox();
