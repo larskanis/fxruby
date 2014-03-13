@@ -1,4 +1,5 @@
 require 'opengl'
+require 'glu'
 
 module Fox
 

@@ -3,12 +3,12 @@
 require 'fox16'
 begin
   require 'opengl'
+  require 'glu'
 rescue LoadError
   require 'fox16/missingdep'
   MSG = <<EOM
-  Sorry, this example depends on the OpenGL extension. Please
-  check the Ruby Application Archives for an appropriate
-  download site.
+  Sorry, this example depends on the opengl gems. Please execute:
+    gem install opengl glu
 EOM
   missingDependency(MSG)
 end
