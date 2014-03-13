@@ -239,19 +239,18 @@ public:
         if(FXMALLOC(&ramp,FXColor,nramp)){
           self->gradient(ramp,nramp);
           ary=rb_ary_new2(nramp);
-  	  for(i=0; i<nramp; i++){
-	    rb_ary_store(ary,i,to_ruby(ramp[i]));
-	    }
-	  FXFREE(&ramp);
-	  return ary;
-	  }
-        else{
-          rb_raise(rb_eNoMemError,"");
+          for(i=0; i<nramp; i++){
+            rb_ary_store(ary,i,to_ruby(ramp[i]));
           }
+          FXFREE(&ramp);
+          return ary;
+        }else{
+          rb_raise(rb_eNoMemError,"Out of memory");
         }
+      }
       else{
         return rb_ary_new();
-        }
+      }
     }
   }
 
