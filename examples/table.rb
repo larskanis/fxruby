@@ -7,6 +7,28 @@ include Fox
 
 class TableWindow < FXMainWindow
 
+
+  class MyFXTable < Fox::FXTable
+    include Responder
+    def initialize(*args, &block)
+      super
+      FXMAPFUNC(SEL_COMMAND, FXTable::ID_PASTE_SEL, 'onCmdPasteSel')
+    end
+    def onCmdPasteSel(sender, sel, ptr)
+      data = getDNDData(FROM_CLIPBOARD, FXTable.utf8Type)
+      if data && anythingSelected?
+        rows_cols = data.split("\n").map{|l| l.split("\t") }
+        rows_cols.each.with_index(selStartRow) do |cols, row_nr|
+          cols.each.with_index(selStartColumn) do |text, col_nr|
+            setItemText( row_nr, col_nr, text)
+          end
+        end
+        max_cols = rows_cols.inject(0){|s,cols| [s, cols.length].max }
+        selectRange(selStartRow, selStartRow+rows_cols.length-1, selStartColumn, selStartColumn+max_cols-1)
+      end
+    end
+  end
+
   def initialize(app)
     # Call the base class initializer first
     super(app, "Table Widget Test", :opts => DECOR_ALL)
@@ -32,8 +54,9 @@ class TableWindow < FXMainWindow
     frame = FXVerticalFrame.new(contents,
       FRAME_SUNKEN|FRAME_THICK|LAYOUT_FILL_X|LAYOUT_FILL_Y, :padding => 0)
 
-    # Table
-    @table = FXTable.new(frame,
+    # Instead of the usual FXTable, we use a derived version, that allows us
+    # to paste "," into fields. A "," is used as column separator otherwise.
+    @table = MyFXTable.new(frame,
       :opts => TABLE_COL_SIZABLE|TABLE_ROW_SIZABLE|LAYOUT_FILL_X|LAYOUT_FILL_Y,
       :padding => 2)
 
