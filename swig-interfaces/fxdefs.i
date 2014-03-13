@@ -253,8 +253,20 @@ typedef FXint                  FXInputHandle;
 
 
 /**********************************  Macros  ***********************************/
+/// Make int out of two shorts
+%rename(MKUINT) _MKUINT;
 
-%{
+/// Make selector from message type and message id
+%rename(FXSEL) _FXSEL;
+
+/// Get type from selector
+%rename(FXSELTYPE) _FXSELTYPE;
+
+/// Get ID from selector
+%rename(FXSELID) _FXSELID;
+
+
+%inline %{
 static FXuint _MKUINT(FXushort l,FXushort h){
   return MKUINT(l,h);
   }
@@ -272,20 +284,29 @@ static FXushort _FXSELID(FXuint s){
   }
 %}
 
-/// Make int out of two shorts
-%name(MKUINT) FXuint _MKUINT(FXushort l,FXushort h);
+/// Make RGB color
+%rename(FXRGB) _FXRGB;
 
-/// Make selector from message type and message id
-%name(FXSEL) FXuint _FXSEL(FXushort type,FXushort id);
+/// Make RGBA color
+%rename(FXRGBA) _FXRGBA;
 
-/// Get type from selector
-%name(FXSELTYPE) FXushort _FXSELTYPE(FXuint s);
+/// Get red value from RGBA color
+%rename(FXREDVAL) _FXREDVAL;
 
-/// Get ID from selector
-%name(FXSELID) FXushort _FXSELID(FXuint s);
+/// Get green value from RGBA color
+%rename(FXGREENVAL) _FXGREENVAL;
+
+/// Get blue value from RGBA color
+%rename(FXBLUEVAL) _FXBLUEVAL;
+
+/// Get alpha value from RGBA color
+%rename(FXALPHAVAL) _FXALPHAVAL;
+
+/// Get component value of RGBA color
+%rename(FXRGBACOMPVAL) _FXRGBACOMPVAL;
 
 // The order in memory is [R G B A] matches that in FXColor
-%{
+%inline %{
 static FXuint _FXRGB(FXuchar r,FXuchar g,FXuchar b){
   return FXRGB(r,g,b);
   }
@@ -314,27 +335,6 @@ static FXuchar _FXRGBACOMPVAL(FXuint rgba,FXuchar comp){
   return FXRGBACOMPVAL(rgba,comp);
   }
 %}
-
-/// Make RGB color
-%name(FXRGB) FXuint _FXRGB(FXuchar r,FXuchar g,FXuchar b);
-
-/// Make RGBA color
-%name(FXRGBA) FXuint _FXRGBA(FXuchar r,FXuchar g,FXuchar b,FXuchar a);
-
-/// Get red value from RGBA color
-%name(FXREDVAL) FXuchar _FXREDVAL(FXuint rgba);
-
-/// Get green value from RGBA color
-%name(FXGREENVAL) FXuchar _FXGREENVAL(FXuint rgba);
-
-/// Get blue value from RGBA color
-%name(FXBLUEVAL) FXuchar _FXBLUEVAL(FXuint rgba);
-
-/// Get alpha value from RGBA color
-%name(FXALPHAVAL) FXuchar _FXALPHAVAL(FXuint rgba);
-
-/// Get component value of RGBA color
-%name(FXRGBACOMPVAL) FXuchar _FXRGBACOMPVAL(FXuint rgba,FXuchar comp);
 
 /**********************************  Globals  **********************************/
 
@@ -404,7 +404,8 @@ VALUE fxparsegeometry(const FXchar *string){
 /// True if executable with given path is a console application
 FXbool fxisconsole(const FXchar *path);
 
-%{
+%rename(fxversion) _fxversion;
+%inline %{
 /// Version number that the library has been compiled with
 VALUE _fxversion(){
   FXString version=FXStringFormat("%d.%d.%d",fxversion[0],fxversion[1],fxversion[2]);
@@ -412,8 +413,5 @@ VALUE _fxversion(){
   }
 %}
 
-%name(fxversion) VALUE _fxversion();
-
 /// Controls tracing level
 unsigned int fxTraceLevel;
-

@@ -22,8 +22,8 @@ PKG_VERSION = Fox.fxrubyversion
 # TODO: Don't depend on cross compilation task
 FXSCINTILLA_INSTALL_DIR = Pathname( CrossLibraries.first.static_libfxscintilla_builddir ).expand_path
 
-SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig-1.3.22.exe" : "swig-1.3.22"
-SWIGFLAGS = "-fcompact -noruntime -c++ -ruby -no_default -I../fox-includes"
+SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
+SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
 SWIG_LIB = `#{SWIG} -swiglib`.chomp
 SWIG_MODULES = {
   "core.i" => "core_wrap.cpp",
@@ -70,7 +70,7 @@ hoe = Hoe.spec "fxruby" do
   spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
   spec_extras[:files] += SWIG_MODULES.values.map{|f| File.join("ext/fox16_c", f) }
   spec_extras[:files] << 'ext/fox16_c/include/inlinestubs.h'
-  spec_extras[:files] << 'ext/fox16_c/librb.c'
+  spec_extras[:files] << 'ext/fox16_c/swigruby.h'
   spec_extras[:files] << 'doap.rdf'
   spec_extras[:files] << 'lib/fox16/kwargs.rb'
 end
@@ -145,20 +145,14 @@ namespace :swig do
     sed wrapper_src_file_name
   end
 
-  task :swig_librb => ["ext/fox16_c/librb.c"]
-  file "ext/fox16_c/librb.c" do |task|
+  task :swigruby_h => ["ext/fox16_c/swigruby.h"]
+  file "ext/fox16_c/swigruby.h" do |task|
     puts "generate #{task.name}"
-    File.open(task.name, "w") do |io|
-      io.puts "#define SWIG_GLOBAL 1"
-      io.write(IO.read(File.join(SWIG_LIB, "ruby", "precommon.swg")))
-      io.write(IO.read(File.join(SWIG_LIB, "common.swg")))
-      io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubyhead.swg")))
-      io.write(IO.read(File.join(SWIG_LIB, "ruby", "rubydef.swg")))
-    end
+    system "#{SWIG} -ruby -external-runtime #{task.name}"
   end
 
   desc "Run SWIG to generate the wrapper files."
-  task :swig => [:swig_librb] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
+  task :swig => [:swigruby_h] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
 
   # add dependencies for compile *.i to *_wrap.cpp
   SWIG_MODULES.each do |ifile, cppfile|
@@ -218,7 +212,7 @@ namespace :fxruby do
     make_impl
   end
 
-  file "ext/fox16_c/extconf.rb" => ['ext/fox16_c/librb.c', 'ext/fox16_c/impl.cpp', 'ext/fox16_c/include/inlinestubs.h'] +
+  file "ext/fox16_c/extconf.rb" => ['ext/fox16_c/swigruby.h', 'ext/fox16_c/impl.cpp', 'ext/fox16_c/include/inlinestubs.h'] +
       SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
 
   task :scintilla => 'lib/fox16/scintilla.rb'

@@ -599,7 +599,7 @@ public:
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
-          types[i]=(FXDragType) NUM2USHRT(rb_ary_entry(typesArray,i));
+          types[i]=(FXDragType) NUM2UINT(rb_ary_entry(typesArray,i));
           }
       }
       bool result=self->acquireSelection(types,numtypes);
@@ -623,7 +623,7 @@ public:
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
-          types[i]=(FXDragType) NUM2USHRT(rb_ary_entry(typesArray,i));
+          types[i]=(FXDragType) NUM2UINT(rb_ary_entry(typesArray,i));
           }
       }
       bool result=self->acquireClipboard(types,numtypes);
@@ -650,7 +650,7 @@ public:
       if(numtypes>0){
         types=new FXDragType[numtypes];
         for(FXuint i=0;i<numtypes;i++){
-          types[i]=(FXDragType) NUM2USHRT(rb_ary_entry(typesArray,i));
+          types[i]=(FXDragType) NUM2UINT(rb_ary_entry(typesArray,i));
           }
       }
       bool result=self->beginDrag(types,numtypes);

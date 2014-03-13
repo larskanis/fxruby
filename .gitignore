@@ -6,7 +6,7 @@ ext/fox16_c/*_wrap.cpp
 ext/fox16_c/*.o
 ext/fox16_c/conftest.dSYM
 ext/fox16_c/include/inlinestubs.h
-ext/fox16_c/librb.c
+ext/fox16_c/swigruby.h
 ext/fox16_c/fox16.bundle
 ext/fox16_c/mkmf.log
 lib/fox16/kwargs.rb

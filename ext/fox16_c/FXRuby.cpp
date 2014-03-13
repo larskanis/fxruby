@@ -31,6 +31,9 @@
 #include "FXRbCommon.h"
 #include "impl.h"
 
+// SWIG runtime functions we need
+#include "swigruby.h"
+
 #ifdef __CYGWIN__
 #include <io.h>		// for get_osf_handle()
 #endif
@@ -63,7 +66,7 @@ swig_type_info *FXRbTypeQuery(const char *desc){
   static st_table *types=st_init_strtable();
   swig_type_info *typeinfo=0;
   if(st_lookup(types,reinterpret_cast<st_data_t>(const_cast<char*>(desc)),reinterpret_cast<st_data_t *>(&typeinfo))==0){
-    typeinfo=SWIG_Ruby_TypeQuery(desc);
+    typeinfo=SWIG_TypeQuery(desc);
     st_insert(types,reinterpret_cast<st_data_t>(strdup(desc)),reinterpret_cast<st_data_t>(typeinfo));
     }
   FXASSERT(typeinfo!=0);
@@ -168,12 +171,12 @@ bool FXRbIsInGC(const void* ptr){
 
 
 /**
- * FXRbConvertPtr() is just a wrapper around SWIG_Ruby_ConvertPtr().
+ * FXRbConvertPtr() is just a wrapper around SWIG_ConvertPtr().
  */
 
 void* FXRbConvertPtr(VALUE obj,swig_type_info* ty){
   void *ptr;
-  SWIG_Ruby_ConvertPtr(obj,&ptr,ty,1);
+  SWIG_ConvertPtr(obj,&ptr,ty,1);
   return ptr;
   }
 
@@ -1018,7 +1021,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
     case SEL_DND_MOTION:
     case SEL_DND_REQUEST:
     case SEL_PICKED:
-      SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
+      SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
       return ptr;
     case SEL_IO_READ:
     case SEL_IO_WRITE:
@@ -1195,14 +1198,14 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
 
   if(type==SEL_CHANGED){
 	  if(obj->isMemberOf(FXMETACLASS(FXPicker))){
-			SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXPoint *"),1);
+			SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXPoint *"),1);
 			return ptr;
 	    }
 		return 0;
     }
 
 	if(type==SEL_DRAGGED){
-	    SWIG_Ruby_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
+	    SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
 	    return ptr;
 	    }
 

@@ -127,6 +127,9 @@ inline FXbool to_FXbool(VALUE obj){
     $1 = NULL;
   }
 }
+%typecheck(SWIG_TYPECHECK_VOIDPTR) const void * pix {
+  $1 = (NIL_P($input) || TYPE($input) == T_STRING) ? 1 : 0;
+}
 
 /**
  * Used by constructors for icons and images that require an array
@@ -140,9 +143,9 @@ inline FXbool to_FXbool(VALUE obj){
     if(FXMALLOC(&$1,FXColor,RARRAY_LEN($input))){
       for(long i=0; i<RARRAY_LEN($input); i++){
         $1[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry($input,i)));
-	}
       }
     }
+  }
 }
 
 /**
