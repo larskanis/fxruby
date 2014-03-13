@@ -55,7 +55,7 @@ class HeaderWindow < FXMainWindow
 
     # Document icon
     doc = nil
-    File.open(File.join("icons", "minidoc.png"), "rb") do |f|
+    File.open(File.expand_path("../icons/minidoc.png", __FILE__), "rb") do |f|
       doc = FXPNGIcon.new(getApp(), f.read)
     end
 
