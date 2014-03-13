@@ -152,15 +152,9 @@ class GLViewWindow < FXMainWindow
 
   # Load the named PNG icon from a file
   def loadIcon(filename)
-    begin
-      filename = File.join("icons", filename) + ".png"
-      icon = nil
-      File.open(filename, "rb") do |f|
-        icon = FXPNGIcon.new(getApp(), f.read)
-      end
-      icon
-    rescue
-      raise RuntimeError, "Couldn't load icon: #{filename}"
+    filename = File.expand_path("../icons/#{filename}.png", __FILE__)
+    File.open(filename, "rb") do |f|
+      FXPNGIcon.new(getApp(), f.read)
     end
   end
 

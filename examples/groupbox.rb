@@ -8,15 +8,9 @@ class GroupWindow < FXMainWindow
 
   # Convenience function to load & construct an icon
   def getIcon(filename)
-    begin
-      filename = File.join("icons", filename)
-      icon = nil
-      File.open(filename, "rb") { |f|
-        icon = FXPNGIcon.new(getApp(), f.read)
-      }
-      icon
-    rescue
-      raise RuntimeError, "Couldn't load icon: #{filename}"
+    filename = File.expand_path("../icons/#{filename}", __FILE__)
+    File.open(filename, "rb") do |f|
+      FXPNGIcon.new(getApp(), f.read)
     end
   end
 
