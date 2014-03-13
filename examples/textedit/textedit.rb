@@ -3,9 +3,9 @@
 require 'fox16'
 require 'fox16/responder'
 require 'fox16/undolist'
-require 'prefdialog'
-require 'helpwindow'
-require 'commands'
+require_relative 'prefdialog'
+require_relative 'helpwindow'
+require_relative 'commands'
 
 include Fox
 

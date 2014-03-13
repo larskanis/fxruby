@@ -18,7 +18,7 @@ static void delete_if_not_owned(BASECLASS* self,SUBCLASS*){
         if(!dynamic_cast<SUBCLASS*>(self)->owned){
           delete self; // also unregisters it
           }
-	}
+        }
       }
     FXRbUnregisterRubyObj(self);
     }
@@ -33,7 +33,7 @@ static void delete_if_not_owned_by_app(BASECLASS* self,SUBCLASS*){
         if(!dynamic_cast<SUBCLASS*>(self)->ownedByApp){
           delete self; // also unregisters it
           }
-	}
+        }
       }
     FXRbUnregisterRubyObj(self);
     }
@@ -419,26 +419,7 @@ void FXRbTreeItem::markfunc(FXTreeItem* self){
 
 
 void FXRbTreeItem::freefunc(FXTreeItem* self){
-  if(self!=0){
-    if(!FXRbIsBorrowed(self)){
-      if(self->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        FXRbTreeItem* treeItem=dynamic_cast<FXRbTreeItem*>(self);
-        FXASSERT(treeItem);
-        FXTreeList* treeList=dynamic_cast<FXTreeList*>(treeItem->owner);
-        if(treeList){
-          FXRbUnregisterRubyObj(self); // MAYBE
-          treeList->removeItem(self,TRUE);
-          }
-        else{
-          FXTreeListBox* treeListBox=dynamic_cast<FXTreeListBox*>(treeItem->owner);
-          if(treeListBox){
-            treeListBox->removeItem(self);
-            }
-          }
-        }
-      }
-    FXRbUnregisterRubyObj(self);
-    }
+  delete_if_not_owned(self,reinterpret_cast<FXRbTreeItem*>(0));
   }
 
 

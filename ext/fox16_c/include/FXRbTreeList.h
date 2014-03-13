@@ -129,11 +129,11 @@ protected:
 #include "FXRbObjectVirtuals.h"
 #include "FXRbTreeItemVirtuals.h"
 public:
-  // Pointer to this tree item's owner (if any)
-  FXWindow *owner;
+  // Is this tree item owned by an FXTreeList yet?
+  FXbool owned;
 public:
   // Constructor
-  FXRbTreeItem(const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ptr=NULL) : FXTreeItem(text,oi,ci,ptr),owner(0){}
+  FXRbTreeItem(const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ptr=NULL) : FXTreeItem(text,oi,ci,ptr),owned(FALSE){}
 
   // Mark dependencies for the GC
   static void markfunc(FXTreeItem* self);

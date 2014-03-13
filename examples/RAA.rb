@@ -1,5 +1,11 @@
-require 'soap/rpc/driver'
-require 'iRAA'
+begin
+  require 'soap/rpc/driver'
+  require 'iRAA'
+rescue LoadError
+  warn("Sorry, at the moment this example is not working.")
+  sleep(5)
+  exit(false)
+end
 
 module RAA
   extend SOAP

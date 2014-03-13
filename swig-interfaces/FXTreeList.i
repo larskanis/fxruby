@@ -260,54 +260,40 @@ public:
     /// Insert [possibly subclassed] item under father before other item
     FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,FXTreeItem* item,FXbool notify=FALSE){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
+        dynamic_cast<FXRbTreeItem*>(item)->owned=TRUE;
+        }
       return self->insertItem(other,father,item,notify);
       }
+  }
 
-    /// Insert item with given text and optional icons, and user-data pointer under father before other item
-    FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
-      FXTreeItem* item=self->insertItem(other,father,text,oi,ci,ITEMDATA,notify);
-      if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
-      return item;
-      }
+  /// Insert item with given text and optional icons, and user-data pointer under father before other item
+  FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
 
+  %extend {
     /// Append [possibly subclassed] item as last child of father
     FXTreeItem* appendItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=FALSE){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
+        dynamic_cast<FXRbTreeItem*>(item)->owned=TRUE;
+        }
       return self->appendItem(father,item,notify);
       }
+  }
 
-    /// Append item with given text and optional icons, and user-data pointer as last child of father
-    FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
-      FXTreeItem* item=self->appendItem(father,text,oi,ci,ITEMDATA,notify);
-      if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
-      return item;
-      }
+  /// Append item with given text and optional icons, and user-data pointer as last child of father
+  FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
 
+  %extend {
     /// Prepend [possibly subclassed] item as first child of father
     FXTreeItem* prependItem(FXTreeItem* father,FXTreeItem* item,FXbool notify=FALSE){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
+        dynamic_cast<FXRbTreeItem*>(item)->owned=TRUE;
+        }
       return self->prependItem(father,item,notify);
       }
-
-    /// Prepend item with given text and optional icons, and user-data pointer as first child of father
-    FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE){
-      FXTreeItem* item=self->prependItem(father,text,oi,ci,ITEMDATA,notify);
-      if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
-      return item;
-      }
   }
+
+  /// Prepend item with given text and optional icons, and user-data pointer as first child of father
+  FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL,FXbool notify=FALSE);
 
   /// Move item under father before other item
   FXTreeItem *moveItem(FXTreeItem* other,FXTreeItem* father,FXTreeItem* item);
@@ -360,7 +346,7 @@ public:
         FXRbUnregisterRubyObj(items[i]);
         }
       }
-  }
+    }
 
   /// Return item width
   FXint getItemWidth(const FXTreeItem* item) const;

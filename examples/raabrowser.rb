@@ -1,6 +1,12 @@
 require 'fox16'
-require 'cgi'
-require 'soap/wsdlDriver'
+begin
+  require 'cgi'
+  require 'soap/wsdlDriver'
+rescue LoadError
+  warn("Sorry, at the moment this example is not working.")
+  sleep(5)
+  exit(false)
+end
 
 include Fox
 

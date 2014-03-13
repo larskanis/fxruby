@@ -93,55 +93,42 @@ public:
     /// Insert [possibly subclassed] item under father before other item
     FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,FXTreeItem* item){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
+        dynamic_cast<FXRbTreeItem*>(item)->owned=TRUE;
+        }
       return self->insertItem(other,father,item);
       }
+  }
 
+  /// Insert item with given text and optional icons, and user-data pointer under father before other item
+  FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL);
 
-    /// Insert item with given text and optional icons, and user-data pointer under father before other item
-    FXTreeItem* insertItem(FXTreeItem* other,FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL){
-      FXTreeItem* item=self->insertItem(other,father,text,oi,ci,ITEMDATA);
-      if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
-      return item;
-      }
-
+  %extend {
     /// Append [possibly subclassed] item as last child of father
     FXTreeItem* appendItem(FXTreeItem* father,FXTreeItem* item){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
+        dynamic_cast<FXRbTreeItem*>(item)->owned=TRUE;
+        }
       return self->appendItem(father,item);
       }
+  }
 
-    /// Append item with given text and optional icons, and user-data pointer as last child of father
-    FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL){
-      FXTreeItem* item=self->appendItem(father,text,oi,ci,ITEMDATA);
-      if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
-      return item;
-      }
+  /// Append item with given text and optional icons, and user-data pointer as last child of father
+  FXTreeItem* appendItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL);
 
+  %extend {
     /// Prepend [possibly subclassed] item as first child of father
     FXTreeItem* prependItem(FXTreeItem* father,FXTreeItem* item){
       if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
+        dynamic_cast<FXRbTreeItem*>(item)->owned=TRUE;
+        }
       return self->prependItem(father,item);
       }
+  }
 
-    /// Prepend item with given text and optional icons, and user-data pointer as first child of father
-    FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL){
-      FXTreeItem* item=self->prependItem(father,text,oi,ci,ITEMDATA);
-      if(item->isMemberOf(FXMETACLASS(FXRbTreeItem))){
-        dynamic_cast<FXRbTreeItem*>(item)->owner=self;
-	}
-      return item;
-      }
+  /// Prepend item with given text and optional icons, and user-data pointer as first child of father
+  FXTreeItem* prependItem(FXTreeItem* father,const FXString& text,FXIcon* oi=NULL,FXIcon* ci=NULL,void* ITEMDATA=NULL);
 
+  %extend {
     /// Remove item
     void removeItem(FXTreeItem* item){
       // Save pointer(s) to the soon-to-be-destroyed items
