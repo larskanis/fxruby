@@ -139,7 +139,7 @@ class ShutterWindow < FXMainWindow
 
   def create
     super
-    @shutter.width = 1.25*@shutter.width
+    @shutter.width = (1.25*@shutter.width).to_i
     show(PLACEMENT_SCREEN)
   end
 end
