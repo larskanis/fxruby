@@ -41,7 +41,7 @@ class ClassTree
 
     # Get an hash containing class names for Fox
     classes = {}
-    @mFox.constants.each do |name|
+    @mFox.constants.map(&:to_s).each do |name|
       c = @mFox.const_get(name)
       if c.kind_of? Class
 	parentclass = c.superclass.name.sub("Fox::", "")

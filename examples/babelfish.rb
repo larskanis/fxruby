@@ -33,7 +33,7 @@ class Babelfish < FXMainWindow
     FXLabel.new(controlsFrame, " to:")
     @toCombo = FXComboBox.new(controlsFrame, 15, :opts => COMBOBOX_STATIC|FRAME_SUNKEN|FRAME_THICK)
     @toCombo.numVisible = 6
-    Tranexp::Codes.constants.each do |lang|
+    Tranexp::Codes.constants.map(&:to_s).each do |lang|
       @fromCombo.appendItem(lang)
       @toCombo.appendItem(lang)
     end

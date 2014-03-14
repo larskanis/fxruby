@@ -532,7 +532,7 @@ class DCTestWindow < FXMainWindow
     FXMenuCommand.new(@filemenu, "&Quit\tCtl-Q", nil, getApp(), FXApp::ID_QUIT)
     FXMenuTitle.new(menubar, "&File", nil, @filemenu)
 
-    @birdImage = FXPNGImage.new(getApp(), File.open("icons/dippy.png", "rb").read)
+    @birdImage = FXPNGImage.new(getApp(), File.open(File.expand_path("../icons/dippy.png", __FILE__), "rb").read)
     @bitmap = FXBitmap.new(getApp(), $bitmap_bits, 0, 64, 64)
 
     @function = BLT_SRC
@@ -674,15 +674,9 @@ class DCTestWindow < FXMainWindow
 
   # Load the named icon from a file
   def loadIcon(filename, clr = FXRGB(192, 192, 192), opts = 0)
-    begin
-      filename = File.join("icons", filename)
-      icon = nil
-      File.open(filename, "rb") { |f|
-        icon = FXPNGIcon.new(getApp(), f.read, clr, opts)
-      }
-      icon
-    rescue
-      raise RuntimeError, "Couldn't load icon: #{filename}"
+    filename = File.expand_path("../icons/#{filename}", __FILE__)
+    File.open(filename, "rb") do |f|
+      FXPNGIcon.new(getApp(), f.read)
     end
   end
 end

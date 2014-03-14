@@ -240,15 +240,9 @@ class ImageWindow < FXMainWindow
 
   # Convenience function to construct a PNG icon
   def getIcon(filename)
-    begin
-      filename = File.join("icons", filename)
-      icon = nil
-      File.open(filename, "rb") do |f|
-        icon = FXPNGIcon.new(getApp(), f.read)
-      end
-      icon
-    rescue
-      raise RuntimeError, "Couldn't load icon: #{filename}"
+    filename = File.expand_path("../icons/#{filename}", __FILE__)
+    File.open(filename, "rb") do |f|
+      FXPNGIcon.new(getApp(), f.read)
     end
   end
 

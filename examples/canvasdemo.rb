@@ -1,5 +1,5 @@
 require 'fox16'
-require '../lib/fox16/canvas'
+require 'fox16/canvas'
 
 include Fox
 include Canvas

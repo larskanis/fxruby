@@ -38,7 +38,7 @@ class TableWindow < FXMainWindow
 
     # Icon used in some cells
     penguinicon = nil
-    File.open(File.join('icons', 'penguin.png'), 'rb') do |f|
+    File.open(File.expand_path('../icons/penguin.png', __FILE__), 'rb') do |f|
       penguinicon = FXPNGIcon.new(getApp(), f.read, 0, IMAGE_ALPHAGUESS)
     end
 

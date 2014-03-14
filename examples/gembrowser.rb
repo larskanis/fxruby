@@ -37,7 +37,7 @@ class GemBrowser
   # Return an array of the installed specifications.
   def cache
 #   Gem.cache
-    Gem::Cache.from_installed_gems
+    Gem::SourceIndex.from_installed_gems
   end
 end
 
@@ -53,7 +53,7 @@ class GemInfoPanel < FXVerticalFrame
 
     self.backColor = FXRGB(255, 255, 255)
 
-    File.open(File.join("icons", "gem_big.png"), "rb") do |f|
+    File.open(File.expand_path("../icons/gem_big.png", __FILE__), "rb") do |f|
       @bigIcon = FXPNGIcon.new(getApp(), f.read)
     end
 
@@ -107,10 +107,10 @@ class GemsPanel < FXVerticalFrame
     # Save a reference to the browser
     @browser = br
 
-    File.open(File.join("icons", "gem_big.png"), "rb") do |f|
+    File.open(File.expand_path("../icons/gem_big.png", __FILE__), "rb") do |f|
       @bigIcon = FXPNGIcon.new(getApp(), f.read)
     end
-    File.open(File.join("icons", "gem_small.png"), "rb") do |f|
+    File.open(File.expand_path("../icons/gem_small.png", __FILE__), "rb") do |f|
       @smallIcon = FXPNGIcon.new(getApp(), f.read)
     end
 

@@ -38,11 +38,11 @@ class WhatAQuietWindow < FXMainWindow
     super(app, "What a Quiet Stiff", :opts => DECOR_ALL, :width => 850, :height => 600, :padLeft => 0, :padRight => 0)
 
     # Icons for list items
-    File.open("icons/bluebullet14x14.gif", "rb") do |f|
+    File.open(File.expand_path("../icons/bluebullet14x14.gif", __FILE__), "rb") do |f|
       bytes = f.read
       @itemIcon = FXGIFIcon.new(getApp(), bytes)
     end
-    File.open("icons/transpbullet14x14.gif", "rb") do |f|
+    File.open(File.expand_path("../icons/transpbullet14x14.gif", __FILE__), "rb") do |f|
       bytes = f.read
       @transpIcon = FXGIFIcon.new(getApp(), bytes)
     end

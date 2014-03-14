@@ -64,7 +64,7 @@ class MDITestWindow  < FXMainWindow
 
     # Icon for MDI Child
     @mdiicon = nil
-    File.open(File.join("icons", "penguin.png"), "rb") do |f|
+    File.open(File.expand_path("../icons/penguin.png", __FILE__), "rb") do |f|
       @mdiicon = FXPNGIcon.new(getApp(), f.read)
     end
 

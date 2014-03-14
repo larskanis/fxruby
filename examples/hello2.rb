@@ -30,7 +30,7 @@ main = FXMainWindow.new(application, "Hello", nil, nil, DECOR_ALL)
 # on disk.
 
 icon = nil
-File.open(File.join("icons", "hello2.png"), "rb") { |f|
+File.open(File.expand_path("../icons/hello2.png", __FILE__), "rb") { |f|
   icon = FXPNGIcon.new(application, f.read)
 }
 
