@@ -67,8 +67,6 @@ protected:
   FXScrollArea();
   FXbool startAutoScroll(FXEvent* event,FXbool onlywheninside=FALSE);
   void stopAutoScroll();
-  FXScrollArea(FXComposite* p,FXuint opts,FXint x,FXint y,FXint w,FXint h);
-  virtual void moveContents(FXint x,FXint y);
 public:
   long onHMouseWheel(FXObject*,FXSelector,void* PTR_EVENT);
   long onVMouseWheel(FXObject*,FXSelector,void* PTR_EVENT);

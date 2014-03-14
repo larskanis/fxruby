@@ -28,8 +28,6 @@
 class FXShell : public FXComposite {
 protected:
   FXShell(){}
-  FXShell(FXApp* a,FXuint opts,FXint x,FXint y,FXint w,FXint h);
-  FXShell(FXWindow* own,FXuint opts,FXint x,FXint y,FXint w,FXint h);
 public:
   long onLayout(FXObject*,FXSelector,void* PTR_IGNORE);
   long onConfigure(FXObject*,FXSelector,void* PTR_EVENT);
