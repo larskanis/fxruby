@@ -420,6 +420,7 @@ inline void* to_FXEvent(VALUE obj){
 
 /* Output typemap for FXChore instances */
 %typemap(out) FXChore* "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+%nodefaultctor FXChore;
 
 /* Output typemap for FXComposite instances */
 %typemap(out) FXComposite * = FXObject *;
@@ -591,6 +592,7 @@ inline void* to_FXEvent(VALUE obj){
 
 /* Output typemap for FXTimer instances */
 %typemap(out) FXTimer* "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+%nodefaultctor FXTimer;
 
 /* Output typemap for FXTreeItem instances */
 %typemap(out) FXTreeItem * = FXObject *;
