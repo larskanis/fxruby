@@ -22,7 +22,7 @@ class TC_FXFileStream < Test::Unit::TestCase
 
   def test_open_existing_file
     assert_equal(FXStreamDead, @filestream.direction)
-    status = @filestream.open("README", FXStreamLoad)
+    status = @filestream.open(__FILE__, FXStreamLoad)
     assert(status)
     assert_equal(FXStreamLoad, @filestream.direction)
     status = @filestream.close
@@ -42,14 +42,14 @@ class TC_FXFileStream < Test::Unit::TestCase
 
   def test_status
     assert_equal(FXStreamOK, @filestream.status)
-    @filestream.open("README", FXStreamLoad)
+    @filestream.open(__FILE__, FXStreamLoad)
     assert_equal(FXStreamOK, @filestream.status)
     @filestream.close
     assert_equal(FXStreamOK, @filestream.status)
   end
 
   def test_position
-    @filestream.open("README", FXStreamLoad)
+    @filestream.open(__FILE__, FXStreamLoad)
     assert_equal(0, @filestream.position)
     @filestream.position = 500
     assert_equal(500, @filestream.position)
