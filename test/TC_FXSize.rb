@@ -36,6 +36,18 @@ class TC_FXSize < Test::Unit::TestCase
     assert(size2.w == -(@size2.w) && size2.h == -(@size2.h))
   end
 
+  def test_float
+    @size1.w = 2.8
+    @size2.h = 5.8
+    assert_equal(2, @size1.w)
+    assert_equal(5, @size2.h)
+  end
+
+  def test_invalid_type
+    assert_raise(TypeError){ @size1.w =  nil }
+    assert_raise(TypeError){ @size2.h = true }
+  end
+
   def test_add
     assert_equal(FXSize.new(1, 2) + FXSize.new(3, 4), FXSize.new(4, 6))
   end

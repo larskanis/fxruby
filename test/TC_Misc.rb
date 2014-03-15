@@ -44,6 +44,7 @@ class TC_Misc < Test::Unit::TestCase
 
   def test_FXREDVAL
     assert_equal(1, Fox.FXREDVAL(Fox.FXRGB(1, 0, 0)))
+    assert_equal(10, Fox.FXREDVAL(Fox.FXRGB(10.6, 0, 0)))
   end
 
   def test_FXGREENVAL
@@ -56,6 +57,7 @@ class TC_Misc < Test::Unit::TestCase
 
   def test_FXALPHAVAL
     assert_equal(1, Fox.FXALPHAVAL(Fox.FXRGBA(0, 0, 0, 1)))
+    assert_equal(10, Fox.FXALPHAVAL(Fox.FXRGBA(0, 0, 0, 10.6)))
   end
 
   def test_FXRGBACOMPVAL

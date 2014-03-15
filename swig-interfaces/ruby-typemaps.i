@@ -34,6 +34,15 @@
   FXWindow* owner
 }
 
+%typemap(in) FXchar "$1 = NUM2INT($input);";
+%typemap(in) FXuchar "$1 = NUM2UINT($input);";
+%typemap(in) FXshort "$1 = NUM2INT($input);";
+%typemap(in) FXushort "$1 = NUM2UINT($input);";
+%typemap(in) FXint "$1 = NUM2INT($input);";
+%typemap(in) FXuint "$1 = NUM2UINT($input);";
+%typemap(in) FXlong "$1 = NUM2LONG($input);";
+%typemap(in) FXulong "$1 = NUM2ULONG($input);";
+
 /* Type-checking rules */
 %typecheck(SWIG_TYPECHECK_STRING) const FXString&, FXuchar *data {
   $1 = (NIL_P($input) || TYPE($input) == T_STRING) ? 1 : 0;
