@@ -17,7 +17,11 @@ module Fox
   #   if you intend to do repeated re-rendering of the image after it has been
   #   created.
   # +IMAGE_OWNED+::
-  #   Does nothing - for backward compatibility only.
+  #   If +IMAGE_OWNED+ is set, the image pixel data is copied into the image.
+  #   If +IMAGE_OWNED+ is not set, a image pixel string is directly used as
+  #   memory buffer of the image, without copying the data.
+  #   If pixel data is given as an Array instead of a string, data is copied in
+  #   any case.
   # +IMAGE_DITHER+::
   #   Dither image to look better
   # +IMAGE_NEAREST+::
@@ -91,7 +95,9 @@ module Fox
     #
     # Image pixels are stored bytewise as [RGBA] values.
     #
-    def pixel_string ; end
+    # Optional offset and size can be used to retrieve a part of
+    # the image data. Both are counted in bytes.
+    def pixel_string(offset=nil, size=nil) ; end
 
     #
     # Return the color of the pixel at (_x_, _y_).

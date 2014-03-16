@@ -43,6 +43,10 @@
 %typemap(in) FXlong "$1 = NUM2LONG($input);";
 %typemap(in) FXulong "$1 = NUM2ULONG($input);";
 
+%typecheck(SWIG_TYPECHECK_INTEGER) FXchar, FXuchar, FXshort, FXushort, FXint, FXuint, FXlong, FXulong {
+  $1 = (TYPE($input) == T_FIXNUM || TYPE($input) == T_BIGNUM) ? 1 : 0;
+}
+
 /* Type-checking rules */
 %typecheck(SWIG_TYPECHECK_STRING) const FXString&, FXuchar *data {
   $1 = (NIL_P($input) || TYPE($input) == T_STRING) ? 1 : 0;

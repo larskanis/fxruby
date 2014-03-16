@@ -76,7 +76,7 @@ class TC_FXImage < Fox::TestCase
   def test_setPixels_string
     img = FXImage.new(app, nil, 0, 2, 1)
     img.pixels = "rgbaRGBA"
-    assert_equal(IMAGE_OWNED, img.options)
+    assert_equal(0, img.options)
     assert_equal("rgbaRGBA", img.pixel_string)
   end
 
@@ -101,7 +101,7 @@ class TC_FXImage < Fox::TestCase
   end
 
   def test_create_with_data
-    img = FXImage.new(app, "rgbaRGBA", 0, 1, 2)
+    img = FXImage.new(app, "rgbaRGBA", IMAGE_OWNED, 1, 2)
     assert_equal("rgbaRGBA", img.pixel_string)
     img.create
     assert_nil(img.pixels)
@@ -110,6 +110,44 @@ class TC_FXImage < Fox::TestCase
     assert_equal([0x12345678], img.pixels)
     img.create
     assert_not_nil(img.pixels)
+  end
+
+  def image_with_non_owned_data
+    FXImage.new(app, "rgbaRGBA", 0, 1, 2)
+  end
+
+  def test_create_with_non_owned_data
+    GC.stress = true
+    img = image_with_non_owned_data
+    " " * 10000
+    GC.stress = false
+    assert_equal("rgbaRGBA", img.pixel_string)
+    assert_equal(0, img.options)
+    img.create
+  end
+
+  def set_non_owned_data(img)
+    img.setPixels("rgbaRGBA", 0, 2, 1)
+  end
+
+  def test_set_pixel_with_non_owned_data
+    img = FXImage.new(app, nil, 0, 1, 2)
+    GC.stress = true
+    set_non_owned_data(img)
+    " " * 10000
+    GC.stress = false
+    assert_equal("rgbaRGBA", img.pixel_string)
+    assert_equal(0, img.options)
+    img.create
+  end
+
+  def test_partial_pixel_string
+    img = FXImage.new(app, "rgbaRGBA", IMAGE_OWNED, 1, 2)
+    assert_equal("baR", img.pixel_string(2,3))
+    assert_equal(nil, img.pixel_string(-2,3))
+    assert_equal(nil, img.pixel_string(2,-1))
+    assert_equal(nil, img.pixel_string(10,3))
+    assert_equal("baRGBA", img.pixel_string(2,10))
   end
 
   #

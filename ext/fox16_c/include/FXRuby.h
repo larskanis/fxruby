@@ -163,7 +163,7 @@ extern VALUE FXRbMakeColorArray(const FXColor* colors,FXint w,FXint h);
 extern FXuint FXRbNumberOfFXColors(VALUE string_or_ary);
 
 // Allocate a FXColor buffer and populate with data
-extern FXColor *FXRbConvertToFXColors(VALUE string_or_ary);
+extern FXColor *FXRbConvertToFXColors(VALUE string_or_ary, FXuint *opts);
 
 extern void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE data);
 

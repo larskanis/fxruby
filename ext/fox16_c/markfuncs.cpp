@@ -121,6 +121,9 @@ void FXRbIcon::markfunc(FXIcon* icon){
 
 void FXRbImage::markfunc(FXImage* image){
   FXRbDrawable::markfunc(image);
+  if( image ){
+    rb_gc_mark(dynamic_cast<FXRbImage*>(image)->data_string);
+    }
   }
 
 

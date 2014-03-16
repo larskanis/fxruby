@@ -466,17 +466,22 @@ FXuint FXRbNumberOfFXColors(VALUE string_or_ary){
   return len;
 }
 
-FXColor *FXRbConvertToFXColors(VALUE string_or_ary){
+FXColor *FXRbConvertToFXColors(VALUE string_or_ary, FXuint *opts){
   FXColor* pix=0;
   if(TYPE(string_or_ary) == T_ARRAY){
     if(FXMALLOC(&pix,FXColor,RARRAY_LEN(string_or_ary))){
+      *opts |= IMAGE_OWNED;
       for(long i=0; i<RARRAY_LEN(string_or_ary); i++){
         pix[i]=static_cast<FXColor>(NUM2UINT(rb_ary_entry(string_or_ary,i)));
       }
     }
   }else{
-    if(FXMALLOC(&pix,FXColor,RSTRING_LEN(string_or_ary)/sizeof(FXColor))){
-      memcpy(pix, RSTRING_PTR(string_or_ary), RSTRING_LEN(string_or_ary));
+    if( *opts & IMAGE_OWNED ){
+      if(FXMALLOC(&pix,FXColor,RSTRING_LEN(string_or_ary)/sizeof(FXColor))){
+        memcpy(pix, RSTRING_PTR(string_or_ary), RSTRING_LEN(string_or_ary));
+      }
+    }else{
+      pix = (FXColor*)(RSTRING_PTR(string_or_ary));
     }
   }
   return pix;

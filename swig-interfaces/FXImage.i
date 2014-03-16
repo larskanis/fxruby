@@ -62,10 +62,11 @@ public:
         if(w*h != len){
           rb_raise( rb_eArgError, "Array size does not match image size" );
         }
-        pix=FXRbConvertToFXColors(string_or_ary);
-        opts|=IMAGE_OWNED;
+        pix=FXRbConvertToFXColors(string_or_ary, &opts);
       }
-      return new FXRbImage(a,pix,opts,w,h);
+      FXRbImage *img = new FXRbImage(a,pix,opts,w,h);
+      img->data_string = (opts & IMAGE_OWNED) ? Qnil : string_or_ary;
+      return img;
     }
 
     /// To get to the pixel data
@@ -99,8 +100,8 @@ public:
         rb_raise( rb_eArgError, "Array size does not match image size" );
       }
 
-      FXColor* pix=FXRbConvertToFXColors(string_or_ary);
-      opts|=IMAGE_OWNED;
+      FXColor* pix=FXRbConvertToFXColors(string_or_ary, &opts);
+      (dynamic_cast<FXRbImage*>(self))->data_string = (opts & IMAGE_OWNED) ? Qnil : string_or_ary;
       if( NIL_P(w) || NIL_P(h) ){
         self->setData(pix,opts);
       }else{
@@ -125,6 +126,25 @@ public:
       FXColor* data = self->getData();
       if (data) {
         return rb_str_new((char*)data, self->getWidth()*self->getHeight()*sizeof(FXColor));
+      } else {
+        return Qnil;
+      }
+    }
+
+    VALUE pixel_string(FXlong offset, FXlong size){
+      FXColor* data = self->getData();
+      if (data) {
+        FXlong maxsize = self->getWidth()*self->getHeight()*sizeof(FXColor);
+        if( offset > maxsize || offset < 0 ){
+          return Qnil;
+        }
+        if( offset+size > maxsize ){
+          size = maxsize-offset;
+        }else if( size < 0 ){
+          return Qnil;
+        }
+
+        return rb_str_new((char*)data + offset, size);
       } else {
         return Qnil;
       }
