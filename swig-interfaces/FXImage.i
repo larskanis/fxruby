@@ -64,9 +64,7 @@ public:
         }
         pix=FXRbConvertToFXColors(string_or_ary, &opts);
       }
-      FXRbImage *img = new FXRbImage(a,pix,opts,w,h);
-      img->data_string = (opts & IMAGE_OWNED) ? Qnil : string_or_ary;
-      return img;
+      return new FXRbImage(a,pix,opts,w,h);
     }
 
     /// To get to the pixel data
@@ -101,7 +99,6 @@ public:
       }
 
       FXColor* pix=FXRbConvertToFXColors(string_or_ary, &opts);
-      (dynamic_cast<FXRbImage*>(self))->data_string = (opts & IMAGE_OWNED) ? Qnil : string_or_ary;
       if( NIL_P(w) || NIL_P(h) ){
         self->setData(pix,opts);
       }else{

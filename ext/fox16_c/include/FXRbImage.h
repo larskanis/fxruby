@@ -143,11 +143,9 @@ protected:
 #include "FXRbIdVirtuals.h"
 #include "FXRbDrawableVirtuals.h"
 #include "FXRbImageVirtuals.h"
-
-  VALUE data_string;
 public:
   /// Create an image
-  FXRbImage(FXApp* a,const FXColor* pix=NULL,FXuint opts=0,FXint w=1,FXint h=1):FXImage(a,pix,opts,w,h),data_string(Qnil){
+  FXRbImage(FXApp* a,const FXColor* pix=NULL,FXuint opts=0,FXint w=1,FXint h=1):FXImage(a,pix,opts,w,h){
     FXRbRegisterAppSensitiveObject(this);
     }
 
