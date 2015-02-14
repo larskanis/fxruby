@@ -454,6 +454,7 @@ IMPLEMENT_FXID_STUBS(FXRbImage)
 IMPLEMENT_FXDRAWABLE_STUBS(FXRbImage)
 IMPLEMENT_FXIMAGE_STUBS(FXRbImage)
 
+/* Start stub implementations for class FXRbImageData */
 /* Start stub implementations for class FXRbImageFrame */
 IMPLEMENT_FXOBJECT_STUBS(FXRbImageFrame)
 IMPLEMENT_FXID_STUBS(FXRbImageFrame)
