@@ -30,7 +30,7 @@ module Fox
     # +width+:: width [Integer]
     # +height+:: height [Integer]
     #
-    def initialize(a, pix=nil, clr=FXRGB(192,192,192), opts=0, width=1, height=1) # :yields: theBMPIcon
+    def initialize(a, pix=nil, clr=Fox.FXRGB(192,192,192), opts=0, width=1, height=1) # :yields: theBMPIcon
     end
   end
 
