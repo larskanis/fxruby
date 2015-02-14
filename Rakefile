@@ -23,7 +23,7 @@ PKG_VERSION = Fox.fxrubyversion
 FXSCINTILLA_INSTALL_DIR = Pathname( CrossLibraries.first.static_libfxscintilla_builddir ).expand_path
 
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
-SWIGFLAGS = "-fcompact -c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
+SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
 SWIG_LIB = `#{SWIG} -swiglib`.chomp
 SWIG_MODULES = {
   "core.i" => "core_wrap.cpp",
