@@ -481,6 +481,7 @@ FXColor *FXRbConvertToFXColors(VALUE string_or_ary, FXuint *opts){
         memcpy(pix, RSTRING_PTR(string_or_ary), RSTRING_LEN(string_or_ary));
       }
     }else{
+      rb_str_modify(string_or_ary);
       pix = (FXColor*)(RSTRING_PTR(string_or_ary));
     }
   }
