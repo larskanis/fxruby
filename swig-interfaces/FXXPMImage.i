@@ -23,8 +23,6 @@
 
 /// X Pixmap image
 class FXXPMImage : public FXImage {
-protected:
-  FXXPMImage(){}
 public:
   %extend {
     static VALUE fileExt() {

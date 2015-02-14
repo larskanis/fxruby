@@ -23,10 +23,6 @@
 
 /// Base composite
 class FXComposite : public FXWindow {
-protected:
-  FXComposite(){}
-  FXComposite(FXApp* a,FXVisual *vis);
-  FXComposite(FXApp* a,FXWindow* own,FXuint opts,FXint x,FXint y,FXint w,FXint h);
 public:
   long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);

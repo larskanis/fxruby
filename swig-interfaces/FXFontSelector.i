@@ -31,32 +31,6 @@ class FXFont;
 
 /// Font selection widget
 class FXFontSelector : public FXPacker {
-protected:
-  FXTextField   *family;
-  FXList        *familylist;
-  FXTextField   *weight;
-  FXList        *weightlist;
-  FXTextField   *style;
-  FXList        *stylelist;
-  FXTextField   *size;
-  FXList        *sizelist;
-  FXComboBox    *charset;
-  FXComboBox    *setwidth;
-  FXComboBox    *pitch;
-  FXCheckButton *scalable;
-  FXCheckButton *allfonts;
-  FXButton      *accept;
-  FXButton      *cancel;
-  FXLabel       *preview;
-  FXFont        *previewfont;
-  FXFontDesc     selected;
-protected:
-  FXFontSelector(){}
-  void listFontFaces();
-  void listWeights();
-  void listSlants();
-  void listFontSizes();
-  void previewFont();
 public:
   long onCmdFamily(FXObject*,FXSelector,void* PTR_INT);
   long onCmdWeight(FXObject*,FXSelector,void* PTR_INT);
@@ -109,9 +83,9 @@ public:
   %extend {
     /// Get font selection
     FXFontDesc getFontSelection() const {
-	FXFontDesc fontdesc;
-        self->getFontSelection(fontdesc);
-	return fontdesc;
+      FXFontDesc fontdesc;
+      self->getFontSelection(fontdesc);
+      return fontdesc;
     }
   }
 

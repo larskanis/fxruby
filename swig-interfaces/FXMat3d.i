@@ -22,8 +22,6 @@
 
 /// Double-precision 3x3 matrix
 class FXMat3d {
-protected:
-  FXVec3d m[3];
 public:
 
   /// Default constructor

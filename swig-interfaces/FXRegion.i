@@ -29,8 +29,6 @@
 class FXRegion {
   friend class FXDC;
   friend class FXDCWindow;
-private:
-  void *region;
 public:
 
   /// Construct new empty region

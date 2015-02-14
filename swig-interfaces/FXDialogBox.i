@@ -27,8 +27,6 @@
 * To close the DialogBox when not running modally, simply send it ID_HIDE.
 */
 class FXDialogBox : public FXTopWindow {
-protected:
-  FXDialogBox(){}
 public:
   long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);

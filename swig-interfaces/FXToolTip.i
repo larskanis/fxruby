@@ -32,16 +32,6 @@ class FXFont;
 
 /// Hopefully Helpful Hint message
 class FXToolTip : public FXShell {
-protected:
-  FXString  label;                      // Text in the tip
-  FXFont   *font;                       // Font of the tip
-  FXColor   textColor;                  // Text color
-  FXbool    popped;                     // Is currently popped up
-protected:
-  FXToolTip();
-  virtual FXbool doesOverrideRedirect() const;
-  void place(FXint x,FXint y);
-  void autoplace();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

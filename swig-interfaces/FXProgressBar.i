@@ -32,18 +32,6 @@ enum {
 
 /// Progress bar widget
 class FXProgressBar : public FXFrame {
-protected:
-  FXuint   progress;                      // Integer percentage number
-  FXuint   total;                         // Amount for completion
-  FXint    barsize;                       // Bar size
-  FXFont*  font;
-  FXColor  barBGColor;
-  FXColor  barColor;
-  FXColor  textNumColor;
-  FXColor  textAltColor;
-protected:
-  FXProgressBar(){}
-  void drawInterior(FXDCWindow& dc);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_UINT);

@@ -23,8 +23,6 @@
 
 /// TGA Image class
 class FXTGAImage : public FXImage {
-protected:
-  FXTGAImage(){}
 public:
   %extend {
     static VALUE fileExt() {

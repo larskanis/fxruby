@@ -23,8 +23,6 @@
 
 /// GIF Icon class
 class FXGIFIcon : public FXIcon {
-protected:
-  FXGIFIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

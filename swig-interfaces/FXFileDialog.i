@@ -38,11 +38,6 @@ class FXFileSelector;
 
 /// File selection dialog
 class FXFileDialog : public FXDialogBox {
-protected:
-  FXFileSelector *filebox;
-protected:
-  FXFileDialog(){}
-  void initdialog();
 public:
   %extend {
     /// Construct file dialog box

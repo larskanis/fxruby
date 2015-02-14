@@ -78,21 +78,6 @@ class FXToolBar;
 * the owner.
 */
 class FXTopWindow : public FXShell {
-protected:
-  FXString  title;                    // Window title
-  FXIcon   *icon;                     // Window icon (big)
-  FXIcon   *miniIcon;                 // Window icon (small)
-  FXint     padtop;                   // Top margin
-  FXint     padbottom;                // Bottom margin
-  FXint     padleft;                  // Left margin
-  FXint     padright;                 // Right margin
-  FXint     hspacing;                 // Horizontal child spacing
-  FXint     vspacing;                 // Vertical child spacing
-protected:
-  FXTopWindow();
-  void settitle();
-  void seticons();
-  void setdecorations();
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);

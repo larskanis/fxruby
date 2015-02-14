@@ -37,14 +37,6 @@
 * in the void* pointer argument of the message.
 */
 class FXDockBar : public FXPacker {
-protected:
-  FXComposite *drydock;	        // Parent when docked
-  FXComposite *wetdock;	        // Parent when floating
-  FXint        gripx;           // Grip offset x
-  FXint        gripy;           // Grip offset y
-  FXuchar      allowed;         // Where we're allowed to dock
-protected:
-  FXDockBar();
 public:
   long onCmdUndock(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdUndock(FXObject*,FXSelector,void* PTR_IGNORE);

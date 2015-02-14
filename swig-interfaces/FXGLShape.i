@@ -43,17 +43,6 @@ enum {
 
 /// OpenGL Shape Object
 class FXGLShape : public FXGLObject {
-protected:
-  FXVec3f	position;	      // Middle of the Bounding Box
-  FXMaterial    material[2];          // Front and back material properties
-  FXRangef      range;                // Range box
-  FXuint	options;              // Drawing options
-  FXString	tip;
-protected:
-  FXGLShape();
-  virtual void drawshape(FXGLViewer*){}  // To be overloaded by derived class
-  void drawbox();
-  void drawhandles();
 public:
   long onDNDDrop(FXObject*,FXSelector,void*);
   long onDNDMotion(FXObject*,FXSelector,void* PTR_EVENT);

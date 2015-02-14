@@ -60,57 +60,6 @@ enum {
 * ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).
 */
 class FXMDIChild : public FXComposite {
-protected:
-  FXString      title;                  // Window title
-  FXMenuButton *windowbtn;              // Window button
-  FXButton     *minimizebtn;            // Minimize button
-  FXButton     *restorebtn;             // Restore button
-  FXButton     *maximizebtn;            // Maximize buton
-  FXButton     *deletebtn;              // Close button
-  FXFont       *font;                   // Title font
-  FXColor       baseColor;              // Colors
-  FXColor       hiliteColor;
-  FXColor       shadowColor;
-  FXColor       borderColor;
-  FXColor       titleColor;
-  FXColor       titleBackColor;
-  FXint         iconPosX;               // Saved icon position
-  FXint         iconPosY;
-  FXint         iconWidth;
-  FXint         iconHeight;
-  FXint         normalPosX;             // Saved normal position
-  FXint         normalPosY;
-  FXint         normalWidth;
-  FXint         normalHeight;
-  FXint         spotx;                  // Grab-spot of mouse on window
-  FXint         spoty;
-  FXint         xoff;                   // Mouse offset to add
-  FXint         newx;                   // New location of window
-  FXint         newy;
-  FXint         neww;
-  FXint         newh;
-  FXuchar       mode;                   // Dragging mode
-protected:
-  FXMDIChild();
-  void drawRubberBox(FXint x,FXint y,FXint w,FXint h);
-  void animateRectangles(FXint ox,FXint oy,FXint ow,FXint oh,FXint nx,FXint ny,FXint nw,FXint nh);
-  FXuchar where(FXint x,FXint y);
-  void changeCursor(FXint x,FXint y);
-  void revertCursor();
-protected:
-  enum {
-    DRAG_NONE        = 0,
-    DRAG_TOP         = 1,
-    DRAG_BOTTOM      = 2,
-    DRAG_LEFT        = 4,
-    DRAG_RIGHT       = 8,
-    DRAG_TOPLEFT     = (DRAG_TOP|DRAG_LEFT),
-    DRAG_TOPRIGHT    = (DRAG_TOP|DRAG_RIGHT),
-    DRAG_BOTTOMLEFT  = (DRAG_BOTTOM|DRAG_LEFT),
-    DRAG_BOTTOMRIGHT = (DRAG_BOTTOM|DRAG_RIGHT),
-    DRAG_INVERTED    = 16,
-    DRAG_TITLE       = 32
-    };
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusSelf(FXObject*,FXSelector,void* PTR_EVENT);

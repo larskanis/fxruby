@@ -40,13 +40,6 @@ class FXPopup;
 * SEL_CHANGED messages to indicate which item the cursor is hovering over.
 */
 class FXTreeListBox : public FXPacker {
-protected:
-  FXButton      *field;
-  FXMenuButton  *button;
-  FXTreeList    *tree;
-  FXPopup       *pane;
-protected:
-  FXTreeListBox(){}
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);

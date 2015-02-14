@@ -133,14 +133,6 @@ struct FXTimer {
 
 /// Application Object
 class FXApp : public FXObject {
-protected:
-
-  /// Return TRUE when new raw event is available
-  virtual bool getNextEvent(FXRawEvent& ev,FXbool blocking=TRUE);
-
-  /// Dispatch raw event
-  virtual bool dispatchEvent(FXRawEvent& ev);
-
 public:
   long onCmdQuit(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDump(FXObject*,FXSelector,void* PTR_IGNORE);
@@ -178,7 +170,7 @@ public:
         return 0;
         }
       else{
-	      return FXRbApp::constructAndInit(name,vendor);
+        return FXRbApp::constructAndInit(name,vendor);
         }
       }
   }
@@ -368,15 +360,15 @@ public:
       FXuint m;
       if(mode&INPUT_READ){
         m=INPUT_READ;
-	if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
+        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
         fd=FXRbGetReadFileHandle(obj);
-	self->addInput(fd,m,tgt,sel);
+        self->addInput(fd,m,tgt,sel);
         }
       if(mode&INPUT_WRITE){
         m=INPUT_WRITE;
-	if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
+        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
         fd=FXRbGetWriteFileHandle(obj);
-	self->addInput(fd,m,tgt,sel);
+        self->addInput(fd,m,tgt,sel);
         }
       return true;
       }
@@ -390,15 +382,15 @@ public:
       FXuint m;
       if(mode&INPUT_READ){
         m=INPUT_READ;
-	if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
+        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
         fd=FXRbGetReadFileHandle(obj);
-	self->removeInput(fd,m);
+        self->removeInput(fd,m);
         }
       if(mode&INPUT_WRITE){
         m=INPUT_WRITE;
-	if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
+        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
         fd=FXRbGetWriteFileHandle(obj);
-	self->removeInput(fd,m);
+        self->removeInput(fd,m);
         }
       return true;
       }
@@ -557,13 +549,13 @@ public:
       FXASSERT(cur);
       if(cur->isMemberOf(FXMETACLASS(FXRbCursor))){
         dynamic_cast<FXRbCursor*>(cur)->ownedByApp=TRUE;
-	}
+        }
       else if(cur->isMemberOf(FXMETACLASS(FXRbCURCursor))){
         dynamic_cast<FXRbCURCursor*>(cur)->ownedByApp=TRUE;
-	}
+        }
       else if(cur->isMemberOf(FXMETACLASS(FXRbGIFCursor))){
         dynamic_cast<FXRbGIFCursor*>(cur)->ownedByApp=TRUE;
-	}
+        }
       self->setWaitCursor(cur);
       }
   }
@@ -580,13 +572,13 @@ public:
       FXASSERT(cur);
       if(cur->isMemberOf(FXMETACLASS(FXRbCursor))){
         dynamic_cast<FXRbCursor*>(cur)->ownedByApp=TRUE;
-	}
+        }
       else if(cur->isMemberOf(FXMETACLASS(FXRbCURCursor))){
         dynamic_cast<FXRbCURCursor*>(cur)->ownedByApp=TRUE;
-	}
+        }
       else if(cur->isMemberOf(FXMETACLASS(FXRbGIFCursor))){
         dynamic_cast<FXRbGIFCursor*>(cur)->ownedByApp=TRUE;
-	}
+        }
       self->setDefaultCursor(which,cur);
       }
   }

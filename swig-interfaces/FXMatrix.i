@@ -45,10 +45,6 @@ enum {
 * as a space-holder.
 */
 class FXMatrix : public FXPacker {
-protected:
-  FXint  num;
-protected:
-  FXMatrix(){}
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);

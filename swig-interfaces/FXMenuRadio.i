@@ -32,14 +32,6 @@
 * properly maintain the state between them.
 */
 class FXMenuRadio : public FXMenuCommand {
-protected:
-  FXuchar check;        // State of menu
-  FXColor radioColor;   // Color of the radio
-protected:
-  FXMenuRadio();
-private:
-  FXMenuRadio(const FXMenuRadio&);
-  FXMenuRadio &operator=(const FXMenuRadio&);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onButtonPress(FXObject*,FXSelector,void* PTR_EVENT);

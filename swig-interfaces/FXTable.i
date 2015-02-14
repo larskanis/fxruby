@@ -55,25 +55,8 @@ struct FXTableRange {
   ~FXTableRange();
   };
 
-
 /// Item in table
 class FXTableItem : public FXObject {
-protected:
-  FXString    label;
-  FXIcon     *icon;
-  void       *data;
-  FXuint      state;
-protected:
-  FXTableItem():icon(NULL),data(NULL),state(0){}
-  FXint textWidth(const FXTable* table) const;
-  FXint textHeight(const FXTable* table) const;
-  virtual void draw(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual void drawBorders(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual void drawContent(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual void drawPattern(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual void drawBackground(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-protected:
-  FXTableItem();
 public:
   enum{
     SELECTED   = 0x00000001,    /// Selected

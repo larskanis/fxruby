@@ -24,8 +24,6 @@
 
 /// Portable Network Graphics (PNG) Icon
 class FXPNGIcon : public FXIcon {
-protected:
-  FXPNGIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

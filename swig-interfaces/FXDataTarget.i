@@ -34,11 +34,6 @@
 * by subtracting ID_OPTION from the message ID.
 */
 class FXDataTarget : public FXObject {
-protected:
-  FXObject     *target;                 // Target object
-  void         *data;                   // Associated data
-  FXSelector    message;                // Message ID
-  FXuint        type;                   // Type of data
 public:
   long onCmdValue(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdValue(FXObject*,FXSelector,void* PTR_IGNORE);

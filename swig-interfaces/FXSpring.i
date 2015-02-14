@@ -42,14 +42,6 @@
 * it provides the same layout behavior as packer.
 */
 class FXSpring : public FXPacker {
-protected:
-  FXint   relWidth;     // Relative width
-  FXint   relHeight;    // Relative height
-protected:
-  FXSpring(){}
-private:
-  FXSpring(const FXSpring&);
-  FXSpring &operator=(const FXSpring&);
 public:
 
   %extend {

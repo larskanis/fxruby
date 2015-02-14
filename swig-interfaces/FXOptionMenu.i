@@ -30,8 +30,6 @@ class FXPopup;
 
 /// Option Menu Button
 class FXOption : public FXLabel {
-protected:
-  FXOption();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);
@@ -75,11 +73,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXOption)
 
 /// Option Menu
 class FXOptionMenu : public FXLabel {
-protected:
-  FXPopup  *pane;
-  FXOption *current;
-protected:
-  FXOptionMenu();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

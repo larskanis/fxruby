@@ -43,18 +43,6 @@
 * system when FXApp::exit() is called.
 */
 class FXRegistry : public FXSettings {
-protected:
-  FXString       applicationkey;  // Application key
-  FXString       vendorkey;       // Vendor key
-  bool	 ascii;		  // ASCII file-based registry
-protected:
-  bool readFromDir(const FXchar* dirname,FXbool mark);
-#ifdef WIN32
-  bool readFromRegistry(void* hRootKey,FXbool mark);
-  bool writeToRegistry(void* hRootKey);
-  bool readFromRegistryGroup(void* org,const char* groupname,FXbool mark=FALSE);
-  bool writeToRegistryGroup(void* org,const char* groupname);
-#endif
 public:
 
   /**

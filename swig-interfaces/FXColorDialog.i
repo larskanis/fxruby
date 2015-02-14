@@ -33,10 +33,6 @@ class FXColorSelector;
 * automatically saved into the registry for future use.
 */
 class FXColorDialog : public FXDialogBox {
-protected:
-  FXColorSelector *colorbox;
-protected:
-  FXColorDialog(){}
 public:
   long onChgColor(FXObject*,FXSelector,void* PTR_COLOR);
   long onCmdColor(FXObject*,FXSelector,void* PTR_COLOR);

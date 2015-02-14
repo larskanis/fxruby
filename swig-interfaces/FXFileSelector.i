@@ -60,39 +60,6 @@ enum {
 
 /// File selection widget
 class FXFileSelector : public FXPacker {
-protected:
-  FXFileList    *filebox;         // File list widget
-  FXTextField   *filename;        // File name entry field
-  FXComboBox    *filefilter;      // Combobox for pattern list
-  FXMenuPane    *bookmarkmenu;       // Menu for bookmarks
-  FXHorizontalFrame *navbuttons;        // Navigation buttons
-  FXHorizontalFrame *fileboxframe;      // Frame around file list
-  FXMatrix          *entryblock;        // Entry block
-  FXCheckButton *readonly;        // Open file as read only
-  FXDirBox      *dirbox;          // Directory hierarchy list
-  FXButton      *accept;          // Accept button
-  FXButton      *cancel;          // Cancel button
-  FXIcon        *updiricon;       // Up directory icon
-  FXIcon        *listicon;        // List mode icon
-  FXIcon        *detailicon;      // Detail mode icon
-  FXIcon        *iconsicon;       // Icon mode icon
-  FXIcon        *homeicon;        // Go home icon
-  FXIcon        *workicon;        // Go home icon
-  FXIcon        *shownicon;       // Files shown icon
-  FXIcon        *hiddenicon;      // Files hidden icon
-  FXIcon        *markicon;        // Book mark icon
-  FXIcon        *clearicon;       // Book clear icon
-  FXIcon            *newicon;           // New directory icon
-  FXIcon        *deleteicon;      // Delete file icon
-  FXIcon        *moveicon;        // Rename file icon
-  FXIcon        *copyicon;        // Copy file icon
-  FXIcon        *linkicon;        // Link file icon
-  FXRecentFiles      bookmarks;         // Bookmarked places
-  FXuint         selectmode;      // Select mode
-protected:
-  FXFileSelector(){}
-  FXString *getSelectedFiles() const;
-  FXString *getSelectedFilesOnly() const;
 public:
   long onCmdAccept(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdFilter(FXObject*,FXSelector,void* PTR_CSTRING);

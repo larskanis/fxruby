@@ -40,26 +40,6 @@ enum { DEFAULT_PAD = 2 };
 
 /// Base Frame
 class FXFrame : public FXWindow {
-protected:
-  FXColor baseColor;    // Base color
-  FXColor hiliteColor;  // Highlight color
-  FXColor shadowColor;  // Shadow color
-  FXColor borderColor;  // Border color
-  FXint   padtop;       // Top padding
-  FXint   padbottom;    // Bottom padding
-  FXint   padleft;      // Left padding
-  FXint   padright;     // right padding
-  FXint   border;       // Border size
-protected:
-  FXFrame();
-  void drawBorderRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawRidgeRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawGrooveRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawDoubleRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawDoubleSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawFrame(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:

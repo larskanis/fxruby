@@ -28,13 +28,6 @@ class FXVisual;
 * drawn upon, such as a FXWindow, or FXImage.
 */
 class FXDrawable : public FXId {
-protected:
-  FXVisual     *visual;                 // Visual for this window
-  FXint         width;                  // Width
-  FXint         height;                 // Height
-protected:
-  FXDrawable();
-  FXDrawable(FXApp* a,FXint w,FXint h);
 public:
   %extend {
     // Construct with this width and height

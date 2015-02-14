@@ -23,8 +23,6 @@
 
 ///  PCX graphics file
 class FXPCXImage : public FXImage {
-protected:
-  FXPCXImage(){}
 public:
   %extend {
     static VALUE fileExt() {

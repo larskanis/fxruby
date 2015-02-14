@@ -51,22 +51,6 @@ class FXFont;
 * and/or help string.
 */
 class FXLabel : public FXFrame {
-protected:
-  FXString label;
-  FXIcon*  icon;
-  FXFont*  font;
-  FXHotKey hotkey;
-  FXint    hotoff;
-  FXColor  textColor;
-  FXString tip;
-  FXString help;
-protected:
-  FXLabel();
-  FXint labelHeight(const FXString& text) const;
-  FXint labelWidth(const FXString& text) const;
-  void drawLabel(FXDCWindow& dc,const FXString& text,FXint hot,FXint tx,FXint ty,FXint tw,FXint th);
-  void just_x(FXint& tx,FXint& ix,FXint tw,FXint iw);
-  void just_y(FXint& ty,FXint& iy,FXint th,FXint ih);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onHotKeyPress(FXObject*,FXSelector,void* PTR_EVENT);

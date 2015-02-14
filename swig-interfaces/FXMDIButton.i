@@ -25,8 +25,6 @@ class FXIcon;
 
 /// MDI Delete button
 class FXMDIDeleteButton : public FXButton {
-protected:
-  FXMDIDeleteButton(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
@@ -50,8 +48,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXMDIDeleteButton)
 
 /// MDI Restore button
 class FXMDIRestoreButton : public FXButton {
-protected:
-  FXMDIRestoreButton(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
@@ -75,8 +71,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXMDIRestoreButton)
 
 /// MDI Maximize button
 class FXMDIMaximizeButton : public FXButton {
-protected:
-  FXMDIMaximizeButton(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
@@ -100,8 +94,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXMDIMaximizeButton)
 
 /// MDI Minimize button
 class FXMDIMinimizeButton : public FXButton {
-protected:
-  FXMDIMinimizeButton(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
@@ -125,8 +117,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXMDIMinimizeButton)
 
 /// MDI Window button
 class FXMDIWindowButton : public FXMenuButton {
-protected:
-  FXMDIWindowButton(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
@@ -150,8 +140,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXMDIWindowButton)
 
 /// MDI Window Menu
 class FXMDIMenu : public FXMenuPane {
-protected:
-  FXMDIMenu(){}
 public:
   %extend {
     /// Construct MDI menu

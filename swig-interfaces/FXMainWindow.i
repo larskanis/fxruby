@@ -30,8 +30,6 @@
 * raised, the MainWindow will delete itself.
 */
 class FXMainWindow : public FXTopWindow {
-protected:
-  FXMainWindow(){}
 public:
   %extend {
     /// Construct a main window

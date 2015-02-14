@@ -23,8 +23,6 @@
 
 /// ICO icon
 class FXICOIcon : public FXIcon {
-protected:
-  FXICOIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

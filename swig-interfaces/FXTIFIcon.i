@@ -24,10 +24,6 @@
 
 /// TIFF Icon class
 class FXTIFIcon : public FXIcon {
-protected:
-  FXushort codec;
-protected:
-  FXTIFIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

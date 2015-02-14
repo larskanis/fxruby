@@ -57,51 +57,6 @@ class FXFont;
 * and size of entities within the document.
 */
 class FXRuler : public FXFrame {
-protected:
-  FXFont  *font;                // Font for numbers
-  FXint    documentSize;        // Size of document
-  FXint    edgeSpacing;         // Edge spacing around document
-  FXint    marginLower;         // Lower margin
-  FXint    marginUpper;         // Upper margin
-  FXint    indentFirst;         // First line paragraph indent
-  FXint    indentLower;         // Lower paragraph indent
-  FXint    indentUpper;         // Upper paragraph indent
-  FXdouble pixelPerTick;        // Number of pixels per tick increment
-  FXint    numberTicks;         // Tick increments between numbers
-  FXint    majorTicks;          // Tick increments between major ticks
-  FXint    mediumTicks;         // Tick increments between medium ticks
-  FXint    tinyTicks;           // Tick increments between tiny ticks
-  FXint    arrowPos;            // Arrow position
-  FXColor  textColor;           // Color for numbers and ticks
-  FXint    shift;               // Left edge of content
-  FXint    pos;                 // Scroll position
-  FXint    off;                 // Offset item was grabbed
-  FXString tip;                 // Tooltip text
-  FXString help;                // Help text
-  FXuchar  mode;                // Mode widget is in
-protected:
-  FXRuler();
-  FXint picked(FXint x,FXint y);
-  void drawLeftArrow(FXDCWindow& dc,FXint x,FXint y);
-  void drawRightArrow(FXDCWindow& dc,FXint x,FXint y);
-  void drawUpArrow(FXDCWindow& dc,FXint x,FXint y);
-  void drawDownArrow(FXDCWindow& dc,FXint x,FXint y);
-  void drawLeftMarker(FXDCWindow& dc,FXint x,FXint y);
-  void drawRightMarker(FXDCWindow& dc,FXint x,FXint y);
-  void drawUpMarker(FXDCWindow& dc,FXint x,FXint y);
-  void drawDownMarker(FXDCWindow& dc,FXint x,FXint y);
-protected:
-  enum{
-    MOUSE_NONE,         // No mouse operation
-    MOUSE_MARG_LOWER,   // Drag lower margin
-    MOUSE_MARG_UPPER,   // Drag upper margin
-    MOUSE_PARA_FIRST,   // Drag first indent
-    MOUSE_PARA_LOWER,   // Drag lower indent
-    MOUSE_PARA_UPPER    // Drag upper indent
-    };
-private:
-  FXRuler(const FXRuler&);
-  FXRuler &operator=(const FXRuler&);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

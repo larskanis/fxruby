@@ -28,23 +28,6 @@
 * and ask various questions at each step in the installation.
 */
 class FXWizard : public FXDialogBox {
-protected:
-  FXHorizontalFrame *buttons;           // Button frame
-  FXImageFrame      *sidebar;           // Sidebar comprising image
-  FXButton          *advance;           // Advance to next stage
-  FXButton          *retreat;           // Retreat to last stage
-  FXButton          *finish;            // Finish panel
-  FXButton          *cancel;            // Cancel button
-  FXSwitcher        *panels;            // Sub panels
-  FXIcon            *finishicon;
-  FXIcon            *nexticon;
-  FXIcon            *backicon;
-protected:
-  FXWizard(){}
-  void construct();
-private:
-  FXWizard(const FXWizard&);
-  FXWizard &operator=(const FXWizard&);
 public:
   long onUpdFinish(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdNext(FXObject*,FXSelector,void* PTR_IGNORE);

@@ -31,13 +31,6 @@ enum {
 
 /// Check button
 class FXCheckButton : public FXLabel {
-protected:
-  FXColor  checkColor;  // Color of check mark
-  FXColor  boxColor;    // Color of check box
-  FXbool   check;       // Check state
-  FXbool   oldcheck;    // Old check state
-protected:
-  FXCheckButton();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

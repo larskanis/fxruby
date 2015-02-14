@@ -37,17 +37,6 @@ class FXStringDict;
 * to the file.
 */
 class FXSettings : public FXDict {
-protected:
-  bool         modified;
-protected:
-  virtual void *createData(const void*);
-  virtual void deleteData(void*);
-  FXchar* dequote(FXchar* text) const;
-  FXchar* enquote(FXchar* result,const FXchar* text);
-  FXStringDict* insert(const FXchar* ky);
-  FXStringDict* replace(const FXchar* ky,FXStringDict* section);
-  FXStringDict* remove(const FXchar* ky);
-  FXStringDict* find(const FXchar* ky);
 public:
 
   /// Construct settings database.

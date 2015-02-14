@@ -27,11 +27,6 @@
 * When activated, a menu command sends a SEL_COMMAND to its target.
 */
 class FXMenuCommand : public FXMenuCaption {
-protected:
-  FXString     accel;       // Accelerator string
-  FXHotKey     acckey;      // Accelerator key
-protected:
-  FXMenuCommand(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);

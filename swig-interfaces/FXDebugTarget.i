@@ -27,10 +27,6 @@
 * whose messages you want to see,
 */
 class FXDebugTarget : public FXObject {
-protected:
-  FXObject   *lastsender;
-  FXSelector  lastsel;
-  FXuint      count;
 public:
 #ifdef SWIGRUBY
   %extend {

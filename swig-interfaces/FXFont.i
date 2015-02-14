@@ -125,26 +125,6 @@ struct FXFontDesc {
 
 /// Font class
 class FXFont : public FXId {
-protected:
-  FXString  wantedName;         // Desired font font name
-  FXString  actualName;         // Matched font font name
-  FXushort  wantedSize;         // Font size (points*10)
-  FXushort  actualSize;         // Actual size that was matched
-  FXushort  wantedWeight;       // Font weight
-  FXushort  actualWeight;       // Font weight
-  FXushort  wantedSlant;        // Font slant
-  FXushort  actualSlant;        // Font slant
-  FXushort  wantedSetwidth;     // Relative setwidth
-  FXushort  actualSetwidth;     // Relative setwidth
-  FXushort  wantedEncoding;     // Character set encoding
-  FXushort  actualEncoding;     // Character set encoding
-  FXushort  hints;              // Matching hint flags
-  FXushort  flags;              // Actual flags
-  FXshort   angle;              // Angle
-  void     *font;                 // Info about the font
-protected:
-  FXFont();
-  void* match(const FXString& wantfamily,const FXString& wantforge,FXuint wantsize,FXuint wantweight,FXuint wantslant,FXuint wantsetwidth,FXuint wantencoding,FXuint wanthints,FXint res);
 public:
 
   /// Font pitch hints

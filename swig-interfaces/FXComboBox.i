@@ -72,13 +72,6 @@ class FXPopup;
 * the value of the field.
 */
 class FXComboBox : public FXPacker {
-protected:
-  FXTextField   *field;
-  FXMenuButton  *button;
-  FXList        *list;
-  FXPopup       *pane;
-protected:
-  FXComboBox(){}
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);

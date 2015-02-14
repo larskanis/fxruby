@@ -23,8 +23,6 @@
 
 /// Microsoft Bitmap image
 class FXBMPImage : public FXImage {
-protected:
-  FXBMPImage(){}
 public:
   %extend {
     static VALUE fileExt() {

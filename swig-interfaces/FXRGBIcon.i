@@ -23,8 +23,6 @@
 
 /// IRIS RGB icon
 class FXRGBIcon : public FXIcon {
-protected:
-  FXRGBIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

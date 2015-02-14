@@ -164,32 +164,6 @@ class FXDrawable;
 * application regardless of the actual device surface being utilized.
 */
 class FXDC {
-private:
-  FXApp           *app;       // Application
-protected:
-  void            *ctx;       // Context handle
-  FXFont          *font;      // Drawing font
-  FXStipplePattern pattern;   // Stipple pattern
-  FXBitmap        *stipple;   // Stipple bitmap
-  FXImage         *tile;      // Tile image
-  FXBitmap        *mask;      // Mask bitmap
-  FXRectangle      clip;      // Clip rectangle
-  FXColor          fg;        // Foreground color
-  FXColor          bg;        // Background color
-  FXuint           width;     // Line width
-  FXCapStyle       cap;       // Line cap style
-  FXJoinStyle      join;      // Line join style
-  FXLineStyle      style;     // Line style
-  FXFillStyle      fill;      // Fill style
-  FXFillRule       rule;      // Fill rule
-  FXFunction       rop;       // RasterOp
-  FXchar           dashpat[32]; // Line dash pattern data
-  FXuint           dashlen;     // Line dash pattern length
-  FXuint           dashoff;     // Line dash pattern offset
-  FXint            tx;        // Tile dx
-  FXint            ty;        // Tile dy
-  FXint            cx;        // Clip x
-  FXint            cy;        // Clip y
 public:
   %extend {
     /// Construct dummy DC

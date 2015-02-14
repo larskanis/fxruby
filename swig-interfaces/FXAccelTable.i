@@ -27,13 +27,6 @@
  */
 
 class FXAccelTable : public FXObject {
-protected:
-  struct FXAccelKey {
-    FXObject    *target;    // Target object of message
-    FXSelector   messagedn; // Message being sent
-    FXSelector   messageup; // Message being sent
-    FXHotKey     code;      // Keysym and modifier mask to match
-    };
 public:
   long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);

@@ -99,19 +99,6 @@ class FXComposite;
 
 /// Base class for all windows
 class FXWindow : public FXDrawable {
-protected:
-  FXComposeContext *composeContext;     // Compose context
-  FXCursor     *defaultCursor;          // Normal Cursor
-  FXCursor     *dragCursor;             // Cursor during drag
-  FXAccelTable *accelTable;             // Accelerator table
-  FXObject     *target;                 // Target object
-  FXSelector    message;                // Message ID
-  FXint         xpos;                   // Window X Position
-  FXint         ypos;                   // Window Y Position
-  FXColor       backColor;              // Window background color
-  FXString      tag;                    // Help tag
-  FXuint        flags;                  // Window state flags
-  FXuint        options;                // Window options
 public:
 
   // Common DND types
@@ -124,43 +111,6 @@ public:
   static FXDragType urilistType;        // URI List
   static const FXDragType stringType;   // Clipboard text type (pre-registered)
   static const FXDragType imageType;    // Clipboard image type (pre-registered)
-
-protected:
-  FXWindow();
-  FXWindow(FXApp* a,FXVisual *vis);
-  FXWindow(FXApp* a,FXWindow* own,FXuint opts,FXint x,FXint y,FXint w,FXint h);
-  static FXWindow* findDefault(FXWindow* window);
-  static FXWindow* findInitial(FXWindow* window);
-  virtual FXbool doesOverrideRedirect() const;
-
-protected:
-
-  // Window state flags
-  enum {
-    FLAG_SHOWN        = 0x00000001,     // Is shown
-    FLAG_ENABLED      = 0x00000002,     // Able to receive input
-    FLAG_UPDATE       = 0x00000004,     // Is subject to GUI update
-    FLAG_DROPTARGET   = 0x00000008,     // Drop target
-    FLAG_FOCUSED      = 0x00000010,     // Has focus
-    FLAG_DIRTY        = 0x00000020,     // Needs layout
-    FLAG_RECALC       = 0x00000040,     // Needs recalculation
-    FLAG_TIP          = 0x00000080,     // Show tip
-    FLAG_HELP         = 0x00000100,     // Show help
-    FLAG_DEFAULT      = 0x00000200,     // Default widget
-    FLAG_INITIAL      = 0x00000400,     // Initial widget
-    FLAG_SHELL        = 0x00000800,     // Shell window
-    FLAG_ACTIVE       = 0x00001000,     // Window is active
-    FLAG_PRESSED      = 0x00002000,     // Button has been pressed
-    FLAG_KEY          = 0x00004000,     // Keyboard key pressed
-    FLAG_CARET        = 0x00008000,     // Caret is on
-    FLAG_CHANGED      = 0x00010000,     // Window data changed
-    FLAG_LASSO        = 0x00020000,     // Lasso mode
-    FLAG_TRYDRAG      = 0x00040000,     // Tentative drag mode
-    FLAG_DODRAG       = 0x00080000,     // Doing drag mode
-    FLAG_SCROLLINSIDE = 0x00100000,     // Scroll only when inside
-    FLAG_SCROLLING    = 0x00200000,     // Right mouse scrolling
-    FLAG_OWNED        = 0x00400000
-    };
 
 public:
 

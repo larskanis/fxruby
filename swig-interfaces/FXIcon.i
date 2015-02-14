@@ -23,13 +23,6 @@
 
 /// Icon class
 class FXIcon : public FXImage {
-protected:
-  FXID     shape;             // Shape pixmap
-  FXID     etch;              // Etch pixmap
-  FXColor  transp;            // Transparency color
-protected:
-  FXIcon(){}
-  FXColor guesstransp();
 public:
   %extend {
     /**

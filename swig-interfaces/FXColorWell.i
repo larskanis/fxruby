@@ -38,16 +38,6 @@ enum {
 * you can highlight the word `red' and paste it into a color well.
 */
 class FXColorWell : public FXFrame {
-protected:
-  FXColor   wellColor[2];             // Pixel value of RGBA over black and white
-  FXColor   rgba;                     // Color with RGB and Alpha
-  FXColor   oldrgba;                  // Old color
-  FXString  tip;                      // Tooltip value
-  FXString  help;                     // Help value
-protected:
-  FXColorWell();
-  static FXColor rgbaoverblack(FXColor clr);
-  static FXColor rgbaoverwhite(FXColor clr);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

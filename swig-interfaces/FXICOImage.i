@@ -23,8 +23,6 @@
 
 /// ICO graphics file
 class FXICOImage : public FXImage {
-protected:
-  FXICOImage(){}
 public:
   %extend {
     static VALUE fileExt() {

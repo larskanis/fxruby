@@ -31,12 +31,6 @@ class FXScrollWindow;
 * window to allow unlimited room for all the contents.
 */
 class FXShutterItem : public FXVerticalFrame {
-protected:
-  FXButton         *button;
-  FXScrollWindow   *scrollWindow;
-  FXVerticalFrame  *content;
-protected:
-  FXShutterItem(){}
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);
@@ -90,14 +84,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXShutterItem)
 * A sub panel can be unfolded by pressing on that panel's button.
 */
 class FXShutter : public FXVerticalFrame {
-protected:
-  FXint          current;               // Item currently open
-  FXint          closing;               // Item closing down
-  FXint          heightIncrement;       // Height delta
-  FXint          closingHeight;         // Closing items current height
-  FXbool         closingHadScrollbar;   // Closing item had a scroll bar
-protected:
-  FXShutter(){}
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);

@@ -24,10 +24,6 @@
 
 /// GLCanvas, an area drawn by another object
 class FXGLCanvas : public FXCanvas {
-protected:
-  void        *ctx;     // GL Context
-protected:
-  FXGLCanvas();
 public:
   %extend {
     /**

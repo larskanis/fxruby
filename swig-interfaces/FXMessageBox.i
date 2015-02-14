@@ -60,8 +60,6 @@ enum {
 * before the program may continue.
 */
 class FXMessageBox : public FXDialogBox {
-protected:
-  FXMessageBox(){}
 public:
   long onCmdClicked(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCancel(FXObject*,FXSelector,void* PTR_IGNORE);

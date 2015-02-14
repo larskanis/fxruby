@@ -26,13 +26,6 @@
 * it must be explicitly deleted elsewhere.
 */
 class FXImageFrame : public FXFrame {
-protected:
-  FXImage* image;       // The image being displayed
-protected:
-  FXImageFrame();
-private:
-  FXImageFrame(const FXImageFrame&);
-  FXImageFrame &operator=(const FXImageFrame&);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:

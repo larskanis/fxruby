@@ -23,8 +23,6 @@
 
 /// Canvas, an area drawn by another object
 class FXCanvas : public FXWindow {
-protected:
-  FXCanvas();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:

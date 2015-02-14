@@ -31,16 +31,6 @@ class FXArrowButton;
 * known in advance how many entries will be added.
 */
 class FXScrollPane : public FXMenuPane {
-protected:
-  FXArrowButton *dn;            // Button to scroll down
-  FXArrowButton *up;            // Button to scroll up
-  FXint          visible;       // Visible entries
-  FXint          top;           // Top visible entry
-protected:
-  FXScrollPane();
-private:
-  FXScrollPane(const FXScrollPane&);
-  FXScrollPane &operator=(const FXScrollPane&);
 public:
   long onCmdIncrement(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdDecrement(FXObject*,FXSelector,void* PTR_IGNORE);

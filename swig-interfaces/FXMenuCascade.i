@@ -28,11 +28,6 @@ class FXPopup;
 * pull down menu.
 */
 class FXMenuCascade : public FXMenuCaption {
-protected:
-  FXPopup *pane;
-protected:
-  FXMenuCascade(){}
-  void drawTriangle(FXDCWindow& dc,FXint l,FXint t,FXint r,FXint b);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);

@@ -39,25 +39,6 @@ enum {
 
 /// Slider Control
 class FXSlider : public FXFrame {
-protected:
-  FXint         range[2];                 // Reported data range
-  FXint         pos;                      // Reported data position
-  FXint         incr;                     // Increment when auto-sliding
-  FXint         delta;                    // Interval between ticks
-  FXint         headpos;                  // Head position
-  FXint         headsize;                 // Head size
-  FXint         slotsize;                 // Slot size
-  FXColor       slotColor;                // Color of slot the head moves in
-  FXint         dragpoint;                // Where the head is grabbed
-  FXString      help;                     // Help string
-  FXString      tip;                      // Tip string
-protected:
-  FXSlider();
-  FXint headPos(FXint v) const;
-  FXint headVal(FXint p) const;
-  void drawSliderHead(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawHorzTicks(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawVertTicks(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onMotion(FXObject*,FXSelector,void* PTR_EVENT);

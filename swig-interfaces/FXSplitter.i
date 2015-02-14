@@ -58,16 +58,6 @@ enum {
 * LAYOUT_FIX_HEIGHT behave analogously.
 */
 class FXSplitter : public FXComposite {
-protected:
-  FXSplitter();
-  void adjustHLayout();
-  void adjustVLayout();
-  void moveHSplit(FXint amount);
-  void moveVSplit(FXint amount);
-  void drawHSplit(FXint pos);
-  void drawVSplit(FXint pos);
-  FXWindow* findHSplit(FXint pos);
-  FXWindow* findVSplit(FXint pos);
 public:
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);

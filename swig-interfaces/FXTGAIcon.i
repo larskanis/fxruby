@@ -23,8 +23,6 @@
 
 /// Targa Icon class
 class FXTGAIcon : public FXIcon {
-protected:
-  FXTGAIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

@@ -28,10 +28,6 @@ class FXPopup;
 * for popping up a pulldown menu.
 */
 class FXMenuTitle : public FXMenuCaption {
-protected:
-  FXPopup *pane;
-protected:
-  FXMenuTitle(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);

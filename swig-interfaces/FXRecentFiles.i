@@ -27,12 +27,6 @@
 * means of the standard system registry.
 */
 class FXRecentFiles : public FXObject {
-protected:
-  FXObject   *target;         // Target object to send message
-  FXSelector  message;        // Message to send
-  FXint       maxfiles;       // Maximum number of files to track
-protected:
-  FXRecentFiles(const FXRecentFiles&);
 public:
   long onCmdClear(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdFile(FXObject*,FXSelector,void* PTR_IGNORE);

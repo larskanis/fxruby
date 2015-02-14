@@ -25,12 +25,6 @@
 
 /// Color item
 class FXColorItem : public FXListItem {
-protected:
-  FXColor  color;
-protected:
-  FXColorItem();
-  virtual void draw(const FXList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h);
-  virtual FXint hitItem(const FXList* list,FXint x,FXint y) const;
 public:
   %extend {
     /// Construct new item with given text, color, and user-data
@@ -56,9 +50,6 @@ DECLARE_FXLISTITEM_VIRTUALS(FXColorItem)
 * A ColorList Widget displays a list of colors.
 */
 class FXColorList : public FXList {
-protected:
-  FXColorList();
-  virtual FXListItem *createItem(const FXString& text,FXIcon* icon,void* ptr);
 public:
   %extend {
     /// Construct a list with initially no items in it

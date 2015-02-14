@@ -39,16 +39,6 @@ enum {
 
 /// Header item
 class FXHeaderItem : public FXObject {
-protected:
-  FXString  label;      // Text of item
-  FXIcon   *icon;       // Icon of item
-  void     *data;       // Item user data pointer
-  FXint     size;       // Item size
-  FXint     pos;        // Item position
-  FXuint    state;      // Item state flags
-protected:
-  FXHeaderItem(){}
-  virtual void draw(const FXHeader* header,FXDC& dc,FXint x,FXint y,FXint w,FXint h);
 public:
   enum{
     ARROW_NONE = 0,     /// No arrow
@@ -164,20 +154,6 @@ DECLARE_FXHEADERITEM_VIRTUALS(FXHeaderItem)
 * The contents may be scrolled by calling setPosition().
 */
 class FXHeader : public FXFrame {
-protected:
-  FXHeaderItemList items;	// Item list
-  FXColor        textColor;           // Text color
-  FXFont        *font;                // Text font
-  FXString       help;                // Help text
-  FXint          pos;           // Scroll position
-  FXint          active;              // Active button
-  FXint          activepos;           // Position of active item
-  FXint          activesize;          // Size of active item
-  FXint          offset;        // Offset where split grabbed
-protected:
-  FXHeader();
-  void drawSplit(FXint pos);
-  virtual FXHeaderItem *createItem(const FXString& text,FXIcon* icon,FXint size,void* ptr);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

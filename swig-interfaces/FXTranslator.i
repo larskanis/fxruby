@@ -28,8 +28,6 @@
 * The translator class translates a message to another language.
 */
 class FXTranslator : public FXObject {
-protected:
-  FXTranslator();
 public:
 
   %extend {

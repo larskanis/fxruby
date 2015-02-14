@@ -39,12 +39,6 @@ enum {
 * The Image View widget display a scrollable view of an image.
 */
 class FXImageView : public FXScrollArea {
-protected:
-  FXImage *image;         // Image to view
-  FXint    grabx;         // Grab point x
-  FXint    graby;         // Grab point y
-protected:
-  FXImageView();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onMotion(FXObject*,FXSelector,void* PTR_EVENT);

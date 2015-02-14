@@ -39,12 +39,6 @@ enum {
 * be checked at any one time.
 */
 class FXGroupBox : public FXPacker {
-protected:
-  FXString  label;
-  FXFont   *font;
-  FXColor   textColor;
-protected:
-  FXGroupBox();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_IGNORE); // FIXME

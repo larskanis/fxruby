@@ -33,10 +33,6 @@
 * realizing the icons.
 */
 class FXIconSource : public FXObject {
-protected:
-  FXApp *app;
-protected:
-  FXIconSource(){}
 public:
 
   %extend {

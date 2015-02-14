@@ -41,12 +41,6 @@ class FXMDIChild;
 * automatically grayed out if there are less than X MDI child windows.
 */
 class FXMDIClient : public FXComposite {
-protected:
-  FXMDIChild *active;             // Active child
-  FXint       cascadex;           // Cascade offset X
-  FXint       cascadey;           // Cascade offset Y
-protected:
-  FXMDIClient();
 public:
   long onCmdActivateNext(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdActivatePrev(FXObject*,FXSelector,void* PTR_IGNORE);

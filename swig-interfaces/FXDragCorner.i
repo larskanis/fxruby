@@ -26,15 +26,6 @@
 * so as to allow the window to be resized more easily.
 */
 class FXDragCorner : public FXWindow {
-protected:
-  FXColor hiliteColor;
-  FXColor shadowColor;
-  FXint   oldw;
-  FXint   oldh;
-  FXint   xoff;
-  FXint   yoff;
-protected:
-  FXDragCorner();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

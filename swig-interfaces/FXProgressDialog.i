@@ -34,14 +34,6 @@ enum {
 * in a program and that the program is in fact still working.
 */
 class FXProgressDialog : public FXDialogBox {
-protected:
-  FXProgressBar         *progress;    // Progress bar
-  FXLabel               *message;     // Message
-  FXHorizontalSeparator *separator;   // Separator
-  FXButton              *cancel;      // Cancel button
-  FXbool                 cancelled;   // User hit cancel
-protected:
-  FXProgressDialog();
 public:
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);
   long onCmdSetIntValue(FXObject*,FXSelector,void* PTR_PINT);

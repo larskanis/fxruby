@@ -38,14 +38,6 @@ class FXTextField;
 * A password mode allows the key-in to remain hidden.
 */
 class FXInputDialog : public FXDialogBox {
-protected:
-  FXTextField *input;       // Text field widget
-  FXdouble     limlo;       // Lower limit
-  FXdouble     limhi;       // Upper limit
-protected:
-  FXInputDialog(){}
-private:
-  FXInputDialog(const FXInputDialog&);
 public:
   long onCmdAccept(FXObject*,FXSelector,void* PTR_IGNORE);
 public:

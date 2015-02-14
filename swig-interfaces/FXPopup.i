@@ -30,24 +30,6 @@ enum {
 
 /// Popup window
 class FXPopup : public FXShell {
-protected:
-  FXWindow *grabowner;                // Window which will get grabbed when outside
-  FXColor   baseColor;
-  FXColor   hiliteColor;
-  FXColor   shadowColor;
-  FXColor   borderColor;
-  FXint     border;
-protected:
-  FXPopup();
-  virtual FXbool doesOverrideRedirect() const;
-  void drawBorderRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawRidgeRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawGrooveRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawDoubleRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawDoubleSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawFrame(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);

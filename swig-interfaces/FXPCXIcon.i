@@ -23,8 +23,6 @@
 
 /// PCX icon
 class FXPCXIcon : public FXIcon {
-protected:
-  FXPCXIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

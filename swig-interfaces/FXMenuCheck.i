@@ -29,14 +29,6 @@
 * the void* argument of the message contains the new state.
 */
 class FXMenuCheck : public FXMenuCommand {
-protected:
-  FXuchar check;        // State of menu
-  FXColor boxColor;     // Box color
-protected:
-  FXMenuCheck();
-private:
-  FXMenuCheck(const FXMenuCheck&);
-  FXMenuCheck &operator=(const FXMenuCheck&);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onButtonPress(FXObject*,FXSelector,void* PTR_EVENT);

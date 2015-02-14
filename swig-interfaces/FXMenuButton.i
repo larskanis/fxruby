@@ -58,13 +58,6 @@ enum {
 * MENUBUTTON_NOARROWS.
 */
 class FXMenuButton : public FXLabel {
-protected:
-  FXPopup *pane;                  // Pane to pop up
-  FXint    offsetx;               // Shift attachment point x
-  FXint    offsety;               // Shift attachment point y
-  FXbool   state;                 // Pane was popped
-protected:
-  FXMenuButton();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_IGNORE);

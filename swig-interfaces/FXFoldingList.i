@@ -38,10 +38,6 @@ enum {
 
 /// Tree list Item
 class FXFoldingItem : public FXObject {
-protected:
-  FXFoldingItem():parent(NULL),prev(NULL),next(NULL),first(NULL),last(NULL),openIcon(NULL),closedIcon(NULL),data(NULL),state(0),x(0),y(0){}
-  virtual void draw(const FXFoldingList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual FXint hitItem(const FXFoldingList* list,FXint x,FXint y) const;
 public:
   enum{
     SELECTED        = 1,
@@ -168,15 +164,6 @@ DECLARE_FXFOLDINGITEM_VIRTUALS(FXFoldingItem)
 * 3rd argument of the message.
 */
 class FXFoldingList : public FXScrollArea {
-protected:
-  FXFoldingList();
-  void recompute();
-  void mergesort(FXFoldingItem*& list);
-  void sort(FXFoldingItem*& f1,FXFoldingItem*& t1,FXFoldingItem*& f2,FXFoldingItem*& t2,int n);
-  virtual void moveContents(FXint x,FXint y);
-  virtual FXFoldingItem* createItem(const FXString& text,FXIcon* oi,FXIcon* ci,void* ptr);
-  static FXint compareSection(const FXchar *p,const FXchar* q,FXint s);
-  static FXint compareSectionCase(const FXchar *p,const FXchar* q,FXint s);
 public:
   long onPaint(FXObject*,FXSelector,void*);
   long onEnter(FXObject*,FXSelector,void*);

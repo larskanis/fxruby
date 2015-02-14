@@ -23,8 +23,6 @@
 
 /// X Pixmap icon
 class FXXPMIcon : public FXIcon {
-protected:
-  FXXPMIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

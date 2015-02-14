@@ -30,14 +30,6 @@
 * and dock title.
 */
 class FXDockHandler : public FXFrame {
-protected:
-  FXString  tip;        // Tool tip
-  FXString  help;       // Help string
-protected:
-  FXDockHandler();
-private:
-  FXDockHandler(const FXDockHandler&);
-  FXDockHandler& operator=(const FXDockHandler&);
 public:
   long onLeftBtnPress(FXObject*,FXSelector,void*);
   long onLeftBtnRelease(FXObject*,FXSelector,void*);
@@ -50,8 +42,6 @@ public:
   long onCmdGetTip(FXObject*,FXSelector,void*);
   long onCmdSetHelp(FXObject*,FXSelector,void*);
   long onCmdGetHelp(FXObject*,FXSelector,void*);
-protected:
-  FXDockHandler(FXComposite* p,FXObject* tgt,FXSelector sel,FXuint opts,FXint x,FXint y,FXint w,FXint h,FXint pl,FXint pr,FXint pt,FXint pb);
 public:
 
   /// Set the status line help text for grip

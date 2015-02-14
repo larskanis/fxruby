@@ -35,25 +35,6 @@ class FXDriveBox;
 
 /// Directory selection widget
 class FXDirSelector : public FXPacker {
-protected:
-  FXDirList     *dirbox;          // Directory list widget
-  FXDriveBox    *drivebox;        // Drive selection widget
-  FXTextField   *dirname;         // Directory name entry field
-  FXButton      *accept;          // Accept button
-  FXButton      *cancel;          // Cancel button
-  FXIcon        *updiricon;     // Up directory icon
-  FXIcon        *homeicon;      // Go home icon
-  FXIcon        *workicon;      // Go home icon
-  FXIcon        *markicon;      // Book mark icon
-  FXIcon        *clearicon;     // Book clear icon
-  FXIcon        *newicon;       // New directory icon
-  FXIcon        *deleteicon;    // Delete file icon
-  FXIcon        *moveicon;      // Rename file icon
-  FXIcon        *copyicon;      // Copy file icon
-  FXIcon        *linkicon;      // Link file icon
-  FXRecentFiles  mrufiles;      // Recently visited places
-protected:
-  FXDirSelector(){}
 public:
   long onCmdName(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdOpened(FXObject*,FXSelector,void* PTR_TREEITEM);

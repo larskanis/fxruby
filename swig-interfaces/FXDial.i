@@ -32,20 +32,6 @@ enum {
 
 /// Dial
 class FXDial : public FXFrame {
-protected:
-  FXint         range[2];                         // Reported data range
-  FXColor       notchColor;                       // Main notch color
-  FXint         notchangle;                       // Angle of main notch
-  FXint         notchspacing;                     // Angle between notches
-  FXint         notchoffset;                      // Notch offset
-  FXint         dragpoint;                        // Place where clicked
-  FXint         dragpos;                          // Value where clicked
-  FXint         incr;                             // Rate of change/revolution
-  FXint         pos;                              // Reported data position
-  FXString      help;                             // Help string
-  FXString      tip;                              // Tip string
-protected:
-  FXDial(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onMotion(FXObject*,FXSelector,void* PTR_EVENT);

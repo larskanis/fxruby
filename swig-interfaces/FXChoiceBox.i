@@ -29,14 +29,6 @@
 * while a -1 is returned if the dialog was canceled,
 */
 class FXChoiceBox : public FXDialogBox {
-protected:
-  FXList *list;
-protected:
-  FXChoiceBox(){}
-private:
-  FXChoiceBox(const FXChoiceBox&);
-  FXChoiceBox &operator=(const FXChoiceBox&);
-  void initialize(const FXString& text,FXIcon* icon);
 public:
   long onCmdClicked(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdCancel(FXObject*,FXSelector,void* PTR_IGNORE);

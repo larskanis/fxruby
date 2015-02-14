@@ -34,31 +34,6 @@ class FXLabel;
 
 /// Color selection widget
 class FXColorSelector : public FXPacker {
-protected:
-  FXTabBook   *panels;                // Color panes
-  FXColorWell *well;                  // Main well
-  FXColorList  *list;                 // List of color names
-  FXColorRing  *wheel;                // Color ring
-  FXSlider    *rgbaslider[4];         // RGBA sliders
-  FXTextField *rgbatext[4];           // RGBA text fields
-  FXSlider    *hsvaslider[4];         // HSVA sliders
-  FXTextField *hsvatext[4];           // HSVA text fields
-  FXSlider    *cmyslider[4];          // CMY sliders
-  FXTextField *cmytext[4];            // CMY text fields
-  FXColorWell *colorwells[24];        // Custom color wells
-  FXIcon       *eyedropicon;          // Icon for eye dropper
-  FXIcon       *dialmodeicon;         // Icon for dial mode
-  FXIcon      *rgbmodeicon;           // Icon for RGB mode
-  FXIcon      *hsvmodeicon;           // Icon for HSV mode
-  FXIcon      *cmymodeicon;           // Icon for CMY mode
-  FXIcon      *txtmodeicon;           // Icon for TEXT mode
-  FXButton    *accept;                // Accept button
-  FXButton    *cancel;                // Cancel button
-  FXfloat      rgba[4];               // Accurate RGBA color
-  FXfloat      hsva[4];               // Accurate HSVA color
-protected:
-  FXColorSelector(){}
-  void updateWell();
 public:
   long onCmdWell(FXObject*,FXSelector,void* PTR_IGNORE);
   long onChgWell(FXObject*,FXSelector,void* PTR_COLOR);

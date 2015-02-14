@@ -31,11 +31,6 @@ class FXStatusLine;
 
 /// Status bar
 class FXStatusBar : public FXHorizontalFrame {
-protected:
-  FXDragCorner *corner;
-  FXStatusLine *status;
-protected:
-  FXStatusBar(){}
 public:
   %extend {
     /// Construct status bar with or without a drag corner

@@ -42,15 +42,6 @@ enum {
 
 /// Cursor class
 class FXCursor : public FXId {
-protected:
-  FXColor *data;              // Source data
-  FXint    width;             // Width
-  FXint    height;            // Height
-  FXint    hotx;              // Hot spot x
-  FXint    hoty;              // Hot spot y
-  FXuint   options;           // Options
-protected:
-  FXCursor();
 public:
   %extend {
     /// Make stock cursor

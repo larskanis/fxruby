@@ -22,8 +22,6 @@
 
 /// Single-precision 3x3 matrix
 class FXMat3f {
-protected:
-  FXVec3f m[3];
 public:
 
   /// Default constructor

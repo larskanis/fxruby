@@ -30,37 +30,6 @@ class FXIcon;
 
 /// Printer selection dialog
 class FXPrintDialog : public FXDialogBox {
-protected:
-  FXRadioButton *sendtoprinter;
-  FXComboBox    *printername;
-  FXRadioButton *sendtofile;
-  FXTextField   *filename;
-  FXRadioButton *printall;
-  FXRadioButton *printeven;
-  FXRadioButton *printodd;
-  FXRadioButton *printrange;
-  FXRadioButton *firstpagefirst;
-  FXRadioButton *lastpagefirst;
-  FXRadioButton *printincolor;
-  FXRadioButton *printinblacknwhite;
-  FXRadioButton *orientportrait;
-  FXRadioButton *orientlanscape;
-  FXListBox     *media;
-  FXRadioButton *sizeletter;
-  FXRadioButton *sizelegal;
-  FXRadioButton *sizeA4;
-  FXRadioButton *sizeenvelope;
-  FXRadioButton *sizecustom;
-  FXTextField   *sizewidth;
-  FXTextField   *sizeheight;
-  FXSpinner     *firstpage;
-  FXSpinner     *lastpage;
-  FXSpinner     *numberofcopies;
-  FXIcon        *landscapeIcon;
-  FXIcon        *portraitIcon;
-  FXPrinter      printer;
-protected:
-  FXPrintDialog(){}
 public:
   long onCmdToPrinter(FXObject*,FXSelector,void* PTR_IGNORE);
   long onUpdToPrinter(FXObject*,FXSelector,void* PTR_IGNORE);

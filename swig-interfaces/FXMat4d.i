@@ -22,8 +22,6 @@
 
 /// Double-precision 4x4 matrix
 class FXMat4d {
-protected:
-  FXVec4d m[4];
 public:
   /// Constructors
   FXMat4d();

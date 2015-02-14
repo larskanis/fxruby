@@ -23,12 +23,6 @@
 
 /// Root window
 class FXRootWindow : public FXComposite {
-protected:
-  FXRootWindow(){}
-#ifdef WIN32
-  virtual FXID GetDC() const;
-  virtual int ReleaseDC(FXID) const;
-#endif
 public:
 
   /// Construct root window

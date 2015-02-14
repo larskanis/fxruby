@@ -38,16 +38,6 @@ enum {
 
 /// Button with an arrow
 class FXArrowButton : public FXFrame {
-protected:
-  FXColor   arrowColor;     // Arrow color
-  FXint     arrowSize;      // Arrow size
-  FXTimer  *repeater;       // Timer for auto-repeat
-  FXString  tip;            // Tooltip value
-  FXString  help;           // Help value
-  FXbool    state;          // State of button
-  FXbool    fired;          // Timer has fired
-protected:
-  FXArrowButton();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

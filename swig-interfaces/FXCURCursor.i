@@ -23,8 +23,6 @@
 
 /// CUR Cursor class
 class FXCURCursor : public FXCursor {
-protected:
-  FXCURCursor(){}
 public:
   %extend {
     static VALUE fileExt() {

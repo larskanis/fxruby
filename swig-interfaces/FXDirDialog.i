@@ -32,11 +32,6 @@ class FXDirSelector;
 
 /// Directory selection dialog
 class FXDirDialog : public FXDialogBox {
-protected:
-  FXDirSelector *dirbox;          // Directory selection widget
-protected:
-  FXDirDialog(){}
-  void initdialog();
 public:
   %extend {
     /// Construct Directory Dialog Box

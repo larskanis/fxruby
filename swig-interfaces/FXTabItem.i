@@ -42,8 +42,6 @@ enum {
 * the corresponding panel to be raised to the top.
 */
 class FXTabItem : public FXLabel {
-protected:
-  FXTabItem();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusIn(FXObject*,FXSelector,void* PTR_EVENT);

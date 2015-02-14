@@ -42,11 +42,6 @@ enum {
 * SEL_COMMAND message to its target.
 */
 class FXTabBar : public FXPacker {
-protected:
-  FXint current;	// Current tab index
-  FXint shift;          // Shift amount
-protected:
-  FXTabBar(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusNext(FXObject*,FXSelector,void* PTR_EVENT);

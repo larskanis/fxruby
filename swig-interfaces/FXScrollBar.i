@@ -154,8 +154,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXScrollBar)
 
 /// Corner between scroll bars
 class FXScrollCorner : public FXWindow {
-protected:
-  FXScrollCorner();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:

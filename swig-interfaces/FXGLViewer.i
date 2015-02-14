@@ -83,76 +83,11 @@ struct FXMaterial {
 
 /// Canvas, an area drawn by another object
 class FXGLViewer : public FXGLCanvas {
-protected:
-  FXViewport      wvt;              // Window viewport transform
-  FXMat4f         transform;        // Current transformation matrix
-  FXMat4f         itransform;       // Inverse of current transformation matrix
-  FXuint          projection;       // Projection mode
-  FXQuatf         rotation;         // Viewer orientation
-  FXdouble        fov;              // Field of view
-  FXdouble        zoom;             // Zoom factor
-  FXVec3f         center;           // Model center
-  FXVec3f         scale;            // Model scale
-  FXdouble        worldpx;          // Pixel size in world
-  FXdouble        modelpx;          // Pixel size in model
-  FXint           maxhits;          // Maximum number of hits
-  FXdouble        ax,ay;            // Quick view->world coordinate mapping
-  FXdouble        diameter;         // Size of model diameter ( always > 0)
-  FXdouble        distance;         // Distance of PRP to target
-  FXVec4f         background[2];    // Background colors
-  FXVec4f         ambient;          // Global ambient light
-  FXLight         light;            // Light source
-  FXMaterial      material;         // Base material properties
-  FXint           dial[3];          // Dial positions
-  FXString        help;             // Status help
-  FXString        tip;              // Tooltip for background
-  FXGLObject     *dropped;          // Object being dropped on
-  FXGLObject     *selection;        // Current object
-  FXZSortFunc     zsortfunc;        // Routine to sort feedback buffer
-  FXGLObject     *scene;            // What we're looking at
-  FXbool          doesturbo;        // Doing turbo mode
-  FXbool          turbomode;        // Turbo mode
-  FXuchar         mode;             // Mode the widget is in
 public:
 
   // Common DND types
   static FXDragType objectType;     // GL Object type
 
-protected:
-
-  // Mouse actions when in viewing window
-  enum {
-    HOVERING,                       // Hovering mouse w/o doing anything
-    PICKING,                        // Pick mode
-    ROTATING,                       // Rotating camera around target
-    POSTING,                        // Posting right-mouse menu
-    TRANSLATING,                    // Translating camera
-    ZOOMING,                        // Zooming
-    FOVING,                         // Change field-of-view
-    DRAGGING,                       // Dragging objects
-    TRUCKING,                       // Trucking camera
-    GYRATING,                       // Rotation of camera around eye
-    DO_LASSOSELECT,                 // Lasso select when mouse pressed
-    LASSOSELECT,                    // Anchor of lasso rectangle
-    DO_LASSOZOOM,                   // Zoom when mouse pressed
-    LASSOZOOM                       // Zoom rectangle
-    };
-
-protected:
-  FXGLViewer();
-  void glsetup();
-  virtual void updateProjection();
-  virtual void updateTransform();
-  FXVec3fspherePoint(FXint px,FXint py);
-  FXQuatf turn(FXint fx,FXint fy,FXint tx,FXint ty);
-  void drawWorld(FXViewport& wv);
-  void drawAnti(FXViewport& wv);
-  void drawLasso(FXint x0,FXint y0,FXint x1,FXint y1);
-  // FXint selectHits(FXuint*& hits,FXint& nhits,FXint x,FXint y,FXint w,FXint h);
-  FXint renderFeedback(FXfloat *buffer,FXint x,FXint y,FXint w,FXint h,FXint maxbuffer);
-  void drawFeedback(FXDCPrint& pdc,const FXfloat* buffer,FXint used);
-  virtual FXGLObject* processHits(FXuint *pickbuffer,FXint nhits);
-  void setOp(FXuint o);
 public:
 
   // Events

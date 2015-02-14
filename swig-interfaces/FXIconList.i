@@ -45,20 +45,6 @@ class FXIconList;
 
 /// Icon item
 class FXIconItem : public FXObject {
-protected:
-  FXString  label;
-  FXIcon   *bigIcon;
-  FXIcon   *miniIcon;
-  void     *data;
-  FXuint    state;
-protected:
-  FXIconItem():bigIcon(NULL),miniIcon(NULL),data(NULL),state(0){}
-  virtual void draw(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual FXint hitItem(const FXIconList* list,FXint rx,FXint ry,FXint rw=1,FXint rh=1) const;
-protected:
-  virtual void drawBigIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual void drawMiniIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual void drawDetails(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
 public:
   enum {
     SELECTED      = 1,  /// Selected
@@ -158,43 +144,6 @@ DYNAMIC_CAST(SWIGTYPE_p_FXIconItem, FXIconItem_dynamic_cast);
 * 3rd argument of the message.
 */
 class FXIconList : public FXScrollArea {
-protected:
-  FXHeader          *header;            // Header control
-  FXIconItem       **items;             // Item list
-  FXint              nitems;            // Number of items
-  FXint              nrows;             // Number of rows
-  FXint              ncols;             // Number of columns
-  FXint              anchor;            // Anchor item
-  FXint              current;           // Current item
-  FXint              extent;            // Extent item
-  FXint              cursor;            // Cursor item
-  FXint              viewable;          // Visible item
-  FXFont            *font;              // Font
-  FXColor            textColor;         // Text color
-  FXColor            selbackColor;      // Selected back color
-  FXColor            seltextColor;      // Selected text color
-  FXint              itemWidth;         // Item width
-  FXint              itemHeight;        // Item height
-  FXint              itemSpace;         // Space for item label
-  FXint              anchorx;           // Rectangular selection
-  FXint              anchory;
-  FXint              currentx;
-  FXint              currenty;
-  FXint              grabx;             // Grab point x
-  FXint              graby;             // Grab point y
-  FXString           lookup;            // Lookup string
-  FXString           help;              // Help text
-  FXbool             state;             // State of item
-protected:
-  FXIconList();
-  void recompute();
-  void getrowscols(FXint& nr,FXint& nc,FXint w,FXint h) const;
-  void drawLasso(FXint x0,FXint y0,FXint x1,FXint y1);
-  void lassoChanged(FXint ox,FXint oy,FXint ow,FXint oh,FXint nx,FXint ny,FXint nw,FXint nh,FXbool notify);
-  virtual void moveContents(FXint x,FXint y);
-  virtual FXIconItem *createItem(const FXString& text,FXIcon *big,FXIcon* mini,void* ptr);
-  static FXint compareSection(const FXchar *p,const FXchar* q,FXint s);
-  static FXint compareSectionCase(const FXchar *p,const FXchar* q,FXint s);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);

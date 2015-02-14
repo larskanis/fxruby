@@ -52,18 +52,6 @@ enum {
 * The message data represents the current knob value, of type FXint.
 */
 class FXKnob : public FXFrame {
-protected:
-  FXint    range[2];            // Reported data range
-  FXdouble limits[2];           // Starting and ending positions
-  FXColor  lineColor;           // Color of indicator needle
-  FXint    pos;                 // Reported data position
-  FXint    incr;                // Increment when auto-sliding
-  FXint    delta;               // Interval between ticks
-  FXString help;                // Help string
-  FXString tip;                 // Tip string
-protected:
-  FXKnob();
-  FXint calcValue(FXint x,FXint y);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

@@ -37,33 +37,6 @@
 * be indexed by strings.
 */
 class FXDict : public FXObject {
-protected:
-  struct FXDictEntry {
-    FXchar *key;              // Key string
-    void   *data;             // Data
-    FXint   hash;             // Hash value of key
-    bool  mark;             // Entry is marked
-    };
-protected:
-  FXDictEntry *dict;          // Dictionary
-  FXint        total;         // Dictionary size
-  FXint        number;        // Number of entries
-protected:
-
-  /**
-  * Overload this function in a derived class to return the
-  * data pointer given an input pointer; the default implementation
-  * just returns the input pointer.
-  */
-  virtual void *createData(const void*);
-
-  /**
-  * Overload this function in a derived class to delete the pointer
-  * previously returned by createData(); the default implementation
-  * does nothing.
-  */
-  virtual void deleteData(void*);
-
 public:
   %extend {
     /**

@@ -35,14 +35,6 @@ class FXImage;
 * color by means of the hue, saturation, value specification system.
 */
 class FXColorBar : public FXFrame {
-protected:
-  FXImage  *bar;          // Intensity bar
-  FXfloat   hsv[3];       // Hue, saturation, value
-  FXString  tip;          // Tooltip value
-  FXString  help;         // Help value
-protected:
-  FXColorBar();
-  void updatebar();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

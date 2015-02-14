@@ -55,18 +55,6 @@ class FXScrollCorner;
 * scrolling may be turned off.
 */
 class FXScrollArea : public FXComposite {
-protected:
-  FXScrollBar    *horizontal;   // Horizontal scroll bar
-  FXScrollBar    *vertical;     // Vertical scroll bar
-  FXScrollCorner *corner;       // Scroll corner
-  FXint           viewport_w;   // Viewport width
-  FXint           viewport_h;   // Viewport height
-  FXint           pos_x;        // X scroll position (pos_x<=0)
-  FXint           pos_y;        // Y scroll position (pos_y<=0)
-protected:
-  FXScrollArea();
-  FXbool startAutoScroll(FXEvent* event,FXbool onlywheninside=FALSE);
-  void stopAutoScroll();
 public:
   long onHMouseWheel(FXObject*,FXSelector,void* PTR_EVENT);
   long onVMouseWheel(FXObject*,FXSelector,void* PTR_EVENT);

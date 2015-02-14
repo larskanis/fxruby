@@ -42,13 +42,6 @@ class FXPopup;
 
 /// List Box
 class FXListBox : public FXPacker {
-protected:
-  FXButton      *field;
-  FXMenuButton  *button;
-  FXList        *list;
-  FXPopup       *pane;
-protected:
-  FXListBox(){}
 public:
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusDown(FXObject*,FXSelector,void* PTR_EVENT);

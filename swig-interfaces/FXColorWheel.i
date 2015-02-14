@@ -28,21 +28,6 @@ class FXImage;
 * of the hue, saturation, value color specification system.
 */
 class FXColorWheel : public FXFrame {
-protected:
-  FXImage  *dial;         // HSV dial image
-  FXfloat   hsv[3];       // Hue, saturation, value
-  FXint     dialx;        // Dial x location
-  FXint     dialy;        // Dial Y location
-  FXint     spotx;        // Spot x location
-  FXint     spoty;        // Spot Y location
-  FXString  tip;          // Tooltip value
-  FXString  help;         // Help value
-protected:
-  FXColorWheel();
-  void updatedial();
-  void movespot(FXint x,FXint y);
-  FXbool hstoxy(FXint& x,FXint& y,FXfloat h,FXfloat s) const;
-  FXbool xytohs(FXfloat& h,FXfloat& s,FXint x,FXint y) const;
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

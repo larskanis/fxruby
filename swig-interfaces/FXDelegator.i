@@ -31,8 +31,6 @@
 * new target.
 */
 class FXDelegator : public FXObject {
-protected:
-  FXObject   *delegate;
 public:
   %extend {
     /// Construct a delegator

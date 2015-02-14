@@ -28,10 +28,6 @@ class FXApp;
 
 /// Encapsulates server side resource
 class FXId : public FXObject {
-protected:
-  FXID xid;
-protected:
-  FXId(FXApp* a);
 public:
 
   /// Get application

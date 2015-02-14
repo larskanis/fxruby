@@ -25,21 +25,6 @@ class FXTextField;
 
 /// Text replace dialog
 class FXReplaceDialog : public FXDialogBox {
-protected:
-  FXLabel           *searchlabel;
-  FXTextField       *searchtext;
-  FXHorizontalFrame *searchbox;
-  FXLabel           *replacelabel;
-  FXTextField       *replacetext;
-  FXHorizontalFrame *replacebox;
-  FXButton          *accept;
-  FXButton          *cancel;
-  FXButton          *every;
-  FXuint             searchmode;
-  FXuint             current;
-protected:
-  FXReplaceDialog(){}
-  void appendHistory(const FXString& search,const FXString& replace,FXuint mode);
 public:
   long onCmdAll(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdNext(FXObject*,FXSelector,void* PTR_IGNORE);

@@ -23,8 +23,6 @@
 
 /// Popup menu pane
 class FXMenuPane : public FXPopup {
-protected:
-  FXMenuPane(){}
 public:
   %extend {
     /// Construct menu pane

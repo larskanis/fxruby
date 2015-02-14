@@ -41,12 +41,6 @@ enum {
 * words 8 pixels packed into a single byte, starting at bit 0 on the left.
 */
 class FXBitmap : public FXDrawable {
-protected:
-  FXuchar *data;                // Pixel data
-  FXint    bytewidth;   // Number of bytes across
-  FXuint   options;             // Options
-protected:
-  FXBitmap();
 public:
   %extend {
      /**

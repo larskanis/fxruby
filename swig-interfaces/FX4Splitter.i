@@ -39,12 +39,6 @@ enum {
 * proportionally resized, maintaining the same split-percentage.
 */
 class FX4Splitter : public FXComposite {
-protected:
-  FX4Splitter();
-  FXuchar getMode(FXint x,FXint y);
-  void moveSplit(FXint x,FXint y);
-  void drawSplit(FXint x,FXint y);
-  void adjustLayout();
 public:
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnRelease(FXObject*,FXSelector,void* PTR_EVENT);

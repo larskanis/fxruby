@@ -42,22 +42,6 @@ class FXTreeList;
 %rename("hasItems=") FXTreeItem::setHasItems(FXbool);
 
 class FXTreeItem : public FXObject {
-protected:
-  FXTreeItem *parent;           // Parent item
-  FXTreeItem *prev;             // Previous item
-  FXTreeItem *next;             // Next item
-  FXTreeItem *first;            // First child item
-  FXTreeItem *last;             // Last child item
-  FXString    label;            // Text of item
-  FXIcon     *openIcon;         // Icon of item
-  FXIcon     *closedIcon;       // Icon of item
-  void       *data;             // Item user data pointer
-  FXuint      state;            // Item state flags
-  FXint       x,y;
-protected:
-  FXTreeItem();
-  virtual void draw(const FXTreeList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const;
-  virtual FXint hitItem(const FXTreeList* list,FXint x,FXint y) const;
 public:
   enum{
     SELECTED        = 1,        /// Selected
@@ -169,33 +153,6 @@ DYNAMIC_CAST(SWIGTYPE_p_FXTreeItem, FXTreeItem_dynamic_cast);
 * 3rd argument of the message.
 */
 class FXTreeList : public FXScrollArea {
-protected:
-  FXTreeItem        *firstitem;         // First root item
-  FXTreeItem        *lastitem;          // Last root item
-  FXTreeItem        *anchoritem;        // Selection anchor item
-  FXTreeItem        *currentitem;       // Current item
-  FXTreeItem        *extentitem;        // Selection extent
-  FXTreeItem        *cursoritem;        // Item under cursor
-  FXTreeItem        *viewableitem;      // Visible item
-  FXFont            *font;              // Font
-  FXColor            textColor;         // Text color
-  FXColor            selbackColor;      // Selected background color
-  FXColor            seltextColor;      // Selected text color
-  FXColor            lineColor;         // Line color
-  FXint              treeWidth;         // Tree width
-  FXint              treeHeight;        // Tree height
-  FXint              visible;           // Number of visible items
-  FXint              indent;            // Parent to child indentation
-  FXint              grabx;             // Grab point x
-  FXint              graby;             // Grab point y
-  FXString           lookup;            // Lookup string
-  FXString           help;              // Help string
-  FXbool             state;             // State of item
-protected:
-  FXTreeList();
-  virtual FXTreeItem* createItem(const FXString& text,FXIcon* oi,FXIcon* ci,void* ptr);
-  // void sort(FXTreeItem*& f1,FXTreeItem*& t1,FXTreeItem*& f2,FXTreeItem*& t2,int n); FIXME
-  void recompute();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);

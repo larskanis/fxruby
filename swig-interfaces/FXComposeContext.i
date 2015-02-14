@@ -28,11 +28,6 @@
 * if input method support is enabled.
 */
 class FXComposeContext : public FXId {
-protected:
-  FXWindow  *window;            // Window we belong to
-  FXSelector message;           // Message to send it
-protected:
-  FXComposeContext();
 public:
 
   %extend {

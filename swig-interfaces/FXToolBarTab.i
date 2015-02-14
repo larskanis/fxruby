@@ -34,19 +34,6 @@ enum {
  */
 
 class FXToolBarTab : public FXFrame {
-protected:
-  FXColor activeColor;                  // Color when active
-  FXString tip;				// Tooltip
-  FXbool  collapsed;                    // Is collapsed flat
-  FXbool  down;                         // Button down
-protected:
-  FXToolBarTab();
-  void drawUpArrow(FXDCWindow& dc);
-  void drawDownArrow(FXDCWindow& dc);
-  void drawRightArrow(FXDCWindow& dc);
-  void drawLeftArrow(FXDCWindow& dc);
-  void drawHSpeckles(FXDCWindow& dc,FXint x,FXint w);
-  void drawVSpeckles(FXDCWindow& dc,FXint y,FXint h);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

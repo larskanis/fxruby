@@ -23,8 +23,6 @@
 
 /// IRIS RGB image
 class FXRGBImage : public FXImage {
-protected:
-  FXRGBImage(){}
 public:
   %extend {
     static VALUE fileExt() {

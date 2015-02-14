@@ -35,12 +35,6 @@
 * caption above the dock bar.
 */
 class FXDockTitle : public FXDockHandler {
-protected:
-  FXString  caption;            // Caption text
-  FXFont   *font;               // Caption font
-  FXColor   captionColor;       // Caption color
-protected:
-  FXDockTitle();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void*); // FIXME

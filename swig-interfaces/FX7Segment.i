@@ -50,14 +50,6 @@ enum {
 * display widget can also display some letters and punctuations.
 */
 class FX7Segment : public FXFrame {
-protected:
-  FXString label;       // Text being shown
-  FXColor  textColor;   // Text color
-  FXint    thickness;   // Segment thickness
-  FXint    cellwidth;   // Width of cell
-  FXint    cellheight;  // height of cell
-protected:
-  FX7Segment();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void*); // FIXME

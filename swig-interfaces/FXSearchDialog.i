@@ -23,8 +23,6 @@
 
 /// Text search dialog
 class FXSearchDialog : public FXReplaceDialog {
-protected:
-  FXSearchDialog(){}
 public:
 
   /// Construct search dialog box

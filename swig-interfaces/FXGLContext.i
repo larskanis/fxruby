@@ -36,10 +36,6 @@ class FXGLVisual;
 * However, display lists may be shared between different GL contexts.
 */
 class FXGLContext : public FXId {
-protected:
-  void           *ctx;        // GL Context
-protected:
-  FXGLContext();
 public:
   %extend {
     /**

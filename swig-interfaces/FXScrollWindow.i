@@ -36,8 +36,6 @@
 * necessarily equal to the scroll position of the scroll window!
 */
 class FXScrollWindow : public FXScrollArea {
-protected:
-  FXScrollWindow(){}
 public:
   long onKeyPress(FXObject*,FXSelector,void* PTR_EVENT);
   long onKeyRelease(FXObject*,FXSelector,void* PTR_EVENT);

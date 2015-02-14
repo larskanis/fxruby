@@ -23,8 +23,6 @@
 
 /// Microsoft Bitmap icon
 class FXBMPIcon : public FXIcon {
-protected:
-  FXBMPIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

@@ -42,46 +42,6 @@
 * the brightness goes from black to a bright color.
 */
 class FXColorRing : public FXFrame {
-protected:
-  FXImage  *dial;         // HSV dial image
-  FXfloat   hsv[3];       // Hue, saturation, value
-  FXint     ringwidth;    // Width of hue ring
-  FXint     ringouter;    // Outer radius
-  FXint     ringinner;    // Inner radius
-  FXint     dialx;        // Dial x location
-  FXint     dialy;        // Dial y location
-  FXint     satvalx;      // Saturation value x
-  FXint     satvaly;      // Saturation value y
-  FXint     huex;         // Hue x
-  FXint     huey;         // Hue y
-  FXint     clrx;         // Color corner of triangle
-  FXint     clry;
-  FXint     blkx;         // Black corner of triangle
-  FXint     blky;
-  FXint     whtx;         // White corner of triangle
-  FXint     whty;
-  FXString  tip;          // Tooltip value
-  FXString  help;         // Help value
-  FXuchar   mode;         // Mode widget is in
-protected:
-  FXColorRing();
-  void updatering();
-  FXfloat hueFromXY(FXint x,FXint y) const;
-  void hueToXY(FXint& x,FXint& y,FXfloat hue) const;
-  void satValToXY(FXint& x,FXint& y,FXfloat s,FXfloat v) const;
-  void satValFromXY(FXfloat& s,FXfloat& v,FXint x,FXint y) const;
-  FXbool inCorner(FXint x,FXint y) const;
-  FXbool inHueRing(FXint x,FXint y) const;
-  FXbool inTriangle(FXint x,FXint y) const;
-protected:
-  enum {
-    MOUSE_NONE,         // No mouse operation
-    MOUSE_HUE,          // Moving in hue-ring
-    MOUSE_SATVAL        // Moving in saturation/value triangle
-    };
-private:
-  FXColorRing(const FXColorRing&);
-  FXColorRing &operator=(const FXColorRing&);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

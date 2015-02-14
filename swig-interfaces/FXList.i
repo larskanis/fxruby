@@ -39,16 +39,6 @@ class FXList;
 
 /// List item
 class FXListItem : public FXObject {
-protected:
-  FXString  label;
-  FXIcon   *icon;
-  void     *data;
-  FXuint    state;
-  FXint     x,y;
-protected:
-  FXListItem();
-  virtual void draw(const FXList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h);
-  virtual FXint hitItem(const FXList* list,FXint x,FXint y) const;
 public:
   enum {
     SELECTED  = 1,
@@ -127,29 +117,6 @@ DYNAMIC_CAST(SWIGTYPE_p_FXListItem, FXListItem_dynamic_cast);
 * 3rd argument of the message.
 */
 class FXList : public FXScrollArea {
-protected:
-  FXListItemList items;             // Item list
-  FXint          anchor;            // Anchor item
-  FXint          current;           // Current item
-  FXint          extent;            // Extent item
-  FXint          cursor;            // Cursor item
-  FXint          viewable;          // Viewable item
-  FXFont        *font;              // Font
-  FXColor        textColor;         // Text color
-  FXColor        selbackColor;      // Selected back color
-  FXColor        seltextColor;      // Selected text color
-  FXint          listWidth;         // List width
-  FXint          listHeight;        // List height
-  FXint          visible;           // Number of rows high
-  FXString       help;              // Help text
-  FXint          grabx;             // Grab point x
-  FXint          graby;             // Grab point y
-  FXString       lookup;            // Lookup string
-  FXbool         state;             // State of item
-protected:
-  FXList();
-  void recompute();
-  virtual FXListItem *createItem(const FXString& text,FXIcon* icon,void* ptr);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);

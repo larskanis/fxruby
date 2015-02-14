@@ -24,10 +24,6 @@
 
 /// JPG Icon class
 class FXJPGIcon : public FXIcon {
-protected:
-  FXint quality;
-protected:
-  FXJPGIcon(){}
 public:
   %extend {
     static VALUE fileExt() {

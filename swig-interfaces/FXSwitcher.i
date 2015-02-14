@@ -50,10 +50,6 @@ enum {
 * or height of all of the children.
 */
 class FXSwitcher : public FXPacker {
-protected:
-  FXint  current;
-protected:
-  FXSwitcher(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onCmdSetValue(FXObject*,FXSelector,void* PTR_INT);

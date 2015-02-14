@@ -26,11 +26,6 @@
 * used to delineate items in a popup menu.
 */
 class FXMenuSeparator : public FXWindow {
-protected:
-  FXColor hiliteColor;
-  FXColor shadowColor;
-protected:
-  FXMenuSeparator();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:

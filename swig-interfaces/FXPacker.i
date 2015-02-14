@@ -37,29 +37,6 @@ enum { DEFAULT_SPACING = 4 };
 * case it will be placed to take all remaining space.
 */
 class FXPacker : public FXComposite {
-protected:
-  FXColor baseColor;        // Base color
-  FXColor hiliteColor;      // Highlight color
-  FXColor shadowColor;      // Shadow color
-  FXColor borderColor;      // Border color
-  FXint   padtop;           // Top margin
-  FXint   padbottom;        // Bottom margin
-  FXint   padleft;          // Left margin
-  FXint   padright;         // Right margin
-  FXint   hspacing;         // Horizontal child spacing
-  FXint   vspacing;         // Vertical child spacing
-  FXint   border;           // Border width
-protected:
-  FXPacker();
-  void drawBorderRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawRidgeRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawGrooveRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawDoubleRaisedRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawDoubleSunkenRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawFocusRectangle(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
-  void drawFrame(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusUp(FXObject*,FXSelector,void* PTR_EVENT);

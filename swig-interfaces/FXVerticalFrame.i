@@ -27,8 +27,6 @@
 * depending on the child window's layout hints.
 */
 class FXVerticalFrame : public FXPacker {
-protected:
-  FXVerticalFrame(){}
 public:
 
   /// Construct a vertical frame layout manager

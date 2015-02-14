@@ -53,13 +53,6 @@ enum {
 * vertically oriented if placed with LAYOUT_SIDE_LEFT or LAYOUT_SIDE_RIGHT.
 */
 class FXDockSite : public FXPacker {
-protected:
-  FXDockSite(){}
-protected:
-  void moveVerBar(FXWindow* bar,FXWindow *begin,FXWindow* end,FXint bx,FXint by);
-  void moveHorBar(FXWindow* bar,FXWindow *begin,FXWindow* end,FXint bx,FXint by);
-  FXint galleyWidth(FXWindow *begin,FXWindow*& end,FXint space,FXint& require,FXint& expand) const;
-  FXint galleyHeight(FXWindow *begin,FXWindow*& end,FXint space,FXint& require,FXint& expand) const;
 public:
 
   %extend {

@@ -24,8 +24,6 @@
 
 /// Portable Network Graphics (PNG) Image
 class FXPNGImage : public FXImage {
-protected:
-  FXPNGImage(){}
 public:
   %extend {
     static VALUE fileExt() {

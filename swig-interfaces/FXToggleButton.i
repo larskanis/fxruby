@@ -32,18 +32,6 @@ enum {
 
 /// Toggle Button
 class FXToggleButton : public FXLabel {
-protected:
-  FXString  altlabel;
-  FXIcon   *alticon;
-  FXHotKey  althotkey;
-  FXint     althotoff;
-  FXString  alttip;
-  FXString  althelp;
-  FXbool    state;
-  FXbool    down;
-protected:
-  FXToggleButton();
-  void press(FXbool dn);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

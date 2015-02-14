@@ -26,9 +26,6 @@
 * The inserted strings are copied when they're inserted.
 */
 class FXStringDict : public FXDict {
-protected:
-  virtual void *createData(const void*);
-  virtual void deleteData(void*);
 public:
   %extend {
     /// Construct a string dictionary

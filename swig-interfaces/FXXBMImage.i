@@ -23,8 +23,6 @@
 
 /// X Bitmap image
 class FXXBMImage : public FXImage {
-protected:
-  FXXBMImage(){}
 public:
   %extend {
     static VALUE fileExt() {

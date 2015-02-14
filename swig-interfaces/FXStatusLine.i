@@ -36,14 +36,6 @@
  */
 
 class FXStatusLine : public FXFrame {
-protected:
-  FXString  status;             // Current status message
-  FXString  normal;             // Normally displayed message
-  FXFont   *font;               // Font
-  FXColor   textColor;          // Status text color
-  FXColor   textHighlightColor; // Status text highlight color
-protected:
-  FXStatusLine();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

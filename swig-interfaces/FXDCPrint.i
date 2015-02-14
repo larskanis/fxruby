@@ -91,25 +91,6 @@ struct FXPrinter {
 
 /// Postscript Printer Device Context
 class FXDCPrint : public FXDC {
-protected:
-  void      *psout;                   // File Stream for PS output
-  FXFont    *font;
-  FXuint     flags;
-  FXint      Xr,Yr;
-  FXdouble   mediawidth;              // Media width
-  FXdouble   mediaheight;             // Media height
-  FXPSBounds mediabb;                 // Media bounding box
-  FXPSBounds docbb;                   // Document bounding box
-  FXPSBounds pagebb;                  // Page bounding box
-  FXint      pagecount;               // Number of pages printed
-  FXint      nchars;                  // Number of characters on a line
-  FXint      pxmin;                   // min X coord in content
-  FXint      pymin;                   // min Y coord in content
-  FXint      pxmax;                   // max X coord in content
-  FXint      pymax;                   // max Y coord in content
-protected:
-  void bbox(FXfloat x,FXfloat y);
-  void tfm(FXfloat& xo,FXfloat& yo,FXfloat xi,FXfloat yi);
 public:
   %extend {
     /// Construct

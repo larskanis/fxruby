@@ -27,8 +27,6 @@
 * depending on the child window's layout hints.
 */
 class FXHorizontalFrame : public FXPacker {
-protected:
-  FXHorizontalFrame(){}
 public:
   %extend {
     /// Construct a horizontal frame layout manager

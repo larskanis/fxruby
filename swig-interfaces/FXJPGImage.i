@@ -24,10 +24,6 @@
 
 /// JPG Image class
 class FXJPGImage : public FXImage {
-protected:
-  FXint quality;
-protected:
-  FXJPGImage(){}
 public:
   %extend {
     static VALUE fileExt() {

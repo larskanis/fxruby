@@ -35,14 +35,6 @@ enum {
 
 /// Directory item
 class FXDirItem : public FXTreeItem {
-protected:
-  FXFileAssoc  *assoc;                // File association
-  FXDirItem    *link;                 // Link to next item
-  FXDirItem    *list;                 // List of child items
-  FXlong	size;                 // File size (if a file)
-  FXTime        date;                 // Time of item
-protected:
-  FXDirItem():assoc(NULL),link(NULL),list(NULL),size(0L),date(0){}
 public:
   enum {
     FOLDER      = 512,                // Directory item
@@ -118,29 +110,6 @@ DECLARE_FXTREEITEM_VIRTUALS(FXDirItem)
 * The Directory list widget supports drags and drops of files.
 */
 class FXDirList : public FXTreeList {
-protected:
-  FXFileDict   *associations;         // Association table
-  FXDirItem    *list;                 // Root item list
-  FXString      dropdirectory;        // Drop directory
-  FXDragAction  dropaction;           // Drop action
-  FXString      dragfiles;            // Dragged files
-  FXString      pattern;              // Pattern of file names
-  FXuint        matchmode;            // File wildcard match mode
-  FXuint        counter;              // Refresh counter
-  FXIcon       *open_folder;          // Open folder icon
-  FXIcon       *closed_folder;        // Closed folder icon
-  FXIcon       *mini_doc;             // Document icon
-  FXIcon       *mini_app;             // Application icon
-  FXIcon       *cdromicon;
-  FXIcon       *harddiskicon;
-  FXIcon       *networkicon;
-  FXIcon       *floppyicon;
-  FXIcon       *zipdiskicon;
-protected:
-  FXDirList();
-  void listRootItems();
-  void listChildItems(FXDirItem *par);
-  virtual FXTreeItem* createItem(const FXString& text,FXIcon* oi,FXIcon* ci,void* ptr);
 public:
   long onRefreshTimer(FXObject*,FXSelector,void* PTR_IGNORE);
   long onBeginDrag(FXObject*,FXSelector,void* PTR_EVENT);

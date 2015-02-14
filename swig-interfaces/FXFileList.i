@@ -126,29 +126,6 @@ DECLARE_FXICONITEM_VIRTUALS(FXFileItem)
 * The File list widget supports drags and drops of files.
 */
 class FXFileList : public FXIconList {
-protected:
-  FXString     directory;             // Current directory
-  FXString     orgdirectory;          // Original directory
-  FXString     dropdirectory;         // Drop directory
-  FXDragAction dropaction;            // Drop action
-  FXString     dragfiles;             // Dragged files
-  FXFileDict  *associations;          // Association table
-  FXFileItem  *list;                  // File item list
-  FXString     pattern;               // Pattern of file names
-  FXuint       matchmode;             // File wildcard match mode
-  FXuint       counter;               // Refresh counter
-  FXint         imagesize;      // Image size
-  FXTime       timestamp;             // Time when last refreshed
-  FXIcon      *big_folder;            // Big folder icon
-  FXIcon      *mini_folder;           // Mini folder icon
-  FXIcon      *big_doc;               // Big document icon
-  FXIcon      *mini_doc;              // Mini document icon
-  FXIcon      *big_app;               // Big application icon
-  FXIcon      *mini_app;              // Mini application icon
-protected:
-  FXFileList();
-  virtual FXIconItem *createItem(const FXString& text,FXIcon *big,FXIcon* mini,void* ptr);
-  void listItems(FXbool force);
 public:
   long onOpenTimer(FXObject*,FXSelector,void* PTR_IGNORE);
   long onRefreshTimer(FXObject*,FXSelector,void* PTR_IGNORE);

@@ -39,13 +39,6 @@ enum {
 * common SEL_UPDATED handler to check and uncheck radio buttons as appropriate.
 */
 class FXRadioButton : public FXLabel {
-protected:
-  FXColor  radioColor;  // Color of radio ball
-  FXColor  diskColor;   // Color of radio disk
-  FXbool   check;       // Radio state
-  FXbool   oldcheck;    // Old radio state
-protected:
-  FXRadioButton();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

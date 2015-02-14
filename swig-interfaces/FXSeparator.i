@@ -37,11 +37,6 @@ enum {
  * it can also have the frame's border styles.
  */
 class FXSeparator : public FXFrame {
-protected:
-  FXSeparator(){}
-private:
-  FXSeparator(const FXSeparator&);
-  FXSeparator &operator=(const FXSeparator&);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
@@ -91,8 +86,6 @@ DYNAMIC_CAST(SWIGTYPE_p_FXSeparator, FXSeparator_dynamic_cast);
 
 /// Horizontal separator
 class FXHorizontalSeparator : public FXSeparator {
-protected:
-  FXHorizontalSeparator(){}
 public:
 
   /// Constructor
@@ -115,8 +108,6 @@ DECLARE_FXWINDOW_VIRTUALS(FXHorizontalSeparator)
 
 /// Vertical separator
 class FXVerticalSeparator : public FXSeparator {
-protected:
-  FXVerticalSeparator(){}
 public:
 
   /// Constructor

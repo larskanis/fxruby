@@ -37,15 +37,6 @@ class FXArrowButton;
 
 /// Spinner control
 class FXSpinner : public FXPacker {
-protected:
-  FXTextField   *textField;         // Text field
-  FXArrowButton *upButton;          // The up button
-  FXArrowButton *downButton;        // The down button
-  FXint          range[2];          // Reported data range
-  FXint          incr;              // Increment
-  FXint          pos;               // Current position
-protected:
-  FXSpinner();
 public:
   long onUpdIncrement(FXObject*,FXSelector,void* PTR_IGNORE);
   long onCmdIncrement(FXObject*,FXSelector,void* PTR_EVENT);

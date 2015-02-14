@@ -42,10 +42,6 @@ class FXToolBar;
  */
 
 class FXToolBarGrip : public FXDockHandler {
-protected:
-  FXColor activeColor;                    // Color when active
-protected:
-  FXToolBarGrip();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onEnter(FXObject*,FXSelector,void* PTR_EVENT);

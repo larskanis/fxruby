@@ -25,10 +25,6 @@ class FXFontSelector;
 
 /// Font selection dialog
 class FXFontDialog : public FXDialogBox {
-protected:
-  FXFontSelector *fontbox;
-protected:
-  FXFontDialog(){}
 public:
   %extend {
     /// Constructor
@@ -43,9 +39,9 @@ public:
   %extend {
     /// Get the current font selection
     FXFontDesc getFontSelection() const {
-	FXFontDesc fontdesc;
-	self->getFontSelection(fontdesc);
-	return fontdesc;
+      FXFontDesc fontdesc;
+      self->getFontSelection(fontdesc);
+      return fontdesc;
     }
   }
 

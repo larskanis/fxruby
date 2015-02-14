@@ -24,10 +24,6 @@
 
 /// TIFF Image class
 class FXTIFImage : public FXImage {
-protected:
-  FXushort codec;
-protected:
-  FXTIFImage(){}
 public:
   %extend {
     static VALUE fileExt() {

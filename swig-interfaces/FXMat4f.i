@@ -23,8 +23,6 @@
 
 // Single-precision 4x4 matrix
 class FXMat4f {
-protected:
-  FXVec4f m[4];
 public:
   /// Constructors
   FXMat4f();

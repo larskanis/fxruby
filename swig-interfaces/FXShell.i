@@ -26,8 +26,6 @@
  * windows which are direct children of the root window.
  */
 class FXShell : public FXComposite {
-protected:
-  FXShell(){}
 public:
   long onLayout(FXObject*,FXSelector,void* PTR_IGNORE);
   long onConfigure(FXObject*,FXSelector,void* PTR_EVENT);

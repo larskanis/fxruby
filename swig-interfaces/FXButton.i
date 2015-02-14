@@ -41,10 +41,6 @@ enum {
 
 /// FXButton provides a push button. Buttons can have icons and/or labels.
 class FXButton : public FXLabel {
-protected:
-  FXuchar  state;
-protected:
-  FXButton();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_NULL);

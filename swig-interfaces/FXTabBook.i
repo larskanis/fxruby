@@ -38,8 +38,6 @@
 * SEL_COMMAND message to its target.
 */
 class FXTabBook : public FXTabBar {
-protected:
-  FXTabBook(){}
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusNext(FXObject*,FXSelector,void* PTR_EVENT);

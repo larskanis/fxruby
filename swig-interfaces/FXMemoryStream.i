@@ -22,7 +22,6 @@
 
 /// Memory Store Definition
 class FXMemoryStream : public FXStream {
-protected:
 public:
 
   /// Create memory store

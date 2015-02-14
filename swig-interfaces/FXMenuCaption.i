@@ -38,21 +38,6 @@ class FXFont;
 * above a number of menu commands in a menu.
 */
 class FXMenuCaption : public FXWindow {
-protected:
-  FXString     label;
-  FXString     help;
-  FXString     tip;
-  FXIcon      *icon;
-  FXFont      *font;
-  FXint        hotoff;
-  FXHotKey     hotkey;
-  FXColor      textColor;
-  FXColor      selbackColor;
-  FXColor      seltextColor;
-  FXColor      hiliteColor;
-  FXColor      shadowColor;
-protected:
-  FXMenuCaption();
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
   long onUpdate(FXObject*,FXSelector,void* PTR_IGNORE);

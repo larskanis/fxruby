@@ -22,8 +22,6 @@
 
 /// Menu bar
 class FXMenuBar : public FXToolBar {
-protected:
-  FXMenuBar(){}
 public:
   long onFocusLeft(FXObject*,FXSelector,void* PTR_EVENT);
   long onFocusRight(FXObject*,FXSelector,void* PTR_EVENT);

@@ -26,8 +26,6 @@
 * location on the screen.
 */
 class FXPicker : public FXButton {
-protected:
-  FXPicker(){}
 public:
   long onMotion(FXObject*,FXSelector,void* PTR_EVENT);
   long onLeftBtnPress(FXObject*,FXSelector,void* PTR_EVENT);

@@ -52,44 +52,6 @@ enum FXVisualType {
 
 /// Visual describes pixel format of a drawable
 class FXVisual : public FXId {
-protected:
-  FXuint        flags;                  // Visual flags
-  FXuint        hint;                   // Depth Hint
-  FXuint        depth;                  // Visual depth, significant bits/pixel
-  FXuint        numred;                 // Number of reds
-  FXuint        numgreen;               // Number of greens
-  FXuint        numblue;                // Number of blues
-  FXuint        numcolors;              // Total number of colors
-  FXuint        maxcolors;              // Maximum number of colors
-  FXVisualType  type;                   // Visual type
-  void         *info;                   // Opaque data
-  FXID          colormap;               // Color map, if any
-  FXbool        freemap;                // We allocated the map
-#ifndef WIN32
-protected:
-  void         *visual;                 // Application visual [Visual]
-  void*         gc;                     // Drawing GC
-  void*         scrollgc;               // Scrolling GC
-  FXPixel       rpix[16][256];          // Mapping from red -> pixel
-  FXPixel       gpix[16][256];          // Mapping from green -> pixel
-  FXPixel       bpix[16][256];          // Mapping from blue -> pixel
-  FXPixel       lut[256];               // Color lookup table
-protected:
-  void* setupgc(FXbool);
-  void setuptruecolor();
-  void setupdirectcolor();
-  void setuppseudocolor();
-  void setupstaticcolor();
-  void setupgrayscale();
-  void setupstaticgray();
-  void setuppixmapmono();
-  void setupcolormap();
-#else
-protected:
-  int           pixelformat;            // PIXELFORMAT number
-#endif
-protected:
-  FXVisual();
 public:
 
   /// Construct default visual

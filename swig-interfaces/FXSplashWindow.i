@@ -40,14 +40,6 @@ enum {
 * with the SPLASH_SIMPLE option the window will be simply rectangular.
 */
 class FXSplashWindow : public FXTopWindow {
-protected:
-  FXIcon *icon;         // Really big icon
-  FXuint  delay;        // Delay before hiding
-protected:
-  FXSplashWindow();
-private:
-  FXSplashWindow(const FXSplashWindow&);
-  FXSplashWindow &operator=(const FXSplashWindow&);
 public:
   long onPaint(FXObject*,FXSelector,void* PTR_EVENT);
 public:
