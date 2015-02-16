@@ -1182,6 +1182,7 @@ test/TC_FXVec3d.rb
 test/TC_FXVec3f.rb
 test/TC_FXVec4f.rb
 test/TC_FXViewport.rb
+test/TC_FXWindow.rb
 test/TC_FXXBMIcon.rb
 test/TC_FXXBMImage.rb
 test/TC_FXXPMIcon.rb
