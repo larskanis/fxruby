@@ -1,3 +1,14 @@
+=== 1.6.29 / 2015-02-17
+
+* Add Windows binaries for Ruby-2.1 and 2.2.
+* Use shared libs for Windows binary gems to reduce gem size.
+* Allow non owned assignment of image data to FXImage derivations
+  without copy'ing pixel data.
+* Allow retrival of parts of the pixel data.
+* Fix namespace specifier for FXRGB in kwargs.rb.
+* Change GC'ing of TreeListBox and FXTreeItem. Fixes #10
+* Update to swig version 2.0 or newer. Fixes #13
+
 === 1.6.28 / 2013-07-05
 
 * Fix build for Ruby-2.0.0-p127+
