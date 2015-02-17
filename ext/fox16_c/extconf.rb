@@ -72,16 +72,259 @@ def fxscintilla_support_suppressed?
   ARGV.include? "--without-fxscintilla"
 end
 
-def do_rake_compiler_setup
-  if enable_config("win32-static-build")
-    dir_config("installed")
-    have_library( 'gdi32', 'CreateDC' ) && append_library( $libs, 'gdi32' )
-    have_library( 'opengl32' ) && append_library( $libs, 'opengl32' )
-    have_library( 'winspool', 'EnumPrintersA') && append_library( $libs, 'winspool' )
+def with_env(hash)
+  hash.each do |k, v|
+    ENV[k] = v
+  end
+  begin
+    yield
+  ensure
+    hash.each do |k, v|
+      ENV.delete(k)
+    end
+  end
+end
 
-    CONFIG['CC'] += "\nCXX=#{RbConfig::CONFIG["host"]}-g++" # Hack CXX into Makefile for cross compilation
+LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7'
+LIBZ_SOURCE_URI = "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.bz2"
+
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.5.13'
+LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
+
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '8d'
+LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
+
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.3'
+LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
+
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.49'
+LIBFOX_SOURCE_URI         = "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz"
+
+LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
+LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
+
+def do_rake_compiler_setup
+  if enable_config("win32-cross")
+    require 'mini_portile'
+
+    dir_config("installed")
+
+    libz_recipe = MiniPortile.new("libz", LIBZ_VERSION).tap do |recipe|
+      recipe.files = [LIBZ_SOURCE_URI]
+      recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
+      # Prefer host_alias over host in order to use i586-mingw32msvc as
+      # correct compiler prefix for cross build, but use host if not set.
+      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      class << recipe
+        def configure
+          Dir.chdir work_path do
+            mk = File.read 'win32/Makefile.gcc'
+            File.open 'win32/Makefile.gcc', 'wb' do |f|
+              f.puts "BINARY_PATH = #{path}/bin"
+              f.puts "LIBRARY_PATH = #{path}/lib"
+              f.puts "INCLUDE_PATH = #{path}/include"
+              mk.sub!(/^PREFIX\s*=\s*$/, "PREFIX = #{host}-")
+              f.puts mk
+            end
+          end
+        end
+
+        def configured?
+          Dir.chdir work_path do
+            !! (File.read('win32/Makefile.gcc') =~ /^BINARY_PATH/)
+          end
+        end
+
+        def compile
+          execute "compile", "make -f win32/Makefile.gcc SHARED_MODE=1"
+        end
+
+        def install
+          execute "install", "make -f win32/Makefile.gcc install SHARED_MODE=1"
+        end
+      end
+
+      checkpoint = File.join(portsdir, "#{recipe.name}-#{recipe.version}-#{recipe.host}.installed")
+      unless File.exist?(checkpoint)
+        recipe.cook
+        FileUtils.touch checkpoint
+      end
+      recipe.activate
+    end
+
+    libpng_recipe = MiniPortile.new("libpng", LIBPNG_VERSION).tap do |recipe|
+      recipe.files = [LIBPNG_SOURCE_URI]
+      recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
+      # Prefer host_alias over host in order to use i586-mingw32msvc as
+      # correct compiler prefix for cross build, but use host if not set.
+      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.configure_options = [
+        "--host=#{recipe.host}",
+        "--enable-shared",
+        "--disable-static",
+        ]
+
+      checkpoint = File.join(portsdir, "#{recipe.name}-#{recipe.version}-#{recipe.host}.installed")
+      unless File.exist?(checkpoint)
+        with_env(
+          'CPPFLAGS' => "-I#{libz_recipe.path}/include",
+          'LDFLAGS' => "-L#{libz_recipe.path}/lib"
+        ) do
+          recipe.cook
+          FileUtils.touch checkpoint
+        end
+      end
+      recipe.activate
+    end
+
+    libjpeg_recipe = MiniPortile.new("libjpeg", LIBJPEG_VERSION).tap do |recipe|
+      recipe.files = [LIBJPEG_SOURCE_URI]
+      recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
+      # Prefer host_alias over host in order to use i586-mingw32msvc as
+      # correct compiler prefix for cross build, but use host if not set.
+      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.configure_options = [
+        "--host=#{recipe.host}",
+        "--enable-shared",
+        "--disable-static",
+        ]
+
+      checkpoint = File.join(portsdir, "#{recipe.name}-#{recipe.version}-#{recipe.host}.installed")
+      unless File.exist?(checkpoint)
+        recipe.cook
+        FileUtils.touch checkpoint
+      end
+      recipe.activate
+    end
+
+    libtiff_recipe = MiniPortile.new("libtiff", LIBTIFF_VERSION).tap do |recipe|
+      recipe.files = [LIBTIFF_SOURCE_URI]
+      recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
+      # Prefer host_alias over host in order to use i586-mingw32msvc as
+      # correct compiler prefix for cross build, but use host if not set.
+      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.configure_options = [
+        "--host=#{recipe.host}",
+        "--enable-shared",
+        "--disable-static",
+        ]
+
+      checkpoint = File.join(portsdir, "#{recipe.name}-#{recipe.version}-#{recipe.host}.installed")
+      unless File.exist?(checkpoint)
+        recipe.cook
+        FileUtils.touch checkpoint
+      end
+      recipe.activate
+    end
+
+    libfox_recipe = MiniPortile.new("libfox", LIBFOX_VERSION).tap do |recipe|
+      recipe.files = [LIBFOX_SOURCE_URI]
+      recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
+      # Prefer host_alias over host in order to use i586-mingw32msvc as
+      # correct compiler prefix for cross build, but use host if not set.
+      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.configure_options = [
+        "--host=#{recipe.host}",
+        "--without-xft",
+        "--without-x",
+        "--enable-shared",
+        "--disable-static",
+        ]
+      class << recipe
+        def compile
+          # Add param -no-undefined to libtool to build a win32 shared lib
+          execute "compile", "#{ENV['MAKE'] || "make"} libFOX_1_6_la_LDFLAGS='-version-info 0:49:0 -export-dynamic -no-undefined'"
+        end
+      end
+
+      checkpoint = File.join(portsdir, "#{recipe.name}-#{recipe.version}-#{recipe.host}.installed")
+      unless File.exist?(checkpoint)
+        with_env(
+          "CPPFLAGS" => "-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include",
+          "LDFLAGS" => "-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib"
+        ) do
+          recipe.cook
+          FileUtils.touch checkpoint
+        end
+      end
+      recipe.activate
+    end
+
+    libfxscintills_recipe = MiniPortile.new("libfxscintilla", LIBFXSCINTILLA_VERSION).tap do |recipe|
+      recipe.files = [LIBFXSCINTILLA_SOURCE_URI]
+      recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
+      # Prefer host_alias over host in order to use i586-mingw32msvc as
+      # correct compiler prefix for cross build, but use host if not set.
+      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.configure_options = [
+        "--host=#{recipe.host}",
+        "--enable-shared",
+        "--disable-static",
+        ]
+      class << recipe
+        attr_accessor :libfox_path
+        def mk
+          "#{ENV['MAKE'] || "make"}"
+        end
+
+        def compile
+          execute "compile_lexers", "cd lexers && #{mk}"
+          execute "compile_lexlib", "cd lexlib && #{mk}"
+          execute "compile_src", "cd src && #{mk}"
+          execute "compile_fox", "cd fox && #{mk} libfxscintilla_la_LDFLAGS='-version-info 23:0:3 -export-dynamic -no-undefined -L#{libfox_path}/lib -lFOX-1.6'"
+        end
+
+        def install
+          execute "install", "cd fox && #{mk} install && cd ../include && #{mk} install"
+        end
+      end
+      recipe.libfox_path = libfox_recipe.path
+
+      checkpoint = File.join(portsdir, "#{recipe.name}-#{recipe.version}-#{recipe.host}.installed")
+      unless File.exist?(checkpoint)
+        recipe.cook
+        FileUtils.touch checkpoint
+      end
+      recipe.activate
+    end
+
+#     have_library( 'gdi32', 'CreateDC' ) && append_library( $libs, 'gdi32' )
+#     have_library( 'opengl32' ) && append_library( $libs, 'opengl32' )
+#     have_library( 'winspool', 'EnumPrintersA') && append_library( $libs, 'winspool' )
+
+#     dir_config('libz', "#{libz_recipe.path}/include", "#{libz_recipe.path}/lib")
+#     dir_config('libpng', "#{libpng_recipe.path}/include", "#{libpng_recipe.path}/lib")
+#     dir_config('libtiff', "#{libtiff_recipe.path}/include", "#{libtiff_recipe.path}/lib")
+#     dir_config('libjpeg', "#{libjpeg_recipe.path}/include", "#{libjpeg_recipe.path}/lib")
+    dir_config('libfox', "#{libfox_recipe.path}/include", "#{libfox_recipe.path}/lib")
+    dir_config('libfxscintilla', "#{libfxscintills_recipe.path}/include", "#{libfxscintills_recipe.path}/lib")
+
+    shared_dlls = [
+        "#{libfxscintills_recipe.path}/bin/libfxscintilla-20.dll",
+        "#{libfox_recipe.path}/bin/libFOX-1.6-0.dll",
+        "#{libjpeg_recipe.path}/bin/libjpeg-8.dll",
+        "#{libpng_recipe.path}/bin/libpng15-15.dll",
+        "#{libtiff_recipe.path}/bin/libtiff-5.dll",
+        "#{libz_recipe.path}/bin/zlib1.dll",
+      ]
+    shared_dlls.each do |dll|
+      FileUtils.cp dll, '.', verbose: true
+    end
+
+    gcc_shared_dlls = %w[libwinpthread-1.dll libgcc_s_dw2-1.dll libgcc_s_sjlj-1.dll libgcc_s_seh-1.dll libstdc++-6.dll]
+    gcc_shared_dlls.each do |dll|
+      cmd = "#{CONFIG['CC']} -print-file-name=#{dll}"
+      res = `#{cmd}`.chomp
+      next if dll == res
+      puts "#{cmd} => #{res}"
+      FileUtils.cp `#{cmd}`.chomp, '.', verbose: true
+    end
+
+    CONFIG['CXX'] = "#{RbConfig::CONFIG["host"]}-g++" # CXX setting must be prefixed for cross build
+    CONFIG['CC'] += "\nCXX=#{CONFIG['CXX']}" # Hack CXX into Makefile for cross compilation
     CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
-    $LDFLAGS += " -s -static-libgcc -static-libstdc++" # mingw-w64 v4.7 defaults to dynamic linking
+    $LDFLAGS += " -s" # remove symbol table informations from shared lib
+
   elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
     $LDFLAGS = $LDFLAGS + " -I/usr/local/lib"
@@ -96,9 +339,8 @@ def do_rake_compiler_setup
   $libs = append_library($libs, "stdc++") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
   have_header("sys/time.h") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
   have_header("signal.h")
-  if have_library("z", "deflate")
-    have_library("png", "png_create_read_struct")
-  end
+  have_library("z", "deflate")
+  have_library("png", "png_create_read_struct")
   have_library("jpeg", "jpeg_mem_init")
   have_library("tiff", "TIFFSetErrorHandler")
   have_library("Xft", "XftInit")
@@ -106,11 +348,10 @@ def do_rake_compiler_setup
   find_library("X11", "XFindContext", "/usr/X11R6/lib")
   find_library("GL", "glXCreateContext", "/usr/X11R6/lib")
   find_library("GLU", "gluNewQuadric", "/usr/X11R6/lib")
-  $libs = append_library($libs, "FOX-1.6")
   $libs = append_library($libs, "Xrandr") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
   $libs = append_library($libs, "Xcursor") unless RUBY_PLATFORM =~ /mingw/ || enable_config("win32-static-build")
-  $libs = append_library($libs, "png")
   find_header('FXRbCommon.h', File.join(File.dirname(__FILE__), 'include'))
+  $libs = append_library($libs, "FOX-1.6")
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CPPFLAGS = $CPPFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"

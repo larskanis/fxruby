@@ -5,7 +5,6 @@ History.txt
 Manifest.txt
 README.rdoc
 Rakefile
-Rakefile.cross
 TODO
 doap.rdf.erb
 examples/RAA.rb

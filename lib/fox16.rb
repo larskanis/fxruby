@@ -1,9 +1,19 @@
-if RUBY_PLATFORM =~ /(mswin|mingw)/i
-  require "#{RUBY_VERSION.sub(/\.\d+$/, '')}/fox16_c.so"
-elsif RUBY_PLATFORM =~ /darwin/
-  require "fox16_c.bundle"
-else
-  require "fox16_c.so"
+begin
+  require 'fox16_c'
+rescue LoadError
+  # If it's a Windows binary gem, try the <major>.<minor> subdirectory
+  if RUBY_PLATFORM =~/(mswin|mingw)/i
+    major_minor = RUBY_VERSION[ /^(\d+\.\d+)/ ] or
+      raise "Oops, can't extract the major/minor version from #{RUBY_VERSION.dump}"
+
+    # Set the PATH environment variable, so that libpq.dll can be found.
+    old_path = ENV['PATH']
+    ENV['PATH'] = "#{File.expand_path("../#{RUBY_PLATFORM.gsub("i386", "x86")}", __FILE__)};#{old_path}"
+    require "#{major_minor}/fox16_c"
+    ENV['PATH'] = old_path
+  else
+    raise
+  end
 end
 
 require "fox16/core"

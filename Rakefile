@@ -3,7 +3,6 @@ require 'hoe'
 require 'erb'
 require 'rake/extensiontask'
 require './lib/fox16/version.rb'
-load 'Rakefile.cross'
 
 # Use forked process for chdir'ed environment, to allow parallel execution with drake
 module FileUtils
@@ -19,8 +18,6 @@ end
 
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
-# TODO: Don't depend on cross compilation task
-FXSCINTILLA_INSTALL_DIR = Pathname( CrossLibraries.first.static_libfxscintilla_builddir ).expand_path
 
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
@@ -92,28 +89,40 @@ task :test => [:compile]
 
 Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
   ext.cross_compile = true
-  ext.cross_platform = CrossLibraries.map &:ruby_platform
+  ext.cross_platform = ['x86-mingw32', 'x64-mingw32']
 
-  ext.cross_config_options += CrossLibraries.map do |lib|
-    {
-      lib.ruby_platform => [
-        "--with-fox-include=#{lib.static_installdir}/include/fox-1.6",
-        "--with-fxscintilla-include=#{lib.static_installdir}/include/fxscintilla",
-        "--with-installed-include=#{lib.static_installdir}/include",
-        "--with-installed-lib=#{lib.static_installdir}/lib",
-        "--enable-win32-static-build",
-        "--with-fxscintilla",
-      ]
-    }
+  ext.cross_config_options += [
+      "--enable-win32-cross",
+      "--with-fxscintilla",
+    ]
+
+  # Add dependent DLLs to the cross gems
+  ext.cross_compiling do |spec|
+    plat = spec.platform
+    dlls = Dir["tmp/#{plat}/#{ext.name}/*/*.dll"].map{|dll| File.basename(dll) }.uniq
+    spec.files += dlls.map{|dll| "lib/#{plat}/#{dll}" }
+
+    directory "tmp/#{plat}/stage/lib/#{plat}/"
+    dlls.each do |dll|
+      ENV['RUBY_CC_VERSION'].to_s.split(':').last.tap do |ruby_version|
+        file "tmp/#{plat}/stage/lib/#{plat}/#{dll}" => ["tmp/#{plat}/stage/lib/#{plat}/", "tmp/#{plat}/#{ext.name}/#{ruby_version}/#{dll}"] do
+          cp "tmp/#{plat}/#{ext.name}/#{ruby_version}/#{dll}", "tmp/#{plat}/stage/lib/#{plat}"
+          sh "x86_64-w64-mingw32-strip", "tmp/#{plat}/stage/lib/#{plat}/#{dll}"
+        end
+      end
+      file "lib/#{plat}/#{dll}" => "tmp/#{plat}/stage/lib/#{plat}/#{dll}"
+    end
   end
-
 end
 
-CrossLibraries.each do |lib|
-  ENV['RUBY_CC_VERSION'].split(":").each do |ruby_version|
-    task "copy:fox16_c:#{lib.ruby_platform}:#{ruby_version}" do |t|
-      sh "#{lib.host_platform}-strip -S tmp/#{lib.ruby_platform}/stage/lib/#{ruby_version[0,3]}/fox16_c.so"
-    end
+# To reduce the gem file size strip mingw32 dlls before packaging
+ENV['RUBY_CC_VERSION'].to_s.split(':').each do |ruby_version|
+  task "tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
+    sh "i686-w64-mingw32-strip -S tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
+  end
+
+  task "tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
+    sh "x86_64-w64-mingw32-strip -S tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
   end
 end
 
@@ -215,9 +224,16 @@ namespace :fxruby do
   file "ext/fox16_c/extconf.rb" => ['ext/fox16_c/swigruby.h', 'ext/fox16_c/impl.cpp', 'ext/fox16_c/include/inlinestubs.h'] +
       SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
 
+  directory "tmp/fxscintilla"
+  task "tmp/fxscintilla/fxscintilla-2.28.0/include/Scintilla.iface" => ["tmp/fxscintilla", "ports/archives/fxscintilla-2.28.0.tar.gz"] do
+    chdir "tmp/fxscintilla" do
+      sh "tar xzf ../../ports/archives/fxscintilla-2.28.0.tar.gz"
+    end
+  end
+
   task :scintilla => 'lib/fox16/scintilla.rb'
-  file 'lib/fox16/scintilla.rb' => [FXSCINTILLA_INSTALL_DIR, 'scripts/iface.rb'] do
-    ruby "scripts/iface.rb -i #{FXSCINTILLA_INSTALL_DIR}/include/Scintilla.iface -o lib/fox16/scintilla.rb"
+  file 'lib/fox16/scintilla.rb' => ["tmp/fxscintilla/fxscintilla-2.28.0/include/Scintilla.iface", 'scripts/iface.rb'] do
+    ruby "scripts/iface.rb -i tmp/fxscintilla/fxscintilla-2.28.0/include/Scintilla.iface -o lib/fox16/scintilla.rb"
   end
 
   task :generate_kwargs_lib => 'lib/fox16/kwargs.rb'
