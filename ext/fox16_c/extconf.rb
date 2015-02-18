@@ -288,14 +288,6 @@ def do_rake_compiler_setup
       recipe.activate
     end
 
-#     have_library( 'gdi32', 'CreateDC' ) && append_library( $libs, 'gdi32' )
-#     have_library( 'opengl32' ) && append_library( $libs, 'opengl32' )
-#     have_library( 'winspool', 'EnumPrintersA') && append_library( $libs, 'winspool' )
-
-#     dir_config('libz', "#{libz_recipe.path}/include", "#{libz_recipe.path}/lib")
-#     dir_config('libpng', "#{libpng_recipe.path}/include", "#{libpng_recipe.path}/lib")
-#     dir_config('libtiff', "#{libtiff_recipe.path}/include", "#{libtiff_recipe.path}/lib")
-#     dir_config('libjpeg', "#{libjpeg_recipe.path}/include", "#{libjpeg_recipe.path}/lib")
     dir_config('libfox', "#{libfox_recipe.path}/include", "#{libfox_recipe.path}/lib")
     dir_config('libfxscintilla', "#{libfxscintills_recipe.path}/include", "#{libfxscintills_recipe.path}/lib")
 
