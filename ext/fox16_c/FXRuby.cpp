@@ -115,7 +115,7 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
     FXRubyObjDesc *desc;
     if(FXMALLOC(&desc,FXRubyObjDesc,1)){
       obj=SWIG_Ruby_NewPointerObj(ptr,ty,1);
-      FXTRACE((1,"FXRbNewPointerObj(rubyObj=%d,foxObj=%p)\n",static_cast<int>(obj),ptr));
+      FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,rb_obj_classname(obj)));
       desc->obj=obj;
       desc->borrowed=true;
       desc->in_gc=false;
@@ -236,7 +236,7 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
   FXASSERT(!NIL_P(rubyObj));
   FXASSERT(foxObj!=0);
   FXRubyObjDesc* desc;
-  FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%d,foxObj=%p)\n",static_cast<int>(rubyObj),foxObj));
+  FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)rubyObj,rb_obj_classname(rubyObj),foxObj));
   if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
     FXASSERT(desc->borrowed);
     /* There is already a Ruby object registered for this foxObj.
@@ -272,7 +272,7 @@ void FXRbUnregisterRubyObj(const void* foxObj){
   if(foxObj!=0){
     FXRubyObjDesc* desc;
     if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
-      FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%d,foxObj=%p)\n",static_cast<int>(desc->obj),foxObj));
+      FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)desc->obj,rb_obj_classname(desc->obj),foxObj));
       DATA_PTR(desc->obj)=0;
       FXFREE(&desc);
       st_delete(FXRuby_Objects,reinterpret_cast<st_data_t *>(const_cast<void**>(&foxObj)),reinterpret_cast<st_data_t *>(0));
@@ -303,16 +303,12 @@ VALUE FXRbGetRubyObj(const void *foxObj,bool searchBoth){
   FXRubyObjDesc* desc;
   if(foxObj!=0 && st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
     FXASSERT(desc!=0);
-    if(searchBoth){
+    if(searchBoth || !desc->borrowed){
+      FXTRACE((2,"FXRbGetRubyObj(foxObj=%p) => rubyObj=%p (%s)\n",foxObj,(void *)desc->obj,rb_obj_classname(desc->obj)));
       return desc->obj;
       }
-    else{
-      return desc->borrowed ? Qnil : desc->obj;
-      }
     }
-  else{
-    return Qnil;
-    }
+  return Qnil;
   }
 
 /**
