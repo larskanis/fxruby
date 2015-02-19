@@ -351,6 +351,7 @@ def do_rake_compiler_setup
   else
     FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
   end
+  have_func 'rb_thread_call_without_gvl'
 end
 
 # This directive processes the "--with-fox-include" and "--with-fox-lib"
@@ -383,4 +384,5 @@ $CFLAGS += " -DRUBY_1_9" if RUBY_VERSION =~ /1\.9\./
 $CFLAGS += " -DRUBY_2_0" if RUBY_VERSION =~ /2\.0\./
 
 # Last step: build the makefile
+create_header
 create_makefile("fox16_c")

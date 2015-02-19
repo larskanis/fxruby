@@ -73,10 +73,10 @@ inline void klass ## _gradient(klass* self,FXColor topleft,FXColor topright,FXCo
 inline void klass ## _blend(klass* self,FXColor color){ \
   self->klass::blend(color); \
   } \
-inline bool klass ## _savePixels(const klass* self,FXStream& store){ \
+inline bool klass ## _savePixels_gvl(const klass* self,FXStream& store){ \
   return self->klass::savePixels(store); \
   } \
-inline bool klass ## _loadPixels(klass* self,FXStream& store){ \
+inline bool klass ## _loadPixels_gvl(klass* self,FXStream& store){ \
   return self->klass::loadPixels(store); \
   }
 

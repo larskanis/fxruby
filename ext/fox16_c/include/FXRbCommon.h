@@ -27,6 +27,8 @@
 extern "C" {
 #include "ruby.h"
 
+#include "extconf.h"
+
 #ifdef HAVE_RUBY_ENCODING_H
 #include "ruby/encoding.h"
 #endif
@@ -97,3 +99,4 @@ extern "C" {
 #include "FXScintilla.h"
 #endif
 #include "FXRuby.h"
+#include "gvl_wrappers.h"
