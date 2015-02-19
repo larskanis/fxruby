@@ -224,22 +224,22 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
     FXRbCallVoidMethod(this,rb_intern("drawPoint"),x,y); \
     } \
   void cls::drawPoints(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawPoints"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("drawPoints"),points,npoints); \
     } \
   void cls::drawPointsRel(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawPointsRel"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("drawPointsRel"),points,npoints); \
     } \
   void cls::drawLine(FXint x1,FXint y1,FXint x2,FXint y2){ \
     FXRbCallVoidMethod(this,rb_intern("drawLine"),x1,y1,x2,y2); \
     } \
   void cls::drawLines(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawLines"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("drawLines"),points,npoints); \
     } \
   void cls::drawLinesRel(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawLinesRel"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("drawLinesRel"),points,npoints); \
     } \
   void cls::drawLineSegments(const FXSegment* segments,FXuint nsegments){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawLineSegments"),1,FXRbMakeArray(segments,nsegments)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("drawLineSegments"),segments,nsegments); \
     } \
   void cls::drawRectangle(FXint x,FXint y,FXint w,FXint h){ \
     FXRbCallVoidMethod(this,rb_intern("drawRectangle"),x,y,w,h); \
@@ -248,13 +248,13 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
     FXRbCallVoidMethod(this,rb_intern("drawRoundRectangle"),x,y,w,h,ew,eh); \
     } \
   void cls::drawRectangles(const FXRectangle* rectangles,FXuint nrectangles){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawRectangles"),1,FXRbMakeArray(rectangles,nrectangles)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("drawRectangles"),rectangles,nrectangles); \
     } \
   void cls::drawArc(FXint x,FXint y,FXint w,FXint h,FXint ang1,FXint ang2){ \
     FXRbCallVoidMethod(this,rb_intern("drawArc"),x,y,w,h,ang1,ang2); \
     } \
   void cls::drawArcs(const FXArc* arcs,FXuint narcs){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawArcs"),1,FXRbMakeArray(arcs,narcs)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("drawArcs"),arcs,narcs); \
     } \
   void cls::drawEllipse(FXint x,FXint y,FXint w,FXint h){ \
     FXRbCallVoidMethod(this,rb_intern("drawEllipse"),x,y,w,h); \
@@ -263,7 +263,7 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
     FXRbCallVoidMethod(this,rb_intern("fillRectangle"),x,y,w,h); \
     } \
   void cls::fillRectangles(const FXRectangle* rectangles,FXuint nrectangles){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillRectangles"),1,FXRbMakeArray(rectangles,nrectangles)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillRectangles"),rectangles,nrectangles); \
     } \
   void cls::fillRoundRectangle(FXint x,FXint y,FXint w,FXint h,FXint ew,FXint eh){ \
     FXRbCallVoidMethod(this,rb_intern("fillRoundRectangle"),x,y,w,h,ew,eh); \
@@ -272,34 +272,34 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
     FXRbCallVoidMethod(this,rb_intern("fillChord"),x,y,w,h,ang1,ang2); \
     } \
   void cls::fillChords(const FXArc* chords,FXuint nchords){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillChords"),1,FXRbMakeArray(chords,nchords)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillChords"),chords,nchords); \
     } \
   void cls::fillArc(FXint x,FXint y,FXint w,FXint h,FXint ang1,FXint ang2){ \
     FXRbCallVoidMethod(this,rb_intern("fillArc"),x,y,w,h,ang1,ang2); \
     } \
   void cls::fillArcs(const FXArc* arcs,FXuint narcs){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillArcs"),1,FXRbMakeArray(arcs,narcs)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillArcs"),arcs,narcs); \
     } \
   void cls::fillEllipse(FXint x,FXint y,FXint w,FXint h){ \
     FXRbCallVoidMethod(this,rb_intern("fillEllipse"),x,y,w,h); \
     } \
   void cls::fillPolygon(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillPolygon"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillPolygon"),points,npoints); \
     } \
   void cls::fillConcavePolygon(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillConcavePolygon"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillConcavePolygon"),points,npoints); \
     } \
   void cls::fillComplexPolygon(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillComplexPolygon"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillComplexPolygon"),points,npoints); \
     } \
   void cls::fillPolygonRel(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillPolygonRel"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillPolygonRel"),points,npoints); \
     } \
   void cls::fillConcavePolygonRel(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillConcavePolygonRel"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillConcavePolygonRel"),points,npoints); \
     } \
   void cls::fillComplexPolygonRel(const FXPoint* points,FXuint npoints){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("fillComplexPolygonRel"),1,FXRbMakeArray(points,npoints)); \
+    FXRbCallVoidArrayMethod(this,rb_intern("fillComplexPolygonRel"),points,npoints); \
     } \
   void cls::drawHashBox(FXint x,FXint y,FXint w,FXint h,FXint b){ \
     FXRbCallVoidMethod(this,rb_intern("drawHashBox"),x,y,w,h,b); \
@@ -347,7 +347,7 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
     FXRbCallVoidMethod(this,rb_intern("setBackground"),clr); \
     } \
   void cls::setDashes(FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("setDashes"),2,to_ruby(dashoffset),FXRbMakeArray(dashpattern,dashlength)); \
+    FXRbCallSetDashes(this,rb_intern("setDashes"),dashoffset,dashpattern,dashlength); \
     } \
   void cls::setLineWidth(FXuint linewidth){ \
     FXRbCallVoidMethod(this,rb_intern("setLineWidth"),linewidth); \

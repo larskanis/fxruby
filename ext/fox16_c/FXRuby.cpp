@@ -269,9 +269,14 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
  * Remove this mapping between a Ruby instance and a C++ object
  */
 void FXRbUnregisterRubyObj(const void* foxObj){
+  FXRbUnregisterRubyObj2(foxObj, true);
+}
+
+void FXRbUnregisterRubyObj2(const void* foxObj, bool alsoOwned){
   if(foxObj!=0){
     FXRubyObjDesc* desc;
     if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
+      if( !alsoOwned && !desc->borrowed ) return;
       FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)desc->obj,rb_obj_classname(desc->obj),foxObj));
       DATA_PTR(desc->obj)=0;
       FXFREE(&desc);
@@ -281,6 +286,22 @@ void FXRbUnregisterRubyObj(const void* foxObj){
     }
   }
 
+void FXRbUnregisterBorrowedRubyObj(const void* foxObj){
+  FXRbUnregisterRubyObj2( foxObj, false );
+};
+void FXRbUnregisterBorrowedRubyObj(FXlong foxObj){
+};
+void FXRbUnregisterBorrowedRubyObj(FXString& foxObj){
+};
+void FXRbUnregisterBorrowedRubyObj(FXRegion& foxObj){
+  FXRbUnregisterRubyObj2( &foxObj, false );
+};
+void FXRbUnregisterBorrowedRubyObj(FXRectangle& foxObj){
+  FXRbUnregisterRubyObj2( &foxObj, false );
+};
+void FXRbUnregisterBorrowedRubyObj(FXDC& foxObj){
+  FXRbUnregisterRubyObj2( &foxObj, false );
+};
 
 VALUE to_ruby(const FXObject* obj){
   if(obj!=0){
@@ -299,11 +320,11 @@ VALUE to_ruby(const FXObject* obj){
  * Return the registered Ruby class instance associated with this
  * FOX object, or Qnil if not found.
  */
-VALUE FXRbGetRubyObj(const void *foxObj,bool searchBoth){
+VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed){
   FXRubyObjDesc* desc;
   if(foxObj!=0 && st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
     FXASSERT(desc!=0);
-    if(searchBoth || !desc->borrowed){
+    if(alsoBorrowed || !desc->borrowed){
       FXTRACE((2,"FXRbGetRubyObj(foxObj=%p) => rubyObj=%p (%s)\n",foxObj,(void *)desc->obj,rb_obj_classname(desc->obj)));
       return desc->obj;
       }
@@ -1308,6 +1329,10 @@ long FXRbHandleMessage(FXObject* recv,ID func,FXObject* sender,FXSelector key,vo
     retval=handle_body(reinterpret_cast<VALUE>(&hArgs));
     }
 
+  FXRbUnregisterBorrowedRubyObj(recv);
+  FXRbUnregisterBorrowedRubyObj(sender);
+  FXRbUnregisterBorrowedRubyObj(ptr);
+
   /**
    * Process the return value. For boolean return values, convert "true"
    * to 1 and "false" to zero. For numeric types, convert it to a long value
@@ -1459,6 +1484,7 @@ FXTableItem* FXRbCallTableItemMethod(FXTable* recv,ID func,const FXString& text,
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,3,to_ruby(text),to_ruby(icon),itemData);
+  FXRbUnregisterBorrowedRubyObj(icon);
   return NIL_P(result)?0:reinterpret_cast<FXTableItem*>(DATA_PTR(result));
   }
 
@@ -1516,6 +1542,7 @@ FXWindow* FXRbCallWindowMethod(const FXTableItem* recv,ID func,FXTable* table){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,1,to_ruby(table));
+  FXRbUnregisterBorrowedRubyObj(table);
   return NIL_P(result) ? 0 : reinterpret_cast<FXWindow*>(DATA_PTR(result));
   }
 
@@ -1564,6 +1591,10 @@ FXwchar FXRbCallWCharMethod(const FXObject* recv, ID func){
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,0,NULL);
   return static_cast<FXwchar>(NUM2ULONG(result));
+  }
+
+void FXRbCallSetDashes(FXDC* recv,ID func,FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength){
+  rb_funcall(FXRbGetRubyObj(recv,false),func,2,to_ruby(dashoffset),FXRbMakeArray(dashpattern,dashlength));
   }
 
 //----------------------------------------------------------------------
