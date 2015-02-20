@@ -17,7 +17,7 @@ class TC_FXJPGImage < Fox::TestCase
     count = 0
     th = Thread.new do
       loop do
-        sleep 0.01
+        sleep 0.001
         count += 1
       end
     end
@@ -26,13 +26,23 @@ class TC_FXJPGImage < Fox::TestCase
     img.setPixels( img_data, 0, w, h )
 
     jpeg_data = FXMemoryStream.open(FXStreamSave, nil) do |outfile|
-    img.savePixels(outfile)
+      img.savePixels(outfile)
       outfile.takeBuffer
+    end
+
+    assert_operator(count, :>=, 10)
+    assert_operator(jpeg_data.bytesize, :>=, 1000)
+
+    count = 0
+    img = FXJPGImage.new(app)
+    FXMemoryStream.open(FXStreamLoad, jpeg_data) do |infile|
+      img.loadPixels(infile)
     end
 
     th.kill
 
+    assert_equal 4000, img.width
+    assert_equal 3000, img.height
     assert_operator(count, :>=, 10)
-    assert_operator(jpeg_data.bytesize, :>=, 1000)
   end
 end
