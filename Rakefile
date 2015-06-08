@@ -62,6 +62,7 @@ hoe = Hoe.spec "fxruby" do
   self.version = PKG_VERSION
   self.readme_file = 'README.rdoc'
   self.extra_rdoc_files << self.readme_file
+  self.extra_deps << ['mini_portile', '~> 0.6']
 
   spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
   spec_extras[:files] += SWIG_MODULES.values.map{|f| File.join("ext/fox16_c", f) }
