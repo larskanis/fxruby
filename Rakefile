@@ -21,7 +21,6 @@ PKG_VERSION = Fox.fxrubyversion
 
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
-SWIG_LIB = `#{SWIG} -swiglib`.chomp
 SWIG_MODULES = {
   "core.i" => "core_wrap.cpp",
   "dcmodule.i" => "dc_wrap.cpp",
@@ -124,6 +123,12 @@ ENV['RUBY_CC_VERSION'].to_s.split(':').each do |ruby_version|
   task "tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
     sh "x86_64-w64-mingw32-strip -S tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
   end
+end
+
+desc "Build the windows binary gems"
+task 'gem:windows' => 'gem' do
+  require 'rake_compiler_dock'
+  RakeCompilerDock.sh "rake cross native gem RUBYOPT=--disable-rubygems MAKE=\"nice make V=1 -j `nproc`\" "
 end
 
 # Set environment variable SWIG_LIB to

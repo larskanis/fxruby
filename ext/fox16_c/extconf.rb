@@ -7,7 +7,7 @@ def find_installed_fox_version
   stddirs = ["/usr/include/fox-1.6",
              "/usr/local/include/fox-1.6",
              "/sw/include/fox-1.6",
-	     "/opt/local/include/fox-1.6"]
+            "/opt/local/include/fox-1.6"]
   usrdirs = []
   ARGV.each do |arg|
     if arg =~ /--with-fox-include/
@@ -109,12 +109,13 @@ def do_rake_compiler_setup
 
     dir_config("installed")
 
+    host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
     libz_recipe = MiniPortile.new("libz", LIBZ_VERSION).tap do |recipe|
       recipe.files = [LIBZ_SOURCE_URI]
       recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
       # Prefer host_alias over host in order to use i586-mingw32msvc as
       # correct compiler prefix for cross build, but use host if not set.
-      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.host = host
       class << recipe
         def configure
           Dir.chdir work_path do
@@ -157,7 +158,7 @@ def do_rake_compiler_setup
       recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
       # Prefer host_alias over host in order to use i586-mingw32msvc as
       # correct compiler prefix for cross build, but use host if not set.
-      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.host = host
       recipe.configure_options = [
         "--host=#{recipe.host}",
         "--enable-shared",
@@ -182,7 +183,7 @@ def do_rake_compiler_setup
       recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
       # Prefer host_alias over host in order to use i586-mingw32msvc as
       # correct compiler prefix for cross build, but use host if not set.
-      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.host = host
       recipe.configure_options = [
         "--host=#{recipe.host}",
         "--enable-shared",
@@ -202,7 +203,7 @@ def do_rake_compiler_setup
       recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
       # Prefer host_alias over host in order to use i586-mingw32msvc as
       # correct compiler prefix for cross build, but use host if not set.
-      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.host = host
       recipe.configure_options = [
         "--host=#{recipe.host}",
         "--enable-shared",
@@ -222,7 +223,7 @@ def do_rake_compiler_setup
       recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
       # Prefer host_alias over host in order to use i586-mingw32msvc as
       # correct compiler prefix for cross build, but use host if not set.
-      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.host = host
       recipe.configure_options = [
         "--host=#{recipe.host}",
         "--without-xft",
@@ -255,7 +256,7 @@ def do_rake_compiler_setup
       recipe.target = portsdir = File.expand_path('../../../ports', __FILE__)
       # Prefer host_alias over host in order to use i586-mingw32msvc as
       # correct compiler prefix for cross build, but use host if not set.
-      recipe.host = RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"]
+      recipe.host = host
       recipe.configure_options = [
         "--host=#{recipe.host}",
         "--enable-shared",
@@ -282,14 +283,19 @@ def do_rake_compiler_setup
 
       checkpoint = File.join(portsdir, "#{recipe.name}-#{recipe.version}-#{recipe.host}.installed")
       unless File.exist?(checkpoint)
-        recipe.cook
-        FileUtils.touch checkpoint
+        with_env(
+          'PKG_CONFIG_PATH' => "#{libfox_recipe.path}/lib/pkgconfig"
+        ) do
+          recipe.cook
+          FileUtils.touch checkpoint
+        end
       end
       recipe.activate
     end
+    $autodetected_fxscintilla = true
 
-    dir_config('libfox', "#{libfox_recipe.path}/include", "#{libfox_recipe.path}/lib")
-    dir_config('libfxscintilla', "#{libfxscintills_recipe.path}/include", "#{libfxscintills_recipe.path}/lib")
+    dir_config('libfox', "#{libfox_recipe.path}/include/fox-1.6", "#{libfox_recipe.path}/lib")
+    dir_config('libfxscintilla', "#{libfxscintills_recipe.path}/include/fxscintilla", "#{libfxscintills_recipe.path}/lib")
 
     shared_dlls = [
         "#{libfxscintills_recipe.path}/bin/libfxscintilla-20.dll",
@@ -312,7 +318,7 @@ def do_rake_compiler_setup
       FileUtils.cp `#{cmd}`.chomp, '.', verbose: true
     end
 
-    CONFIG['CXX'] = "#{RbConfig::CONFIG["host"]}-g++" # CXX setting must be prefixed for cross build
+    CONFIG['CXX'] = "#{host}-g++" # CXX setting must be prefixed for cross build
     CONFIG['CC'] += "\nCXX=#{CONFIG['CXX']}" # Hack CXX into Makefile for cross compilation
     CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
     $LDFLAGS += " -s" # remove symbol table informations from shared lib
@@ -365,15 +371,17 @@ dir_config('fox', '/usr/local/include/fox-1.6', '/usr/local/lib')
 
 dir_config('fxscintilla', '/usr/local/include/fxscintilla', '/usr/local/lib')
 
-find_installed_fox_version
+unless enable_config("win32-cross")
+  find_installed_fox_version
 
-#
-# Check for FXScintilla header files, unless FXScintilla support has
-# been explicitly suppressed with the '--without-fxscintilla' flag.
-#
+  #
+  # Check for FXScintilla header files, unless FXScintilla support has
+  # been explicitly suppressed with the '--without-fxscintilla' flag.
+  #
 
-unless fxscintilla_support_suppressed?
-  find_installed_fxscintilla_version
+  unless fxscintilla_support_suppressed?
+    find_installed_fxscintilla_version
+  end
 end
 
 # Platform-specific modifications
