@@ -47,7 +47,7 @@ SWIG_MODULES = {
 hoe = Hoe.spec "fxruby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
-  self.clean_globs = [".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/include/swigrubyrun.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp"]
+  self.clean_globs = [".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/include/swigrubyrun.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp"]
   developer("Lyle Johnson", "lyle@lylejohnson.name")
   developer("Lars Kanis", "kanis@comcard.de")
   self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
