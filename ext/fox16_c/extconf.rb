@@ -351,7 +351,13 @@ def do_rake_compiler_setup
   else
     FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
   end
-  have_func 'rb_thread_call_without_gvl'
+
+  checking_for("thread local variables") do
+    $defs.push( "-DHAVE___THREAD" ) if try_compile('__thread int x=1;')
+  end &&
+      have_func('rb_thread_call_without_gvl') &&
+      have_func('rb_thread_call_with_gvl')
+
 end
 
 # This directive processes the "--with-fox-include" and "--with-fox-lib"
