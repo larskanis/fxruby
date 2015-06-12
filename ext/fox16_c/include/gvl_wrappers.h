@@ -85,7 +85,7 @@ extern __thread int g_fxrb_thread_has_gvl;
 #define FOR_EACH_PARAM_OF_FXImage_savePixels(param) \
   param(FXStream&, store)
 
-/* function( name, void_or_nonvoid, returntype, firstparamtype, firstparamname ) */
+/* function( class, name, baseclass, void_or_nonvoid, returntype, firstparamtype, firstparamname ) */
 #define FOR_EACH_BLOCKING_FUNCTION(function) \
   function(FXImage, loadPixels, FXImage, GVL_TYPE_NONVOID, bool, FXImage *, self) \
   function(FXImage, savePixels, FXImage, GVL_TYPE_NONVOID, bool, const FXImage *, self) \
