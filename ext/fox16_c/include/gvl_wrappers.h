@@ -15,14 +15,16 @@
 #ifndef __gvl_wrappers_h
 #define __gvl_wrappers_h
 
-#if defined(HAVE_RB_THREAD_CALL_WITH_GVL)
-extern void *rb_thread_call_with_gvl(void *(*func)(void *), void *data1);
-#endif
+extern "C" {
+  #if defined(HAVE_RB_THREAD_CALL_WITH_GVL)
+  extern void *rb_thread_call_with_gvl(void *(*func)(void *), void *data1);
+  #endif
 
-#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
-extern "C" void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
-        rb_unblock_function_t *ubf, void *data2);
-#endif
+  #if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+  extern "C" void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
+          rb_unblock_function_t *ubf, void *data2);
+  #endif
+}
 
 #define DEFINE_PARAM_LIST1(type, name) \
   , name
@@ -75,6 +77,45 @@ extern __thread int g_fxrb_thread_has_gvl;
 
 #define DEFINE_GVL_STUB_DECL(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
   rettype klass##_##name( firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3));
+
+#define DEFINE_GVLCB_STUB_DECL1(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
+  rettype klass##_##name##_gvlcb1( firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3));
+
+#define DEFINE_GVLCB_STUB_DECL2(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
+  rettype klass##_##name##_gvlcb2( firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3));
+
+#define DEFINE_GVLCB_SKELETON2(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
+  void klass##_##name##_gvlcb2( firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3)){ \
+    FXRbCallVoidMethod(firstparamname,rb_intern(#name) FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST1)); \
+    }
+
+#define DEFINE_GVLCB_SKELETON(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
+  static void * gvl_##klass##_##name##_skeleton( void *data ){ \
+    struct gvl_wrapper_##klass##_##name##_params *p = (struct gvl_wrapper_##klass##_##name##_params*)data; \
+    when_non_void( p->retval = ) \
+      klass##_##name##_gvlcb2( p->params.firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST2) ); \
+    return NULL; \
+  }
+
+#if defined(HAVE_RB_THREAD_CALL_WITH_GVL)
+  #define DEFINE_GVLCB_STUB(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
+    rettype klass##_##name##_gvlcb1(firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3)){ \
+      if( g_fxrb_thread_has_gvl ){ \
+        return klass##_##name##_gvlcb2( firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST1) ); \
+      } else { \
+        struct gvl_wrapper_##klass##_##name##_params params = { \
+          {firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST1)}, when_non_void((rettype)0) \
+        }; \
+        rb_thread_call_with_gvl(gvl_##klass##_##name##_skeleton, &params); \
+        when_non_void( return params.retval; ) \
+      } \
+    }
+#else
+  #define DEFINE_GVLCB_STUB(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
+    rettype klass##_##name##_gvlcb1(firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3)){ \
+      return klass##_##name##_gvlcb2( firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST1) ); \
+    }
+#endif
 
 #define GVL_TYPE_VOID(string)
 #define GVL_TYPE_NONVOID(string) string
@@ -146,5 +187,20 @@ extern __thread int g_fxrb_thread_has_gvl;
 
 
 FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
+
+/*
+ * Definitions of callback functions and their parameters
+ */
+
+#define FOR_EACH_PARAM_OF_FXDrawable_resize(param) \
+  param(FXint, w) \
+  param(FXint, h)
+
+/* function( class, name, baseclass, void_or_nonvoid, returntype, firstparamtype, firstparamname ) */
+#define FOR_EACH_CALLBACK_FUNCTION(function) \
+  function(FXDrawable, resize, FXDrawable, GVL_TYPE_VOID, void, FXDrawable*, self)
+
+FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_STUB_DECL1 );
+FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_STUB_DECL2 );
 
 #endif /* end __gvl_wrappers_h */
