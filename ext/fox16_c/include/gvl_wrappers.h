@@ -271,6 +271,62 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   param(TYPE8, , arg8) \
   param(TYPE9, , arg9)
 
+#define FOR_EACH_PARAM_OF_FXRbCallBoolMethod_2(param) \
+  param(ID, , func)
+
+#define FOR_EACH_PARAM_OF_FXRbCallBoolMethod_3(param) \
+  param(ID, , func) \
+  param(TYPE1, &, arg1)
+
+#define FOR_EACH_PARAM_OF_FXRbCallBoolMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallBoolMethod_5(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3)
+
+#define FOR_EACH_PARAM_OF_FXRbCallBoolMethod_7(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3) \
+  param(TYPE4, , arg4) \
+  param(TYPE5, , arg5)
+
+#define FOR_EACH_PARAM_OF_FXRbCallIntMethod_2(param) \
+  param(ID, , func)
+
+#define FOR_EACH_PARAM_OF_FXRbCallIntMethod_3(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1)
+
+#define FOR_EACH_PARAM_OF_FXRbCallIntMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallIntMethod_7(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3) \
+  param(TYPE4, , arg4) \
+  param(TYPE5, , arg5)
+
+#define FOR_EACH_PARAM_OF_FXRbCallLongMethod_5(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3)
+
+#define FOR_EACH_PARAM_OF_FXRbCallUIntMethod_3(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1)
+
 /* function( name, void_or_nonvoid, returntype, firstparamtype, firstparamname, paramcount ) */
 #define FOR_EACH_CALLBACK_FUNCTION(function) \
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 2) \
@@ -281,7 +337,18 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 7) \
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 8) \
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 9) \
-  function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 11)
+  function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 11) \
+  function(FXRbCallBoolMethod, GVL_TYPE_NONVOID, bool, RECV, recv, 2) \
+  function(FXRbCallBoolMethod, GVL_TYPE_NONVOID, bool, RECV, recv, 3) \
+  function(FXRbCallBoolMethod, GVL_TYPE_NONVOID, bool, RECV, recv, 4) \
+  function(FXRbCallBoolMethod, GVL_TYPE_NONVOID, bool, RECV, recv, 5) \
+  function(FXRbCallBoolMethod, GVL_TYPE_NONVOID, bool, RECV, recv, 7) \
+  function(FXRbCallIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 2) \
+  function(FXRbCallIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 3) \
+  function(FXRbCallIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 4) \
+  function(FXRbCallIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 7) \
+  function(FXRbCallLongMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 5) \
+  function(FXRbCallUIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 3) \
 
 FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_STUB_DECL )
 FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_WRAPPER_STRUCT )

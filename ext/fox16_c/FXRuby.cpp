@@ -1416,7 +1416,7 @@ void FXRbCallVoidMethod_gvlcb(FXDC* recv,ID func) {
 
 //----------------------------------------------------------------------
 
-bool FXRbCallBoolMethod(const FXObject* recv,ID func){
+bool FXRbCallBoolMethod_gvlcb(const FXObject* recv,ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,0,NULL);
@@ -1426,7 +1426,7 @@ bool FXRbCallBoolMethod(const FXObject* recv,ID func){
 //----------------------------------------------------------------------
 
 // Call function with "FXint" return value
-FXint FXRbCallIntMethod(const FXObject* recv,ID func){
+FXint FXRbCallIntMethod_gvlcb(const FXObject* recv,ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,0,NULL);

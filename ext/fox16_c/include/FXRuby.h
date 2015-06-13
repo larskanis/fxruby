@@ -569,27 +569,27 @@ void FXRbCallVoidMethod_gvlcb(FXObject* recv,ID func,TYPE1& arg1,TYPE2 arg2,TYPE
   }
 
 // Call function with "FXbool" return value
-inline bool FXRbCallBoolMethod(FXStream* recv,ID func){
+inline bool FXRbCallBoolMethod_gvlcb(FXStream* recv,ID func){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,0,NULL);
   return (v==Qtrue);
   }
 
 template<class TYPE1>
-bool FXRbCallBoolMethod(FXStream* recv,ID func,TYPE1 arg){
+bool FXRbCallBoolMethod_gvlcb(FXStream* recv,ID func,TYPE1 arg){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,1,to_ruby(arg));
   return (v==Qtrue);
   }
 
 template<class TYPE1,class TYPE2>
-bool FXRbCallBoolMethod(FXStream* recv,ID func,TYPE1 arg1,TYPE2 arg2){
+bool FXRbCallBoolMethod_gvlcb(FXStream* recv,ID func,TYPE1 arg1,TYPE2 arg2){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,2,to_ruby(arg1),to_ruby(arg2));
   return (v==Qtrue);
   }
 
-bool FXRbCallBoolMethod(const FXObject* recv,ID func);
+bool FXRbCallBoolMethod_gvlcb(const FXObject* recv,ID func);
 
 template<class TYPE>
-bool FXRbCallBoolMethod(FXObject* recv, ID func, TYPE& arg){
+bool FXRbCallBoolMethod_gvlcb(FXObject* recv, ID func, TYPE& arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,1,to_ruby(arg));
@@ -597,13 +597,13 @@ bool FXRbCallBoolMethod(FXObject* recv, ID func, TYPE& arg){
   }
 
 template<class TYPE>
-bool FXRbCallBoolMethod(const FXObject* recv,ID func,TYPE& arg){
+bool FXRbCallBoolMethod_gvlcb(const FXObject* recv,ID func,TYPE& arg){
   VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),func,1,to_ruby(arg));
   return (v==Qtrue);
   }
 
 template<class TYPE1, class TYPE2>
-bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
+bool FXRbCallBoolMethod_gvlcb(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,2,to_ruby(arg1),to_ruby(arg2));
@@ -611,7 +611,7 @@ bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   }
 
 template<class TYPE1, class TYPE2, class TYPE3>
-bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3){
+bool FXRbCallBoolMethod_gvlcb(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,3,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3));
@@ -619,7 +619,7 @@ bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, T
   }
 
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4, class TYPE5>
-bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5){
+bool FXRbCallBoolMethod_gvlcb(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,5,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3),to_ruby(arg4),to_ruby(arg5));
@@ -627,10 +627,10 @@ bool FXRbCallBoolMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, T
   }
 
 // Call function with "FXint" return value
-FXint FXRbCallIntMethod(const FXObject* recv,ID func);
+FXint FXRbCallIntMethod_gvlcb(const FXObject* recv,ID func);
 
 template<class TYPE>
-FXint FXRbCallIntMethod(FXObject* recv, ID func, TYPE arg){
+FXint FXRbCallIntMethod_gvlcb(FXObject* recv, ID func, TYPE arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,1,to_ruby(arg));
@@ -638,7 +638,7 @@ FXint FXRbCallIntMethod(FXObject* recv, ID func, TYPE arg){
   }
 
 template<class TYPE>
-FXint FXRbCallIntMethod(const FXObject* recv, ID func, TYPE arg){
+FXint FXRbCallIntMethod_gvlcb(const FXObject* recv, ID func, TYPE arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,1,to_ruby(arg));
@@ -646,7 +646,7 @@ FXint FXRbCallIntMethod(const FXObject* recv, ID func, TYPE arg){
   }
 
 template<class TYPE1, class TYPE2>
-FXint FXRbCallIntMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
+FXint FXRbCallIntMethod_gvlcb(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,to_ruby(arg1),to_ruby(arg2));
@@ -654,7 +654,7 @@ FXint FXRbCallIntMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   }
 
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4, class TYPE5>
-FXint FXRbCallIntMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5){
+FXint FXRbCallIntMethod_gvlcb(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,5,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3),to_ruby(arg4),to_ruby(arg5));
@@ -663,7 +663,7 @@ FXint FXRbCallIntMethod(const FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, T
 
 // Call function with "long" return value
 template<class TYPE1, class TYPE2, class TYPE3>
-long FXRbCallLongMethod(FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3){
+long FXRbCallLongMethod_gvlcb(FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,3,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3));
@@ -672,7 +672,7 @@ long FXRbCallLongMethod(FXObject* recv, ID func, TYPE1 arg1, TYPE2 arg2, TYPE3 a
 
 // Call functions with "FXuint" return value
 template<class TYPE>
-FXuint FXRbCallUIntMethod(FXObject* recv, ID func, TYPE arg){
+FXuint FXRbCallUIntMethod_gvlcb(FXObject* recv, ID func, TYPE arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,1,to_ruby(arg));
