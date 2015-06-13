@@ -17,7 +17,6 @@ class TC_FXJPGImage < Fox::TestCase
     count = 0
     th = Thread.new do
       loop do
-        sleep 0.001
         count += 1
       end
     end
@@ -30,7 +29,7 @@ class TC_FXJPGImage < Fox::TestCase
       outfile.takeBuffer
     end
 
-    assert_operator(count, :>=, 10)
+    assert_operator(count, :>=, 1000000)
     assert_operator(jpeg_data.bytesize, :>=, 1000)
 
     count = 0
@@ -43,6 +42,6 @@ class TC_FXJPGImage < Fox::TestCase
 
     assert_equal 4000, img.width
     assert_equal 3000, img.height
-    assert_operator(count, :>=, 10)
+    assert_operator(count, :>=, 1000000)
   end
 end
