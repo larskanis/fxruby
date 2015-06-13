@@ -1401,14 +1401,14 @@ void FXRbRange2LoHi(VALUE range,FXdouble& lo,FXdouble& hi){
 
 //----------------------------------------------------------------------
 
-void FXRbCallVoidMethod(FXObject* recv, ID func) {
+void FXRbCallVoidMethod_gvlcb(FXObject* recv, ID func) {
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   FXASSERT(!FXRbIsInGC(recv));
   rb_funcall(obj,func,0,NULL);
   }
 
-void FXRbCallVoidMethod(FXDC* recv,ID func) {
+void FXRbCallVoidMethod_gvlcb(FXDC* recv,ID func) {
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   rb_funcall(obj,func,0,NULL);
