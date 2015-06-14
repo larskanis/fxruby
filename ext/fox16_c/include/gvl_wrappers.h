@@ -120,7 +120,9 @@ extern __thread int g_fxrb_thread_has_gvl;
         struct gvl_wrapper_##name##_##paramcount##_params<firstparamtype FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST5)> params = { \
           {firstparamname FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST1)}, when_non_void((rettype)0) \
         }; \
+        g_fxrb_thread_has_gvl = 1; \
         rb_thread_call_with_gvl(gvl_##name##_##paramcount##_skeleton<firstparamtype FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST5)>, &params); \
+        g_fxrb_thread_has_gvl = 0; \
         when_non_void( return params.retval; ) \
       } \
     }
