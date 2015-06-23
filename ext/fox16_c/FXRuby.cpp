@@ -1308,7 +1308,7 @@ static VALUE handle_rescue(VALUE args,VALUE error){
 
 
 // Call the designated function and return its result (which should be a long).
-long FXRbHandleMessage(FXObject* recv,ID func,FXObject* sender,FXSelector key,void* ptr){
+long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector key,void* ptr){
   FXRbHandleArgs hArgs;
   hArgs.recv=to_ruby(recv);
   hArgs.sender=to_ruby(sender);
@@ -1436,21 +1436,21 @@ FXint FXRbCallIntMethod_gvlcb(const FXObject* recv,ID func){
 //----------------------------------------------------------------------
 
 // Call function with "FXGLObject*" return value
-FXGLObject* FXRbCallGLObjectMethod(FXGLObject* recv,ID func){
+FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLObject* recv,ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,0,NULL);
   return NIL_P(result) ? 0 : reinterpret_cast<FXGLObject*>(DATA_PTR(result));
   }
 
-FXGLObject* FXRbCallGLObjectMethod(FXGLViewer* recv,ID func,FXint x,FXint y){
+FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLViewer* recv,ID func,FXint x,FXint y){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,INT2NUM(x),INT2NUM(y));
   return NIL_P(result) ? 0 : reinterpret_cast<FXGLObject*>(DATA_PTR(result));
   }
 
-FXGLObject* FXRbCallGLObjectMethod(FXGLObject* recv,ID func,FXuint* path,FXint n){
+FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLObject* recv,ID func,FXuint* path,FXint n){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,1,FXRbMakeArray(path,n));
@@ -1460,7 +1460,7 @@ FXGLObject* FXRbCallGLObjectMethod(FXGLObject* recv,ID func,FXuint* path,FXint n
 //----------------------------------------------------------------------
 
 // Call function with "FXGLObject**" return value
-FXGLObject** FXRbCallGLObjectArrayMethod(FXGLViewer* recv,ID func,FXint x,FXint y,FXint w,FXint h){
+FXGLObject** FXRbCallGLObjectArrayMethod_gvlcb(FXGLViewer* recv,ID func,FXint x,FXint y,FXint w,FXint h){
   FXGLObject** objects=NULL;
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
@@ -1479,7 +1479,7 @@ FXGLObject** FXRbCallGLObjectArrayMethod(FXGLViewer* recv,ID func,FXint x,FXint 
 
 //----------------------------------------------------------------------
 
-FXTableItem* FXRbCallTableItemMethod(FXTable* recv,ID func,const FXString& text,FXIcon* icon,void* ptr){
+FXTableItem* FXRbCallTableItemMethod_gvlcb(FXTable* recv,ID func,const FXString& text,FXIcon* icon,void* ptr){
   VALUE itemData=(ptr==0)?Qnil:reinterpret_cast<VALUE>(ptr);
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
@@ -1488,7 +1488,7 @@ FXTableItem* FXRbCallTableItemMethod(FXTable* recv,ID func,const FXString& text,
   return NIL_P(result)?0:reinterpret_cast<FXTableItem*>(DATA_PTR(result));
   }
 
-FXTableItem* FXRbCallTableItemMethod(FXTable* recv,ID func,FXint row,FXint col,FXbool notify){
+FXTableItem* FXRbCallTableItemMethod_gvlcb(FXTable* recv,ID func,FXint row,FXint col,FXbool notify){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,3,to_ruby(row),to_ruby(col),to_ruby(notify));
@@ -1497,7 +1497,7 @@ FXTableItem* FXRbCallTableItemMethod(FXTable* recv,ID func,FXint row,FXint col,F
 
 //----------------------------------------------------------------------
 
-FXTreeItem* FXRbCallTreeItemMethod(const FXTreeList* recv,ID func,FXint x,FXint y){
+FXTreeItem* FXRbCallTreeItemMethod_gvlcb(const FXTreeList* recv,ID func,FXint x,FXint y){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,INT2NUM(x),INT2NUM(y));
@@ -1506,7 +1506,7 @@ FXTreeItem* FXRbCallTreeItemMethod(const FXTreeList* recv,ID func,FXint x,FXint 
 
 //----------------------------------------------------------------------
 
-FXFoldingItem* FXRbCallFoldingItemMethod(const FXFoldingList* recv,ID func,FXint x,FXint y){
+FXFoldingItem* FXRbCallFoldingItemMethod_gvlcb(const FXFoldingList* recv,ID func,FXint x,FXint y){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,INT2NUM(x),INT2NUM(y));
@@ -1515,7 +1515,7 @@ FXFoldingItem* FXRbCallFoldingItemMethod(const FXFoldingList* recv,ID func,FXint
 
 //----------------------------------------------------------------------
 
-FXFileAssoc* FXRbCallFileAssocMethod(const FXFileDict* recv,ID func,const FXchar* pathname){
+FXFileAssoc* FXRbCallFileAssocMethod_gvlcb(const FXFileDict* recv,ID func,const FXchar* pathname){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,1,to_ruby(pathname));
@@ -1524,7 +1524,7 @@ FXFileAssoc* FXRbCallFileAssocMethod(const FXFileDict* recv,ID func,const FXchar
 
 //----------------------------------------------------------------------
 
-FXIcon* FXRbCallIconMethod(const FXTableItem* recv,ID func){
+FXIcon* FXRbCallIconMethod_gvlcb(const FXTableItem* recv,ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
 	if(!NIL_P(obj)){
@@ -1538,7 +1538,7 @@ FXIcon* FXRbCallIconMethod(const FXTableItem* recv,ID func){
 
 //----------------------------------------------------------------------
 
-FXWindow* FXRbCallWindowMethod(const FXTableItem* recv,ID func,FXTable* table){
+FXWindow* FXRbCallWindowMethod_gvlcb(const FXTableItem* recv,ID func,FXTable* table){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,1,to_ruby(table));
@@ -1549,7 +1549,7 @@ FXWindow* FXRbCallWindowMethod(const FXTableItem* recv,ID func,FXTable* table){
 //----------------------------------------------------------------------
 
 // Call function with "FXRange" return value
-FXRangef FXRbCallRangeMethod(FXObject* recv,ID func){
+FXRangef FXRbCallRangeMethod_gvlcb(FXObject* recv,ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,0,NULL);
@@ -1559,7 +1559,7 @@ FXRangef FXRbCallRangeMethod(FXObject* recv,ID func){
 //----------------------------------------------------------------------
 
 // Call functions with FXString return value
-FXString FXRbCallStringMethod(const FXObject* recv, ID func){
+FXString FXRbCallStringMethod_gvlcb(const FXObject* recv, ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,0,NULL);
@@ -1569,7 +1569,7 @@ FXString FXRbCallStringMethod(const FXObject* recv, ID func){
 //----------------------------------------------------------------------
 
 // Call functions with const FXchar* return value
-const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar* message, const FXchar* hint){
+const FXchar* FXRbCallCStringMethod_gvlcb(const FXObject* recv, ID func, const FXchar* message, const FXchar* hint){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,to_ruby(message),to_ruby(hint));
@@ -1577,7 +1577,7 @@ const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*
   }
 
 // Call functions with const FXchar* return value
-const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar* context, const FXchar* message, const FXchar* hint){
+const FXchar* FXRbCallCStringMethod_gvlcb(const FXObject* recv, ID func, const FXchar* context, const FXchar* message, const FXchar* hint){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,3,to_ruby(context),to_ruby(message),to_ruby(hint));
@@ -1586,15 +1586,23 @@ const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*
 //----------------------------------------------------------------------
 
 // Call functions with FXwchar return value
-FXwchar FXRbCallWCharMethod(const FXObject* recv, ID func){
+FXwchar FXRbCallWCharMethod_gvlcb(const FXObject* recv, ID func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,0,NULL);
   return static_cast<FXwchar>(NUM2ULONG(result));
   }
 
-void FXRbCallSetDashes(FXDC* recv,ID func,FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength){
+void FXRbCallSetDashes_gvlcb(FXDC* recv,ID func,FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength){
   rb_funcall(FXRbGetRubyObj(recv,false),func,2,to_ruby(dashoffset),FXRbMakeArray(dashpattern,dashlength));
+  }
+
+void FXRbCallDCDrawMethod_gvlcb(FXDC* recv, const char * func, FXint x,FXint y,const FXString& string){
+  rb_funcall(FXRbGetRubyObj(recv,false),rb_intern(func),3,to_ruby(x),to_ruby(y),to_ruby(string)); \
+  }
+
+void FXRbCallDCDrawMethod_gvlcb(FXDC* recv, const char * func, FXint x,FXint y,const FXchar* string,FXuint length){
+  rb_funcall(FXRbGetRubyObj(recv,false),rb_intern(func),3,to_ruby(x),to_ruby(y),to_ruby(string,length)); \
   }
 
 //----------------------------------------------------------------------
@@ -1711,59 +1719,25 @@ void FXRbFoldingList::enumerateItems(FXFoldingItem* fm,FXFoldingItem* to,FXObjec
 
 static ID id_cmp;
 
-// Sort function stand-in for FXComboBox
-FXint FXRbComboBox::sortFunc(const FXListItem* a,const FXListItem* b){
-  VALUE itemA = FXRbGetRubyObj(const_cast<FXListItem*>(a), "FXListItem *");
-  VALUE itemB = FXRbGetRubyObj(const_cast<FXListItem*>(b), "FXListItem *");
-  VALUE result=rb_funcall(itemA,id_cmp,1,itemB);
-  return static_cast<FXint>(NUM2INT(result));
+#define SORTFUNC(list, item) \
+FXint list::sortFunc(const item* a,const item* b){ \
+  return list##_sortFunc(a, b); \
+  } \
+FXint list##_sortFunc_gvlcb(const item* a,const item* b){ \
+  VALUE itemA = FXRbGetRubyObj(const_cast<item*>(a), #item " *"); \
+  VALUE itemB = FXRbGetRubyObj(const_cast<item*>(b), #item " *"); \
+  VALUE result=rb_funcall(itemA,id_cmp,1,itemB); \
+  return static_cast<FXint>(NUM2INT(result)); \
   }
 
+SORTFUNC( FXRbComboBox, FXListItem )
+SORTFUNC( FXRbFoldingList, FXFoldingItem )
+SORTFUNC( FXRbIconList, FXIconItem )
+SORTFUNC( FXRbList, FXListItem )
+SORTFUNC( FXRbListBox, FXListItem )
+SORTFUNC( FXRbTreeList, FXTreeItem )
 
-// Sort function stand-in for FXFoldingList
-FXint FXRbFoldingList::sortFunc(const FXFoldingItem* a,const FXFoldingItem* b){
-  VALUE itemA = FXRbGetRubyObj(const_cast<FXFoldingItem*>(a), "FXFoldingItem *");
-  VALUE itemB = FXRbGetRubyObj(const_cast<FXFoldingItem*>(b), "FXFoldingItem *");
-  VALUE result=rb_funcall(itemA,id_cmp,1,itemB);
-  return static_cast<FXint>(NUM2INT(result));
-  }
-
-
-// Sort function stand-in for FXIconList
-FXint FXRbIconList::sortFunc(const FXIconItem* a,const FXIconItem* b){
-  VALUE itemA = FXRbGetRubyObj(const_cast<FXIconItem*>(a), "FXIconItem *");
-  VALUE itemB = FXRbGetRubyObj(const_cast<FXIconItem*>(b), "FXIconItem *");
-  VALUE result = rb_funcall(itemA,id_cmp,1,itemB);
-  return static_cast<FXint>(NUM2INT(result));
-  }
-
-
-// Sort function stand-in for FXList
-FXint FXRbList::sortFunc(const FXListItem* a,const FXListItem* b){
-  VALUE itemA = FXRbGetRubyObj(const_cast<FXListItem*>(a), "FXListItem *");
-  VALUE itemB = FXRbGetRubyObj(const_cast<FXListItem*>(b), "FXListItem *");
-  VALUE result=rb_funcall(itemA,id_cmp,1,itemB);
-  return static_cast<FXint>(NUM2INT(result));
-  }
-
-
-// Sort function stand-in for FXListBox
-FXint FXRbListBox::sortFunc(const FXListItem* a,const FXListItem* b){
-  VALUE itemA = FXRbGetRubyObj(const_cast<FXListItem*>(a), "FXListItem *");
-  VALUE itemB = FXRbGetRubyObj(const_cast<FXListItem*>(b), "FXListItem *");
-  VALUE result=rb_funcall(itemA,id_cmp,1,itemB);
-  return static_cast<FXint>(NUM2INT(result));
-  }
-
-
-// Sort function stand-in for FXTreeList
-FXint FXRbTreeList::sortFunc(const FXTreeItem* a,const FXTreeItem* b){
-  VALUE itemA = FXRbGetRubyObj(const_cast<FXTreeItem*>(a), "FXTreeItem *");
-  VALUE itemB = FXRbGetRubyObj(const_cast<FXTreeItem*>(b), "FXTreeItem *");
-  VALUE result=rb_funcall(itemA,id_cmp,1,itemB);
-  return static_cast<FXint>(NUM2INT(result));
-  }
-
+#undef SORTFUNC
 
 // Feedback buffer sort routine stand-in for FXGLViewer
 FXbool FXRbGLViewer::sortProc(FXfloat*& buffer,FXint& used,FXint& size){

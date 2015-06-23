@@ -118,7 +118,7 @@ extern __thread int g_fxrb_thread_has_gvl;
         return name##_gvlcb( firstparamname FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST1) ); \
       } else { \
         struct gvl_wrapper_##name##_##paramcount##_params<firstparamtype FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST5)> params = { \
-          {firstparamname FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST1)}, when_non_void((rettype)0) \
+          {firstparamname FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST1)} \
         }; \
         g_fxrb_thread_has_gvl = 1; \
         rb_thread_call_with_gvl(gvl_##name##_##paramcount##_skeleton<firstparamtype FOR_EACH_PARAM_OF_##name##_##paramcount(DEFINE_PARAM_LIST5)>, &params); \
@@ -329,6 +329,135 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   param(ID, , func) \
   param(TYPE1, , arg1)
 
+#define FOR_EACH_PARAM_OF_FXRbCallGLObjectMethod_2(param) \
+  param(ID, , func)
+
+#define FOR_EACH_PARAM_OF_FXRbCallGLObjectMethod_3(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1)
+
+#define FOR_EACH_PARAM_OF_FXRbCallGLObjectMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallStringMethod_2(param) \
+  param(ID, , func)
+
+#define FOR_EACH_PARAM_OF_FXRbCallCStringMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallCStringMethod_5(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3)
+
+#define FOR_EACH_PARAM_OF_FXRbCallGLObjectArrayMethod_6(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3) \
+  param(TYPE4, , arg4)
+
+#define FOR_EACH_PARAM_OF_FXRbCallTableItemMethod_5(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3)
+
+#define FOR_EACH_PARAM_OF_FXRbCallFileAssocMethod_3(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1)
+
+#define FOR_EACH_PARAM_OF_FXRbCallIconMethod_2(param) \
+  param(ID, , func)
+
+#define FOR_EACH_PARAM_OF_FXRbCallIconMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, &, arg1) \
+  param(TYPE2, &, arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallIconMethod_6(param) \
+  param(ID, , func) \
+  param(TYPE1, &, arg1) \
+  param(TYPE2, &, arg2) \
+  param(TYPE3, &, arg3) \
+  param(TYPE4, &, arg4)
+
+#define FOR_EACH_PARAM_OF_FXRbCallImageMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, &, arg1) \
+  param(TYPE2, &, arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallImageMethod_6(param) \
+  param(ID, , func) \
+  param(TYPE1, &, arg1) \
+  param(TYPE2, &, arg2) \
+  param(TYPE3, &, arg3) \
+  param(TYPE4, &, arg4)
+
+#define FOR_EACH_PARAM_OF_FXRbCallWindowMethod_3(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1)
+
+#define FOR_EACH_PARAM_OF_FXRbCallColorMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallRangeMethod_2(param) \
+  param(ID, , func)
+
+#define FOR_EACH_PARAM_OF_FXRbCallWCharMethod_2(param) \
+  param(ID, , func)
+
+#define FOR_EACH_PARAM_OF_FXRbCallSetDashes_5(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3)
+
+#define FOR_EACH_PARAM_OF_FXRbHandleMessage_5(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3)
+
+#define FOR_EACH_PARAM_OF_FXRbComboBox_sortFunc_2(param) \
+  param(ITEMB, , itemb)
+
+#define FOR_EACH_PARAM_OF_FXRbFoldingList_sortFunc_2(param) \
+  param(ITEMB, , itemb)
+
+#define FOR_EACH_PARAM_OF_FXRbIconList_sortFunc_2(param) \
+  param(ITEMB, , itemb)
+
+#define FOR_EACH_PARAM_OF_FXRbList_sortFunc_2(param) \
+  param(ITEMB, , itemb)
+
+#define FOR_EACH_PARAM_OF_FXRbListBox_sortFunc_2(param) \
+  param(ITEMB, , itemb)
+
+#define FOR_EACH_PARAM_OF_FXRbTreeList_sortFunc_2(param) \
+  param(ITEMB, , itemb)
+
+#define FOR_EACH_PARAM_OF_FXRbCallDCDrawMethod_5(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, &, arg3)
+
+#define FOR_EACH_PARAM_OF_FXRbCallDCDrawMethod_6(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3) \
+  param(TYPE4, , arg4)
+
+
 /* function( name, void_or_nonvoid, returntype, firstparamtype, firstparamname, paramcount ) */
 #define FOR_EACH_CALLBACK_FUNCTION(function) \
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 2) \
@@ -351,6 +480,35 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   function(FXRbCallIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 7) \
   function(FXRbCallLongMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 5) \
   function(FXRbCallUIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 3) \
+  function(FXRbCallGLObjectMethod, GVL_TYPE_NONVOID, FXGLObject*, RECV, recv, 2) \
+  function(FXRbCallGLObjectMethod, GVL_TYPE_NONVOID, FXGLObject*, RECV, recv, 3) \
+  function(FXRbCallGLObjectMethod, GVL_TYPE_NONVOID, FXGLObject*, RECV, recv, 4) \
+  function(FXRbCallStringMethod, GVL_TYPE_NONVOID, FXString, RECV, recv, 2) \
+  function(FXRbCallCStringMethod, GVL_TYPE_NONVOID, const FXchar*, RECV, recv, 4) \
+  function(FXRbCallCStringMethod, GVL_TYPE_NONVOID, const FXchar*, RECV, recv, 5) \
+  function(FXRbCallGLObjectArrayMethod, GVL_TYPE_NONVOID, FXGLObject**, RECV, recv, 6) \
+  function(FXRbCallTableItemMethod, GVL_TYPE_NONVOID, FXTableItem*, RECV, recv, 5) \
+  function(FXRbCallFileAssocMethod, GVL_TYPE_NONVOID, FXFileAssoc*, RECV, recv, 3) \
+  function(FXRbCallIconMethod, GVL_TYPE_NONVOID, FXIcon*, RECV, recv, 2) \
+  function(FXRbCallIconMethod, GVL_TYPE_NONVOID, FXIcon*, RECV, recv, 4) \
+  function(FXRbCallIconMethod, GVL_TYPE_NONVOID, FXIcon*, RECV, recv, 6) \
+  function(FXRbCallImageMethod, GVL_TYPE_NONVOID, FXImage*, RECV, recv, 4) \
+  function(FXRbCallImageMethod, GVL_TYPE_NONVOID, FXImage*, RECV, recv, 6) \
+  function(FXRbCallWindowMethod, GVL_TYPE_NONVOID, FXWindow*, RECV, recv, 3) \
+  function(FXRbCallColorMethod, GVL_TYPE_NONVOID, FXColor, RECV, recv, 4) \
+  function(FXRbCallRangeMethod, GVL_TYPE_NONVOID, FXRangef, RECV, recv, 2) \
+  function(FXRbCallWCharMethod, GVL_TYPE_NONVOID, FXwchar, RECV, recv, 2) \
+  function(FXRbCallSetDashes, GVL_TYPE_VOID, void, RECV, recv, 5) \
+  function(FXRbHandleMessage, GVL_TYPE_NONVOID, long, RECV, recv, 5) \
+  function(FXRbComboBox_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
+  function(FXRbFoldingList_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
+  function(FXRbIconList_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
+  function(FXRbList_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
+  function(FXRbListBox_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
+  function(FXRbTreeList_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
+  function(FXRbCallDCDrawMethod, GVL_TYPE_VOID, void, RECV, recv, 5) \
+  function(FXRbCallDCDrawMethod, GVL_TYPE_VOID, void, RECV, recv, 6) \
+
 
 FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_STUB_DECL )
 FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_WRAPPER_STRUCT )

@@ -329,16 +329,16 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
     FXRbCallVoidMethod(this,rb_intern("drawIconSunken"),icon,dx,dy); \
     } \
   void cls::drawText(FXint x,FXint y,const FXString& string){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawText"),3,to_ruby(x),to_ruby(y),to_ruby(string)); \
+    FXRbCallDCDrawMethod(this, "drawText", x, y, string); \
     } \
   void cls::drawText(FXint x,FXint y,const FXchar* string,FXuint length){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawText"),3,to_ruby(x),to_ruby(y),to_ruby(string,length)); \
+    FXRbCallDCDrawMethod(this, "drawText", x, y, string, length); \
     } \
   void cls::drawImageText(FXint x,FXint y,const FXString& string){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawImageText"),3,to_ruby(x),to_ruby(y),to_ruby(string)); \
+    FXRbCallDCDrawMethod(this, "drawImageText", x, y, string); \
     } \
   void cls::drawImageText(FXint x,FXint y,const FXchar* string,FXuint length){ \
-    rb_funcall(FXRbGetRubyObj(this,false),rb_intern("drawImageText"),3,to_ruby(x),to_ruby(y),to_ruby(string,length)); \
+    FXRbCallDCDrawMethod(this, "drawImageText", x, y, string, length); \
     } \
   void cls::setForeground(FXColor clr){ \
     FXRbCallVoidMethod(this,rb_intern("setForeground"),clr); \

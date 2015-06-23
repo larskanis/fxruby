@@ -178,7 +178,7 @@ extern void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE data);
 ID FXRbLookupHandler(FXObject* recv,FXSelector key);
 
 // Handle this message
-long FXRbHandleMessage(FXObject* recv,ID func,FXObject* sender,FXSelector key,void* data);
+long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector key,void* data);
 
 // Convert a signal name string to its corresponding signal number
 FXint FXRbSignalNameToNumber(const char* name);
@@ -680,34 +680,34 @@ FXuint FXRbCallUIntMethod_gvlcb(FXObject* recv, ID func, TYPE arg){
   }
 
 // Call functions with FXString return value
-FXString FXRbCallStringMethod(const FXObject* recv, ID func);
+FXString FXRbCallStringMethod_gvlcb(const FXObject* recv, ID func);
 
 // Call functions with const FXchar* return value
-const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*, const FXchar*);
-const FXchar* FXRbCallCStringMethod(const FXObject* recv, ID func, const FXchar*, const FXchar*, const FXchar*);
+const FXchar* FXRbCallCStringMethod_gvlcb(const FXObject* recv, ID func, const FXchar*, const FXchar*);
+const FXchar* FXRbCallCStringMethod_gvlcb(const FXObject* recv, ID func, const FXchar*, const FXchar*, const FXchar*);
 
 // Call functions with "FXGLObject*" return value
-FXGLObject* FXRbCallGLObjectMethod(FXGLObject* recv,ID func);
-FXGLObject* FXRbCallGLObjectMethod(FXGLObject* recv,ID func,FXuint* path,FXint n);
-FXGLObject* FXRbCallGLObjectMethod(FXGLViewer* recv,ID func,FXint x,FXint y);
+FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLObject* recv,ID func);
+FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLObject* recv,ID func,FXuint* path,FXint n);
+FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLViewer* recv,ID func,FXint x,FXint y);
 
 // Call functions with "FXGLObject**" return value
-FXGLObject** FXRbCallGLObjectArrayMethod(FXGLViewer* recv,ID func,FXint x,FXint y,FXint w,FXint h);
+FXGLObject** FXRbCallGLObjectArrayMethod_gvlcb(FXGLViewer* recv,ID func,FXint x,FXint y,FXint w,FXint h);
 
 // Call functions with "FXTreeItem*" return value
-FXTableItem* FXRbCallTableItemMethod(FXTable* recv,ID func,const FXString& text,FXIcon* icon,void* ptr);
+FXTableItem* FXRbCallTableItemMethod_gvlcb(FXTable* recv,ID func,const FXString& text,FXIcon* icon,void* ptr);
 
 // Call functions with "FXTreeItem*" return value
-FXTableItem* FXRbCallTableItemMethod(FXTable* recv,ID func,FXint,FXint,FXbool);
+FXTableItem* FXRbCallTableItemMethod_gvlcb(FXTable* recv,ID func,FXint,FXint,FXbool);
 
 // Call functions with "FXFileAssoc*" return value
-FXFileAssoc* FXRbCallFileAssocMethod(const FXFileDict* recv,ID func,const FXchar* pathname);
+FXFileAssoc* FXRbCallFileAssocMethod_gvlcb(const FXFileDict* recv,ID func,const FXchar* pathname);
 
 // Call functions with "FXIcon*" return value
-FXIcon* FXRbCallIconMethod(const FXTableItem* recv,ID func);
+FXIcon* FXRbCallIconMethod_gvlcb(const FXTableItem* recv,ID func);
 
 template<class TYPE1, class TYPE2>
-FXIcon* FXRbCallIconMethod(const FXIconSource *recv,ID func,TYPE1& arg1,const TYPE2& arg2){
+FXIcon* FXRbCallIconMethod_gvlcb(const FXIconSource *recv,ID func,TYPE1& arg1,const TYPE2& arg2){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,to_ruby(arg1),to_ruby(arg2));
@@ -715,7 +715,7 @@ FXIcon* FXRbCallIconMethod(const FXIconSource *recv,ID func,TYPE1& arg1,const TY
   }
 
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4>
-FXIcon* FXRbCallIconMethod(const FXIconSource *recv,ID func,TYPE1& arg1,TYPE2 arg2,TYPE3 arg3,const TYPE4& arg4){
+FXIcon* FXRbCallIconMethod_gvlcb(const FXIconSource *recv,ID func,TYPE1& arg1,TYPE2 arg2,TYPE3 arg3,const TYPE4& arg4){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,4,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3),to_ruby(arg4));
@@ -724,7 +724,7 @@ FXIcon* FXRbCallIconMethod(const FXIconSource *recv,ID func,TYPE1& arg1,TYPE2 ar
 
 // Call functions with FXImage* return value
 template<class TYPE1, class TYPE2>
-FXImage* FXRbCallImageMethod(const FXIconSource *recv,ID func,TYPE1& arg1,const TYPE2& arg2){
+FXImage* FXRbCallImageMethod_gvlcb(const FXIconSource *recv,ID func,TYPE1& arg1,const TYPE2& arg2){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,2,to_ruby(arg1),to_ruby(arg2));
@@ -732,7 +732,7 @@ FXImage* FXRbCallImageMethod(const FXIconSource *recv,ID func,TYPE1& arg1,const 
   }
 
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4>
-FXImage* FXRbCallImageMethod(const FXIconSource *recv,ID func,TYPE1& arg1,TYPE2 arg2,TYPE3 arg3,const TYPE4& arg4){
+FXImage* FXRbCallImageMethod_gvlcb(const FXIconSource *recv,ID func,TYPE1& arg1,TYPE2 arg2,TYPE3 arg3,const TYPE4& arg4){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,func,4,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3),to_ruby(arg4));
@@ -740,11 +740,11 @@ FXImage* FXRbCallImageMethod(const FXIconSource *recv,ID func,TYPE1& arg1,TYPE2 
   }
 
 // Call functions with "FXWindow*" return value
-FXWindow* FXRbCallWindowMethod(const FXTableItem* recv,ID func,FXTable* table);
+FXWindow* FXRbCallWindowMethod_gvlcb(const FXTableItem* recv,ID func,FXTable* table);
 
 // Call functions with "FXColor" return value
 template<class TYPE1, class TYPE2>
-FXColor FXRbCallColorMethod(FXDC* recv, ID func, TYPE1 arg1, TYPE2 arg2){
+FXColor FXRbCallColorMethod_gvlcb(FXDC* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,func,2,to_ruby(arg1),to_ruby(arg2));
@@ -752,12 +752,15 @@ FXColor FXRbCallColorMethod(FXDC* recv, ID func, TYPE1 arg1, TYPE2 arg2){
   }
 
 // Call functions with "FXRangef" return value
-FXRangef FXRbCallRangeMethod(FXObject* recv,ID func);
+FXRangef FXRbCallRangeMethod_gvlcb(FXObject* recv,ID func);
 
 // Call functions with FXwchar return value
-FXwchar FXRbCallWCharMethod(const FXObject* recv,ID func);
+FXwchar FXRbCallWCharMethod_gvlcb(const FXObject* recv,ID func);
 
-void FXRbCallSetDashes(FXDC* recv,ID func,FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength);
+void FXRbCallSetDashes_gvlcb(FXDC* recv,ID func,FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength);
+
+void FXRbCallDCDrawMethod_gvlcb(FXDC* recv, const char * func, FXint x,FXint y,const FXString& string);
+void FXRbCallDCDrawMethod_gvlcb(FXDC* recv, const char * func, FXint x,FXint y,const FXchar* string,FXuint length);
 
 /**
  * Macro to set up class implementation.
@@ -782,6 +785,18 @@ void FXRbCallSetDashes(FXDC* recv,ID func,FXuint dashoffset,const FXchar *dashpa
       } \
     }
 
+
+#define SORTFUNC(list, item) \
+  FXint list##_sortFunc_gvlcb(const item* a,const item* b);
+
+SORTFUNC( FXRbComboBox, FXListItem )
+SORTFUNC( FXRbFoldingList, FXFoldingItem )
+SORTFUNC( FXRbIconList, FXIconItem )
+SORTFUNC( FXRbList, FXListItem )
+SORTFUNC( FXRbListBox, FXListItem )
+SORTFUNC( FXRbTreeList, FXTreeItem )
+
+#undef SORTFUNC
 
 // FXRuby classes
 #include "FXRbStream.h"
