@@ -1246,7 +1246,7 @@ static ID id_assocs;
  * or return zero if the designated receiver doesn't handle this
  * message.
  */
-ID FXRbLookupHandler(FXObject* recv,FXSelector key){
+ID FXRbLookupHandler_gvlcb(FXObject* recv,FXSelector key){
   FXTRACE((100,"FXRbLookupHandler(recv=%p(%s),FXSEL(%d,%d))\n",recv,recv->getClassName(),FXSELTYPE(key),FXSELID(key)));
   ID id=0;
   VALUE rubyObj=to_ruby(recv);

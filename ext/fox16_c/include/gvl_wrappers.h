@@ -420,6 +420,9 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   param(TYPE2, , arg2) \
   param(TYPE3, , arg3)
 
+#define FOR_EACH_PARAM_OF_FXRbLookupHandler_2(param) \
+  param(ITEMB, , itemb)
+
 #define FOR_EACH_PARAM_OF_FXRbHandleMessage_5(param) \
   param(ID, , func) \
   param(TYPE1, , arg1) \
@@ -499,6 +502,7 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   function(FXRbCallRangeMethod, GVL_TYPE_NONVOID, FXRangef, RECV, recv, 2) \
   function(FXRbCallWCharMethod, GVL_TYPE_NONVOID, FXwchar, RECV, recv, 2) \
   function(FXRbCallSetDashes, GVL_TYPE_VOID, void, RECV, recv, 5) \
+  function(FXRbLookupHandler, GVL_TYPE_NONVOID, ID, RECV, recv, 2) \
   function(FXRbHandleMessage, GVL_TYPE_NONVOID, long, RECV, recv, 5) \
   function(FXRbComboBox_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
   function(FXRbFoldingList_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \

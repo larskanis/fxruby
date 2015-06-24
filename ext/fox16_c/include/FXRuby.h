@@ -175,7 +175,7 @@ extern FXColor *FXRbConvertToFXColors(VALUE string_or_ary, FXuint *opts);
 extern void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE data);
 
 // Returns the name of the message handler function (or NULL)
-ID FXRbLookupHandler(FXObject* recv,FXSelector key);
+ID FXRbLookupHandler_gvlcb(FXObject* recv,FXSelector key);
 
 // Handle this message
 long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector key,void* data);
