@@ -135,6 +135,7 @@ ext/fox16_c/FXRbGLViewer.cpp
 ext/fox16_c/FXRuby.cpp
 ext/fox16_c/MANIFEST
 ext/fox16_c/extconf.rb
+ext/fox16_c/gvl_wrappers.cpp
 ext/fox16_c/impl.cpp
 ext/fox16_c/include/FXMemoryBuffer.h
 ext/fox16_c/include/FXRb4Splitter.h
@@ -357,6 +358,7 @@ ext/fox16_c/include/FXRbXBMImage.h
 ext/fox16_c/include/FXRbXPMIcon.h
 ext/fox16_c/include/FXRbXPMImage.h
 ext/fox16_c/include/FXRuby.h
+ext/fox16_c/include/gvl_wrappers.h
 ext/fox16_c/include/impl.h
 ext/fox16_c/make_impl.rb
 ext/fox16_c/markfuncs.cpp
@@ -1142,6 +1144,7 @@ test/TC_FXIconDict.rb
 test/TC_FXIconList.rb
 test/TC_FXId.rb
 test/TC_FXImage.rb
+test/TC_FXJPGImage.rb
 test/TC_FXLight.rb
 test/TC_FXList.rb
 test/TC_FXListBox.rb
