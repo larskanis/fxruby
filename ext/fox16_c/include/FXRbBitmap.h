@@ -68,40 +68,40 @@ inline void cls ## _setData(cls* self,FXuchar* pix,FXuint opts,FXint w,FXint h){
 
 #define IMPLEMENT_FXBITMAP_STUBS(cls) \
   void cls::restore(){ \
-    FXRbCallVoidMethod(this,rb_intern("restore")); \
+    FXRbCallVoidMethod(this,"restore"); \
     } \
   void cls::render(){ \
-    FXRbCallVoidMethod(this,rb_intern("render")); \
+    FXRbCallVoidMethod(this,"render"); \
     } \
   void cls::release(){ \
-    FXRbCallVoidMethod(this,rb_intern("release")); \
+    FXRbCallVoidMethod(this,"release"); \
     } \
   bool cls::savePixels(FXStream& store) const { \
-    return FXRbCallBoolMethod(this,rb_intern("savePixels"),store); \
+    return FXRbCallBoolMethod(this,"savePixels",store); \
     } \
   bool cls::loadPixels(FXStream& store){ \
-    return FXRbCallBoolMethod(this,rb_intern("loadPixels"),store); \
+    return FXRbCallBoolMethod(this,"loadPixels",store); \
     } \
   void cls::scale(FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("scale"),w,h); \
+    FXRbCallVoidMethod(this,"scale",w,h); \
     } \
   void cls::mirror(FXbool horizontal,FXbool vertical){ \
-    FXRbCallVoidMethod(this,rb_intern("mirror"),horizontal,vertical); \
+    FXRbCallVoidMethod(this,"mirror",horizontal,vertical); \
     } \
   void cls::rotate(FXint degrees){ \
-    FXRbCallVoidMethod(this,rb_intern("rotate"),degrees); \
+    FXRbCallVoidMethod(this,"rotate",degrees); \
     } \
   void cls::crop(FXint x,FXint y,FXint w,FXint h,FXbool color){ \
-    FXRbCallVoidMethod(this,rb_intern("crop"),x,y,w,h,color); \
+    FXRbCallVoidMethod(this,"crop",x,y,w,h,color); \
     } \
   void cls::fill(FXbool color){ \
-    FXRbCallVoidMethod(this,rb_intern("fill"),color); \
+    FXRbCallVoidMethod(this,"fill",color); \
     } \
   void cls::setData(FXuchar* pix,FXuint opts){ \
-    FXRbCallVoidMethod(this,rb_intern("setData"),pix,opts); \
+    FXRbCallVoidMethod(this,"setData",pix,opts); \
     } \
   void cls::setData(FXuchar* pix,FXuint opts,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("setData"),pix,opts,w,h); \
+    FXRbCallVoidMethod(this,"setData",pix,opts,w,h); \
     }
 
 

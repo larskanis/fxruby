@@ -35,7 +35,7 @@ inline void klass ## _setValue(klass* self,FXint value,FXbool notify){ \
 
 #define IMPLEMENT_FXSPINNER_STUBS(cls) \
   void cls::setValue(FXint value,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setValue"),value,notify); \
+    FXRbCallVoidMethod(this,"setValue",value,notify); \
     }
 
 

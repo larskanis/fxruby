@@ -35,7 +35,7 @@ inline void klass ## _resize(klass* self,FXint w,FXint h){ \
 
 #define IMPLEMENT_FXDRAWABLE_STUBS(cls) \
   void cls::resize(FXint w,FXint h){ \
-    FXRbCallVoidMethod(this, rb_intern("resize"), w, h); \
+    FXRbCallVoidMethod(this, "resize", w, h); \
     }
 
 

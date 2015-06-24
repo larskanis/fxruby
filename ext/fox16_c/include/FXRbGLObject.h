@@ -55,28 +55,28 @@ inline FXbool klass ## _drag(klass* self,FXGLViewer* viewer,FXint fx,FXint fy,FX
 
 #define IMPLEMENT_FXGLOBJECT_STUBS(cls) \
   void cls::bounds(FXRangef& box){ \
-    box=FXRbCallRangeMethod(this,rb_intern("bounds")); \
+    box=FXRbCallRangeMethod(this,"bounds"); \
     } \
   void cls::draw(FXGLViewer* viewer){ \
-    FXRbCallVoidMethod(this,rb_intern("draw"),viewer); \
+    FXRbCallVoidMethod(this,"draw",viewer); \
     } \
   void cls::hit(FXGLViewer* viewer){ \
-    FXRbCallVoidMethod(this,rb_intern("hit"),viewer); \
+    FXRbCallVoidMethod(this,"hit",viewer); \
     } \
   FXGLObject* cls::copy(){ \
-    return FXRbCallGLObjectMethod(this,rb_intern("copy")); \
+    return FXRbCallGLObjectMethod(this,"copy"); \
     } \
   FXGLObject* cls::identify(FXuint* path,FXint n){ \
-    return FXRbCallGLObjectMethod(this,rb_intern("identify"),path,n); \
+    return FXRbCallGLObjectMethod(this,"identify",path,n); \
     } \
   FXbool cls::canDrag() const { \
-    return FXRbCallBoolMethod(this,rb_intern("canDrag")); \
+    return FXRbCallBoolMethod(this,"canDrag"); \
     } \
   FXbool cls::canDelete() const{ \
-    return FXRbCallBoolMethod(this,rb_intern("canDelete")); \
+    return FXRbCallBoolMethod(this,"canDelete"); \
     } \
   FXbool cls::drag(FXGLViewer* viewer,FXint fx,FXint fy,FXint tx,FXint ty){ \
-    return FXRbCallBoolMethod(this,rb_intern("drag"),viewer,fx,fy,tx,ty); \
+    return FXRbCallBoolMethod(this,"drag",viewer,fx,fy,tx,ty); \
     }
 
 

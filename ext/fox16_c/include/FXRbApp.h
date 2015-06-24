@@ -83,13 +83,13 @@ inline void cls ## _exit(cls *self,FXint code){ \
  */
 #define IMPLEMENT_FXAPP_STUBS(cls) \
   void cls::create(){ \
-    FXRbCallVoidMethod(this,rb_intern("create")); \
+    FXRbCallVoidMethod(this,"create"); \
     } \
   void cls::detach(){ \
-    FXRbCallVoidMethod(this,rb_intern("detach")); \
+    FXRbCallVoidMethod(this,"detach"); \
     } \
   void cls::destroy(){ \
-    FXRbCallVoidMethod(this,rb_intern("destroy")); \
+    FXRbCallVoidMethod(this,"destroy"); \
     } \
   void cls::init(int& argc,char** argv,bool connect){ \
     int i; \
@@ -97,7 +97,7 @@ inline void cls ## _exit(cls *self,FXint code){ \
     for(i=1; i<argc; i++){ \
       rb_ary_push(ary,rb_str_new2(argv[i])); \
       } \
-    FXRbCallVoidMethod(this,rb_intern("init"),ary,connect); \
+    FXRbCallVoidMethod(this,"init",ary,connect); \
     argc=static_cast<int>(RARRAY_LEN(ary)+1); \
     for(i=1; i<argc; i++){ \
       VALUE e=rb_ary_entry(ary,i-1); \
@@ -105,7 +105,7 @@ inline void cls ## _exit(cls *self,FXint code){ \
       } \
     } \
   void cls::exit(FXint code){ \
-    FXRbCallVoidMethod(this,rb_intern("exit"),code); \
+    FXRbCallVoidMethod(this,"exit",code); \
     }
 
 

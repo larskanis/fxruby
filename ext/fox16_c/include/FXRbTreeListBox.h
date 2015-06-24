@@ -34,7 +34,7 @@ inline void klass ## _setCurrentItem(klass* self,FXTreeItem* item,FXbool notify)
 
 #define IMPLEMENT_FXTREELISTBOX_STUBS(cls) \
   void cls::setCurrentItem(FXTreeItem* item,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrentItem"),item,notify); \
+    FXRbCallVoidMethod(this,"setCurrentItem",item,notify); \
     }
 
 class FXRbTreeListBox : public FXTreeListBox {

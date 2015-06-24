@@ -218,115 +218,115 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
 
 #define IMPLEMENT_FXDC_STUBS(cls) \
   FXColor cls::readPixel(FXint x,FXint y){ \
-    return FXRbCallColorMethod(this,rb_intern("readPixel"),x,y); \
+    return FXRbCallColorMethod(this,"readPixel",x,y); \
     } \
   void cls::drawPoint(FXint x,FXint y){ \
-    FXRbCallVoidMethod(this,rb_intern("drawPoint"),x,y); \
+    FXRbCallVoidMethod(this,"drawPoint",x,y); \
     } \
   void cls::drawPoints(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("drawPoints"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"drawPoints",points,npoints); \
     } \
   void cls::drawPointsRel(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("drawPointsRel"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"drawPointsRel",points,npoints); \
     } \
   void cls::drawLine(FXint x1,FXint y1,FXint x2,FXint y2){ \
-    FXRbCallVoidMethod(this,rb_intern("drawLine"),x1,y1,x2,y2); \
+    FXRbCallVoidMethod(this,"drawLine",x1,y1,x2,y2); \
     } \
   void cls::drawLines(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("drawLines"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"drawLines",points,npoints); \
     } \
   void cls::drawLinesRel(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("drawLinesRel"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"drawLinesRel",points,npoints); \
     } \
   void cls::drawLineSegments(const FXSegment* segments,FXuint nsegments){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("drawLineSegments"),segments,nsegments); \
+    FXRbCallVoidArrayMethod(this,"drawLineSegments",segments,nsegments); \
     } \
   void cls::drawRectangle(FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("drawRectangle"),x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawRectangle",x,y,w,h); \
     } \
   void cls::drawRoundRectangle(FXint x,FXint y,FXint w,FXint h,FXint ew,FXint eh){ \
-    FXRbCallVoidMethod(this,rb_intern("drawRoundRectangle"),x,y,w,h,ew,eh); \
+    FXRbCallVoidMethod(this,"drawRoundRectangle",x,y,w,h,ew,eh); \
     } \
   void cls::drawRectangles(const FXRectangle* rectangles,FXuint nrectangles){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("drawRectangles"),rectangles,nrectangles); \
+    FXRbCallVoidArrayMethod(this,"drawRectangles",rectangles,nrectangles); \
     } \
   void cls::drawArc(FXint x,FXint y,FXint w,FXint h,FXint ang1,FXint ang2){ \
-    FXRbCallVoidMethod(this,rb_intern("drawArc"),x,y,w,h,ang1,ang2); \
+    FXRbCallVoidMethod(this,"drawArc",x,y,w,h,ang1,ang2); \
     } \
   void cls::drawArcs(const FXArc* arcs,FXuint narcs){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("drawArcs"),arcs,narcs); \
+    FXRbCallVoidArrayMethod(this,"drawArcs",arcs,narcs); \
     } \
   void cls::drawEllipse(FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("drawEllipse"),x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawEllipse",x,y,w,h); \
     } \
   void cls::fillRectangle(FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("fillRectangle"),x,y,w,h); \
+    FXRbCallVoidMethod(this,"fillRectangle",x,y,w,h); \
     } \
   void cls::fillRectangles(const FXRectangle* rectangles,FXuint nrectangles){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillRectangles"),rectangles,nrectangles); \
+    FXRbCallVoidArrayMethod(this,"fillRectangles",rectangles,nrectangles); \
     } \
   void cls::fillRoundRectangle(FXint x,FXint y,FXint w,FXint h,FXint ew,FXint eh){ \
-    FXRbCallVoidMethod(this,rb_intern("fillRoundRectangle"),x,y,w,h,ew,eh); \
+    FXRbCallVoidMethod(this,"fillRoundRectangle",x,y,w,h,ew,eh); \
     } \
   void cls::fillChord(FXint x,FXint y,FXint w,FXint h,FXint ang1,FXint ang2){ \
-    FXRbCallVoidMethod(this,rb_intern("fillChord"),x,y,w,h,ang1,ang2); \
+    FXRbCallVoidMethod(this,"fillChord",x,y,w,h,ang1,ang2); \
     } \
   void cls::fillChords(const FXArc* chords,FXuint nchords){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillChords"),chords,nchords); \
+    FXRbCallVoidArrayMethod(this,"fillChords",chords,nchords); \
     } \
   void cls::fillArc(FXint x,FXint y,FXint w,FXint h,FXint ang1,FXint ang2){ \
-    FXRbCallVoidMethod(this,rb_intern("fillArc"),x,y,w,h,ang1,ang2); \
+    FXRbCallVoidMethod(this,"fillArc",x,y,w,h,ang1,ang2); \
     } \
   void cls::fillArcs(const FXArc* arcs,FXuint narcs){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillArcs"),arcs,narcs); \
+    FXRbCallVoidArrayMethod(this,"fillArcs",arcs,narcs); \
     } \
   void cls::fillEllipse(FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("fillEllipse"),x,y,w,h); \
+    FXRbCallVoidMethod(this,"fillEllipse",x,y,w,h); \
     } \
   void cls::fillPolygon(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillPolygon"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"fillPolygon",points,npoints); \
     } \
   void cls::fillConcavePolygon(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillConcavePolygon"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"fillConcavePolygon",points,npoints); \
     } \
   void cls::fillComplexPolygon(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillComplexPolygon"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"fillComplexPolygon",points,npoints); \
     } \
   void cls::fillPolygonRel(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillPolygonRel"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"fillPolygonRel",points,npoints); \
     } \
   void cls::fillConcavePolygonRel(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillConcavePolygonRel"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"fillConcavePolygonRel",points,npoints); \
     } \
   void cls::fillComplexPolygonRel(const FXPoint* points,FXuint npoints){ \
-    FXRbCallVoidArrayMethod(this,rb_intern("fillComplexPolygonRel"),points,npoints); \
+    FXRbCallVoidArrayMethod(this,"fillComplexPolygonRel",points,npoints); \
     } \
   void cls::drawHashBox(FXint x,FXint y,FXint w,FXint h,FXint b){ \
-    FXRbCallVoidMethod(this,rb_intern("drawHashBox"),x,y,w,h,b); \
+    FXRbCallVoidMethod(this,"drawHashBox",x,y,w,h,b); \
     } \
   void cls::drawFocusRectangle(FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("drawFocusRectangle"),x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawFocusRectangle",x,y,w,h); \
     } \
   void cls::drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("drawArea"),source,sx,sy,sw,sh,dx,dy); \
+    FXRbCallVoidMethod(this,"drawArea",source,sx,sy,sw,sh,dx,dy); \
     } \
   void cls::drawArea(const FXDrawable* source,FXint sx,FXint sy,FXint sw,FXint sh,FXint dx,FXint dy,FXint dw,FXint dh){ \
-    FXRbCallVoidMethod(this,rb_intern("drawArea"),source,sx,sy,sw,sh,dx,dy,dw,dh); \
+    FXRbCallVoidMethod(this,"drawArea",source,sx,sy,sw,sh,dx,dy,dw,dh); \
     } \
   void cls::drawImage(const FXImage* image,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("drawImage"),image,dx,dy); \
+    FXRbCallVoidMethod(this,"drawImage",image,dx,dy); \
     } \
   void cls::drawBitmap(const FXBitmap* bitmap,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("drawBitmap"),bitmap,dx,dy); \
+    FXRbCallVoidMethod(this,"drawBitmap",bitmap,dx,dy); \
     } \
   void cls::drawIcon(const FXIcon* icon,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("drawIcon"),icon,dx,dy); \
+    FXRbCallVoidMethod(this,"drawIcon",icon,dx,dy); \
     } \
   void cls::drawIconShaded(const FXIcon* icon,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("drawIconShaded"),icon,dx,dy); \
+    FXRbCallVoidMethod(this,"drawIconShaded",icon,dx,dy); \
     } \
   void cls::drawIconSunken(const FXIcon* icon,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("drawIconSunken"),icon,dx,dy); \
+    FXRbCallVoidMethod(this,"drawIconSunken",icon,dx,dy); \
     } \
   void cls::drawText(FXint x,FXint y,const FXString& string){ \
     FXRbCallDCDrawMethod(this, "drawText", x, y, string); \
@@ -341,67 +341,67 @@ inline void klass ## _clipChildren(klass* self,FXbool yes){ \
     FXRbCallDCDrawMethod(this, "drawImageText", x, y, string, length); \
     } \
   void cls::setForeground(FXColor clr){ \
-    FXRbCallVoidMethod(this,rb_intern("setForeground"),clr); \
+    FXRbCallVoidMethod(this,"setForeground",clr); \
     } \
   void cls::setBackground(FXColor clr){ \
-    FXRbCallVoidMethod(this,rb_intern("setBackground"),clr); \
+    FXRbCallVoidMethod(this,"setBackground",clr); \
     } \
   void cls::setDashes(FXuint dashoffset,const FXchar *dashpattern,FXuint dashlength){ \
-    FXRbCallSetDashes(this,rb_intern("setDashes"),dashoffset,dashpattern,dashlength); \
+    FXRbCallSetDashes(this,"setDashes",dashoffset,dashpattern,dashlength); \
     } \
   void cls::setLineWidth(FXuint linewidth){ \
-    FXRbCallVoidMethod(this,rb_intern("setLineWidth"),linewidth); \
+    FXRbCallVoidMethod(this,"setLineWidth",linewidth); \
     } \
   void cls::setLineCap(FXCapStyle capstyle){ \
-    FXRbCallVoidMethod(this,rb_intern("setLineCap"),capstyle); \
+    FXRbCallVoidMethod(this,"setLineCap",capstyle); \
     } \
   void cls::setLineJoin(FXJoinStyle joinstyle){ \
-    FXRbCallVoidMethod(this,rb_intern("setLineJoin"),joinstyle); \
+    FXRbCallVoidMethod(this,"setLineJoin",joinstyle); \
     } \
   void cls::setLineStyle(FXLineStyle linestyle){ \
-    FXRbCallVoidMethod(this,rb_intern("setLineStyle"),linestyle); \
+    FXRbCallVoidMethod(this,"setLineStyle",linestyle); \
     } \
   void cls::setFillStyle(FXFillStyle fillstyle){ \
-    FXRbCallVoidMethod(this,rb_intern("setFillStyle"),fillstyle); \
+    FXRbCallVoidMethod(this,"setFillStyle",fillstyle); \
     } \
   void cls::setFillRule(FXFillRule fillrule){ \
-    FXRbCallVoidMethod(this,rb_intern("setFillRule"),fillrule); \
+    FXRbCallVoidMethod(this,"setFillRule",fillrule); \
     } \
   void cls::setFunction(FXFunction func){ \
-    FXRbCallVoidMethod(this,rb_intern("setFunction"),func); \
+    FXRbCallVoidMethod(this,"setFunction",func); \
     } \
   void cls::setTile(FXImage* image,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("setTile"),image,dx,dy); \
+    FXRbCallVoidMethod(this,"setTile",image,dx,dy); \
     } \
   void cls::setStipple(FXBitmap *bitmap,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("setStipple"),bitmap,dx,dy); \
+    FXRbCallVoidMethod(this,"setStipple",bitmap,dx,dy); \
     } \
   void cls::setStipple(FXStipplePattern pat,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("setStipple"),pat,dx,dy); \
+    FXRbCallVoidMethod(this,"setStipple",pat,dx,dy); \
     } \
   void cls::setClipRegion(const FXRegion& region){ \
-    FXRbCallVoidMethod(this,rb_intern("setClipRegion"),region); \
+    FXRbCallVoidMethod(this,"setClipRegion",region); \
     } \
   void cls::setClipRectangle(FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("setClipRectangle"),x,y,w,h); \
+    FXRbCallVoidMethod(this,"setClipRectangle",x,y,w,h); \
     } \
   void cls::setClipRectangle(const FXRectangle& rectangle){ \
-    FXRbCallVoidMethod(this,rb_intern("setClipRectangle"),rectangle); \
+    FXRbCallVoidMethod(this,"setClipRectangle",rectangle); \
     } \
   void cls::clearClipRectangle(){ \
-    FXRbCallVoidMethod(this,rb_intern("clearClipRectangle")); \
+    FXRbCallVoidMethod(this,"clearClipRectangle"); \
     } \
   void cls::setClipMask(FXBitmap* bitmap,FXint dx,FXint dy){ \
-    FXRbCallVoidMethod(this,rb_intern("setClipMask"),bitmap,dx,dy); \
+    FXRbCallVoidMethod(this,"setClipMask",bitmap,dx,dy); \
     } \
   void cls::clearClipMask(){ \
-    FXRbCallVoidMethod(this,rb_intern("clearClipMask")); \
+    FXRbCallVoidMethod(this,"clearClipMask"); \
     } \
   void cls::setFont(FXFont *fnt){ \
-    FXRbCallVoidMethod(this,rb_intern("setFont"),fnt); \
+    FXRbCallVoidMethod(this,"setFont",fnt); \
     } \
   void cls::clipChildren(FXbool yes){ \
-    FXRbCallVoidMethod(this,rb_intern("clipChildren"),yes); \
+    FXRbCallVoidMethod(this,"clipChildren",yes); \
     }
 
 

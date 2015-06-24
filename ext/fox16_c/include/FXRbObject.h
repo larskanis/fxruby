@@ -38,10 +38,10 @@ inline void cls ## _load(cls* self,FXStream& store){ \
 
 #define IMPLEMENT_FXOBJECT_STUBS(cls) \
   void cls::save(FXStream& store) const { \
-    FXRbCallVoidMethod(this,rb_intern("save"),store); \
+    FXRbCallVoidMethod(this,"save",store); \
     } \
   void cls::load(FXStream& store){ \
-    FXRbCallVoidMethod(this,rb_intern("load"),store); \
+    FXRbCallVoidMethod(this,"load",store); \
     }
 
 

@@ -34,7 +34,7 @@ inline void klass ## _setCurrentItem(klass* self,FXint index,FXbool notify){ \
 
 #define IMPLEMENT_FXLISTBOX_STUBS(cls) \
   void cls::setCurrentItem(FXint index,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrentItem"),index,notify); \
+    FXRbCallVoidMethod(this,"setCurrentItem",index,notify); \
     }
 
 class FXRbListBox : public FXListBox {

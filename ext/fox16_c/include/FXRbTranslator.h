@@ -35,7 +35,7 @@ inline const FXchar* klass ## _tr(const klass* self,const FXchar* context,const 
 
 #define IMPLEMENT_FXTRANSLATOR_STUBS(cls) \
   const FXchar* cls::tr(const FXchar* context,const FXchar* message,const FXchar* hint) const { \
-    return FXRbCallCStringMethod(this,rb_intern("tr"),context,message,hint); \
+    return FXRbCallCStringMethod(this,"tr",context,message,hint); \
     }
 
 class FXRbTranslator : public FXTranslator {

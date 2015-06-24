@@ -109,91 +109,91 @@ inline void klass ## _destroy(klass* self){ \
 
 #define IMPLEMENT_FXTABLEITEM_STUBS(klass,superklass) \
   void klass::draw(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("draw"),table,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"draw",table,dc,x,y,w,h); \
     } \
   void klass::public_draw(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::draw(table,dc,x,y,w,h); \
     } \
   void klass::drawBorders(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("drawBorders"),table,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawBorders",table,dc,x,y,w,h); \
     } \
   void klass::public_drawBorders(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::drawBorders(table,dc,x,y,w,h); \
     } \
   void klass::drawContent(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("drawContent"),table,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawContent",table,dc,x,y,w,h); \
     } \
   void klass::public_drawContent(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::drawContent(table,dc,x,y,w,h); \
     } \
   void klass::drawPattern(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("drawPattern"),table,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawPattern",table,dc,x,y,w,h); \
     } \
   void klass::public_drawPattern(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::drawPattern(table,dc,x,y,w,h); \
     } \
   void klass::drawBackground(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("drawBackground"),table,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawBackground",table,dc,x,y,w,h); \
     } \
   void klass::public_drawBackground(const FXTable* table,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::drawBackground(table,dc,x,y,w,h); \
     } \
   void klass::setText(const FXString& txt){ \
-    FXRbCallVoidMethod(this,rb_intern("setText"),txt); \
+    FXRbCallVoidMethod(this,"setText",txt); \
     } \
   FXString klass::getText() const { \
-    return FXRbCallStringMethod(this,rb_intern("getText")); \
+    return FXRbCallStringMethod(this,"getText"); \
     } \
   void klass::setIcon(FXIcon* icn,FXbool owned){ \
-    FXRbCallVoidMethod(this,rb_intern("setIcon"),icn,owned); \
+    FXRbCallVoidMethod(this,"setIcon",icn,owned); \
     } \
   FXIcon* klass::getIcon() const { \
-    return FXRbCallIconMethod(this,rb_intern("getIcon")); \
+    return FXRbCallIconMethod(this,"getIcon"); \
     } \
   void klass::setFocus(FXbool focus){ \
-    FXRbCallVoidMethod(this,rb_intern("setFocus"),focus); \
+    FXRbCallVoidMethod(this,"setFocus",focus); \
     } \
   void klass::setSelected(FXbool selected){ \
-    FXRbCallVoidMethod(this,rb_intern("setSelected"),selected); \
+    FXRbCallVoidMethod(this,"setSelected",selected); \
     } \
   void klass::setEnabled(FXbool enabled){ \
-    FXRbCallVoidMethod(this,rb_intern("setEnabled"),enabled); \
+    FXRbCallVoidMethod(this,"setEnabled",enabled); \
     } \
   void klass::setDraggable(FXbool draggable){ \
-    FXRbCallVoidMethod(this,rb_intern("setDraggable"),draggable); \
+    FXRbCallVoidMethod(this,"setDraggable",draggable); \
     } \
   void klass::setJustify(FXuint justify){ \
-    FXRbCallVoidMethod(this,rb_intern("setJustify"),justify); \
+    FXRbCallVoidMethod(this,"setJustify",justify); \
     } \
   void klass::setIconPosition(FXuint mode){ \
-    FXRbCallVoidMethod(this,rb_intern("setIconPosition"),mode); \
+    FXRbCallVoidMethod(this,"setIconPosition",mode); \
     } \
   void klass::setBorders(FXuint borders){ \
-    FXRbCallVoidMethod(this,rb_intern("setBorders"),borders); \
+    FXRbCallVoidMethod(this,"setBorders",borders); \
     } \
   void klass::setStipple(FXStipplePattern pattern){ \
-    FXRbCallVoidMethod(this,rb_intern("setStipple"),pattern); \
+    FXRbCallVoidMethod(this,"setStipple",pattern); \
     } \
   FXWindow* klass::getControlFor(FXTable* table){ \
-    return FXRbCallWindowMethod(this,rb_intern("getControlFor"),table); \
+    return FXRbCallWindowMethod(this,"getControlFor",table); \
     } \
   void klass::setFromControl(FXWindow* control){ \
-    FXRbCallVoidMethod(this,rb_intern("setFromControl"),control); \
+    FXRbCallVoidMethod(this,"setFromControl",control); \
     } \
   FXint klass::getWidth(const FXTable* table) const { \
-    return FXRbCallIntMethod(this,rb_intern("getWidth"),table); \
+    return FXRbCallIntMethod(this,"getWidth",table); \
     } \
   FXint klass::getHeight(const FXTable* table) const { \
-    return FXRbCallIntMethod(this,rb_intern("getHeight"),table); \
+    return FXRbCallIntMethod(this,"getHeight",table); \
     } \
   void klass::create(){ \
-    FXRbCallVoidMethod(this,rb_intern("create")); \
+    FXRbCallVoidMethod(this,"create"); \
     } \
   void klass::detach(){ \
-    FXRbCallVoidMethod(this,rb_intern("detach")); \
+    FXRbCallVoidMethod(this,"detach"); \
     } \
   void klass::destroy(){ \
-    FXRbCallVoidMethod(this,rb_intern("destroy")); \
+    FXRbCallVoidMethod(this,"destroy"); \
     }
 
 
@@ -371,109 +371,109 @@ inline FXbool klass ## _disableItem(klass* self,FXint r,FXint c){ \
 
 #define IMPLEMENT_FXTABLE_STUBS(klass,superklass) \
   void klass::drawCell(FXDC& dc,FXint sr,FXint er,FXint sc,FXint ec){ \
-    FXRbCallVoidMethod(this,rb_intern("drawCell"),dc,sr,er,sc,ec); \
+    FXRbCallVoidMethod(this,"drawCell",dc,sr,er,sc,ec); \
     } \
   void klass::public_drawCell(FXDC& dc,FXint sr,FXint er,FXint sc,FXint ec){ \
     superklass::drawCell(dc,sr,er,sc,ec); \
     } \
   void klass::drawRange(FXDC& dc,FXint rlo,FXint rhi,FXint clo,FXint chi){ \
-    FXRbCallVoidMethod(this,rb_intern("drawRange"),dc,rlo,rhi,clo,chi); \
+    FXRbCallVoidMethod(this,"drawRange",dc,rlo,rhi,clo,chi); \
     } \
   void klass::public_drawRange(FXDC& dc,FXint rlo,FXint rhi,FXint clo,FXint chi){ \
     superklass::drawRange(dc,rlo,rhi,clo,chi); \
     } \
   void klass::drawHGrid(FXDC& dc,FXint rlo,FXint rhi,FXint clo,FXint chi){ \
-    FXRbCallVoidMethod(this,rb_intern("drawHGrid"),dc,rlo,rhi,clo,chi); \
+    FXRbCallVoidMethod(this,"drawHGrid",dc,rlo,rhi,clo,chi); \
     } \
   void klass::public_drawHGrid(FXDC& dc,FXint rlo,FXint rhi,FXint clo,FXint chi){ \
     superklass::drawHGrid(dc,rlo,rhi,clo,chi); \
     } \
   void klass::drawVGrid(FXDC& dc,FXint rlo,FXint rhi,FXint clo,FXint chi){ \
-    FXRbCallVoidMethod(this,rb_intern("drawVGrid"),dc,rlo,rhi,clo,chi); \
+    FXRbCallVoidMethod(this,"drawVGrid",dc,rlo,rhi,clo,chi); \
     } \
   void klass::public_drawVGrid(FXDC& dc,FXint rlo,FXint rhi,FXint clo,FXint chi){ \
     superklass::drawVGrid(dc,rlo,rhi,clo,chi); \
     } \
   void klass::drawContents(FXDC& dc,FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("drawContents"),dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawContents",dc,x,y,w,h); \
     } \
   void klass::public_drawContents(FXDC& dc,FXint x,FXint y,FXint w,FXint h){ \
     superklass::drawContents(dc,x,y,w,h); \
     } \
   FXTableItem* klass::createItem(const FXString& text,FXIcon* icon,void* ptr){ \
-    return FXRbCallTableItemMethod(this,rb_intern("createItem"),text,icon,ptr); \
+    return FXRbCallTableItemMethod(this,"createItem",text,icon,ptr); \
     } \
   FXTableItem* klass::public_createItem(const FXString& text,FXIcon* icon,void* ptr){ \
     return superklass::createItem(text,icon,ptr); \
     } \
   void klass::setTableSize(FXint nr,FXint nc,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setTableSize"),nr,nc,notify); \
+    FXRbCallVoidMethod(this,"setTableSize",nr,nc,notify); \
     } \
   void klass::insertRows(FXint row,FXint nr,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("insertRows"),row,nr,notify); \
+    FXRbCallVoidMethod(this,"insertRows",row,nr,notify); \
     } \
   void klass::insertColumns(FXint col,FXint nc,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("insertColumns"),col,nc,notify); \
+    FXRbCallVoidMethod(this,"insertColumns",col,nc,notify); \
     } \
   void klass::removeRows(FXint row,FXint nr,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("removeRows"),row,nr,notify); \
+    FXRbCallVoidMethod(this,"removeRows",row,nr,notify); \
     } \
   void klass::removeColumns(FXint col,FXint nc,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("removeColumns"),col,nc,notify); \
+    FXRbCallVoidMethod(this,"removeColumns",col,nc,notify); \
     } \
   FXTableItem* klass::extractItem(FXint row,FXint col,FXbool notify){ \
-    return FXRbCallTableItemMethod(this,rb_intern("extractItem"),row,col,notify); \
+    return FXRbCallTableItemMethod(this,"extractItem",row,col,notify); \
     } \
   void klass::removeItem(FXint row,FXint col,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("removeItem"),row,col,notify); \
+    FXRbCallVoidMethod(this,"removeItem",row,col,notify); \
     } \
   void klass::removeRange(FXint startrow,FXint startcol,FXint endrow,FXint endcol,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("removeRange"),startrow,startcol,endrow,endcol,notify); \
+    FXRbCallVoidMethod(this,"removeRange",startrow,startcol,endrow,endcol,notify); \
     } \
   void klass::clearItems(FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("clearItems"),notify); \
+    FXRbCallVoidMethod(this,"clearItems",notify); \
     } \
   void klass::setColumnWidth(FXint col,FXint cwidth){ \
-    FXRbCallVoidMethod(this,rb_intern("setColumnWidth"),col,cwidth); \
+    FXRbCallVoidMethod(this,"setColumnWidth",col,cwidth); \
     } \
   void klass::setRowHeight(FXint row,FXint rheight){ \
-    FXRbCallVoidMethod(this,rb_intern("setRowHeight"),row,rheight); \
+    FXRbCallVoidMethod(this,"setRowHeight",row,rheight); \
     } \
   void klass::setCurrentItem(FXint r,FXint c,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrentItem"),r,c,notify); \
+    FXRbCallVoidMethod(this,"setCurrentItem",r,c,notify); \
     } \
   FXbool klass::selectRow(FXint row,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("selectRow"),row,notify); \
+    return FXRbCallBoolMethod(this,"selectRow",row,notify); \
     } \
   FXbool klass::selectColumn(FXint col,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("selectColumn"),col,notify); \
+    return FXRbCallBoolMethod(this,"selectColumn",col,notify); \
     } \
   FXbool klass::selectRange(FXint sr,FXint er,FXint sc,FXint ec,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("selectRange"),sr,er,sc,ec,notify); \
+    return FXRbCallBoolMethod(this,"selectRange",sr,er,sc,ec,notify); \
     } \
   FXbool klass::extendSelection(FXint r,FXint c,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("extendSelection"),r,c,notify); \
+    return FXRbCallBoolMethod(this,"extendSelection",r,c,notify); \
     } \
   FXbool klass::killSelection(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("killSelection"),notify); \
+    return FXRbCallBoolMethod(this,"killSelection",notify); \
     } \
   void klass::startInput(FXint row,FXint col){ \
-    FXRbCallVoidMethod(this,rb_intern("startInput"),row,col); \
+    FXRbCallVoidMethod(this,"startInput",row,col); \
     } \
   void klass::cancelInput(){ \
-    FXRbCallVoidMethod(this,rb_intern("cancelInput")); \
+    FXRbCallVoidMethod(this,"cancelInput"); \
     } \
   void klass::acceptInput(FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("acceptInput"),notify); \
+    FXRbCallVoidMethod(this,"acceptInput",notify); \
     } \
   void klass::makePositionVisible(FXint r,FXint c){ \
-    FXRbCallVoidMethod(this,rb_intern("makePositionVisible"),r,c); \
+    FXRbCallVoidMethod(this,"makePositionVisible",r,c); \
     } \
   FXbool klass::enableItem(FXint r,FXint c){ \
-    return FXRbCallBoolMethod(this,rb_intern("enableItem"),r,c); \
+    return FXRbCallBoolMethod(this,"enableItem",r,c); \
     } \
   FXbool klass::disableItem(FXint r,FXint c){ \
-    return FXRbCallBoolMethod(this,rb_intern("disableItem"),r,c); \
+    return FXRbCallBoolMethod(this,"disableItem",r,c); \
     }
 
 class FXRbTable : public FXTable {

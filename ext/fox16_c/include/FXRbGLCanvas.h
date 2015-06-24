@@ -44,16 +44,16 @@ inline void klass ## _swapBuffers(klass* self){ \
 
 #define IMPLEMENT_FXGLCANVAS_STUBS(cls) \
   FXbool cls::makeCurrent(){ \
-    return FXRbCallBoolMethod(this,rb_intern("makeCurrent")); \
+    return FXRbCallBoolMethod(this,"makeCurrent"); \
     } \
   FXbool cls::makeNonCurrent(){ \
-    return FXRbCallBoolMethod(this,rb_intern("makeNonCurrent")); \
+    return FXRbCallBoolMethod(this,"makeNonCurrent"); \
     } \
   FXbool cls::isCurrent() const { \
-    return FXRbCallBoolMethod(this,rb_intern("isCurrent")); \
+    return FXRbCallBoolMethod(this,"isCurrent"); \
     } \
   void cls::swapBuffers(){ \
-    FXRbCallVoidMethod(this,rb_intern("swapBuffers")); \
+    FXRbCallVoidMethod(this,"swapBuffers"); \
     }
 
 

@@ -40,13 +40,13 @@
 
 #define IMPLEMENT_FXDOCKBAR_STUBS(cls) \
   void cls::dock(FXDockSite* docksite,FXWindow* before,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("dock"),docksite,before,notify); \
+    FXRbCallVoidMethod(this,"dock",docksite,before,notify); \
     } \
   void cls::dock(FXDockSite* docksite,FXint localx,FXint localy,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("dock"),docksite,localx,localy,notify); \
+    FXRbCallVoidMethod(this,"dock",docksite,localx,localy,notify); \
     } \
   void cls::undock(FXint rootx,FXint rooty, FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("undock"),rootx,rooty,notify); \
+    FXRbCallVoidMethod(this,"undock",rootx,rooty,notify); \
     }
 
 

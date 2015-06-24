@@ -38,10 +38,10 @@ inline void klass ## _popdown(klass* self){ \
 
 #define IMPLEMENT_FXPOPUP_STUBS(cls) \
   void cls::popup(FXWindow* grabto,FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("popup"),grabto,x,y,w,h); \
+    FXRbCallVoidMethod(this,"popup",grabto,x,y,w,h); \
     } \
   void cls::popdown(){ \
-    FXRbCallVoidMethod(this,rb_intern("popdown")); \
+    FXRbCallVoidMethod(this,"popdown"); \
     }
 
 

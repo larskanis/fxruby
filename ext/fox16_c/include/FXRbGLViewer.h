@@ -42,13 +42,13 @@ inline FXbool klass ## _setBounds(klass *self,const FXRangef& box){ \
 
 #define IMPLEMENT_FXGLVIEWER_STUBS(cls) \
   FXGLObject** cls::select(FXint x,FXint y,FXint w,FXint h){ \
-    return FXRbCallGLObjectArrayMethod(this,rb_intern("select"),x,y,w,h); \
+    return FXRbCallGLObjectArrayMethod(this,"select",x,y,w,h); \
     } \
   FXGLObject* cls::pick(FXint x,FXint y){ \
-    return FXRbCallGLObjectMethod(this,rb_intern("pick"),x,y); \
+    return FXRbCallGLObjectMethod(this,"pick",x,y); \
     } \
   FXbool cls::setBounds(const FXRangef& box){ \
-    return FXRbCallBoolMethod(this,rb_intern("setBounds"),box); \
+    return FXRbCallBoolMethod(this,"setBounds",box); \
     }
 
 

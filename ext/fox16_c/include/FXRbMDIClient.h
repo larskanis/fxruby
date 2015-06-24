@@ -43,16 +43,16 @@
 
 #define IMPLEMENT_FXMDICLIENT_STUBS(cls) \
   FXbool cls::setActiveChild(FXMDIChild* child,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("setActiveChild"),child,notify); \
+    return FXRbCallBoolMethod(this,"setActiveChild",child,notify); \
     } \
   void cls::cascade(FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("cascade"),notify); \
+    FXRbCallVoidMethod(this,"cascade",notify); \
     } \
   void cls::horizontal(FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("horizontal"),notify); \
+    FXRbCallVoidMethod(this,"horizontal",notify); \
     } \
   void cls::vertical(FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("vertical"),notify); \
+    FXRbCallVoidMethod(this,"vertical",notify); \
     }
 
 class FXRbMDIClient : public FXMDIClient {

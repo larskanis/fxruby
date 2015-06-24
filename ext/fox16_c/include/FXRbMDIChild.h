@@ -44,16 +44,16 @@ inline FXbool klass ## _close(klass* self,FXbool notify){ \
 
 #define IMPLEMENT_FXMDICHILD_STUBS(cls) \
   FXbool cls::minimize(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("minimize"),notify); \
+    return FXRbCallBoolMethod(this,"minimize",notify); \
     } \
   FXbool cls::maximize(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("maximize"),notify); \
+    return FXRbCallBoolMethod(this,"maximize",notify); \
     } \
   FXbool cls::restore(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("restore"),notify); \
+    return FXRbCallBoolMethod(this,"restore",notify); \
     } \
   FXbool cls::close(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("close"),notify); \
+    return FXRbCallBoolMethod(this,"close",notify); \
     }
 
 
