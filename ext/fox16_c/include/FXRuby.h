@@ -91,8 +91,10 @@ swig_type_info *FXRbTypeQuery(const char *name);
 void* FXRbConvertPtr(VALUE obj,swig_type_info* typeinfo);
 
 // Returns an FXInputHandle for this Ruby file object
-FXInputHandle FXRbGetReadFileHandle(VALUE obj);
-FXInputHandle FXRbGetWriteFileHandle(VALUE obj);
+FXInputHandle FXRbGetReadFileHandle(VALUE obj,FXuint mode);
+FXInputHandle FXRbGetWriteFileHandle(VALUE obj,FXuint mode);
+void FXRbRemoveReadFileHandle(VALUE obj,FXuint mode);
+void FXRbRemoveWriteFileHandle(VALUE obj,FXuint mode);
 
 // Register mapping from Ruby objects to FOX objects
 void FXRbRegisterRubyObj(VALUE rubyObj, const void* foxObj);

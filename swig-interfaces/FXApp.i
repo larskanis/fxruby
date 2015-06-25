@@ -357,18 +357,13 @@ public:
     */
     bool addInput(VALUE obj,FXuint mode,FXObject *tgt,FXSelector sel){
       FXInputHandle fd;
-      FXuint m;
-      if(mode&INPUT_READ){
-        m=INPUT_READ;
-        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
-        fd=FXRbGetReadFileHandle(obj);
-        self->addInput(fd,m,tgt,sel);
+      if(mode&(INPUT_READ|INPUT_EXCEPT)){
+        fd=FXRbGetReadFileHandle(obj, mode);
+        self->addInput(fd,mode,tgt,sel);
         }
-      if(mode&INPUT_WRITE){
-        m=INPUT_WRITE;
-        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
-        fd=FXRbGetWriteFileHandle(obj);
-        self->addInput(fd,m,tgt,sel);
+      if(mode&(INPUT_WRITE|INPUT_EXCEPT)){
+        fd=FXRbGetWriteFileHandle(obj, mode);
+        self->addInput(fd,mode,tgt,sel);
         }
       return true;
       }
@@ -379,18 +374,15 @@ public:
     */
     bool removeInput(VALUE obj,FXuint mode){
       FXInputHandle fd;
-      FXuint m;
-      if(mode&INPUT_READ){
-        m=INPUT_READ;
-        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
-        fd=FXRbGetReadFileHandle(obj);
-        self->removeInput(fd,m);
+      if(mode&INPUT_READ|INPUT_EXCEPT){
+        fd=FXRbGetReadFileHandle(obj, mode);
+        self->removeInput(fd,mode);
+        FXRbRemoveReadFileHandle(obj, mode);
         }
-      if(mode&INPUT_WRITE){
-        m=INPUT_WRITE;
-        if(mode&INPUT_EXCEPT) m|=INPUT_EXCEPT;
-        fd=FXRbGetWriteFileHandle(obj);
-        self->removeInput(fd,m);
+      if(mode&(INPUT_WRITE|INPUT_EXCEPT)){
+        fd=FXRbGetWriteFileHandle(obj, mode);
+        self->removeInput(fd,mode);
+        FXRbRemoveWriteFileHandle(obj, mode);
         }
       return true;
       }
