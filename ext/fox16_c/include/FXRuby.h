@@ -420,8 +420,8 @@ void FXRbCallVoidArrayMethod(FXDC* recv,const char *func,TYPE objs,FXuint num){
     FXRbUnregisterBorrowedRubyObj(&objs[i]);
   }
 
-FXTreeItem* FXRbCallTreeItemMethod(const FXTreeList* recv,const char *func,FXint x,FXint y);
-FXFoldingItem* FXRbCallFoldingItemMethod(const FXFoldingList* recv,const char *func,FXint x,FXint y);
+FXTreeItem* FXRbCallTreeItemMethod_gvlcb(const FXTreeList* recv,const char *func,FXint x,FXint y);
+FXFoldingItem* FXRbCallFoldingItemMethod_gvlcb(const FXFoldingList* recv,const char *func,FXint x,FXint y);
 
 /* Three arguments */
 template<class TYPE1, class TYPE2, class TYPE3>

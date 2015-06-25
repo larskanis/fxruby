@@ -460,6 +460,16 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   param(TYPE3, , arg3) \
   param(TYPE4, , arg4)
 
+#define FOR_EACH_PARAM_OF_FXRbCallTreeItemMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
+#define FOR_EACH_PARAM_OF_FXRbCallFoldingItemMethod_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
 
 /* function( name, void_or_nonvoid, returntype, firstparamtype, firstparamname, paramcount ) */
 #define FOR_EACH_CALLBACK_FUNCTION(function) \
@@ -512,6 +522,8 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   function(FXRbTreeList_sortFunc, GVL_TYPE_NONVOID, FXint, ITEMA, itema, 2) \
   function(FXRbCallDCDrawMethod, GVL_TYPE_VOID, void, RECV, recv, 5) \
   function(FXRbCallDCDrawMethod, GVL_TYPE_VOID, void, RECV, recv, 6) \
+  function(FXRbCallTreeItemMethod, GVL_TYPE_NONVOID, FXTreeItem*, RECV, recv, 4) \
+  function(FXRbCallFoldingItemMethod, GVL_TYPE_NONVOID, FXFoldingItem*, RECV, recv, 4) \
 
 
 FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_STUB_DECL )
