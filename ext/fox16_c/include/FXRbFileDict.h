@@ -61,13 +61,13 @@ inline FXFileAssoc* klass ## _findExecBinding(klass* self,const FXchar* pathname
 
 #define IMPLEMENT_FXFILEDICT_STUBS(cls) \
   FXFileAssoc* cls::findFileBinding(const FXchar* pathname){ \
-    return FXRbCallFileAssocMethod(this,rb_intern("findFileBinding"),pathname); \
+    return FXRbCallFileAssocMethod(this,"findFileBinding",pathname); \
     } \
   FXFileAssoc* cls::findDirBinding(const FXchar* pathname){ \
-    return FXRbCallFileAssocMethod(this,rb_intern("findDirBinding"),pathname); \
+    return FXRbCallFileAssocMethod(this,"findDirBinding",pathname); \
     } \
   FXFileAssoc* cls::findExecBinding(const FXchar* pathname){ \
-    return FXRbCallFileAssocMethod(this,rb_intern("findExecBinding"),pathname); \
+    return FXRbCallFileAssocMethod(this,"findExecBinding",pathname); \
     }
 
 

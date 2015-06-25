@@ -35,7 +35,7 @@ inline FXuint klass ## _execute(klass* self,FXuint placement){ \
 
 #define IMPLEMENT_FXDIALOGBOX_STUBS(cls) \
   FXuint cls::execute(FXuint placement){ \
-    return FXRbCallUIntMethod(this,rb_intern("execute"),placement); \
+    return FXRbCallUIntMethod(this,"execute",placement); \
     }
 
 

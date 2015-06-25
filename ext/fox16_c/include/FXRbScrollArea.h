@@ -44,16 +44,16 @@ inline FXint klass ## _getViewportHeight(klass* self){ \
 
 #define IMPLEMENT_FXSCROLLAREA_STUBS(cls) \
   FXint cls::getContentWidth(){ \
-    return FXRbCallIntMethod(this,rb_intern("getContentWidth")); \
+    return FXRbCallIntMethod(this,"getContentWidth"); \
     } \
   FXint cls::getContentHeight(){ \
-    return FXRbCallIntMethod(this,rb_intern("getContentHeight")); \
+    return FXRbCallIntMethod(this,"getContentHeight"); \
     } \
   FXint cls::getViewportWidth(){ \
-    return FXRbCallIntMethod(this,rb_intern("getViewportWidth")); \
+    return FXRbCallIntMethod(this,"getViewportWidth"); \
     } \
   FXint cls::getViewportHeight(){ \
-    return FXRbCallIntMethod(this,rb_intern("getViewportHeight")); \
+    return FXRbCallIntMethod(this,"getViewportHeight"); \
     }
 
 

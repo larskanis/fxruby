@@ -43,16 +43,16 @@
 
 #define IMPLEMENT_FXDOCKSITE_STUBS(cls) \
   void cls::moveToolBar(FXDockBar* bar,FXint barx,FXint bary){ \
-    FXRbCallVoidMethod(this,rb_intern("moveToolBar"),bar,barx,bary); \
+    FXRbCallVoidMethod(this,"moveToolBar",bar,barx,bary); \
     } \
   void cls::dockToolBar(FXDockBar* bar,FXWindow* before){ \
-    FXRbCallVoidMethod(this,rb_intern("dockToolBar"),bar,before); \
+    FXRbCallVoidMethod(this,"dockToolBar",bar,before); \
     } \
   void cls::dockToolBar(FXDockBar* bar,FXint barx,FXint bary){ \
-    FXRbCallVoidMethod(this,rb_intern("dockToolBar"),bar,barx,bary); \
+    FXRbCallVoidMethod(this,"dockToolBar",bar,barx,bary); \
     } \
   void cls::undockToolBar(FXDockBar* bar){ \
-    FXRbCallVoidMethod(this,rb_intern("undockToolBar"),bar); \
+    FXRbCallVoidMethod(this,"undockToolBar",bar); \
     }
 
 

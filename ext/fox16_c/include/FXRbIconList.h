@@ -88,70 +88,70 @@ inline void klass ## _destroy(klass* self){ \
 
 #define IMPLEMENT_FXICONITEM_STUBS(klass,superklass) \
   void klass::draw(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("draw"),list,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"draw",list,dc,x,y,w,h); \
     } \
   void klass::public_draw(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::draw(list,dc,x,y,w,h); \
     } \
   FXint klass::hitItem(const FXIconList* list,FXint rx,FXint ry,FXint rw,FXint rh) const { \
-    return FXRbCallIntMethod(this,rb_intern("hitItem"),list,rx,ry,rw,rh); \
+    return FXRbCallIntMethod(this,"hitItem",list,rx,ry,rw,rh); \
     } \
   FXint klass::public_hitItem(const FXIconList* list,FXint rx,FXint ry,FXint rw,FXint rh) const { \
     return superklass::hitItem(list,rx,ry,rw,rh); \
     } \
   void klass::drawBigIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("drawBigIcon"),list,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawBigIcon",list,dc,x,y,w,h); \
     } \
   void klass::public_drawBigIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::drawBigIcon(list,dc,x,y,w,h); \
     } \
   void klass::drawMiniIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("drawMiniIcon"),list,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawMiniIcon",list,dc,x,y,w,h); \
     } \
   void klass::public_drawMiniIcon(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::drawMiniIcon(list,dc,x,y,w,h); \
     } \
   void klass::drawDetails(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
-    FXRbCallVoidMethod(this,rb_intern("drawDetails"),list,dc,x,y,w,h); \
+    FXRbCallVoidMethod(this,"drawDetails",list,dc,x,y,w,h); \
     } \
   void klass::public_drawDetails(const FXIconList* list,FXDC& dc,FXint x,FXint y,FXint w,FXint h) const { \
     superklass::drawDetails(list,dc,x,y,w,h); \
     } \
   void klass::setText(const FXString& txt){ \
-    FXRbCallVoidMethod(this,rb_intern("setText"),txt); \
+    FXRbCallVoidMethod(this,"setText",txt); \
     } \
   void klass::setBigIcon(FXIcon* icn,FXbool owned){ \
-    FXRbCallVoidMethod(this,rb_intern("setBigIcon"),icn,owned); \
+    FXRbCallVoidMethod(this,"setBigIcon",icn,owned); \
     } \
   void klass::setMiniIcon(FXIcon* icn,FXbool owned){ \
-    FXRbCallVoidMethod(this,rb_intern("setMiniIcon"),icn,owned); \
+    FXRbCallVoidMethod(this,"setMiniIcon",icn,owned); \
     } \
   void klass::setFocus(FXbool focus){ \
-    FXRbCallVoidMethod(this,rb_intern("setFocus"),focus); \
+    FXRbCallVoidMethod(this,"setFocus",focus); \
     } \
   void klass::setSelected(FXbool selected){ \
-    FXRbCallVoidMethod(this,rb_intern("setSelected"),selected); \
+    FXRbCallVoidMethod(this,"setSelected",selected); \
     } \
   void klass::setEnabled(FXbool enabled){ \
-    FXRbCallVoidMethod(this,rb_intern("setEnabled"),enabled); \
+    FXRbCallVoidMethod(this,"setEnabled",enabled); \
     } \
   void klass::setDraggable(FXbool draggable){ \
-    FXRbCallVoidMethod(this,rb_intern("setDraggable"),draggable); \
+    FXRbCallVoidMethod(this,"setDraggable",draggable); \
     } \
   FXint klass::getWidth(const FXIconList* list) const { \
-    return FXRbCallIntMethod(this,rb_intern("getWidth"),list); \
+    return FXRbCallIntMethod(this,"getWidth",list); \
     } \
   FXint klass::getHeight(const FXIconList* list) const { \
-    return FXRbCallIntMethod(this,rb_intern("getHeight"),list); \
+    return FXRbCallIntMethod(this,"getHeight",list); \
     } \
   void klass::create(){ \
-    FXRbCallVoidMethod(this,rb_intern("create")); \
+    FXRbCallVoidMethod(this,"create"); \
     } \
   void klass::detach(){ \
-    FXRbCallVoidMethod(this,rb_intern("detach")); \
+    FXRbCallVoidMethod(this,"detach"); \
     } \
   void klass::destroy(){ \
-    FXRbCallVoidMethod(this,rb_intern("destroy")); \
+    FXRbCallVoidMethod(this,"destroy"); \
     }
 
 
@@ -219,37 +219,37 @@ inline FXbool klass ## _disableItem(klass* self,FXint index){ \
 
 #define IMPLEMENT_FXICONLIST_STUBS(cls) \
   FXbool cls::selectItem(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("selectItem"),index,notify); \
+    return FXRbCallBoolMethod(this,"selectItem",index,notify); \
     } \
   FXbool cls::deselectItem(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("deselectItem"),index,notify); \
+    return FXRbCallBoolMethod(this,"deselectItem",index,notify); \
     } \
   FXbool cls::toggleItem(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("toggleItem"),index,notify); \
+    return FXRbCallBoolMethod(this,"toggleItem",index,notify); \
     } \
   FXbool cls::selectInRectangle(FXint x,FXint y,FXint w,FXint h,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("selectInRectangle"),x,y,w,h,notify); \
+    return FXRbCallBoolMethod(this,"selectInRectangle",x,y,w,h,notify); \
     } \
   FXbool cls::extendSelection(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("extendSelection"),index,notify); \
+    return FXRbCallBoolMethod(this,"extendSelection",index,notify); \
     } \
   FXbool cls::killSelection(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("killSelection"),notify); \
+    return FXRbCallBoolMethod(this,"killSelection",notify); \
     } \
   void cls::setCurrentItem(FXint index,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrentItem"),index,notify); \
+    FXRbCallVoidMethod(this,"setCurrentItem",index,notify); \
     } \
   FXint cls::getItemAt(FXint x,FXint y) const { \
-    return FXRbCallIntMethod(this,rb_intern("getItemAt"),x,y); \
+    return FXRbCallIntMethod(this,"getItemAt",x,y); \
     } \
   void cls::makeItemVisible(FXint index){ \
-    FXRbCallVoidMethod(this,rb_intern("makeItemVisible"),index); \
+    FXRbCallVoidMethod(this,"makeItemVisible",index); \
     } \
   FXbool cls::enableItem(FXint index){ \
-    return FXRbCallBoolMethod(this,rb_intern("enableItem"),index); \
+    return FXRbCallBoolMethod(this,"enableItem",index); \
     } \
   FXbool cls::disableItem(FXint index){ \
-    return FXRbCallBoolMethod(this,rb_intern("disableItem"),index); \
+    return FXRbCallBoolMethod(this,"disableItem",index); \
     }
 
 

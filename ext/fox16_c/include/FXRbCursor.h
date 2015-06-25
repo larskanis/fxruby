@@ -38,10 +38,10 @@ inline bool klass ## _loadPixels(klass* self,FXStream& store){ \
 
 #define IMPLEMENT_FXCURSOR_STUBS(cls) \
   bool cls::savePixels(FXStream& store) const { \
-    return FXRbCallBoolMethod(this,rb_intern("savePixels"),store); \
+    return FXRbCallBoolMethod(this,"savePixels",store); \
     } \
   bool cls::loadPixels(FXStream& store){ \
-    return FXRbCallBoolMethod(this,rb_intern("loadPixels"),store); \
+    return FXRbCallBoolMethod(this,"loadPixels",store); \
     }
 
 class FXRbCursor : public FXCursor {

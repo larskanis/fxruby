@@ -53,25 +53,25 @@ inline void klass ## _destroy(klass* self){ \
 
 #define IMPLEMENT_FXHEADERITEM_STUBS(cls) \
   void cls::setText(const FXString& text){ \
-    FXRbCallVoidMethod(this,rb_intern("setText"),text); \
+    FXRbCallVoidMethod(this,"setText",text); \
     } \
   void cls::setIcon(FXIcon* icn){ \
-    FXRbCallVoidMethod(this,rb_intern("setIcon"),icn); \
+    FXRbCallVoidMethod(this,"setIcon",icn); \
     } \
   FXint cls::getWidth(const FXHeader* header) const { \
-    return FXRbCallIntMethod(this,rb_intern("getWidth"),header); \
+    return FXRbCallIntMethod(this,"getWidth",header); \
     } \
   FXint cls::getHeight(const FXHeader* header) const { \
-    return FXRbCallIntMethod(this,rb_intern("getHeight"),header); \
+    return FXRbCallIntMethod(this,"getHeight",header); \
     } \
   void cls::create(){ \
-    FXRbCallVoidMethod(this,rb_intern("create")); \
+    FXRbCallVoidMethod(this,"create"); \
     } \
   void cls::detach(){ \
-    FXRbCallVoidMethod(this,rb_intern("detach")); \
+    FXRbCallVoidMethod(this,"detach"); \
     } \
   void cls::destroy(){ \
-    FXRbCallVoidMethod(this,rb_intern("destroy")); \
+    FXRbCallVoidMethod(this,"destroy"); \
     }
 
 

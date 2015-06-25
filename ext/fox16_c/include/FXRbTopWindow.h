@@ -47,19 +47,19 @@ inline FXbool klass ## _close(klass* self,FXbool notify){ \
 
 #define IMPLEMENT_FXTOPWINDOW_STUBS(cls) \
   void cls::show(FXuint placement){ \
-    FXRbCallVoidMethod(this,rb_intern("show"),placement); \
+    FXRbCallVoidMethod(this,"show",placement); \
     } \
   FXbool cls::maximize(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("maximize"),notify); \
+    return FXRbCallBoolMethod(this,"maximize",notify); \
     } \
   FXbool cls::minimize(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("minimize"),notify); \
+    return FXRbCallBoolMethod(this,"minimize",notify); \
     } \
   FXbool cls::restore(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("restore"),notify); \
+    return FXRbCallBoolMethod(this,"restore",notify); \
     } \
   FXbool cls::close(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("close"),notify); \
+    return FXRbCallBoolMethod(this,"close",notify); \
     }
 
 

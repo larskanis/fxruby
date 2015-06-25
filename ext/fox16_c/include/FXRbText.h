@@ -74,73 +74,73 @@ inline void klass ## _setStyledText(klass* self,const FXString& text,FXint style
 
 #define IMPLEMENT_FXTEXT_STUBS(cls) \
   void cls::setCursorPos(FXint pos,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCursorPos"),pos,notify); \
+    FXRbCallVoidMethod(this,"setCursorPos",pos,notify); \
     } \
   FXbool cls::extendSelection(FXint pos,FXTextSelectionMode mode,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("extendSelection"),pos,mode,notify); \
+    return FXRbCallBoolMethod(this,"extendSelection",pos,mode,notify); \
     } \
   FXbool cls::killSelection(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("killSelection"),notify); \
+    return FXRbCallBoolMethod(this,"killSelection",notify); \
     } \
   void cls::replaceText(FXint pos,FXint m,const FXchar *text,FXint n,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("replaceText"),pos,m,FXString(text,n),notify); \
+    FXRbCallVoidMethod(this,"replaceText",pos,m,FXString(text,n),notify); \
     } \
   void cls::replaceText(FXint pos,FXint m,const FXString& text,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("replaceText"),pos,m,text,notify); \
+    FXRbCallVoidMethod(this,"replaceText",pos,m,text,notify); \
     } \
   void cls::replaceStyledText(FXint pos,FXint m,const FXchar *text,FXint n,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("replaceStyledText"),pos,m,FXString(text,n),style,notify); \
+    FXRbCallVoidMethod(this,"replaceStyledText",pos,m,FXString(text,n),style,notify); \
     } \
   void cls::replaceStyledText(FXint pos,FXint m,const FXString& text,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("replaceStyledText"),pos,m,text,style,notify); \
+    FXRbCallVoidMethod(this,"replaceStyledText",pos,m,text,style,notify); \
     } \
   void cls::appendText(const FXchar *text,FXint n,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("appendText"),FXString(text,n),notify); \
+    FXRbCallVoidMethod(this,"appendText",FXString(text,n),notify); \
     } \
   void cls::appendText(const FXString& text,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("appendText"),text,notify); \
+    FXRbCallVoidMethod(this,"appendText",text,notify); \
     } \
   void cls::appendStyledText(const FXchar *text,FXint n,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("appendStyledText"),FXString(text,n),style,notify); \
+    FXRbCallVoidMethod(this,"appendStyledText",FXString(text,n),style,notify); \
     } \
   void cls::appendStyledText(const FXString& text,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("appendStyledText"),text,style,notify); \
+    FXRbCallVoidMethod(this,"appendStyledText",text,style,notify); \
     } \
   void cls::insertText(FXint pos,const FXchar *text,FXint n,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("insertText"),pos,FXString(text,n),notify); \
+    FXRbCallVoidMethod(this,"insertText",pos,FXString(text,n),notify); \
     } \
   void cls::insertText(FXint pos,const FXString& text,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("insertText"),pos,text,notify); \
+    FXRbCallVoidMethod(this,"insertText",pos,text,notify); \
     } \
   void cls::insertStyledText(FXint pos,const FXchar *text,FXint n,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("insertStyledText"),pos,FXString(text,n),style,notify); \
+    FXRbCallVoidMethod(this,"insertStyledText",pos,FXString(text,n),style,notify); \
     } \
   void cls::insertStyledText(FXint pos,const FXString& text,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("insertStyledText"),pos,text,style,notify); \
+    FXRbCallVoidMethod(this,"insertStyledText",pos,text,style,notify); \
     } \
   void cls::removeText(FXint pos,FXint n,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("removeText"),pos,n,notify); \
+    FXRbCallVoidMethod(this,"removeText",pos,n,notify); \
     } \
   void cls::changeStyle(FXint pos,FXint n,FXint style){ \
-    FXRbCallVoidMethod(this,rb_intern("changeStyle"),pos,n,style); \
+    FXRbCallVoidMethod(this,"changeStyle",pos,n,style); \
     } \
   void cls::changeStyle(FXint pos,const FXchar* style,FXint n){ \
-    FXRbCallVoidMethod(this,rb_intern("changeStyle"),pos,FXString(style,n)); \
+    FXRbCallVoidMethod(this,"changeStyle",pos,FXString(style,n)); \
     } \
   void cls::changeStyle(FXint pos,const FXString& style){ \
-    FXRbCallVoidMethod(this,rb_intern("changeStyle"),pos,style); \
+    FXRbCallVoidMethod(this,"changeStyle",pos,style); \
     } \
   void cls::setText(const FXchar* text,FXint n,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setText"),FXString(text,n),notify); \
+    FXRbCallVoidMethod(this,"setText",FXString(text,n),notify); \
     } \
   void cls::setText(const FXString& text,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setText"),text,notify); \
+    FXRbCallVoidMethod(this,"setText",text,notify); \
     } \
   void cls::setStyledText(const FXchar* text,FXint n,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setStyledText"),FXString(text,n),style,notify); \
+    FXRbCallVoidMethod(this,"setStyledText",FXString(text,n),style,notify); \
     } \
   void cls::setStyledText(const FXString& text,FXint style,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setStyledText"),text,style,notify); \
+    FXRbCallVoidMethod(this,"setStyledText",text,style,notify); \
     }
 
 

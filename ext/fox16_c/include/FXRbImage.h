@@ -83,55 +83,55 @@ inline bool klass ## _loadPixels_gvl(klass* self,FXStream& store){ \
 
 #define IMPLEMENT_FXIMAGE_STUBS(cls) \
   void cls::restore(){ \
-    FXRbCallVoidMethod(this,rb_intern("restore")); \
+    FXRbCallVoidMethod(this,"restore"); \
     } \
   void cls::render(){ \
-    FXRbCallVoidMethod(this,rb_intern("render")); \
+    FXRbCallVoidMethod(this,"render"); \
     } \
   void cls::release(){ \
-    FXRbCallVoidMethod(this,rb_intern("release")); \
+    FXRbCallVoidMethod(this,"release"); \
     } \
   void cls::scale(FXint w,FXint h,FXint quality){ \
-    FXRbCallVoidMethod(this,rb_intern("scale"),w,h,quality); \
+    FXRbCallVoidMethod(this,"scale",w,h,quality); \
     } \
   void cls::mirror(bool horizontal,bool vertical){ \
-    FXRbCallVoidMethod(this,rb_intern("mirror"),horizontal,vertical); \
+    FXRbCallVoidMethod(this,"mirror",horizontal,vertical); \
     } \
   void cls::rotate(FXint degrees){ \
-    FXRbCallVoidMethod(this,rb_intern("rotate"),degrees); \
+    FXRbCallVoidMethod(this,"rotate",degrees); \
     } \
   void cls::crop(FXint x,FXint y,FXint w,FXint h,FXColor color){ \
-    FXRbCallVoidMethod(this,rb_intern("crop"),x,y,w,h,color); \
+    FXRbCallVoidMethod(this,"crop",x,y,w,h,color); \
     } \
   void cls::fill(FXColor color){ \
-    FXRbCallVoidMethod(this,rb_intern("fill"),color); \
+    FXRbCallVoidMethod(this,"fill",color); \
     } \
   void cls::fade(FXColor color,FXint factor){ \
-    FXRbCallVoidMethod(this,rb_intern("fade"),color,factor); \
+    FXRbCallVoidMethod(this,"fade",color,factor); \
     } \
   void cls::xshear(FXint shear,FXColor clr){ \
-    FXRbCallVoidMethod(this,rb_intern("xshear"),shear,clr); \
+    FXRbCallVoidMethod(this,"xshear",shear,clr); \
     } \
   void cls::yshear(FXint shear,FXColor clr){ \
-    FXRbCallVoidMethod(this,rb_intern("yshear"),shear,clr); \
+    FXRbCallVoidMethod(this,"yshear",shear,clr); \
     } \
   void cls::hgradient(FXColor left,FXColor right){ \
-    FXRbCallVoidMethod(this,rb_intern("hgradient"),left,right); \
+    FXRbCallVoidMethod(this,"hgradient",left,right); \
     } \
   void cls::vgradient(FXColor top,FXColor bottom){ \
-    FXRbCallVoidMethod(this,rb_intern("vgradient"),top,bottom); \
+    FXRbCallVoidMethod(this,"vgradient",top,bottom); \
     } \
   void cls::gradient(FXColor topleft,FXColor topright,FXColor bottomleft,FXColor bottomright){ \
-    FXRbCallVoidMethod(this,rb_intern("gradient"),topleft,topright,bottomleft,bottomright); \
+    FXRbCallVoidMethod(this,"gradient",topleft,topright,bottomleft,bottomright); \
     } \
   void cls::blend(FXColor color){ \
-    FXRbCallVoidMethod(this,rb_intern("blend"),color); \
+    FXRbCallVoidMethod(this,"blend",color); \
     } \
   bool cls::savePixels(FXStream& store) const { \
-    return FXRbCallBoolMethod(this,rb_intern("savePixels"),store); \
+    return FXRbCallBoolMethod(this,"savePixels",store); \
     } \
   bool cls::loadPixels(FXStream& store){ \
-    return FXRbCallBoolMethod(this,rb_intern("loadPixels"),store); \
+    return FXRbCallBoolMethod(this,"loadPixels",store); \
     }
 
 

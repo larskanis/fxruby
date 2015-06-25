@@ -65,37 +65,37 @@ inline FXint klass ## _getHeight(const klass* self,const FXList* list){ \
 
 #define IMPLEMENT_FXLISTITEM_STUBS(cls) \
   void cls::create(){ \
-    FXRbCallVoidMethod(this,rb_intern("create")); \
+    FXRbCallVoidMethod(this,"create"); \
     } \
   void cls::detach(){ \
-    FXRbCallVoidMethod(this,rb_intern("detach")); \
+    FXRbCallVoidMethod(this,"detach"); \
     } \
   void cls::destroy(){ \
-    FXRbCallVoidMethod(this,rb_intern("destroy")); \
+    FXRbCallVoidMethod(this,"destroy"); \
     } \
   void cls::setText(const FXString& txt){ \
-    FXRbCallVoidMethod(this,rb_intern("setText"),txt); \
+    FXRbCallVoidMethod(this,"setText",txt); \
     } \
   void cls::setIcon(FXIcon* icn,FXbool owned){ \
-    FXRbCallVoidMethod(this,rb_intern("setIcon"),icn,owned); \
+    FXRbCallVoidMethod(this,"setIcon",icn,owned); \
     } \
   void cls::setFocus(FXbool focus){ \
-    FXRbCallVoidMethod(this,rb_intern("setFocus"),focus); \
+    FXRbCallVoidMethod(this,"setFocus",focus); \
     } \
   void cls::setSelected(FXbool selected){ \
-    FXRbCallVoidMethod(this,rb_intern("setSelected"),selected); \
+    FXRbCallVoidMethod(this,"setSelected",selected); \
     } \
   void cls::setEnabled(FXbool enabled){ \
-    FXRbCallVoidMethod(this,rb_intern("setEnabled"),enabled); \
+    FXRbCallVoidMethod(this,"setEnabled",enabled); \
     } \
   void cls::setDraggable(FXbool draggable){ \
-    FXRbCallVoidMethod(this,rb_intern("setDraggable"),draggable); \
+    FXRbCallVoidMethod(this,"setDraggable",draggable); \
     } \
   FXint cls::getWidth(const FXList* list) const { \
-    return FXRbCallIntMethod(this,rb_intern("getWidth"),list); \
+    return FXRbCallIntMethod(this,"getWidth",list); \
     } \
   FXint cls::getHeight(const FXList* list) const { \
-    return FXRbCallIntMethod(this,rb_intern("getHeight"),list); \
+    return FXRbCallIntMethod(this,"getHeight",list); \
     }
 
 
@@ -160,34 +160,34 @@ inline void klass ## _setCurrentItem(klass* self,FXint index,FXbool notify){ \
 
 #define IMPLEMENT_FXLIST_STUBS(cls) \
   FXbool cls::enableItem(FXint index){ \
-    return FXRbCallBoolMethod(this,rb_intern("enableItem"),index); \
+    return FXRbCallBoolMethod(this,"enableItem",index); \
     } \
   FXbool cls::disableItem(FXint index){ \
-    return FXRbCallBoolMethod(this,rb_intern("disableItem"),index); \
+    return FXRbCallBoolMethod(this,"disableItem",index); \
     } \
   void cls::makeItemVisible(FXint index) { \
-    FXRbCallVoidMethod(this,rb_intern("makeItemVisible"),index); \
+    FXRbCallVoidMethod(this,"makeItemVisible",index); \
     } \
   FXint cls::getItemAt(FXint x,FXint y) const { \
-    return FXRbCallIntMethod(this,rb_intern("getItemAt"),x,y); \
+    return FXRbCallIntMethod(this,"getItemAt",x,y); \
     } \
   FXbool cls::selectItem(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("selectItem"),index,notify); \
+    return FXRbCallBoolMethod(this,"selectItem",index,notify); \
     } \
   FXbool cls::deselectItem(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("deselectItem"),index,notify); \
+    return FXRbCallBoolMethod(this,"deselectItem",index,notify); \
     } \
   FXbool cls::toggleItem(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("toggleItem"),index,notify); \
+    return FXRbCallBoolMethod(this,"toggleItem",index,notify); \
     } \
   FXbool cls::extendSelection(FXint index,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("extendSelection"),index,notify); \
+    return FXRbCallBoolMethod(this,"extendSelection",index,notify); \
     } \
   FXbool cls::killSelection(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("killSelection"),notify); \
+    return FXRbCallBoolMethod(this,"killSelection",notify); \
     } \
   void cls::setCurrentItem(FXint index,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrentItem"),index,notify); \
+    FXRbCallVoidMethod(this,"setCurrentItem",index,notify); \
     }
 
 

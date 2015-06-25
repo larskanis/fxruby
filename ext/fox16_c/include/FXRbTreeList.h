@@ -74,51 +74,51 @@ inline void klass ## _destroy(klass* self){ \
 
 #define IMPLEMENT_FXTREEITEM_STUBS(klass,superklass) \
   void klass::setText(const FXString& txt){ \
-    FXRbCallVoidMethod(this,rb_intern("setText"),txt); \
+    FXRbCallVoidMethod(this,"setText",txt); \
     } \
   void klass::setOpenIcon(FXIcon* icn,FXbool owned){ \
-    FXRbCallVoidMethod(this,rb_intern("setOpenIcon"),icn,owned); \
+    FXRbCallVoidMethod(this,"setOpenIcon",icn,owned); \
     } \
   void klass::setClosedIcon(FXIcon* icn,FXbool owned){ \
-    FXRbCallVoidMethod(this,rb_intern("setClosedIcon"),icn,owned); \
+    FXRbCallVoidMethod(this,"setClosedIcon",icn,owned); \
     } \
   void klass::setFocus(FXbool focus){ \
     if(NIL_P(FXRbGetRubyObj(this,false))){ \
       superklass::setFocus(focus); \
       } \
     else{ \
-      FXRbCallVoidMethod(this,rb_intern("setFocus"),focus); \
+      FXRbCallVoidMethod(this,"setFocus",focus); \
       } \
     } \
   void klass::setSelected(FXbool selected){ \
-    FXRbCallVoidMethod(this,rb_intern("setSelected"),selected); \
+    FXRbCallVoidMethod(this,"setSelected",selected); \
     } \
   void klass::setOpened(FXbool opened){ \
-    FXRbCallVoidMethod(this,rb_intern("setOpened"),opened); \
+    FXRbCallVoidMethod(this,"setOpened",opened); \
     } \
   void klass::setExpanded(FXbool expanded){ \
-    FXRbCallVoidMethod(this,rb_intern("setExpanded"),expanded); \
+    FXRbCallVoidMethod(this,"setExpanded",expanded); \
     } \
   void klass::setEnabled(FXbool enabled){ \
-    FXRbCallVoidMethod(this,rb_intern("setEnabled"),enabled); \
+    FXRbCallVoidMethod(this,"setEnabled",enabled); \
     } \
   void klass::setDraggable(FXbool draggable){ \
-    FXRbCallVoidMethod(this,rb_intern("setDraggable"),draggable); \
+    FXRbCallVoidMethod(this,"setDraggable",draggable); \
     } \
   FXint klass::getWidth(const FXTreeList* list) const { \
-    return FXRbCallIntMethod(this,rb_intern("getWidth"),list); \
+    return FXRbCallIntMethod(this,"getWidth",list); \
     } \
   FXint klass::getHeight(const FXTreeList* list) const { \
-    return FXRbCallIntMethod(this,rb_intern("getHeight"),list); \
+    return FXRbCallIntMethod(this,"getHeight",list); \
     } \
   void klass::create(){ \
-    FXRbCallVoidMethod(this,rb_intern("create")); \
+    FXRbCallVoidMethod(this,"create"); \
     } \
   void klass::detach(){ \
-    FXRbCallVoidMethod(this,rb_intern("detach")); \
+    FXRbCallVoidMethod(this,"detach"); \
     } \
   void klass::destroy(){ \
-    FXRbCallVoidMethod(this,rb_intern("destroy")); \
+    FXRbCallVoidMethod(this,"destroy"); \
     }
 
 
@@ -195,46 +195,46 @@ inline FXbool klass ## _disableItem(klass* self,FXTreeItem* item){ \
 
 #define IMPLEMENT_FXTREELIST_STUBS(cls) \
   FXbool cls::selectItem(FXTreeItem* item,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("selectItem"),item,notify); \
+    return FXRbCallBoolMethod(this,"selectItem",item,notify); \
     } \
   FXbool cls::deselectItem(FXTreeItem* item,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("deselectItem"),item,notify); \
+    return FXRbCallBoolMethod(this,"deselectItem",item,notify); \
     } \
   FXbool cls::toggleItem(FXTreeItem* item,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("toggleItem"),item,notify); \
+    return FXRbCallBoolMethod(this,"toggleItem",item,notify); \
     } \
   FXbool cls::extendSelection(FXTreeItem* item,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("extendSelection"),item,notify); \
+    return FXRbCallBoolMethod(this,"extendSelection",item,notify); \
     } \
   FXbool cls::killSelection(FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("killSelection"),notify); \
+    return FXRbCallBoolMethod(this,"killSelection",notify); \
     } \
   FXbool cls::openItem(FXTreeItem* item,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("openItem"),item,notify); \
+    return FXRbCallBoolMethod(this,"openItem",item,notify); \
     } \
   FXbool cls::closeItem(FXTreeItem* item,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("closeItem"),item,notify); \
+    return FXRbCallBoolMethod(this,"closeItem",item,notify); \
     } \
   FXbool cls::collapseTree(FXTreeItem* tree,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("collapseTree"),tree,notify); \
+    return FXRbCallBoolMethod(this,"collapseTree",tree,notify); \
     } \
   FXbool cls::expandTree(FXTreeItem* tree,FXbool notify){ \
-    return FXRbCallBoolMethod(this,rb_intern("expandTree"),tree,notify); \
+    return FXRbCallBoolMethod(this,"expandTree",tree,notify); \
     } \
   void cls::setCurrentItem(FXTreeItem* item,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrentItem"),item,notify); \
+    FXRbCallVoidMethod(this,"setCurrentItem",item,notify); \
     } \
   FXTreeItem* cls::getItemAt(FXint x,FXint y) const { \
-    return FXRbCallTreeItemMethod(this,rb_intern("getItemAt"),x,y); \
+    return FXRbCallTreeItemMethod(this,"getItemAt",x,y); \
     } \
   void cls::makeItemVisible(FXTreeItem* item) { \
-    FXRbCallVoidMethod(this,rb_intern("makeItemVisible"),item); \
+    FXRbCallVoidMethod(this,"makeItemVisible",item); \
     } \
   FXbool cls::enableItem(FXTreeItem* item){ \
-    return FXRbCallBoolMethod(this,rb_intern("enableItem"),item); \
+    return FXRbCallBoolMethod(this,"enableItem",item); \
     } \
   FXbool cls::disableItem(FXTreeItem* item){ \
-    return FXRbCallBoolMethod(this,rb_intern("disableItem"),item); \
+    return FXRbCallBoolMethod(this,"disableItem",item); \
     }
 
 

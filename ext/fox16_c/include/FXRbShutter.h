@@ -57,7 +57,7 @@ inline void klass ## _setCurrent(klass* self,FXint panel){ \
 
 #define IMPLEMENT_FXSHUTTER_STUBS(cls) \
   void cls::setCurrent(FXint panel){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrent"),panel); \
+    FXRbCallVoidMethod(this,"setCurrent",panel); \
     }
 
 

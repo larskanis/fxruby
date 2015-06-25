@@ -35,7 +35,7 @@ inline void klass ## _drawshape(klass* self,FXGLViewer* viewer){ \
 
 #define IMPLEMENT_FXGLSHAPE_STUBS(klass,superklass) \
   void klass::drawshape(FXGLViewer* viewer){ \
-    FXRbCallVoidMethod(this,rb_intern("drawshape"),viewer); \
+    FXRbCallVoidMethod(this,"drawshape",viewer); \
     } \
   void klass::_drawshape(FXGLViewer* viewer){ \
     superklass::drawshape(viewer); \

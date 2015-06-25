@@ -41,13 +41,13 @@ inline bool klass ## _position(klass* self,FXlong p,FXWhence whence){ \
 
 #define IMPLEMENT_FXSTREAM_STUBS(cls) \
   bool cls::close(){ \
-    return FXRbCallBoolMethod(this,rb_intern("close")); \
+    return FXRbCallBoolMethod(this,"close"); \
     } \
   bool cls::flush(){ \
-    return FXRbCallBoolMethod(this,rb_intern("flush")); \
+    return FXRbCallBoolMethod(this,"flush"); \
     } \
   bool cls::position(FXlong p,FXWhence whence){ \
-    return FXRbCallBoolMethod(this,rb_intern("setPosition"),p,whence); \
+    return FXRbCallBoolMethod(this,"setPosition",p,whence); \
     }
 
 

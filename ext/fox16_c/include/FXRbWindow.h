@@ -125,97 +125,97 @@ inline void klass ## _dropDisable(klass* self){ \
 
 #define IMPLEMENT_FXWINDOW_STUBS(cls) \
   void cls::layout(){ \
-    FXRbCallVoidMethod(this,rb_intern("layout")); \
+    FXRbCallVoidMethod(this,"layout"); \
     } \
   FXint cls::getDefaultWidth(){ \
-    return FXRbCallIntMethod(this,rb_intern("getDefaultWidth")); \
+    return FXRbCallIntMethod(this,"getDefaultWidth"); \
     } \
   FXint cls::getDefaultHeight(){ \
-    return FXRbCallIntMethod(this,rb_intern("getDefaultHeight")); \
+    return FXRbCallIntMethod(this,"getDefaultHeight"); \
     } \
   FXint cls::getWidthForHeight(FXint givenheight){ \
-    return FXRbCallIntMethod(this,rb_intern("getWidthForHeight"),givenheight); \
+    return FXRbCallIntMethod(this,"getWidthForHeight",givenheight); \
     } \
   FXint cls::getHeightForWidth(FXint givenwidth){ \
-    return FXRbCallIntMethod(this,rb_intern("getHeightForWidth"),givenwidth); \
+    return FXRbCallIntMethod(this,"getHeightForWidth",givenwidth); \
     } \
   bool cls::canFocus() const { \
-    return FXRbCallBoolMethod(this,rb_intern("canFocus")); \
+    return FXRbCallBoolMethod(this,"canFocus"); \
     } \
   void cls::setFocus(){ \
-    FXRbCallVoidMethod(this,rb_intern("setFocus")); \
+    FXRbCallVoidMethod(this,"setFocus"); \
     } \
   void cls::killFocus(){ \
-    FXRbCallVoidMethod(this,rb_intern("killFocus")); \
+    FXRbCallVoidMethod(this,"killFocus"); \
     } \
   void cls::changeFocus(FXWindow* child){ \
-    if(!FXRbIsInGC(this)) FXRbCallVoidMethod(this,rb_intern("changeFocus"),child); \
+    if(!FXRbIsInGC(this)) FXRbCallVoidMethod(this,"changeFocus",child); \
     } \
   void cls::setDefault(FXbool enable){ \
-    FXRbCallVoidMethod(this,rb_intern("setDefault"),enable); \
+    FXRbCallVoidMethod(this,"setDefault",enable); \
     } \
   void cls::enable(){ \
-    FXRbCallVoidMethod(this,rb_intern("enable")); \
+    FXRbCallVoidMethod(this,"enable"); \
     } \
   void cls::disable(){ \
-    FXRbCallVoidMethod(this,rb_intern("disable")); \
+    FXRbCallVoidMethod(this,"disable"); \
     } \
   void cls::raise(){ \
-    FXRbCallVoidMethod(this,rb_intern("raiseWindow")); \
+    FXRbCallVoidMethod(this,"raiseWindow"); \
     } \
   void cls::lower(){ \
-    FXRbCallVoidMethod(this,rb_intern("lower")); \
+    FXRbCallVoidMethod(this,"lower"); \
     } \
   void cls::move(FXint x,FXint y){ \
-    FXRbCallVoidMethod(this,rb_intern("move"),x,y); \
+    FXRbCallVoidMethod(this,"move",x,y); \
     } \
   void cls::position(FXint x,FXint y,FXint w,FXint h){ \
-    FXRbCallVoidMethod(this,rb_intern("position"),x,y,w,h); \
+    FXRbCallVoidMethod(this,"position",x,y,w,h); \
     } \
   void cls::recalc(){ \
-    if(!FXRbIsInGC(this)) FXRbCallVoidMethod(this,rb_intern("recalc")); \
+    if(!FXRbIsInGC(this)) FXRbCallVoidMethod(this,"recalc"); \
     } \
   void cls::reparent(FXWindow* father,FXWindow* other){ \
-    FXRbCallVoidMethod(this,rb_intern("reparent"),father,other); \
+    FXRbCallVoidMethod(this,"reparent",father,other); \
     } \
   void cls::show(){ \
-    FXRbCallVoidMethod(this,rb_intern("show")); \
+    FXRbCallVoidMethod(this,"show"); \
     } \
   void cls::hide(){ \
-    FXRbCallVoidMethod(this,rb_intern("hide")); \
+    FXRbCallVoidMethod(this,"hide"); \
     } \
   bool cls::isComposite() const { \
-    return FXRbCallBoolMethod(this,rb_intern("isComposite")); \
+    return FXRbCallBoolMethod(this,"isComposite"); \
     } \
   bool cls::contains(FXint parentx,FXint parenty) const{ \
-    return FXRbCallBoolMethod(this,rb_intern("contains"),parentx,parenty); \
+    return FXRbCallBoolMethod(this,"contains",parentx,parenty); \
     } \
   bool cls::doesSaveUnder() const { \
-    return FXRbCallBoolMethod(this,rb_intern("doesSaveUnder")); \
+    return FXRbCallBoolMethod(this,"doesSaveUnder"); \
     } \
   void cls::setBackColor(FXColor clr) { \
-    FXRbCallVoidMethod(this,rb_intern("setBackColor"),clr); \
+    FXRbCallVoidMethod(this,"setBackColor",clr); \
     } \
   const FXchar* cls::tr(const FXchar* message,const FXchar* hint) const { \
-    return FXRbCallCStringMethod(this,rb_intern("tr"),message,hint); \
+    return FXRbCallCStringMethod(this,"tr",message,hint); \
     } \
   void cls::setShape(const FXRegion& region) { \
-    FXRbCallVoidMethod(this,rb_intern("setShape"),region); \
+    FXRbCallVoidMethod(this,"setShape",region); \
     } \
   void cls::setShape(FXBitmap* bitmap) { \
-    FXRbCallVoidMethod(this,rb_intern("setShape"),bitmap); \
+    FXRbCallVoidMethod(this,"setShape",bitmap); \
     } \
   void cls::setShape(FXIcon* icon) { \
-    FXRbCallVoidMethod(this,rb_intern("setShape"),icon); \
+    FXRbCallVoidMethod(this,"setShape",icon); \
     } \
   void cls::clearShape() { \
-    FXRbCallVoidMethod(this,rb_intern("clearShape")); \
+    FXRbCallVoidMethod(this,"clearShape"); \
     } \
   void cls::dropEnable() { \
-    FXRbCallVoidMethod(this,rb_intern("dropEnable")); \
+    FXRbCallVoidMethod(this,"dropEnable"); \
     } \
   void cls::dropDisable() { \
-    FXRbCallVoidMethod(this,rb_intern("dropDisable")); \
+    FXRbCallVoidMethod(this,"dropDisable"); \
     }
 
 class FXRbWindow : public FXWindow {

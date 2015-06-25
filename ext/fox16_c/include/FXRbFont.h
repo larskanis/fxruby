@@ -85,58 +85,58 @@ inline FXint klass ## _getTextHeight(const klass* self,const FXString& str){ \
 
 #define IMPLEMENT_FXFONT_STUBS(cls) \
   void cls::setFontDesc(const FXFontDesc& desc) { \
-    FXRbCallVoidMethod(this,rb_intern("setFontDesc"),desc); \
+    FXRbCallVoidMethod(this,"setFontDesc",desc); \
     } \
   void cls::setAngle(FXint ang) { \
-    FXRbCallVoidMethod(this,rb_intern("setAngle"),ang); \
+    FXRbCallVoidMethod(this,"setAngle",ang); \
     } \
   void cls::setFont(const FXString& string) { \
-    FXRbCallVoidMethod(this,rb_intern("setFont"),string); \
+    FXRbCallVoidMethod(this,"setFont",string); \
     } \
   FXbool cls::isFontMono() const { \
-    return FXRbCallBoolMethod(this,rb_intern("isFontMono")); \
+    return FXRbCallBoolMethod(this,"isFontMono"); \
     } \
   FXbool cls::hasChar(FXwchar ch) const { \
-    return FXRbCallBoolMethod(this,rb_intern("hasChar"),ch); \
+    return FXRbCallBoolMethod(this,"hasChar",ch); \
     } \
   FXwchar cls::getMinChar() const { \
-    return FXRbCallWCharMethod(this,rb_intern("getMinChar")); \
+    return FXRbCallWCharMethod(this,"getMinChar"); \
     } \
   FXwchar cls::getMaxChar() const { \
-    return FXRbCallWCharMethod(this,rb_intern("getMaxChar")); \
+    return FXRbCallWCharMethod(this,"getMaxChar"); \
     } \
   FXint cls::leftBearing(FXwchar ch) const { \
-    return FXRbCallIntMethod(this,rb_intern("leftBearing"),ch); \
+    return FXRbCallIntMethod(this,"leftBearing",ch); \
     } \
   FXint cls::rightBearing(FXwchar ch) const { \
-    return FXRbCallIntMethod(this,rb_intern("rightBearing"),ch); \
+    return FXRbCallIntMethod(this,"rightBearing",ch); \
     } \
   FXint cls::getFontWidth() const { \
-    return FXRbCallIntMethod(this,rb_intern("getFontWidth")); \
+    return FXRbCallIntMethod(this,"getFontWidth"); \
     } \
   FXint cls::getFontHeight() const { \
-    return FXRbCallIntMethod(this,rb_intern("getFontHeight")); \
+    return FXRbCallIntMethod(this,"getFontHeight"); \
     } \
   FXint cls::getFontAscent() const { \
-    return FXRbCallIntMethod(this,rb_intern("getFontAscent")); \
+    return FXRbCallIntMethod(this,"getFontAscent"); \
     } \
   FXint cls::getFontDescent() const { \
-    return FXRbCallIntMethod(this,rb_intern("getFontDescent")); \
+    return FXRbCallIntMethod(this,"getFontDescent"); \
     } \
   FXint cls::getFontLeading() const { \
-    return FXRbCallIntMethod(this,rb_intern("getFontLeading")); \
+    return FXRbCallIntMethod(this,"getFontLeading"); \
     } \
   FXint cls::getFontSpacing() const { \
-    return FXRbCallIntMethod(this,rb_intern("getFontSpacing")); \
+    return FXRbCallIntMethod(this,"getFontSpacing"); \
     } \
   FXint cls::getCharWidth(FXwchar ch) const { \
-    return FXRbCallIntMethod(this,rb_intern("getCharWidth"),ch); \
+    return FXRbCallIntMethod(this,"getCharWidth",ch); \
     } \
   FXint cls::getTextWidth(const FXString& str) const { \
-    return FXRbCallIntMethod(this,rb_intern("getTextWidth"),str); \
+    return FXRbCallIntMethod(this,"getTextWidth",str); \
     } \
   FXint cls::getTextHeight(const FXString& str) const { \
-    return FXRbCallIntMethod(this,rb_intern("getTextHeight"),str); \
+    return FXRbCallIntMethod(this,"getTextHeight",str); \
     }
 
 class FXRbFont : public FXFont {

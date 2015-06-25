@@ -35,7 +35,7 @@ inline void klass ## _setCurrent(klass* self,FXint panel,FXbool notify){ \
 
 #define IMPLEMENT_FXTABBAR_STUBS(cls) \
   void cls::setCurrent(FXint panel,FXbool notify){ \
-    FXRbCallVoidMethod(this,rb_intern("setCurrent"),panel,notify); \
+    FXRbCallVoidMethod(this,"setCurrent",panel,notify); \
     }
 
 
