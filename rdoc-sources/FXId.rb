@@ -30,5 +30,10 @@ module Fox
     # Destroy resource.
     #
     def destroy(); end
+
+    # Runs the specified block on the UI thread.
+    #
+    # The block is posted to the event queue of the UI thread.
+    def runOnUiThread(&block); end
   end
 end

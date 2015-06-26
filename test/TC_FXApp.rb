@@ -81,4 +81,39 @@ class TC_FXApp2 < Fox::TestCase
     pipe_rdwr = IO.popen("cat", "r+")
     check_events pipe_rdwr, pipe_rdwr
   end
+
+  def test_runOnUiThread
+    count = 0
+    thread = nil
+    Thread.new do
+      10.times do |idx|
+        app.runOnUiThread do
+          count += 1
+          thread = Thread.current
+          app.stop if idx == 9
+        end
+        sleep 0.001
+      end
+    end
+    app.run
+
+    assert_equal Thread.current, thread
+    assert_equal 10, count
+  end
+
+  def test_runOnUiThread_same_thread
+    count = 0
+    app.addTimeout(1) do
+      10.times do |idx|
+        app.runOnUiThread do
+          count += 1
+          app.stop if idx == 9
+        end
+        sleep 0.001
+      end
+    end
+    app.run
+
+    assert_equal 10, count
+  end
 end

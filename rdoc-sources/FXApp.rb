@@ -538,5 +538,10 @@ module Fox
 
     # Check to see if multithreaded applications are supported
     def threadsEnabled?(); end
+
+    # Runs the specified block on the UI thread.
+    #
+    # The block is posted to the event queue of the UI thread.
+    def runOnUiThread(&block); end
   end
 end
