@@ -7,9 +7,6 @@ class TC_FXApp < Test::Unit::TestCase
   include Fox
 
   def test_exception_for_second_app
-    app = FXApp.new
-    mainWindow = FXMainWindow.new(app, "")
-    app.create
     assert_raise RuntimeError do
       app2 = FXApp.new
     end

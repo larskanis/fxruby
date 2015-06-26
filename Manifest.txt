@@ -677,6 +677,7 @@ lib/fox16/scintilla.rb
 lib/fox16/settings.rb
 lib/fox16/signal.rb
 lib/fox16/splashscreen.rb
+lib/fox16/thread.rb
 lib/fox16/timeout.rb
 lib/fox16/tkcompat.rb
 lib/fox16/undolist.rb
