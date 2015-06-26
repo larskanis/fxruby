@@ -128,6 +128,7 @@ examples/textedit/commands.rb
 examples/textedit/helpwindow.rb
 examples/textedit/prefdialog.rb
 examples/textedit/textedit.rb
+examples/thread.rb
 examples/unicode.rb
 ext/fox16_c/FXRbApp.cpp
 ext/fox16_c/FXRbDataTarget.cpp
