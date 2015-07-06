@@ -111,6 +111,15 @@ FXuint FXRbApp::getSleepTime() const {
   }
 
 long FXRbApp::onChoreThreads(FXObject *obj,FXSelector sel,void *p){
+#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+#ifdef WIN32
+  ResetEvent(interrupt_event);
+#else
+  char byte;
+  // clear the pipe
+  read(interrupt_fds[0], &byte, 1);
+#endif
+#endif
   return FXRbApp_onChoreThreads(this, obj, sel, p);
   }
 
@@ -121,13 +130,6 @@ long FXRbApp_onChoreThreads_gvlcb(FXRbApp *self,FXObject *obj,FXSelector sel,voi
 // Process threads
 long FXRbApp::onChoreThreads_gvlcb(FXObject*,FXSelector,void*){
 #if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
-#ifdef WIN32
-  ResetEvent(interrupt_event);
-#else
-  char byte;
-  // clear the pipe
-  read(interrupt_fds[0], &byte, 1);
-#endif
 #else
   // Pause for 'sleepTime' millseconds
   struct timeval wait;
@@ -157,7 +159,7 @@ void fxrb_wakeup_fox(void *){
 #ifdef WIN32
   SetEvent(FXRbApp::interrupt_event);
 #else
-  int l = write(FXRbApp::interrupt_fds[1], "X", 1);
+  write(FXRbApp::interrupt_fds[1], "X", 1);
 #endif
   }
 #endif
