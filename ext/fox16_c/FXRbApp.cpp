@@ -36,7 +36,9 @@ extern "C" {
 #include <sys/time.h> /* For struct timeval */
 #endif
 
-#include <fcntl.h>
+#ifndef WIN32
+  #include <fcntl.h>
+#endif
 
 // Message map
 FXDEFMAP(FXRbApp) FXRbAppMap[]={
@@ -50,7 +52,11 @@ FXDEFMAP(FXRbApp) FXRbAppMap[]={
 // Class implementation
 FXRbIMPLEMENT(FXRbApp,FXApp,FXRbAppMap,ARRAYNUMBER(FXRbAppMap))
 
+#ifdef WIN32
+WSAEVENT FXRbApp::interrupt_event = NULL;
+#else
 int FXRbApp::interrupt_fds[2] = {-1, -1};
+#endif
 
 // Constructor
 FXRbApp::FXRbApp(const FXchar* appname,const FXchar* vendor) : FXApp(appname,vendor),m_bThreadsEnabled(FALSE),sleepTime(100){
@@ -74,8 +80,13 @@ void FXRbApp::setThreadsEnabled(FXbool enabled){
     if(!m_bThreadsEnabled){
       m_bThreadsEnabled=TRUE;
 #if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+#ifdef WIN32
+      interrupt_event = CreateEvent(NULL, TRUE, FALSE, NULL);
+      addInput(interrupt_event,INPUT_READ,this,ID_CHORE_THREADS);
+#else
       pipe2(interrupt_fds, O_NONBLOCK);
       addInput(interrupt_fds[0],INPUT_READ,this,ID_CHORE_THREADS);
+#endif
 #else
       addChore(this,ID_CHORE_THREADS);
 #endif
@@ -110,9 +121,13 @@ long FXRbApp_onChoreThreads_gvlcb(FXRbApp *self,FXObject *obj,FXSelector sel,voi
 // Process threads
 long FXRbApp::onChoreThreads_gvlcb(FXObject*,FXSelector,void*){
 #if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+#ifdef WIN32
+  ResetEvent(interrupt_event);
+#else
   char byte;
   // clear the pipe
   read(interrupt_fds[0], &byte, 1);
+#endif
 #else
   // Pause for 'sleepTime' millseconds
   struct timeval wait;
@@ -139,7 +154,11 @@ long FXRbApp::onChoreThreads_gvlcb(FXObject*,FXSelector,void*){
 
 #if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
 void fxrb_wakeup_fox(void *){
+#ifdef WIN32
+  SetEvent(FXRbApp::interrupt_event);
+#else
   int l = write(FXRbApp::interrupt_fds[1], "X", 1);
+#endif
   }
 #endif
 

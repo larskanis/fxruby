@@ -118,7 +118,11 @@ protected:
   FXbool m_bThreadsEnabled;
   FXuint sleepTime;
 public:
+#ifdef WIN32
+  static WSAEVENT interrupt_event;
+#else
   static int interrupt_fds[2];
+#endif
 protected:
   FXRbApp(){}
 public:
