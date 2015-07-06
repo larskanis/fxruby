@@ -36,19 +36,25 @@ extern "C" {
 #include <sys/time.h> /* For struct timeval */
 #endif
 
+#include <fcntl.h>
+
 // Message map
 FXDEFMAP(FXRbApp) FXRbAppMap[]={
+#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+  FXMAPFUNC(SEL_IO_READ,FXRbApp::ID_CHORE_THREADS,FXRbApp::onChoreThreads),
+#else
   FXMAPFUNC(SEL_CHORE,FXRbApp::ID_CHORE_THREADS,FXRbApp::onChoreThreads),
+#endif
   };
 
 // Class implementation
 FXRbIMPLEMENT(FXRbApp,FXApp,FXRbAppMap,ARRAYNUMBER(FXRbAppMap))
 
+int FXRbApp::interrupt_fds[2] = {-1, -1};
+
 // Constructor
-FXRbApp::FXRbApp(const FXchar* appname,const FXchar* vendor) : FXApp(appname,vendor),m_bThreadsEnabled(TRUE),sleepTime(100){
-  if(m_bThreadsEnabled){
-    addChore(this,ID_CHORE_THREADS);
-    }
+FXRbApp::FXRbApp(const FXchar* appname,const FXchar* vendor) : FXApp(appname,vendor),m_bThreadsEnabled(FALSE),sleepTime(100){
+  setThreadsEnabled(TRUE);
   }
 
 
@@ -67,7 +73,12 @@ void FXRbApp::setThreadsEnabled(FXbool enabled){
   if(enabled){
     if(!m_bThreadsEnabled){
       m_bThreadsEnabled=TRUE;
+#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+      pipe2(interrupt_fds, O_NONBLOCK);
+      addInput(interrupt_fds[0],INPUT_READ,this,ID_CHORE_THREADS);
+#else
       addChore(this,ID_CHORE_THREADS);
+#endif
       }
     }
   else{
@@ -88,9 +99,21 @@ FXuint FXRbApp::getSleepTime() const {
   return sleepTime;
   }
 
+long FXRbApp::onChoreThreads(FXObject *obj,FXSelector sel,void *p){
+  return FXRbApp_onChoreThreads(this, obj, sel, p);
+  }
+
+long FXRbApp_onChoreThreads_gvlcb(FXRbApp *self,FXObject *obj,FXSelector sel,void *p){
+  return self->onChoreThreads_gvlcb(obj, sel, p);
+  }
 
 // Process threads
-long FXRbApp::onChoreThreads(FXObject*,FXSelector,void*){
+long FXRbApp::onChoreThreads_gvlcb(FXObject*,FXSelector,void*){
+#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+  char byte;
+  // clear the pipe
+  read(interrupt_fds[0], &byte, 1);
+#else
   // Pause for 'sleepTime' millseconds
   struct timeval wait;
   wait.tv_sec=0;
@@ -108,11 +131,17 @@ long FXRbApp::onChoreThreads(FXObject*,FXSelector,void*){
 
   // Re-register this chore for next time
   addChore(this,ID_CHORE_THREADS);
+#endif
 
   // Back to work...
   return 1;
   }
 
+#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+void fxrb_wakeup_fox(void *){
+  int l = write(FXRbApp::interrupt_fds[1], "X", 1);
+  }
+#endif
 
 // Destructor
 FXRbApp::~FXRbApp(){

@@ -38,6 +38,9 @@ inline void cls ## _detach(cls *self){ \
 inline void cls ## _create(cls *self){ \
   self->cls::create(); \
   } \
+inline FXint cls ## _run_gvl(cls *self){ \
+  return self->cls::run(); \
+  } \
 static void cls ## _init(cls* self,VALUE ary,bool connect){ \
   int i; \
   char **argv; \
@@ -114,6 +117,8 @@ class FXRbApp : public FXApp {
 protected:
   FXbool m_bThreadsEnabled;
   FXuint sleepTime;
+public:
+  static int interrupt_fds[2];
 protected:
   FXRbApp(){}
 public:
@@ -126,6 +131,7 @@ public:
     };
 public:
   long onChoreThreads(FXObject*,FXSelector,void*);
+  long onChoreThreads_gvlcb(FXObject*,FXSelector,void*);
 public:
   // Constructor
   FXRbApp(const FXchar* name,const FXchar* vendor);
@@ -151,5 +157,7 @@ public:
   // Destructor
   virtual ~FXRbApp();
   };
+
+long FXRbApp_onChoreThreads_gvlcb(FXRbApp*,FXObject*,FXSelector,void*);
 
 #endif

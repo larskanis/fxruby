@@ -31,6 +31,8 @@
   /// Detach application's windows
   virtual void detach();
 
+  FXint run();
+
   /**
    * Initialize application.
    * Parses and removes common command line arguments, reads the registry.

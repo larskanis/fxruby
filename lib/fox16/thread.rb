@@ -24,6 +24,7 @@ module Fox
         gs = TCPServer.open('localhost', 0)
         prd = TCPSocket.open('localhost', gs.addr[1])
         pwr = gs.accept
+        gs.close
       else
         prd, pwr = IO.pipe
       end

@@ -26,6 +26,8 @@ extern "C" {
   #endif
 }
 
+void fxrb_wakeup_fox(void *);
+
 #define DEFINE_PARAM_LIST1(type, ref, name) \
   , name
 
@@ -71,7 +73,7 @@ extern __thread int g_fxrb_thread_has_gvl;
       struct gvl_wrapper_##klass##_##name##_params params = { \
         {firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST1)}, when_non_void((rettype)0) \
       }; \
-      rb_thread_call_without_gvl(gvl_##klass##_##name##_skeleton, &params, RUBY_UBF_IO, 0); \
+      rb_thread_call_without_gvl(gvl_##klass##_##name##_skeleton, &params, fxrb_wakeup_fox, 0); \
       when_non_void( return params.retval; ) \
     }
 #else
@@ -147,6 +149,11 @@ extern __thread int g_fxrb_thread_has_gvl;
 #define FOR_EACH_PARAM_OF_FXImage_savePixels(param) \
   param(FXStream, &, store)
 
+#define FOR_EACH_PARAM_OF_FXDialogBox_execute(param) \
+  param(FXuint, , placement)
+
+#define FOR_EACH_PARAM_OF_FXApp_run(param)
+
 /* function( class, name, baseclass, void_or_nonvoid, returntype, firstparamtype, firstparamname ) */
 #define FOR_EACH_BLOCKING_FUNCTION(function) \
   function(FXImage, loadPixels, FXImage, GVL_TYPE_NONVOID, bool, FXImage *, self) \
@@ -200,7 +207,22 @@ extern __thread int g_fxrb_thread_has_gvl;
   function(FXXBMIcon, loadPixels, FXImage, GVL_TYPE_NONVOID, bool, FXXBMIcon *, self) \
   function(FXXBMIcon, savePixels, FXImage, GVL_TYPE_NONVOID, bool, const FXXBMIcon *, self) \
   function(FXXPMIcon, loadPixels, FXImage, GVL_TYPE_NONVOID, bool, FXXPMIcon *, self) \
-  function(FXXPMIcon, savePixels, FXImage, GVL_TYPE_NONVOID, bool, const FXXPMIcon *, self)
+  function(FXXPMIcon, savePixels, FXImage, GVL_TYPE_NONVOID, bool, const FXXPMIcon *, self) \
+  function(FXChoiceBox, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXChoiceBox *, self) \
+  function(FXColorDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXColorDialog *, self) \
+  function(FXDialogBox, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXDialogBox *, self) \
+  function(FXDirDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXDirDialog *, self) \
+  function(FXFileDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXFileDialog *, self) \
+  function(FXFontDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXFontDialog *, self) \
+  function(FXInputDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXInputDialog *, self) \
+  function(FXMessageBox, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXMessageBox *, self) \
+  function(FXPrintDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXPrintDialog *, self) \
+  function(FXProgressDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXProgressDialog *, self) \
+  function(FXReplaceDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXReplaceDialog *, self) \
+  function(FXSearchDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXSearchDialog *, self) \
+  function(FXWizard, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXWizard *, self) \
+  function(FXApp, run, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+
 
 
 FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
@@ -470,6 +492,11 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   param(TYPE1, , arg1) \
   param(TYPE2, , arg2)
 
+#define FOR_EACH_PARAM_OF_FXRbApp_onChoreThreads_4(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2)
+
 
 /* function( name, void_or_nonvoid, returntype, firstparamtype, firstparamname, paramcount ) */
 #define FOR_EACH_CALLBACK_FUNCTION(function) \
@@ -524,6 +551,7 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   function(FXRbCallDCDrawMethod, GVL_TYPE_VOID, void, RECV, recv, 6) \
   function(FXRbCallTreeItemMethod, GVL_TYPE_NONVOID, FXTreeItem*, RECV, recv, 4) \
   function(FXRbCallFoldingItemMethod, GVL_TYPE_NONVOID, FXFoldingItem*, RECV, recv, 4) \
+  function(FXRbApp_onChoreThreads, GVL_TYPE_NONVOID, long, RECV, recv, 4) \
 
 
 FOR_EACH_CALLBACK_FUNCTION( DEFINE_GVLCB_STUB_DECL )

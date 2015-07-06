@@ -28,7 +28,7 @@
 #define FXRBDIALOGBOX_H
 
 #define DECLARE_FXDIALOGBOX_STUBS(klass) \
-inline FXuint klass ## _execute(klass* self,FXuint placement){ \
+inline FXuint klass ## _execute_gvl(klass* self,FXuint placement){ \
   return self->klass::execute(placement); \
   }
 

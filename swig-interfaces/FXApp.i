@@ -398,12 +398,6 @@ public:
   bool runOneEvent(bool blocking=true);
 
   /**
-  * Run the main application event loop until stop() is called,
-  * and return the exit code passed as argument to stop().
-  */
-  FXint run();
-
-  /**
   * Run an event loop till some flag becomes non-zero, and
   * then return.
   */
