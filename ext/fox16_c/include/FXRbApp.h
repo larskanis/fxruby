@@ -41,6 +41,30 @@ inline void cls ## _create(cls *self){ \
 inline FXint cls ## _run_gvl(cls *self){ \
   return self->cls::run(); \
   } \
+inline FXint cls ## _runOneEvent_gvl(cls *self, bool blocking=true){ \
+  return self->cls::runOneEvent(blocking); \
+  } \
+inline FXint cls ## _runUntil_gvl(cls *self, FXuint& condition){ \
+  return self->cls::runUntil(condition); \
+  } \
+inline FXint cls ## _runWhileEvents_gvl(cls *self){ \
+  return self->cls::runWhileEvents(); \
+  } \
+inline FXint cls ## _runModalWhileEvents_gvl(cls *self, FXWindow* window=NULL){ \
+  return self->cls::runModalWhileEvents(window); \
+  } \
+inline FXint cls ## _runModal_gvl(cls *self){ \
+  return self->cls::runModal(); \
+  } \
+inline FXint cls ## _runModalFor_gvl(cls *self, FXWindow* window){ \
+  return self->cls::runModalFor(window); \
+  } \
+inline FXint cls ## _runModalWhileShown_gvl(cls *self, FXWindow* window){ \
+  return self->cls::runModalWhileShown(window); \
+  } \
+inline FXint cls ## _runPopup_gvl(cls *self, FXWindow* owner){ \
+  return self->cls::runPopup(owner); \
+  } \
 static void cls ## _init(cls* self,VALUE ary,bool connect){ \
   int i; \
   char **argv; \
@@ -64,7 +88,6 @@ static void cls ## _init(cls* self,VALUE ary,bool connect){ \
 inline void cls ## _exit(cls *self,FXint code){ \
   self->cls::exit(code); \
   }
-
 
 /**
  * For C/C++ applications, the argument count (argc) will always be at least

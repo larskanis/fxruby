@@ -31,7 +31,61 @@
   /// Detach application's windows
   virtual void detach();
 
+  /**
+  * Run the main application event loop until stop() is called,
+  * and return the exit code passed as argument to stop().
+  */
   FXint run();
+
+  /// Perform one event dispatch; return true if event was dispatched
+  bool runOneEvent(bool blocking=true);
+
+  /**
+  * Run an event loop till some flag becomes non-zero, and
+  * then return.
+  */
+  FXint runUntil(FXuint& condition); // FIXME
+
+  /**
+  * Run event loop while events are available, non-modally.
+  * Return when no more events, timers, or chores are outstanding.
+  */
+  FXint runWhileEvents();
+
+  /**
+  * Run event loop while there are events are available in the queue.
+  * Returns 1 when all events in the queue have been handled, and 0 when
+  * the event loop was terminated due to stop() or stopModal().
+  * Except for the modal window and its children, user input to all windows
+  * is blocked; if the modal window is NULL, all user input is blocked.
+  */
+  FXint runModalWhileEvents(FXWindow* window=NULL);
+
+  /**
+  * Run modal event loop, blocking keyboard and mouse events to all windows
+  * until stopModal is called.
+  */
+  FXint runModal();
+
+  /**
+  * Run a modal event loop for the given window, until stop() or stopModal() is
+  * called. Except for the modal window and its children, user input to all
+  * windows is blocked; if the modal window is NULL all user input is blocked.
+  */
+  FXint runModalFor(FXWindow* window);
+
+  /**
+  * Run modal while window is shown, or until stop() or stopModal() is called.
+  * Except for the modal window and its children, user input to all windows
+  * is blocked; if the modal window is NULL all user input is blocked.
+  */
+  FXint runModalWhileShown(FXWindow* window);
+
+  /**
+  * Run popup menu while shown, until stop() or stopModal() is called.
+  * Also returns when entering previous cascading popup menu.
+  */
+  FXint runPopup(FXWindow* owner);
 
   /**
    * Initialize application.

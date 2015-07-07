@@ -154,6 +154,30 @@ extern __thread int g_fxrb_thread_has_gvl;
 
 #define FOR_EACH_PARAM_OF_FXApp_run(param)
 
+#define FOR_EACH_PARAM_OF_FXApp_runOneEvent(param) \
+  param(bool, , blocking)
+
+#define FOR_EACH_PARAM_OF_FXApp_runUntil(param) \
+  param(FXuint, &, condition)
+
+#define FOR_EACH_PARAM_OF_FXApp_runWhileEvents(param)
+
+#define FOR_EACH_PARAM_OF_FXApp_runModalWhileEvents(param) \
+  param(FXWindow*, , window)
+
+#define FOR_EACH_PARAM_OF_FXApp_runModal(param)
+
+#define FOR_EACH_PARAM_OF_FXApp_runModalFor(param) \
+  param(FXWindow*, , window)
+
+#define FOR_EACH_PARAM_OF_FXApp_runModalWhileShown(param) \
+  param(FXWindow*, , window)
+
+#define FOR_EACH_PARAM_OF_FXApp_runPopup(param) \
+  param(FXWindow*, , owner)
+
+
+
 /* function( class, name, baseclass, void_or_nonvoid, returntype, firstparamtype, firstparamname ) */
 #define FOR_EACH_BLOCKING_FUNCTION(function) \
   function(FXImage, loadPixels, FXImage, GVL_TYPE_NONVOID, bool, FXImage *, self) \
@@ -222,6 +246,14 @@ extern __thread int g_fxrb_thread_has_gvl;
   function(FXSearchDialog, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXSearchDialog *, self) \
   function(FXWizard, execute, FXDialogBox, GVL_TYPE_NONVOID, FXuint, FXWizard *, self) \
   function(FXApp, run, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+  function(FXApp, runOneEvent, FXApp, GVL_TYPE_NONVOID, bool, FXApp *, self) \
+  function(FXApp, runUntil, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+  function(FXApp, runWhileEvents, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+  function(FXApp, runModalWhileEvents, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+  function(FXApp, runModal, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+  function(FXApp, runModalFor, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+  function(FXApp, runModalWhileShown, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
+  function(FXApp, runPopup, FXApp, GVL_TYPE_NONVOID, FXint, FXApp *, self) \
 
 
 
