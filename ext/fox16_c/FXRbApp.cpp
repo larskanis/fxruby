@@ -94,7 +94,18 @@ void FXRbApp::setThreadsEnabled(FXbool enabled){
     }
   else{
     m_bThreadsEnabled=FALSE;
+#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+#ifdef WIN32
+    removeInput(interrupt_event,INPUT_READ);
+    CloseHandle(interrupt_event); interrupt_event = NULL;
+#else
+    removeInput(interrupt_fds[0],INPUT_READ);
+    close(interrupt_fds[0]); interrupt_fds[0] = -1;
+    close(interrupt_fds[1]); interrupt_fds[1] = -1;
+#endif
+#else
     removeChore(this,ID_CHORE_THREADS);
+#endif
     }
   }
 
@@ -168,6 +179,7 @@ void fxrb_wakeup_fox(void *){
 FXRbApp::~FXRbApp(){
   FXTRACE((100,"FXRbApp::~FXRbApp()\n"));
   VALUE myRegistry;
+  setThreadsEnabled(FALSE);
   FXRbDestroyAppSensitiveObjects();
   myRegistry=FXRbGetRubyObj(&(reg()),true);
   if(!NIL_P(myRegistry)){
