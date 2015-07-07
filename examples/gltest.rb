@@ -312,13 +312,6 @@ if __FILE__ == $0
   # Construct the application
   application = FXApp.new("GLTest", "FoxTest")
 
-  # To ensure that the chores-based spin will run as fast as possible,
-  # we can disable the chore in FXRuby's event loop that tries to schedule
-  # other threads. This is OK for this program because there aren't any
-  # other Ruby threads running.
-
-  application.disableThreads
-
   # Construct the main window
   GLTestWindow.new(application)
 
