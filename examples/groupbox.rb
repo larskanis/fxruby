@@ -361,12 +361,14 @@ class GroupWindow < FXMainWindow
     show(PLACEMENT_SCREEN)
 
     # Create a thread to update the clock
-    @clockThread = Thread.new(@clockLabel) { |clockLabel|
+    @clockThread = Thread.new(@clockLabel) do |clockLabel|
       while true
-        clockLabel.text = Time.now.strftime("%I:%M:%S %p")
+        runOnUiThread do
+          clockLabel.text = Time.now.strftime("%I:%M:%S %p")
+        end
         sleep(1)
       end
-    }
+    end
   end
 end
 
