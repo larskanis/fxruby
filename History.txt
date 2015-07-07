@@ -1,3 +1,14 @@
+=== 1.6.30 / 2015-07-07
+
+* Fix crashes in rb_gc_mark(): 0x00000003f54af8 is T_ZOMBIE / T_NONE
+* Release Ruby's GVL while calls to FXImage#savePixels, #loadPixels
+  and FXApp#run* methods.
+* Add a working version for FXApp#addInput event handling on Windows.
+  This works for sockets only for now.
+* Add FXApp#runOnUiThread and FXId#runOnUiThread .
+  This allows to safely execute GUI code from other threads.
+* Use rake-compiler-dock for building windows binary gems.
+
 === 1.6.29 / 2015-02-17
 
 * Add Windows binaries for Ruby-2.1 and 2.2.
