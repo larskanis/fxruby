@@ -85,7 +85,8 @@ void FXRbApp::setThreadsEnabled(FXbool enabled){
       interrupt_event = CreateEvent(NULL, TRUE, FALSE, NULL);
       addInput(interrupt_event,INPUT_READ,this,ID_CHORE_THREADS);
 #else
-      pipe2(interrupt_fds, O_NONBLOCK);
+      pipe(interrupt_fds);
+      fcntl(interrupt_fds[0], F_SETFL, O_NONBLOCK);
       addInput(interrupt_fds[0],INPUT_READ,this,ID_CHORE_THREADS);
 #endif
 #else
