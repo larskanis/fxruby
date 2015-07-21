@@ -37,6 +37,7 @@ extern "C" {
 #endif
 
 #ifndef WIN32
+  #include <unistd.h>
   #include <fcntl.h>
 #endif
 
