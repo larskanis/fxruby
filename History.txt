@@ -1,6 +1,8 @@
 === 1.6.32 / unreleased
 
 * Avoid call to rb_class2name() during GC. Fixes #21
+* Use release mode, unless extconf.rb is called with --enable-debug,
+  so that all FXTRACE() and FXASSERT() calls are skiped, per default.
 
 === 1.6.31 / 2015-07-21
 

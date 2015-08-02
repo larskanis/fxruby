@@ -230,6 +230,7 @@ def do_rake_compiler_setup
         "--without-x",
         "--enable-shared",
         "--disable-static",
+        enable_config("debug") ? "--enable-debug" : "--enable-release",
         ]
       class << recipe
         def compile
@@ -388,6 +389,10 @@ unless enable_config("win32-cross")
   unless fxscintilla_support_suppressed?
     find_installed_fxscintilla_version
   end
+end
+
+unless enable_config("debug")
+  $CPPFLAGS += " -DNDEBUG"
 end
 
 # Platform-specific modifications
