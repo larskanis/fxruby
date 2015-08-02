@@ -67,12 +67,12 @@ class TC_FXTreeList < Fox::TestCase
     @treeList.connect(SEL_INSERTED) { |sender, sel, ptr|
       anItem = ptr
     }
-    theItem = @treeList.appendItem(nil, "", nil, nil, nil, true)
+    theItem = @treeList.appendItem(nil, FXTreeItem.new(""), true)
     assert_same(theItem, anItem)
   end
 
   def test_SEL_DELETED
-    theItem = @treeList.appendItem(nil, "")
+    theItem = @treeList.appendItem(nil, FXTreeItem.new(""))
     anItem = nil
     @treeList.connect(SEL_DELETED) { |sender, sel, ptr|
       anItem = ptr
