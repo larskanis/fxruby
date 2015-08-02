@@ -1,3 +1,7 @@
+=== 1.6.32 / unreleased
+
+* Avoid call to rb_class2name() during GC. Fixes #21
+
 === 1.6.31 / 2015-07-21
 
 * Replace pipe2() by pipe() and fcntl(), because pipe2() is not as portable.

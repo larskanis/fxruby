@@ -83,6 +83,17 @@ swig_type_info *FXRbTypeQuery(const char *desc){
 
 static st_table * FXRuby_Objects;
 
+static const char * const safe_rb_obj_classname(VALUE obj)
+{
+  if( rb_during_gc() ){
+    /* It's not safe to call rb_obj_classname() during GC.
+     * Return dummy value in this case. */
+    return "during GC";
+  } else {
+    return rb_obj_classname(obj);
+  }
+}
+
 /**
  * Each value in the FXRuby_Objects hash table is an instance of this
  * struct. It identifies the Ruby instance associated with a C++ object.
@@ -115,7 +126,7 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
     FXRubyObjDesc *desc;
     if(FXMALLOC(&desc,FXRubyObjDesc,1)){
       obj=SWIG_Ruby_NewPointerObj(ptr,ty,1);
-      FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,rb_obj_classname(obj)));
+      FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,safe_rb_obj_classname(obj)));
       desc->obj=obj;
       desc->borrowed=true;
       desc->in_gc=false;
@@ -267,7 +278,7 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
   FXASSERT(!NIL_P(rubyObj));
   FXASSERT(foxObj!=0);
   FXRubyObjDesc* desc;
-  FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)rubyObj,rb_obj_classname(rubyObj),foxObj));
+  FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)rubyObj,safe_rb_obj_classname(rubyObj),foxObj));
   if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
     FXASSERT(desc->borrowed);
     /* There is already a Ruby object registered for this foxObj.
@@ -308,7 +319,7 @@ void FXRbUnregisterRubyObj2(const void* foxObj, bool alsoOwned){
     FXRubyObjDesc* desc;
     if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
       if( !alsoOwned && !desc->borrowed ) return;
-      FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)desc->obj,rb_obj_classname(desc->obj),foxObj));
+      FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)desc->obj,safe_rb_obj_classname(desc->obj),foxObj));
       DATA_PTR(desc->obj)=0;
       FXFREE(&desc);
       st_delete(FXRuby_Objects,reinterpret_cast<st_data_t *>(const_cast<void**>(&foxObj)),reinterpret_cast<st_data_t *>(0));
@@ -356,7 +367,7 @@ VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed){
   if(foxObj!=0 && st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
     FXASSERT(desc!=0);
     if(alsoBorrowed || !desc->borrowed){
-      FXTRACE((2,"FXRbGetRubyObj(foxObj=%p) => rubyObj=%p (%s)\n",foxObj,(void *)desc->obj,rb_obj_classname(desc->obj)));
+      FXTRACE((2,"FXRbGetRubyObj(foxObj=%p) => rubyObj=%p (%s)\n",foxObj,(void *)desc->obj,safe_rb_obj_classname(desc->obj)));
       return desc->obj;
       }
     }
