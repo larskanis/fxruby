@@ -98,19 +98,33 @@ Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
 
   # Add dependent DLLs to the cross gems
   ext.cross_compiling do |spec|
-    plat = spec.platform
-    dlls = Dir["tmp/#{plat}/#{ext.name}/*/*.dll"].map{|dll| File.basename(dll) }.uniq
-    spec.files += dlls.map{|dll| "lib/#{plat}/#{dll}" }
+    platform_host_map =  {
+      'x86-mingw32' => ['i586-mingw32msvc', 'i686-w64-mingw32'],
+      'x64-mingw32' => ['x86_64-w64-mingw32'],
+    }
 
-    directory "tmp/#{plat}/stage/lib/#{plat}/"
-    dlls.each do |dll|
-      ENV['RUBY_CC_VERSION'].to_s.split(':').last.tap do |ruby_version|
-        file "tmp/#{plat}/stage/lib/#{plat}/#{dll}" => ["tmp/#{plat}/stage/lib/#{plat}/", "tmp/#{plat}/#{ext.name}/#{ruby_version}/#{dll}"] do
-          cp "tmp/#{plat}/#{ext.name}/#{ruby_version}/#{dll}", "tmp/#{plat}/stage/lib/#{plat}"
-          sh "x86_64-w64-mingw32-strip", "tmp/#{plat}/stage/lib/#{plat}/#{dll}"
+    gemplat = spec.platform.to_s
+    platform_host_map[gemplat].each do |host|
+
+      gcc_shared_dlls = %w[libwinpthread-1.dll libgcc_s_dw2-1.dll libgcc_s_sjlj-1.dll libgcc_s_seh-1.dll libstdc++-6.dll]
+
+      dlls = gcc_shared_dlls.select{|dll| File.exist?("ports/#{host}/bin/#{dll}") }
+      dlls += [
+          "libfxscintilla-20.dll",
+          "libFOX-1.6-0.dll",
+          "libjpeg-8.dll",
+          "libpng15-15.dll",
+          "libtiff-5.dll",
+          "zlib1.dll",
+      ]
+
+      spec.files += dlls.map{|dll| "ports/#{host}/bin/#{dll}" }
+
+      dlls.each do |dll|
+        task "ports/#{host}/bin/#{dll}" do |t|
+          sh "x86_64-w64-mingw32-strip", t.name
         end
       end
-      file "lib/#{plat}/#{dll}" => "tmp/#{plat}/stage/lib/#{plat}/#{dll}"
     end
   end
 end
