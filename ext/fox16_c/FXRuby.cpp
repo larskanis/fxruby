@@ -161,25 +161,6 @@ bool FXRbIsBorrowed(void* ptr){
     }
   }
 
-bool FXRbSetInGC(const void* ptr, bool enabled){
-  FXASSERT(ptr!=0);
-  FXRubyObjDesc *desc;
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
-    desc->in_gc=enabled;
-    return enabled;
-    }
-  return false;
-  }
-
-bool FXRbIsInGC(const void* ptr){
-  FXASSERT(ptr!=0);
-  FXRubyObjDesc *desc;
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
-    return desc->in_gc;
-    }
-  return false;
-  }
-
 
 /**
  * FXRbConvertPtr() is just a wrapper around SWIG_ConvertPtr().
@@ -1446,7 +1427,6 @@ void FXRbRange2LoHi(VALUE range,FXdouble& lo,FXdouble& hi){
 void FXRbCallVoidMethod_gvlcb(FXObject* recv, const char *func) {
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  FXASSERT(!FXRbIsInGC(recv));
   rb_funcall(obj,rb_intern(func),0,NULL);
   }
 
@@ -1653,7 +1633,7 @@ void FXRbCallDCDrawMethod_gvlcb(FXDC* recv, const char * func, FXint x,FXint y,c
 FXRbMenuCommand::~FXRbMenuCommand(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey && !FXRbIsInGC(this)){
+  if(acckey && !rb_during_gc()){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
@@ -1669,7 +1649,7 @@ FXRbMenuCommand::~FXRbMenuCommand(){
 FXRbMenuCheck::~FXRbMenuCheck(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey && !FXRbIsInGC(this)){
+  if(acckey && !rb_during_gc()){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
@@ -1685,7 +1665,7 @@ FXRbMenuCheck::~FXRbMenuCheck(){
 FXRbMenuRadio::~FXRbMenuRadio(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey && !FXRbIsInGC(this)){
+  if(acckey && !rb_during_gc()){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
