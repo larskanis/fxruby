@@ -4,6 +4,8 @@ require 'erb'
 require 'rake/extensiontask'
 require './lib/fox16/version.rb'
 
+Hoe.plugin :bundler
+
 # Use forked process for chdir'ed environment, to allow parallel execution with drake
 module FileUtils
   alias unforked_fileutils_cd cd
@@ -59,10 +61,16 @@ hoe = Hoe.spec "fxruby" do
     :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
   }
   self.test_globs = ["test/**/TC_*.rb"]
+  self.testlib = :testunit
   self.version = PKG_VERSION
   self.readme_file = 'README.rdoc'
   self.extra_rdoc_files << self.readme_file
   self.extra_deps << ['mini_portile', '~> 0.6']
+  self.extra_dev_deps << ['rake-compiler', '~> 0.9']
+  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.4.3']
+  self.extra_dev_deps << ['opengl', '~> 0.8']
+  self.extra_dev_deps << ['glu', '~> 8.0']
+  self.extra_dev_deps << ['test-unit', '~> 3.1']
 
   spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
   spec_extras[:files] += SWIG_MODULES.values.map{|f| File.join("ext/fox16_c", f) }
