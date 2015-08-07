@@ -71,6 +71,7 @@ hoe = Hoe.spec "fxruby" do
   self.extra_dev_deps << ['opengl', '~> 0.8']
   self.extra_dev_deps << ['glu', '~> 8.0']
   self.extra_dev_deps << ['test-unit', '~> 3.1']
+  self.license 'LGPL'
 
   spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
   spec_extras[:files] += SWIG_MODULES.values.map{|f| File.join("ext/fox16_c", f) }
