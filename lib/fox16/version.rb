@@ -1,5 +1,5 @@
 module Fox
   def Fox.fxrubyversion
-    "1.6.32.pre2"
+    "1.6.32"
   end
 end
