@@ -3,6 +3,8 @@
 * Avoid call to rb_class2name() during GC. Fixes #21
 * Use release mode, unless extconf.rb is called with --enable-debug,
   so that all FXTRACE() and FXASSERT() calls are skiped, per default.
+* Remove self made GC detection by ruby's rb_during_gc().
+* Fix Windows binary x86-mingw32.gem for Ruby versions < 2.0
 
 === 1.6.31 / 2015-07-21
 

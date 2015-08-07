@@ -53,19 +53,6 @@ void FXRbObject::markfunc(FXObject* obj){
   FXTRACE((100,"%s::markfunc(%p)\n",obj?obj->getClassName():"FXRbObject",obj));
   }
 
-static void FXRbSetInGCParentsRecursive(FXWindow *window, bool enabled){
-  FXRbSetInGC( window, true );
-  if(window->getParent()) FXRbSetInGCParentsRecursive( window->getParent(), enabled );
-  }
-
-static void FXRbSetInGCChildrenRecursive(FXWindow *window, bool enabled){
-  FXRbSetInGC( window, true );
-  for(FXWindow* child=window->getFirst(); child; child=child->getNext()){
-    FXRbSetInGCChildrenRecursive( child, enabled );
-    }
-  }
-
-
 void FXRbObject::freefunc(FXObject* self){
   if(self!=0){
     // Unregister, but don't destroy, borrowed references
@@ -78,17 +65,6 @@ void FXRbObject::freefunc(FXObject* self){
     FXASSERT(classname!=0);
     FXASSERT(strlen(classname)>3);
     if(classname[0]=='F' && classname[1]=='X' && classname[2]=='R' && classname[3]=='b'){
-      // FXWindow destructor calls recalc() and changeFocus() of it's parent window.
-      // Since these methods are routed back to Ruby code, but calling Ruby code from
-      // GC isn't a good idea, we mark the parent window as "in_gc", so that it will
-      // ignore recalc() and changeFocus() calls completely.
-      // The parent window should also be scheduled to be free'd. In the other case,
-      // the child window would have been marked as used.
-      if(self->isMemberOf(FXMETACLASS(FXWindow))){
-        FXWindow *window = dynamic_cast<FXWindow*>(self);
-        FXRbSetInGCParentsRecursive( window, true );
-        FXRbSetInGCChildrenRecursive( window, true );
-        }
       delete self;
       }
     else{
