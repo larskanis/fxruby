@@ -356,23 +356,21 @@ VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed){
 VALUE FXRbGetRubyObj(const void *foxObj,swig_type_info* ty){
   if(foxObj!=0){
     VALUE rbObj=FXRbGetRubyObj(foxObj,true);
-    return NIL_P(rbObj) ? FXRbNewPointerObj(const_cast<void*>(foxObj),ty) : rbObj;
+    if( NIL_P(rbObj) ){
+      return FXRbNewPointerObj(const_cast<void*>(foxObj),ty);
+    }else{
+      // The requested type should match the registered class.
+      FXASSERT(SWIG_CheckConvert(rbObj, ty));
+      return rbObj;
     }
-  else{
+  }else{
     return Qnil;
-    }
   }
+}
 
 VALUE FXRbGetRubyObj(const void *foxObj,const char *type){
-  if(foxObj!=0){
-    FXASSERT(type!=0);
-    VALUE rbObj=FXRbGetRubyObj(foxObj,true);
-    return NIL_P(rbObj) ? FXRbNewPointerObj(const_cast<void*>(foxObj),FXRbTypeQuery(type)) : rbObj;
-    }
-  else{
-    return Qnil;
-    }
-  }
+  return FXRbGetRubyObj(foxObj, FXRbTypeQuery(type));
+}
 
 /**
  * Look up the Ruby instance associated with this C++ object, if any, and mark
