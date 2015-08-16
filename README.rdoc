@@ -1,7 +1,8 @@
 = FXRuby
 
-* http://github.com/larskanis/fxruby
-* API: http://rubydoc.info/gems/fxruby/frames
+* Github: http://github.com/larskanis/fxruby
+* Full API-description: http://rubydoc.info/gems/fxruby/frames
+* Latest fxruby {<img src="https://badge.fury.io/rb/fxruby.svg" alt="Gem Version" />}[http://badge.fury.io/rb/fxruby]
 
 == DESCRIPTION:
 
