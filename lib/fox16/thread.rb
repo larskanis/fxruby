@@ -13,7 +13,7 @@ module Fox
 
     def runOnUiThread(&block)
       @event_handler_events << block
-      @event_handler_pwr.write 'e' if @event_handler_pwr
+      @event_handler_pwr.write 'e'
     end
 
     private
@@ -34,7 +34,7 @@ module Fox
     end
 
     def event_handler_pull(prd)
-      prd.read(1) if prd
+      prd.read(1)
       while !@event_handler_events.empty?
         ev = @event_handler_events.shift
         ev.call
