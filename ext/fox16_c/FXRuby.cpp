@@ -99,15 +99,11 @@ static const char * const safe_rb_obj_classname(VALUE obj)
  * struct. It identifies the Ruby instance associated with a C++ object.
  * It also indicates whether this is merely a "borrowed" reference to
  * some C++ object (i.e. it's not one we need to destroy later).
- *
- * in_gc is set for FXWindows that are in garbage collection and must
- * not call ruby code anymore.
  */
 
 struct FXRubyObjDesc {
   VALUE obj;
   bool borrowed;
-  bool in_gc;
   };
 
 
@@ -129,7 +125,6 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
       FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,safe_rb_obj_classname(obj)));
       desc->obj=obj;
       desc->borrowed=true;
-      desc->in_gc=false;
       int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
       FXASSERT(!overwritten);
       return obj;
@@ -277,7 +272,6 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
     if(FXMALLOC(&desc,FXRubyObjDesc,1)){
       desc->obj=rubyObj;
       desc->borrowed=false;
-      desc->in_gc=false;
       int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
       FXASSERT(!overwritten);
       }
