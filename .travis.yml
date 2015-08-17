@@ -1,13 +1,17 @@
 sudo: true
 language: ruby
 rvm:
-#   - "1.9.3"
+  - "1.8.7"
+  - "1.9.3"
+  - "2.0.0"
+  - "2.1"
   - "2.2"
-#  - "rbx"
-#   - jruby-19mode # JRuby in 1.9 mode
-#   - rbx-19mode
+  - "ruby-head"
+  - "rbx"
 matrix:
   allow_failures:
+    - rvm: 1.8.7
+    - rvm: ruby-head
     - rvm: rbx
 before_install:
   - sudo apt-get update && sudo apt-get install xpra xserver-xorg-video-dummy g++ libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig;
