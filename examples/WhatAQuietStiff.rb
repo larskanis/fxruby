@@ -134,7 +134,7 @@ class WhatAQuietWindow < FXMainWindow
     saveDialog = FXFileDialog.new(self, "Save Image")
     saveDialog.filename = @itemList.getItemText(@itemList.currentItem)
     if saveDialog.execute != 0
-      if File.exists? saveDialog.filename
+      if File.exist? saveDialog.filename
         if MBOX_CLICKED_NO == FXMessageBox.question(self, MBOX_YES_NO,
           "Overwrite Image", "Overwrite existing image?")
           return 1

@@ -326,7 +326,7 @@ class ImageWindow < FXMainWindow
   def onCmdSave(sender, sel, ptr)
     saveDialog = FXFileDialog.new(self, "Save Image")
     if saveDialog.execute != 0
-      if File.exists? saveDialog.filename
+      if File.exist? saveDialog.filename
         if MBOX_CLICKED_NO == FXMessageBox.question(self, MBOX_YES_NO,
           "Overwrite Image", "Overwrite existing image?")
           return 1

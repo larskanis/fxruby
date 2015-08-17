@@ -95,7 +95,7 @@ public
   end
 
   def teardown
-    if File.exists?("output.ps")
+    if File.exist?("output.ps")
       FileUtils.rm_f("output.ps")
     end
   end

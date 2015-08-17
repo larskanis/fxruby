@@ -1025,7 +1025,7 @@ class TextWindow < FXMainWindow
           return false if (savedialog.execute == 0)
           setCurrentPattern(savedialog.currentPattern)
           file = savedialog.filename
-          if File.exists?(file)
+          if File.exist?(file)
             if MBOX_CLICKED_NO == FXMessageBox.question(self, MBOX_YES_NO,
               "Overwrite Document", "Overwrite existing document: #{file}?")
               return false
@@ -1092,7 +1092,7 @@ class TextWindow < FXMainWindow
     if savedialog.execute != 0
       setCurrentPattern(savedialog.currentPattern)
       file = savedialog.filename
-      if File.exists?(file)
+      if File.exist?(file)
         if MBOX_CLICKED_NO == FXMessageBox.question(self, MBOX_YES_NO,
           "Overwrite Document", "Overwrite existing document: #{file}?")
           return 1
@@ -1134,24 +1134,24 @@ class TextWindow < FXMainWindow
       # Attempt to extract the file name from various forms
       if    string =~ /#include \".*\"/
         file = File.expand_path(name, dir)
-        if !File.exists?(file)
+        if !File.exist?(file)
           Find.find(@searchpath) { |f| file = f if (f == name) }
         end
       elsif string =~ /#include <.*>/
         file = File.expand_path(name, dir)
-        if !File.exists?(file)
+        if !File.exist?(file)
           Find.find(@searchpath) { |f| file = f if (f == name) }
         end
       elsif string =~ /.*:.*:.*/
         file = File.expand_path(name, dir)
-        if !File.exists?(file)
+        if !File.exist?(file)
           Find.find(@searchpath) { |f| file = f if (f == name) }
         end
       else
         file = File.expand_path(string, dir)
       end
 
-      if File.exists?(file)
+      if File.exist?(file)
         # Different from current file?
         if file != @filename
           # Save old file first
@@ -1213,7 +1213,7 @@ class TextWindow < FXMainWindow
     if savedialog.execute != 0
       setCurrentPattern(savedialog.currentPattern)
       file = savedialog.filename
-      if File.exists?(file)
+      if File.exist?(file)
         if MBOX_CLICKED_NO == FXMessageBox.question(self, MBOX_YES_NO,
           "Overwrite Document", "Overwrite existing document: #{file}?")
           return 1
@@ -1690,7 +1690,7 @@ class TextWindow < FXMainWindow
 
   # Update box for readonly display
   def onCheckFile(sender, sel, ptr)
-    mtime = File.exists?(@filename) ? File.mtime(@filename) : nil
+    mtime = File.exist?(@filename) ? File.mtime(@filename) : nil
     if @filetime && mtime && mtime != @filetime
       @filetime = mtime
       if MBOX_CLICKED_OK == FXMessageBox.warning(self, MBOX_OK_CANCEL,

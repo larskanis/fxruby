@@ -82,7 +82,7 @@ class TC_FXFileStream < Test::Unit::TestCase
   end
 
   def teardown
-    if File.exists?("goobers")
+    if File.exist?("goobers")
       FileUtils.rm_f("goobers")
     end
   end
