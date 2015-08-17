@@ -11,7 +11,7 @@ class TC_FXId < Fox::TestCase
 
   def test_created?
     assert !mainWindow.created?
-    app.create
+    mainWindow.create
     assert mainWindow.created?, "main window should be created after call to FXApp#create"
     mainWindow.destroy
     assert !mainWindow.created?

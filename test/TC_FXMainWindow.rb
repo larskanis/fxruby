@@ -11,6 +11,7 @@ class TC_FXMainWindow < Test::Unit::TestCase
   end
 
   def test_non_created_app_raises_runtime_error
+    pend "two FXApp are not allowed"
     app = FXApp.new
     assert_raise RuntimeError do
       FXMainWindow.new(app, "title").create
