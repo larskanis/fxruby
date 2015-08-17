@@ -21,6 +21,9 @@ end
 # Some constants we'll need
 PKG_VERSION = Fox.fxrubyversion
 
+LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
+LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
+
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
 SWIG_MODULES = {
@@ -252,6 +255,12 @@ namespace :fxruby do
 
   file "ext/fox16_c/extconf.rb" => ['ext/fox16_c/swigruby.h', 'ext/fox16_c/impl.cpp', 'ext/fox16_c/include/inlinestubs.h'] +
       SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
+
+
+  directory "ports/archives"
+  file "ports/archives/fxscintilla-2.28.0.tar.gz" => ["ports/archives"] do |t|
+    sh "wget #{LIBFXSCINTILLA_SOURCE_URI} -O #{t.name}"
+  end
 
   directory "tmp/fxscintilla"
   task "tmp/fxscintilla/fxscintilla-2.28.0/include/Scintilla.iface" => ["tmp/fxscintilla", "ports/archives/fxscintilla-2.28.0.tar.gz"] do
