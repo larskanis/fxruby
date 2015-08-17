@@ -102,6 +102,8 @@ task :test => [:compile]
 Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
   ext.cross_compile = true
   ext.cross_platform = ['x86-mingw32', 'x64-mingw32']
+  # Enable FXTRACE and FXASSERT for 'rake compile'
+  ext.config_options << "--enable-debug"
 
   ext.cross_config_options += [
       "--enable-win32-cross",
