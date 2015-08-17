@@ -85,14 +85,19 @@ static st_table * FXRuby_Objects;
 
 static const char * const safe_rb_obj_classname(VALUE obj)
 {
-  void *ptr;
-  Data_Get_Struct(obj,void*,ptr);
-  if( FXRbIsInGC(ptr) ){
+  int tdata = TYPE(obj)==T_DATA;
+  if( (tdata && FXRbIsInGC(DATA_PTR(obj)))
+#ifdef HAVE_RB_DURING_GC
+      || rb_during_gc()
+#endif
+  ){
     /* It's not safe to call rb_obj_classname() during GC.
      * Return dummy value in this case. */
     return "during GC";
-  } else {
+  } else if (tdata) {
     return rb_obj_classname(obj);
+  } else {
+    return "no T_DATA";
   }
 }
 
@@ -370,12 +375,13 @@ VALUE to_ruby(const FXObject* obj){
  * Return the registered Ruby class instance associated with this
  * FOX object, or Qnil if not found.
  */
-VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed){
+VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed, bool in_gc){
   FXRubyObjDesc* desc;
   if(foxObj!=0 && st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
     FXASSERT(desc!=0);
     if(alsoBorrowed || !desc->borrowed){
-      FXTRACE((2,"FXRbGetRubyObj(foxObj=%p) => rubyObj=%p (%s)\n",foxObj,(void *)desc->obj,safe_rb_obj_classname(desc->obj)));
+      const char *classname = in_gc ? "in GC" : safe_rb_obj_classname(desc->obj);
+      FXTRACE((2,"FXRbGetRubyObj(foxObj=%p) => rubyObj=%p (%s)\n", foxObj, (void *)desc->obj, classname));
       return desc->obj;
       }
     }
@@ -427,7 +433,7 @@ void FXRbGcMark(void *obj){
      * example program works if you invoke the GC in ShutterWindow#create;
      * make sure that the shutter items' contents don't get blown away!
      */
-    VALUE value=FXRbGetRubyObj(obj,true);
+    VALUE value=FXRbGetRubyObj(obj,true, true);
     if(!NIL_P(value)){
       rb_gc_mark(value);
       }

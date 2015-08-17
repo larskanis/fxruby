@@ -126,7 +126,7 @@ void FXRbDestroyAppSensitiveObjects();
  * FOX object (if any). If searchBoth is false, only considers the
  * Ruby-owned objects; otherwise considers all outstanding references.
  */
-VALUE FXRbGetRubyObj(const void *foxObj, bool searchBoth);
+VALUE FXRbGetRubyObj(const void *foxObj, bool searchBoth, bool in_gc=false);
 
 /**
  * Return the registered Ruby class instance associated with this
