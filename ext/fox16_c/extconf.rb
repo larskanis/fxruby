@@ -318,6 +318,7 @@ def do_rake_compiler_setup
       have_func('rb_thread_call_without_gvl') &&
       have_func('rb_thread_call_with_gvl')
 
+  have_func('rb_during_gc')
 end
 
 # This directive processes the "--with-fox-include" and "--with-fox-lib"

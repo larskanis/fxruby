@@ -85,7 +85,9 @@ static st_table * FXRuby_Objects;
 
 static const char * const safe_rb_obj_classname(VALUE obj)
 {
-  if( rb_during_gc() ){
+  void *ptr;
+  Data_Get_Struct(obj,void*,ptr);
+  if( FXRbIsInGC(ptr) ){
     /* It's not safe to call rb_obj_classname() during GC.
      * Return dummy value in this case. */
     return "during GC";
@@ -99,11 +101,15 @@ static const char * const safe_rb_obj_classname(VALUE obj)
  * struct. It identifies the Ruby instance associated with a C++ object.
  * It also indicates whether this is merely a "borrowed" reference to
  * some C++ object (i.e. it's not one we need to destroy later).
+ *
+ * in_gc is set for FXWindows that are in garbage collection and must
+ * not call ruby code anymore.
  */
 
 struct FXRubyObjDesc {
   VALUE obj;
   bool borrowed;
+  bool in_gc;
   };
 
 
@@ -125,6 +131,7 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
       FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,safe_rb_obj_classname(obj)));
       desc->obj=obj;
       desc->borrowed=true;
+      desc->in_gc=false;
       int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
       FXASSERT(!overwritten);
       return obj;
@@ -155,6 +162,31 @@ bool FXRbIsBorrowed(void* ptr){
     return true;
     }
   }
+
+bool FXRbSetInGC(const void* ptr, bool enabled){
+  FXASSERT(ptr!=0);
+  FXRubyObjDesc *desc;
+  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
+    desc->in_gc=enabled;
+    return enabled;
+    }
+  return false;
+  }
+
+bool FXRbIsInGC(const void* ptr){
+  FXASSERT(ptr!=0);
+  FXRubyObjDesc *desc;
+
+#ifdef HAVE_RB_DURING_GC
+  if( rb_during_gc() ){
+    return true;
+  }
+#endif
+  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
+    return desc->in_gc;
+  }
+  return false;
+}
 
 
 /**
@@ -272,6 +304,7 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
     if(FXMALLOC(&desc,FXRubyObjDesc,1)){
       desc->obj=rubyObj;
       desc->borrowed=false;
+      desc->in_gc=false;
       int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
       FXASSERT(!overwritten);
       }
@@ -1419,6 +1452,7 @@ void FXRbRange2LoHi(VALUE range,FXdouble& lo,FXdouble& hi){
 void FXRbCallVoidMethod_gvlcb(FXObject* recv, const char *func) {
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
+  FXASSERT(!FXRbIsInGC(recv));
   rb_funcall(obj,rb_intern(func),0,NULL);
   }
 
@@ -1625,7 +1659,7 @@ void FXRbCallDCDrawMethod_gvlcb(FXDC* recv, const char * func, FXint x,FXint y,c
 FXRbMenuCommand::~FXRbMenuCommand(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey && !rb_during_gc()){
+  if(acckey && !FXRbIsInGC(this)){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
@@ -1641,7 +1675,7 @@ FXRbMenuCommand::~FXRbMenuCommand(){
 FXRbMenuCheck::~FXRbMenuCheck(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey && !rb_during_gc()){
+  if(acckey && !FXRbIsInGC(this)){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
@@ -1657,7 +1691,7 @@ FXRbMenuCheck::~FXRbMenuCheck(){
 FXRbMenuRadio::~FXRbMenuRadio(){
   FXAccelTable *table;
   FXWindow *owner;
-  if(acckey && !rb_during_gc()){
+  if(acckey && !FXRbIsInGC(this)){
     owner=getShell()->getOwner();
     if(owner){
       table=owner->getAccelTable();
