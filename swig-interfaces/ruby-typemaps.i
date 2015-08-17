@@ -493,13 +493,27 @@ inline void* to_FXEvent(VALUE obj){
 %typemap(out) FXVec2f* "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
 %typemap(out) FXVec2f& "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
 
+/* Output typemap for FXVec3f instances */
+%typemap(out) FXVec3f {
+    FXVec3f* resultptr = new FXVec3f($1);
+    $result = FXRbGetRubyObj(resultptr, "FXVec3f *");
+}
+%typemap(out) FXVec3f*       "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+%typemap(out) const FXVec3f& {
+    FXVec3f* resultptr = new FXVec3f(*$1);
+    $result = FXRbGetRubyObj(resultptr, "FXVec3f *");
+}
+
 /* Output typemap for FXVec4f instances */
 %typemap(out) FXVec4f {
     FXVec4f* resultptr = new FXVec4f($1);
     $result = FXRbGetRubyObj(resultptr, "FXVec4f *");
 }
 %typemap(out) FXVec4f* "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
-%typemap(out) FXVec4f& "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
+%typemap(out) const FXVec4f& {
+    FXVec4f* resultptr = new FXVec4f(*$1);
+    $result = FXRbGetRubyObj(resultptr, "FXVec4f *");
+}
 
 /* Output typemap for FXIcon instances */
 %typemap(out) FXIcon * = FXObject *;
@@ -609,14 +623,6 @@ inline void* to_FXEvent(VALUE obj){
 
 /* Output typemap for FXTreeItem instances */
 %typemap(out) FXTreeItem * = FXObject *;
-
-/* Output typemap for FXVec3f instances */
-%typemap(out) FXVec3f {
-    FXVec3f* resultptr = new FXVec3f($1);
-    $result = FXRbGetRubyObj(resultptr, "FXVec3f *");
-}
-%typemap(out) FXVec3f*       "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
-%typemap(out) const FXVec3f& "$result = FXRbGetRubyObj($1, \"$1_ltype\");";
 
 /* Output typemap for FXVerticalFrame instances */
 %typemap(out) FXVerticalFrame * = FXObject *;

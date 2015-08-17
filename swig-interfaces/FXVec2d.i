@@ -20,6 +20,7 @@
  * at "lyle@lylejohnson.name".
  ***********************************************************************/
 
+%naturalvar FXVec2d;
 /// Double-precision 2-element vector
 class FXVec2d {
 public:

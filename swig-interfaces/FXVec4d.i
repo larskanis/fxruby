@@ -21,6 +21,7 @@
  ***********************************************************************/
 
 %rename("crosses?") FXVec4d::crosses(const FXVec3d& a,const FXVec3d& b) const;
+%naturalvar FXVec4d;
 
 /// Double-precision 4-element vector
 class FXVec4d {

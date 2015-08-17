@@ -21,6 +21,7 @@
  ***********************************************************************/
 
 %rename("crosses?") FXVec4f::crosses(const FXVec3f& a,const FXVec3f& b) const;
+%naturalvar FXVec4f;
 
 /// Single-precision 4-element vector
 class FXVec4f {
