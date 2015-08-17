@@ -48,7 +48,7 @@ class TC_FXMaterial < Test::Unit::TestCase
     assert_in_delta(0.7, @mat.emission[2], DELTA)
     assert_in_delta(0.8, @mat.emission[3], DELTA)
 
-    @mat.emission = FXHVec.new(0.5, 0.6, 0.7, 0.8)
+    @mat.emission = FXVec4f.new(0.5, 0.6, 0.7, 0.8)
     assert_in_delta(0.5, @mat.emission[0], DELTA)
     assert_in_delta(0.6, @mat.emission[1], DELTA)
     assert_in_delta(0.7, @mat.emission[2], DELTA)

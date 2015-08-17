@@ -625,14 +625,6 @@ module Fox
     end
   end
 
-  class FXHVec
-    def normalize!
-      normalized = self.normalize
-      0.upto(3) { |idx| self[idx] = normalized[idx] }
-      self
-    end
-  end
-
   class FXTable
     #
     # Append _numColumns_ columns to the right of the table..
