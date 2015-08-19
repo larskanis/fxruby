@@ -27,11 +27,11 @@ FXRuby supportes everything of FOX, that is useful in Ruby:
 
 == INSTALL:
 
-FXRuby runs on Linux, Windows and OS-X. Installation on *nix requires
+FXRuby runs on Linux, Windows and OS-X with Ruby-1.9.3 or newer and with Rubinius. Installation on Unix requires
 FOX development headers and libraries installed:
 * on Debian/Ubuntu: <tt>sudo apt-get install g++ libxrandr-dev libfox-1.6-dev</tt>
 * see also detailed installation instructions in the {https://github.com/lylejohnson/fxruby/wiki Wiki}
-* no preparation needed on Windows - the binary gem can be used
+* on Windows: the binary fxruby gems already contain all required libararies
 
 Then, install the gem:
 * gem install fxruby
