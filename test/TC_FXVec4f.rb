@@ -39,7 +39,7 @@ class TC_FXVec4f < Test::Unit::TestCase
   end
 
   def test_new5
-    c = FXVec4f.new(FXRGB(128, 128, 128))
+    FXVec4f.new(FXRGB(128, 128, 128))
   end
 
   def test_getitem

@@ -81,9 +81,9 @@ class TC_FXMat4f < Test::Unit::TestCase
   def test_mul_by_scalar
     p = FXMat4f.new.eye
     q = FXMat4f.new(4.0, 0.0, 0.0, 0.0,
-                   0.0, 4.0, 0.0, 0.0,
-		   0.0, 0.0, 4.0, 0.0,
-		   0.0, 0.0, 0.0, 4.0)
+                    0.0, 4.0, 0.0, 0.0,
+                    0.0, 0.0, 4.0, 0.0,
+                    0.0, 0.0, 0.0, 4.0)
     r = p*4.0
     assert_instance_of(FXMat4f, r)
 #   assert_equal(q, r)

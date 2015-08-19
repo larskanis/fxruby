@@ -9,23 +9,23 @@ class TC_FXQuatf < Test::Unit::TestCase
   end
 
   def test_default_constructor
-    q = FXQuatf.new
+    FXQuatf.new
   end
 
   def test_construct_from_axis_and_angle
     axis = FXVec3f.new(1.0, 1.0, 1.0)
-    q = FXQuatf.new(axis)
-    q = FXQuatf.new(axis, 0.0)
+    FXQuatf.new(axis)
+    FXQuatf.new(axis, 0.0)
   end
 
   def test_construct_from_components
     x, y, z, w = 1.0, 1.0, 1.0, 1.0
-    q = FXQuatf.new(x, y, z, w)
+    FXQuatf.new(x, y, z, w)
   end
 
   def test_construct_from_roll_pitch_yaw
     roll, pitch, yaw = 45.0, 45.0, 45.0
-    q = FXQuatf.new(roll, pitch, yaw)
+    FXQuatf.new(roll, pitch, yaw)
   end
 
   def test_adjust!

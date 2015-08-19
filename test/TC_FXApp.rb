@@ -8,7 +8,7 @@ class TC_FXApp < Test::Unit::TestCase
 
   def test_exception_for_second_app
     assert_raise RuntimeError do
-      app2 = FXApp.new
+      FXApp.new
     end
   end
 end
@@ -46,7 +46,7 @@ class TC_FXApp2 < Fox::TestCase
   end
 
   def test_addInput_on_pipe
-    check_events *IO.pipe
+    check_events(*IO.pipe)
   end
 
   def test_addInput_on_socket_accept

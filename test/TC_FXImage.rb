@@ -119,7 +119,7 @@ class TC_FXImage < Fox::TestCase
   def test_create_with_non_owned_data
     GC.stress = true
     img = image_with_non_owned_data
-    " " * 10000
+    _ = " " * 10000
     GC.stress = false
     assert_equal("rgbaRGBA", img.pixel_string)
     assert_equal(0, img.options)
@@ -134,7 +134,7 @@ class TC_FXImage < Fox::TestCase
     img = FXImage.new(app, nil, 0, 1, 2)
     GC.stress = true
     set_non_owned_data(img)
-    " " * 10000
+    _ = " " * 10000
     GC.stress = false
     assert_equal("rgbaRGBA", img.pixel_string)
     assert_equal(0, img.options)

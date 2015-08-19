@@ -76,7 +76,7 @@ private
     clearEdges(extending)
 
     old_nr = @table.numRows
-    old_nc = @table.numColumns
+    _old_nc = @table.numColumns
 
     # resize the table
     nr = @data_lines.size + 2

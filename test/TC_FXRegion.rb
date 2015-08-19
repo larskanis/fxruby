@@ -17,9 +17,9 @@ class TC_FXRegion < Test::Unit::TestCase
                FXPoint.new(100, 100),
                FXPoint.new(0, 0)
              ]
-    r1 = FXRegion.new(points, true)
-    r2 = FXRegion.new(points, false)
-    r3 = FXRegion.new(points)
+    FXRegion.new(points, true)
+    FXRegion.new(points, false)
+    FXRegion.new(points)
   end
 
   def test_copy_constructor

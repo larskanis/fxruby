@@ -22,6 +22,7 @@ class TC_FXShell < Test::Unit::TestCase
   def test_new
     # Free-floating
     shell1 = FXShell.new(@app, 0, 0, 0, 0, 0)
+    assert_nil(shell1.owner)
 
     # Owned
     shell2 = FXShell.new(@mainWin, 0, 0, 0, 0, 0)

@@ -15,7 +15,7 @@ class TC_FXFont < Test::Unit::TestCase
 
   def testConstructFromFontDescription
     fontdesc = @app.normalFont.fontDesc
-    font = FXFont.new(@app, fontdesc)
+    FXFont.new(@app, fontdesc)
   end
 
   def testConstructFromParameters
@@ -42,7 +42,7 @@ class TC_FXFont < Test::Unit::TestCase
   end
 
   def testConstructFromFontString
-    font = FXFont.new(@app, "")
+    FXFont.new(@app, "")
   end
 
   def testGetTextWidthAndHeight
