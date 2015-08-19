@@ -15,7 +15,7 @@ Ruby programming language that you already know and love, while at the
 same time taking advantage of the performance and functionality of a
 featureful, highly optimized C++ toolkit.
 
-== FEATURES/PROBLEMS:
+== FEATURES:
 
 FXRuby supportes everything of FOX, that is useful in Ruby:
 * MDI/SDI application window layouts, floating toolbars
@@ -23,6 +23,7 @@ FXRuby supportes everything of FOX, that is useful in Ruby:
 * Flexible layout management
 * Image read/write support in many formats
 * Embedded OpenGL graphics
+* Thread support
 
 == INSTALL:
 
