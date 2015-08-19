@@ -1,3 +1,11 @@
+=== 1.6.33 / unreleased
+
+* Avoid calls that are prohibited while GC phases during GC. Fixes #23
+* Use copy'ing getters for FXVec members in FXMaterial and FXLight.
+  This fixes the TC_FXMaterial#test_bug test case.
+* Fix test suite, so that all tests pass.
+* Add travis-ci test setup and connect it to the github account.
+
 === 1.6.32 / 2015-08-07
 
 * Avoid call to rb_class2name() during GC. Fixes #21
