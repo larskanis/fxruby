@@ -1,6 +1,6 @@
 = FXRuby
 
-* Github: http://github.com/larskanis/fxruby
+* http://github.com/larskanis/fxruby
 * Full API-description: http://rubydoc.info/gems/fxruby/frames
 * Latest fxruby {<img src="https://badge.fury.io/rb/fxruby.svg" alt="Gem Version" />}[http://badge.fury.io/rb/fxruby]
 * Status (on Linux): {<img src="https://travis-ci.org/larskanis/fxruby.svg?branch=1.6" alt="Build Status" />}[https://travis-ci.org/larskanis/fxruby]
