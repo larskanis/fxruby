@@ -1,6 +1,6 @@
 === 1.6.33 / 2015-08-20
 
-* Avoid calls that are prohibited while GC phases during GC. Fixes #23
+* Avoid rb_* calls that are prohibited during GC. Fixes #23
 * Use copy'ing getters for FXVec members in FXMat*, FXMaterial and FXLight.
   This fixes the TC_FXMaterial#test_bug test case.
 * Fix test suite, so that all tests pass.
