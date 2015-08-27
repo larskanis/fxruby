@@ -55,19 +55,21 @@ void fxrb_wakeup_fox(void *);
     when_non_void( rettype retval; ) \
   };
 
-extern __thread int g_fxrb_thread_has_gvl;
-
-#define DEFINE_GVL_SKELETON(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
-  static void * gvl_##klass##_##name##_skeleton( void *data ){ \
-    struct gvl_wrapper_##klass##_##name##_params *p = (struct gvl_wrapper_##klass##_##name##_params*)data; \
-    g_fxrb_thread_has_gvl = 0; \
-    when_non_void( p->retval = ) \
-      klass##_##name##_gvl( p->params.firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST2) ); \
-    g_fxrb_thread_has_gvl = 1; \
-    return NULL; \
-  }
+#ifdef HAVE___THREAD
+  extern __thread int g_fxrb_thread_has_gvl;
+#endif
 
 #if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+  #define DEFINE_GVL_SKELETON(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
+    static void * gvl_##klass##_##name##_skeleton( void *data ){ \
+      struct gvl_wrapper_##klass##_##name##_params *p = (struct gvl_wrapper_##klass##_##name##_params*)data; \
+      g_fxrb_thread_has_gvl = 0; \
+      when_non_void( p->retval = ) \
+        klass##_##name##_gvl( p->params.firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST2) ); \
+      g_fxrb_thread_has_gvl = 1; \
+      return NULL; \
+    }
+
   #define DEFINE_GVL_STUB(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
     rettype klass##_##name(firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3)){ \
       struct gvl_wrapper_##klass##_##name##_params params = { \
@@ -77,6 +79,8 @@ extern __thread int g_fxrb_thread_has_gvl;
       when_non_void( return params.retval; ) \
     }
 #else
+  #define DEFINE_GVL_SKELETON(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname)
+
   #define DEFINE_GVL_STUB(klass, name, baseclass, when_non_void, rettype, firstparamtype, firstparamname) \
     rettype klass##_##name(firstparamtype firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST3)){ \
       return klass##_##name##_gvl(firstparamname FOR_EACH_PARAM_OF_##baseclass##_##name(DEFINE_PARAM_LIST1)); \

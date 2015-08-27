@@ -313,7 +313,15 @@ def do_rake_compiler_setup
   end
 
   checking_for("thread local variables") do
-    $defs.push( "-DHAVE___THREAD" ) if try_compile('__thread int x=1;')
+    $defs.push( "-DHAVE___THREAD" ) if try_compile(<<-EOT)
+      __thread int x=1;
+      #if defined(__MINGW32__)
+        #include <windows.h>
+        #if !defined(__MINGW64_VERSION_MAJOR)
+          #error "Old mingw32 compiler doesn't implement thread local variables properly."
+        #endif
+      #endif
+    EOT
   end &&
       have_func('rb_thread_call_without_gvl') &&
       have_func('rb_thread_call_with_gvl')

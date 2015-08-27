@@ -5,7 +5,9 @@
 
 #include "FXRbCommon.h"
 
-__thread int g_fxrb_thread_has_gvl = 1;
+#ifdef HAVE___THREAD
+  __thread int g_fxrb_thread_has_gvl = 1;
+#endif
 
 FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_WRAPPER_STRUCT );
 FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_SKELETON );
