@@ -1,3 +1,10 @@
+=== 1.6.34 / 2015-12-26
+
+* Update libraries for windows build: libz-1.2.8 libpng-1.6.20 libjpeg-9a
+  libtiff-4.0.6 libfox-1.6.50
+* Add Windows binaries for Ruby-2.3.
+* Avoid GVL usage on old Mingw32 compiler, used for Ruby-1.9.3. Fixes #24
+
 === 1.6.33 / 2015-08-20
 
 * Avoid rb_* calls that are prohibited during GC. Fixes #23
