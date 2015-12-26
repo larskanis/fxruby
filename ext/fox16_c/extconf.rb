@@ -87,23 +87,24 @@ def with_env(hash)
   end
 end
 
-LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7'
-LIBZ_SOURCE_URI = "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.bz2"
+LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.8'
+LIBZ_SOURCE_URI = "http://zlib.net/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.5.13'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.20'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '8d'
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9a'
 LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.3'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.6'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.49'
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.50'
 LIBFOX_SOURCE_URI         = "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz"
 
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
 LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
+#LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
 
 
 class BuildRecipe < MiniPortile
@@ -238,6 +239,12 @@ def do_rake_compiler_setup
         def mk
           "#{ENV['MAKE'] || "make"}"
         end
+
+#        This can be uncommented when fxscintilla is used from the source repository.
+#        def configure
+#          execute "bootstrap", "./bootstrap.sh"
+#          super
+#        end
 
         def compile
           execute "compile_lexers", "cd lexers && #{mk}"
