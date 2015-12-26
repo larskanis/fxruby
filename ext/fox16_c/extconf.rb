@@ -2,7 +2,8 @@
 
 require 'fileutils'
 require 'mkmf'
-require 'mini_portile'
+gem 'mini_portile2', '~>2.0'
+require 'mini_portile2'
 
 def find_installed_fox_version
   stddirs = ["/usr/include/fox-1.6",
@@ -157,7 +158,6 @@ end
 
 def do_rake_compiler_setup
   if enable_config("win32-cross")
-    require 'mini_portile'
 
     dir_config("installed")
 
