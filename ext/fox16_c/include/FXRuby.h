@@ -27,20 +27,6 @@
 #ifndef FXRUBY_H
 #define FXRUBY_H
 
-// RARRAY_LEN, RARRAY_PTR, RSTRING_LEN and RSTRING_PTR macros not defined before Ruby 1.8.6
-#ifndef RARRAY_LEN
-#define RARRAY_LEN(a) RARRAY((a))->len
-#endif
-#ifndef RARRAY_PTR
-#define RARRAY_PTR(a) RARRAY((a))->ptr
-#endif
-#ifndef RSTRING_LEN
-#define RSTRING_LEN(s) RSTRING((s))->len
-#endif
-#ifndef RSTRING_PTR
-#define RSTRING_PTR(s) RSTRING((s))->ptr
-#endif
-
 #ifndef NUM2SIZET
 #define NUM2SIZET(s) NUM2ULONG(s)
 #endif
