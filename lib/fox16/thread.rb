@@ -7,8 +7,9 @@ module Fox
     alias initialize_before_thread initialize # :nodoc:
 
     def initialize(*args, &block)
-      initialize_before_thread(*args, &block)
+      initialize_before_thread(*args)
       event_handler_setup
+      block.call(self) if block_given?
     end
 
     def runOnUiThread(&block)
