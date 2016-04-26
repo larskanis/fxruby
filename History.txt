@@ -1,3 +1,11 @@
+=== 1.6.34 / 2016-04-26
+
+* Add support for RubyInstaller-2.3
+* Avoid RARRAY_PTR() which broke fxruby on ruby-2.3.0.
+* Make use of StringValueCStr() where it is suitable.
+* Fix initialisation of runOnUiThread event handler, when FXApp is called with a block.
+* Disable GVL on RubyInstaller-1.9.3. Fixes #24
+
 === 1.6.33 / 2015-08-20
 
 * Avoid rb_* calls that are prohibited during GC. Fixes #23
