@@ -70,7 +70,7 @@ hoe = Hoe.spec "fxruby" do
   self.extra_rdoc_files << self.readme_file
   self.extra_deps << ['mini_portile', '~> 0.6']
   self.extra_dev_deps << ['rake-compiler', '~> 0.9']
-  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.5.1']
+  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.5.2']
   self.extra_dev_deps << ['opengl', '~> 0.8']
   self.extra_dev_deps << ['glu', '~> 8.0']
   self.extra_dev_deps << ['test-unit', '~> 3.1']
