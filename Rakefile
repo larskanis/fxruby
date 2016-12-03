@@ -127,7 +127,7 @@ Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
           "libfxscintilla-20.dll",
           "libFOX-1.6-0.dll",
           "libjpeg-8.dll",
-          "libpng15-15.dll",
+          "libpng16-16.dll",
           "libtiff-5.dll",
           "zlib1.dll",
       ]

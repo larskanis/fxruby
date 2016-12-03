@@ -1,0 +1,13 @@
+diff --git a/src/FXString.cpp b/src/FXString.cpp
+index 8a55750..fe1120a 100644
+--- a/src/FXString.cpp
++++ b/src/FXString.cpp
+@@ -2365,7 +2365,7 @@ FXString& FXString::vformat(const FXchar* fmt,va_list args){
+ #else
+     va_list ag;
+ x:  va_copy(ag,args);
+-    result=vsnprintf(str,length()+1,fmt,a);
++    result=vsnprintf(str,length()+1,fmt,ag);
+     va_end(ag);
+     if(result<0){ length(FXMAX(64,length()*2)); goto x; }
+     if(length()<result){ length(result); goto x; }

@@ -86,19 +86,19 @@ def with_env(hash)
   end
 end
 
-LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7'
-LIBZ_SOURCE_URI = "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.bz2"
+LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.8'
+LIBZ_SOURCE_URI = "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.xz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.5.13'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.26'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 
 LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '8d'
 LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.3'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.7'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.49'
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.52'
 LIBFOX_SOURCE_URI         = "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz"
 
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
