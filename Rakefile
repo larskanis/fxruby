@@ -113,7 +113,7 @@ Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
   # Add dependent DLLs to the cross gems
   ext.cross_compiling do |spec|
     platform_host_map =  {
-      'x86-mingw32' => ['i586-mingw32msvc', 'i686-w64-mingw32'],
+      'x86-mingw32' => ['i686-w64-mingw32'],
       'x64-mingw32' => ['x86_64-w64-mingw32'],
     }
 
