@@ -8,7 +8,7 @@ gem "mini_portile2", "~>2.1"
 
 gem "rdoc", "~>4.0", :group => [:development, :test]
 gem "rake-compiler", "~>1.0", :group => [:development, :test]
-gem "rake-compiler-dock", "~>0.6.0", :group => [:development, :test]
+gem "rake-compiler-dock", "~>0.6.0", :group => [:development, :test], git: 'http://github.com/rake-compiler/rake-compiler-dock'
 gem "opengl", "~>0.8", :group => [:development, :test]
 gem "glu", "~>8.0", :group => [:development, :test]
 gem "test-unit", "~>3.1", :group => [:development, :test]
