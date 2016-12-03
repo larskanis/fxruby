@@ -1,8 +1,6 @@
 sudo: true
 language: ruby
 rvm:
-  - "1.8.7"
-  - "1.9.3"
   - "2.0.0"
   - "2.1"
   - "2.2"
@@ -11,7 +9,6 @@ rvm:
   - "rbx"
 matrix:
   allow_failures:
-    - rvm: 1.8.7
     - rvm: ruby-head
     - rvm: rbx
 before_install:
