@@ -88,8 +88,8 @@ def with_env(hash)
   end
 end
 
-LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.8'
-LIBZ_SOURCE_URI = "http://downloads.sourceforge.net/project/libpng/zlib/#{LIBZ_VERSION}/zlib-#{LIBZ_VERSION}.tar.xz"
+LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.11'
+LIBZ_SOURCE_URI = "http://zlib.net/zlib-#{LIBZ_VERSION}.tar.gz"
 
 LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.26'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
