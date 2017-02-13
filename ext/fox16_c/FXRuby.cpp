@@ -60,6 +60,11 @@ extern "C" {
 // Opaque type declaration from SWIG runtime
 struct swig_type_info;
 
+static int FXSWIG_ConvertPtr(VALUE obj, void **ptr, swig_type_info *ty, int flags){
+  return SWIG_ConvertPtr(obj, ptr, ty, flags);
+}
+
+
 // Wrapper around SWIG_TypeQuery() that caches results for performance
 swig_type_info *FXRbTypeQuery(const char *desc){
   FXASSERT(desc!=0);

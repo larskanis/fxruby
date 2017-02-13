@@ -41,16 +41,14 @@ struct swig_type_info;
 extern "C" {
 static const char * SWIG_TypeName(const swig_type_info *ty);
 static VALUE SWIG_Ruby_NewPointerObj(void *ptr, swig_type_info *type, int own);
-#define SWIG_ConvertPtr(obj, pptr, type, flags)         SWIG_Ruby_ConvertPtrAndOwn(obj, pptr, type, flags, 0)
-typedef void (*ruby_owntype)(void*);
-static int SWIG_Ruby_ConvertPtrAndOwn(VALUE obj, void **ptr, swig_type_info *ty, int flags, ruby_owntype *own);
+static int FXSWIG_ConvertPtr(VALUE obj, void **ptr, swig_type_info *ty, int flags);
 }
 
 // Helper for overloaded show() functions
 template <class TYPE>
 VALUE showHelper(VALUE self, int argc, VALUE *argv, TYPE *p, swig_type_info *typeinfo) {
   TYPE *win;
-  SWIG_ConvertPtr(self,(void**)&win,typeinfo,1);
+  FXSWIG_ConvertPtr(self,(void**)&win,typeinfo,1);
   if (argc == 0) {
     win->_show();
     }
