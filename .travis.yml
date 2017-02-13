@@ -14,6 +14,7 @@ matrix:
     - rvm: rbx
 before_install:
   - sudo apt-get update && sudo apt-get install xpra xserver-xorg-video-dummy g++ libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig;
+  - swig -version
   - ls -l /usr/lib/libfxscintilla*
   - sudo ln -s /usr/lib/libfxscintilla.so.19 /usr/lib/libfxscintilla.so
   - bundle install
