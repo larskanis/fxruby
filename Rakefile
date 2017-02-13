@@ -68,12 +68,13 @@ hoe = Hoe.spec "fxruby" do
   self.version = PKG_VERSION
   self.readme_file = 'README.rdoc'
   self.extra_rdoc_files << self.readme_file
-  self.extra_deps << ['mini_portile', '~> 0.6']
-  self.extra_dev_deps << ['rake-compiler', '~> 0.9']
-  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.5.2']
+  self.extra_deps << ['mini_portile2', '~> 2.1']
+  self.extra_dev_deps << ['rake-compiler', '~> 1.0']
+  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.6.0']
   self.extra_dev_deps << ['opengl', '~> 0.8']
   self.extra_dev_deps << ['glu', '~> 8.0']
   self.extra_dev_deps << ['test-unit', '~> 3.1']
+  self.extra_dev_deps << ['yard', '~> 0.8']
   self.license 'LGPL'
 
   spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
