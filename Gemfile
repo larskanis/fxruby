@@ -12,6 +12,7 @@ gem "opengl", "~>0.8", :group => [:development, :test]
 gem "glu", "~>8.0", :group => [:development, :test]
 gem "test-unit", "~>3.1", :group => [:development, :test]
 gem "yard", "~>0.8", :group => [:development, :test]
+gem "hoe-bundler", "~>1.1", :group => [:development, :test]
 gem "rdoc", "~>4.0", :group => [:development, :test]
 gem "hoe", "~>3.16", :group => [:development, :test]
 

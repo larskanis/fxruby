@@ -75,6 +75,7 @@ hoe = Hoe.spec "fxruby" do
   self.extra_dev_deps << ['glu', '~> 8.0']
   self.extra_dev_deps << ['test-unit', '~> 3.1']
   self.extra_dev_deps << ['yard', '~> 0.8']
+  self.extra_dev_deps << ['hoe-bundler', '~> 1.1']
   self.license 'LGPL'
 
   spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
