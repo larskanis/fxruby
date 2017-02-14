@@ -159,8 +159,12 @@ end
 desc "Build the windows binary gems"
 task 'gem:windows' => 'gem' do
   require 'rake_compiler_dock'
-  sh "bundle package"
-  RakeCompilerDock.sh "bundle --local && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" "
+
+  gf = "tmp/Gemfile-rcd"
+  File.write(gf, File.read("Gemfile").gsub(/.*"(glu|opengl)".*/, ""))
+
+  sh "BUNDLE_GEMFILE=#{gf} bundle package"
+  RakeCompilerDock.sh "BUNDLE_GEMFILE=#{gf} bundle --local --without=norcd && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" "
 end
 
 # Set environment variable SWIG_LIB to
