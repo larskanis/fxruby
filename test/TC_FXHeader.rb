@@ -22,7 +22,7 @@ class TC_FXHeader < Fox::TestCase
 
   def test_getArrowDir
     @header.appendItem("")
-    assert_instance_of(Fixnum, @header.getArrowDir(0))
+    assert_kind_of(Integer, @header.getArrowDir(0))
   end
 
   def test_arrowUp?
