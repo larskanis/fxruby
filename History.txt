@@ -1,8 +1,11 @@
-=== 1.6.35 / 2016-MM-DD
+=== 1.6.35 / 2017-02-15
 
+* Adjust for Ruby-2.4 with unified Integers
 * Add support for RubyInstaller-2.4
 * Drop support for Ruby-1.8 and 1.9. It may work with them, but is no longer tested.
+* Add compat with SWIG-3.0
 * Fix an issue with FXApp#removeInput introduced in fxruby-1.6.30.
+* Work around missing /usr/lib/libfxscintilla.so file in Ubuntu
 * Update dependent gems.
 * Update libraries for Windows build.
 
