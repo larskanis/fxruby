@@ -6,16 +6,25 @@ rescue LoadError
     major_minor = RUBY_VERSION[ /^(\d+\.\d+)/ ] or
       raise "Oops, can't extract the major/minor version from #{RUBY_VERSION.dump}"
 
-    # Set the PATH environment variable, so that the DLLs can be found.
-    old_path = ENV['PATH']
-    begin
-      ports_dir = RbConfig::CONFIG["host"].gsub('i686-pc-mingw32') do
-        major_minor < '2.0' ? 'i586-mingw32msvc' : 'i686-w64-mingw32'
+    add_dll_path = proc do |path, &block|
+      begin
+        require 'ruby_installer'
+        RubyInstaller.add_dll_directory(path, &block)
+      rescue LoadError
+        old_path = ENV['PATH']
+        ENV['PATH'] = "#{path};#{old_path}"
+        block.call
+        ENV['PATH'] = old_path
       end
-      ENV['PATH'] = "#{File.expand_path("../../ports/#{ports_dir}/bin", __FILE__)};#{old_path}"
+    end
+
+    # Temporary add this directory for DLL search, so that libpq.dll can be found.
+    ports_dir = RbConfig::CONFIG["host"].gsub('i686-pc-mingw32') do
+      major_minor < '2.0' ? 'i586-mingw32msvc' : 'i686-w64-mingw32'
+    end
+    ports_bin = File.expand_path("../../ports/#{ports_dir}/bin", __FILE__)
+    add_dll_path.call(ports_bin) do
       require "#{major_minor}/fox16_c"
-    ensure
-      ENV['PATH'] = old_path
     end
   else
     raise
