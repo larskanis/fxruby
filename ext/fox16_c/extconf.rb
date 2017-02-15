@@ -307,7 +307,7 @@ def do_rake_compiler_setup
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CPPFLAGS = $CPPFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
-    $libs = append_library($libs, "fxscintilla")
+    find_library("fxscintilla", nil) || find_library(":libfxscintilla.so.19", nil) || ($libs = append_library($libs, "fxscintilla"))
   else
     FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
   end
