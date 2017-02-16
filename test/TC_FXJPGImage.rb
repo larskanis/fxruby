@@ -29,7 +29,7 @@ class TC_FXJPGImage < Fox::TestCase
       outfile.takeBuffer
     end
 
-    assert_operator(count, :>=, 1000000)
+    assert_operator(count, :>=, 500000)
     assert_operator(jpeg_data.bytesize, :>=, 1000)
 
     count = 0
@@ -42,6 +42,6 @@ class TC_FXJPGImage < Fox::TestCase
 
     assert_equal 4000, img.width
     assert_equal 3000, img.height
-    assert_operator(count, :>=, 1000000)
+    assert_operator(count, :>=, 500000)
   end
 end
