@@ -18,7 +18,7 @@ rescue LoadError
       end
     end
 
-    # Temporary add this directory for DLL search, so that libpq.dll can be found.
+    # Temporary add this directory for DLL search, so that bundled DLLs can be found.
     ports_dir = RbConfig::CONFIG["host"].gsub('i686-pc-mingw32') do
       major_minor < '2.0' ? 'i586-mingw32msvc' : 'i686-w64-mingw32'
     end
