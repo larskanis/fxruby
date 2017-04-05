@@ -95,7 +95,7 @@ LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.26'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9a'
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
 LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
 LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.7'
