@@ -11,7 +11,8 @@ module FileUtils
   alias unforked_fileutils_cd cd
   def cd(dir, options={}, &block)
     raise "chdir called without block" unless block_given?
-    Process.waitpid(fork{ unforked_fileutils_cd(dir, options, &block) })
+    pid = Process.waitpid(fork{ unforked_fileutils_cd(dir, options, &block) })
+    raise "Error in subprocess" if $?.exitstatus != 0
   end
   module_function :cd
   alias chdir cd
