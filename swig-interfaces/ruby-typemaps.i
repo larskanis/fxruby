@@ -715,7 +715,7 @@ inline void* to_FXEvent(VALUE obj){
     $2 = RSTRING_LEN($input);
 }
 
-// Extract a C array (dashpattern) and its length (dashlength) from a Ruby array of Fixnums
+// Extract a C array (dashpattern) and its length (dashlength) from a Ruby array of Integers
 %typemap(in) (const FXchar* dashpattern, FXuint dashlength) {
     Check_Type($input, T_ARRAY);
     $1 = new FXchar[RARRAY_LEN($input)];
@@ -763,7 +763,7 @@ inline void* to_FXEvent(VALUE obj){
  */
 
 %typemap(in) FXWindow* TOOLBAR_DOCK_AFTER {
-    if (TYPE($input) == T_FIXNUM) {
+    if (TYPE($input) == T_FIXNUM || TYPE($input) == T_BIGNUM)) {
         $1 = reinterpret_cast<FXWindow *>(static_cast<long>(NUM2INT($input)));
     } else {
         SWIG_ConvertPtr($input, (void **) &$1, SWIGTYPE_p_FXWindow, 1);

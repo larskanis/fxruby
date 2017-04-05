@@ -1,26 +1,45 @@
-sudo: true
+dist: trusty
+sudo: false
+group: beta
 language: ruby
+
+addons:
+  apt:
+    packages:
+    - xpra
+    - xserver-xorg-video-dummy
+    - g++
+    - libxrandr-dev
+    - libfox-1.6-dev
+    - libfxscintilla-dev
+    - swig
+
+install:
+  - swig -version
+  - ls -l /usr/lib/libfxscintilla*
+  - bundle install
+
+before_script:
+  - "xpra --xvfb=\"Xorg +extension GLX -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log\"  start :9"
+
+script: bundle exec rake test DISPLAY=:9
+
+after_failure:
+  - "cat ~/.xpra/*"
+
+after_script:
+  - "xpra stop :9"
+
 rvm:
-  - "1.8.7"
-  - "1.9.3"
   - "2.0.0"
   - "2.1"
   - "2.2"
+  - "2.3.1"
+  - "2.4.0"
   - "ruby-head"
-  - "rbx"
+  # swig compilation is sooo slow on rbx-3, that it exceeds the time limit on travis-ci
+  #- "rbx-3"
 matrix:
   allow_failures:
-    - rvm: 1.8.7
     - rvm: ruby-head
-    - rvm: rbx
-before_install:
-  - sudo apt-get update && sudo apt-get install xpra xserver-xorg-video-dummy g++ libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig;
-  - ls -l /usr/lib/libfxscintilla*
-  - sudo ln -s /usr/lib/libfxscintilla.so.19 /usr/lib/libfxscintilla.so
-  - bundle install
-before_script:
-  - "xpra --xvfb=\"Xorg +extension GLX -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log\"  start :9"
-script: bundle exec rake test DISPLAY=:9
-after_script:
-  - "xpra stop :9"
-  - "cat ~/.xpra/*"
+    - rvm: rbx-3

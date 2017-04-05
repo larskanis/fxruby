@@ -51,7 +51,7 @@ SWIG_MODULES = {
 hoe = Hoe.spec "fxruby" do
   # ... project specific data ...
   self.blog_categories = %w{FXRuby}
-  self.clean_globs = [".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/include/swigrubyrun.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*"]
+  self.clean_globs = [".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*"]
   developer("Lyle Johnson", "lyle@lylejohnson.name")
   developer("Lars Kanis", "kanis@comcard.de")
   self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
@@ -68,14 +68,16 @@ hoe = Hoe.spec "fxruby" do
   self.version = PKG_VERSION
   self.readme_file = 'README.rdoc'
   self.extra_rdoc_files << self.readme_file
-  self.extra_deps << ['mini_portile', '~> 0.6']
-  self.extra_dev_deps << ['hoe-bundler', '~> 1.2']
-  self.extra_dev_deps << ['rake-compiler', '~> 0.9']
-  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.5.0']
+  self.extra_deps << ['mini_portile2', '~> 2.1']
+  self.extra_dev_deps << ['rake-compiler', '~> 1.0']
+  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.6.0']
   self.extra_dev_deps << ['opengl', '~> 0.8']
   self.extra_dev_deps << ['glu', '~> 8.0']
   self.extra_dev_deps << ['test-unit', '~> 3.1']
+  self.extra_dev_deps << ['yard', '~> 0.8']
+  self.extra_dev_deps << ['hoe-bundler', '~> 1.1']
   self.license 'LGPL-2.1'
+
 
   spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
   spec_extras[:files] += SWIG_MODULES.values.map{|f| File.join("ext/fox16_c", f) }
@@ -114,7 +116,7 @@ Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
   # Add dependent DLLs to the cross gems
   ext.cross_compiling do |spec|
     platform_host_map =  {
-      'x86-mingw32' => ['i586-mingw32msvc', 'i686-w64-mingw32'],
+      'x86-mingw32' => ['i686-w64-mingw32'],
       'x64-mingw32' => ['x86_64-w64-mingw32'],
     }
 
@@ -128,7 +130,7 @@ Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
           "libfxscintilla-20.dll",
           "libFOX-1.6-0.dll",
           "libjpeg-8.dll",
-          "libpng15-15.dll",
+          "libpng16-16.dll",
           "libtiff-5.dll",
           "zlib1.dll",
       ]
@@ -158,7 +160,12 @@ end
 desc "Build the windows binary gems"
 task 'gem:windows' => 'gem' do
   require 'rake_compiler_dock'
-  RakeCompilerDock.sh "rake cross native gem RUBYOPT=--disable-rubygems MAKE=\"nice make V=1 -j `nproc`\" "
+
+  gf = "tmp/Gemfile-rcd"
+  File.write(gf, File.read("Gemfile").gsub(/.*"(glu|opengl)".*/, ""))
+
+  sh "BUNDLE_GEMFILE=#{gf} bundle package"
+  RakeCompilerDock.sh "BUNDLE_GEMFILE=#{gf} bundle --local --without=norcd && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" "
 end
 
 # Set environment variable SWIG_LIB to

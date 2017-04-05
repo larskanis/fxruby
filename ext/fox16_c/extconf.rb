@@ -2,7 +2,8 @@
 
 require 'fileutils'
 require 'mkmf'
-gem 'mini_portile2', '~>2.0'
+
+gem 'mini_portile2', '~>2.1'
 require 'mini_portile2'
 
 def find_installed_fox_version
@@ -87,19 +88,20 @@ def with_env(hash)
   end
 end
 
-LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.8'
-LIBZ_SOURCE_URI = "http://zlib.net/zlib-#{LIBZ_VERSION}.tar.gz"
+# Stick at zlib-1.2.7 for compatibility to MSYS1 based RubyInstaller.
+LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7.3'
+LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.20'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.26'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 
 LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9a'
 LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.6'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.7'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.50'
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.53'
 LIBFOX_SOURCE_URI         = "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz"
 
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
@@ -159,7 +161,6 @@ end
 
 def do_rake_compiler_setup
   if enable_config("win32-cross")
-
     dir_config("installed")
 
     libz_recipe = BuildRecipe.new("libz", LIBZ_VERSION, [LIBZ_SOURCE_URI]).tap do |recipe|
@@ -314,7 +315,7 @@ def do_rake_compiler_setup
   if is_fxscintilla_build?
     FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CPPFLAGS = $CPPFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
-    $libs = append_library($libs, "fxscintilla")
+    find_library("fxscintilla", nil) || find_library(":libfxscintilla.so.19", nil) || ($libs = append_library($libs, "fxscintilla"))
   else
     FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
   end

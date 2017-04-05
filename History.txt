@@ -1,9 +1,21 @@
-=== 1.6.34 / 2015-12-26
+=== 1.6.35 / 2017-02-15
 
-* Update libraries for windows build: libz-1.2.8 libpng-1.6.20 libjpeg-9a
-  libtiff-4.0.6 libfox-1.6.50
-* Add Windows binaries for Ruby-2.3.
-* Avoid GVL usage on old Mingw32 compiler, used for Ruby-1.9.3. Fixes #24
+* Adjust for Ruby-2.4 with unified Integers
+* Add support for RubyInstaller-2.4
+* Drop support for Ruby-1.8 and 1.9. It may work with them, but is no longer tested.
+* Add compat with SWIG-3.0
+* Fix an issue with FXApp#removeInput introduced in fxruby-1.6.30.
+* Work around missing /usr/lib/libfxscintilla.so file in Ubuntu
+* Update dependent gems.
+* Update libraries for Windows build.
+
+=== 1.6.34 / 2016-04-26
+
+* Add support for RubyInstaller-2.3
+* Avoid RARRAY_PTR() which broke fxruby on ruby-2.3.0.
+* Make use of StringValueCStr() where it is suitable.
+* Fix initialisation of runOnUiThread event handler, when FXApp is called with a block.
+* Disable GVL on RubyInstaller-1.9.3. Fixes #24
 
 === 1.6.33 / 2015-08-20
 

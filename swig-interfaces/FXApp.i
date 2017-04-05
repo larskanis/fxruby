@@ -374,7 +374,7 @@ public:
     */
     bool removeInput(VALUE obj,FXuint mode){
       FXInputHandle fd;
-      if(mode&INPUT_READ|INPUT_EXCEPT){
+      if(mode&(INPUT_READ|INPUT_EXCEPT)){
         fd=FXRbGetReadFileHandle(obj, mode);
         self->removeInput(fd,mode);
         FXRbRemoveReadFileHandle(obj, mode);

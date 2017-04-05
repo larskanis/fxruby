@@ -4,15 +4,16 @@
 
 source "https://rubygems.org/"
 
-gem "mini_portile", "~>0.6"
+gem "mini_portile2", "~>2.1"
 
-gem "rdoc", "~>4.0", :group => [:development, :test]
-gem "hoe-bundler", "~>1.2", :group => [:development, :test]
-gem "rake-compiler", "~>0.9", :group => [:development, :test]
-gem "rake-compiler-dock", "~>0.5.0", :group => [:development, :test]
+gem "rake-compiler", "~>1.0", :group => [:development, :test]
+gem "rake-compiler-dock", "~>0.6.0", :group => [:development, :test]
 gem "opengl", "~>0.8", :group => [:development, :test]
 gem "glu", "~>8.0", :group => [:development, :test]
 gem "test-unit", "~>3.1", :group => [:development, :test]
-gem "hoe", "~>3.14", :group => [:development, :test]
+gem "yard", "~>0.8", :group => [:development, :test]
+gem "hoe-bundler", "~>1.1", :group => [:development, :test]
+gem "rdoc", "~>4.0", :group => [:development, :test]
+gem "hoe", "~>3.16", :group => [:development, :test]
 
 # vim: syntax=ruby

@@ -12,7 +12,7 @@ class TC_FXWindow < Fox::TestCase
 
   def test_width_accessor
     pos = @window.width
-    assert_instance_of(Fixnum, pos)
+    assert_kind_of(Integer, pos)
     @window.width = pos + 1
     assert_equal(pos + 1, @window.width)
     @window.width = pos + 2.7

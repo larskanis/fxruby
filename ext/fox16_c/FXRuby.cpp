@@ -60,6 +60,11 @@ extern "C" {
 // Opaque type declaration from SWIG runtime
 struct swig_type_info;
 
+static int FXSWIG_ConvertPtr(VALUE obj, void **ptr, swig_type_info *ty, int flags){
+  return SWIG_ConvertPtr(obj, ptr, ty, flags);
+}
+
+
 // Wrapper around SWIG_TypeQuery() that caches results for performance
 swig_type_info *FXRbTypeQuery(const char *desc){
   FXASSERT(desc!=0);
@@ -1347,14 +1352,16 @@ static ID id_backtrace;
 static VALUE handle_rescue(VALUE args,VALUE error){
   VALUE info=rb_gv_get("$!");
   VALUE errat=rb_funcall(info,id_backtrace,0);
-  VALUE mesg=RARRAY_PTR(errat)[0];
+  VALUE mesg=rb_ary_entry(errat, 0);
+  VALUE info_str=rb_obj_as_string(info);
   fprintf(stderr,"%s: %s (%s)\n",
-    StringValuePtr(mesg),
-    RSTRING_PTR(rb_obj_as_string(info)),
+    StringValueCStr(mesg),
+    StringValueCStr(info_str),
     rb_class2name(CLASS_OF(info)));
   for(int i=1;i<RARRAY_LEN(errat);i++){
-    if(TYPE(RARRAY_PTR(errat)[i])==T_STRING){
-      fprintf(stderr,"\tfrom %s\n",StringValuePtr(RARRAY_PTR(errat)[i]));
+    VALUE entry = rb_ary_entry(errat, i);
+    if(TYPE(entry)==T_STRING){
+      fprintf(stderr,"\tfrom %s\n",StringValueCStr(entry));
       }
     }
   return Qnil;

@@ -26,7 +26,7 @@ class TC_FXButton < Fox::TestCase
 
   def testStyle
     assert(@button.buttonStyle)
-    assert_instance_of(Fixnum, @button.buttonStyle)
+    assert_kind_of(Integer, @button.buttonStyle)
 
     @button.buttonStyle |= BUTTON_AUTOGRAY
     assert((@button.buttonStyle & BUTTON_AUTOGRAY) != 0)
@@ -56,7 +56,7 @@ class TC_FXButton < Fox::TestCase
 
   def testState
     assert(@button.state)
-    assert_kind_of(Fixnum, @button.state)
+    assert_kind_of(Integer, @button.state)
 
     @button.state = STATE_UP
     assert_equal(STATE_UP, @button.state)
