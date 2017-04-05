@@ -106,7 +106,8 @@ LIBFOX_SOURCE_URI         = "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION
 
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
 LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
-#LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
+# LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '3.5.2'
+# LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
 
 
 class BuildRecipe < MiniPortile
@@ -241,11 +242,11 @@ def do_rake_compiler_setup
           "#{ENV['MAKE'] || "make"}"
         end
 
-#        This can be uncommented when fxscintilla is used from the source repository.
-#        def configure
-#          execute "bootstrap", "./bootstrap.sh"
-#          super
-#        end
+#         # This can be uncommented when fxscintilla is used from the source repository.
+#         def configure
+#           execute "bootstrap", "./bootstrap.sh"
+#           super
+#         end
 
         def compile
           execute "compile_lexers", "cd lexers && #{mk}"
