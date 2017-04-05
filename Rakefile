@@ -204,7 +204,7 @@ namespace :swig do
   end
 
   desc "Run SWIG to generate the wrapper files."
-  task :swig => [:swigruby_h] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
+  multitask :swig => [:swigruby_h] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
 
   # add dependencies for compile *.i to *_wrap.cpp
   SWIG_MODULES.each do |ifile, cppfile|
@@ -264,8 +264,7 @@ namespace :fxruby do
     make_impl
   end
 
-  file "ext/fox16_c/extconf.rb" => ['ext/fox16_c/swigruby.h', 'ext/fox16_c/impl.cpp', 'ext/fox16_c/include/inlinestubs.h'] +
-      SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
+  file "ext/fox16_c/extconf.rb" => ['ext/fox16_c/impl.cpp', 'ext/fox16_c/include/inlinestubs.h', 'swig:swig']
 
 
   directory "ports/archives"
