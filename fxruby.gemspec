@@ -56,6 +56,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'glu', '~> 8.0'
   spec.add_development_dependency 'test-unit', '~> 3.1'
   spec.add_development_dependency 'yard', '~> 0.8'
-  spec.add_development_dependency "bundler", "~> 1.14"
+  spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 12.0"
 end
