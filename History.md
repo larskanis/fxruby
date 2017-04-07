@@ -1,3 +1,9 @@
+=== 1.6.36 / YYYY-MM-DD
+
+* Update support for RubyInstaller-2.4.1-1rc1
+* Update to libjpeg-9b
+* More automation for gem releases
+
 === 1.6.35 / 2017-02-15
 
 * Adjust for Ruby-2.4 with unified Integers
