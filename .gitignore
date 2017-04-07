@@ -10,5 +10,16 @@ ext/fox16_c/swigruby.h
 ext/fox16_c/fox16.bundle
 ext/fox16_c/mkmf.log
 lib/fox16/kwargs.rb
+lib/[0-9].[0-9]
+lib/*.so
 fox-includes/diffs.py
 fox-includes/diffs.txt
+pkg
+tmp
+vendor
+*.orig
+*.rej
+/Gemfile-rcd*
+/Gemfile.lock
+/ports
+/.bundle
