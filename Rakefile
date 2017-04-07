@@ -1,10 +1,9 @@
 require 'rubygems'
-require 'hoe'
 require 'erb'
 require 'rake/extensiontask'
+require 'bundler'
+require 'bundler/gem_helper'
 require './lib/fox16/version.rb'
-
-Hoe.plugin :bundler
 
 # Use forked process for chdir'ed environment, to allow parallel execution with drake
 module FileUtils
@@ -19,91 +18,89 @@ module FileUtils
   module_function :chdir
 end
 
-# Some constants we'll need
-PKG_VERSION = Fox.fxrubyversion
 
+class FoxGemHelper < Bundler::GemHelper
+  attr_accessor :cross_platforms
+
+  def install
+    super
+
+    task "release:guard_clean" => ["release:update_history"]
+
+    task "release:update_history" do
+      update_history
+    end
+
+    task "release:rubygem_push" => ["gem:windows"]
+  end
+
+  def hfile
+    "History.md"
+  end
+
+  def headline
+    '([^\w]*)(\d+\.\d+\.\d+)([^\w]+)([2Y][0Y][0-9Y][0-9Y]-[0-1M][0-9M]-[0-3D][0-9D])([^\w]*|$)'
+  end
+
+  def reldate
+    Time.now.strftime("%Y-%m-%d")
+  end
+
+  def update_history
+    hin = File.read(hfile)
+    hout = hin.sub(/#{headline}/) do
+      raise "#{hfile} isn't up-to-date for version #{version}" unless $2==version.to_s
+      $1 + $2 + $3 + reldate + $5
+    end
+    if hout != hin
+      Bundler.ui.confirm "Updating #{hfile} for release."
+      File.write(hfile, hout)
+      Rake::FileUtilsExt.sh "git", "commit", hfile, "-m", "Update release date in #{hfile}"
+    end
+  end
+
+  def tag_version
+    Bundler.ui.confirm "Tag release with annotation:"
+    m = File.read(hfile).match(/(?<annotation>#{headline}.*?)#{headline}/m) || raise("Unable to find release notes in #{hfile}")
+    Bundler.ui.info(m[:annotation].gsub(/^/, "    "))
+    IO.popen(["git", "tag", "--file=-", version_tag], "w") do |fd|
+      fd.write m[:annotation]
+    end
+    yield if block_given?
+  rescue
+    Bundler.ui.error "Untagging #{version_tag} due to error."
+    sh_with_code "git tag -d #{version_tag}"
+    raise
+  end
+
+  def rubygem_push(path)
+    cross_platforms.each do |ruby_platform|
+      super(path.gsub(/\.gem\z/, "-#{ruby_platform}.gem"))
+    end
+    super(path)
+  end
+end
+
+# Some constants we'll need
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
 LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
 
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
-SWIG_MODULES = {
-  "core.i" => "core_wrap.cpp",
-  "dcmodule.i" => "dc_wrap.cpp",
-  "dialogs.i" => "dialogs_wrap.cpp",
-  "framesmodule.i" => "frames_wrap.cpp",
-  "iconlistmodule.i" => "iconlist_wrap.cpp",
-  "icons.i" => "icons_wrap.cpp",
-  "image.i" => "image_wrap.cpp",
-  "labelmodule.i" => "label_wrap.cpp",
-  "layout.i" => "layout_wrap.cpp",
-  "listmodule.i" => "list_wrap.cpp",
-  "mdi.i" => "mdi_wrap.cpp",
-  "menumodule.i" => "menu_wrap.cpp",
-  "fx3d.i" => "fx3d_wrap.cpp",
-  "scintilla.i" => "scintilla_wrap.cpp",
-  "table-module.i" => "table_wrap.cpp",
-  "text-module.i" => "text_wrap.cpp",
-  "treelist-module.i" => "treelist_wrap.cpp",
-  "ui.i" => "ui_wrap.cpp"
-}
 
+CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*", "Gemfile-rcd" )
 
-hoe = Hoe.spec "fxruby" do
-  # ... project specific data ...
-  self.blog_categories = %w{FXRuby}
-  self.clean_globs = [".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*"]
-  developer("Lyle Johnson", "lyle@lylejohnson.name")
-  developer("Lars Kanis", "kanis@comcard.de")
-  self.extra_rdoc_files = ["rdoc-sources", File.join("rdoc-sources", "README.rdoc")]
-  self.remote_rdoc_dir = "doc/api"
-  self.spec_extras = {
-    :description => "FXRuby is the Ruby binding to the FOX GUI toolkit.",
-    :extensions => ["ext/fox16_c/extconf.rb"],
-    :rdoc_options => ['--main', File.join('rdoc-sources', 'README.rdoc'), '--exclude', 'ext/fox16_c', '--exclude', %r{aliases|kwargs|missingdep|responder}.inspect],
-    :require_paths => ['lib'],
-    :summary => "FXRuby is the Ruby binding to the FOX GUI toolkit."
-  }
-  self.test_globs = ["test/**/TC_*.rb"]
-  self.testlib = :testunit
-  self.version = PKG_VERSION
-  self.readme_file = 'README.rdoc'
-  self.extra_rdoc_files << self.readme_file
-  self.extra_deps << ['mini_portile2', '~> 2.1']
-  self.extra_dev_deps << ['rake-compiler', '~> 1.0']
-  self.extra_dev_deps << ['rake-compiler-dock', '~> 0.6.0']
-  self.extra_dev_deps << ['opengl', '~> 0.8']
-  self.extra_dev_deps << ['glu', '~> 8.0']
-  self.extra_dev_deps << ['test-unit', '~> 3.1']
-  self.extra_dev_deps << ['yard', '~> 0.8']
-  self.extra_dev_deps << ['hoe-bundler', '~> 1.1']
-  self.license 'LGPL-2.1'
-
-
-  spec_extras[:files] = File.read_utf("Manifest.txt").split(/\r?\n\r?/).reject{|f| f=~/^fox-includes|^web/ }
-  spec_extras[:files] += SWIG_MODULES.values.map{|f| File.join("ext/fox16_c", f) }
-  spec_extras[:files] << 'ext/fox16_c/include/inlinestubs.h'
-  spec_extras[:files] << 'ext/fox16_c/swigruby.h'
-  spec_extras[:files] << 'doap.rdf'
-  spec_extras[:files] << 'lib/fox16/kwargs.rb'
-end
+CLOBBER.include( "pkg" )
 
 # Make sure extension is built before tests are run
 task :test => [:compile]
 
-# The "docs" task created by Hoe assumes that we want to run RDoc
-# over everything under the "lib" and "ext" subdirectories.
-# We need to go back and tell it to skip the stuff under ext.
-# rdoc_target = Rake::Task['docs'].prerequisites.first
-# rdoc_files = Rake::Task[rdoc_target].prerequisites
-# rdoc_files.reject! {|x| x == "ext/fox16_c" }
+task :gem => [:compile, :build]
 
-# Make sure that all of the package contents exist before we try to build the package
-#Rake::Task['package'].prerequisites.unshift("swig:swig", "fxruby:setversions", "fxruby:generate_kwargs_lib")
 
-# ... project specific tasks ...
+gem_spec = Bundler.load_gemspec('fxruby.gemspec')
 
-Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
+Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
   ext.cross_compile = true
   ext.cross_platform = ['x86-mingw32', 'x64-mingw32']
   # Enable FXTRACE and FXASSERT for 'rake compile'
@@ -145,6 +142,9 @@ Rake::ExtensionTask.new("fox16_c", hoe.spec) do |ext|
       end
     end
   end
+
+  FoxGemHelper.install_tasks
+  Bundler::GemHelper.instance.cross_platforms = ext.cross_platform
 end
 
 # To reduce the gem file size strip mingw32 dlls before packaging
@@ -162,7 +162,7 @@ desc "Build the windows binary gems"
 task 'gem:windows' => 'gem' do
   require 'rake_compiler_dock'
 
-  gf = "tmp/Gemfile-rcd"
+  gf = "Gemfile-rcd"
   File.write(gf, File.read("Gemfile").gsub(/.*"(glu|opengl)".*/, ""))
 
   sh "BUNDLE_GEMFILE=#{gf} bundle package"
