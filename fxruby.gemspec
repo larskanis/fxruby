@@ -42,7 +42,6 @@ Gem::Specification.new do |spec|
   spec.files << 'ext/fox16_c/swigruby.h'
   spec.files << 'doap.rdf'
   spec.files << 'lib/fox16/kwargs.rb'
-  spec.files.select!{|f| File.exist?(f) }
 
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
