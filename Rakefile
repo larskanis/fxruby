@@ -93,7 +93,9 @@ CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_
 CLOBBER.include( "pkg" )
 
 # Make sure extension is built before tests are run
-task :test => [:compile]
+task :test => [:compile] do
+  sh "ruby -w -W2 -I. test/TS_All.rb -- -v"
+end
 
 task :gem => [:compile, :build]
 
