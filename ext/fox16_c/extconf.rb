@@ -75,19 +75,6 @@ def fxscintilla_support_suppressed?
   ARGV.include? "--without-fxscintilla"
 end
 
-def with_env(hash)
-  hash.each do |k, v|
-    ENV[k] = v
-  end
-  begin
-    yield
-  ensure
-    hash.each do |k, v|
-      ENV.delete(k)
-    end
-  end
-end
-
 # Stick at zlib-1.2.7 for compatibility to MSYS1 based RubyInstaller.
 LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7.3'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
@@ -198,12 +185,11 @@ def do_rake_compiler_setup
     end
 
     libpng_recipe = BuildRecipe.new("libpng", LIBPNG_VERSION, [LIBPNG_SOURCE_URI]).tap do |recipe|
-      with_env(
-        'CPPFLAGS' => "-I#{libz_recipe.path}/include",
-        'LDFLAGS' => "-L#{libz_recipe.path}/lib"
-      ) do
-        recipe.cook_and_activate
-      end
+      recipe.configure_options += [
+        "CPPFLAGS=-I#{libz_recipe.path}/include",
+        "LDFLAGS=-L#{libz_recipe.path}/lib",
+      ]
+      recipe.cook_and_activate
     end
 
     libjpeg_recipe = BuildRecipe.new("libjpeg", LIBJPEG_VERSION, [LIBJPEG_SOURCE_URI]).tap do |recipe|
@@ -219,7 +205,9 @@ def do_rake_compiler_setup
         "--without-xft",
         "--without-x",
         enable_config("debug") ? "--enable-debug" : "--enable-release",
-        ]
+        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include",
+        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib",
+      ]
       class << recipe
         def compile
           # Add param -no-undefined to libtool to build a win32 shared lib
@@ -227,12 +215,7 @@ def do_rake_compiler_setup
         end
       end
 
-      with_env(
-        "CPPFLAGS" => "-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include",
-        "LDFLAGS" => "-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib"
-      ) do
-        recipe.cook_and_activate
-      end
+      recipe.cook_and_activate
     end
 
     libfxscintills_recipe = BuildRecipe.new("libfxscintilla", LIBFXSCINTILLA_VERSION, [LIBFXSCINTILLA_SOURCE_URI]).tap do |recipe|
@@ -261,11 +244,10 @@ def do_rake_compiler_setup
       end
       recipe.libfox_path = libfox_recipe.path
 
-      with_env(
-        'PKG_CONFIG_PATH' => "#{libfox_recipe.path}/lib/pkgconfig"
-      ) do
-        recipe.cook_and_activate
-      end
+      recipe.configure_options += [
+        "PKG_CONFIG_PATH=#{libfox_recipe.path}/lib/pkgconfig",
+      ]
+      recipe.cook_and_activate
     end
     $autodetected_fxscintilla = true
 
