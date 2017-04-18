@@ -205,7 +205,7 @@ def do_rake_compiler_setup
         "--without-xft",
         "--without-x",
         enable_config("debug") ? "--enable-debug" : "--enable-release",
-        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include",
+        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1",
         "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib",
       ]
       class << recipe
