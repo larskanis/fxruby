@@ -6,73 +6,18 @@ require 'mkmf'
 gem 'mini_portile2', '~>2.1'
 require 'mini_portile2'
 
-def find_installed_fox_version
-  stddirs = ["/usr/include/fox-1.6",
-             "/usr/local/include/fox-1.6",
-             "/sw/include/fox-1.6",
-            "/opt/local/include/fox-1.6"]
-  usrdirs = []
-  ARGV.each do |arg|
-    if arg =~ /--with-fox-include/
-      option, value = arg.split('=')
-      usrdirs = [ value ] + usrdirs
-    end
-  end
-  incdirs = usrdirs + stddirs
-  incdirs.uniq! # remove duplicates
-
-  incdirs.each do |incdir|
-    filename = File.join(incdir, "fxver.h")
-    if FileTest.exist?(filename)
-      idircflag = "-I" + incdir
-      $CPPFLAGS += " " + idircflag unless $CPPFLAGS.split.include?(idircflag)
-      return
-    end
-  end
-
-  # Couldn't find it; this should have been caught by the pre-config script
-  raise RuntimeError, "couldn't find FOX header files"
-end
-
 $autodetected_fxscintilla = false
-
-def find_installed_fxscintilla_version
-  stddirs = ["/usr/include/fxscintilla",
-             "/usr/local/include/fxscintilla",
-             "/sw/include/fxscintilla",
-	     "/opt/local/include/fxscintilla"]
-  usrdirs = []
-  ARGV.each do |arg|
-    if arg =~ /--with-fxscintilla-include/
-      option, value = arg.split('=')
-      usrdirs = [ value ] + usrdirs
-    end
-  end
-  incdirs = usrdirs + stddirs
-  incdirs.uniq! # remove duplicates
-
-  incdirs.each do |incdir|
-    filename = File.join(incdir, "FXScintilla.h")
-    if FileTest.exist?(filename)
-      $autodetected_fxscintilla = true
-      idircflag = "-I" + incdir
-      $CPPFLAGS += " " + idircflag unless $CPPFLAGS.split.include?(idircflag)
-      return
-    end
-  end
-end
 
 def is_fxscintilla_build?
   # No means no
   return false if fxscintilla_support_suppressed?
 
   # Check arguments
-  args = ARGV.delete_if { |e| !(e =~ /--with-fxscintilla/) }
-  (args.length > 0) || $autodetected_fxscintilla
+  with_config("fxscintilla", false) || $autodetected_fxscintilla
 end
 
 def fxscintilla_support_suppressed?
-  ARGV.include? "--without-fxscintilla"
+  !with_config("fxscintilla", true)
 end
 
 # Stick at zlib-1.2.7 for compatibility to MSYS1 based RubyInstaller.
@@ -249,7 +194,6 @@ def do_rake_compiler_setup
       ]
       recipe.cook_and_activate
     end
-    $autodetected_fxscintilla = true
 
     dir_config('libfox', "#{libfox_recipe.path}/include/fox-1.6", "#{libfox_recipe.path}/lib")
     dir_config('libfxscintilla', "#{libfxscintills_recipe.path}/include/fxscintilla", "#{libfxscintills_recipe.path}/lib")
@@ -329,7 +273,9 @@ dir_config('fox', '/usr/local/include/fox-1.6', '/usr/local/lib')
 dir_config('fxscintilla', '/usr/local/include/fxscintilla', '/usr/local/lib')
 
 unless enable_config("win32-cross")
-  find_installed_fox_version
+  checking_for "fox per pkg-config" do
+    pkg_config("fox")
+  end
 
   #
   # Check for FXScintilla header files, unless FXScintilla support has
@@ -337,7 +283,12 @@ unless enable_config("win32-cross")
   #
 
   unless fxscintilla_support_suppressed?
-    find_installed_fxscintilla_version
+    checking_for "fxscintilla per pkg-config" do
+      $autodetected_fxscintilla = pkg_config("fxscintilla")
+    end
+  end
+  checking_for "fxscintilla build" do
+    is_fxscintilla_build?
   end
 end
 
