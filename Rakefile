@@ -177,6 +177,7 @@ end
 # before running swig on MinGW.
 namespace :swig do
   def sed(wrapper_src_file_name)
+    puts "Update #{wrapper_src_file_name}"
     results = []
     IO.readlines(wrapper_src_file_name).each do |line|
       line.gsub!(/static VALUE mCore;/, "VALUE mCore;")
@@ -193,11 +194,21 @@ namespace :swig do
     end
   end
 
+  def add_with_fxscintilla_cond(file)
+    puts "Update #{file} for fxscintilla"
+    content = File.binread(file)
+    content = "#ifdef WITH_FXSCINTILLA\n" + content + "#endif /* WITH_FXSCINTILLA */\n"
+    File.binwrite(file, content)
+  end
+
   def swig(swig_interface_file_name, wrapper_src_file_name)
     cmd = "#{SWIG} #{SWIGFLAGS} -o #{wrapper_src_file_name} #{swig_interface_file_name}"
     puts cmd
     system cmd
+
+    # Do our own wrapper file modifications:
     sed wrapper_src_file_name
+    add_with_fxscintilla_cond(wrapper_src_file_name) if ["scintilla_wrap.cpp"].include?(File.basename(wrapper_src_file_name))
   end
 
   task :swigruby_h => ["ext/fox16_c/swigruby.h"]

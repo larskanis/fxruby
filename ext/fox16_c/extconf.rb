@@ -296,15 +296,12 @@ def do_rake_compiler_setup
   $libs = append_library($libs, "FOX-1.6")
   $INCFLAGS << " -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
-    FileUtils.move('scintilla_wrap.cpp.bak', 'scintilla_wrap.cpp') if FileTest.exist?('scintilla_wrap.cpp.bak')
     $CPPFLAGS = $CPPFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
     find_library("fxscintilla", nil) || find_library(":libfxscintilla.so.19", nil) || ($libs = append_library($libs, "fxscintilla"))
-  else
-    FileUtils.move('scintilla_wrap.cpp', 'scintilla_wrap.cpp.bak') if FileTest.exist?('scintilla_wrap.cpp')
   end
 
   checking_for("thread local variables") do
-    $defs.push( "-DHAVE___THREAD" ) if try_compile(<<-EOT)
+    $defs.push( "-DHAVE___THREAD" ) if try_compile <<-EOT
       __thread int x=1;
       #if defined(__MINGW32__)
         #include <windows.h>
