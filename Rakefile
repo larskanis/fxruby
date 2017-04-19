@@ -92,7 +92,7 @@ LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/f
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
 
-CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*", "Gemfile-rcd" )
+CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*" )
 
 CLOBBER.include( "pkg" )
 
@@ -168,11 +168,8 @@ desc "Build the windows binary gems"
 task 'gem:windows' => 'gem' do
   require 'rake_compiler_dock'
 
-  gf = "Gemfile-rcd"
-  File.write(gf, File.read("Gemfile").gsub(/.*"(glu|opengl)".*/, ""))
-
-  sh "BUNDLE_GEMFILE=#{gf} bundle package"
-  RakeCompilerDock.sh "BUNDLE_GEMFILE=#{gf} bundle --local --without=norcd && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" "
+  sh "bundle package"
+  RakeCompilerDock.sh "bundle --local --without=test && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" "
 end
 
 # Set environment variable SWIG_LIB to
