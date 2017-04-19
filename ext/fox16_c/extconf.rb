@@ -211,6 +211,7 @@ def do_rake_compiler_setup
     CONFIG['CC'] += "\nCXX=#{CONFIG['CXX']}" # Hack CXX into Makefile for cross compilation
     CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
     $LDFLAGS += " -s" # remove symbol table informations from shared lib
+    $libs = append_library($libs, "fxscintilla")
 
   elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
