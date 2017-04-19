@@ -46,11 +46,12 @@ class BuildRecipe < MiniPortile
   def initialize(name, version, files)
     super(name, version)
     self.files = files
-    self.target = File.expand_path('../../../ports', __FILE__)
+    rootdir = File.expand_path('../../..', __FILE__)
+    self.target = File.join(rootdir, "ports")
     # Prefer host_alias over host in order to use i586-mingw32msvc as
     # correct compiler prefix for cross build, but use host if not set.
     self.host = consolidated_host(RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"])
-    self.patch_files = Dir[File.join(self.target, "patches", self.name, self.version, "*.diff")].sort
+    self.patch_files = Dir[File.join(rootdir, "patches", self.name, self.version, "*.diff")].sort
   end
 
   def consolidated_host(name)
