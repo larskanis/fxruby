@@ -146,12 +146,13 @@ def do_rake_compiler_setup
     end
 
     libfox_recipe = BuildRecipe.new("libfox", LIBFOX_VERSION, [LIBFOX_SOURCE_URI]).tap do |recipe|
+      debug = enable_config("debug")
       recipe.configure_options += [
         "--without-xft",
         "--without-x",
-        enable_config("debug") ? "--enable-debug" : "--enable-release",
-        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1",
-        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib",
+        debug ? "--enable-debug" : "--enable-release",
+        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""}",
+        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""}",
       ]
       class << recipe
         def compile
@@ -301,7 +302,10 @@ unless enable_config("win32-cross")
   end
 end
 
-unless enable_config("debug")
+if enable_config("debug")
+  $CPPFLAGS += " -ggdb"
+  $LDFLAGS += " -ggdb"
+else
   $CPPFLAGS += " -DNDEBUG"
 end
 
