@@ -98,7 +98,7 @@ CLOBBER.include( "pkg" )
 
 # Make sure extension is built before tests are run
 task :test => [:compile] do
-  sh "ruby -w -W2 -Ilib test/TS_All.rb -- -v"
+  sh "ruby -w -W2 -Ilib test/TS_All.rb -v"
 end
 
 task :gem => [:compile, :build]
