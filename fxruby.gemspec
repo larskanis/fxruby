@@ -49,12 +49,4 @@ Gem::Specification.new do |spec|
   spec.extensions = ["ext/fox16_c/extconf.rb"]
 
   spec.add_runtime_dependency 'mini_portile2', '~> 2.1'
-  spec.add_development_dependency 'rake-compiler', '~> 1.0'
-  spec.add_development_dependency 'rake-compiler-dock', '~> 0.6.0'
-  spec.add_development_dependency 'opengl', '~> 0.8'
-  spec.add_development_dependency 'glu', '~> 8.0'
-  spec.add_development_dependency 'test-unit', '~> 3.1'
-  spec.add_development_dependency 'yard', '~> 0.8'
-  spec.add_development_dependency "bundler", "~> 1.12"
-  spec.add_development_dependency "rake", "~> 12.0"
 end
