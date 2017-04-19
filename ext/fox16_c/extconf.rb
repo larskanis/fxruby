@@ -241,7 +241,6 @@ def do_rake_compiler_setup
   $INCFLAGS << " -I#{File.join(File.dirname(__FILE__), 'include')}"
   if is_fxscintilla_build?
     $CPPFLAGS = $CPPFLAGS + " -DWITH_FXSCINTILLA -DHAVE_FOX_1_6"
-    find_library("fxscintilla", nil) || find_library(":libfxscintilla.so.19", nil) || ($libs = append_library($libs, "fxscintilla"))
   end
 
   checking_for("thread local variables") do
@@ -285,6 +284,15 @@ unless enable_config("win32-cross")
   unless fxscintilla_support_suppressed?
     checking_for "fxscintilla per pkg-config" do
       $autodetected_fxscintilla = pkg_config("fxscintilla")
+    end
+
+    unless $autodetected_fxscintilla
+      checking_for "fxscintilla on Ubuntu with missing libfxscintilla.so link" do
+        if find_library(":libfxscintilla.so.19", nil) && (cflags=pkg_config("fxscintilla", "cflags"))
+          $CXXFLAGS += " " + cflags
+          $autodetected_fxscintilla = true
+        end
+      end
     end
   end
   checking_for "fxscintilla build" do
