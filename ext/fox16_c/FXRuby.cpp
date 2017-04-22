@@ -88,7 +88,7 @@ swig_type_info *FXRbTypeQuery(const char *desc){
 
 static st_table * FXRuby_Objects;
 
-static const char * const safe_rb_obj_classname(VALUE obj)
+static const char * safe_rb_obj_classname(VALUE obj)
 {
   int tdata = TYPE(obj)==T_DATA;
   if( (tdata && FXRbIsInGC(DATA_PTR(obj)))
