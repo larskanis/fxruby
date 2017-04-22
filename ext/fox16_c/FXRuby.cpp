@@ -575,7 +575,6 @@ FXColor *FXRbConvertToFXColors(VALUE string_or_ary, FXuint *opts){
  */
 static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector sel,void* ptr){
   FXTRACE((1,"FXRbConvertMessageData(%s(%p),FXSEL(%s,%d),%p)\n",sender->getClassName(),sender,FXDebugTarget::messageTypeName[FXSELTYPE(sel)],FXSELID(sel),ptr));
-  FXInputHandle fff;
   FXushort type=FXSELTYPE(sel);
   FXushort id=FXSELID(sel);
 
@@ -642,11 +641,6 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
   else if(type==SEL_IO_READ ||
           type==SEL_IO_WRITE ||
 	  type==SEL_IO_EXCEPT){
-#ifdef WIN32
-    fff=reinterpret_cast<FXInputHandle>(ptr);
-#else
-    fff=static_cast<FXInputHandle>(reinterpret_cast<long>(ptr));
-#endif
     return Qnil;
     }
   else if(type==SEL_CLOSE ||
