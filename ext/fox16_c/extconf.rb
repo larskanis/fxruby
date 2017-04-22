@@ -309,6 +309,7 @@ if enable_config("debug")
 else
   $CPPFLAGS += " -DNDEBUG"
 end
+$CPPFLAGS += " -Wno-unused-function"
 
 # Platform-specific modifications
 do_rake_compiler_setup
