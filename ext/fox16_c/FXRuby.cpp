@@ -522,7 +522,7 @@ VALUE FXRbMakeArray(const FXSegment* segments,FXuint nsegments){
 // Returns a Ruby array of FXColor values
 VALUE FXRbMakeColorArray(const FXColor* colors,FXint w,FXint h){
   VALUE result=rb_ary_new();
-  FXint size=w*h;
+  FXuint size=w*h;
   for(FXuint i=0; i<size; i++)
     rb_ary_push(result,to_ruby(colors[i]));
   return result;
