@@ -199,98 +199,6 @@ bool FXRbIsInGC(const void* ptr){
 }
 
 
-/**
- * FXRbConvertPtr() is just a wrapper around SWIG_ConvertPtr().
- */
-
-void* FXRbConvertPtr(VALUE obj,swig_type_info* ty){
-  void *ptr;
-  SWIG_ConvertPtr(obj,&ptr,ty,1);
-  return ptr;
-  }
-
-
-// Should we catch exceptions thrown by message handlers?
-FXbool FXRbCatchExceptions=FALSE;
-
-// Returns an FXInputHandle for this Ruby file object
-FXInputHandle FXRbGetReadFileHandle(VALUE obj,FXuint mode) {
-  int fd;
-  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
-#ifdef WIN32
-#ifdef __CYGWIN__
-  return (FXInputHandle) get_osfhandle(fd);
-#else
-  WSAEVENT hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
-  long events = 0;
-  if(mode&INPUT_READ) events |= FD_READ|FD_ACCEPT|FD_OOB;
-  if(mode&INPUT_EXCEPT) events |= FD_CLOSE|FD_QOS|FD_GROUP_QOS|FD_ROUTING_INTERFACE_CHANGE|FD_ADDRESS_LIST_CHANGE;
-  if ( WSAEventSelect(_get_osfhandle(fd), hEvent, events) == SOCKET_ERROR ) {
-    WSACloseEvent( hEvent );
-    rb_raise( rb_eRuntimeError, "WSAEventSelect sockett error: %d", WSAGetLastError() );
-  }
-  rb_iv_set(obj, "FXRuby::FXRbGetReadFileHandle", ULL2NUM((intptr_t)hEvent));
-  return (FXInputHandle) hEvent;
-#endif
-#else
-  return (FXInputHandle) fd;
-#endif
-  }
-
-void FXRbRemoveReadFileHandle(VALUE obj,FXuint mode) {
-#ifdef WIN32
-  WSAEVENT hEvent = (HANDLE)NUM2ULL(rb_iv_get(obj, "FXRuby::FXRbGetReadFileHandle"));
-  CloseHandle( hEvent );
-#endif
-}
-
-// Returns an FXInputHandle for this Ruby file object
-FXInputHandle FXRbGetWriteFileHandle(VALUE obj,FXuint mode) {
-  int fd;
-#if defined(RUBINIUS)
-  VALUE vwrite = rb_intern("@write");
-  if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
-  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
-#elif defined(RUBY_1_8)
-  OpenFile *fptr;
-  GetOpenFile(obj, fptr);
-  FILE *fpw=GetWriteFile(fptr);
-  fd = fileno(fpw);
-#else
-  rb_io_t *fptr;
-  GetOpenFile(obj, fptr);
-  VALUE wrio = fptr->tied_io_for_writing;
-  if(wrio) obj = wrio;
-  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
-#endif
-#ifdef WIN32
-#ifdef __CYGWIN__
-  return (FXInputHandle) get_osfhandle(fd);
-#else
-  WSAEVENT hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
-  long events = 0;
-  if(mode&INPUT_WRITE) events |= FD_WRITE|FD_CONNECT;
-  if(mode&INPUT_EXCEPT) events |= FD_CLOSE|FD_QOS|FD_GROUP_QOS|FD_ROUTING_INTERFACE_CHANGE|FD_ADDRESS_LIST_CHANGE;
-  if ( WSAEventSelect(_get_osfhandle(fd), hEvent, events) == SOCKET_ERROR ) {
-    WSACloseEvent( hEvent );
-    rb_raise( rb_eRuntimeError, "WSAEventSelect sockettt error: %d", WSAGetLastError() );
-  }
-  rb_iv_set(obj, "FXRuby::FXRbGetWriteFileHandle", ULL2NUM((intptr_t)hEvent));
-  return (FXInputHandle) hEvent;
-#endif
-#else
-  return (FXInputHandle) fd;
-#endif
-  }
-
-void FXRbRemoveWriteFileHandle(VALUE obj,FXuint mode) {
-#ifdef WIN32
-  WSAEVENT hEvent = (HANDLE)NUM2ULL(rb_iv_get(obj, "FXRuby::FXRbGetWriteFileHandle"));
-  CloseHandle( hEvent );
-#endif
-}
-
-
 // Register this Ruby class instance
 void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
   FXASSERT(!NIL_P(rubyObj));
@@ -1362,6 +1270,10 @@ static VALUE handle_rescue(VALUE args,VALUE error){
   }
 
 
+// Should we catch exceptions thrown by message handlers?
+FXbool FXRbCatchExceptions=FALSE;
+
+
 // Call the designated function and return its result (which should be a long).
 long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector key,void* ptr){
   FXRbHandleArgs hArgs;
@@ -1798,6 +1710,94 @@ SORTFUNC( FXRbTreeList, FXTreeItem )
 FXbool FXRbGLViewer::sortProc(FXfloat*& buffer,FXint& used,FXint& size){
   return TRUE;
   }
+
+/**
+ * FXRbConvertPtr() is just a wrapper around SWIG_ConvertPtr().
+ */
+
+void* FXRbConvertPtr(VALUE obj,swig_type_info* ty){
+  void *ptr;
+  SWIG_ConvertPtr(obj,&ptr,ty,1);
+  return ptr;
+  }
+
+
+// Returns an FXInputHandle for this Ruby file object
+FXInputHandle FXRbGetReadFileHandle(VALUE obj,FXuint mode) {
+  int fd;
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
+#ifdef WIN32
+#ifdef __CYGWIN__
+  return (FXInputHandle) get_osfhandle(fd);
+#else
+  WSAEVENT hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+  long events = 0;
+  if(mode&INPUT_READ) events |= FD_READ|FD_ACCEPT|FD_OOB;
+  if(mode&INPUT_EXCEPT) events |= FD_CLOSE|FD_QOS|FD_GROUP_QOS|FD_ROUTING_INTERFACE_CHANGE|FD_ADDRESS_LIST_CHANGE;
+  if ( WSAEventSelect(_get_osfhandle(fd), hEvent, events) == SOCKET_ERROR ) {
+    WSACloseEvent( hEvent );
+    rb_raise( rb_eRuntimeError, "WSAEventSelect sockett error: %d", WSAGetLastError() );
+  }
+  rb_iv_set(obj, "FXRuby::FXRbGetReadFileHandle", ULL2NUM((intptr_t)hEvent));
+  return (FXInputHandle) hEvent;
+#endif
+#else
+  return (FXInputHandle) fd;
+#endif
+  }
+
+void FXRbRemoveReadFileHandle(VALUE obj,FXuint mode) {
+#ifdef WIN32
+  WSAEVENT hEvent = (HANDLE)NUM2ULL(rb_iv_get(obj, "FXRuby::FXRbGetReadFileHandle"));
+  CloseHandle( hEvent );
+#endif
+}
+
+// Returns an FXInputHandle for this Ruby file object
+FXInputHandle FXRbGetWriteFileHandle(VALUE obj,FXuint mode) {
+  int fd;
+#if defined(RUBINIUS)
+  VALUE vwrite = rb_intern("@write");
+  if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
+#elif defined(RUBY_1_8)
+  OpenFile *fptr;
+  GetOpenFile(obj, fptr);
+  FILE *fpw=GetWriteFile(fptr);
+  fd = fileno(fpw);
+#else
+  rb_io_t *fptr;
+  GetOpenFile(obj, fptr);
+  VALUE wrio = fptr->tied_io_for_writing;
+  if(wrio) obj = wrio;
+  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
+#endif
+#ifdef WIN32
+#ifdef __CYGWIN__
+  return (FXInputHandle) get_osfhandle(fd);
+#else
+  WSAEVENT hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+  long events = 0;
+  if(mode&INPUT_WRITE) events |= FD_WRITE|FD_CONNECT;
+  if(mode&INPUT_EXCEPT) events |= FD_CLOSE|FD_QOS|FD_GROUP_QOS|FD_ROUTING_INTERFACE_CHANGE|FD_ADDRESS_LIST_CHANGE;
+  if ( WSAEventSelect(_get_osfhandle(fd), hEvent, events) == SOCKET_ERROR ) {
+    WSACloseEvent( hEvent );
+    rb_raise( rb_eRuntimeError, "WSAEventSelect sockettt error: %d", WSAGetLastError() );
+  }
+  rb_iv_set(obj, "FXRuby::FXRbGetWriteFileHandle", ULL2NUM((intptr_t)hEvent));
+  return (FXInputHandle) hEvent;
+#endif
+#else
+  return (FXInputHandle) fd;
+#endif
+  }
+
+void FXRbRemoveWriteFileHandle(VALUE obj,FXuint mode) {
+#ifdef WIN32
+  WSAEVENT hEvent = (HANDLE)NUM2ULL(rb_iv_get(obj, "FXRuby::FXRbGetWriteFileHandle"));
+  CloseHandle( hEvent );
+#endif
+}
 
 //----------------------------------------------------------------------
 
