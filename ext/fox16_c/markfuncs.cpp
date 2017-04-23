@@ -531,7 +531,6 @@ void FXRbTableItem::freefunc(FXTableItem* self){
 
 
 void FXRbTable::markfunc(FXTable* self){
-  register FXTableItem* item;
   FXRbScrollArea::markfunc(self);
   if(self){
     FXRbGcMark(self->FXTable::getFont());
@@ -539,7 +538,7 @@ void FXRbTable::markfunc(FXTable* self){
     FXRbGcMark(self->FXTable::getColumnHeaderFont());
     for(FXint row=0;row<self->FXTable::getNumRows();row++){
       for(FXint col=0;col<self->FXTable::getNumColumns();col++){
-        item=self->FXTable::getItem(row,col);
+        FXTableItem* item=self->FXTable::getItem(row,col);
         FXRbGcMark(item);
         }
       }
