@@ -380,13 +380,13 @@ VALUE to_ruby(const FXObject* obj){
  * Return the registered Ruby class instance associated with this
  * FOX object, or Qnil if not found.
  */
-VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed, bool in_gc){
+VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed, bool in_gc_mark){
   FXRubyObjDesc* desc;
   if(foxObj!=0 && st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
     FXASSERT(desc!=0);
     if(alsoBorrowed || !desc->borrowed){
-      const char *classname = in_gc ? "in GC" : safe_rb_obj_classname(desc->obj);
-      FXTRACE((2,"FXRbGetRubyObj(foxObj=%p) => rubyObj=%p (%s)\n", foxObj, (void *)desc->obj, classname));
+      const char *classname = in_gc_mark ? "in GC" : safe_rb_obj_classname(desc->obj);
+      FXTRACE((2,"%s(foxObj=%p) => rubyObj=%p (%s)\n", in_gc_mark ? "FXRbGcMark" : "FXRbGetRubyObj", foxObj, (void *)desc->obj, classname));
       return desc->obj;
       }
     }
@@ -438,7 +438,7 @@ void FXRbGcMark(void *obj){
      * example program works if you invoke the GC in ShutterWindow#create;
      * make sure that the shutter items' contents don't get blown away!
      */
-    VALUE value=FXRbGetRubyObj(obj,true, true);
+    VALUE value=FXRbGetRubyObj(obj, true, true);
     if(!NIL_P(value)){
       rb_gc_mark(value);
       }
