@@ -86,7 +86,6 @@ void FXRbRegisterRubyObj(VALUE rubyObj, const void* foxObj);
 // Remove mapping for this FOX object and zero out any pointers
 // to this (now dead) C++ object held by any Ruby object
 void FXRbUnregisterRubyObj(const void* foxObj);
-void FXRbUnregisterRubyObj2(const void* foxObj, bool alsoOwned=true);
 void FXRbUnregisterBorrowedRubyObj(const void* foxObj);
 void FXRbUnregisterBorrowedRubyObj(FXlong foxObj);
 void FXRbUnregisterBorrowedRubyObj(FXString& foxObj);

@@ -29,6 +29,7 @@
 #endif
 
 #include "FXRbCommon.h"
+#include "FXRbObjRegistry.h"
 #include "impl.h"
 
 // SWIG runtime functions we need
@@ -79,82 +80,9 @@ swig_type_info *FXRbTypeQuery(const char *desc){
   }
 
 
-/**
- * The FXRuby_Objects hash table basically maps C++ objects to Ruby instances.
- * Each key in the table is a pointer to a C++ object we've seen before, and
- * the corresponding value is an FXRubyObjDesc struct (see below) that tells
- * us which Ruby instance corresponds to that C++ object.
- */
-
-static st_table * FXRuby_Objects;
-
-static const char * safe_rb_obj_classname(VALUE obj)
-{
-  int tdata = TYPE(obj)==T_DATA;
-  if( (tdata && FXRbIsInGC(DATA_PTR(obj)))
-#ifdef HAVE_RB_DURING_GC
-      || rb_during_gc()
-#endif
-  ){
-    /* It's not safe to call rb_obj_classname() during GC.
-     * Return dummy value in this case. */
-    return "during GC";
-  } else if (tdata) {
-    return rb_obj_classname(obj);
-  } else {
-    return "no T_DATA";
-  }
-}
-
-/**
- * Each value in the FXRuby_Objects hash table is an instance of this
- * struct. It identifies the Ruby instance associated with a C++ object.
- * It also indicates whether this is merely a "borrowed" reference to
- * some C++ object (i.e. it's not one we need to destroy later).
- *
- * in_gc is set for FXWindows that are in garbage collection and must
- * not call ruby code anymore.
- */
-
-struct FXRubyObjDesc {
-  VALUE obj;
-  bool borrowed;
-  bool in_gc;
-  };
-
-
-/**
- * FXRbNewPointerObj() is a wrapper around SWIG_Ruby_NewPointerObj() that also
- * registers this C++ object & Ruby instance pair in our FXRuby_Objects
- * hash table. This function should only get called for methods that return
- * a reference to an already-existing C++ object (i.e. one that FOX "owns")
- * and for that reason we mark these objects as "borrowed".
- */
-
 VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
-  if(ptr!=0){
-    FXASSERT(ty!=0);
-    VALUE obj;
-    FXRubyObjDesc *desc;
-    if(FXMALLOC(&desc,FXRubyObjDesc,1)){
-      obj=SWIG_Ruby_NewPointerObj(ptr,ty,1);
-      FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,safe_rb_obj_classname(obj)));
-      desc->obj=obj;
-      desc->borrowed=true;
-      desc->in_gc=false;
-      int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
-      FXASSERT(!overwritten);
-      return obj;
-      }
-    else{
-      FXASSERT(FALSE);
-      return Qnil;
-      }
-    }
-  else{
-    return Qnil;
-    }
-  }
+  return FXRbObjRegistry::main.NewBorrowedObj(ptr,ty);
+}
 
 
 /**
@@ -163,75 +91,26 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
  */
 
 bool FXRbIsBorrowed(void* ptr){
-  FXASSERT(ptr!=0);
-  FXRubyObjDesc *desc;
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
-    return desc->borrowed;
-    }
-  else{
-    return true;
-    }
-  }
+  return FXRbObjRegistry::main.IsBorrowed(ptr);
+}
 
 bool FXRbSetInGC(const void* ptr, bool enabled){
-  FXASSERT(ptr!=0);
-  FXRubyObjDesc *desc;
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
-    desc->in_gc=enabled;
-    return enabled;
-    }
-  return false;
-  }
+  return FXRbObjRegistry::main.SetInGC(ptr, enabled);
+}
 
 bool FXRbIsInGC(const void* ptr){
-  FXASSERT(ptr!=0);
-  FXRubyObjDesc *desc;
-
-#ifdef HAVE_RB_DURING_GC
-  if( rb_during_gc() ){
-    return true;
-  }
-#endif
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
-    return desc->in_gc;
-  }
-  return false;
+  return FXRbObjRegistry::main.IsInGC(ptr);
 }
 
 
 // Register this Ruby class instance
 void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
-  FXASSERT(!NIL_P(rubyObj));
-  FXASSERT(foxObj!=0);
-  FXRubyObjDesc* desc;
-  FXTRACE((1,"FXRbRegisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)rubyObj,safe_rb_obj_classname(rubyObj),foxObj));
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
-    FXASSERT(desc->borrowed);
-    /* There is already a Ruby object registered for this foxObj.
-     * This can happen, if libfox calls methods out of the C++ object constructor,
-     * that can be overwritten in Ruby (like changeFocus) with the object as
-     * parameter. FXFileSelector is one example.
-     * To avoid double references to the same foxObj from different Ruby objects,
-     * we decouple the foxObj from previoius ruby object and point to the new one.
-     */
-    DATA_PTR(desc->obj) = 0;
-    desc->obj=rubyObj;
-    desc->borrowed=false;
-    }
-  else{
-    if(FXMALLOC(&desc,FXRubyObjDesc,1)){
-      desc->obj=rubyObj;
-      desc->borrowed=false;
-      desc->in_gc=false;
-      int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
-      FXASSERT(!overwritten);
-      }
-    else{
-      FXASSERT(FALSE);
-      }
-    }
-  FXASSERT(FXRbGetRubyObj(foxObj,false)==rubyObj);
-  }
+  return FXRbObjRegistry::main.RegisterRubyObj(rubyObj, foxObj);
+}
+
+static void FXRbUnregisterRubyObj2(const void* foxObj, bool alsoOwned){
+  return FXRbObjRegistry::main.UnregisterRubyObj(foxObj, alsoOwned);
+}
 
 /**
  * Remove this mapping between a Ruby instance and a C++ object
@@ -239,20 +118,6 @@ void FXRbRegisterRubyObj(VALUE rubyObj,const void* foxObj) {
 void FXRbUnregisterRubyObj(const void* foxObj){
   FXRbUnregisterRubyObj2(foxObj, true);
 }
-
-void FXRbUnregisterRubyObj2(const void* foxObj, bool alsoOwned){
-  if(foxObj!=0){
-    FXRubyObjDesc* desc;
-    if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
-      if( !alsoOwned && !desc->borrowed ) return;
-      FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)desc->obj,safe_rb_obj_classname(desc->obj),foxObj));
-      DATA_PTR(desc->obj)=0;
-      FXFREE(&desc);
-      st_delete(FXRuby_Objects,reinterpret_cast<st_data_t *>(const_cast<void**>(&foxObj)),reinterpret_cast<st_data_t *>(0));
-      FXASSERT(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(0))==0);
-      }
-    }
-  }
 
 void FXRbUnregisterBorrowedRubyObj(const void* foxObj){
   FXRbUnregisterRubyObj2( foxObj, false );
@@ -289,17 +154,8 @@ VALUE to_ruby(const FXObject* obj){
  * FOX object, or Qnil if not found.
  */
 VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed, bool in_gc_mark){
-  FXRubyObjDesc* desc;
-  if(foxObj!=0 && st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
-    FXASSERT(desc!=0);
-    if(alsoBorrowed || !desc->borrowed){
-      const char *classname = in_gc_mark ? "in GC" : safe_rb_obj_classname(desc->obj);
-      FXTRACE((2,"%s(foxObj=%p) => rubyObj=%p (%s)\n", in_gc_mark ? "FXRbGcMark" : "FXRbGetRubyObj", foxObj, (void *)desc->obj, classname));
-      return desc->obj;
-      }
-    }
-  return Qnil;
-  }
+  return FXRbObjRegistry::main.GetRubyObj(foxObj, alsoBorrowed, in_gc_mark);
+}
 
 /**
  * Return the registered Ruby class instance associated with this
@@ -2122,7 +1978,6 @@ Init_fox16_c(void) {
   utf8_enc_idx = rb_enc_find_index("UTF-8");
 #endif
 
-  FXRuby_Objects=st_init_numtable();
   appSensitiveObjs=st_init_numtable();
   appSensitiveDCs=st_init_numtable();
   }
