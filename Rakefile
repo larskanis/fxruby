@@ -120,6 +120,9 @@ Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
 
   # Add dependent DLLs to the cross gems
   ext.cross_compiling do |spec|
+    # The fat binary gem doesn't depend on the fox package, since it bundles the libraries.
+    spec.metadata.delete('msys2_mingw_dependencies')
+
     platform_host_map =  {
       'x86-mingw32' => ['i686-w64-mingw32'],
       'x64-mingw32' => ['x86_64-w64-mingw32'],

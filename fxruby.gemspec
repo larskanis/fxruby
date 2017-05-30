@@ -47,6 +47,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   spec.extensions = ["ext/fox16_c/extconf.rb"]
+  spec.metadata['msys2_mingw_dependencies'] = 'fox'
 
   spec.add_runtime_dependency 'mini_portile2', '~> 2.1'
 end
