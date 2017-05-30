@@ -46,11 +46,12 @@ class BuildRecipe < MiniPortile
   def initialize(name, version, files)
     super(name, version)
     self.files = files
-    self.target = File.expand_path('../../../ports', __FILE__)
+    rootdir = File.expand_path('../../..', __FILE__)
+    self.target = File.join(rootdir, "ports")
     # Prefer host_alias over host in order to use i586-mingw32msvc as
     # correct compiler prefix for cross build, but use host if not set.
     self.host = consolidated_host(RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"])
-    self.patch_files = Dir[File.join(self.target, "patches", self.name, self.version, "*.diff")].sort
+    self.patch_files = Dir[File.join(rootdir, "patches", self.name, self.version, "*.diff")].sort
   end
 
   def consolidated_host(name)
@@ -146,12 +147,13 @@ def do_rake_compiler_setup
     end
 
     libfox_recipe = BuildRecipe.new("libfox", LIBFOX_VERSION, [LIBFOX_SOURCE_URI]).tap do |recipe|
+      debug = enable_config("debug")
       recipe.configure_options += [
         "--without-xft",
         "--without-x",
-        enable_config("debug") ? "--enable-debug" : "--enable-release",
-        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1",
-        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib",
+        debug ? "--enable-debug" : "--enable-release",
+        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""}",
+        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""}",
       ]
       class << recipe
         def compile
@@ -211,6 +213,7 @@ def do_rake_compiler_setup
     CONFIG['CC'] += "\nCXX=#{CONFIG['CXX']}" # Hack CXX into Makefile for cross compilation
     CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
     $LDFLAGS += " -s" # remove symbol table informations from shared lib
+    $libs = append_library($libs, "fxscintilla")
 
   elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"
@@ -300,9 +303,13 @@ unless enable_config("win32-cross")
   end
 end
 
-unless enable_config("debug")
+if enable_config("debug")
+  $CPPFLAGS += " -ggdb"
+  $LDFLAGS += " -ggdb"
+else
   $CPPFLAGS += " -DNDEBUG"
 end
+$CPPFLAGS += " -Wno-unused-function"
 
 # Platform-specific modifications
 do_rake_compiler_setup

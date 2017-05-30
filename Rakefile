@@ -116,6 +116,7 @@ Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
       "--enable-win32-cross",
       "--with-fxscintilla",
     ]
+  ext.cross_config_options << "--enable-debug" if ENV['FXRUBY_MINGW_DEBUG']
 
   # Add dependent DLLs to the cross gems
   ext.cross_compiling do |spec|
@@ -141,9 +142,11 @@ Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
 
       spec.files += dlls.map{|dll| "ports/#{host}/bin/#{dll}" }
 
-      dlls.each do |dll|
-        task "ports/#{host}/bin/#{dll}" do |t|
-          sh "x86_64-w64-mingw32-strip", t.name
+      unless ENV['FXRUBY_MINGW_DEBUG']
+        dlls.each do |dll|
+          task "ports/#{host}/bin/#{dll}" do |t|
+            sh "x86_64-w64-mingw32-strip", t.name
+          end
         end
       end
     end
@@ -154,13 +157,15 @@ Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
 end
 
 # To reduce the gem file size strip mingw32 dlls before packaging
-ENV['RUBY_CC_VERSION'].to_s.split(':').each do |ruby_version|
-  task "tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
-    sh "i686-w64-mingw32-strip -S tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
-  end
+unless ENV['FXRUBY_MINGW_DEBUG']
+  ENV['RUBY_CC_VERSION'].to_s.split(':').each do |ruby_version|
+    task "tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
+      sh "i686-w64-mingw32-strip -S tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
+    end
 
-  task "tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
-    sh "x86_64-w64-mingw32-strip -S tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
+    task "tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
+      sh "x86_64-w64-mingw32-strip -S tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
+    end
   end
 end
 
@@ -169,7 +174,8 @@ task 'gem:windows' => 'gem' do
   require 'rake_compiler_dock'
 
   sh "bundle package"
-  RakeCompilerDock.sh "bundle --local --without=test && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" "
+  debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
+  RakeCompilerDock.sh "bundle --local --without=test && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" #{debug}"
 end
 
 # Set environment variable SWIG_LIB to
