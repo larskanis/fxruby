@@ -1,6 +1,10 @@
-=== 1.6.36 / YYYY-MM-DD
+=== 1.6.36 / 2017-06-04
 
-* Update support for RubyInstaller-2.4.1-1rc1
+* Support the fxruby source gem on Windows (only RubyInstaller-2.4).
+* Replace our self-made directory search methods by pgk-config.
+* Enable the use of Win32 unicode functions. Fixes #30 and #38
+* Fix segfault in vsprintf on Windows 10.
+* Update support for RubyInstaller-2.4.1-1
 * Update to libjpeg-9b
 * More automation for gem releases
 
