@@ -84,6 +84,10 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
   return FXRbObjRegistry::main.NewBorrowedObj(ptr,ty);
 }
 
+VALUE FXRbNewPointerObjCb(void *ptr,swig_type_info* ty){
+  return SWIG_Ruby_NewPointerObj(ptr, ty, 1);
+}
+
 
 /**
  * FXRbIsBorrowed() returns true if the specified C++ object is one that
@@ -119,35 +123,31 @@ void FXRbUnregisterRubyObj(const void* foxObj){
   FXRbUnregisterRubyObj2(foxObj, true);
 }
 
-void FXRbUnregisterBorrowedRubyObj(const void* foxObj){
-  FXRbUnregisterRubyObj2( foxObj, false );
-};
-void FXRbUnregisterBorrowedRubyObj(FXlong foxObj){
-};
-void FXRbUnregisterBorrowedRubyObj(FXString& foxObj){
-};
-void FXRbUnregisterBorrowedRubyObj(FXRegion& foxObj){
-  FXRbUnregisterRubyObj2( &foxObj, false );
-};
-void FXRbUnregisterBorrowedRubyObj(FXRectangle& foxObj){
-  FXRbUnregisterRubyObj2( &foxObj, false );
-};
-void FXRbUnregisterBorrowedRubyObj(FXDC& foxObj){
-  FXRbUnregisterRubyObj2( &foxObj, false );
-};
 
-VALUE to_ruby(const FXObject* obj){
-  if(obj!=0){
-    FXString className=obj->getClassName();
-    if(className.length()>3){
-      if(className.left(4)=="FXRb"){ className.replace(0,4,"FX"); }
-      }
-    FXString desc=className+" *";
-    return FXRbGetRubyObj(obj,desc.text());
-    }
-  return Qnil;
-  }
-
+/* We now have 3 types of FXObject wrappers:
+ *
+ * Own objects :
+ * These objects are allocated by FXRuby on the heap.
+ * They are free'd when the FXRuby wrapper is GC'ed and no other reference to the object exists.
+ * They are registered in FXRbObjRegistry as owned object.
+ * Tey are built per FXRbRegisterRubyObj().
+ *
+ * Borrowed objects :
+ * These objects are allocated by libfox on the heap.
+ * They are free'd by libfox when the owning fox object gets destroyed.
+ * Only the ruby wrapper is GC'ed.
+ * They are registered in FXRbObjRegistry as borrowed object.
+ * They are built per FXGetRubyObj().
+ *
+ * Callback objects :
+ * This is the new type.
+ * These objects are allocated by libfox on the heap or on the stack.
+ * They are wrapped for the time of one callback only, because stack memory is free'd afterwards.
+ * They are not registered in FXRbObjRegistry, but stored on the stack only.
+ * Therefore callback objects aren't re-used, but newly wrapped for each call.
+ * This is for arguments to ruby blocks.
+ * They are built per FXGetRubyObjCb().
+ */
 
 /**
  * Return the registered Ruby class instance associated with this
@@ -159,7 +159,11 @@ VALUE FXRbGetRubyObj(const void *foxObj,bool alsoBorrowed, bool in_gc_mark){
 
 /**
  * Return the registered Ruby class instance associated with this
- * FOX object, or a new registered instance if not found.
+ * FOX object, or a new registered instance of a borrowed object if not found.
+ *
+ * This is suitable for objects on the heap, but not suitable for callbacks,
+ * because callback values might be on the stack.
+ * These stack objects should not be registered, because they are temporary only.
  */
 VALUE FXRbGetRubyObj(const void *foxObj,swig_type_info* ty){
   if(foxObj!=0){
@@ -179,6 +183,48 @@ VALUE FXRbGetRubyObj(const void *foxObj,swig_type_info* ty){
 VALUE FXRbGetRubyObj(const void *foxObj,const char *type){
   return FXRbGetRubyObj(foxObj, FXRbTypeQuery(type));
 }
+
+/* Get an already registered object or wrap a new one for use in a callback.
+ *
+ * This is suitable for objects on the heap or on the stack.
+ * If an object is already registered per FXRbGetRubyObj(), this instance is returned.
+ * If it is not registered, a new wrapping object is built and returned, but is not registered.
+ */
+VALUE FXRbGetRubyObjCb(const void *foxObj,swig_type_info* ty){
+  if(foxObj!=0){
+    VALUE rbObj=FXRbGetRubyObj(foxObj, true);
+    if( NIL_P(rbObj) ){
+      return FXRbNewPointerObjCb(const_cast<void*>(foxObj), ty);
+    }else{
+      // The requested type should match the registered class.
+      FXASSERT(SWIG_CheckConvert(rbObj, ty));
+      return rbObj;
+    }
+  }else{
+    return Qnil;
+  }
+}
+
+static VALUE to_ruby_obj(const FXObject* obj, VALUE (*get_value)(const void*, swig_type_info*)){
+  if(obj){
+    FXString className = obj->getClassName();
+    if(className.length() > 3){
+      if(className.left(4)=="FXRb"){ className.replace(0,4,"FX"); }
+    }
+    FXString desc = className+" *";
+    return get_value(obj, FXRbTypeQuery(desc.text()));
+  }
+  return Qnil;
+}
+
+VALUE to_ruby(const FXObject* obj){
+  return to_ruby_obj(obj, FXRbGetRubyObj);
+}
+
+VALUE to_ruby_cb(const FXObject* obj){
+  return to_ruby_obj(obj, FXRbGetRubyObjCb);
+}
+
 
 /**
  * Look up the Ruby instance associated with this C++ object, if any, and mark
@@ -255,7 +301,7 @@ VALUE FXRbMakeArray(const FXchar* dashpattern,FXuint dashlength){
 VALUE FXRbMakeArray(const FXArc* arcs,FXuint narcs){
   VALUE result=rb_ary_new();
   for(FXuint i=0; i<narcs; i++)
-    rb_ary_push(result,FXRbGetRubyObj(&arcs[i],"FXArc *"));
+    rb_ary_push(result, FXRbNewPointerObjCb(const_cast<FXArc*>(&arcs[i]), FXRbTypeQuery("FXArc *")));
   return result;
   }
 
@@ -263,7 +309,7 @@ VALUE FXRbMakeArray(const FXArc* arcs,FXuint narcs){
 VALUE FXRbMakeArray(const FXPoint* points,FXuint npoints){
   VALUE result=rb_ary_new();
   for(FXuint i=0; i<npoints; i++)
-    rb_ary_push(result,FXRbGetRubyObj(&points[i],"FXPoint *"));
+    rb_ary_push(result,FXRbNewPointerObjCb(const_cast<FXPoint*>(&points[i]), FXRbTypeQuery("FXPoint *")));
   return result;
   }
 
@@ -271,7 +317,7 @@ VALUE FXRbMakeArray(const FXPoint* points,FXuint npoints){
 VALUE FXRbMakeArray(const FXRectangle* rectangles,FXuint nrectangles){
   VALUE result=rb_ary_new();
   for(FXuint i=0; i<nrectangles; i++)
-    rb_ary_push(result,FXRbGetRubyObj(&rectangles[i],"FXRectangle *"));
+    rb_ary_push(result,FXRbNewPointerObjCb(const_cast<FXRectangle*>(&rectangles[i]), FXRbTypeQuery("FXRectangle *")));
   return result;
   }
 
@@ -279,7 +325,7 @@ VALUE FXRbMakeArray(const FXRectangle* rectangles,FXuint nrectangles){
 VALUE FXRbMakeArray(const FXSegment* segments,FXuint nsegments){
   VALUE result=rb_ary_new();
   for(FXuint i=0; i<nsegments; i++)
-    rb_ary_push(result,FXRbGetRubyObj(&segments[i],"FXSegment *"));
+    rb_ary_push(result,FXRbNewPointerObjCb(const_cast<FXSegment*>(&segments[i]), FXRbTypeQuery("FXSegment *")));
   return result;
   }
 
@@ -394,13 +440,13 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
      type==SEL_PICKED ||
      type==SEL_SESSION_NOTIFY ||
      type==SEL_SESSION_CLOSED) {
-    return to_ruby(reinterpret_cast<FXEvent*>(ptr));
+    return to_ruby_cb(reinterpret_cast<FXEvent*>(ptr));
     }
   else if(type==SEL_DRAGGED && !sender->isMemberOf(FXMETACLASS(FXGLViewer))){
-    return to_ruby(reinterpret_cast<FXEvent*>(ptr));
+    return to_ruby_cb(reinterpret_cast<FXEvent*>(ptr));
     }
   else if(type==SEL_SIGNAL){
-    return to_ruby(static_cast<int>(reinterpret_cast<FXuval>(ptr)));
+    return to_ruby_cb(static_cast<int>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(type==SEL_IO_READ ||
           type==SEL_IO_WRITE ||
@@ -422,37 +468,37 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
     if(type==SEL_CHANGED||type==SEL_COMMAND) return Qnil;
     }
   else if(sender->isMemberOf(FXMETACLASS(FXArrowButton))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXuint>(reinterpret_cast<FXuval>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXuint>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXPicker))){
-    if(type==SEL_COMMAND || type==SEL_CHANGED) return to_ruby(reinterpret_cast<FXPoint*>(ptr));
+    if(type==SEL_COMMAND || type==SEL_CHANGED) return to_ruby_cb(reinterpret_cast<FXPoint*>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXButton))){
     if(type==SEL_CLICKED ||
        type==SEL_DOUBLECLICKED ||
        type==SEL_TRIPLECLICKED ||
-       type==SEL_COMMAND) return to_ruby(static_cast<FXuint>(reinterpret_cast<FXuval>(ptr)));
+       type==SEL_COMMAND) return to_ruby_cb(static_cast<FXuint>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXCheckButton))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXuchar>(reinterpret_cast<FXuval>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXuchar>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorBar))){
     if(type==SEL_CHANGED || type==SEL_COMMAND){
       FXfloat* hsv=reinterpret_cast<FXfloat*>(ptr);
-      return rb_ary_new3(3,to_ruby(hsv[0]),to_ruby(hsv[1]),to_ruby(hsv[2]));
+      return rb_ary_new3(3,to_ruby_cb(hsv[0]),to_ruby_cb(hsv[1]),to_ruby_cb(hsv[2]));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorDialog))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby_cb(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorRing))){
     if(type==SEL_CHANGED || type==SEL_COMMAND){
       FXfloat* hsv=reinterpret_cast<FXfloat*>(ptr);
-      return rb_ary_new3(3,to_ruby(hsv[0]),to_ruby(hsv[1]),to_ruby(hsv[2]));
+      return rb_ary_new3(3,to_ruby_cb(hsv[0]),to_ruby_cb(hsv[1]),to_ruby_cb(hsv[2]));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorSelector))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby_cb(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorWell))){
     if(type==SEL_CHANGED ||
@@ -460,29 +506,29 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_CLICKED ||
        type==SEL_DOUBLECLICKED ||
        type==SEL_TRIPLECLICKED) {
-	       VALUE v=to_ruby(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
+	       VALUE v=to_ruby_cb(static_cast<FXColor>(reinterpret_cast<FXuval>(ptr)));
 	       return v;
     }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXColorWheel))){
     if(type==SEL_CHANGED || type==SEL_COMMAND){
       FXfloat* hsv=reinterpret_cast<FXfloat*>(ptr);
-      return rb_ary_new3(3,to_ruby(hsv[0]),to_ruby(hsv[1]),to_ruby(hsv[2]));
+      return rb_ary_new3(3,to_ruby_cb(hsv[0]),to_ruby_cb(hsv[1]),to_ruby_cb(hsv[2]));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXComboBox))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(reinterpret_cast<FXchar*>(ptr));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby_cb(reinterpret_cast<FXchar*>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXDataTarget))){
     if(type==SEL_COMMAND || type==SEL_CHANGED){
       if(recv->isMemberOf(FXMETACLASS(FXWindow))){
         switch(id){
           case FXWindow::ID_SETINTVALUE:
-            return to_ruby(*reinterpret_cast<FXint*>(ptr));
+            return to_ruby_cb(*reinterpret_cast<FXint*>(ptr));
           case FXWindow::ID_SETREALVALUE:
-            return to_ruby(*reinterpret_cast<FXdouble*>(ptr));
+            return to_ruby_cb(*reinterpret_cast<FXdouble*>(ptr));
           case FXWindow::ID_SETSTRINGVALUE:
-            return to_ruby(*reinterpret_cast<FXString*>(ptr));
+            return to_ruby_cb(*reinterpret_cast<FXString*>(ptr));
           case FXWindow::ID_GETINTVALUE:
           case FXWindow::ID_GETREALVALUE:
           case FXWindow::ID_GETSTRINGVALUE:
@@ -500,20 +546,20 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXDial))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXDirBox))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(reinterpret_cast<FXchar*>(ptr));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby_cb(reinterpret_cast<FXchar*>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXDockBar))){
-    if(type==SEL_DOCKED || type==SEL_FLOATED) return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXDockSite *"));
+    if(type==SEL_DOCKED || type==SEL_FLOATED) return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXDockSite *"));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXFileList))){
     if (type==SEL_CHANGED ||
         type==SEL_CLICKED ||
         type==SEL_DOUBLECLICKED ||
         type==SEL_TRIPLECLICKED ||
-        type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+        type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXFoldingList))){
     if(type==SEL_COLLAPSED ||
@@ -529,7 +575,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_DESELECTED ||
        type==SEL_INSERTED ||
        type==SEL_DELETED){
-      return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXFoldingItem *"));
+      return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXFoldingItem *"));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXGLViewer))){
@@ -538,13 +584,13 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_DOUBLECLICKED ||
        type==SEL_TRIPLECLICKED ||
        type==SEL_DRAGGED){
-      return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXGLObject *"));
+      return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXGLObject *"));
       }
     else if(type==SEL_COMMAND){
       if(id==FXWindow::ID_QUERY_MENU)
-        return to_ruby(reinterpret_cast<FXEvent*>(ptr));
+        return to_ruby_cb(reinterpret_cast<FXEvent*>(ptr));
       else
-        return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXGLObject *"));
+        return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXGLObject *"));
       }
     else if(type==SEL_LASSOED ||
             type==SEL_INSERTED ||
@@ -559,7 +605,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
     }
   else if(sender->isMemberOf(FXMETACLASS(FXGradientBar))){
     if(type==SEL_CHANGED){
-      return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+      return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
       }
     else if(type==SEL_SELECTED || type==SEL_DESELECTED){
       return Qnil;
@@ -571,7 +617,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_CLICKED ||
        type==SEL_REPLACED ||
        type==SEL_INSERTED ||
-       type==SEL_DELETED) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+       type==SEL_DELETED) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXIconList))){
     if(type==SEL_CHANGED ||
@@ -583,10 +629,10 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_DESELECTED ||
        type==SEL_REPLACED ||
        type==SEL_INSERTED ||
-       type==SEL_DELETED) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+       type==SEL_DELETED) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXKnob))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXList))){
     if(type==SEL_CHANGED ||
@@ -598,10 +644,10 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_REPLACED ||
        type==SEL_INSERTED ||
        type==SEL_DELETED ||
-       type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+       type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXListBox))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     else if(type==SEL_CHANGED) return Qnil;
     }
   else if(sender->isMemberOf(FXMETACLASS(FXMDIChild))){
@@ -613,66 +659,66 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
       }
     else if(type==SEL_SELECTED ||
             type==SEL_DESELECTED){
-      return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXMDIChild *"));
+      return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXMDIChild *"));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXMDIClient))){
-    if(type==SEL_CHANGED) return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXMDIChild *"));
+    if(type==SEL_CHANGED) return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXMDIChild *"));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXMenuCheck))){
-    if(type==SEL_COMMAND) return to_ruby(reinterpret_cast<FXuval>(ptr));
+    if(type==SEL_COMMAND) return to_ruby_cb(reinterpret_cast<FXuval>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXMenuRadio))){
-    if(type==SEL_COMMAND) return to_ruby(reinterpret_cast<FXuval>(ptr));
+    if(type==SEL_COMMAND) return to_ruby_cb(reinterpret_cast<FXuval>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXMenuCommand))){
-    if(type==SEL_COMMAND) return to_ruby(true);
+    if(type==SEL_COMMAND) return to_ruby_cb(true);
     }
   else if(sender->isMemberOf(FXMETACLASS(FXOption))){
-    if(type==SEL_COMMAND) return to_ruby(reinterpret_cast<FXEvent*>(ptr));
+    if(type==SEL_COMMAND) return to_ruby_cb(reinterpret_cast<FXEvent*>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXOptionMenu))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXRadioButton))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXuchar>(reinterpret_cast<FXuval>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXuchar>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXRealSlider))){
     if(type==SEL_CHANGED || type==SEL_COMMAND)
-      return to_ruby(*(reinterpret_cast<FXdouble *>(ptr)));
+      return to_ruby_cb(*(reinterpret_cast<FXdouble *>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXRealSpinner))){
-    if(type==SEL_COMMAND || type==SEL_CHANGED) return to_ruby(*(reinterpret_cast<FXdouble *>(ptr)));
+    if(type==SEL_COMMAND || type==SEL_CHANGED) return to_ruby_cb(*(reinterpret_cast<FXdouble *>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXRecentFiles))){
-    if(type==SEL_COMMAND) return to_ruby(reinterpret_cast<FXchar*>(ptr));
+    if(type==SEL_COMMAND) return to_ruby_cb(reinterpret_cast<FXchar*>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXRuler))){
     if(type==SEL_CHANGED) return Qnil;
     }
   else if(sender->isMemberOf(FXMETACLASS(FXScrollBar))){
-    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_CHANGED || type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXShutter))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXSlider))){
     if(type==SEL_CHANGED || type==SEL_COMMAND)
-      return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+      return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXSpinner))){
     if(type==SEL_CHANGED || type==SEL_COMMAND)
-      return to_ruby(static_cast<FXint>(reinterpret_cast<FXuval>(ptr)));
+      return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXSplitter))){
     if(type==SEL_CHANGED || type==SEL_COMMAND)
-      return to_ruby(reinterpret_cast<FXWindow *>(ptr));
+      return to_ruby_cb(reinterpret_cast<FXWindow *>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXSwitcher))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXTabBar))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXTable))){
     if(type==SEL_CLICKED ||
@@ -681,11 +727,11 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_CHANGED ||
        type==SEL_COMMAND ||
        type==SEL_SELECTED ||
-       type == SEL_DESELECTED) return to_ruby(reinterpret_cast<FXTablePos*>(ptr));
+       type == SEL_DESELECTED) return to_ruby_cb(reinterpret_cast<FXTablePos*>(ptr));
     else if(type == SEL_INSERTED ||
             type == SEL_DELETED ||
             type == SEL_REPLACED){
-	      return to_ruby(reinterpret_cast<FXTableRange*>(ptr));
+	      return to_ruby_cb(reinterpret_cast<FXTableRange*>(ptr));
 	      }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXText))){
@@ -702,31 +748,31 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
         }
       }
     else if(type==SEL_CHANGED){
-      return to_ruby(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
+      return to_ruby_cb(static_cast<FXint>(reinterpret_cast<FXival>(ptr)));
       }
     else if(type==SEL_SELECTED ||
             type == SEL_DESELECTED) {
       FXint* what=reinterpret_cast<FXint*>(ptr);
       FXASSERT(what!=0);
       VALUE ary=rb_ary_new();
-      rb_ary_push(ary,to_ruby(what[0])); // start position of text
-      rb_ary_push(ary,to_ruby(what[1])); // length of text
+      rb_ary_push(ary,to_ruby_cb(what[0])); // start position of text
+      rb_ary_push(ary,to_ruby_cb(what[1])); // length of text
       return ary;
       }
     else if(type==SEL_INSERTED || type==SEL_DELETED || type==SEL_REPLACED) {
-      return to_ruby(reinterpret_cast<FXTextChange*>(ptr));
+      return to_ruby_cb(reinterpret_cast<FXTextChange*>(ptr));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXTextField))){
     if(type==SEL_CHANGED ||
        type==SEL_COMMAND ||
-       type==SEL_VERIFY) return to_ruby(reinterpret_cast<FXchar*>(ptr));
+       type==SEL_VERIFY) return to_ruby_cb(reinterpret_cast<FXchar*>(ptr));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXToggleButton))){
-    if(type==SEL_COMMAND) return to_ruby(static_cast<FXuchar>(reinterpret_cast<FXuval>(ptr)));
+    if(type==SEL_COMMAND) return to_ruby_cb(static_cast<FXuchar>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXToolBarTab))){
-    if (type==SEL_COMMAND) return to_ruby(static_cast<FXbool>(reinterpret_cast<FXuval>(ptr)));
+    if (type==SEL_COMMAND) return to_ruby_cb(static_cast<FXbool>(reinterpret_cast<FXuval>(ptr)));
     }
   else if(sender->isMemberOf(FXMETACLASS(FXTopWindow))){
     if(type==SEL_MINIMIZE ||
@@ -737,7 +783,7 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
       }
     else if (type==SEL_SESSION_NOTIFY ||
              type==SEL_SESSION_CLOSED) {
-      return to_ruby(reinterpret_cast<FXEvent*>(ptr));
+      return to_ruby_cb(reinterpret_cast<FXEvent*>(ptr));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXTreeList))){
@@ -754,17 +800,17 @@ static VALUE FXRbConvertMessageData(FXObject* sender,FXObject* recv,FXSelector s
        type==SEL_DESELECTED ||
        type==SEL_INSERTED ||
        type==SEL_DELETED){
-      return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXTreeItem *"));
+      return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXTreeItem *"));
       }
     }
   else if(sender->isMemberOf(FXMETACLASS(FXTreeListBox))){
     if(type==SEL_CHANGED || type==SEL_COMMAND)
-      return FXRbGetRubyObj(ptr,FXRbTypeQuery("FXTreeItem *"));
+      return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("FXTreeItem *"));
     }
 #ifdef WITH_FXSCINTILLA
   else if(sender->isMemberOf(FXMETACLASS(FXScintilla))){
     if(type==SEL_COMMAND){
-      return FXRbGetRubyObj(ptr,FXRbTypeQuery("SCNotification *"));
+      return FXRbGetRubyObjCb(ptr,FXRbTypeQuery("SCNotification *"));
       }
     }
 #endif
@@ -1133,9 +1179,9 @@ FXbool FXRbCatchExceptions=FALSE;
 // Call the designated function and return its result (which should be a long).
 long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector key,void* ptr){
   FXRbHandleArgs hArgs;
-  hArgs.recv=to_ruby(recv);
-  hArgs.sender=to_ruby(sender);
-  hArgs.key=to_ruby(key);
+  hArgs.recv=to_ruby_cb(recv);
+  hArgs.sender=to_ruby_cb(sender);
+  hArgs.key=to_ruby_cb(key);
   hArgs.data=FXRbConvertMessageData(sender,recv,key,ptr);
   hArgs.id=func;
   hArgs.nargs=3;
@@ -1151,10 +1197,6 @@ long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector 
   else{
     retval=handle_body(reinterpret_cast<VALUE>(&hArgs));
     }
-
-  FXRbUnregisterBorrowedRubyObj(recv);
-  FXRbUnregisterBorrowedRubyObj(sender);
-  FXRbUnregisterBorrowedRubyObj(ptr);
 
   /**
    * Process the return value. For boolean return values, convert "true"
@@ -1306,8 +1348,7 @@ FXTableItem* FXRbCallTableItemMethod_gvlcb(FXTable* recv,const char *func,const 
   VALUE itemData=(ptr==0)?Qnil:reinterpret_cast<VALUE>(ptr);
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,rb_intern(func),3,to_ruby(text),to_ruby(icon),itemData);
-  FXRbUnregisterBorrowedRubyObj(icon);
+  VALUE result=rb_funcall(obj,rb_intern(func),3,to_ruby(text),to_ruby_cb(icon),itemData);
   return NIL_P(result)?0:reinterpret_cast<FXTableItem*>(DATA_PTR(result));
   }
 
@@ -1364,8 +1405,7 @@ FXIcon* FXRbCallIconMethod_gvlcb(const FXTableItem* recv,const char *func){
 FXWindow* FXRbCallWindowMethod_gvlcb(const FXTableItem* recv,const char *func,FXTable* table){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,rb_intern(func),1,to_ruby(table));
-  FXRbUnregisterBorrowedRubyObj(table);
+  VALUE result=rb_funcall(obj,rb_intern(func),1,to_ruby_cb(table));
   return NIL_P(result) ? 0 : reinterpret_cast<FXWindow*>(DATA_PTR(result));
   }
 
