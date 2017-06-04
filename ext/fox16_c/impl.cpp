@@ -652,6 +652,8 @@ IMPLEMENT_FXWINDOW_STUBS(FXRbMessageBox)
 IMPLEMENT_FXTOPWINDOW_STUBS(FXRbMessageBox)
 IMPLEMENT_FXDIALOGBOX_STUBS(FXRbMessageBox)
 
+/* Start stub implementations for class FXRbObjRegistry */
+
 /* Start stub implementations for class FXRbObject */
 IMPLEMENT_FXOBJECT_STUBS(FXRbObject)
 
