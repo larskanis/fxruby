@@ -43,7 +43,7 @@ class FoxGemHelper < Bundler::GemHelper
   end
 
   def headline
-    '([^\w]*)(\d+\.\d+\.\d+)([^\w]+)([2Y][0Y][0-9Y][0-9Y]-[0-1M][0-9M]-[0-3D][0-9D])([^\w]*|$)'
+    '([^\w]*)(\d+\.\d+\.\d+(?:\.\w+)?)([^\w]+)([2Y][0Y][0-9Y][0-9Y]-[0-1M][0-9M]-[0-3D][0-9D])([^\w]*|$)'
   end
 
   def reldate
