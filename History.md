@@ -1,3 +1,7 @@
+=== 1.6.37.rc1 / 2017-06-16
+
+* Add a 3rd type of FXRbObjects which is used for callbacks. Fixes #39
+
 === 1.6.36 / 2017-06-04
 
 * Support the fxruby source gem on Windows (only RubyInstaller-2.4).
