@@ -1,4 +1,4 @@
-=== 1.6.37.rc1 / 2017-06-16
+=== 1.6.37 / 2017-06-24
 
 * Add a 3rd type of FXRbObjects which is used for callbacks. Fixes #39
 
