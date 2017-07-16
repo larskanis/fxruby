@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'erb'
+require 'date'
 require 'rake/extensiontask'
 require 'bundler'
 require 'bundler/gem_helper'
