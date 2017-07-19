@@ -23,9 +23,6 @@
 #ifndef FXRBOBJREGISTRY_H
 #define FXRBOBJREGISTRY_H
 
-#include <ruby.h>
-#include "fx.h"
-
 extern "C" {
   // Opaque type declaration for SWIG runtime support
   struct swig_type_info;
