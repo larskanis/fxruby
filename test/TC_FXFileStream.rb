@@ -62,6 +62,8 @@ class TC_FXFileStream < Test::Unit::TestCase
       FXFileStream.open("non_existing_file", FXStreamLoad) { |s| }
     }
 
+    pend "chmod isn't supported on Windows" if RUBY_PLATFORM=~/mingw|mswin/i
+
     # Write-only file (i.e. no read permissions)
     tf = Tempfile.new("write_only_file")
     tf.puts("junk")

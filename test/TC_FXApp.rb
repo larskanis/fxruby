@@ -46,6 +46,7 @@ class TC_FXApp2 < Fox::TestCase
   end
 
   def test_addInput_on_pipe
+    pend "addInput on IO.pipe object isn't supported on Windows" if RUBY_PLATFORM=~/mingw|mswin/i
     check_events(*IO.pipe)
   end
 
@@ -75,6 +76,7 @@ class TC_FXApp2 < Fox::TestCase
   end
 
   def test_addInput_on_popen
+    pend "addInput on IO.popen object isn't supported on Windows" if RUBY_PLATFORM=~/mingw|mswin/i
     pipe_rdwr = IO.popen("cat", "r+")
     check_events pipe_rdwr, pipe_rdwr
   end
