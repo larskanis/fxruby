@@ -20,8 +20,8 @@
  * at "lars@greiz-reinsdorf.de".
  ***********************************************************************/
 
-#include "FXRbObjRegistry.h"
 #include "FXRbCommon.h"
+#include "FXRbObjRegistry.h"
 #include "swigruby.h"
 
 FXRbObjRegistry::FXRbObjRegistry(){
