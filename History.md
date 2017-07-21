@@ -1,3 +1,9 @@
+=== 1.6.38 / YYYY-MM-DD
+
+* Update dependent libraries for Windows binary gem.
+* Replace libjpeg-9b by libjpeg-turbo-1.5.2 on Windows binary gem.
+* Fix build with clang on FreeBSD (and possibly other OS). Fixes #41
+
 === 1.6.37 / 2017-06-24
 
 * Add a 3rd type of FXRbObjects which is used for callbacks. Fixes #39
