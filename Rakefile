@@ -138,7 +138,7 @@ Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
       dlls += [
           "libfxscintilla-20.dll",
           "libFOX-1.6-0.dll",
-          "libjpeg-9.dll",
+          "libjpeg-62.dll",
           "libpng16-16.dll",
           "libtiff-5.dll",
           "zlib1.dll",
@@ -179,7 +179,12 @@ task 'gem:windows' => 'gem' do
 
   sh "bundle package"
   debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
-  RakeCompilerDock.sh "bundle --local --without=test && rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" #{debug}"
+  RakeCompilerDock.sh <<-EOT
+    sudo apt update &&
+    sudo apt install yasm &&
+    bundle --local --without=test &&
+    rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" #{debug}
+  EOT
 end
 
 # Set environment variable SWIG_LIB to
