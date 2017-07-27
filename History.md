@@ -1,4 +1,4 @@
-=== 1.6.38 / YYYY-MM-DD
+=== 1.6.38 / 2017-07-27
 
 * Update dependent libraries for Windows binary gem.
 * Replace libjpeg-9b by libjpeg-turbo-1.5.2 on Windows binary gem.
