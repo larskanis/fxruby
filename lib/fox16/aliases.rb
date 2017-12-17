@@ -1976,7 +1976,7 @@ module Fox
   end
   class FXGLVisual
     def FXGLVisual.supported?(*args) # :nodoc:
-      FXGLVisual.supported(*args)
+      FXGLVisual.supported(*args)[0]
     end
     def redSize(*args) # :nodoc:
       getRedSize(*args)

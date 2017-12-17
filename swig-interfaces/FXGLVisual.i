@@ -41,7 +41,7 @@ public:
    * of the client support level and the display server support level.
    */
   %extend {
-    static FXbool supported(FXApp* application){
+    static VALUE supported(FXApp* application){
       int major,minor;
       FXbool answer=FXGLVisual::supported(application,major,minor);
       return rb_ary_new3(3,answer?Qtrue:Qfalse,INT2NUM(major),INT2NUM(minor));

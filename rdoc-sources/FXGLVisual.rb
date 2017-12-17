@@ -77,6 +77,14 @@ module Fox
     # even support no OpenGL at all!  This function returns the lesser
     # of the client support level and the display server support level.
     #
+    # Return an array with the following 3 elements: [supported, major, minor]
+    #
+    def FXGLVisual.supported(app); end
+
+    # Test if OpenGL is possible.
+    #
+    # Same as {FXGLVisual.supported?}, but returns the first element (true/false) only.
+    #
     def FXGLVisual.supported?(app); end
 
     # Return +true+ if double-buffered

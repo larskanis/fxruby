@@ -12,7 +12,14 @@ class TC_FXGLViewer < Fox::TestCase
   end
 
   def test_supported
-    assert FXGLVisual.supported?(app)
+    arr = FXGLVisual.supported(app)
+    assert_equal 3, arr.length, "return array should have elements [support, major, minor]"
+    assert_true arr[0], "OpenGL should be supported"
+    assert_operator 1, :<=, arr[1], "OpenGL should be version 1.0 or greater"
+  end
+
+  def test_supported?
+    assert_true FXGLVisual.supported?(app), "OpenGL should be supported"
   end
 
   def test_nil_app_raises_argument_error
