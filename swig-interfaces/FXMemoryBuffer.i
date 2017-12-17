@@ -33,7 +33,7 @@ public:
   FXuint getSize() const;
 
   %extend {
-    // Returns the data as an array of Bignums
+    // Returns the data as an array of Integers
     VALUE getData() const {
       FXColor* data = self->getData();
       if (data) {
