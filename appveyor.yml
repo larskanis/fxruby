@@ -2,6 +2,11 @@ init:
   - SET PATH=c:/Ruby%ruby_version%/bin;c:/msys64/%MSYSTEM%/bin;%PATH%
   - SET RAKEOPT=-rdevkit
 install:
+  - ps: |
+      if ($env:RUBYDOWNLOAD -ne $null) {
+        $(new-object net.webclient).DownloadFile("https://github.com/oneclick/rubyinstaller2/releases/download/rubyinstaller-head/rubyinstaller-head-$env:RUBYDOWNLOAD.exe", "$pwd/ruby-setup.exe")
+        cmd /c ruby-setup.exe /verysilent /dir=C:/Ruby$env:ruby_version
+      }
   - ruby --version
   - gem --version
   - ridk version
@@ -9,6 +14,8 @@ install:
   - c:/msys64/usr/bin/bash -lc "pacman -Su --noconfirm"
   - c:/msys64/usr/bin/bash -lc "pacman -S --noconfirm --needed ${MINGW_PACKAGE_PREFIX}-fox ${MINGW_PACKAGE_PREFIX}-swig"
   - swig -version
+  - gem install bundler --conservative
+  - bundle config force_ruby_platform true
   - bundle install
 build_script:
   - bundle exec rake compile
@@ -16,9 +23,20 @@ test_script:
   - bundle exec rake test
 environment:
   matrix:
-    - ruby_version: "24"
+    - ruby_version: "head"
+      RUBYDOWNLOAD: x86
       MINGW_PACKAGE_PREFIX: "mingw-w64-i686"
       MSYSTEM: "MINGW32"
     - ruby_version: "24-x64"
       MINGW_PACKAGE_PREFIX: "mingw-w64-x86_64"
       MSYSTEM: "MINGW64"
+    - ruby_version: "24"
+      MINGW_PACKAGE_PREFIX: "mingw-w64-i686"
+      MSYSTEM: "MINGW32"
+    - ruby_version: "head"
+      RUBYDOWNLOAD: x64
+      MINGW_PACKAGE_PREFIX: "mingw-w64-x86_64"
+      MSYSTEM: "MINGW64"
+matrix:
+  allow_failures:
+    - ruby_version: "head"
