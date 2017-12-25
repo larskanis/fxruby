@@ -1,3 +1,8 @@
+=== 1.6.39 / 2017-12-25
+
+* Fix FXGLVisual.supported and .supported?
+* Add support for RubyInstaller-2.5
+
 === 1.6.38 / 2017-07-27
 
 * Update dependent libraries for Windows binary gem.
