@@ -1,4 +1,4 @@
-=== 1.6.39 / 2017-12-25
+=== 1.6.39 / 2017-12-26
 
 * Fix FXGLVisual.supported and .supported?
 * Add support for RubyInstaller-2.5
