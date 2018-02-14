@@ -10,7 +10,7 @@ install:
   - ruby --version
   - gem --version
   - ridk version
-  - c:/msys64/usr/bin/bash -lc "pacman -Syu --noconfirm"
+  - c:/msys64/usr/bin/bash -lc "pacman -Syu --noconfirm --ask 20"
   - c:/msys64/usr/bin/bash -lc "pacman -Su --noconfirm"
   - c:/msys64/usr/bin/bash -lc "pacman -S --noconfirm --needed ${MINGW_PACKAGE_PREFIX}-fox ${MINGW_PACKAGE_PREFIX}-swig"
   - swig -version
