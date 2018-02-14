@@ -45,6 +45,11 @@ module Fox
     # [deprecated] Pixel data {FXMemoryBuffer}
     attr_reader :data
 
+    # The pointer to the raw color representation of all image pixels.
+    #
+    # It can be used to pass raw image data to FFI, Fiddle or OpenGL.
+    attr_reader :dataPtr
+
     # Array of colors of all image pixels. Can also be written as String of raw [RGBA] values.
     attr_accessor :pixels
 

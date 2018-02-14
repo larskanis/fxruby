@@ -1,6 +1,7 @@
 require 'test/unit'
 require 'testcase'
 require 'fox16'
+require 'fiddle'
 
 class TC_FXImage < Fox::TestCase
   include Fox
@@ -78,6 +79,13 @@ class TC_FXImage < Fox::TestCase
     img.pixels = "rgbaRGBA"
     assert_equal(0, img.options)
     assert_equal("rgbaRGBA", img.pixel_string)
+  end
+
+  def test_dataPtr
+    img = FXImage.new(app, nil, 0, 2, 1)
+    img.pixels = "rgbaRGBA"
+    assert_equal(0, img.options)
+    assert_equal("rgbaRGBA", Fiddle::Pointer.new(img.dataPtr)[0, 8])
   end
 
   def test_create
