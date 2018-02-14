@@ -31,15 +31,5 @@ after_script:
   - "xpra stop :9"
 
 rvm:
-  - "2.0.0"
-  - "2.1"
-  - "2.2"
-  - "2.3.1"
-  - "2.4.0"
   - "ruby-head"
-  # swig compilation is sooo slow on rbx-3, that it exceeds the time limit on travis-ci
-  #- "rbx-3"
-matrix:
-  allow_failures:
-    - rvm: ruby-head
-    - rvm: rbx-3
+  - "2.0.0"
