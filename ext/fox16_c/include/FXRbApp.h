@@ -73,7 +73,7 @@ static void cls ## _init(cls* self,VALUE ary,bool connect){ \
     argv[0]=const_cast<char *>("foo"); \
     for(i=1;i<argc;i++){ \
       VALUE e=rb_ary_entry(ary,i-1); \
-      argv[i]=StringValuePtr(e); \
+      argv[i]=StringValueCStr(e); \
       } \
     argv[argc]=0; \
     self->cls::init(argc,argv,connect); \
@@ -127,7 +127,7 @@ inline void cls ## _exit(cls *self,FXint code){ \
     argc=static_cast<int>(RARRAY_LEN(ary)+1); \
     for(i=1; i<argc; i++){ \
       VALUE e=rb_ary_entry(ary,i-1); \
-      argv[i]=StringValuePtr(e); \
+      argv[i]=StringValueCStr(e); \
       } \
     } \
   void cls::exit(FXint code){ \
