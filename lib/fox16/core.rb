@@ -421,24 +421,24 @@ module Fox
     #
     def FXStreamError.makeStreamError(status)
       case status
-	when FXStreamEnd
-	  FXStreamEndError
-	when FXStreamFull
-	  FXStreamFullError
-	when FXStreamNoWrite
-	  FXStreamNoWriteError
-	when FXStreamNoRead
-	  FXStreamNoReadError
-	when FXStreamFormat
-	  FXStreamFormatError
-	when FXStreamUnknown
-	  FXStreamUnknownError
-	when FXStreamAlloc
-	  FXStreamAllocError
-	when FXStreamFailure
-	  FXStreamFailureError
-	else
-	  FXStreamError
+      when FXStreamEnd
+        FXStreamEndError
+      when FXStreamFull
+        FXStreamFullError
+      when FXStreamNoWrite
+        FXStreamNoWriteError
+      when FXStreamNoRead
+        FXStreamNoReadError
+      when FXStreamFormat
+        FXStreamFormatError
+      when FXStreamUnknown
+        FXStreamUnknownError
+      when FXStreamAlloc
+        FXStreamAllocError
+      when FXStreamFailure
+        FXStreamFailureError
+      else
+        FXStreamError
       end
     end
   end
