@@ -312,7 +312,7 @@ module Fox
           shape.select
           @canvas.updateShape(shape)
           if notify && (@canvas.target != nil)
-            @canvas.target.handle(@canvas, MKUINT(@canvas.message, SEL_SELECTED), shape)
+            @canvas.target.handle(@canvas, Fox.MKUINT(@canvas.message, SEL_SELECTED), shape)
           end
         end
       end
@@ -322,7 +322,7 @@ module Fox
           shape.deselect
           @canvas.updateShape(shape)
           if notify && (@canvas.target != nil)
-            @canvas.target.handle(@canvas, MKUINT(@canvas.message, SEL_DESELECTED), shape)
+            @canvas.target.handle(@canvas, Fox.MKUINT(@canvas.message, SEL_DESELECTED), shape)
           end
         end
       end
@@ -463,7 +463,7 @@ module Fox
             updateShape(shape)
             changes = true
             if notify && (target != nil)
-              target.handle(self, MKUINT(message, SEL_DESELECTED), shape)
+              target.handle(self, Fox.MKUINT(message, SEL_DESELECTED), shape)
             end
           end
         end
@@ -486,7 +486,7 @@ module Fox
       def onMotion(sender, sel, evt)
         # Drag and drop mode
         if (@flags & FLAG_DODRAG) != 0
-          handle(self, MKUINT(0, SEL_DRAGGED), evt)
+          handle(self, Fox.MKUINT(0, SEL_DRAGGED), evt)
           return 1
         end
 
@@ -494,7 +494,7 @@ module Fox
         if (@flags & FLAG_TRYDRAG) != 0
           if evt.moved?
             @flags &= ~FLAG_TRYDRAG
-            if handle(this, MKUINT(0, SEL_BEGINDRAG), evt) != 0
+            if handle(this, Fox.MKUINT(0, SEL_BEGINDRAG), evt) != 0
               @flags |= FLAG_DODRAG
             end
           end
@@ -504,13 +504,13 @@ module Fox
 
       # Left button press
       def onLeftBtnPress(sender, sel, evt)
-        handle(self, MKUINT(0, SEL_FOCUS_SELF), evt)
+        handle(self, Fox.MKUINT(0, SEL_FOCUS_SELF), evt)
         if enabled?
           grab
           flags &= ~FLAG_UPDATE
 
           # Give target the first chance at handling this
-          return 1 if target && (target.handle(self, MKUINT(message, SEL_LEFTBUTTONPRESS), evt) != 0)
+          return 1 if target && (target.handle(self, Fox.MKUINT(message, SEL_LEFTBUTTONPRESS), evt) != 0)
 
           # Locate shape
           shape = findShape(evt.win_x, evt.win_y)
@@ -548,11 +548,11 @@ module Fox
           @flags &= ~(FLAG_PRESSED|FLAG_TRYDRAG|FLAG_LASSO|FLAG_DODRAG)
 
           # First chance callback
-          return 1 if target && target.handle(self, MKUINT(message, SEL_LEFTBUTTONRELEASE), evt) != 0
+          return 1 if target && target.handle(self, Fox.MKUINT(message, SEL_LEFTBUTTONRELEASE), evt) != 0
 
           # Was dragging
           if (flg & FLAG_DODRAG) != 0
-            handle(self, MKUINT(0, SEL_ENDDRAG), evt)
+            handle(self, Fox.MKUINT(0, SEL_ENDDRAG), evt)
             return 1
           end
 
@@ -565,16 +565,16 @@ module Fox
 
             # Generate clicked callbacks
             if evt.click_count == 1
-              handle(self, MKUINT(0, SEL_CLICKED), @currentShape)
+              handle(self, Fox.MKUINT(0, SEL_CLICKED), @currentShape)
             elsif evt.click_count == 2
-              handle(self, MKUINT(0, SEL_DOUBLECLICKED), @currentShape)
+              handle(self, Fox.MKUINT(0, SEL_DOUBLECLICKED), @currentShape)
             elseif evt.click_count == 3
-              handle(self, MKUINT(0, SEL_TRIPLECLICKED), @currentShape)
+              handle(self, Fox.MKUINT(0, SEL_TRIPLECLICKED), @currentShape)
             end
 
             # Generate command callback only when clicked on item
             if @currentShape && @currentShape.enabled?
-              handle(self, MKUINT(0, SEL_COMMAND), @currentShape)
+              handle(self, Fox.MKUINT(0, SEL_COMMAND), @currentShape)
             end
             return 1
           end
@@ -584,22 +584,22 @@ module Fox
 
       # Command message
       def onCommand(sender, sel, ptr)
-        return target && target.handle(self, MKUINT(message, SEL_COMMAND), ptr)
+        return target && target.handle(self, Fox.MKUINT(message, SEL_COMMAND), ptr)
       end
 
       # Clicked on canvas
       def onClicked(sender, sel, ptr)
-        return target && target.handle(self, MKUINT(message, SEL_CLICKED), ptr)
+        return target && target.handle(self, Fox.MKUINT(message, SEL_CLICKED), ptr)
       end
 
       # Double-clicked on canvas
       def onDoubleClicked(sender, sel, ptr)
-        return target && target.handle(self, MKUINT(message, SEL_DOUBLECLICKED), ptr)
+        return target && target.handle(self, Fox.MKUINT(message, SEL_DOUBLECLICKED), ptr)
       end
 
       # Triple-clicked on canvas
       def onTripleClicked(sender, sel, ptr)
-        return target && target.handle(self, MKUINT(message, SEL_TRIPLECLICKED), ptr)
+        return target && target.handle(self, Fox.MKUINT(message, SEL_TRIPLECLICKED), ptr)
       end
     end
   end

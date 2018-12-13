@@ -99,7 +99,7 @@ module Fox
         btn.connect(SEL_COMMAND) do |send, sel, ev|
           @selected = Time.local(@date_showing.year, @date_showing.month,
                                  send.text.to_i)
-          target.handle(self, MKUINT(selector, SEL_COMMAND), @selected) if target
+          target.handle(self, Fox.MKUINT(selector, SEL_COMMAND), @selected) if target
         end
       end
       _build_date_matrix()
@@ -202,16 +202,14 @@ end
 
 if __FILE__ == $0
 
-  include Fox
-
-  app = FXApp.new('Calendar', 'FXRuby')
+  app = Fox::FXApp.new('Calendar', 'FXRuby')
   app.init(ARGV)
-  mainwin = FXMainWindow.new(app, "Calendar Test", nil, nil, DECOR_ALL, 0, 0, 500, 500)
-  calendar = FXCalendar.new(mainwin, Time.now, nil, 0, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-  calendar.connect(SEL_COMMAND) do |sender, sel, data|
+  mainwin = Fox::FXMainWindow.new(app, "Calendar Test", nil, nil, Fox::DECOR_ALL, 0, 0, 500, 500)
+  calendar = Fox::FXCalendar.new(mainwin, Time.now, nil, 0, Fox::LAYOUT_FILL_X|Fox::LAYOUT_FILL_Y)
+  calendar.connect(Fox::SEL_COMMAND) do |sender, sel, data|
     puts data.to_s
   end
   app.create
-  mainwin.show(PLACEMENT_SCREEN)
+  mainwin.show(Fox::PLACEMENT_SCREEN)
   app.run
 end

@@ -344,9 +344,9 @@ module Fox
 
     def onUpdUndo(sender, sel, ptr) # :nodoc:
       if canUndo?
-	sender.handle(self, MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
@@ -358,9 +358,9 @@ module Fox
 
     def onUpdRedo(sender, sel, ptr) # :nodoc:
       if canRedo?
-	sender.handle(self, MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
@@ -372,9 +372,9 @@ module Fox
 
     def onUpdClear(sender, sel, ptr) # :nodoc:
       if canUndo? || canRedo?
-	sender.handle(self, MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
@@ -386,9 +386,9 @@ module Fox
 
     def onUpdRevert(sender, sel, ptr) # :nodoc:
       if canRevert?
-	sender.handle(self, MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
