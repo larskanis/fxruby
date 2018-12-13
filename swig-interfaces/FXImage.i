@@ -76,6 +76,11 @@ public:
         return 0;
       }
     }
+
+    /// Get a pointer to the pixel data
+    VALUE getDataPtr() const {
+      return ULL2NUM((uintptr_t)self->getData());
+    }
   }
 
   /// To get to the option flags

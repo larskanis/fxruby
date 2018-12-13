@@ -46,17 +46,17 @@ class TC_FXList < Fox::TestCase
 
   def test_appendItem_byText
     assert_equal(0, @list.numItems)
-    itemIndex = @list.appendItem("")
+    assert_equal 0, @list.appendItem("")
     assert_equal(1, @list.numItems)
-    itemIndex = @list.appendItem("anItem")
+    assert_equal 1, @list.appendItem("anItem")
     assert_equal(2, @list.numItems)
-    itemIndex = @list.appendItem("anItem", nil)
+    assert_equal 2, @list.appendItem("anItem", nil)
     assert_equal(3, @list.numItems)
-    itemIndex = @list.appendItem("anItem", nil, "someData")
+    assert_equal 3, @list.appendItem("anItem", nil, "someData")
     assert_equal(4, @list.numItems)
-    itemIndex = @list.appendItem("anItem", nil, "someData", true)
+    assert_equal 4, @list.appendItem("anItem", nil, "someData", true)
     assert_equal(5, @list.numItems)
-    itemIndex = @list.appendItem("anItem", nil, "someData", false)
+    assert_equal 5, @list.appendItem("anItem", nil, "someData", false)
     assert_equal(6, @list.numItems)
     assert_raises(ArgumentError) do
       @list.appendItem("anItem", nil, "someData", 42) # last argument must be true or false
@@ -103,9 +103,9 @@ class TC_FXList < Fox::TestCase
   end
 
   def test_makeItemVisible
-    items = []
     0.upto(2) { |i|
-      items << @list.appendItem("item#{i}")
+      itemIndex = @list.appendItem("item#{i}")
+      assert_equal i, itemIndex
     }
     assert_raises(IndexError) {
       @list.makeItemVisible(-1)

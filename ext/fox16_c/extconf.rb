@@ -24,20 +24,20 @@ end
 LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7.3'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.29'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.34'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 
 # LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
 # LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '1.5.2'
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '1.5.3'
 LIBJPEG_SOURCE_URI = "https://downloads.sourceforge.net/libjpeg-turbo/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.8'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.9'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.55'
-LIBFOX_SOURCE_URI         = "http://ftp.fox-toolkit.org/pub/fox-#{LIBFOX_VERSION}.tar.gz"
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.56'
+LIBFOX_SOURCE_URI         = "http://fox-toolkit.org/ftp/fox-#{LIBFOX_VERSION}.tar.gz"
 
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
 LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
@@ -158,13 +158,6 @@ def do_rake_compiler_setup
         "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""}",
         "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""}",
       ]
-      class << recipe
-        def compile
-          # Add param -no-undefined to libtool to build a win32 shared lib
-          execute "compile", "#{ENV['MAKE'] || "make"} libFOX_1_6_la_LDFLAGS='-version-info 0:49:0 -export-dynamic -no-undefined'"
-        end
-      end
-
       recipe.cook_and_activate
     end
 

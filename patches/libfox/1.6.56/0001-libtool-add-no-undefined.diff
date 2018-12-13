@@ -1,0 +1,56 @@
+diff --git a/chart/Makefile.am b/chart/Makefile.am
+index a110c2b..4bc2859 100644
+--- a/chart/Makefile.am
++++ b/chart/Makefile.am
+@@ -12,7 +12,8 @@ libCHART_1_6_la_LIBADD  = $(X_LIBS) $(X_BASE_LIBS) $(X_EXTRA_LIBS) $(top_builddi
+ 
+ libCHART_1_6_la_LDFLAGS = \
+         -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)    \
+-	-export-dynamic
++	-export-dynamic \
++	-no-undefined
+ 
+ chartincludedir=$(includedir)/fox-1.6/chart
+ 
+diff --git a/chart/Makefile.in b/chart/Makefile.in
+index 5741fb7..393d2c3 100644
+--- a/chart/Makefile.in
++++ b/chart/Makefile.in
+@@ -374,7 +374,8 @@ lib_LTLIBRARIES = libCHART-1.6.la
+ libCHART_1_6_la_LIBADD = $(X_LIBS) $(X_BASE_LIBS) $(X_EXTRA_LIBS) $(top_builddir)/src/libFOX-1.6.la
+ libCHART_1_6_la_LDFLAGS = \
+         -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)    \
+-	-export-dynamic
++	-export-dynamic \
++	-no-undefined
+ 
+ chartincludedir = $(includedir)/fox-1.6/chart
+ chartinclude_HEADERS = \
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 43fd379..72bbb2e 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -11,7 +11,8 @@ libFOX_1_6_la_LIBADD  = $(X_LIBS) $(X_BASE_LIBS) $(X_EXTRA_LIBS) $(GL_LIBS)
+ 
+ libFOX_1_6_la_LDFLAGS = \
+         -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)    \
+-	-export-dynamic
++	-export-dynamic \
++	-no-undefined
+ 
+ CURSORS = \
+ crosshair.xbm \
+diff --git a/src/Makefile.in b/src/Makefile.in
+index 5b6b991..1e97289 100644
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -443,7 +443,8 @@ lib_LTLIBRARIES = libFOX-1.6.la
+ libFOX_1_6_la_LIBADD = $(X_LIBS) $(X_BASE_LIBS) $(X_EXTRA_LIBS) $(GL_LIBS)
+ libFOX_1_6_la_LDFLAGS = \
+         -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)    \
+-	-export-dynamic
++	-export-dynamic \
++	-no-undefined
+ 
+ CURSORS = \
+ crosshair.xbm \

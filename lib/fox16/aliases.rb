@@ -2414,6 +2414,9 @@ module Fox
     def data(*args) # :nodoc:
       getData(*args)
     end
+    def dataPtr(*args) # :nodoc:
+      getDataPtr(*args)
+    end
     def pixels=(*args) # :nodoc:
       setPixels(*args)
     end
