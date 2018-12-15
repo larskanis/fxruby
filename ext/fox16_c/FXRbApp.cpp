@@ -85,7 +85,7 @@ void FXRbApp::setThreadsEnabled(FXbool enabled){
       interrupt_event = CreateEvent(NULL, TRUE, FALSE, NULL);
       addInput(interrupt_event,INPUT_READ,this,ID_CHORE_THREADS);
 #else
-      pipe(interrupt_fds);
+      if(pipe(interrupt_fds) == -1) rb_fatal("failed to allocate pipe for interrupt events");
       fcntl(interrupt_fds[0], F_SETFL, O_NONBLOCK);
       addInput(interrupt_fds[0],INPUT_READ,this,ID_CHORE_THREADS);
 #endif
@@ -130,7 +130,7 @@ long FXRbApp::onChoreThreads(FXObject *obj,FXSelector sel,void *p){
 #else
   char byte;
   // clear the pipe
-  read(interrupt_fds[0], &byte, 1);
+  if(read(interrupt_fds[0], &byte, 1) != 1) rb_fatal("failed to read from pipe for interrupt events");
 #endif
 #endif
   return FXRbApp_onChoreThreads(this, obj, sel, p);
@@ -172,7 +172,7 @@ void fxrb_wakeup_fox(void *){
 #ifdef WIN32
   SetEvent(FXRbApp::interrupt_event);
 #else
-  write(FXRbApp::interrupt_fds[1], "X", 1);
+  if(write(FXRbApp::interrupt_fds[1], "X", 1) != 1) rb_fatal("failed to write to pipe for interrupt events");
 #endif
   }
 #endif
