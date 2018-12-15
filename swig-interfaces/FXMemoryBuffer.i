@@ -27,7 +27,7 @@
 class FXMemoryBuffer {
 public:
   // Create an memory buffer object
-  FXMemoryBuffer(FXColor *data,FXuint size);
+  FXMemoryBuffer(FXColor *data,FXint size);
 
   // Returns the size (in bytes)
   FXuint getSize() const;
@@ -39,7 +39,7 @@ public:
       if (data) {
         FXuint size = self->getSize();
         VALUE ary = rb_ary_new2(size);
-        for (int i = 0; i < size; i++)
+        for (FXuint i = 0; i < size; i++)
           rb_ary_store(ary, i, UINT2NUM(data[i]));
         return ary;
         }

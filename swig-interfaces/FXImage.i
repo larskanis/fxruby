@@ -58,7 +58,7 @@ public:
     FXImage(FXApp* a,VALUE string_or_ary=Qnil,FXuint opts=0,FXint w=1,FXint h=1){
       FXColor* pix=0;
       if(!NIL_P(string_or_ary)){
-        FXuint len=FXRbNumberOfFXColors(string_or_ary);
+        FXint len=FXRbNumberOfFXColors(string_or_ary);
         if(w*h != len){
           rb_raise( rb_eArgError, "Array size does not match image size" );
         }
@@ -97,9 +97,9 @@ public:
     * This can be done by calling render().
     */
     void setPixels(VALUE string_or_ary,FXuint opts=0,VALUE w=Qnil,VALUE h=Qnil){
-      FXuint len=FXRbNumberOfFXColors(string_or_ary);
+      FXint len=FXRbNumberOfFXColors(string_or_ary);
       if( ( (NIL_P(w) || NIL_P(h)) && self->getWidth()*self->getHeight() != len) ||
-          (!(NIL_P(w) || NIL_P(h)) && NUM2UINT(w)*NUM2UINT(h) != len)){
+          (!(NIL_P(w) || NIL_P(h)) && NUM2INT(w)*NUM2INT(h) != len)){
         rb_raise( rb_eArgError, "Array size does not match image size" );
       }
 
@@ -116,7 +116,7 @@ public:
       if (data) {
         FXuint size = self->getWidth()*self->getHeight();
         VALUE ary = rb_ary_new2(size);
-        for (int i = 0; i < size; i++)
+        for (FXuint i = 0; i < size; i++)
           rb_ary_store(ary, i, UINT2NUM(data[i]));
         return ary;
       } else {
