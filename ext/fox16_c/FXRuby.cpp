@@ -1237,9 +1237,9 @@ void FXRbRange2LoHi(VALUE range,FXint& lo,FXint& hi){
     rb_raise(rb_eTypeError,"wrong argument type %s (expected %s)",rb_class2name(CLASS_OF(range)),rb_class2name(rb_cRange));
     }
   else{
-    VALUE beg=rb_funcall(range,id_begin,0,NULL);
-    VALUE end=rb_funcall(range,id_end,0,NULL);
-    VALUE excl=rb_funcall(range,id_exclude_endp,0,NULL);
+    VALUE beg=rb_funcall(range,id_begin,0);
+    VALUE end=rb_funcall(range,id_end,0);
+    VALUE excl=rb_funcall(range,id_exclude_endp,0);
     lo=NUM2INT(beg);
     hi=NUM2INT(end);
     if(excl==Qtrue){
@@ -1253,9 +1253,9 @@ void FXRbRange2LoHi(VALUE range,FXdouble& lo,FXdouble& hi){
     rb_raise(rb_eTypeError,"wrong argument type %s (expected %s)",rb_class2name(CLASS_OF(range)),rb_class2name(rb_cRange));
     }
   else{
-    VALUE beg=rb_funcall(range,id_begin,0,NULL);
-    VALUE end=rb_funcall(range,id_end,0,NULL);
-    VALUE excl=rb_funcall(range,id_exclude_endp,0,NULL);
+    VALUE beg=rb_funcall(range,id_begin,0);
+    VALUE end=rb_funcall(range,id_end,0);
+    VALUE excl=rb_funcall(range,id_exclude_endp,0);
     lo=NUM2DBL(beg);
     hi=NUM2DBL(end);
     if(excl==Qtrue){
@@ -1270,13 +1270,13 @@ void FXRbCallVoidMethod_gvlcb(FXObject* recv, const char *func) {
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   FXASSERT(!FXRbIsInGC(recv));
-  rb_funcall(obj,rb_intern(func),0,NULL);
+  rb_funcall(obj,rb_intern(func),0);
   }
 
 void FXRbCallVoidMethod_gvlcb(FXDC* recv,const char *func) {
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  rb_funcall(obj,rb_intern(func),0,NULL);
+  rb_funcall(obj,rb_intern(func),0);
   }
 
 //----------------------------------------------------------------------
@@ -1284,7 +1284,7 @@ void FXRbCallVoidMethod_gvlcb(FXDC* recv,const char *func) {
 bool FXRbCallBoolMethod_gvlcb(const FXObject* recv,const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE v=rb_funcall(obj,rb_intern(func),0,NULL);
+  VALUE v=rb_funcall(obj,rb_intern(func),0);
   return (v==Qtrue);
   }
 
@@ -1294,7 +1294,7 @@ bool FXRbCallBoolMethod_gvlcb(const FXObject* recv,const char *func){
 FXint FXRbCallIntMethod_gvlcb(const FXObject* recv,const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,rb_intern(func),0,NULL);
+  VALUE result=rb_funcall(obj,rb_intern(func),0);
   return static_cast<FXint>(NUM2INT(result));
   }
 
@@ -1304,7 +1304,7 @@ FXint FXRbCallIntMethod_gvlcb(const FXObject* recv,const char *func){
 FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLObject* recv,const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,rb_intern(func),0,NULL);
+  VALUE result=rb_funcall(obj,rb_intern(func),0);
   return NIL_P(result) ? 0 : reinterpret_cast<FXGLObject*>(DATA_PTR(result));
   }
 
@@ -1392,7 +1392,7 @@ FXIcon* FXRbCallIconMethod_gvlcb(const FXTableItem* recv,const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
 	if(!NIL_P(obj)){
-	  VALUE result=rb_funcall(obj,rb_intern(func),0,NULL);
+	  VALUE result=rb_funcall(obj,rb_intern(func),0);
 	  return NIL_P(result) ? 0 : reinterpret_cast<FXIcon*>(DATA_PTR(result));
 		}
 	else{
@@ -1415,7 +1415,7 @@ FXWindow* FXRbCallWindowMethod_gvlcb(const FXTableItem* recv,const char *func,FX
 FXRangef FXRbCallRangeMethod_gvlcb(FXObject* recv,const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,rb_intern(func),0,NULL);
+  VALUE result=rb_funcall(obj,rb_intern(func),0);
   return *reinterpret_cast<FXRangef*>(DATA_PTR(result));
   }
 
@@ -1425,7 +1425,7 @@ FXRangef FXRbCallRangeMethod_gvlcb(FXObject* recv,const char *func){
 FXString FXRbCallStringMethod_gvlcb(const FXObject* recv, const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,rb_intern(func),0,NULL);
+  VALUE result=rb_funcall(obj,rb_intern(func),0);
   return FXString(StringValuePtr(result));
   }
 
@@ -1452,7 +1452,7 @@ const FXchar* FXRbCallCStringMethod_gvlcb(const FXObject* recv, const char *func
 FXwchar FXRbCallWCharMethod_gvlcb(const FXObject* recv, const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
-  VALUE result=rb_funcall(obj,rb_intern(func),0,NULL);
+  VALUE result=rb_funcall(obj,rb_intern(func),0);
   return static_cast<FXwchar>(NUM2ULONG(result));
   }
 
