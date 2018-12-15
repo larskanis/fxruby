@@ -305,7 +305,6 @@ if enable_config("debug")
 else
   $CPPFLAGS += " -DNDEBUG"
 end
-$CPPFLAGS += " -Wno-unused-function"
 
 # Platform-specific modifications
 do_rake_compiler_setup
@@ -313,6 +312,11 @@ do_rake_compiler_setup
 $CFLAGS += " -DRUBY_1_8" if RUBY_VERSION =~ /1\.8\./
 $CFLAGS += " -DRUBY_1_9" if RUBY_VERSION =~ /1\.9\./
 $CFLAGS += " -DRUBY_2_0" if RUBY_VERSION =~ /2\.0\./
+
+if RbConfig::MAKEFILE_CONFIG['CC'] =~ /gcc/
+  $CXXFLAGS += " -Wno-unused-function"
+  $CXXFLAGS += " -Wno-maybe-uninitialized"
+end
 
 # Last step: build the makefile
 create_header
