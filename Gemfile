@@ -11,7 +11,7 @@ group :development do
   gem 'rake-compiler', '~> 1.0'
   gem 'rake-compiler-dock', '~> 0.6.2'
   gem 'yard', '~> 0.8'
-  gem "bundler", "~> 1.12"
+  gem "bundler", ">= 1.12", "< 3.a"
   gem "rake", "~> 12.0"
 end
 
