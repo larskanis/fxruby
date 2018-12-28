@@ -1,3 +1,13 @@
+=== 1.6.40 / 2018-12-28
+
+* Fix some library classes which failed, when Fox was not included into the global namespace.
+* Add new accessor FXImage#dataPtr to access raw image data from FFI, Fiddle or OpenGL.
+* Ensure zero terminated strings in values of C-argv.
+* Remove various Ruby and C++ warnings.
+* Update libfox to 1.6.57.
+* Add support for RubyInstaller-2.6
+* Set minimum required ruby version to 2.2.
+
 === 1.6.39 / 2017-12-26
 
 * Fix FXGLVisual.supported and .supported?
