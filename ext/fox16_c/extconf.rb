@@ -36,7 +36,7 @@ LIBJPEG_SOURCE_URI = "https://downloads.sourceforge.net/libjpeg-turbo/libjpeg-tu
 LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.9'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.56'
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.57'
 LIBFOX_SOURCE_URI         = "http://fox-toolkit.org/ftp/fox-#{LIBFOX_VERSION}.tar.gz"
 
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
