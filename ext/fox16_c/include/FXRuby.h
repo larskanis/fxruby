@@ -535,7 +535,7 @@ void FXRbCallVoidMethod_gvlcb(FXObject* recv,const char *func,TYPE1& arg1,TYPE2 
 
 // Call function with "FXbool" return value
 inline bool FXRbCallBoolMethod_gvlcb(FXStream* recv,const char *func){
-  VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),rb_intern(func),0,NULL);
+  VALUE v=rb_funcall(FXRbGetRubyObj(recv,false),rb_intern(func),0);
   return (v==Qtrue);
   }
 
