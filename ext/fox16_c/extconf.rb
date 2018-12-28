@@ -24,7 +24,7 @@ end
 LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7.3'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.34'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.36'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 
 # LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
@@ -33,7 +33,7 @@ LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_V
 LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '1.5.3'
 LIBJPEG_SOURCE_URI = "https://downloads.sourceforge.net/libjpeg-turbo/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.9'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.10'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
 LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.57'
