@@ -32,4 +32,5 @@ after_script:
 
 rvm:
   - "ruby-head"
-  - "2.0.0"
+  - "2.6.0"
+  - "2.2"
