@@ -83,7 +83,7 @@ module Fox
 
     # Test if OpenGL is possible.
     #
-    # Same as {FXGLVisual.supported?}, but returns the first element (true/false) only.
+    # Same as {FXGLVisual.supported}, but returns the first element (true/false) only.
     #
     def FXGLVisual.supported?(app); end
 
