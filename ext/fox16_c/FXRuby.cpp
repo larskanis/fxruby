@@ -1483,7 +1483,7 @@ FXRbMenuCommand::~FXRbMenuCommand(){
         }
       }
     }
-  acckey=(FXHotKey)NULL;
+  acckey=(FXHotKey)0;
   FXRbUnregisterRubyObj(this);
   }
 
@@ -1499,7 +1499,7 @@ FXRbMenuCheck::~FXRbMenuCheck(){
         }
       }
     }
-  acckey=(FXHotKey)NULL;
+  acckey=(FXHotKey)0;
   FXRbUnregisterRubyObj(this);
   }
 
@@ -1515,7 +1515,7 @@ FXRbMenuRadio::~FXRbMenuRadio(){
         }
       }
     }
-  acckey=(FXHotKey)NULL;
+  acckey=(FXHotKey)0;
   FXRbUnregisterRubyObj(this);
   }
 
