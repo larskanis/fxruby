@@ -5,6 +5,20 @@ require 'fox16'
 class TC_FXVec4f < Test::Unit::TestCase
   include Fox
 
+  def assert_in_delta(v1, v2, delta)
+    case v1
+      when FXVec3f
+        3.times do |i|
+          super(v1[i], v2[i], delta)
+        end
+      when FXVec4f
+        4.times do |i|
+          super(v1[i], v2[i], delta)
+        end
+      else
+        super(v1, v2, delta)
+    end
+  end
 
   def test_new
     FXVec4f.new
@@ -65,37 +79,37 @@ class TC_FXVec4f < Test::Unit::TestCase
   def test_neg
     vec = FXVec4f.new(1.0, 2.0, 3.0, 4.0)
     vec = -vec
-    assert_equal(vec[0], -1.0)
-    assert_equal(vec[1], -2.0)
-    assert_equal(vec[2], -3.0)
-    assert_equal(vec[3], -4.0)
+    assert_in_delta(vec[0], -1.0, 0.001)
+    assert_in_delta(vec[1], -2.0, 0.001)
+    assert_in_delta(vec[2], -3.0, 0.001)
+    assert_in_delta(vec[3], -4.0, 0.001)
   end
 
   def test_add
     v1 = FXVec4f.new(1.0, 2.0, 3.0, 4.0)
     v2 = FXVec4f.new(2.0, 4.0, 6.0, 8.0)
     v3 = FXVec4f.new(3.0, 6.0, 9.0, 12.0)
-    assert_equal(v3, v1 + v2)
+    assert_in_delta(v3, v1 + v2, 0.001)
   end
 
   def test_sub
     v1 = FXVec4f.new(3.0, 6.0, 9.0, 12.0)
     v2 = FXVec4f.new(2.0, 4.0, 6.0, 8.0)
     v3 = FXVec4f.new(1.0, 2.0, 3.0, 4.0)
-    assert_equal(v3, v1 - v2)
+    assert_in_delta(v3, v1 - v2, 0.001)
   end
 
   def test_mul
     v1 = FXVec4f.new(3.0,  6.0,  9.0, 12.0)
     v2 = FXVec4f.new(6.0, 12.0, 18.0, 24.0)
-    assert_equal(v2, v1 * 2)
+    assert_in_delta(v2, v1 * 2, 0.001)
   end
 
   def test_mul2 # same as dot product
     v1 = FXVec4f.new(3.0, 6.0, 9.0, 12.0)
     v2 = FXVec4f.new(2.0, 4.0, 6.0, 8.0)
-    assert_equal(180.0, v1*v2)
-    assert_equal(180.0, v2*v1)
+    assert_in_delta(180.0, v1*v2, 0.001)
+    assert_in_delta(180.0, v2*v1, 0.001)
   end
 
   def test_div
@@ -110,8 +124,8 @@ class TC_FXVec4f < Test::Unit::TestCase
   def test_dot
     v1 = FXVec4f.new(3.0, 6.0, 9.0, 12.0)
     v2 = FXVec4f.new(2.0, 4.0, 6.0, 8.0)
-    assert_equal(180.0, v1.dot(v2))
-    assert_equal(180.0, v2.dot(v1))
+    assert_in_delta(180.0, v1.dot(v2), 0.001)
+    assert_in_delta(180.0, v2.dot(v1), 0.001)
   end
 
   def test_length
@@ -121,7 +135,7 @@ class TC_FXVec4f < Test::Unit::TestCase
 
   def test_normalize
     vec = FXVec4f.new(1.0, 1.0, 1.0, 1.0)
-    assert_equal(FXVec4f.new(0.5, 0.5, 0.5, 0.5), vec.normalize)
+    assert_in_delta(FXVec4f.new(0.5, 0.5, 0.5, 0.5), vec.normalize, 0.001)
   end
 
   def test_lo
