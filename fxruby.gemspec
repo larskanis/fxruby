@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["lyle@lylejohnson.name", "lars@greiz-reinsdorf.de"]
 
   spec.summary       = %q{FXRuby is the Ruby binding to the FOX GUI toolkit.}
-  spec.homepage      = "http://fxruby.org/"
+  spec.homepage      = "https://github.com/larskanis/fxruby"
   spec.license       = 'LGPL-2.1'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
