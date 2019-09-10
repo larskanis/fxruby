@@ -1,4 +1,4 @@
-=== 1.6.40 / 2018-12-28
+## 1.6.40 / 2018-12-28
 
 * Fix some library classes which failed, when Fox was not included into the global namespace.
 * Add new accessor FXImage#dataPtr to access raw image data from FFI, Fiddle or OpenGL.
@@ -8,22 +8,22 @@
 * Add support for RubyInstaller-2.6
 * Set minimum required ruby version to 2.2.
 
-=== 1.6.39 / 2017-12-26
+## 1.6.39 / 2017-12-26
 
 * Fix FXGLVisual.supported and .supported?
 * Add support for RubyInstaller-2.5
 
-=== 1.6.38 / 2017-07-27
+## 1.6.38 / 2017-07-27
 
 * Update dependent libraries for Windows binary gem.
 * Replace libjpeg-9b by libjpeg-turbo-1.5.2 on Windows binary gem.
 * Fix build with clang on FreeBSD (and possibly other OS). Fixes #41
 
-=== 1.6.37 / 2017-06-24
+## 1.6.37 / 2017-06-24
 
 * Add a 3rd type of FXRbObjects which is used for callbacks. Fixes #39
 
-=== 1.6.36 / 2017-06-04
+## 1.6.36 / 2017-06-04
 
 * Support the fxruby source gem on Windows (only RubyInstaller-2.4).
 * Replace our self-made directory search methods by pgk-config.
@@ -33,7 +33,7 @@
 * Update to libjpeg-9b
 * More automation for gem releases
 
-=== 1.6.35 / 2017-02-15
+## 1.6.35 / 2017-02-15
 
 * Adjust for Ruby-2.4 with unified Integers
 * Add support for RubyInstaller-2.4
@@ -44,7 +44,7 @@
 * Update dependent gems.
 * Update libraries for Windows build.
 
-=== 1.6.34 / 2016-04-26
+## 1.6.34 / 2016-04-26
 
 * Add support for RubyInstaller-2.3
 * Avoid RARRAY_PTR() which broke fxruby on ruby-2.3.0.
@@ -52,7 +52,7 @@
 * Fix initialisation of runOnUiThread event handler, when FXApp is called with a block.
 * Disable GVL on RubyInstaller-1.9.3. Fixes #24
 
-=== 1.6.33 / 2015-08-20
+## 1.6.33 / 2015-08-20
 
 * Avoid rb_* calls that are prohibited during GC. Fixes #23
 * Use copy'ing getters for FXVec members in FXMat*, FXMaterial and FXLight.
@@ -60,7 +60,7 @@
 * Fix test suite, so that all tests pass.
 * Add a travis-ci test setup and connect it to the github account.
 
-=== 1.6.32 / 2015-08-07
+## 1.6.32 / 2015-08-07
 
 * Avoid call to rb_class2name() during GC. Fixes #21
 * Use release mode, unless extconf.rb is called with --enable-debug,
@@ -68,12 +68,12 @@
 * Remove self made GC detection by ruby's rb_during_gc().
 * Fix Windows binary x86-mingw32.gem for Ruby versions < 2.0
 
-=== 1.6.31 / 2015-07-21
+## 1.6.31 / 2015-07-21
 
 * Replace pipe2() by pipe() and fcntl(), because pipe2() is not as portable.
 * Add missing include statement. Fixes #20
 
-=== 1.6.30 / 2015-07-07
+## 1.6.30 / 2015-07-07
 
 * Fix crashes in rb_gc_mark(): 0x00000003f54af8 is T_ZOMBIE / T_NONE
 * Release Ruby's GVL while calls to FXImage#savePixels, #loadPixels
@@ -84,7 +84,7 @@
   This allows to safely execute GUI code from other threads.
 * Use rake-compiler-dock for building windows binary gems.
 
-=== 1.6.29 / 2015-02-17
+## 1.6.29 / 2015-02-17
 
 * Add Windows binaries for Ruby-2.1 and 2.2.
 * Use shared libs for Windows binary gems to reduce gem size.
@@ -95,40 +95,40 @@
 * Change GC'ing of TreeListBox and FXTreeItem. Fixes #10
 * Update to swig version 2.0 or newer. Fixes #13
 
-=== 1.6.28 / 2013-07-05
+## 1.6.28 / 2013-07-05
 
 * Fix build for Ruby-2.0.0-p127+
 * Update libraries for win32 build: libfox-1.6.49
 
-=== 1.6.27 / 2013-04-05
+## 1.6.27 / 2013-04-05
 
 * Add support for Ruby-2.0.
 * Add cross compilation for x64-mingw32 target.
 
-=== 1.6.26 / 2013-02-16
+## 1.6.26 / 2013-02-16
 
 * Mark all text strings retrieved from fox as UTF-8 when running on Ruby 1.9
 * Fix loading error on Ruby 1.8.7 by renaming the C++ extension to fox16_c
 * Update libraries for windows cross compilation
 
-=== 1.6.25 / 2012-06-17
+## 1.6.25 / 2012-06-17
 
 * Windows: Fix slow loading of fox16.so by using a more recent mingw-w64 compiler
   (reported by Allen Doug and Igor Jorobus)
 * Fix two possible segfaults in conjunction with FXSplashWindow (reported by Igor Jorobus)
 
-=== 1.6.24 / 2012-06-06
+## 1.6.24 / 2012-06-06
 
 * Update libraries for win32 build: libz-1.2.7 libpng-1.5.10 libjpeg-8d libtiff-4.0.1 libfox-1.6.45
 * Avoid Segfauls in lots of methods when called with nil instead of FXApp, FXComposite or FXWindow objects
 
-=== 1.6.23 / 2012-03-08
+## 1.6.23 / 2012-03-08
 
 * Add YARD documentation support
 * Use generated Manifest.txt
 * Support for parallel task execution with drake
 
-=== 1.6.22 / 2012-02-21
+## 1.6.22 / 2012-02-21
 
 * Allow better access to raw pixel data of FXImage and derivatives
 * Build Windows binary gem per cross compiler on Linux
@@ -147,7 +147,7 @@
 * Fix FXApp#addInput for Ruby 1.9 on Linux
 * Fix "ruby_code case not handled: Regexp" issue with newer rubygems
 
-=== Changes For Version 1.6.20 (November 09, 2009)
+## Changes For Version 1.6.20 (November 09, 2009)
 
 * Integrated the Hoe and rake-compiler extensions into the Rakefile and
   removed redundant tasks.
@@ -157,7 +157,7 @@
   (see RubyForge Bug #23786). This problem has been corrected.
 
 
-=== Changes For Version 1.6.19 (March 6, 2009)
+## Changes For Version 1.6.19 (March 6, 2009)
 
 * The previous release of FXRuby couldn't be built from source against Ruby 1.9.1 final
   due to a change in some of the file-related utility libraries
@@ -173,13 +173,13 @@
   for `FXAccelTable` for examples of how this works.
 
 
-=== Changes For Version 1.6.18 (December 29, 2008)
+## Changes For Version 1.6.18 (December 29, 2008)
 
 * Some users were having trouble building FXRuby on 64-bit operating systems
   (see RubyForge Bug #23375). This problem has been corrected.
 
 
-=== Changes For Version 1.6.17 (December 24, 2008)
+## Changes For Version 1.6.17 (December 24, 2008)
 
 * The Ruby interpreter was generating a large number of warning messages about redefined methods
   in the `kwargs.rb` library
@@ -216,7 +216,7 @@
 * Made a number of minor fixes for compatibility with Ruby 1.9.1.
 
 
-=== Changes For Version 1.6.16 (July 3, 2008)
+## Changes For Version 1.6.16 (July 3, 2008)
 
 * Historically, if you called `create` on a
   window before its parent window was created, your application would
@@ -233,7 +233,7 @@
   Bug #20780). This problem has been fixed.
 
 
-=== Changes For Version 1.6.15 (June 4, 2008)
+## Changes For Version 1.6.15 (June 4, 2008)
 
 * FXRuby applications could crash (with a segmentation fault) if
   ´nil´ was passed in as the first argument to
@@ -287,7 +287,7 @@
   Bug #20426). This has been fixed.
 
 
-=== Changes For Version 1.6.14 (March 29, 2008)
+## Changes For Version 1.6.14 (March 29, 2008)
 
 * Updated the documentation for the `FXImage`
   class to indicate which methods call `render`
@@ -315,7 +315,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.13 (November 9, 2007)
+## Changes For Version 1.6.13 (November 9, 2007)
 
 * Calls to the `extractText` method for the
   `FXTable` class were causing various
@@ -325,7 +325,7 @@
 * The binary gem for Windows was built with FOX version 1.6.28 and
   FXScintilla version 1.71.
 
-=== Changes For Version 1.6.12 (October 19, 2007)
+## Changes For Version 1.6.12 (October 19, 2007)
 
 * The API documentation for `FXMDIClient`
   referred to the non-existent instance method
@@ -369,7 +369,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.11 (April 18, 2007)
+## Changes For Version 1.6.11 (April 18, 2007)
 
 * Added `editable` as an alias for
   `FXTextField#editable?`.
@@ -410,7 +410,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.9 (April 8, 2007)
+## Changes For Version 1.6.9 (April 8, 2007)
 
 * A bug was discovered in the keyword arguments library support
   for the `FXMenuBar` class (see RubyForge
@@ -420,7 +420,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.8 (April 5, 2007)
+## Changes For Version 1.6.8 (April 5, 2007)
 
 * Due to an internal bookkeeping error, applications like the
   `glviewer.rb` example program which create multiple
@@ -437,13 +437,13 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.7 (March 31, 2007)
+## Changes For Version 1.6.7 (March 31, 2007)
 
 * The binary gem for Windows was built with FOX version 1.6.25 and
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.6 (February 10, 2007)
+## Changes For Version 1.6.6 (February 10, 2007)
 
 * Somewhere along the way, the RAA browser example program got
   broken due to changes in the SOAP interface to RAA (see RubyForge
@@ -498,7 +498,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.5 (January 20, 2007)
+## Changes For Version 1.6.5 (January 20, 2007)
 
 * Clicking outside of the visible cells for an
   `FXTable` when there was no current selection
@@ -534,7 +534,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.4 (November 30, 2006)
+## Changes For Version 1.6.4 (November 30, 2006)
 
 * A change made in Ruby 1.8.5 for cyclic requires led to a problem
   that caused the Ruby interpreter to emit a large number of warnings
@@ -545,7 +545,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.3 (October 27, 2006)
+## Changes For Version 1.6.3 (October 27, 2006)
 
 * Widgets of some classes (namely
   `FXTopWindow` and
@@ -601,7 +601,7 @@
   FXScintilla version 1.71.
 
 
-=== Changes For Version 1.6.2 (September 13, 2006)
+## Changes For Version 1.6.2 (September 13, 2006)
 
 * The `expandTree()` and
   `collapseTree()` methods for the
@@ -628,7 +628,7 @@
   FXScintilla version 1.67 (from CVS).
 
 
-=== Changes For Version 1.4.7 (September 13, 2006)
+## Changes For Version 1.4.7 (September 13, 2006)
 
 * The `children` instance method for the
   `FXWindow` class always returned an array of
@@ -666,7 +666,7 @@
   FXScintilla version 1.63.
 
 
-=== Changes For Version 1.6.1 (July 21, 2006)
+## Changes For Version 1.6.1 (July 21, 2006)
 
 * The message data sent along for the
   ´SEL_INSERTED´, ´SEL_DELETED´
@@ -724,7 +724,7 @@
   FXScintilla version 1.67 (from CVS).
 
 
-=== Changes For Version 1.6.0 (May 29, 2006)
+## Changes For Version 1.6.0 (May 29, 2006)
 
 * This is the first release of FXRuby compatible with FOX version
   1.6. One of the most signficant changes for FOX 1.6 has been the
@@ -768,7 +768,7 @@
   FXScintilla version 1.67 (from CVS).
 
 
-=== Changes For Version 1.4.6 (April 26, 2006)
+## Changes For Version 1.4.6 (April 26, 2006)
 
 * FXRuby would not compile properly on some x86-64 systems (see
   RubyForge
@@ -811,7 +811,7 @@
   FXScintilla version 1.63.
 
 
-=== Changes For Version 1.4.5 (April 10, 2006)
+## Changes For Version 1.4.5 (April 10, 2006)
 
 * The `FXTextField` class was not properly
   responding to the ´ID_INSERT_STRING´ command (see
@@ -875,7 +875,7 @@
   FXScintilla version 1.63.
 
 
-=== Changes For Version 1.4.4 (January 21, 2006)
+## Changes For Version 1.4.4 (January 21, 2006)
 
 * The build instructions for Unix platforms had not been updated
   recently and as such contained some errors (see RubyForge
@@ -911,7 +911,7 @@
   FXScintilla version 1.63.
 
 
-=== Changes For Version 1.4.3 (November 7, 2005)
+## Changes For Version 1.4.3 (November 7, 2005)
 
 * The ´TOGGLEBUTTON_KEEPSTATE´ option for the
   `FXToggleButton` class was not documented (see
@@ -965,7 +965,7 @@
   FXScintilla version 1.63.
 
 
-=== Changes For Version 1.4.2 (August 22, 2005)
+## Changes For Version 1.4.2 (August 22, 2005)
 
 * Due to a bug in the implementation, the
   `checked?` method for the
@@ -1013,7 +1013,7 @@
   FXScintilla version 1.63.
 
 
-=== Changes For Version 1.4.1 (August 20, 2005)
+## Changes For Version 1.4.1 (August 20, 2005)
 
 * This is the second release of FXRuby which is compatible with
   FOX 1.4, and as such should be considered an "unstable" release. For a
@@ -1033,7 +1033,7 @@
   FXScintilla version 1.63.
 
 
-=== Changes For Version 1.4.0 (August 19, 2005)
+## Changes For Version 1.4.0 (August 19, 2005)
 
 * This is the first release of FXRuby which is compatible with FOX
   1.4, and as such should be considered an "unstable" release. For a
@@ -1042,7 +1042,7 @@
   page at the FOX Web site.
 
 
-=== Changes For Version 1.2.6 (April 15, 2005)
+## Changes For Version 1.2.6 (April 15, 2005)
 
 * Some additional problems related to calling the
   `setTableSize` method for an
@@ -1113,7 +1113,7 @@
   FXScintilla version 1.62.
 
 
-=== Changes For Version 1.2.5 (March 1, 2005)
+## Changes For Version 1.2.5 (March 1, 2005)
 
 * The change made for FXRuby version 1.2.4 regarding garbage
   collection for table items corrected only one of the problems
@@ -1160,7 +1160,7 @@
   FXScintilla version 1.62.
 
 
-=== Changes For Version 1.2.4 (February 23, 2005)
+## Changes For Version 1.2.4 (February 23, 2005)
 
 * Due to a change in some of the internal Ruby C APIs, a
   compile-time error for FXRuby was introduced in some of the Ruby 1.8.2
@@ -1231,7 +1231,7 @@
   FXScintilla version 1.62.
 
 
-=== Changes For Version 1.2.3 (January 22, 2005)
+## Changes For Version 1.2.3 (January 22, 2005)
 
 * Since group boxes containing radio buttons no longer enforce the
   radio behavior of radio buttons (i.e. keeping only one radio button
@@ -1327,7 +1327,7 @@
   FXScintilla version 1.62.
 
 
-=== Changes For Version 1.2.2 (October 1, 2004)
+## Changes For Version 1.2.2 (October 1, 2004)
 
 * In order to avoid versioning problems when dealing with a mix of
   applications based on either FXRuby 1.0 or 1.2, the feature name for
@@ -1345,7 +1345,7 @@
   FXScintilla version 1.61.
 
 
-=== Changes For Version 1.2a2 (July 10, 2004)
+## Changes For Version 1.2a2 (July 10, 2004)
 
 * This is the second "alpha" release of FXRuby 1.2. This release
   should be compatible with any FOX library version 1.2; it is not
@@ -1410,7 +1410,7 @@
   FXScintilla version 1.61.
 
 
-=== Changes For Version 1.2a1 (June 28, 2004)
+## Changes For Version 1.2a1 (June 28, 2004)
 
 * This is the first "alpha" release of FXRuby 1.2. This release
   should be compatible with any FOX library version 1.2; it is not
