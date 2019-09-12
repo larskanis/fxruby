@@ -359,6 +359,9 @@ inline VALUE to_ruby_cb(const FXFontDesc& fontdesc){
 inline VALUE to_ruby_cb(FXDC& dc){
   return FXRbGetRubyObjCb(reinterpret_cast<void*>(&dc), FXRbTypeQuery("FXDC *"));
 }
+inline VALUE to_ruby_cb(FXDCWindow& dc){
+  return FXRbGetRubyObjCb(reinterpret_cast<void*>(&dc), FXRbTypeQuery("FXDCWindow *"));
+}
 
 template<class TYPE>
 VALUE to_ruby_cb(TYPE obj){
@@ -466,7 +469,7 @@ void FXRbCallVoidMethod_gvlcb(FXDC* recv,const char *func,TYPE1 arg1,TYPE2 arg2,
 
 /* Four arguments */
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4>
-void FXRbCallVoidMethod_gvlcb(FXObject* recv,const char *func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4){
+void FXRbCallVoidMethod_gvlcb(FXObject* recv,const char *func, TYPE1& arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   rb_funcall(obj,rb_intern(func),4,to_ruby_cb(arg1),to_ruby_cb(arg2),to_ruby_cb(arg3),to_ruby_cb(arg4));
@@ -496,7 +499,7 @@ void FXRbCallVoidMethod_gvlcb(FXDC* recv, const char *func, TYPE1 arg1, TYPE2 ar
 
 /* Six arguments */
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4, class TYPE5, class TYPE6>
-void FXRbCallVoidMethod_gvlcb(const FXObject* recv, const char *func, TYPE1 arg1, TYPE2& arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5, TYPE6 arg6){
+void FXRbCallVoidMethod_gvlcb(const FXObject* recv, const char *func, TYPE1& arg1, TYPE2& arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5, TYPE6 arg6){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   rb_funcall(obj,rb_intern(func),6,to_ruby_cb(arg1),to_ruby_cb(arg2),to_ruby_cb(arg3),to_ruby_cb(arg4),to_ruby_cb(arg5),to_ruby_cb(arg6));
@@ -515,6 +518,13 @@ void FXRbCallVoidMethod_gvlcb(FXDC* recv, const char *func, TYPE1 arg1, TYPE2 ar
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   rb_funcall(obj,rb_intern(func),7,to_ruby_cb(arg1),to_ruby_cb(arg2),to_ruby_cb(arg3),to_ruby_cb(arg4),to_ruby_cb(arg5),to_ruby_cb(arg6),to_ruby_cb(arg7));
+  }
+
+template<class TYPE1, class TYPE2, class TYPE3, class TYPE4, class TYPE5, class TYPE6, class TYPE7, class TYPE8>
+void FXRbCallVoidMethod_gvlcb(FXObject* recv, const char *func, TYPE1& arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4, TYPE5 arg5, TYPE6 arg6, TYPE7 arg7, TYPE8 arg8){
+  VALUE obj=FXRbGetRubyObj(recv,false);
+  FXASSERT(!NIL_P(obj));
+  rb_funcall(obj,rb_intern(func),8,to_ruby_cb(arg1),to_ruby_cb(arg2),to_ruby_cb(arg3),to_ruby_cb(arg4),to_ruby_cb(arg5),to_ruby_cb(arg6),to_ruby_cb(arg7), to_ruby_cb(arg8));
   }
 
 /* Nine arguments */
@@ -641,6 +651,14 @@ FXuint FXRbCallUIntMethod_gvlcb(FXObject* recv, const char *func, TYPE arg){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE v=rb_funcall(obj,rb_intern(func),1,to_ruby_cb(arg));
+  return static_cast<FXuint>(NUM2UINT(v));
+  }
+
+template<class TYPE1, class TYPE2, class TYPE3, class TYPE4>
+FXuint FXRbCallUIntMethod_gvlcb(FXObject* recv, const char *func, TYPE1 arg1, TYPE2 arg2, TYPE3 arg3, TYPE4 arg4){
+  VALUE obj=FXRbGetRubyObj(recv,false);
+  FXASSERT(!NIL_P(obj));
+  VALUE v=rb_funcall(obj,rb_intern(func),4,to_ruby_cb(arg1),to_ruby_cb(arg2),to_ruby_cb(arg3),to_ruby_cb(arg4));
   return static_cast<FXuint>(NUM2UINT(v));
   }
 

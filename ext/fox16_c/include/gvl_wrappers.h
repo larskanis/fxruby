@@ -287,7 +287,7 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
 
 #define FOR_EACH_PARAM_OF_FXRbCallVoidMethod_6(param) \
   param(ID, , func) \
-  param(TYPE1, , arg1) \
+  param(TYPE1, &, arg1) \
   param(TYPE2, , arg2) \
   param(TYPE3, , arg3) \
   param(TYPE4, , arg4)
@@ -302,7 +302,7 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
 
 #define FOR_EACH_PARAM_OF_FXRbCallVoidMethod_8(param) \
   param(ID, , func) \
-  param(TYPE1, , arg1) \
+  param(TYPE1, &, arg1) \
   param(TYPE2, &, arg2) \
   param(TYPE3, , arg3) \
   param(TYPE4, , arg4) \
@@ -318,6 +318,17 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   param(TYPE5, , arg5) \
   param(TYPE6, , arg6) \
   param(TYPE7, , arg7)
+
+#define FOR_EACH_PARAM_OF_FXRbCallVoidMethod_10(param) \
+  param(ID, , func) \
+  param(TYPE1, &, arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3) \
+  param(TYPE4, , arg4) \
+  param(TYPE5, , arg5) \
+  param(TYPE6, , arg6) \
+  param(TYPE7, , arg7) \
+  param(TYPE8, , arg8)
 
 #define FOR_EACH_PARAM_OF_FXRbCallVoidMethod_11(param) \
   param(ID, , func) \
@@ -386,6 +397,13 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
 #define FOR_EACH_PARAM_OF_FXRbCallUIntMethod_3(param) \
   param(ID, , func) \
   param(TYPE1, , arg1)
+
+#define FOR_EACH_PARAM_OF_FXRbCallUIntMethod_6(param) \
+  param(ID, , func) \
+  param(TYPE1, , arg1) \
+  param(TYPE2, , arg2) \
+  param(TYPE3, , arg3) \
+  param(TYPE4, , arg4)
 
 #define FOR_EACH_PARAM_OF_FXRbCallGLObjectMethod_2(param) \
   param(ID, , func)
@@ -544,6 +562,7 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 7) \
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 8) \
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 9) \
+  function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 10) \
   function(FXRbCallVoidMethod, GVL_TYPE_VOID, void, RECV, recv, 11) \
   function(FXRbCallBoolMethod, GVL_TYPE_NONVOID, bool, RECV, recv, 2) \
   function(FXRbCallBoolMethod, GVL_TYPE_NONVOID, bool, RECV, recv, 3) \
@@ -556,6 +575,7 @@ FOR_EACH_BLOCKING_FUNCTION( DEFINE_GVL_STUB_DECL )
   function(FXRbCallIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 7) \
   function(FXRbCallLongMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 5) \
   function(FXRbCallUIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 3) \
+  function(FXRbCallUIntMethod, GVL_TYPE_NONVOID, FXint, RECV, recv, 6) \
   function(FXRbCallGLObjectMethod, GVL_TYPE_NONVOID, FXGLObject*, RECV, recv, 2) \
   function(FXRbCallGLObjectMethod, GVL_TYPE_NONVOID, FXGLObject*, RECV, recv, 3) \
   function(FXRbCallGLObjectMethod, GVL_TYPE_NONVOID, FXGLObject*, RECV, recv, 4) \

@@ -1,6 +1,6 @@
 #!/bin/env ruby
 
-$special_stubclasses = ["FXGLSHAPE", "FXICONITEM", "FXTABLE", "FXTABLEITEM", "FXTREEITEM"]
+$special_stubclasses = ["FXGLSHAPE", "FXICONITEM", "FXTABLE", "FXTABLEITEM", "FXTEXT", "FXTREEITEM"]
 
 class Processor
   def initialize

@@ -1,3 +1,25 @@
+protected:
+  // Overrides the base class versions of these virtual functions
+  virtual void eraseCursorOverhang();
+  virtual void drawCursor(FXuint state);
+  virtual FXuint style(FXint row,FXint beg,FXint end,FXint pos);
+  virtual void drawBufferText(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXint pos,FXint n,FXuint style);
+  virtual void fillBufferRect(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXuint style);
+  virtual void drawTextRow(FXDCWindow& dc,FXint line,FXint left,FXint right);
+  virtual void drawContents(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
+  virtual void drawNumbers(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
+
+public:
+  // Publically accessible versions of those protected functions
+  void public_eraseCursorOverhang();
+  void public_drawCursor(FXuint state);
+  FXuint public_style(FXint row,FXint beg,FXint end,FXint pos);
+  void public_drawBufferText(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXint pos,FXint n,FXuint style);
+  void public_fillBufferRect(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXuint style);
+  void public_drawTextRow(FXDCWindow& dc,FXint line,FXint left,FXint right);
+  void public_drawContents(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
+  void public_drawNumbers(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h);
+
 public:
   // Overrides the base class version of setCursorPos()
   virtual void setCursorPos(FXint pos,FXbool notify=FALSE);

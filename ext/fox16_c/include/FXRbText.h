@@ -27,7 +27,39 @@
 #ifndef FXRBTEXT_H
 #define FXRBTEXT_H
 
-#define DECLARE_FXTEXT_STUBS(klass) \
+#define DECLARE_FXTEXT_STUBS(klass,subklass) \
+inline void klass ## _eraseCursorOverhang(klass* self){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  dynamic_cast<subklass*>(self)->public_eraseCursorOverhang(); \
+  } \
+inline void klass ## _drawCursor(klass* self,FXuint state){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  dynamic_cast<subklass*>(self)->public_drawCursor(state); \
+  } \
+inline FXuint klass ## _style(klass* self,FXint row,FXint beg,FXint end,FXint pos){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  return dynamic_cast<subklass*>(self)->public_style(row, beg, end, pos); \
+  } \
+inline void klass ## _drawBufferText(klass* self,FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXint pos,FXint n,FXuint style){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  dynamic_cast<subklass*>(self)->public_drawBufferText(dc, x, y, w, h, pos, n, style); \
+  } \
+inline void klass ## _fillBufferRect(klass* self,FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXuint style){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  dynamic_cast<subklass*>(self)->public_fillBufferRect(dc, x, y, w, h, style); \
+  } \
+inline void klass ## _drawTextRow(klass* self,FXDCWindow& dc,FXint line,FXint left,FXint right){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  dynamic_cast<subklass*>(self)->public_drawTextRow(dc, line, left, right); \
+  } \
+inline void klass ## _drawContents(klass* self,FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  dynamic_cast<subklass*>(self)->public_drawContents(dc, x, y, w, h); \
+  } \
+inline void klass ## _drawNumbers(klass* self,FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h){ \
+  FXASSERT(self->isMemberOf(FXMETACLASS(subklass))); \
+  dynamic_cast<subklass*>(self)->public_drawNumbers(dc, x, y, w, h); \
+  } \
 inline void klass ## _setCursorPos(klass* self,FXint pos,FXbool notify){ \
   self->klass::setCursorPos(pos,notify); \
   } \
@@ -72,7 +104,55 @@ inline void klass ## _setStyledText(klass* self,const FXString& text,FXint style
   }
 
 
-#define IMPLEMENT_FXTEXT_STUBS(cls) \
+#define IMPLEMENT_FXTEXT_STUBS(cls,superklass) \
+  void cls::eraseCursorOverhang(){ \
+    FXRbCallVoidMethod(this,"eraseCursorOverhang"); \
+    } \
+  void cls::public_eraseCursorOverhang(){ \
+    superklass::eraseCursorOverhang(); \
+    } \
+  void cls::drawCursor(FXuint state){ \
+    FXRbCallVoidMethod(this,"drawCursor", state); \
+    } \
+  void cls::public_drawCursor(FXuint state){ \
+    superklass::drawCursor(state); \
+    } \
+  FXuint cls::style(FXint row,FXint beg,FXint end,FXint pos){ \
+    return FXRbCallUIntMethod(this,"style", row, beg, end, pos); \
+    } \
+  FXuint cls::public_style(FXint row,FXint beg,FXint end,FXint pos){ \
+    return superklass::style(row, beg, end, pos); \
+    } \
+  void cls::drawBufferText(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXint pos,FXint n,FXuint style){ \
+    FXRbCallVoidMethod(this,"drawBufferText", dc, x, y, w, h, pos, n, style); \
+    } \
+  void cls::public_drawBufferText(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXint pos,FXint n,FXuint style){ \
+    superklass::drawBufferText(dc, x, y, w, h, pos, n, style); \
+    } \
+  void cls::fillBufferRect(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXuint style){ \
+    FXRbCallVoidMethod(this,"fillBufferRect", dc, x, y, w, h, style); \
+    } \
+  void cls::public_fillBufferRect(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h,FXuint style){ \
+    superklass::fillBufferRect(dc, x, y, w, h, style); \
+    } \
+  void cls::drawTextRow(FXDCWindow& dc,FXint line,FXint left,FXint right){ \
+    FXRbCallVoidMethod(this,"drawTextRow", dc, line, left, right); \
+    } \
+  void cls::public_drawTextRow(FXDCWindow& dc,FXint line,FXint left,FXint right){ \
+    superklass::drawTextRow(dc, line, left, right); \
+    } \
+  void cls::drawContents(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h){ \
+    FXRbCallVoidMethod(this,"drawContents", dc, x, y, w, h); \
+    } \
+  void cls::public_drawContents(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h){ \
+    superklass::drawContents(dc, x, y, w, h); \
+    } \
+  void cls::drawNumbers(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h){ \
+    FXRbCallVoidMethod(this,"drawNumbers", dc, x, y, w, h); \
+    } \
+  void cls::public_drawNumbers(FXDCWindow& dc,FXint x,FXint y,FXint w,FXint h){ \
+    superklass::drawNumbers(dc, x, y, w, h); \
+    } \
   void cls::setCursorPos(FXint pos,FXbool notify){ \
     FXRbCallVoidMethod(this,"setCursorPos",pos,notify); \
     } \
