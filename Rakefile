@@ -6,23 +6,6 @@ require 'bundler'
 require 'bundler/gem_helper'
 require './lib/fox16/version.rb'
 
-# Use forked process for chdir'ed environment, to allow parallel execution with rake -m
-module FileUtils
-  alias unforked_fileutils_cd cd
-  def cd(dir, options={}, &block)
-    raise "chdir called without block" unless block_given?
-    begin
-      pid = Process.waitpid(fork{ unforked_fileutils_cd(dir, options, &block) })
-      raise "Error in subprocess" if $?.exitstatus != 0
-    rescue NotImplementedError
-      unforked_fileutils_cd(dir, options, &block)
-    end
-  end
-  module_function :cd
-  alias chdir cd
-  module_function :chdir
-end
-
 
 class FoxGemHelper < Bundler::GemHelper
   attr_accessor :cross_platforms
