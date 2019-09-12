@@ -929,7 +929,6 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
     case SEL_CLICKED:
     case SEL_DOUBLECLICKED:
     case SEL_TRIPLECLICKED:
-    case SEL_CHANGED:
     case SEL_DESELECTED:
     case SEL_SELECTED:
     case SEL_INSERTED:
@@ -1045,7 +1044,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
           return NULL;
         case FXWindow::ID_HSCROLLED:
         case FXWindow::ID_VSCROLLED:
-          return reinterpret_cast<void*>(static_cast<unsigned long>(NUM2UINT(value)));
+          return reinterpret_cast<void*>(static_cast<long>(NUM2INT(value)));
         case FXWindow::ID_SETINTVALUE:
           if(obj->isMemberOf(FXMETACLASS(FXColorWell))){
             colorValue=NUM2UINT(value);
@@ -1086,9 +1085,16 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
 	  if(obj->isMemberOf(FXMETACLASS(FXPicker))){
 			SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXPoint *"),1);
 			return ptr;
-	    }
-		return 0;
     }
+    if(obj->isMemberOf(FXMETACLASS(FXWindow))){
+      switch(id){
+        case FXWindow::ID_HSCROLLED:
+        case FXWindow::ID_VSCROLLED:
+          return reinterpret_cast<void*>(static_cast<long>(NUM2INT(value)));
+      }
+    }
+    return 0;
+  }
 
 	if(type==SEL_DRAGGED){
 	    SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
