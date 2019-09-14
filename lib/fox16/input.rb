@@ -5,10 +5,13 @@ module Fox
     alias addInputOrig addInput # :nodoc:
 
     #
-    # Add a file descriptor _fileDesc_ to be watched for activity as determined
-    # by _mode_, where _mode_ is a bitwise OR (+INPUT_READ+, +INPUT_WRITE+, +INPUT_EXCEPT+).
-    # A message of type +SEL_IO_READ+, +SEL_IO_WRITE+, or +SEL_IO_EXCEPT+ will be sent
-    # to the target when the specified activity is detected on the file descriptor.
+    # Add an IO object as _io_ to be watched for activity as determined by _mode_, where _mode_ is a bitwise OR (+INPUT_READ+, +INPUT_WRITE+, +INPUT_EXCEPT+).
+    # A message of type +SEL_IO_READ+, +SEL_IO_WRITE+, or +SEL_IO_EXCEPT+ will be sent to the target when the specified activity is detected on the file descriptor.
+    #
+    # On POSIX operating systems all kinds of file descriptors can be watched.
+    # It works for +Socket.new+, +IO.popen+, +IO.pipe+, +IO.for_fd+, +File.open+, etc.
+    # Windows provides level triggered events only for network sockets.
+    # So on Windows only socket IO objects like +TCPSocket.new+ and +TCPServer.new+ are currently supported to be watched.
     #
     # There are several forms for #addInput; the original form (from FOX)
     # takes four arguments:
@@ -30,8 +33,7 @@ module Fox
     #     ... handle the I/O event ...
     #   }
     #
-
-    def addInput(fd, mode, *args, &block)
+    def addInput(io, mode, *args, &block)
       params = {}
       params = args.pop if args.last.is_a? Hash
       tgt, sel = nil, 0
@@ -51,7 +53,7 @@ module Fox
         tgt.pconnect(SEL_IO_WRITE, block, params)
         tgt.pconnect(SEL_IO_EXCEPT, block, params)
       end
-      addInputOrig(fd, mode, tgt, sel)
+      addInputOrig(io, mode, tgt, sel)
     end
 
   end # class FXApp
