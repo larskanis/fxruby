@@ -436,14 +436,16 @@ module Fox
     #
     # Search for _string_ in text buffer, and return the extent of
     # the string as a two-element array of arrays.
-    # The first array contains the beginning index (or indices)
-    # and the second array contains the ending index (or indices).
+    # The first array contains the beginning index (or indices if +SEARCH_REGEX+)
+    # and the second array contains the ending index (or indices if +SEARCH_REGEX+) of the first match.
     # The search starts from the given
     # _start_ position, scans forward (+SEARCH_FORWARD+) or backward
     # (+SEARCH_BACKWARD+), and wraps around if +SEARCH_WRAP+ has been
     # specified.  The search type is either a plain search (+SEARCH_EXACT+),
     # case insensitive search (+SEARCH_IGNORECASE+), or regular expression
     # search (+SEARCH_REGEX+).
+    #
+    # For regular expression searches, the found regex match begin and end is returned at index 0 and captures are returned as entries starting at index 1 in both beginning and ending arrays.
     #
     def findText(string, start=0, flags=SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT); end
 

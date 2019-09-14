@@ -87,11 +87,30 @@ public
     assert_equal([10], endIndex)
   end
 
+  def test_find_text_with_startpos_wrap_nocase
+    @text.text = "I came, i saw, I conquered"
+    startIndex, endIndex = @text.findText("i ", 16, SEARCH_FORWARD|SEARCH_IGNORECASE|SEARCH_WRAP)
+    assert_equal([0], startIndex)
+    assert_equal([2], endIndex)
+  end
+
   def test_find_text_with_groups
     @text.text = "I came, I saw, I conquered"
     startIndex, endIndex = @text.findText("I ([a-z]+)(, )?", 0, SEARCH_REGEX)
     assert_equal([0, 2, 6], startIndex)
     assert_equal([8, 6, 8], endIndex)
+  end
+
+  def test_find_text_with_loop
+    @text.text = "()  ()()"
+    e = Enumerator.new do |y|
+      pos = 0
+      while a=@text.findText("()", pos, SEARCH_FORWARD|SEARCH_EXACT)
+        y << a
+        pos = a[1][0]
+      end
+    end
+    assert_equal [[[0], [2]], [[4], [6]], [[6], [8]]], e.to_a
   end
 
   if ''.respond_to?(:encoding)

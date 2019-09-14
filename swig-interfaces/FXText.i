@@ -519,6 +519,8 @@ public:
 
   %extend {
     /**
+    * TODO: Change API to return [beg, end] instead of [[beg], [end]] for non regex.
+    *
     * Search for string in text buffer, returning the extent of
     * the string in beg and end.  The search starts from the given
     * starting position, scans forward (SEARCH_FORWARD) or backward
@@ -536,23 +538,23 @@ public:
       FXint* beg;
       FXint* end;
       VALUE ary=Qnil;
-			FXint ngroups=string.contains('(')+1;  // FIXME: is this right?
+      FXint ngroups = flags&SEARCH_REGEX ? string.contains('(')+1 : 1;  // FIXME: is this right?
       if(!FXMALLOC(&beg,FXint,ngroups)){
         return Qnil;
-				}
+      }
       if(!FXMALLOC(&end,FXint,ngroups)){
         FXFREE(&beg);
-				return Qnil;
-				}
+        return Qnil;
+      }
       if(self->findText(string,beg,end,start,flags,ngroups)){
         ary=rb_ary_new();
-				rb_ary_push(ary,FXRbMakeArray(beg,ngroups));
-				rb_ary_push(ary,FXRbMakeArray(end,ngroups));
-        }
+        rb_ary_push(ary,FXRbMakeArray(beg,ngroups));
+        rb_ary_push(ary,FXRbMakeArray(end,ngroups));
+      }
       FXFREE(&beg);
       FXFREE(&end);
       return ary;
-      }
+    }
   }
 
   /// Return TRUE if position pos is selected
