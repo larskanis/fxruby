@@ -47,9 +47,8 @@ class PigBox < FXMainWindow
       theLabel.layoutHints = LAYOUT_FILL_X
     end
 
-    FXTextField.new(top, 20, @text, FXDataTarget::ID_VALUE) do |theTextField|
+    @theTextField = FXTextField.new(top, 20, @text, FXDataTarget::ID_VALUE) do |theTextField|
       theTextField.layoutHints = LAYOUT_FILL_X
-      theTextField.setFocus()
     end
 
     FXButton.new(top, 'Pig It') do |pigButton|
@@ -66,6 +65,7 @@ class PigBox < FXMainWindow
   def create
     super
     show(PLACEMENT_SCREEN)
+    @theTextField.setFocus
   end
 end
 
