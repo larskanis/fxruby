@@ -21,6 +21,7 @@ class InputHandlerWindow < FXMainWindow
 
     # Output will be displayed in a multiline text area
     @cmdOutput = FXText.new(textFrame, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    @cmdInput.text = "ping rubyinstaller.org"
 
     # Initialize the pipe
     @pipe = nil
@@ -30,6 +31,7 @@ class InputHandlerWindow < FXMainWindow
   def create
     super
     show(PLACEMENT_SCREEN)
+    @cmdInput.setFocus
   end
 
   # Remove previous input (if any)
@@ -54,11 +56,14 @@ class InputHandlerWindow < FXMainWindow
     getApp().addInput(@pipe, INPUT_READ|INPUT_EXCEPT) do |sender, sel, ptr|
       case FXSELTYPE(sel)
       when SEL_IO_READ
-        text = @pipe.read_nonblock(256)
-        if text && text.length > 0
-          @cmdOutput.appendText(text)
-        else
+        begin
+          text = @pipe.read_nonblock(256)
+        rescue IO::WaitReadable
+        rescue EOFError
+          @cmdOutput.appendText("[EOF]")
           closePipe
+        else
+          @cmdOutput.appendText(text)
         end
       when SEL_IO_EXCEPT
         #         puts 'onPipeExcept'
