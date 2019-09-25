@@ -15,16 +15,14 @@
 #ifndef __gvl_wrappers_h
 #define __gvl_wrappers_h
 
-extern "C" {
-  #if defined(HAVE_RB_THREAD_CALL_WITH_GVL)
-  extern void *rb_thread_call_with_gvl(void *(*func)(void *), void *data1);
-  #endif
+#if defined(HAVE_RB_THREAD_CALL_WITH_GVL)
+extern "C" void *rb_thread_call_with_gvl(void *(*func)(void *), void *data1);
+#endif
 
-  #if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
-  extern "C" void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
-          rb_unblock_function_t *ubf, void *data2);
-  #endif
-}
+#if defined(HAVE_RB_THREAD_CALL_WITHOUT_GVL)
+extern "C" void *rb_thread_call_without_gvl(void *(*func)(void *), void *data1,
+        rb_unblock_function_t *ubf, void *data2);
+#endif
 
 void fxrb_wakeup_fox(void *);
 

@@ -24,7 +24,6 @@
  * $Id: FXRbCommon.h 2303 2005-12-09 03:17:28Z lyle $
  ***********************************************************************/
 
-extern "C" {
 #include "ruby.h"
 
 #include "extconf.h"
@@ -32,7 +31,6 @@ extern "C" {
 #ifdef HAVE_RUBY_ENCODING_H
 #include "ruby/encoding.h"
 #endif
-}
 
 /**
  * The Ruby header files for Win32 redefine the symbol "select", which
