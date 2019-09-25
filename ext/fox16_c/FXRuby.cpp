@@ -130,7 +130,7 @@ void FXRbUnregisterRubyObj(const void* foxObj){
  * These objects are allocated by FXRuby on the heap.
  * They are free'd when the FXRuby wrapper is GC'ed and no other reference to the object exists.
  * They are registered in FXRbObjRegistry as owned object.
- * Tey are built per FXRbRegisterRubyObj().
+ * They are built per FXRbRegisterRubyObj().
  *
  * Borrowed objects :
  * These objects are allocated by libfox on the heap.
@@ -145,7 +145,7 @@ void FXRbUnregisterRubyObj(const void* foxObj){
  * They are wrapped for the time of one callback only, because stack memory is free'd afterwards.
  * They are not registered in FXRbObjRegistry, but stored on the stack only.
  * Therefore callback objects aren't re-used, but newly wrapped for each call.
- * This is for arguments to ruby blocks.
+ * The same goes for arguments to ruby blocks.
  * They are built per FXGetRubyObjCb().
  */
 
