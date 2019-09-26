@@ -76,7 +76,7 @@ LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/f
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
 
-CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*" )
+CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h*", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*" )
 
 CLOBBER.include( "pkg" )
 
@@ -176,20 +176,23 @@ end
 namespace :swig do
   def sed(wrapper_src_file_name)
     puts "Update #{wrapper_src_file_name}"
-    results = []
-    IO.readlines(wrapper_src_file_name).each do |line|
-      line.gsub!(/static VALUE mCore;/, "VALUE mCore;")
-      line.gsub!(/mCore = rb_define_module\("Core"\)/, "mFox = rb_define_module(\"Fox\")")
-      line.gsub!(/mCore/, "mFox")
-      next if line =~ /static VALUE m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui);/
-      next if line =~ /m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module/
-      next if line =~ /rb_require/
-      line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
-      results << line
-    end
-    File.open(wrapper_src_file_name, "w") do |io|
-      io.write(results.join)
-    end
+
+    line = File.read(wrapper_src_file_name)
+    line.gsub!(/static VALUE mCore;/, "VALUE mCore;")
+    line.gsub!(/mCore = rb_define_module\("Core"\)/, "mFox = rb_define_module(\"Fox\")")
+    line.gsub!(/mCore/, "mFox")
+    line.gsub!(/static VALUE m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui);/, '')
+    line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module.*/, '')
+    line.gsub!(/rb_require.*/, '')
+    line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
+    line.gsub!(/rb_define_virtual_variable\((.*?), NULL\)/, 'rb_define_virtual_variable(\\1, (void (*)(VALUE, ID, VALUE*))NULL)')
+
+    line.gsub!('static VALUE swig_ruby_trackings_count(ANYARGS)', 'static VALUE swig_ruby_trackings_count(ID id, VALUE *var)')
+    line.gsub!('SWIG_ruby_failed(void)', 'SWIG_ruby_failed(VALUE, VALUE)')
+
+    line.gsub!(/SWIGINTERN VALUE SWIG_AUX_(\w+)\(VALUE \*args\)\s\{/m, 'SWIGINTERN VALUE SWIG_AUX_\\1(VALUE pargs){VALUE *args=(VALUE *)pargs;')
+
+    File.write(wrapper_src_file_name, line)
   end
 
   def add_with_fxscintilla_cond(file)
@@ -209,10 +212,18 @@ namespace :swig do
     add_with_fxscintilla_cond(wrapper_src_file_name) if ["scintilla_wrap.cpp"].include?(File.basename(wrapper_src_file_name))
   end
 
-  task :swigruby_h => ["ext/fox16_c/swigruby.h"]
+  task :swigruby_h => ["ext/fox16_c/swigruby.h", "ext/fox16_c/swigruby.h.orig"]
   file "ext/fox16_c/swigruby.h" do |task|
     puts "generate #{task.name}"
     system "#{SWIG} -ruby -external-runtime #{task.name}"
+  end
+
+  file "ext/fox16_c/swigruby.h.orig"=>["ext/fox16_c/swigruby.h", *Dir["patch/*.patch"]] do |task|
+    puts "generate #{task.name}"
+    task.prerequisites[1..-1].each do |patch|
+      sh "patch --backup -p1 < #{patch.inspect}"
+    end
+    touch task.name
   end
 
   desc "Run SWIG to generate the wrapper files."
