@@ -26,12 +26,6 @@
 
 #include "FXRbCommon.h"
 
-#if defined(RUBY_1_8)
-extern "C" {
-#include "rubysig.h" /* For CHECK_INTS */
-}
-#endif
-
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h> /* For struct timeval */
 #endif
@@ -149,15 +143,7 @@ long FXRbApp::onChoreThreads_gvlcb(FXObject*,FXSelector,void*){
   wait.tv_sec=0;
   wait.tv_usec=100*sleepTime;
 
-  // Confirm that this thread can be interrupted, then go to sleep
-#if defined(RUBY_1_8)
-  CHECK_INTS;
-  if(!rb_thread_critical)
-    rb_thread_wait_for(wait);
-#else
-  // if(!rb_thread_critical) rb_thread_wait_for(wait);
   rb_thread_wait_for(wait);
-#endif /* RUBY_1_8 */
 
   // Re-register this chore for next time
   addChore(this,ID_CHORE_THREADS);
