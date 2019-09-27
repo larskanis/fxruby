@@ -170,10 +170,45 @@ task 'gem:windows' => 'gem' do
   EOT
 end
 
-# Set environment variable SWIG_LIB to
-# c:/ruby-1.8.6-p383-preview2/devkit/msys/1.0.11/usr/local/share/swig/1.3.22
-# before running swig on MinGW.
 namespace :swig do
+  def patch_swigruby(line)
+    # Ruby-2.7+ finally changed callback function signatures from (*)(ANYARGS) to a proper signature, on which the compiler is able to check parameter types.
+    # Unfortunately this requires a bunch of patches to swig's generated code.
+
+    line.gsub! '#include <ruby.h>', <<-EOT
+      #include <ruby.h>
+
+      #if defined(RB_METHOD_DEFINITION_DECL)
+      # define RUBY_INT_METHOD_FUNC(func) (func)
+      # define RUBY_VOID_METHOD_FUNC(func) (func)
+      # define RUBY_VOIDP_METHOD_FUNC(func) (func)
+      #else
+      # define RUBY_INT_METHOD_FUNC(func) ((int (*)(ANYARGS))(func))
+      # define RUBY_VOID_METHOD_FUNC(func) ((void (*)(ANYARGS))(func))
+      # define RUBY_VOIDP_METHOD_FUNC(func) ((void *(*)(ANYARGS))(func))
+      #endif
+    EOT
+    line.gsub! /rb_define_virtual_variable\((.*?), (\w+), NULL\)/, <<-EOT
+      rb_define_virtual_variable(\\1, RUBY_METHOD_FUNC(\\2), RUBY_VOID_METHOD_FUNC((rb_gvar_setter_t*)NULL))
+    EOT
+
+    line.gsub!('static VALUE swig_ruby_trackings_count(ANYARGS)', 'static VALUE swig_ruby_trackings_count(ID id, VALUE *var)')
+    line.gsub!('SWIG_ruby_failed(void)', 'SWIG_ruby_failed(VALUE, VALUE)')
+
+    line.gsub!(/SWIGINTERN VALUE SWIG_AUX_(\w+)\(VALUE \*args\)\s\{/m, 'SWIGINTERN VALUE SWIG_AUX_\\1(VALUE pargs){VALUE *args=(VALUE *)pargs;')
+
+    line.gsub! /static int swig_ruby_internal_iterate_callback\(void\* ptr, VALUE obj, void\(\*meth\)\(void\* ptr, VALUE obj\)\)\s*{\s*\(\*meth\)\(ptr, obj\);/m, <<-EOT
+      static int swig_ruby_internal_iterate_callback(st_data_t ptr, st_data_t obj, st_data_t meth) {
+        ((void(*)(void*, VALUE))meth)((void*)ptr, (VALUE)obj);
+    EOT
+
+    line.gsub!('(int (*)(ANYARGS))&swig_ruby_internal_iterate_callback', 'RUBY_INT_METHOD_FUNC(swig_ruby_internal_iterate_callback)')
+
+    line.gsub! /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_METHOD_FUNC(\\1), self, RUBY_METHOD_FUNC(\\2), self);'
+
+    line
+  end
+
   def sed(wrapper_src_file_name)
     puts "Update #{wrapper_src_file_name}"
 
@@ -185,12 +220,8 @@ namespace :swig do
     line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module.*/, '')
     line.gsub!(/rb_require.*/, '')
     line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
-    line.gsub!(/rb_define_virtual_variable\((.*?), NULL\)/, 'rb_define_virtual_variable(\\1, (void (*)(VALUE, ID, VALUE*))NULL)')
 
-    line.gsub!('static VALUE swig_ruby_trackings_count(ANYARGS)', 'static VALUE swig_ruby_trackings_count(ID id, VALUE *var)')
-    line.gsub!('SWIG_ruby_failed(void)', 'SWIG_ruby_failed(VALUE, VALUE)')
-
-    line.gsub!(/SWIGINTERN VALUE SWIG_AUX_(\w+)\(VALUE \*args\)\s\{/m, 'SWIGINTERN VALUE SWIG_AUX_\\1(VALUE pargs){VALUE *args=(VALUE *)pargs;')
+    line = patch_swigruby(line)
 
     File.write(wrapper_src_file_name, line)
   end
@@ -212,18 +243,17 @@ namespace :swig do
     add_with_fxscintilla_cond(wrapper_src_file_name) if ["scintilla_wrap.cpp"].include?(File.basename(wrapper_src_file_name))
   end
 
-  task :swigruby_h => ["ext/fox16_c/swigruby.h", "ext/fox16_c/swigruby.h.orig"]
-  file "ext/fox16_c/swigruby.h" do |task|
+  task :swigruby_h => ["ext/fox16_c/swigruby.h"]
+  file "ext/fox16_c/swigruby.h.orig" do |task|
     puts "generate #{task.name}"
     system "#{SWIG} -ruby -external-runtime #{task.name}"
   end
 
-  file "ext/fox16_c/swigruby.h.orig"=>["ext/fox16_c/swigruby.h", *Dir["patch/*.patch"]] do |task|
+  file "ext/fox16_c/swigruby.h"=>["ext/fox16_c/swigruby.h.orig"] do |task|
     puts "generate #{task.name}"
-    task.prerequisites[1..-1].each do |patch|
-      sh "patch --backup -p1 < #{patch.inspect}"
-    end
-    touch task.name
+    text = File.read(task.prerequisites[0])
+    text = patch_swigruby(text)
+    File.write(task.name, text)
   end
 
   desc "Run SWIG to generate the wrapper files."
