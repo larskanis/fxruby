@@ -85,12 +85,12 @@ task :test => [:compile] do
   sh "ruby -w -W2 -Ilib test/TS_All.rb -v"
 end
 
-task :gem => [:compile, :build]
+task :gem => [:build]
 
 
 gem_spec = Bundler.load_gemspec('fxruby.gemspec')
 
-Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
+ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
   ext.cross_compile = true
   ext.cross_platform = ['x86-mingw32', 'x64-mingw32']
   # Enable FXTRACE and FXASSERT for 'rake compile'
@@ -132,7 +132,7 @@ Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
       unless ENV['FXRUBY_MINGW_DEBUG']
         dlls.each do |dll|
           task "ports/#{host}/bin/#{dll}" do |t|
-            sh "x86_64-w64-mingw32-strip", t.name
+            sh "#{host}-strip", t.name
           end
         end
       end
@@ -143,31 +143,26 @@ Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
   Bundler::GemHelper.instance.cross_platforms = ext.cross_platform
 end
 
-# To reduce the gem file size strip mingw32 dlls before packaging
-unless ENV['FXRUBY_MINGW_DEBUG']
-  ENV['RUBY_CC_VERSION'].to_s.split(':').each do |ruby_version|
-    task "tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
-      sh "i686-w64-mingw32-strip -S tmp/x86-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
+namespace :gem do
+  ext_task.cross_platform.each do |plat|
+    desc "Build the windows binary gems"
+    multitask 'windows' => plat
+
+    task 'prepare' do
+      require 'rake_compiler_dock'
+      sh "bundle package"
     end
 
-    task "tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so" do |t|
-      sh "x86_64-w64-mingw32-strip -S tmp/x64-mingw32/stage/lib/#{ruby_version[/^\d+\.\d+/]}/fox16_c.so"
+    task plat => ['gem', 'prepare'] do
+      debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
+      RakeCompilerDock.sh <<-EOT, platform: plat
+        sudo apt update &&
+        sudo apt install yasm &&
+        bundle --local --without=test &&
+        rake cross gem MAKE=\"nice make V=1 -j `nproc`\" #{debug}
+      EOT
     end
   end
-end
-
-desc "Build the windows binary gems"
-task 'gem:windows' => 'gem' do
-  require 'rake_compiler_dock'
-
-  sh "bundle package"
-  debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
-  RakeCompilerDock.sh <<-EOT
-    sudo apt update &&
-    sudo apt install yasm &&
-    bundle --local --without=test &&
-    rake cross native gem MAKE=\"nice make V=1 -j `nproc`\" #{debug}
-  EOT
 end
 
 namespace :swig do
