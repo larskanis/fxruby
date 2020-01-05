@@ -253,16 +253,16 @@ namespace :swig do
 
   desc "Run SWIG to generate the wrapper files."
   multitask :swig => [:swigruby_h] + SWIG_MODULES.map{|ifile, cppfile| File.join("ext/fox16_c", cppfile) }
+end
 
-  # add dependencies for compile *.i to *_wrap.cpp
-  SWIG_MODULES.each do |ifile, cppfile|
-    cppfile_path = File.join("ext/fox16_c", cppfile)
+# add dependencies for compile *.i to *_wrap.cpp
+SWIG_MODULES.each do |ifile, cppfile|
+  cppfile_path = File.join("ext/fox16_c", cppfile)
 
-    file cppfile_path => [ifile, 'macros.i', 'common.i', 'fxdefs.i', 'ruby-typemaps.i',
-                          'markfuncs.i', 'exceptions.i', 'freefuncs.i', 'macros.i', 'handlers.i'
-                         ].map{|f| File.join("swig-interfaces", f) } do |task|
-      swig(File.join("swig-interfaces", ifile), cppfile_path)
-    end
+  file cppfile_path => [ifile, 'macros.i', 'common.i', 'fxdefs.i', 'ruby-typemaps.i',
+                        'markfuncs.i', 'exceptions.i', 'freefuncs.i', 'macros.i', 'handlers.i'
+                       ].map{|f| File.join("swig-interfaces", f) } do |task|
+    swig(File.join("swig-interfaces", ifile), cppfile_path)
   end
 end
 
