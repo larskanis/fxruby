@@ -85,7 +85,7 @@ task :test => [:compile] do
   sh "ruby -w -W2 -Ilib test/TS_All.rb -v"
 end
 
-task :gem => [:build]
+task :gem => ["ext/fox16_c/extconf.rb", :build]
 
 
 gem_spec = Bundler.load_gemspec('fxruby.gemspec')
@@ -159,7 +159,7 @@ namespace :gem do
         sudo apt update &&
         sudo apt install yasm &&
         bundle --local --without=test &&
-        rake cross gem MAKE=\"nice make V=1 -j `nproc`\" #{debug}
+        rake native:#{plat} pkg/#{ext_task.gem_spec.full_name}-#{plat}.gem MAKE=\"nice make V=1 -j `nproc`\" #{debug}
       EOT
     end
   end
