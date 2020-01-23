@@ -1185,8 +1185,8 @@ long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector 
   FXTRACE((100,"FXRbHandleMessage(recv=%p(%s),FXSEL(%s,%d)\n",recv,recv->getClassName(),FXDebugTarget::messageTypeName[FXSELTYPE(key)],FXSELID(key)));
 
   if(FXRbCatchExceptions){
-    retval=rb_rescue2(RUBY_METHOD_FUNC(handle_body), reinterpret_cast<VALUE>(&hArgs),
-                      RUBY_METHOD_FUNC(handle_rescue), Qnil,
+    retval=rb_rescue2(RUBY_VALUE_METHOD_FUNC(handle_body), reinterpret_cast<VALUE>(&hArgs),
+                      RUBY_VALUE_METHOD_FUNC(handle_rescue), Qnil,
                       rb_eStandardError, rb_eNameError, 0);
     }
   else{
