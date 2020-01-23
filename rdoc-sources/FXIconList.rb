@@ -267,6 +267,8 @@ module Fox
     # after the item is appended.
     def appendItem(text, bigIcon=nil, miniIcon=nil, data=nil, notify=false); end
 
+    alias << appendItem
+
     # Prepend a new (possibly subclassed) _item_ to the beginning of the list.
     # If _notify_ is +true+, a +SEL_INSERTED+ message is sent to the list's message target
     # after the item is prepended.

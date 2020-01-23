@@ -217,6 +217,8 @@ module Fox
     # Returns the integer index of the newly appended item.
     def appendItem(text, icon=nil, data=nil, notify=false) ; end
 
+    alias << appendItem
+
     # Prepend a (possibly subclassed) _item_ to the list, e.g.
     #
     #   list.prependItem(FXListItem.new("clyde"))
