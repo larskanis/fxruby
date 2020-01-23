@@ -174,17 +174,19 @@ namespace :swig do
       #include <ruby.h>
 
       #if defined(RB_METHOD_DEFINITION_DECL)
+      # define RUBY_VALUE_METHOD_FUNC(func) (func)
       # define RUBY_INT_METHOD_FUNC(func) (func)
       # define RUBY_VOID_METHOD_FUNC(func) (func)
       # define RUBY_VOIDP_METHOD_FUNC(func) (func)
       #else
+      # define RUBY_VALUE_METHOD_FUNC(func) ((VALUE (*)(ANYARGS))(func))
       # define RUBY_INT_METHOD_FUNC(func) ((int (*)(ANYARGS))(func))
       # define RUBY_VOID_METHOD_FUNC(func) ((void (*)(ANYARGS))(func))
       # define RUBY_VOIDP_METHOD_FUNC(func) ((void *(*)(ANYARGS))(func))
       #endif
     EOT
     line.gsub! /rb_define_virtual_variable\((.*?), (\w+), NULL\)/, <<-EOT
-      rb_define_virtual_variable(\\1, RUBY_METHOD_FUNC(\\2), RUBY_VOID_METHOD_FUNC((rb_gvar_setter_t*)NULL))
+      rb_define_virtual_variable(\\1, RUBY_VALUE_METHOD_FUNC(\\2), RUBY_VOID_METHOD_FUNC((rb_gvar_setter_t*)NULL))
     EOT
 
     line.gsub!('static VALUE swig_ruby_trackings_count(ANYARGS)', 'static VALUE swig_ruby_trackings_count(ID id, VALUE *var)')
@@ -199,7 +201,7 @@ namespace :swig do
 
     line.gsub!('(int (*)(ANYARGS))&swig_ruby_internal_iterate_callback', 'RUBY_INT_METHOD_FUNC(swig_ruby_internal_iterate_callback)')
 
-    line.gsub! /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_METHOD_FUNC(\\1), self, RUBY_METHOD_FUNC(\\2), self);'
+    line.gsub! /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_VALUE_METHOD_FUNC(\\1), self, RUBY_VALUE_METHOD_FUNC(\\2), self);'
 
     line
   end
