@@ -202,6 +202,7 @@ namespace :swig do
     line.gsub!('(int (*)(ANYARGS))&swig_ruby_internal_iterate_callback', 'RUBY_INT_METHOD_FUNC(swig_ruby_internal_iterate_callback)')
 
     line.gsub! /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_VALUE_METHOD_FUNC(\\1), self, RUBY_VALUE_METHOD_FUNC(\\2), self);'
+    line.gsub! /rb_rescue\(RUBY_METHOD_FUNC\((.*)\), \(VALUE\)a, RUBY_METHOD_FUNC\((.*)\), 0\)/, 'rb_rescue(RUBY_VALUE_METHOD_FUNC(\\1), (VALUE)a, RUBY_VALUE_METHOD_FUNC(\\2), 0)'
 
     line
   end
