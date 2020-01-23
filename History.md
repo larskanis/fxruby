@@ -1,3 +1,13 @@
+## 1.6.41 / 2020-01-24
+
+* Add support for Ruby-2.7
+* Fix build error on FreeBSD. #51
+* Fix handling of scroll events to FXText instance.
+* Add 8 virtual methods of FXText to be passed through ruby.
+* FXText#findText: Return multi entry array only when searching Regex.
+* Fix several example apps in example/ dir.
+* Update to rake-compiler-dock-1.0 and use parallel cross build.
+
 ## 1.6.40 / 2018-12-28
 
 * Fix some library classes which failed, when Fox was not included into the global namespace.
