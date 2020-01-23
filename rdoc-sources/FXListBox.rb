@@ -186,6 +186,6 @@ module Fox
     # Sort items using current sort function
     def sortItems; end
 
-    alias appendItem <<
+    alias << appendItem
   end
 end
