@@ -24,16 +24,16 @@ end
 LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7.3'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.36'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.37'
 LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 
 # LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
 # LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '1.5.3'
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '2.0.4'
 LIBJPEG_SOURCE_URI = "https://downloads.sourceforge.net/libjpeg-turbo/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.0.10'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.1.0'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
 LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.57'
@@ -44,29 +44,14 @@ LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/f
 # LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '3.5.2'
 # LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
 
-
-class BuildRecipe < MiniPortile
+module BuildRecipeCommons
   def initialize(name, version, files)
     super(name, version)
     self.files = files
     rootdir = File.expand_path('../../..', __FILE__)
     self.target = File.join(rootdir, "ports")
-    # Prefer host_alias over host in order to use i586-mingw32msvc as
-    # correct compiler prefix for cross build, but use host if not set.
-    self.host = consolidated_host(RbConfig::CONFIG["host_alias"].empty? ? RbConfig::CONFIG["host"] : RbConfig::CONFIG["host_alias"])
+    self.host = RbConfig::CONFIG["host"]
     self.patch_files = Dir[File.join(rootdir, "patches", self.name, self.version, "*.diff")].sort
-  end
-
-  def consolidated_host(name)
-    name.gsub('i686-pc-mingw32', 'i586-mingw32msvc')
-  end
-
-  def configure_defaults
-    [
-      "--host=#{host}",    # build for specific target (host)
-      "--disable-static",
-      "--enable-shared",
-    ]
   end
 
   def port_path
@@ -93,6 +78,44 @@ class BuildRecipe < MiniPortile
     end
     self.activate
     self
+  end
+end
+
+class BuildRecipe < MiniPortile
+  include BuildRecipeCommons
+
+  def configure_defaults
+    [
+      "--host=#{host}",    # build for specific target (host)
+      "--disable-static",
+      "--enable-shared",
+    ]
+  end
+end
+class BuildRecipeCMake < MiniPortileCMake
+  include BuildRecipeCommons
+
+  def system_processor
+    case host
+    when /x86_64/ then "amd64"
+    when /i686/ then "x86"
+    else raise "unknown host #{host}"
+    end
+  end
+
+  def configure_defaults
+    [
+      "-DENABLE_STATIC=0",
+      "-DENABLE_SHARED=1",
+      "-DCMAKE_SYSTEM_NAME=Windows",
+      "-DCMAKE_C_COMPILER=#{host}-gcc",
+      "-DCMAKE_CXX_COMPILER=#{host}-g++",
+      "-DCMAKE_SYSTEM_PROCESSOR=#{system_processor}",
+    ]
+  end
+
+  def make_cmd
+    ENV["MAKE"] || "make"
   end
 end
 
@@ -141,7 +164,7 @@ def do_rake_compiler_setup
       recipe.cook_and_activate
     end
 
-    libjpeg_recipe = BuildRecipe.new("libjpeg", LIBJPEG_VERSION, [LIBJPEG_SOURCE_URI]).tap do |recipe|
+    libjpeg_recipe = BuildRecipeCMake.new("libjpeg", LIBJPEG_VERSION, [LIBJPEG_SOURCE_URI]).tap do |recipe|
       recipe.cook_and_activate
     end
 
