@@ -1,4 +1,4 @@
-## 1.6.41 / 2020-01-24
+## 1.6.41 / 2020-01-26
 
 * Add support for Ruby-2.7
 * Fix build error on FreeBSD. #51
