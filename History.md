@@ -7,6 +7,7 @@
 * FXText#findText: Return multi entry array only when searching Regex.
 * Fix several example apps in example/ dir.
 * Update to rake-compiler-dock-1.0 and use parallel cross build.
+* Update to libpng-1.6.37, jpeg-turbo-2.0.4, libtiff-4.1.0 on Windows binary gem.
 
 ## 1.6.40 / 2018-12-28
 
