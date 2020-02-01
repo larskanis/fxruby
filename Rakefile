@@ -85,7 +85,7 @@ task :test => [:compile] do
   sh "ruby -w -W2 -Ilib test/TS_All.rb -v"
 end
 
-task :gem => ["ext/fox16_c/extconf.rb", :build]
+task :gem => ["ext/fox16_c/extconf.rb", "fxruby:configure", :build]
 
 
 gem_spec = Bundler.load_gemspec('fxruby.gemspec')
