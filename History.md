@@ -1,3 +1,7 @@
+## 1.6.42 / 2020-02-01
+
+* Fix a packing issue in 1.6.41: `lib/fox16/input.rb` had owner permission only.
+
 ## 1.6.41 / 2020-01-26
 
 * Add support for Ruby-2.7
