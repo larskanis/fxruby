@@ -1,3 +1,7 @@
+image: Visual Studio 2019
+
+clone_depth: 1
+
 init:
   - SET PATH=c:/Ruby%ruby_version%/bin;c:/msys64/%MSYSTEM%/bin;%PATH%
   - SET RAKEOPT=-rdevkit
