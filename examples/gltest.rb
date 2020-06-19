@@ -3,12 +3,11 @@
 require 'fox16'
 begin
   require 'opengl'
-  require 'glu'
 rescue LoadError
   require 'fox16/missingdep'
   MSG = <<EOM
-  Sorry, this example depends on the opengl gems. Please execute:
-    gem install opengl glu
+  Sorry, this example depends on the opengl-bindings gems. Please execute:
+    gem install opengl-bindings
 EOM
   missingDependency(MSG)
 end
@@ -17,59 +16,114 @@ end
 
 class GLTestWindow < Fox::FXMainWindow
   include Fox
+  include OpenGL
 
   # How often our timer will fire (in milliseconds)
   TIMER_INTERVAL = 100
 
   # Draws a simple box using the given corners
   def drawBox(xmin, ymin, zmin, xmax, ymax, zmax)
-    GL.Begin(GL::TRIANGLE_STRIP)
-      GL.Normal(0.0, 0.0, -1.0)
-      GL.Vertex(xmin, ymin, zmin)
-      GL.Vertex(xmin, ymax, zmin)
-      GL.Vertex(xmax, ymin, zmin)
-      GL.Vertex(xmax, ymax, zmin)
-    GL.End()
+    glBegin(GL_TRIANGLE_STRIP)
+      glNormal3d(0.0, 0.0, -1.0)
+      glVertex3d(xmin, ymin, zmin)
+      glVertex3d(xmin, ymax, zmin)
+      glVertex3d(xmax, ymin, zmin)
+      glVertex3d(xmax, ymax, zmin)
+    glEnd()
 
-    GL.Begin(GL::TRIANGLE_STRIP)
-      GL.Normal(1.0, 0.0, 0.0)
-      GL.Vertex(xmax, ymin, zmin)
-      GL.Vertex(xmax, ymax, zmin)
-      GL.Vertex(xmax, ymin, zmax)
-      GL.Vertex(xmax, ymax, zmax)
-    GL.End()
+    glBegin(GL_TRIANGLE_STRIP)
+      glNormal3d(1.0, 0.0, 0.0)
+      glVertex3d(xmax, ymin, zmin)
+      glVertex3d(xmax, ymax, zmin)
+      glVertex3d(xmax, ymin, zmax)
+      glVertex3d(xmax, ymax, zmax)
+    glEnd()
 
-    GL.Begin(GL::TRIANGLE_STRIP)
-      GL.Normal(0.0, 0.0, 1.0)
-      GL.Vertex(xmax, ymin, zmax)
-      GL.Vertex(xmax, ymax, zmax)
-      GL.Vertex(xmin, ymin, zmax)
-      GL.Vertex(xmin, ymax, zmax)
-    GL.End()
+    glBegin(GL_TRIANGLE_STRIP)
+      glNormal3d(0.0, 0.0, 1.0)
+      glVertex3d(xmax, ymin, zmax)
+      glVertex3d(xmax, ymax, zmax)
+      glVertex3d(xmin, ymin, zmax)
+      glVertex3d(xmin, ymax, zmax)
+    glEnd()
 
-    GL.Begin(GL::TRIANGLE_STRIP)
-      GL.Normal(-1.0, 0.0, 0.0)
-      GL.Vertex(xmin, ymin, zmax)
-      GL.Vertex(xmin, ymax, zmax)
-      GL.Vertex(xmin, ymin, zmin)
-      GL.Vertex(xmin, ymax, zmin)
-    GL.End()
+    glBegin(GL_TRIANGLE_STRIP)
+      glNormal3d(-1.0, 0.0, 0.0)
+      glVertex3d(xmin, ymin, zmax)
+      glVertex3d(xmin, ymax, zmax)
+      glVertex3d(xmin, ymin, zmin)
+      glVertex3d(xmin, ymax, zmin)
+    glEnd()
 
-    GL.Begin(GL::TRIANGLE_STRIP)
-      GL.Normal(0.0, 1.0, 0.0)
-      GL.Vertex(xmin, ymax, zmin)
-      GL.Vertex(xmin, ymax, zmax)
-      GL.Vertex(xmax, ymax, zmin)
-      GL.Vertex(xmax, ymax, zmax)
-    GL.End()
+    glBegin(GL_TRIANGLE_STRIP)
+      glNormal3d(0.0, 1.0, 0.0)
+      glVertex3d(xmin, ymax, zmin)
+      glVertex3d(xmin, ymax, zmax)
+      glVertex3d(xmax, ymax, zmin)
+      glVertex3d(xmax, ymax, zmax)
+    glEnd()
 
-    GL.Begin(GL::TRIANGLE_STRIP)
-      GL.Normal(0.0, -1.0, 0.0)
-      GL.Vertex(xmax, ymin, zmax)
-      GL.Vertex(xmax, ymin, zmin)
-      GL.Vertex(xmin, ymin, zmax)
-      GL.Vertex(xmin, ymin, zmin)
-    GL.End()
+    glBegin(GL_TRIANGLE_STRIP)
+      glNormal3d(0.0, -1.0, 0.0)
+      glVertex3d(xmax, ymin, zmax)
+      glVertex3d(xmax, ymin, zmin)
+      glVertex3d(xmin, ymin, zmax)
+      glVertex3d(xmin, ymin, zmin)
+    glEnd()
+  end
+
+  def gluPerspective(fovY, aspect, zNear, zFar )
+    fH = Math.tan( fovY / 360 * Math::PI ) * zNear;
+    fW = fH * aspect;
+
+    glFrustum( -fW, fW, -fH, fH, zNear, zFar );
+  end
+
+  # Define our own version of gluLookAt() to avoid dependency to deprecated GLU library
+  def gluLookAt(ex, ey, ez,
+           lx, ly, lz,
+           ux, uy, uz )
+    z0 = ex - lx
+    z1 = ey - ly
+    z2 = ez - lz
+    l = z0*z0+z1*z1+z2*z2
+    if l != 0 then
+      l = 1.0 / Math.sqrt(l)
+      z0 *= l
+      z1 *= l
+      z2 *= l
+    end
+
+    x0 = uy*z2-uz*z1
+    x1 = -ux*z2+uz*z0
+    x2 = ux*z1-uy*z0
+    l = x0*x0+x1*x1+x2*x2
+    if l != 0 then
+      l = 1.0 / Math.sqrt(l)
+      x0 *= l
+      x1 *= l
+      x2 *= l
+    end
+
+    y0 = z1*x2-z2*x1
+    y1 = -z0*x2+z2*x0
+    y2 = z0*x1-z1*x0
+    l = y0*y0+y1*y1+y2*y2
+    if l != 0 then
+      l = 1.0 / Math.sqrt(l)
+      y0 *= l
+      y1 *= l
+      y2 *= l
+    end
+
+    m4x4 = [
+      x0,y0,z0,0,
+      x1,y1,z1,0,
+      x2,y2,z2,0,
+      0,  0, 0,1,
+    ].pack("d*")
+    glMultMatrixd m4x4
+    glTranslated -ex,-ey,-ez
   end
 
   # Draw the GL scene
@@ -87,80 +141,80 @@ class GLTestWindow < Fox::FXMainWindow
     # Make context current
     @glcanvas.makeCurrent()
 
-    GL.Viewport(0, 0, @glcanvas.width, @glcanvas.height)
+    glViewport(0, 0, @glcanvas.width, @glcanvas.height)
 
-    GL.ClearColor(1.0, 1.0, 1.0, 1.0)
-    GL.Clear(GL::COLOR_BUFFER_BIT|GL::DEPTH_BUFFER_BIT)
-    GL.Enable(GL::DEPTH_TEST)
+    glClearColor(1.0, 1.0, 1.0, 1.0)
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+    glEnable(GL_DEPTH_TEST)
 
-    GL.Disable(GL::DITHER)
+    glDisable(GL_DITHER)
 
-    GL.MatrixMode(GL::PROJECTION)
-    GL.LoadIdentity()
-    GLU.Perspective(30.0, aspect, 1.0, 100.0)
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    gluPerspective(30.0, aspect, 1.0, 100.0)
 
-    GL.MatrixMode(GL::MODELVIEW)
-    GL.LoadIdentity()
-    GLU.LookAt(5.0, 10.0, 15.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0)
+    glMatrixMode(GL_MODELVIEW)
+    glLoadIdentity()
+    gluLookAt(5.0, 10.0, 15.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0)
 
-    GL.ShadeModel(GL::SMOOTH)
-    GL.Light(GL::LIGHT0, GL::POSITION, lightPosition)
-    GL.Light(GL::LIGHT0, GL::AMBIENT, lightAmbient)
-    GL.Light(GL::LIGHT0, GL::DIFFUSE, lightDiffuse)
-    GL.Enable(GL::LIGHT0)
-    GL.Enable(GL::LIGHTING)
+    glShadeModel(GL_SMOOTH)
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition.pack("f*"))
+    glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient.pack("f*"))
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse.pack("f*"))
+    glEnable(GL_LIGHT0)
+    glEnable(GL_LIGHTING)
 
-    GL.Material(GL::FRONT, GL::AMBIENT, blueMaterial)
-    GL.Material(GL::FRONT, GL::DIFFUSE, blueMaterial)
+    glMaterialfv(GL_FRONT, GL_AMBIENT, blueMaterial.pack("f*"))
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, blueMaterial.pack("f*"))
 
-    GL.PushMatrix()
-    GL.Rotated(@angle, 0.0, 1.0, 0.0)
+    glPushMatrix()
+    glRotated(@angle, 0.0, 1.0, 0.0)
     drawBox(-1, -1, -1, 1, 1, 1)
 
-    GL.Material(GL::FRONT, GL::AMBIENT, redMaterial)
-    GL.Material(GL::FRONT, GL::DIFFUSE, redMaterial)
+    glMaterialfv(GL_FRONT, GL_AMBIENT, redMaterial.pack("f*"))
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, redMaterial.pack("f*"))
 
-    GL.PushMatrix()
-    GL.Translated(0.0, 1.75, 0.0)
-    GL.Rotated(@angle, 0.0, 1.0, 0.0)
+    glPushMatrix()
+    glTranslated(0.0, 1.75, 0.0)
+    glRotated(@angle, 0.0, 1.0, 0.0)
     drawBox(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5)
-    GL.PopMatrix()
+    glPopMatrix()
 
-    GL.PushMatrix()
-    GL.Translated(0.0, -1.75, 0.0)
-    GL.Rotated(@angle, 0.0, 1.0, 0.0)
+    glPushMatrix()
+    glTranslated(0.0, -1.75, 0.0)
+    glRotated(@angle, 0.0, 1.0, 0.0)
     drawBox(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5)
-    GL.PopMatrix()
+    glPopMatrix()
 
-    GL.PushMatrix()
-    GL.Rotated(90.0, 1.0, 0.0, 0.0)
-    GL.Translated(0.0, 1.75, 0.0)
-    GL.Rotated(@angle, 0.0, 1.0, 0.0)
+    glPushMatrix()
+    glRotated(90.0, 1.0, 0.0, 0.0)
+    glTranslated(0.0, 1.75, 0.0)
+    glRotated(@angle, 0.0, 1.0, 0.0)
     drawBox(-0.5,-0.5,-0.5,0.5,0.5,0.5)
-    GL.PopMatrix()
+    glPopMatrix()
 
-    GL.PushMatrix()
-    GL.Rotated(90.0, -1.0, 0.0, 0.0)
-    GL.Translated(0.0,1.75,0.0)
-    GL.Rotated(@angle, 0.0, 1.0, 0.0)
+    glPushMatrix()
+    glRotated(90.0, -1.0, 0.0, 0.0)
+    glTranslated(0.0,1.75,0.0)
+    glRotated(@angle, 0.0, 1.0, 0.0)
     drawBox(-0.5,-0.5,-0.5,0.5,0.5,0.5)
-    GL.PopMatrix()
+    glPopMatrix()
 
-    GL.PushMatrix()
-    GL.Rotated(90.0, 0.0, 0.0, 1.0)
-    GL.Translated(0.0,1.75,0.0)
-    GL.Rotated(@angle, 0.0, 1.0, 0.0)
+    glPushMatrix()
+    glRotated(90.0, 0.0, 0.0, 1.0)
+    glTranslated(0.0,1.75,0.0)
+    glRotated(@angle, 0.0, 1.0, 0.0)
     drawBox(-0.5,-0.5,-0.5,0.5,0.5,0.5)
-    GL.PopMatrix()
+    glPopMatrix()
 
-    GL.PushMatrix()
-    GL.Rotated(90.0, 0.0, 0.0, -1.0)
-    GL.Translated(0.0,1.75,0.0)
-    GL.Rotated(@angle, 0.0, 1.0, 0.0)
+    glPushMatrix()
+    glRotated(90.0, 0.0, 0.0, -1.0)
+    glTranslated(0.0,1.75,0.0)
+    glRotated(@angle, 0.0, 1.0, 0.0)
     drawBox(-0.5,-0.5,-0.5,0.5,0.5,0.5)
-    GL.PopMatrix()
+    glPopMatrix()
 
-    GL.PopMatrix()
+    glPopMatrix()
 
     # Swap if it is double-buffered
     if @glvisual.isDoubleBuffer
@@ -174,6 +228,8 @@ class GLTestWindow < Fox::FXMainWindow
   def initialize(app)
     # Invoke the base class initializer
     super(app, "OpenGL Test Application", :opts => DECOR_ALL, :width => 800, :height => 600)
+
+    OpenGL.load_lib
 
     # Construct the main window elements
     frame = FXHorizontalFrame.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X|LAYOUT_FILL_Y)
@@ -207,7 +263,7 @@ class GLTestWindow < Fox::FXMainWindow
     @glcanvas.connect(SEL_PAINT) { drawScene }
     @glcanvas.connect(SEL_CONFIGURE) do
       if @glcanvas.makeCurrent
-        GL.Viewport(0, 0, @glcanvas.width, @glcanvas.height)
+        glViewport(0, 0, @glcanvas.width, @glcanvas.height)
         @glcanvas.makeNonCurrent
       end
     end

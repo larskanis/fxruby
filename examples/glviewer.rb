@@ -7,9 +7,8 @@ begin
 rescue LoadError
   require 'fox16/missingdep'
   MSG = <<EOM
-  Sorry, this example depends on the OpenGL extension. Please
-  check the Ruby Application Archives for an appropriate
-  download site.
+  Sorry, this example depends on the opengl-bindings gems. Please execute:
+    gem install opengl-bindings
 EOM
   missingDependency(MSG)
 end
@@ -161,6 +160,9 @@ class GLViewWindow < Fox::FXMainWindow
   def initialize(app)
     # Initialize base class first
     super(app, "OpenGL Example Application", :opts => DECOR_ALL, :width => 800, :height => 600)
+
+    OpenGL.load_lib
+    GLU.load_lib
 
     # Define message identifiers for this class
 
