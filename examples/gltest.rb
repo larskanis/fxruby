@@ -14,9 +14,9 @@ EOM
 end
 
 
-include Fox
 
-class GLTestWindow < FXMainWindow
+class GLTestWindow < Fox::FXMainWindow
+  include Fox
 
   # How often our timer will fire (in milliseconds)
   TIMER_INTERVAL = 100
@@ -310,7 +310,7 @@ end
 
 if __FILE__ == $0
   # Construct the application
-  application = FXApp.new("GLTest", "FoxTest")
+  application = Fox::FXApp.new("GLTest", "FoxTest")
 
   # Construct the main window
   GLTestWindow.new(application)

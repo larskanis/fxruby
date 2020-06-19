@@ -14,9 +14,9 @@ EOM
   missingDependency(MSG)
 end
 
-include Fox
+class TabBook < Fox::FXTabBook
+  include Fox
 
-class TabBook < FXTabBook
   def createAnglesPage(panels, mdiclient)
     # Angles tab
     FXTabItem.new(panels,
@@ -143,8 +143,8 @@ class TabBook < FXTabBook
   end
 end
 
-class GLViewWindow < FXMainWindow
-
+class GLViewWindow < Fox::FXMainWindow
+  include Fox
   include Responder
 
   ID_QUERY_MODE = FXMainWindow::ID_LAST
@@ -556,7 +556,7 @@ end
 
 if __FILE__ == $0
   # Make application
-  application = FXApp.new("GLViewer", "FoxTest")
+  application = Fox::FXApp.new("GLViewer", "FoxTest")
   application.threadsEnabled = false
 
   # Make window
