@@ -83,7 +83,7 @@ module Fox
       glPushName(1000000)
       @list.each_with_index do |obj, i|
         glLoadName(i)
-	obj.hit(viewer)
+        obj.hit(viewer)
       end
       glPopName
     end
