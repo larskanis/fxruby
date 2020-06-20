@@ -48,10 +48,10 @@ module Fox
     # Draw this point into _viewer_ (an FXGLViewer instance).
     #
     def draw(viewer)
-      glColor(0.0, 0.0, 1.0)
+      glColor3d(0.0, 0.0, 1.0)
       glPointSize(HANDLE_SIZE)
       glBegin(GL_POINTS)
-      glVertex(@pos)
+      glVertex3d(*@pos)
       glEnd()
     end
 
@@ -60,7 +60,7 @@ module Fox
     #
     def hit(viewer)
       glBegin(GL_POINTS)
-      glVertex(@pos)
+      glVertex3d(*@pos)
       glEnd()
     end
   end
@@ -69,6 +69,7 @@ module Fox
   # OpenGL line object
   #
   class FXGLLine < FXGLObject
+    include OpenGL
 
     # Starting point for line [FXGLPoint]
     attr_accessor :fm
@@ -121,11 +122,11 @@ module Fox
     # Draw this line into _viewer_ (an FXGLViewer instance).
     #
     def draw(viewer)
-      glColor(1.0, 0.0, 0.0)
+      glColor3d(1.0, 0.0, 0.0)
       glPointSize(HANDLE_SIZE)
       glBegin(GL_LINES)
-      glVertex(@fm.pos)
-      glVertex(@to.pos)
+      glVertex3d(*@fm.pos)
+      glVertex3d(*@to.pos)
       glEnd()
     end
 
@@ -134,8 +135,8 @@ module Fox
     #
     def hit(viewer)
       glBegin(GL_LINES)
-      glVertex(@fm.pos)
-      glVertex(@to.pos)
+      glVertex3d(*@fm.pos)
+      glVertex3d(*@to.pos)
       glEnd()
     end
   end

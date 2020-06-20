@@ -483,6 +483,8 @@ class GLViewWindow < Fox::FXMainWindow
     sphere  = FXGLSphere.new(1.0, 1.0, 0.0, 0.5)
     sphere2 = FXGLSphere.new(0.0, 0.0, 0.0, 0.8)
     sphere.tipText = "Sphere"
+    gp2.append(FXGLLine.new(-2.0, 0.0, 0.0,  -1.0, 1.0, 1.0))
+    gp2.append(FXGLPoint.new(-2.0, 0.0, 0.0))
     gp2.append(FXGLCube.new(-1.0, 0.0, 0.0,  1.0, 1.0, 1.0))
     gp2.append(FXGLCube.new( 1.0, 0.0, 0.0,  1.0, 1.0, 1.0))
     gp2.append(FXGLCube.new( 0.0,-1.0, 0.0,  1.0, 1.0, 1.0))
