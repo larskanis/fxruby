@@ -7,6 +7,6 @@
 rdoc-sources/*.rb
 lib/fox16/*.rb
 -
-History.txt
+History.md
 rdoc-sources/*.rdoc
 README.rdoc
