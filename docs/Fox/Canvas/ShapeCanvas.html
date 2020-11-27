@@ -1029,31 +1029,31 @@
       <pre class="lines">
 
 
-375
-376
-377
-378
-379
-380
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394
-395
-396</pre>
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 375</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 406</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='const'>FRAME_NORMAL</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span>
   <span class='comment'># Initialize base class
@@ -1115,12 +1115,12 @@
       <pre class="lines">
 
 
-373
-374
-375</pre>
+404
+405
+406</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 373</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 404</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scene'>scene</span>
   <span class='ivar'>@scene</span>
@@ -1163,16 +1163,16 @@
       <pre class="lines">
 
 
-449
-450
-451
-452
-453
-454
-455</pre>
+480
+481
+482
+483
+484
+485
+486</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 449</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 480</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_deselectShape'>deselectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
@@ -1212,19 +1212,19 @@
       <pre class="lines">
 
 
-428
-429
-430
-431
-432
-433
-434
-435
-436
-437</pre>
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 428</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 459</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disableShape'>disableShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
@@ -1267,19 +1267,19 @@
       <pre class="lines">
 
 
-416
-417
-418
-419
-420
-421
-422
-423
-424
-425</pre>
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 416</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 447</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enableShape'>enableShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
@@ -1322,15 +1322,15 @@
       <pre class="lines">
 
 
-399
-400
-401
-402
-403
-404</pre>
+430
+431
+432
+433
+434
+435</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 399</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 430</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_findShape'>findShape</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
   <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_reverse_each'>reverse_each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shape'>shape</span><span class='op'>|</span>
@@ -1369,23 +1369,23 @@
       <pre class="lines">
 
 
-458
-459
-460
-461
-462
-463
-464
-465
-466
-467
-468
-469
-470
-471</pre>
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 458</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 489</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_killSelection'>killSelection</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_changes'>changes</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1432,12 +1432,12 @@
       <pre class="lines">
 
 
-591
-592
-593</pre>
+622
+623
+624</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 591</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 622</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onClicked'>onClicked</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_CLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
@@ -1473,12 +1473,12 @@
       <pre class="lines">
 
 
-586
-587
-588</pre>
+617
+618
+619</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 586</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 617</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onCommand'>onCommand</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_COMMAND</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
@@ -1514,12 +1514,12 @@
       <pre class="lines">
 
 
-596
-597
-598</pre>
+627
+628
+629</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 596</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 627</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onDoubleClicked'>onDoubleClicked</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_DOUBLECLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
@@ -1555,44 +1555,44 @@
       <pre class="lines">
 
 
-506
-507
-508
-509
-510
-511
-512
-513
-514
-515
-516
-517
-518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536
 537
 538
 539
-540</pre>
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 506</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 537</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onLeftBtnPress'>onLeftBtnPress</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_FOCUS_SELF</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
@@ -1660,37 +1660,6 @@
       <pre class="lines">
 
 
-543
-544
-545
-546
-547
-548
-549
-550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564
-565
-566
-567
-568
-569
-570
-571
-572
-573
 574
 575
 576
@@ -1700,10 +1669,41 @@
 580
 581
 582
-583</pre>
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 543</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 574</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onLeftBtnRelease'>onLeftBtnRelease</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_flg'>flg</span> <span class='op'>=</span> <span class='ivar'>@flags</span>
@@ -1777,27 +1777,27 @@
       <pre class="lines">
 
 
-486
-487
-488
-489
-490
-491
-492
-493
-494
-495
-496
-497
-498
-499
-500
-501
-502
-503</pre>
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 486</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 517</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onMotion'>onMotion</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
   <span class='comment'># Drag and drop mode
@@ -1848,19 +1848,19 @@
       <pre class="lines">
 
 
-474
-475
-476
-477
-478
-479
-480
-481
-482
-483</pre>
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 474</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 505</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onPaint'>onPaint</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_dc'>dc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../FXDCWindow.html" title="Fox::FXDCWindow (class)">FXDCWindow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../FXDCWindow.html#initialize-instance_method" title="Fox::FXDCWindow#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
@@ -1903,12 +1903,12 @@
       <pre class="lines">
 
 
-601
-602
-603</pre>
+632
+633
+634</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 601</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 632</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_onTripleClicked'>onTripleClicked</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_TRIPLECLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
@@ -1944,16 +1944,16 @@
       <pre class="lines">
 
 
-440
-441
-442
-443
-444
-445
-446</pre>
+471
+472
+473
+474
+475
+476
+477</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 440</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 471</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_selectShape'>selectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
@@ -1993,16 +1993,16 @@
       <pre class="lines">
 
 
-407
-408
-409
-410
-411
-412
-413</pre>
+438
+439
+440
+441
+442
+443
+444</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 407</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 438</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_updateShape'>updateShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
@@ -2021,7 +2021,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 17:03:45 2020 by
+  Generated on Fri Nov 27 21:06:18 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.24 (ruby-2.7.2).
 </div>

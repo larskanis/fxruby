@@ -101,7 +101,7 @@
 
 <div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="CircleShape.html" title="Fox::Canvas::CircleShape (class)">CircleShape</a></span>, <span class='object_link'><a href="ImageShape.html" title="Fox::Canvas::ImageShape (class)">ImageShape</a></span>, <span class='object_link'><a href="LineShape.html" title="Fox::Canvas::LineShape (class)">LineShape</a></span>, <span class='object_link'><a href="PolygonShape.html" title="Fox::Canvas::PolygonShape (class)">PolygonShape</a></span>, <span class='object_link'><a href="RectangleShape.html" title="Fox::Canvas::RectangleShape (class)">RectangleShape</a></span></p>
+  <p class="children"><span class='object_link'><a href="CircleShape.html" title="Fox::Canvas::CircleShape (class)">CircleShape</a></span>, <span class='object_link'><a href="ImageShape.html" title="Fox::Canvas::ImageShape (class)">ImageShape</a></span>, <span class='object_link'><a href="LineShape.html" title="Fox::Canvas::LineShape (class)">LineShape</a></span>, <span class='object_link'><a href="PolygonShape.html" title="Fox::Canvas::PolygonShape (class)">PolygonShape</a></span>, <span class='object_link'><a href="RectangleShape.html" title="Fox::Canvas::RectangleShape (class)">RectangleShape</a></span>, <span class='object_link'><a href="TextShape.html" title="Fox::Canvas::TextShape (class)">TextShape</a></span></p>
 </div>
 
 
@@ -257,6 +257,28 @@
     </h2>
 
     <ul class="summary">
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#apply_dc-instance_method" title="#apply_dc (instance method)">#<strong>apply_dc</strong>(dc)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -1031,7 +1053,43 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="bounds-instance_method">
+  <h3 class="signature first" id="apply_dc-instance_method">
+  
+    #<strong>apply_dc</strong>(dc)  &#x21d2; <tt>Object</tt>  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139
+140
+141
+142</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 137</span>
+
+<span class='id identifier rubyid_protected'>protected</span> <span class='kw'>def</span> <span class='id identifier rubyid_apply_dc'>apply_dc</span><span class='lparen'>(</span><span class='id identifier rubyid_dc'>dc</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_oldForeground'>oldForeground</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_foreground'>foreground</span>
+  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_foreground'>foreground</span> <span class='op'>=</span> <span class='id identifier rubyid_foreground'>foreground</span>
+  <span class='kw'>yield</span>
+  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_foreground'>foreground</span> <span class='op'>=</span> <span class='id identifier rubyid_oldForeground'>oldForeground</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bounds-instance_method">
   
     #<strong>bounds</strong>  &#x21d2; <tt>Object</tt> 
   
@@ -1887,7 +1945,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 17:03:44 2020 by
+  Generated on Fri Nov 27 21:06:18 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.24 (ruby-2.7.2).
 </div>

@@ -447,7 +447,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Shape.html" title="Fox::Canvas::Shape (class)">Shape</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Shape.html#bounds-instance_method" title="Fox::Canvas::Shape#bounds (method)">#bounds</a></span>, <span class='object_link'><a href="Shape.html#deselect-instance_method" title="Fox::Canvas::Shape#deselect (method)">#deselect</a></span>, <span class='object_link'><a href="Shape.html#disable-instance_method" title="Fox::Canvas::Shape#disable (method)">#disable</a></span>, <span class='object_link'><a href="Shape.html#draggable=-instance_method" title="Fox::Canvas::Shape#draggable= (method)">#draggable=</a></span>, <span class='object_link'><a href="Shape.html#draggable%3F-instance_method" title="Fox::Canvas::Shape#draggable? (method)">#draggable?</a></span>, <span class='object_link'><a href="Shape.html#drawOutline-instance_method" title="Fox::Canvas::Shape#drawOutline (method)">#drawOutline</a></span>, <span class='object_link'><a href="Shape.html#enable-instance_method" title="Fox::Canvas::Shape#enable (method)">#enable</a></span>, <span class='object_link'><a href="Shape.html#enabled%3F-instance_method" title="Fox::Canvas::Shape#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="Shape.html#hide-instance_method" title="Fox::Canvas::Shape#hide (method)">#hide</a></span>, <span class='object_link'><a href="Shape.html#hit%3F-instance_method" title="Fox::Canvas::Shape#hit? (method)">#hit?</a></span>, <span class='object_link'><a href="Shape.html#makeControlPoints-instance_method" title="Fox::Canvas::Shape#makeControlPoints (method)">#makeControlPoints</a></span>, <span class='object_link'><a href="Shape.html#move-instance_method" title="Fox::Canvas::Shape#move (method)">#move</a></span>, <span class='object_link'><a href="Shape.html#position-instance_method" title="Fox::Canvas::Shape#position (method)">#position</a></span>, <span class='object_link'><a href="Shape.html#resize-instance_method" title="Fox::Canvas::Shape#resize (method)">#resize</a></span>, <span class='object_link'><a href="Shape.html#select-instance_method" title="Fox::Canvas::Shape#select (method)">#select</a></span>, <span class='object_link'><a href="Shape.html#selected%3F-instance_method" title="Fox::Canvas::Shape#selected? (method)">#selected?</a></span>, <span class='object_link'><a href="Shape.html#show-instance_method" title="Fox::Canvas::Shape#show (method)">#show</a></span>, <span class='object_link'><a href="Shape.html#visible%3F-instance_method" title="Fox::Canvas::Shape#visible? (method)">#visible?</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Shape.html#apply_dc-instance_method" title="Fox::Canvas::Shape#apply_dc (method)">#apply_dc</a></span>, <span class='object_link'><a href="Shape.html#bounds-instance_method" title="Fox::Canvas::Shape#bounds (method)">#bounds</a></span>, <span class='object_link'><a href="Shape.html#deselect-instance_method" title="Fox::Canvas::Shape#deselect (method)">#deselect</a></span>, <span class='object_link'><a href="Shape.html#disable-instance_method" title="Fox::Canvas::Shape#disable (method)">#disable</a></span>, <span class='object_link'><a href="Shape.html#draggable=-instance_method" title="Fox::Canvas::Shape#draggable= (method)">#draggable=</a></span>, <span class='object_link'><a href="Shape.html#draggable%3F-instance_method" title="Fox::Canvas::Shape#draggable? (method)">#draggable?</a></span>, <span class='object_link'><a href="Shape.html#drawOutline-instance_method" title="Fox::Canvas::Shape#drawOutline (method)">#drawOutline</a></span>, <span class='object_link'><a href="Shape.html#enable-instance_method" title="Fox::Canvas::Shape#enable (method)">#enable</a></span>, <span class='object_link'><a href="Shape.html#enabled%3F-instance_method" title="Fox::Canvas::Shape#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="Shape.html#hide-instance_method" title="Fox::Canvas::Shape#hide (method)">#hide</a></span>, <span class='object_link'><a href="Shape.html#hit%3F-instance_method" title="Fox::Canvas::Shape#hit? (method)">#hit?</a></span>, <span class='object_link'><a href="Shape.html#makeControlPoints-instance_method" title="Fox::Canvas::Shape#makeControlPoints (method)">#makeControlPoints</a></span>, <span class='object_link'><a href="Shape.html#move-instance_method" title="Fox::Canvas::Shape#move (method)">#move</a></span>, <span class='object_link'><a href="Shape.html#position-instance_method" title="Fox::Canvas::Shape#position (method)">#position</a></span>, <span class='object_link'><a href="Shape.html#resize-instance_method" title="Fox::Canvas::Shape#resize (method)">#resize</a></span>, <span class='object_link'><a href="Shape.html#select-instance_method" title="Fox::Canvas::Shape#select (method)">#select</a></span>, <span class='object_link'><a href="Shape.html#selected%3F-instance_method" title="Fox::Canvas::Shape#selected? (method)">#selected?</a></span>, <span class='object_link'><a href="Shape.html#show-instance_method" title="Fox::Canvas::Shape#show (method)">#show</a></span>, <span class='object_link'><a href="Shape.html#visible%3F-instance_method" title="Fox::Canvas::Shape#visible? (method)">#visible?</a></span></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
@@ -477,17 +477,17 @@
       <pre class="lines">
 
 
-176
-177
-178
-179
-180
-181
-182
-183</pre>
+183
+184
+185
+186
+187
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 183</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_x1'>x1</span><span class='comma'>,</span> <span class='id identifier rubyid_y1'>y1</span><span class='comma'>,</span> <span class='id identifier rubyid_x2'>x2</span><span class='comma'>,</span> <span class='id identifier rubyid_y2'>y2</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_x1'>x1</span><span class='comma'>,</span> <span class='id identifier rubyid_y1'>y1</span><span class='rparen'>)</span>
@@ -535,12 +535,12 @@
       <pre class="lines">
 
 
-173
-174
-175</pre>
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lineCap'>lineCap</span>
   <span class='ivar'>@lineCap</span>
@@ -578,12 +578,12 @@
       <pre class="lines">
 
 
-173
-174
-175</pre>
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lineJoin'>lineJoin</span>
   <span class='ivar'>@lineJoin</span>
@@ -621,12 +621,12 @@
       <pre class="lines">
 
 
-173
-174
-175</pre>
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lineStyle'>lineStyle</span>
   <span class='ivar'>@lineStyle</span>
@@ -664,12 +664,12 @@
       <pre class="lines">
 
 
-173
-174
-175</pre>
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lineWidth'>lineWidth</span>
   <span class='ivar'>@lineWidth</span>
@@ -707,12 +707,12 @@
       <pre class="lines">
 
 
-174
-175
-176</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_x1'>x1</span>
   <span class='ivar'>@x1</span>
@@ -750,12 +750,12 @@
       <pre class="lines">
 
 
-174
-175
-176</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_x2'>x2</span>
   <span class='ivar'>@x2</span>
@@ -793,12 +793,12 @@
       <pre class="lines">
 
 
-174
-175
-176</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_y1'>y1</span>
   <span class='ivar'>@y1</span>
@@ -836,12 +836,12 @@
       <pre class="lines">
 
 
-174
-175
-176</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_y2'>y2</span>
   <span class='ivar'>@y2</span>
@@ -873,13 +873,6 @@
       <pre class="lines">
 
 
-193
-194
-195
-196
-197
-198
-199
 200
 201
 202
@@ -897,35 +890,40 @@
 214
 215
 216
-217</pre>
+217
+218
+219
+220
+221
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_draw'>draw</span><span class='lparen'>(</span><span class='id identifier rubyid_dc'>dc</span><span class='rparen'>)</span>
-  <span class='comment'># Save old values
-</span>  <span class='id identifier rubyid_oldForeground'>oldForeground</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_foreground'>foreground</span>
-  <span class='id identifier rubyid_oldLineWidth'>oldLineWidth</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineWidth'>lineWidth</span>
-  <span class='id identifier rubyid_oldLineCap'>oldLineCap</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineCap'>lineCap</span>
-  <span class='id identifier rubyid_oldLineJoin'>oldLineJoin</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineJoin'>lineJoin</span>
-  <span class='id identifier rubyid_oldLineStyle'>oldLineStyle</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineStyle'>lineStyle</span>
+  <span class='id identifier rubyid_apply_dc'>apply_dc</span><span class='lparen'>(</span><span class='id identifier rubyid_dc'>dc</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='comment'># Save old values
+</span>    <span class='id identifier rubyid_oldLineWidth'>oldLineWidth</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineWidth'>lineWidth</span>
+    <span class='id identifier rubyid_oldLineCap'>oldLineCap</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineCap'>lineCap</span>
+    <span class='id identifier rubyid_oldLineJoin'>oldLineJoin</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineJoin'>lineJoin</span>
+    <span class='id identifier rubyid_oldLineStyle'>oldLineStyle</span> <span class='op'>=</span> <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineStyle'>lineStyle</span>
 
-  <span class='comment'># Set properties for this line
-</span>  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_foreground'>foreground</span> <span class='op'>=</span> <span class='id identifier rubyid_foreground'>foreground</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineWidth'>lineWidth</span> <span class='op'>=</span> <span class='id identifier rubyid_lineWidth'>lineWidth</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineCap'>lineCap</span> <span class='op'>=</span> <span class='id identifier rubyid_lineCap'>lineCap</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineJoin'>lineJoin</span> <span class='op'>=</span> <span class='id identifier rubyid_lineJoin'>lineJoin</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineStyle'>lineStyle</span> <span class='op'>=</span> <span class='id identifier rubyid_lineStyle'>lineStyle</span>
+    <span class='comment'># Set properties for this line
+</span>    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineWidth'>lineWidth</span> <span class='op'>=</span> <span class='id identifier rubyid_lineWidth'>lineWidth</span>
+    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineCap'>lineCap</span> <span class='op'>=</span> <span class='id identifier rubyid_lineCap'>lineCap</span>
+    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineJoin'>lineJoin</span> <span class='op'>=</span> <span class='id identifier rubyid_lineJoin'>lineJoin</span>
+    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineStyle'>lineStyle</span> <span class='op'>=</span> <span class='id identifier rubyid_lineStyle'>lineStyle</span>
 
-  <span class='comment'># Draw the line
-</span>  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_drawLine'>drawLine</span><span class='lparen'>(</span><span class='id identifier rubyid_x1'>x1</span><span class='comma'>,</span> <span class='id identifier rubyid_y1'>y1</span><span class='comma'>,</span> <span class='id identifier rubyid_x2'>x2</span><span class='comma'>,</span> <span class='id identifier rubyid_y2'>y2</span><span class='rparen'>)</span>
+    <span class='comment'># Draw the line
+</span>    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_drawLine'>drawLine</span><span class='lparen'>(</span><span class='id identifier rubyid_x1'>x1</span><span class='comma'>,</span> <span class='id identifier rubyid_y1'>y1</span><span class='comma'>,</span> <span class='id identifier rubyid_x2'>x2</span><span class='comma'>,</span> <span class='id identifier rubyid_y2'>y2</span><span class='rparen'>)</span>
 
-  <span class='comment'># Restore old properties
-</span>  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineWidth'>lineWidth</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineWidth'>oldLineWidth</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineCap'>lineCap</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineCap'>oldLineCap</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineJoin'>lineJoin</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineJoin'>oldLineJoin</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineStyle'>lineStyle</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineStyle'>oldLineStyle</span>
-  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_foreground'>foreground</span> <span class='op'>=</span> <span class='id identifier rubyid_oldForeground'>oldForeground</span>
+    <span class='comment'># Restore old properties
+</span>    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineWidth'>lineWidth</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineWidth'>oldLineWidth</span>
+    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineCap'>lineCap</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineCap'>oldLineCap</span>
+    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineJoin'>lineJoin</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineJoin'>oldLineJoin</span>
+    <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_lineStyle'>lineStyle</span> <span class='op'>=</span> <span class='id identifier rubyid_oldLineStyle'>oldLineStyle</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -947,12 +945,12 @@
       <pre class="lines">
 
 
-189
-190
-191</pre>
+196
+197
+198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 196</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_height'>height</span>
   <span class='int'>0</span>
@@ -977,12 +975,12 @@
       <pre class="lines">
 
 
-185
-186
-187</pre>
+192
+193
+194</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 185</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_width'>width</span>
   <span class='int'>0</span>
@@ -997,7 +995,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 17:03:44 2020 by
+  Generated on Fri Nov 27 21:06:18 2020 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.24 (ruby-2.7.2).
 </div>
