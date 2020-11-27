@@ -3,7 +3,7 @@
 * http://github.com/larskanis/fxruby
 * Full API-description: http://rubydoc.info/gems/fxruby/frames or https://larskanis.github.io/fxruby/
 * Latest fxruby {<img src="https://badge.fury.io/rb/fxruby.svg" alt="Gem Version" />}[http://badge.fury.io/rb/fxruby]
-* Status on Linux: {<img src="https://travis-ci.org/larskanis/fxruby.svg?branch=1.6" alt="Build Status on Linux" />}[https://travis-ci.org/larskanis/fxruby]
+* Status on Linux: {<img src="https://travis-ci.com/larskanis/fxruby.svg?branch=1.6" alt="Build Status on Linux" />}[https://travis-ci.com/larskanis/fxruby]
   on Windows: {<img src="https://ci.appveyor.com/api/projects/status/too7sj4gq643ts8w/branch/1.6?svg=true" alt="Build Status on Windows" />}[https://ci.appveyor.com/project/larskanis/fxruby/branch/1.6]
 
 
