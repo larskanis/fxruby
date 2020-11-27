@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::Canvas::SelectionPolicy
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::Canvas::SelectionPolicy";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Canvas.html" title="Fox::Canvas (module)">Canvas</a></span></span>
+     &raquo; 
+    <span class="title">SelectionPolicy</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::Canvas::SelectionPolicy
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Fox::Canvas::SelectionPolicy</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/fox16/canvas.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Base class for canvas selection policies</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="SingleSelectionPolicy.html" title="Fox::Canvas::SingleSelectionPolicy (class)">SingleSelectionPolicy</a></span></p>
+</div>
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deselectShape-instance_method" title="#deselectShape (instance method)">#<strong>deselectShape</strong>(shape, notify)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(canvas)  &#x21d2; SelectionPolicy </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of SelectionPolicy.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selectShape-instance_method" title="#selectShape (instance method)">#<strong>selectShape</strong>(shape, notify)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(canvas)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::Canvas::SelectionPolicy (class)">SelectionPolicy</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of SelectionPolicy.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+306
+307
+308</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 306</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_canvas'>canvas</span><span class='rparen'>)</span>
+  <span class='ivar'>@canvas</span> <span class='op'>=</span> <span class='id identifier rubyid_canvas'>canvas</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="deselectShape-instance_method">
+  
+    #<strong>deselectShape</strong>(shape, notify)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+320
+321
+322
+323
+324
+325
+326
+327
+328</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 320</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deselectShape'>deselectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_selected?'>selected?</span>
+    <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_deselect'>deselect</span>
+    <span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_updateShape'>updateShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_notify'>notify</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span> <span class='op'>!=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+      <span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='ivar'>@canvas</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_DESELECTED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="selectShape-instance_method">
+  
+    #<strong>selectShape</strong>(shape, notify)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+310
+311
+312
+313
+314
+315
+316
+317
+318</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 310</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selectShape'>selectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_selected?'>selected?</span>
+    <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span>
+    <span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_updateShape'>updateShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_notify'>notify</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span> <span class='op'>!=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+      <span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='ivar'>@canvas</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='ivar'>@canvas</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_SELECTED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:44 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

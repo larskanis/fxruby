@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXRecentFiles
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXRecentFiles";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXRecentFiles</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXRecentFiles
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next">Fox::FXRecentFiles</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXRecentFiles.rb<span class="defines">,<br />
+  lib/fox16/responder2.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The recent files object manages a most recently used file list by means of the standard system registry. When connected to a widget, like a menu command, the recent files object updates the menu commands label to the associated recent file name; when the menu command is invoked, the recent file object sends its target a <code>SEL_COMMAND</code> message with the message data set to the associated file name (a String). When adding or removing file names, the recent files object automatically updates the system registry to record these changes.</p>
+
+<h3 id="label-Events">Events</h3>
+
+<p>The following messages are sent by FXRecentFiles to its target:</p>
+<dl class="rdoc-list note-list"><dt><code>SEL_COMMAND</code>
+<dd>
+<p>sent when one of the recent files in this list is selected, usually as a result of being selected from a menu command. The message data is a String containing the name of the file.</p>
+</dd></dl>
+
+<h3 id="label-Message+identifiers">Message identifiers</h3>
+<dl class="rdoc-list note-list"><dt><code>ID_CLEAR</code>
+<dd>
+<p>Clear the list of files</p>
+</dd><dt><code>ID_ANYFILES</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_1</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_2</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_3</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_4</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_5</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_6</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_7</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_8</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_9</code>
+<dd>
+<p>x</p>
+</dd><dt><code>ID_FILE_10</code>
+<dd>
+<p>x</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#app-instance_method" title="#app (instance method)">#<strong>app</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Application associated with this recent files group <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">FXApp</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#groupName-instance_method" title="#groupName (instance method)">#<strong>groupName</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Group name [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#maxFiles-instance_method" title="#maxFiles (instance method)">#<strong>maxFiles</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Maximum number of files to track [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selector-instance_method" title="#selector (instance method)">#<strong>selector</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Message identifier [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#target-instance_method" title="#target (instance method)">#<strong>target</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Message target <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#appendFile-instance_method" title="#appendFile (instance method)">#<strong>appendFile</strong>(filename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Append a file to the end of the list.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear-instance_method" title="#clear (instance method)">#<strong>clear</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clear the list of files.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(a, gp, target = nil, selector = 0)  &#x21d2; FXRecentFiles </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Make new recent files group with groupname gp.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#removeFile-instance_method" title="#removeFile (instance method)">#<strong>removeFile</strong>(filename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Remove a file from the list.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(a, gp, target = nil, selector = 0)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXRecentFiles (class)">FXRecentFiles</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Make new recent files group with groupname gp</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='comment'># :yields: theRecentFiles
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="app-instance_method">
+  
+    #<strong>app</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Application associated with this recent files group <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">Fox::FXApp</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_app'>app</span>
+  <span class='ivar'>@app</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="groupName=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="groupName-instance_method">
+  
+    #<strong>groupName</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Group name [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_groupName'>groupName</span>
+  <span class='ivar'>@groupName</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="maxFiles=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="maxFiles-instance_method">
+  
+    #<strong>maxFiles</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Maximum number of files to track [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_maxFiles'>maxFiles</span>
+  <span class='ivar'>@maxFiles</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="selector=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="selector-instance_method">
+  
+    #<strong>selector</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Message identifier [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selector'>selector</span>
+  <span class='ivar'>@selector</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="target=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="target-instance_method">
+  
+    #<strong>target</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Message target <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_target'>target</span>
+  <span class='ivar'>@target</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="appendFile-instance_method">
+  
+    #<strong>appendFile</strong>(filename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Append a file to the end of the list.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_appendFile'>appendFile</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clear-instance_method">
+  
+    #<strong>clear</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clear the list of files.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 74</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="removeFile-instance_method">
+  
+    #<strong>removeFile</strong>(filename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Remove a file from the list.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXRecentFiles.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_removeFile'>removeFile</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:36 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

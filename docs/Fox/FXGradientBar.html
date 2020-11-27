@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXGradientBar
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXGradientBar";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXGradientBar</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXGradientBar
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXFrame.html" title="Fox::FXFrame (class)">FXFrame</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXFrame.html" title="Fox::FXFrame (class)">FXFrame</a></span></li>
+          
+            <li class="next">Fox::FXGradientBar</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXGradientBar.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The FXGradientBar is a control that is used to edit color gradient, such as used in texture mapping and shape filling.</p>
+
+<h3 id="label-Events">Events</h3>
+
+<p>The following messages are sent by FXGradientBar to its target:</p>
+<dl class="rdoc-list note-list"><dt><code>SEL_LEFTBUTTONPRESS</code>
+<dd>
+<p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+<dd>
+<p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_CHANGED</code>
+<dd>
+<p>sent when anything about a segment changes; the message data is an integer indicating the segment number</p>
+</dd><dt><code>SEL_SELECTED</code>
+<dd>
+<p>sent when one or more segments are selected.</p>
+</dd><dt><code>SEL_DESELECTED</code>
+<dd>
+<p>sent when one or more segments are deselected.</p>
+</dd></dl>
+
+<h3 id="label-Gradient+bar+orientation">Gradient bar orientation</h3>
+<dl class="rdoc-list note-list"><dt><code>GRADIENTBAR_HORIZONTAL</code>
+<dd>
+<p>Gradient bar shown horizontally</p>
+</dd><dt><code>GRADIENTBAR_VERTICAL</code>
+<dd>
+<p>Gradient bar shown vertically</p>
+</dd><dt><code>GRADIENTBAR_NO_CONTROLS</code>
+<dd>
+<p>No controls shown</p>
+</dd><dt><code>GRADIENTBAR_CONTROLS_TOP</code>
+<dd>
+<p>Controls on top</p>
+</dd><dt><code>GRADIENTBAR_CONTROLS_BOTTOM</code>
+<dd>
+<p>Controls on bottom</p>
+</dd><dt><code>GRADIENTBAR_CONTROLS_LEFT</code>
+<dd>
+<p>Controls on left</p>
+</dd><dt><code>GRADIENTBAR_CONTROLS_RIGHT</code>
+<dd>
+<p>Controls on right</p>
+</dd></dl>
+
+<h3 id="label-Blend+modes">Blend modes</h3>
+<dl class="rdoc-list note-list"><dt><code>GRADIENT_BLEND_LINEAR</code>
+<dd>
+<p>Linear blend</p>
+</dd><dt><code>GRADIENT_BLEND_POWER</code>
+<dd>
+<p>Power law blend</p>
+</dd><dt><code>GRADIENT_BLEND_SINE</code>
+<dd>
+<p>Sine blend</p>
+</dd><dt><code>GRADIENT_BLEND_INCREASING</code>
+<dd>
+<p>Quadratic increasing blend</p>
+</dd><dt><code>GRADIENT_BLEND_DECREASING</code>
+<dd>
+<p>Quadratic decreasing blend</p>
+</dd></dl>
+
+<h3 id="label-Message+identifiers">Message identifiers</h3>
+<dl class="rdoc-list note-list"><dt><code>ID_LOWER_COLOR</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_UPPER_COLOR</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_BLEND_LINEAR</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_BLEND_POWER</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_BLEND_SINE</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_BLEND_INCREASING</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_BLEND_DECREASING</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_RECENTER</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_SPLIT</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_MERGE</code>
+<dd>
+<p>write me</p>
+</dd><dt><code>ID_UNIFORM</code>
+<dd>
+<p>write me</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barStyle-instance_method" title="#barStyle (instance method)">#<strong>barStyle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Gradient bar style, some combination of <code>GRADIENTBAR_HORIZONTAL</code>, <code>GRADIENTBAR_VERTICAL</code>, <code>GRADIENTBAR_NO_CONTROLS</code>, <code>GRADIENTBAR_CONTROLS_TOP</code>, <code>GRADIENTBAR_CONTROLS_BOTTOM</code>, <code>GRADIENTBAR_CONTROLS_LEFT</code> and <code>GRADIENTBAR_CONTROLS_RIGHT</code>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#helpText-instance_method" title="#helpText (instance method)">#<strong>helpText</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Status line help text [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selectColor-instance_method" title="#selectColor (instance method)">#<strong>selectColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Selection color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tipText-instance_method" title="#tipText (instance method)">#<strong>tipText</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Tool tip text [String].</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXFrame.html" title="Fox::FXFrame (class)">FXFrame</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXFrame.html#baseColor-instance_method" title="Fox::FXFrame#baseColor (method)">#baseColor</a></span>, <span class='object_link'><a href="FXFrame.html#borderColor-instance_method" title="Fox::FXFrame#borderColor (method)">#borderColor</a></span>, <span class='object_link'><a href="FXFrame.html#borderWidth-instance_method" title="Fox::FXFrame#borderWidth (method)">#borderWidth</a></span>, <span class='object_link'><a href="FXFrame.html#frameStyle-instance_method" title="Fox::FXFrame#frameStyle (method)">#frameStyle</a></span>, <span class='object_link'><a href="FXFrame.html#hiliteColor-instance_method" title="Fox::FXFrame#hiliteColor (method)">#hiliteColor</a></span>, <span class='object_link'><a href="FXFrame.html#padBottom-instance_method" title="Fox::FXFrame#padBottom (method)">#padBottom</a></span>, <span class='object_link'><a href="FXFrame.html#padLeft-instance_method" title="Fox::FXFrame#padLeft (method)">#padLeft</a></span>, <span class='object_link'><a href="FXFrame.html#padRight-instance_method" title="Fox::FXFrame#padRight (method)">#padRight</a></span>, <span class='object_link'><a href="FXFrame.html#padTop-instance_method" title="Fox::FXFrame#padTop (method)">#padTop</a></span>, <span class='object_link'><a href="FXFrame.html#shadowColor-instance_method" title="Fox::FXFrame#shadowColor (method)">#shadowColor</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#accelTable-instance_method" title="Fox::FXWindow#accelTable (method)">#accelTable</a></span>, <span class='object_link'><a href="FXWindow.html#backColor-instance_method" title="Fox::FXWindow#backColor (method)">#backColor</a></span>, <span class='object_link'><a href="FXWindow.html#defaultCursor-instance_method" title="Fox::FXWindow#defaultCursor (method)">#defaultCursor</a></span>, <span class='object_link'><a href="FXWindow.html#dragCursor-instance_method" title="Fox::FXWindow#dragCursor (method)">#dragCursor</a></span>, <span class='object_link'><a href="FXWindow.html#first-instance_method" title="Fox::FXWindow#first (method)">#first</a></span>, <span class='object_link'><a href="FXWindow.html#focus-instance_method" title="Fox::FXWindow#focus (method)">#focus</a></span>, <span class='object_link'><a href="FXWindow.html#key-instance_method" title="Fox::FXWindow#key (method)">#key</a></span>, <span class='object_link'><a href="FXWindow.html#last-instance_method" title="Fox::FXWindow#last (method)">#last</a></span>, <span class='object_link'><a href="FXWindow.html#layoutHints-instance_method" title="Fox::FXWindow#layoutHints (method)">#layoutHints</a></span>, <span class='object_link'><a href="FXWindow.html#next-instance_method" title="Fox::FXWindow#next (method)">#next</a></span>, <span class='object_link'><a href="FXWindow.html#numChildren-instance_method" title="Fox::FXWindow#numChildren (method)">#numChildren</a></span>, <span class='object_link'><a href="FXWindow.html#owner-instance_method" title="Fox::FXWindow#owner (method)">#owner</a></span>, <span class='object_link'><a href="FXWindow.html#parent-instance_method" title="Fox::FXWindow#parent (method)">#parent</a></span>, <span class='object_link'><a href="FXWindow.html#prev-instance_method" title="Fox::FXWindow#prev (method)">#prev</a></span>, <span class='object_link'><a href="FXWindow.html#root-instance_method" title="Fox::FXWindow#root (method)">#root</a></span>, <span class='object_link'><a href="FXWindow.html#selector-instance_method" title="Fox::FXWindow#selector (method)">#selector</a></span>, <span class='object_link'><a href="FXWindow.html#shell-instance_method" title="Fox::FXWindow#shell (method)">#shell</a></span>, <span class='object_link'><a href="FXWindow.html#target-instance_method" title="Fox::FXWindow#target (method)">#target</a></span>, <span class='object_link'><a href="FXWindow.html#x-instance_method" title="Fox::FXWindow#x (method)">#x</a></span>, <span class='object_link'><a href="FXWindow.html#y-instance_method" title="Fox::FXWindow#y (method)">#y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#height-instance_method" title="Fox::FXDrawable#height (method)">#height</a></span>, <span class='object_link'><a href="FXDrawable.html#visual-instance_method" title="Fox::FXDrawable#visual (method)">#visual</a></span>, <span class='object_link'><a href="FXDrawable.html#width-instance_method" title="Fox::FXDrawable#width (method)">#width</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#anchorSegment-instance_method" title="#anchorSegment (instance method)">#<strong>anchorSegment</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the index of the anchor segment, or -1 if there is no anchor segment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#anchorSegment=-instance_method" title="#anchorSegment= (instance method)">#<strong>anchorSegment=</strong>(seg)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change anchor segment to <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#blendSegments-instance_method" title="#blendSegments (instance method)">#<strong>blendSegments</strong>(sglo, sghi, blend = GRADIENT_BLEND_LINEAR, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set the blend mode for segments <em>sglo</em> through <em>sghi</em> to <em>blend</em>, where <em>blend</em> is one of <code>GRADIENT_BLEND_LINEAR</code>, <code>GRADIENT_BLEND_POWER</code>, <code>GRADIENT_BLEND_SINE</code>, <code>GRADIENT_BLEND_INCREASING</code> or <code>GRADIENT_BLEND_DECREASING</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deselectSegments-instance_method" title="#deselectSegments (instance method)">#<strong>deselectSegments</strong>(notify)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Deselect all segments, and return <code>true</code> if there was a previously selected range.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getCurrentSegment-instance_method" title="#getCurrentSegment (instance method)">#<strong>getCurrentSegment</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the index of the current segment, or -1 if there is no current segment.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getGrip-instance_method" title="#getGrip (instance method)">#<strong>getGrip</strong>(seg, x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the grip in segment <em>seg</em> which is closest to location (<em>x</em>, <em>y</em>), one of <code>GRIP_LOWER</code>, <code>GRIP_SEG_LOWER</code>, <code>GRIP_MIDDLE</code>, <code>GRIP_SEG_UPPER</code>, <code>GRIP_UPPER</code> or <code>GRIP_NONE</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getSegment-instance_method" title="#getSegment (instance method)">#<strong>getSegment</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the zero-based index of the segment containing location (<em>x</em>, <em>y</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getSegmentBlend-instance_method" title="#getSegmentBlend (instance method)">#<strong>getSegmentBlend</strong>(seg)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the blend mode of segment <em>seg</em>, one of <code>GRADIENT_BLEND_LINEAR</code>, <code>GRADIENT_BLEND_POWER</code>, <code>GRADIENT_BLEND_SINE</code>, <code>GRADIENT_BLEND_INCREASING</code> or <code>GRADIENT_BLEND_DECREASING</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getSegmentLower-instance_method" title="#getSegmentLower (instance method)">#<strong>getSegmentLower</strong>(seg)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return lower value of segment <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getSegmentLowerColor-instance_method" title="#getSegmentLowerColor (instance method)">#<strong>getSegmentLowerColor</strong>(seg)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return lower color of the segment with index <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getSegmentMiddle-instance_method" title="#getSegmentMiddle (instance method)">#<strong>getSegmentMiddle</strong>(seg)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return middle value of segment <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getSegmentUpper-instance_method" title="#getSegmentUpper (instance method)">#<strong>getSegmentUpper</strong>(seg)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return upper value of segment <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getSegmentUpperColor-instance_method" title="#getSegmentUpperColor (instance method)">#<strong>getSegmentUpperColor</strong>(seg)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return upper color of the segment with index <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gradient-instance_method" title="#gradient (instance method)">#<strong>gradient</strong>(nramp)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return a gradient ramp of size <em>nramp</em> based on the settings for this gradient bar.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gradients-instance_method" title="#gradients (instance method)">#<strong>gradients</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return a reference to the array of gradient segments (an array of FXGradient instances).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gradients=-instance_method" title="#gradients= (instance method)">#<strong>gradients=</strong>(segments)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Replace the current gradient segments with <em>segments</em>, an array of FXGradient instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(p, target = nil, selector = 0, opts = FRAME_NORMAL, x = 0, y = 0, width = 0, height = 0, padLeft = DEFAULT_PAD, padRight = DEFAULT_PAD, padTop = DEFAULT_PAD, padBottom = DEFAULT_PAD)  &#x21d2; FXGradientBar </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return an initialized FXGradientBar instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mergeSegments-instance_method" title="#mergeSegments (instance method)">#<strong>mergeSegments</strong>(sglo, sghi, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Merge segments.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#moveSegmentLower-instance_method" title="#moveSegmentLower (instance method)">#<strong>moveSegmentLower</strong>(seg, val, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Move lower point of segment <em>seg</em> to <em>val</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#moveSegmentMiddle-instance_method" title="#moveSegmentMiddle (instance method)">#<strong>moveSegmentMiddle</strong>(seg, val, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Move middle point of segment <em>seg</em> to <em>val</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#moveSegments-instance_method" title="#moveSegments (instance method)">#<strong>moveSegments</strong>(sglo, sghi, val, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Move segments <em>sglo</em> to <em>sghi</em> to new position <em>val</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#moveSegmentUpper-instance_method" title="#moveSegmentUpper (instance method)">#<strong>moveSegmentUpper</strong>(seg, val, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Move upper point of segment <em>seg</em> to <em>val</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#numSegments-instance_method" title="#numSegments (instance method)">#<strong>numSegments</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the number of segments.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#segmentSelected%3F-instance_method" title="#segmentSelected? (instance method)">#<strong>segmentSelected?</strong>(seg)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if the specified segment is selected.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selectSegments-instance_method" title="#selectSegments (instance method)">#<strong>selectSegments</strong>(fm, to, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Select segment(s) <em>fm</em> through <em>to</em> and return <code>true</code> if the selected range is different than it was.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setCurrentSegment-instance_method" title="#setCurrentSegment (instance method)">#<strong>setCurrentSegment</strong>(index, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change current segment to <em>index</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setSegmentLowerColor-instance_method" title="#setSegmentLowerColor (instance method)">#<strong>setSegmentLowerColor</strong>(seg, clr, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set lower color of the segment with index <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setSegmentUpperColor-instance_method" title="#setSegmentUpperColor (instance method)">#<strong>setSegmentUpperColor</strong>(seg, clr, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set upper color of the segment with index <em>seg</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#splitSegments-instance_method" title="#splitSegments (instance method)">#<strong>splitSegments</strong>(sglo, sghi, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Split segment at the midpoint If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after this change is completed.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uniformSegments-instance_method" title="#uniformSegments (instance method)">#<strong>uniformSegments</strong>(sglo, sghi, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Make segments uniformly distributed.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#acceptDrop-instance_method" title="Fox::FXWindow#acceptDrop (method)">#acceptDrop</a></span>, <span class='object_link'><a href="FXWindow.html#acquireClipboard-instance_method" title="Fox::FXWindow#acquireClipboard (method)">#acquireClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#acquireSelection-instance_method" title="Fox::FXWindow#acquireSelection (method)">#acquireSelection</a></span>, <span class='object_link'><a href="FXWindow.html#active%3F-instance_method" title="Fox::FXWindow#active? (method)">#active?</a></span>, <span class='object_link'><a href="FXWindow.html#addHotKey-instance_method" title="Fox::FXWindow#addHotKey (method)">#addHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-class_method" title="Fox::FXWindow.after? (method)">after?</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-instance_method" title="Fox::FXWindow#after? (method)">#after?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-class_method" title="Fox::FXWindow.before? (method)">before?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-instance_method" title="Fox::FXWindow#before? (method)">#before?</a></span>, <span class='object_link'><a href="FXWindow.html#beginDrag-instance_method" title="Fox::FXWindow#beginDrag (method)">#beginDrag</a></span>, <span class='object_link'><a href="FXWindow.html#canFocus%3F-instance_method" title="Fox::FXWindow#canFocus? (method)">#canFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#changeFocus-instance_method" title="Fox::FXWindow#changeFocus (method)">#changeFocus</a></span>, <span class='object_link'><a href="FXWindow.html#childAtIndex-instance_method" title="Fox::FXWindow#childAtIndex (method)">#childAtIndex</a></span>, <span class='object_link'><a href="FXWindow.html#childOf%3F-instance_method" title="Fox::FXWindow#childOf? (method)">#childOf?</a></span>, <span class='object_link'><a href="FXWindow.html#children-instance_method" title="Fox::FXWindow#children (method)">#children</a></span>, <span class='object_link'><a href="FXWindow.html#clearDragRectangle-instance_method" title="Fox::FXWindow#clearDragRectangle (method)">#clearDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#clearShape-instance_method" title="Fox::FXWindow#clearShape (method)">#clearShape</a></span>, <span class='object_link'><a href="FXWindow.html#colorType-class_method" title="Fox::FXWindow.colorType (method)">colorType</a></span>, <span class='object_link'><a href="FXWindow.html#colorTypeName-class_method" title="Fox::FXWindow.colorTypeName (method)">colorTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#commonAncestor-class_method" title="Fox::FXWindow.commonAncestor (method)">commonAncestor</a></span>, <span class='object_link'><a href="FXWindow.html#composeContext-instance_method" title="Fox::FXWindow#composeContext (method)">#composeContext</a></span>, <span class='object_link'><a href="FXWindow.html#composite%3F-instance_method" title="Fox::FXWindow#composite? (method)">#composite?</a></span>, <span class='object_link'><a href="FXWindow.html#contains%3F-instance_method" title="Fox::FXWindow#contains? (method)">#contains?</a></span>, <span class='object_link'><a href="FXWindow.html#containsChild%3F-instance_method" title="Fox::FXWindow#containsChild? (method)">#containsChild?</a></span>, <span class='object_link'><a href="FXWindow.html#create-instance_method" title="Fox::FXWindow#create (method)">#create</a></span>, <span class='object_link'><a href="FXWindow.html#createComposeContext-instance_method" title="Fox::FXWindow#createComposeContext (method)">#createComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#cursorPosition-instance_method" title="Fox::FXWindow#cursorPosition (method)">#cursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#default%3F-instance_method" title="Fox::FXWindow#default? (method)">#default?</a></span>, <span class='object_link'><a href="FXWindow.html#defaultHeight-instance_method" title="Fox::FXWindow#defaultHeight (method)">#defaultHeight</a></span>, <span class='object_link'><a href="FXWindow.html#defaultWidth-instance_method" title="Fox::FXWindow#defaultWidth (method)">#defaultWidth</a></span>, <span class='object_link'><a href="FXWindow.html#deleteType-class_method" title="Fox::FXWindow.deleteType (method)">deleteType</a></span>, <span class='object_link'><a href="FXWindow.html#deleteTypeName-class_method" title="Fox::FXWindow.deleteTypeName (method)">deleteTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#destroy-instance_method" title="Fox::FXWindow#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXWindow.html#destroyComposeContext-instance_method" title="Fox::FXWindow#destroyComposeContext (method)">#destroyComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#detach-instance_method" title="Fox::FXWindow#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXWindow.html#didAccept-instance_method" title="Fox::FXWindow#didAccept (method)">#didAccept</a></span>, <span class='object_link'><a href="FXWindow.html#disable-instance_method" title="Fox::FXWindow#disable (method)">#disable</a></span>, <span class='object_link'><a href="FXWindow.html#doesSaveUnder%3F-instance_method" title="Fox::FXWindow#doesSaveUnder? (method)">#doesSaveUnder?</a></span>, <span class='object_link'><a href="FXWindow.html#dragging%3F-instance_method" title="Fox::FXWindow#dragging? (method)">#dragging?</a></span>, <span class='object_link'><a href="FXWindow.html#dropDisable-instance_method" title="Fox::FXWindow#dropDisable (method)">#dropDisable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnable-instance_method" title="Fox::FXWindow#dropEnable (method)">#dropEnable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnabled%3F-instance_method" title="Fox::FXWindow#dropEnabled? (method)">#dropEnabled?</a></span>, <span class='object_link'><a href="FXWindow.html#dropFinished-instance_method" title="Fox::FXWindow#dropFinished (method)">#dropFinished</a></span>, <span class='object_link'><a href="FXWindow.html#dropTarget%3F-instance_method" title="Fox::FXWindow#dropTarget? (method)">#dropTarget?</a></span>, <span class='object_link'><a href="FXWindow.html#each_child-instance_method" title="Fox::FXWindow#each_child (method)">#each_child</a></span>, <span class='object_link'><a href="FXWindow.html#each_child_recursive-instance_method" title="Fox::FXWindow#each_child_recursive (method)">#each_child_recursive</a></span>, <span class='object_link'><a href="FXWindow.html#enable-instance_method" title="Fox::FXWindow#enable (method)">#enable</a></span>, <span class='object_link'><a href="FXWindow.html#enabled%3F-instance_method" title="Fox::FXWindow#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="FXWindow.html#endDrag-instance_method" title="Fox::FXWindow#endDrag (method)">#endDrag</a></span>, <span class='object_link'><a href="FXWindow.html#forceRefresh-instance_method" title="Fox::FXWindow#forceRefresh (method)">#forceRefresh</a></span>, <span class='object_link'><a href="FXWindow.html#getChildAt-instance_method" title="Fox::FXWindow#getChildAt (method)">#getChildAt</a></span>, <span class='object_link'><a href="FXWindow.html#getDNDData-instance_method" title="Fox::FXWindow#getDNDData (method)">#getDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#getHeightForWidth-instance_method" title="Fox::FXWindow#getHeightForWidth (method)">#getHeightForWidth</a></span>, <span class='object_link'><a href="FXWindow.html#getWidthForHeight-instance_method" title="Fox::FXWindow#getWidthForHeight (method)">#getWidthForHeight</a></span>, <span class='object_link'><a href="FXWindow.html#grab-instance_method" title="Fox::FXWindow#grab (method)">#grab</a></span>, <span class='object_link'><a href="FXWindow.html#grabKeyboard-instance_method" title="Fox::FXWindow#grabKeyboard (method)">#grabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#grabbed%3F-instance_method" title="Fox::FXWindow#grabbed? (method)">#grabbed?</a></span>, <span class='object_link'><a href="FXWindow.html#grabbedKeyboard%3F-instance_method" title="Fox::FXWindow#grabbedKeyboard? (method)">#grabbedKeyboard?</a></span>, <span class='object_link'><a href="FXWindow.html#handleDrag-instance_method" title="Fox::FXWindow#handleDrag (method)">#handleDrag</a></span>, <span class='object_link'><a href="FXWindow.html#hasClipboard%3F-instance_method" title="Fox::FXWindow#hasClipboard? (method)">#hasClipboard?</a></span>, <span class='object_link'><a href="FXWindow.html#hasFocus%3F-instance_method" title="Fox::FXWindow#hasFocus? (method)">#hasFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#hasSelection%3F-instance_method" title="Fox::FXWindow#hasSelection? (method)">#hasSelection?</a></span>, <span class='object_link'><a href="FXWindow.html#height-instance_method" title="Fox::FXWindow#height (method)">#height</a></span>, <span class='object_link'><a href="FXWindow.html#height=-instance_method" title="Fox::FXWindow#height= (method)">#height=</a></span>, <span class='object_link'><a href="FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">#hide</a></span>, <span class='object_link'><a href="FXWindow.html#imageType-class_method" title="Fox::FXWindow.imageType (method)">imageType</a></span>, <span class='object_link'><a href="FXWindow.html#inFocusChain%3F-instance_method" title="Fox::FXWindow#inFocusChain? (method)">#inFocusChain?</a></span>, <span class='object_link'><a href="FXWindow.html#indexOfChild-instance_method" title="Fox::FXWindow#indexOfChild (method)">#indexOfChild</a></span>, <span class='object_link'><a href="FXWindow.html#initial%3F-instance_method" title="Fox::FXWindow#initial? (method)">#initial?</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDAction-instance_method" title="Fox::FXWindow#inquireDNDAction (method)">#inquireDNDAction</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDTypes-instance_method" title="Fox::FXWindow#inquireDNDTypes (method)">#inquireDNDTypes</a></span>, <span class='object_link'><a href="FXWindow.html#killFocus-instance_method" title="Fox::FXWindow#killFocus (method)">#killFocus</a></span>, <span class='object_link'><a href="FXWindow.html#layout-instance_method" title="Fox::FXWindow#layout (method)">#layout</a></span>, <span class='object_link'><a href="FXWindow.html#linkAfter-instance_method" title="Fox::FXWindow#linkAfter (method)">#linkAfter</a></span>, <span class='object_link'><a href="FXWindow.html#linkBefore-instance_method" title="Fox::FXWindow#linkBefore (method)">#linkBefore</a></span>, <span class='object_link'><a href="FXWindow.html#lower-instance_method" title="Fox::FXWindow#lower (method)">#lower</a></span>, <span class='object_link'><a href="FXWindow.html#move-instance_method" title="Fox::FXWindow#move (method)">#move</a></span>, <span class='object_link'><a href="FXWindow.html#octetType-class_method" title="Fox::FXWindow.octetType (method)">octetType</a></span>, <span class='object_link'><a href="FXWindow.html#octetTypeName-class_method" title="Fox::FXWindow.octetTypeName (method)">octetTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#offeredDNDType%3F-instance_method" title="Fox::FXWindow#offeredDNDType? (method)">#offeredDNDType?</a></span>, <span class='object_link'><a href="FXWindow.html#position-instance_method" title="Fox::FXWindow#position (method)">#position</a></span>, <span class='object_link'><a href="FXWindow.html#raiseWindow-instance_method" title="Fox::FXWindow#raiseWindow (method)">#raiseWindow</a></span>, <span class='object_link'><a href="FXWindow.html#recalc-instance_method" title="Fox::FXWindow#recalc (method)">#recalc</a></span>, <span class='object_link'><a href="FXWindow.html#releaseClipboard-instance_method" title="Fox::FXWindow#releaseClipboard (method)">#releaseClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#releaseSelection-instance_method" title="Fox::FXWindow#releaseSelection (method)">#releaseSelection</a></span>, <span class='object_link'><a href="FXWindow.html#remHotKey-instance_method" title="Fox::FXWindow#remHotKey (method)">#remHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#removeChild-instance_method" title="Fox::FXWindow#removeChild (method)">#removeChild</a></span>, <span class='object_link'><a href="FXWindow.html#repaint-instance_method" title="Fox::FXWindow#repaint (method)">#repaint</a></span>, <span class='object_link'><a href="FXWindow.html#reparent-instance_method" title="Fox::FXWindow#reparent (method)">#reparent</a></span>, <span class='object_link'><a href="FXWindow.html#resize-instance_method" title="Fox::FXWindow#resize (method)">#resize</a></span>, <span class='object_link'><a href="FXWindow.html#scroll-instance_method" title="Fox::FXWindow#scroll (method)">#scroll</a></span>, <span class='object_link'><a href="FXWindow.html#setCursorPosition-instance_method" title="Fox::FXWindow#setCursorPosition (method)">#setCursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#setDNDData-instance_method" title="Fox::FXWindow#setDNDData (method)">#setDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#setDefault-instance_method" title="Fox::FXWindow#setDefault (method)">#setDefault</a></span>, <span class='object_link'><a href="FXWindow.html#setDragRectangle-instance_method" title="Fox::FXWindow#setDragRectangle (method)">#setDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#setFocus-instance_method" title="Fox::FXWindow#setFocus (method)">#setFocus</a></span>, <span class='object_link'><a href="FXWindow.html#setInitial-instance_method" title="Fox::FXWindow#setInitial (method)">#setInitial</a></span>, <span class='object_link'><a href="FXWindow.html#setShape-instance_method" title="Fox::FXWindow#setShape (method)">#setShape</a></span>, <span class='object_link'><a href="FXWindow.html#shell%3F-instance_method" title="Fox::FXWindow#shell? (method)">#shell?</a></span>, <span class='object_link'><a href="FXWindow.html#show-instance_method" title="Fox::FXWindow#show (method)">#show</a></span>, <span class='object_link'><a href="FXWindow.html#shown%3F-instance_method" title="Fox::FXWindow#shown? (method)">#shown?</a></span>, <span class='object_link'><a href="FXWindow.html#stringType-class_method" title="Fox::FXWindow.stringType (method)">stringType</a></span>, <span class='object_link'><a href="FXWindow.html#textType-class_method" title="Fox::FXWindow.textType (method)">textType</a></span>, <span class='object_link'><a href="FXWindow.html#textTypeName-class_method" title="Fox::FXWindow.textTypeName (method)">textTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#tr-instance_method" title="Fox::FXWindow#tr (method)">#tr</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesFrom-instance_method" title="Fox::FXWindow#translateCoordinatesFrom (method)">#translateCoordinatesFrom</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesTo-instance_method" title="Fox::FXWindow#translateCoordinatesTo (method)">#translateCoordinatesTo</a></span>, <span class='object_link'><a href="FXWindow.html#underCursor%3F-instance_method" title="Fox::FXWindow#underCursor? (method)">#underCursor?</a></span>, <span class='object_link'><a href="FXWindow.html#ungrab-instance_method" title="Fox::FXWindow#ungrab (method)">#ungrab</a></span>, <span class='object_link'><a href="FXWindow.html#ungrabKeyboard-instance_method" title="Fox::FXWindow#ungrabKeyboard (method)">#ungrabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#update-instance_method" title="Fox::FXWindow#update (method)">#update</a></span>, <span class='object_link'><a href="FXWindow.html#urilistType-class_method" title="Fox::FXWindow.urilistType (method)">urilistType</a></span>, <span class='object_link'><a href="FXWindow.html#urilistTypeName-class_method" title="Fox::FXWindow.urilistTypeName (method)">urilistTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf16Type-class_method" title="Fox::FXWindow.utf16Type (method)">utf16Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf16TypeName-class_method" title="Fox::FXWindow.utf16TypeName (method)">utf16TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf8Type-class_method" title="Fox::FXWindow.utf8Type (method)">utf8Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf8TypeName-class_method" title="Fox::FXWindow.utf8TypeName (method)">utf8TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#visible=-instance_method" title="Fox::FXWindow#visible= (method)">#visible=</a></span>, <span class='object_link'><a href="FXWindow.html#width-instance_method" title="Fox::FXWindow#width (method)">#width</a></span>, <span class='object_link'><a href="FXWindow.html#width=-instance_method" title="Fox::FXWindow#width= (method)">#width=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#resize-instance_method" title="Fox::FXDrawable#resize (method)">#resize</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#create-instance_method" title="Fox::FXId#create (method)">#create</a></span>, <span class='object_link'><a href="FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(p, target = nil, selector = 0, opts = FRAME_NORMAL, x = 0, y = 0, width = 0, height = 0, padLeft = DEFAULT_PAD, padRight = DEFAULT_PAD, padTop = DEFAULT_PAD, padBottom = DEFAULT_PAD)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXGradientBar (class)">FXGradientBar</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return an initialized FXGradientBar instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_selector'>selector</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='const'>FRAME_NORMAL</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_padLeft'>padLeft</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='comma'>,</span> <span class='id identifier rubyid_padRight'>padRight</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='comma'>,</span> <span class='id identifier rubyid_padTop'>padTop</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='comma'>,</span> <span class='id identifier rubyid_padBottom'>padBottom</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='rparen'>)</span> <span class='comment'># :yields: theGradientBar
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="barStyle=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="barStyle-instance_method">
+  
+    #<strong>barStyle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gradient bar style, some combination of <code>GRADIENTBAR_HORIZONTAL</code>, <code>GRADIENTBAR_VERTICAL</code>, <code>GRADIENTBAR_NO_CONTROLS</code>, <code>GRADIENTBAR_CONTROLS_TOP</code>, <code>GRADIENTBAR_CONTROLS_BOTTOM</code>, <code>GRADIENTBAR_CONTROLS_LEFT</code> and <code>GRADIENTBAR_CONTROLS_RIGHT</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barStyle'>barStyle</span>
+  <span class='ivar'>@barStyle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="helpText=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="helpText-instance_method">
+  
+    #<strong>helpText</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Status line help text [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_helpText'>helpText</span>
+  <span class='ivar'>@helpText</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="selectColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="selectColor-instance_method">
+  
+    #<strong>selectColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Selection color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selectColor'>selectColor</span>
+  <span class='ivar'>@selectColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tipText=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tipText-instance_method">
+  
+    #<strong>tipText</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Tool tip text [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tipText'>tipText</span>
+  <span class='ivar'>@tipText</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="anchorSegment-instance_method">
+  
+    #<strong>anchorSegment</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the index of the anchor segment, or -1 if there is no anchor segment.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_anchorSegment'>anchorSegment</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="anchorSegment=-instance_method">
+  
+    #<strong>anchorSegment=</strong>(seg)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change anchor segment to <em>seg</em>. Use a <em>seg</em> value of -1 to indicate that there is no anchor segment. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_anchorSegment='>anchorSegment=</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="blendSegments-instance_method">
+  
+    #<strong>blendSegments</strong>(sglo, sghi, blend = GRADIENT_BLEND_LINEAR, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set the blend mode for segments <em>sglo</em> through <em>sghi</em> to <em>blend</em>, where <em>blend</em> is one of <code>GRADIENT_BLEND_LINEAR</code>, <code>GRADIENT_BLEND_POWER</code>, <code>GRADIENT_BLEND_SINE</code>, <code>GRADIENT_BLEND_INCREASING</code> or <code>GRADIENT_BLEND_DECREASING</code>. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after this change is completed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+299</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 299</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_blendSegments'>blendSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_sglo'>sglo</span><span class='comma'>,</span> <span class='id identifier rubyid_sghi'>sghi</span><span class='comma'>,</span> <span class='id identifier rubyid_blend'>blend</span><span class='op'>=</span><span class='const'>GRADIENT_BLEND_LINEAR</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deselectSegments-instance_method">
+  
+    #<strong>deselectSegments</strong>(notify)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Deselect all segments, and return <code>true</code> if there was a previously selected range. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the gradient bar&#39;s message target after the current selection is deselected.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deselectSegments'>deselectSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getCurrentSegment-instance_method">
+  
+    #<strong>getCurrentSegment</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the index of the current segment, or -1 if there is no current segment.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getCurrentSegment'>getCurrentSegment</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getGrip-instance_method">
+  
+    #<strong>getGrip</strong>(seg, x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the grip in segment <em>seg</em> which is closest to location (<em>x</em>, <em>y</em>), one of <code>GRIP_LOWER</code>, <code>GRIP_SEG_LOWER</code>, <code>GRIP_MIDDLE</code>, <code>GRIP_SEG_UPPER</code>, <code>GRIP_UPPER</code> or <code>GRIP_NONE</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getGrip'>getGrip</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getSegment-instance_method">
+  
+    #<strong>getSegment</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the zero-based index of the segment containing location (<em>x</em>, <em>y</em>). Returns -1 if no matching segment was found.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getSegment'>getSegment</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getSegmentBlend-instance_method">
+  
+    #<strong>getSegmentBlend</strong>(seg)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the blend mode of segment <em>seg</em>, one of <code>GRADIENT_BLEND_LINEAR</code>, <code>GRADIENT_BLEND_POWER</code>, <code>GRADIENT_BLEND_SINE</code>, <code>GRADIENT_BLEND_INCREASING</code> or <code>GRADIENT_BLEND_DECREASING</code>. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+268</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 268</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getSegmentBlend'>getSegmentBlend</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getSegmentLower-instance_method">
+  
+    #<strong>getSegmentLower</strong>(seg)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return lower value of segment <em>seg</em>. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+241</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 241</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getSegmentLower'>getSegmentLower</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getSegmentLowerColor-instance_method">
+  
+    #<strong>getSegmentLowerColor</strong>(seg)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return lower color of the segment with index <em>seg</em>. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+198</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 198</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getSegmentLowerColor'>getSegmentLowerColor</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getSegmentMiddle-instance_method">
+  
+    #<strong>getSegmentMiddle</strong>(seg)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return middle value of segment <em>seg</em>. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+247</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 247</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getSegmentMiddle'>getSegmentMiddle</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getSegmentUpper-instance_method">
+  
+    #<strong>getSegmentUpper</strong>(seg)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return upper value of segment <em>seg</em>. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getSegmentUpper'>getSegmentUpper</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getSegmentUpperColor-instance_method">
+  
+    #<strong>getSegmentUpperColor</strong>(seg)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return upper color of the segment with index <em>seg</em>. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getSegmentUpperColor'>getSegmentUpperColor</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gradient-instance_method">
+  
+    #<strong>gradient</strong>(nramp)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return a gradient ramp of size <em>nramp</em> based on the settings for this gradient bar. The return value is an array of color values corresponding to this gradient bar.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+260</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 260</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gradient'>gradient</span><span class='lparen'>(</span><span class='id identifier rubyid_nramp'>nramp</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gradients-instance_method">
+  
+    #<strong>gradients</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return a reference to the array of gradient segments (an array of FXGradient instances).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gradients'>gradients</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gradients=-instance_method">
+  
+    #<strong>gradients=</strong>(segments)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Replace the current gradient segments with <em>segments</em>, an array of FXGradient instances.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 120</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gradients='>gradients=</span><span class='lparen'>(</span><span class='id identifier rubyid_segments'>segments</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mergeSegments-instance_method">
+  
+    #<strong>mergeSegments</strong>(sglo, sghi, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Merge segments. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after this change is completed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+282</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 282</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mergeSegments'>mergeSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_sglo'>sglo</span><span class='comma'>,</span> <span class='id identifier rubyid_sghi'>sghi</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="moveSegmentLower-instance_method">
+  
+    #<strong>moveSegmentLower</strong>(seg, val, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Move lower point of segment <em>seg</em> to <em>val</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after the segment&#39;s lower value is changed. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 212</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_moveSegmentLower'>moveSegmentLower</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="moveSegmentMiddle-instance_method">
+  
+    #<strong>moveSegmentMiddle</strong>(seg, val, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Move middle point of segment <em>seg</em> to <em>val</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after the segment&#39;s middle value is changed. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+220</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 220</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_moveSegmentMiddle'>moveSegmentMiddle</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="moveSegments-instance_method">
+  
+    #<strong>moveSegments</strong>(sglo, sghi, val, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Move segments <em>sglo</em> to <em>sghi</em> to new position <em>val</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after the segments&#39; values are changed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+235</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 235</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_moveSegments'>moveSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_sglo'>sglo</span><span class='comma'>,</span> <span class='id identifier rubyid_sghi'>sghi</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="moveSegmentUpper-instance_method">
+  
+    #<strong>moveSegmentUpper</strong>(seg, val, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Move upper point of segment <em>seg</em> to <em>val</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after the segment&#39;s upper value is changed. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+228</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 228</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_moveSegmentUpper'>moveSegmentUpper</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="numSegments-instance_method">
+  
+    #<strong>numSegments</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the number of segments</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_numSegments'>numSegments</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="segmentSelected?-instance_method">
+  
+    #<strong>segmentSelected?</strong>(seg)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if the specified segment is selected. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+176</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 176</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_segmentSelected?'>segmentSelected?</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="selectSegments-instance_method">
+  
+    #<strong>selectSegments</strong>(fm, to, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Select segment(s) <em>fm</em> through <em>to</em> and return <code>true</code> if the selected range is different than it was. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> message is sent to the gradient bar&#39;s message target after the current segment is changed. Raises ArgumentError if <em>fm</em> is greater than <em>to</em>, and IndexError if either <em>fm</em> or <em>to</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 162</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selectSegments'>selectSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_fm'>fm</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setCurrentSegment-instance_method">
+  
+    #<strong>setCurrentSegment</strong>(index, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change current segment to <em>index</em>. Use an <em>index</em> of -1 to indicate that there is no current segment. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after the current segment is changed. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setCurrentSegment'>setCurrentSegment</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setSegmentLowerColor-instance_method">
+  
+    #<strong>setSegmentLowerColor</strong>(seg, clr, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set lower color of the segment with index <em>seg</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after the segment&#39;s lower color is changed. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 184</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setSegmentLowerColor'>setSegmentLowerColor</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='comma'>,</span> <span class='id identifier rubyid_clr'>clr</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setSegmentUpperColor-instance_method">
+  
+    #<strong>setSegmentUpperColor</strong>(seg, clr, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set upper color of the segment with index <em>seg</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after the segment&#39;s upper color is changed. Raises IndexError if <em>seg</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 192</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setSegmentUpperColor'>setSegmentUpperColor</span><span class='lparen'>(</span><span class='id identifier rubyid_seg'>seg</span><span class='comma'>,</span> <span class='id identifier rubyid_clr'>clr</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="splitSegments-instance_method">
+  
+    #<strong>splitSegments</strong>(sglo, sghi, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Split segment at the midpoint If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after this change is completed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+275</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 275</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_splitSegments'>splitSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_sglo'>sglo</span><span class='comma'>,</span> <span class='id identifier rubyid_sghi'>sghi</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="uniformSegments-instance_method">
+  
+    #<strong>uniformSegments</strong>(sglo, sghi, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Make segments uniformly distributed. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the gradient bar&#39;s message target after this change is completed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXGradientBar.rb', line 289</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_uniformSegments'>uniformSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_sglo'>sglo</span><span class='comma'>,</span> <span class='id identifier rubyid_sghi'>sghi</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:33 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

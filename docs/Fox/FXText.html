@@ -1,0 +1,6870 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXText
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXText";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXText</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXText
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXScrollArea.html" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXScrollArea.html" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></li>
+          
+            <li class="next">Fox::FXText</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXText.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The text widget supports editing of multiple lines of text. An optional style table can provide text coloring based on the contents of an optional parallel style buffer, which is maintained as text is edited.  In a typical scenario, the contents of the style buffer is either directly written when the text is added to the widget, or is continually modified by editing the text via syntax-based highlighting engine which colors the text based on syntactical patterns.</p>
+
+<h3 id="label-Events">Events</h3>
+
+<p>The following messages are sent by FXText to its target:</p>
+<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code>
+<dd>
+<p>sent when a key is pressed; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_KEYRELEASE</code>
+<dd>
+<p>sent when a key is released; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_LEFTBUTTONPRESS</code>
+<dd>
+<p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+<dd>
+<p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code>
+<dd>
+<p>sent when the middle mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code>
+<dd>
+<p>sent when the middle mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_RIGHTBUTTONPRESS</code>
+<dd>
+<p>sent when the right mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code>
+<dd>
+<p>sent when the right mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_INSERTED</code>
+<dd>
+<p>sent after text is inserted into the text buffer; the message data is a reference to an FXTextChange instance.</p>
+</dd><dt><code>SEL_DELETED</code>
+<dd>
+<p>sent after text is removed from the text buffer; the message data is a reference to an FXTextChange instance.</p>
+</dd><dt><code>SEL_REPLACED</code>
+<dd>
+<p>sent after some text is replaced in the text buffer; the message data is a reference to an FXTextChange instance.</p>
+</dd><dt><code>SEL_CHANGED</code>
+<dd>
+<p>sent when the contents of the text buffer change in any way; the message data is an integer indicating the cursor position.</p>
+</dd><dt><code>SEL_SELECTED</code>
+<dd>
+<p>sent after text is selected; the message data is a two-element array indicating the starting position of the selected text and the number of characters selected.</p>
+</dd><dt><code>SEL_DESELECTED</code>
+<dd>
+<p>sent before text is deselected; the message data is a two-element array indicating the starting position of the deselected text and the number of characters deselected.</p>
+</dd></dl>
+
+<h3 id="label-Text+widget+options">Text widget options</h3>
+<dl class="rdoc-list note-list"><dt><code>TEXT_READONLY</code>
+<dd>
+<p>Text is <em>not</em> editable</p>
+</dd><dt><code>TEXT_WORDWRAP</code>
+<dd>
+<p>Wrap at word breaks</p>
+</dd><dt><code>TEXT_OVERSTRIKE</code>
+<dd>
+<p>Overstrike mode</p>
+</dd><dt><code>TEXT_FIXEDWRAP</code>
+<dd>
+<p>Fixed wrap columns</p>
+</dd><dt><code>TEXT_NO_TABS</code>
+<dd>
+<p>Insert spaces for tabs</p>
+</dd><dt><code>TEXT_AUTOINDENT</code>
+<dd>
+<p>Autoindent</p>
+</dd><dt><code>TEXT_SHOWACTIVE</code>
+<dd>
+<p>Show active line</p>
+</dd><dt><code>TEXT_AUTOSCROLL</code>
+<dd>
+<p>Logging mode, keeping last line visible</p>
+</dd></dl>
+
+<h3 id="label-Selection+modes">Selection modes</h3>
+
+<p><code>SELECT_CHARS</code> <code>SELECT_WORDS</code> <code>SELECT_LINES</code></p>
+
+<h3 id="label-Text+styles">Text styles</h3>
+<dl class="rdoc-list note-list"><dt><code>STYLE_UNDERLINE</code>
+<dd>
+<p>underline text</p>
+</dd><dt><code>STYLE_STRIKEOUT</code>
+<dd>
+<p>strike out text</p>
+</dd><dt><code>STYLE_BOLD_</code>
+<dd>
+<p>bold text</p>
+</dd></dl>
+
+<h3 id="label-Message+identifiers">Message identifiers</h3>
+<dl class="rdoc-list note-list"><dt><code>ID_CURSOR_TOP</code>
+<dt><code>ID_CURSOR_BOTTOM</code>
+<dt><code>ID_CURSOR_HOME</code>
+<dt><code>ID_CURSOR_END</code>
+<dt><code>ID_CURSOR_RIGHT</code>
+<dt><code>ID_CURSOR_LEFT</code>
+<dt><code>ID_CURSOR_UP</code>
+<dt><code>ID_CURSOR_DOWN</code>
+<dt><code>ID_CURSOR_WORD_LEFT</code>
+<dt><code>ID_CURSOR_WORD_RIGHT</code>
+<dt><code>ID_CURSOR_PAGEDOWN</code>
+<dt><code>ID_CURSOR_PAGEUP</code>
+<dt><code>ID_CURSOR_SCRNTOP</code>
+<dt><code>ID_CURSOR_SCRNBTM</code>
+<dt><code>ID_CURSOR_SCRNCTR</code>
+<dt><code>ID_CURSOR_PAR_HOME</code>
+<dt><code>ID_CURSOR_PAR_END</code>
+<dt><code>ID_SCROLL_UP</code>
+<dt><code>ID_SCROLL_DOWN</code>
+<dt><code>ID_MARK</code>
+<dt><code>ID_EXTEND</code>
+<dt><code>ID_OVERST_STRING</code>
+<dt><code>ID_INSERT_STRING</code>
+<dt><code>ID_INSERT_NEWLINE</code>
+<dt><code>ID_INSERT_TAB</code>
+<dt><code>ID_CUT_SEL</code>
+<dt><code>ID_COPY_SEL</code>
+<dt><code>ID_PASTE_SEL</code>
+<dt><code>ID_DELETE_SEL</code>
+<dt><code>ID_SELECT_CHAR</code>
+<dt><code>ID_SELECT_WORD</code>
+<dt><code>ID_SELECT_LINE</code>
+<dt><code>ID_SELECT_ALL</code>
+<dt><code>ID_SELECT_MATCHING</code>
+<dt><code>ID_SELECT_BRACE</code>
+<dt><code>ID_SELECT_BRACK</code>
+<dt><code>ID_SELECT_PAREN</code>
+<dt><code>ID_SELECT_ANG</code>
+<dt><code>ID_DESELECT_ALL</code>
+<dt><code>ID_BACKSPACE</code>
+<dt><code>ID_BACKSPACE_WORD</code>
+<dt><code>ID_BACKSPACE_BOL</code>
+<dt><code>ID_DELETE</code>
+<dt><code>ID_DELETE_WORD</code>
+<dt><code>ID_DELETE_EOL</code>
+<dt><code>ID_DELETE_LINE</code>
+<dt><code>ID_TOGGLE_EDITABLE</code>
+<dt><code>ID_TOGGLE_OVERSTRIKE</code>
+<dt><code>ID_CURSOR_ROW</code>
+<dt><code>ID_CURSOR_COLUMN</code>
+<dt><code>ID_CLEAN_INDENT</code>
+<dt><code>ID_SHIFT_LEFT</code>
+<dt><code>ID_SHIFT_RIGHT</code>
+<dt><code>ID_SHIFT_TABLEFT</code>
+<dt><code>ID_SHIFT_TABRIGHT</code>
+<dt><code>ID_UPPER_CASE</code>
+<dt><code>ID_LOWER_CASE</code>
+<dt><code>ID_GOTO_MATCHING</code>
+<dt><code>ID_GOTO_SELECTED</code>
+<dt><code>ID_GOTO_LINE</code>
+<dt><code>ID_SEARCH_FORW_SEL</code>
+<dt><code>ID_SEARCH_BACK_SEL</code>
+<dt><code>ID_SEARCH</code>
+<dt><code>ID_REPLACE</code>
+<dt><code>ID_LEFT_BRACE</code>
+<dt><code>ID_LEFT_BRACK</code>
+<dt><code>ID_LEFT_PAREN</code>
+<dt><code>ID_LEFT_ANG</code>
+<dt><code>ID_RIGHT_BRACE</code>
+<dt><code>ID_RIGHT_BRACK</code>
+<dt><code>ID_RIGHT_PAREN</code>
+<dt><code>ID_RIGHT_ANG</code>
+<dt><code>ID_BLINK</code>
+<dt><code>ID_FLASH</code>
+<dd></dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="FXIrb.html" title="Fox::FXIrb (class)">FXIrb</a></span></p>
+</div>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#activeBackColor-instance_method" title="#activeBackColor (instance method)">#<strong>activeBackColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Active background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#anchorPos-instance_method" title="#anchorPos (instance method)">#<strong>anchorPos</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Anchor position [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barColor-instance_method" title="#barColor (instance method)">#<strong>barColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Bar color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barColumns-instance_method" title="#barColumns (instance method)">#<strong>barColumns</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Number of columns used for line numbers [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cursorCol-instance_method" title="#cursorCol (instance method)">#<strong>cursorCol</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Cursor column [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cursorColor-instance_method" title="#cursorColor (instance method)">#<strong>cursorColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Cursor color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cursorPos-instance_method" title="#cursorPos (instance method)">#<strong>cursorPos</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Cursor position [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cursorRow-instance_method" title="#cursorRow (instance method)">#<strong>cursorRow</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Cursor row [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delimiters-instance_method" title="#delimiters (instance method)">#<strong>delimiters</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Word delimiters [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#editable=-instance_method" title="#editable= (instance method)">#<strong>editable</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+      <span class="note title writeonly">writeonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether text is editable [Boolean].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#font-instance_method" title="#font (instance method)">#<strong>font</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Text font <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">FXFont</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#helpText-instance_method" title="#helpText (instance method)">#<strong>helpText</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Status line help text [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hiliteBackColor-instance_method" title="#hiliteBackColor (instance method)">#<strong>hiliteBackColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Highlight text background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hiliteMatchTime-instance_method" title="#hiliteMatchTime (instance method)">#<strong>hiliteMatchTime</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Brace and parenthesis match highlighting time, in milliseconds [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hiliteStyles-instance_method" title="#hiliteStyles (instance method)">#<strong>hiliteStyles</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Array of hilite styles [an Array of FXHiliteStyle instances].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hiliteTextColor-instance_method" title="#hiliteTextColor (instance method)">#<strong>hiliteTextColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Highlight text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#length-instance_method" title="#length (instance method)">#<strong>length</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The length of the text buffer [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#marginBottom-instance_method" title="#marginBottom (instance method)">#<strong>marginBottom</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Bottom margin [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#marginLeft-instance_method" title="#marginLeft (instance method)">#<strong>marginLeft</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Left margin [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#marginRight-instance_method" title="#marginRight (instance method)">#<strong>marginRight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Right margin [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#marginTop-instance_method" title="#marginTop (instance method)">#<strong>marginTop</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Top margin [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#modified=-instance_method" title="#modified= (instance method)">#<strong>modified</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+      <span class="note title writeonly">writeonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether text is modified [Boolean].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#numberColor-instance_method" title="#numberColor (instance method)">#<strong>numberColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Line number color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selBackColor-instance_method" title="#selBackColor (instance method)">#<strong>selBackColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Selected text background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selEndPos-instance_method" title="#selEndPos (instance method)">#<strong>selEndPos</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Selection end position [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selStartPos-instance_method" title="#selStartPos (instance method)">#<strong>selStartPos</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Selection start position [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selTextColor-instance_method" title="#selTextColor (instance method)">#<strong>selTextColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Selected text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#styled=-instance_method" title="#styled= (instance method)">#<strong>styled</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+      <span class="note title writeonly">writeonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether text is styled [Boolean].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tabColumns-instance_method" title="#tabColumns (instance method)">#<strong>tabColumns</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Tab columns [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#text-instance_method" title="#text (instance method)">#<strong>text</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The text buffer [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#textColor-instance_method" title="#textColor (instance method)">#<strong>textColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#textStyle-instance_method" title="#textStyle (instance method)">#<strong>textStyle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Text widget style [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tipText-instance_method" title="#tipText (instance method)">#<strong>tipText</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Tool tip message [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#visibleColumns-instance_method" title="#visibleColumns (instance method)">#<strong>visibleColumns</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Number of visible columns [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#visibleRows-instance_method" title="#visibleRows (instance method)">#<strong>visibleRows</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Number of visible rows [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wrapColumns-instance_method" title="#wrapColumns (instance method)">#<strong>wrapColumns</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Wrap columns [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXScrollArea.html" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXScrollArea.html#contentHeight-instance_method" title="Fox::FXScrollArea#contentHeight (method)">#contentHeight</a></span>, <span class='object_link'><a href="FXScrollArea.html#contentWidth-instance_method" title="Fox::FXScrollArea#contentWidth (method)">#contentWidth</a></span>, <span class='object_link'><a href="FXScrollArea.html#horizontalScrollBar-instance_method" title="Fox::FXScrollArea#horizontalScrollBar (method)">#horizontalScrollBar</a></span>, <span class='object_link'><a href="FXScrollArea.html#scrollStyle-instance_method" title="Fox::FXScrollArea#scrollStyle (method)">#scrollStyle</a></span>, <span class='object_link'><a href="FXScrollArea.html#verticalScrollBar-instance_method" title="Fox::FXScrollArea#verticalScrollBar (method)">#verticalScrollBar</a></span>, <span class='object_link'><a href="FXScrollArea.html#viewportHeight-instance_method" title="Fox::FXScrollArea#viewportHeight (method)">#viewportHeight</a></span>, <span class='object_link'><a href="FXScrollArea.html#viewportWidth-instance_method" title="Fox::FXScrollArea#viewportWidth (method)">#viewportWidth</a></span>, <span class='object_link'><a href="FXScrollArea.html#xPosition-instance_method" title="Fox::FXScrollArea#xPosition (method)">#xPosition</a></span>, <span class='object_link'><a href="FXScrollArea.html#yPosition-instance_method" title="Fox::FXScrollArea#yPosition (method)">#yPosition</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#accelTable-instance_method" title="Fox::FXWindow#accelTable (method)">#accelTable</a></span>, <span class='object_link'><a href="FXWindow.html#backColor-instance_method" title="Fox::FXWindow#backColor (method)">#backColor</a></span>, <span class='object_link'><a href="FXWindow.html#defaultCursor-instance_method" title="Fox::FXWindow#defaultCursor (method)">#defaultCursor</a></span>, <span class='object_link'><a href="FXWindow.html#dragCursor-instance_method" title="Fox::FXWindow#dragCursor (method)">#dragCursor</a></span>, <span class='object_link'><a href="FXWindow.html#first-instance_method" title="Fox::FXWindow#first (method)">#first</a></span>, <span class='object_link'><a href="FXWindow.html#focus-instance_method" title="Fox::FXWindow#focus (method)">#focus</a></span>, <span class='object_link'><a href="FXWindow.html#key-instance_method" title="Fox::FXWindow#key (method)">#key</a></span>, <span class='object_link'><a href="FXWindow.html#last-instance_method" title="Fox::FXWindow#last (method)">#last</a></span>, <span class='object_link'><a href="FXWindow.html#layoutHints-instance_method" title="Fox::FXWindow#layoutHints (method)">#layoutHints</a></span>, <span class='object_link'><a href="FXWindow.html#next-instance_method" title="Fox::FXWindow#next (method)">#next</a></span>, <span class='object_link'><a href="FXWindow.html#numChildren-instance_method" title="Fox::FXWindow#numChildren (method)">#numChildren</a></span>, <span class='object_link'><a href="FXWindow.html#owner-instance_method" title="Fox::FXWindow#owner (method)">#owner</a></span>, <span class='object_link'><a href="FXWindow.html#parent-instance_method" title="Fox::FXWindow#parent (method)">#parent</a></span>, <span class='object_link'><a href="FXWindow.html#prev-instance_method" title="Fox::FXWindow#prev (method)">#prev</a></span>, <span class='object_link'><a href="FXWindow.html#root-instance_method" title="Fox::FXWindow#root (method)">#root</a></span>, <span class='object_link'><a href="FXWindow.html#selector-instance_method" title="Fox::FXWindow#selector (method)">#selector</a></span>, <span class='object_link'><a href="FXWindow.html#shell-instance_method" title="Fox::FXWindow#shell (method)">#shell</a></span>, <span class='object_link'><a href="FXWindow.html#target-instance_method" title="Fox::FXWindow#target (method)">#target</a></span>, <span class='object_link'><a href="FXWindow.html#x-instance_method" title="Fox::FXWindow#x (method)">#x</a></span>, <span class='object_link'><a href="FXWindow.html#y-instance_method" title="Fox::FXWindow#y (method)">#y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#height-instance_method" title="Fox::FXDrawable#height (method)">#height</a></span>, <span class='object_link'><a href="FXDrawable.html#visual-instance_method" title="Fox::FXDrawable#visual (method)">#visual</a></span>, <span class='object_link'><a href="FXDrawable.html#width-instance_method" title="Fox::FXDrawable#width (method)">#width</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#appendStyledText-instance_method" title="#appendStyledText (instance method)">#<strong>appendStyledText</strong>(text, style = 0, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Append <em>text</em> to the end of the text buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#appendText-instance_method" title="#appendText (instance method)">#<strong>appendText</strong>(text, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Append <em>text</em> to the end of the text buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#changeStyle-instance_method" title="#changeStyle (instance method)">#<strong>changeStyle</strong>(pos, style)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change the style of text range at position <em>pos</em> in the text buffer to <em>style</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#countCols-instance_method" title="#countCols (instance method)">#<strong>countCols</strong>(start, end_)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Count number of columns; <em>start</em> should be on a row start.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#countLines-instance_method" title="#countLines (instance method)">#<strong>countLines</strong>(start, end_)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Count number of newlines.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#countRows-instance_method" title="#countRows (instance method)">#<strong>countRows</strong>(start, end_)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Count number of rows; <em>start</em> should be on a row start.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dec-instance_method" title="#dec (instance method)">#<strong>dec</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Retreat to the previous valid UTF8 character start.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#editable%3F-instance_method" title="#editable? (instance method)">#<strong>editable?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if text is editable.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#extendSelection-instance_method" title="#extendSelection (instance method)">#<strong>extendSelection</strong>(pos, textSelectionMode = SELECT_CHARS, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Extend selection to <em>pos</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#extractStyle-instance_method" title="#extractStyle (instance method)">#<strong>extractStyle</strong>(pos, n)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Extract <em>n</em> bytes of style info from position <em>pos</em> in the style buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#extractText-instance_method" title="#extractText (instance method)">#<strong>extractText</strong>(pos, n)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Extract <em>n</em> bytes of text from position <em>pos</em> in the text buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#findText-instance_method" title="#findText (instance method)">#<strong>findText</strong>(string, start = 0, flags = SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Search for <em>string</em> in text buffer, and return the extent of the string as a two-element array of arrays.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getBottomLine-instance_method" title="#getBottomLine (instance method)">#<strong>getBottomLine</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the position of the bottom line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getByte-instance_method" title="#getByte (instance method)">#<strong>getByte</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get character at position <em>pos</em> in text buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getChar-instance_method" title="#getChar (instance method)">#<strong>getChar</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get wide character at position <em>pos</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getCharLen-instance_method" title="#getCharLen (instance method)">#<strong>getCharLen</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get length of wide character at position <em>pos</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getPosAt-instance_method" title="#getPosAt (instance method)">#<strong>getPosAt</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return text position at given visible (<em>x</em>, <em>y</em>) coordinate.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getStyle-instance_method" title="#getStyle (instance method)">#<strong>getStyle</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get style at position <em>pos</em> in style buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getTopLine-instance_method" title="#getTopLine (instance method)">#<strong>getTopLine</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return position of top line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inc-instance_method" title="#inc (instance method)">#<strong>inc</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Advance to the next valid UTF8 character start.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(p, target = nil, selector = 0, opts = 0, x = 0, y = 0, width = 0, height = 0, padLeft = 3, padRight = 3, padTop = 2, padBottom = 2)  &#x21d2; FXText </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return an initialized FXText instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#insertStyledText-instance_method" title="#insertStyledText (instance method)">#<strong>insertStyledText</strong>(pos, text, style = 0, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Insert <em>text</em> at position <em>pos</em> in the text buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#insertText-instance_method" title="#insertText (instance method)">#<strong>insertText</strong>(pos, text, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Insert <em>text</em> at position <em>pos</em> in the text buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#killHighlight-instance_method" title="#killHighlight (instance method)">#<strong>killHighlight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Unhighlight the text.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#killSelection-instance_method" title="#killSelection (instance method)">#<strong>killSelection</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Kill the selection.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#leftWord-instance_method" title="#leftWord (instance method)">#<strong>leftWord</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return end of previous word.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lineEnd-instance_method" title="#lineEnd (instance method)">#<strong>lineEnd</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return position of end of line containing position <em>pos</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lineStart-instance_method" title="#lineStart (instance method)">#<strong>lineStart</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return position of beginning of line containing position <em>pos</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#makePositionVisible-instance_method" title="#makePositionVisible (instance method)">#<strong>makePositionVisible</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Scroll text to make the given position visible.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#modified%3F-instance_method" title="#modified? (instance method)">#<strong>modified?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if text was modified.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nextLine-instance_method" title="#nextLine (instance method)">#<strong>nextLine</strong>(pos, nl = 1)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return start of next line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#nextRow-instance_method" title="#nextRow (instance method)">#<strong>nextRow</strong>(pos, nr = 1)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return start of next row.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#numRows-instance_method" title="#numRows (instance method)">#<strong>numRows</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return number of rows in buffer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#overstrike=-instance_method" title="#overstrike= (instance method)">#<strong>overstrike=</strong>(os)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set overstrike mode to <code>true</code> or <code>false</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#overstrike%3F-instance_method" title="#overstrike? (instance method)">#<strong>overstrike?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if overstrike mode is activated.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#positionSelected%3F-instance_method" title="#positionSelected? (instance method)">#<strong>positionSelected?</strong>(pos)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if position <em>pos</em> is selected.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#positionVisible%3F-instance_method" title="#positionVisible? (instance method)">#<strong>positionVisible?</strong>(pos)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if position <em>pos</em> is fully visible.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prevLine-instance_method" title="#prevLine (instance method)">#<strong>prevLine</strong>(pos, nl = 1)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return start of previous line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prevRow-instance_method" title="#prevRow (instance method)">#<strong>prevRow</strong>(pos, nr = 1)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return start of previous row.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#removeText-instance_method" title="#removeText (instance method)">#<strong>removeText</strong>(pos, n, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Remove <em>n</em> characters of text at position <em>pos</em> in the buffer If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the text widget&#39;s message target before the text is removed and a <code>SEL_CHANGED</code> message is sent after the change occurs.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replaceStyledText-instance_method" title="#replaceStyledText (instance method)">#<strong>replaceStyledText</strong>(pos, m, text, style = 0, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Replace the <em>m</em> characters at <em>pos</em> with <em>text</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replaceText-instance_method" title="#replaceText (instance method)">#<strong>replaceText</strong>(pos, m, text, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Replace the <em>m</em> characters at <em>pos</em> with <em>text</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightWord-instance_method" title="#rightWord (instance method)">#<strong>rightWord</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return begin of next word.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rowEnd-instance_method" title="#rowEnd (instance method)">#<strong>rowEnd</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return row end.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rowStart-instance_method" title="#rowStart (instance method)">#<strong>rowStart</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return row start.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selectAll-instance_method" title="#selectAll (instance method)">#<strong>selectAll</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Select all text.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setBottomLine-instance_method" title="#setBottomLine (instance method)">#<strong>setBottomLine</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Make line containing <em>pos</em> the bottom line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setCenterLine-instance_method" title="#setCenterLine (instance method)">#<strong>setCenterLine</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Make line containing <em>pos</em> the center line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setCursorCol-instance_method" title="#setCursorCol (instance method)">#<strong>setCursorCol</strong>(col, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set cursor column.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setCursorPos-instance_method" title="#setCursorPos (instance method)">#<strong>setCursorPos</strong>(pos, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set cursor position.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setCursorRow-instance_method" title="#setCursorRow (instance method)">#<strong>setCursorRow</strong>(row, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set cursor row.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setHighlight-instance_method" title="#setHighlight (instance method)">#<strong>setHighlight</strong>(pos, len)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Highlight <em>len</em> characters starting at position <em>pos</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setSelection-instance_method" title="#setSelection (instance method)">#<strong>setSelection</strong>(pos, len, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Select <em>len</em> characters starting at position <em>pos</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setStyledText-instance_method" title="#setStyledText (instance method)">#<strong>setStyledText</strong>(text, style = 0, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change the text in the buffer to new text If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is set.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setText-instance_method" title="#setText (instance method)">#<strong>setText</strong>(text, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change the text If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is set.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setTopLine-instance_method" title="#setTopLine (instance method)">#<strong>setTopLine</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Make line containing <em>pos</em> the top line.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shiftText-instance_method" title="#shiftText (instance method)">#<strong>shiftText</strong>(startPos, endPos, amount, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Shift block of lines from position <em>startPos</em> up to <em>endPos</em> by given <em>amount</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#styled%3F-instance_method" title="#styled? (instance method)">#<strong>styled?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if styled text.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">#<strong>to_s</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the text buffer&#39;s value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validPos-instance_method" title="#validPos (instance method)">#<strong>validPos</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return validated UTF8 character start position.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wordEnd-instance_method" title="#wordEnd (instance method)">#<strong>wordEnd</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return end of word.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wordStart-instance_method" title="#wordStart (instance method)">#<strong>wordStart</strong>(pos)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return begin of word.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXScrollArea.html" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXScrollArea.html#horizontalScrollable%3F-instance_method" title="Fox::FXScrollArea#horizontalScrollable? (method)">#horizontalScrollable?</a></span>, <span class='object_link'><a href="FXScrollArea.html#position-instance_method" title="Fox::FXScrollArea#position (method)">#position</a></span>, <span class='object_link'><a href="FXScrollArea.html#scrollCorner-instance_method" title="Fox::FXScrollArea#scrollCorner (method)">#scrollCorner</a></span>, <span class='object_link'><a href="FXScrollArea.html#setPosition-instance_method" title="Fox::FXScrollArea#setPosition (method)">#setPosition</a></span>, <span class='object_link'><a href="FXScrollArea.html#verticalScrollable%3F-instance_method" title="Fox::FXScrollArea#verticalScrollable? (method)">#verticalScrollable?</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXComposite.html#maxChildHeight-instance_method" title="Fox::FXComposite#maxChildHeight (method)">#maxChildHeight</a></span>, <span class='object_link'><a href="FXComposite.html#maxChildWidth-instance_method" title="Fox::FXComposite#maxChildWidth (method)">#maxChildWidth</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#acceptDrop-instance_method" title="Fox::FXWindow#acceptDrop (method)">#acceptDrop</a></span>, <span class='object_link'><a href="FXWindow.html#acquireClipboard-instance_method" title="Fox::FXWindow#acquireClipboard (method)">#acquireClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#acquireSelection-instance_method" title="Fox::FXWindow#acquireSelection (method)">#acquireSelection</a></span>, <span class='object_link'><a href="FXWindow.html#active%3F-instance_method" title="Fox::FXWindow#active? (method)">#active?</a></span>, <span class='object_link'><a href="FXWindow.html#addHotKey-instance_method" title="Fox::FXWindow#addHotKey (method)">#addHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-class_method" title="Fox::FXWindow.after? (method)">after?</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-instance_method" title="Fox::FXWindow#after? (method)">#after?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-class_method" title="Fox::FXWindow.before? (method)">before?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-instance_method" title="Fox::FXWindow#before? (method)">#before?</a></span>, <span class='object_link'><a href="FXWindow.html#beginDrag-instance_method" title="Fox::FXWindow#beginDrag (method)">#beginDrag</a></span>, <span class='object_link'><a href="FXWindow.html#canFocus%3F-instance_method" title="Fox::FXWindow#canFocus? (method)">#canFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#changeFocus-instance_method" title="Fox::FXWindow#changeFocus (method)">#changeFocus</a></span>, <span class='object_link'><a href="FXWindow.html#childAtIndex-instance_method" title="Fox::FXWindow#childAtIndex (method)">#childAtIndex</a></span>, <span class='object_link'><a href="FXWindow.html#childOf%3F-instance_method" title="Fox::FXWindow#childOf? (method)">#childOf?</a></span>, <span class='object_link'><a href="FXWindow.html#children-instance_method" title="Fox::FXWindow#children (method)">#children</a></span>, <span class='object_link'><a href="FXWindow.html#clearDragRectangle-instance_method" title="Fox::FXWindow#clearDragRectangle (method)">#clearDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#clearShape-instance_method" title="Fox::FXWindow#clearShape (method)">#clearShape</a></span>, <span class='object_link'><a href="FXWindow.html#colorType-class_method" title="Fox::FXWindow.colorType (method)">colorType</a></span>, <span class='object_link'><a href="FXWindow.html#colorTypeName-class_method" title="Fox::FXWindow.colorTypeName (method)">colorTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#commonAncestor-class_method" title="Fox::FXWindow.commonAncestor (method)">commonAncestor</a></span>, <span class='object_link'><a href="FXWindow.html#composeContext-instance_method" title="Fox::FXWindow#composeContext (method)">#composeContext</a></span>, <span class='object_link'><a href="FXWindow.html#composite%3F-instance_method" title="Fox::FXWindow#composite? (method)">#composite?</a></span>, <span class='object_link'><a href="FXWindow.html#contains%3F-instance_method" title="Fox::FXWindow#contains? (method)">#contains?</a></span>, <span class='object_link'><a href="FXWindow.html#containsChild%3F-instance_method" title="Fox::FXWindow#containsChild? (method)">#containsChild?</a></span>, <span class='object_link'><a href="FXWindow.html#create-instance_method" title="Fox::FXWindow#create (method)">#create</a></span>, <span class='object_link'><a href="FXWindow.html#createComposeContext-instance_method" title="Fox::FXWindow#createComposeContext (method)">#createComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#cursorPosition-instance_method" title="Fox::FXWindow#cursorPosition (method)">#cursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#default%3F-instance_method" title="Fox::FXWindow#default? (method)">#default?</a></span>, <span class='object_link'><a href="FXWindow.html#defaultHeight-instance_method" title="Fox::FXWindow#defaultHeight (method)">#defaultHeight</a></span>, <span class='object_link'><a href="FXWindow.html#defaultWidth-instance_method" title="Fox::FXWindow#defaultWidth (method)">#defaultWidth</a></span>, <span class='object_link'><a href="FXWindow.html#deleteType-class_method" title="Fox::FXWindow.deleteType (method)">deleteType</a></span>, <span class='object_link'><a href="FXWindow.html#deleteTypeName-class_method" title="Fox::FXWindow.deleteTypeName (method)">deleteTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#destroy-instance_method" title="Fox::FXWindow#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXWindow.html#destroyComposeContext-instance_method" title="Fox::FXWindow#destroyComposeContext (method)">#destroyComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#detach-instance_method" title="Fox::FXWindow#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXWindow.html#didAccept-instance_method" title="Fox::FXWindow#didAccept (method)">#didAccept</a></span>, <span class='object_link'><a href="FXWindow.html#disable-instance_method" title="Fox::FXWindow#disable (method)">#disable</a></span>, <span class='object_link'><a href="FXWindow.html#doesSaveUnder%3F-instance_method" title="Fox::FXWindow#doesSaveUnder? (method)">#doesSaveUnder?</a></span>, <span class='object_link'><a href="FXWindow.html#dragging%3F-instance_method" title="Fox::FXWindow#dragging? (method)">#dragging?</a></span>, <span class='object_link'><a href="FXWindow.html#dropDisable-instance_method" title="Fox::FXWindow#dropDisable (method)">#dropDisable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnable-instance_method" title="Fox::FXWindow#dropEnable (method)">#dropEnable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnabled%3F-instance_method" title="Fox::FXWindow#dropEnabled? (method)">#dropEnabled?</a></span>, <span class='object_link'><a href="FXWindow.html#dropFinished-instance_method" title="Fox::FXWindow#dropFinished (method)">#dropFinished</a></span>, <span class='object_link'><a href="FXWindow.html#dropTarget%3F-instance_method" title="Fox::FXWindow#dropTarget? (method)">#dropTarget?</a></span>, <span class='object_link'><a href="FXWindow.html#each_child-instance_method" title="Fox::FXWindow#each_child (method)">#each_child</a></span>, <span class='object_link'><a href="FXWindow.html#each_child_recursive-instance_method" title="Fox::FXWindow#each_child_recursive (method)">#each_child_recursive</a></span>, <span class='object_link'><a href="FXWindow.html#enable-instance_method" title="Fox::FXWindow#enable (method)">#enable</a></span>, <span class='object_link'><a href="FXWindow.html#enabled%3F-instance_method" title="Fox::FXWindow#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="FXWindow.html#endDrag-instance_method" title="Fox::FXWindow#endDrag (method)">#endDrag</a></span>, <span class='object_link'><a href="FXWindow.html#forceRefresh-instance_method" title="Fox::FXWindow#forceRefresh (method)">#forceRefresh</a></span>, <span class='object_link'><a href="FXWindow.html#getChildAt-instance_method" title="Fox::FXWindow#getChildAt (method)">#getChildAt</a></span>, <span class='object_link'><a href="FXWindow.html#getDNDData-instance_method" title="Fox::FXWindow#getDNDData (method)">#getDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#getHeightForWidth-instance_method" title="Fox::FXWindow#getHeightForWidth (method)">#getHeightForWidth</a></span>, <span class='object_link'><a href="FXWindow.html#getWidthForHeight-instance_method" title="Fox::FXWindow#getWidthForHeight (method)">#getWidthForHeight</a></span>, <span class='object_link'><a href="FXWindow.html#grab-instance_method" title="Fox::FXWindow#grab (method)">#grab</a></span>, <span class='object_link'><a href="FXWindow.html#grabKeyboard-instance_method" title="Fox::FXWindow#grabKeyboard (method)">#grabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#grabbed%3F-instance_method" title="Fox::FXWindow#grabbed? (method)">#grabbed?</a></span>, <span class='object_link'><a href="FXWindow.html#grabbedKeyboard%3F-instance_method" title="Fox::FXWindow#grabbedKeyboard? (method)">#grabbedKeyboard?</a></span>, <span class='object_link'><a href="FXWindow.html#handleDrag-instance_method" title="Fox::FXWindow#handleDrag (method)">#handleDrag</a></span>, <span class='object_link'><a href="FXWindow.html#hasClipboard%3F-instance_method" title="Fox::FXWindow#hasClipboard? (method)">#hasClipboard?</a></span>, <span class='object_link'><a href="FXWindow.html#hasFocus%3F-instance_method" title="Fox::FXWindow#hasFocus? (method)">#hasFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#hasSelection%3F-instance_method" title="Fox::FXWindow#hasSelection? (method)">#hasSelection?</a></span>, <span class='object_link'><a href="FXWindow.html#height-instance_method" title="Fox::FXWindow#height (method)">#height</a></span>, <span class='object_link'><a href="FXWindow.html#height=-instance_method" title="Fox::FXWindow#height= (method)">#height=</a></span>, <span class='object_link'><a href="FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">#hide</a></span>, <span class='object_link'><a href="FXWindow.html#imageType-class_method" title="Fox::FXWindow.imageType (method)">imageType</a></span>, <span class='object_link'><a href="FXWindow.html#inFocusChain%3F-instance_method" title="Fox::FXWindow#inFocusChain? (method)">#inFocusChain?</a></span>, <span class='object_link'><a href="FXWindow.html#indexOfChild-instance_method" title="Fox::FXWindow#indexOfChild (method)">#indexOfChild</a></span>, <span class='object_link'><a href="FXWindow.html#initial%3F-instance_method" title="Fox::FXWindow#initial? (method)">#initial?</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDAction-instance_method" title="Fox::FXWindow#inquireDNDAction (method)">#inquireDNDAction</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDTypes-instance_method" title="Fox::FXWindow#inquireDNDTypes (method)">#inquireDNDTypes</a></span>, <span class='object_link'><a href="FXWindow.html#killFocus-instance_method" title="Fox::FXWindow#killFocus (method)">#killFocus</a></span>, <span class='object_link'><a href="FXWindow.html#layout-instance_method" title="Fox::FXWindow#layout (method)">#layout</a></span>, <span class='object_link'><a href="FXWindow.html#linkAfter-instance_method" title="Fox::FXWindow#linkAfter (method)">#linkAfter</a></span>, <span class='object_link'><a href="FXWindow.html#linkBefore-instance_method" title="Fox::FXWindow#linkBefore (method)">#linkBefore</a></span>, <span class='object_link'><a href="FXWindow.html#lower-instance_method" title="Fox::FXWindow#lower (method)">#lower</a></span>, <span class='object_link'><a href="FXWindow.html#move-instance_method" title="Fox::FXWindow#move (method)">#move</a></span>, <span class='object_link'><a href="FXWindow.html#octetType-class_method" title="Fox::FXWindow.octetType (method)">octetType</a></span>, <span class='object_link'><a href="FXWindow.html#octetTypeName-class_method" title="Fox::FXWindow.octetTypeName (method)">octetTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#offeredDNDType%3F-instance_method" title="Fox::FXWindow#offeredDNDType? (method)">#offeredDNDType?</a></span>, <span class='object_link'><a href="FXWindow.html#position-instance_method" title="Fox::FXWindow#position (method)">#position</a></span>, <span class='object_link'><a href="FXWindow.html#raiseWindow-instance_method" title="Fox::FXWindow#raiseWindow (method)">#raiseWindow</a></span>, <span class='object_link'><a href="FXWindow.html#recalc-instance_method" title="Fox::FXWindow#recalc (method)">#recalc</a></span>, <span class='object_link'><a href="FXWindow.html#releaseClipboard-instance_method" title="Fox::FXWindow#releaseClipboard (method)">#releaseClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#releaseSelection-instance_method" title="Fox::FXWindow#releaseSelection (method)">#releaseSelection</a></span>, <span class='object_link'><a href="FXWindow.html#remHotKey-instance_method" title="Fox::FXWindow#remHotKey (method)">#remHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#removeChild-instance_method" title="Fox::FXWindow#removeChild (method)">#removeChild</a></span>, <span class='object_link'><a href="FXWindow.html#repaint-instance_method" title="Fox::FXWindow#repaint (method)">#repaint</a></span>, <span class='object_link'><a href="FXWindow.html#reparent-instance_method" title="Fox::FXWindow#reparent (method)">#reparent</a></span>, <span class='object_link'><a href="FXWindow.html#resize-instance_method" title="Fox::FXWindow#resize (method)">#resize</a></span>, <span class='object_link'><a href="FXWindow.html#scroll-instance_method" title="Fox::FXWindow#scroll (method)">#scroll</a></span>, <span class='object_link'><a href="FXWindow.html#setCursorPosition-instance_method" title="Fox::FXWindow#setCursorPosition (method)">#setCursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#setDNDData-instance_method" title="Fox::FXWindow#setDNDData (method)">#setDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#setDefault-instance_method" title="Fox::FXWindow#setDefault (method)">#setDefault</a></span>, <span class='object_link'><a href="FXWindow.html#setDragRectangle-instance_method" title="Fox::FXWindow#setDragRectangle (method)">#setDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#setFocus-instance_method" title="Fox::FXWindow#setFocus (method)">#setFocus</a></span>, <span class='object_link'><a href="FXWindow.html#setInitial-instance_method" title="Fox::FXWindow#setInitial (method)">#setInitial</a></span>, <span class='object_link'><a href="FXWindow.html#setShape-instance_method" title="Fox::FXWindow#setShape (method)">#setShape</a></span>, <span class='object_link'><a href="FXWindow.html#shell%3F-instance_method" title="Fox::FXWindow#shell? (method)">#shell?</a></span>, <span class='object_link'><a href="FXWindow.html#show-instance_method" title="Fox::FXWindow#show (method)">#show</a></span>, <span class='object_link'><a href="FXWindow.html#shown%3F-instance_method" title="Fox::FXWindow#shown? (method)">#shown?</a></span>, <span class='object_link'><a href="FXWindow.html#stringType-class_method" title="Fox::FXWindow.stringType (method)">stringType</a></span>, <span class='object_link'><a href="FXWindow.html#textType-class_method" title="Fox::FXWindow.textType (method)">textType</a></span>, <span class='object_link'><a href="FXWindow.html#textTypeName-class_method" title="Fox::FXWindow.textTypeName (method)">textTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#tr-instance_method" title="Fox::FXWindow#tr (method)">#tr</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesFrom-instance_method" title="Fox::FXWindow#translateCoordinatesFrom (method)">#translateCoordinatesFrom</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesTo-instance_method" title="Fox::FXWindow#translateCoordinatesTo (method)">#translateCoordinatesTo</a></span>, <span class='object_link'><a href="FXWindow.html#underCursor%3F-instance_method" title="Fox::FXWindow#underCursor? (method)">#underCursor?</a></span>, <span class='object_link'><a href="FXWindow.html#ungrab-instance_method" title="Fox::FXWindow#ungrab (method)">#ungrab</a></span>, <span class='object_link'><a href="FXWindow.html#ungrabKeyboard-instance_method" title="Fox::FXWindow#ungrabKeyboard (method)">#ungrabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#update-instance_method" title="Fox::FXWindow#update (method)">#update</a></span>, <span class='object_link'><a href="FXWindow.html#urilistType-class_method" title="Fox::FXWindow.urilistType (method)">urilistType</a></span>, <span class='object_link'><a href="FXWindow.html#urilistTypeName-class_method" title="Fox::FXWindow.urilistTypeName (method)">urilistTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf16Type-class_method" title="Fox::FXWindow.utf16Type (method)">utf16Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf16TypeName-class_method" title="Fox::FXWindow.utf16TypeName (method)">utf16TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf8Type-class_method" title="Fox::FXWindow.utf8Type (method)">utf8Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf8TypeName-class_method" title="Fox::FXWindow.utf8TypeName (method)">utf8TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#visible=-instance_method" title="Fox::FXWindow#visible= (method)">#visible=</a></span>, <span class='object_link'><a href="FXWindow.html#width-instance_method" title="Fox::FXWindow#width (method)">#width</a></span>, <span class='object_link'><a href="FXWindow.html#width=-instance_method" title="Fox::FXWindow#width= (method)">#width=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#resize-instance_method" title="Fox::FXDrawable#resize (method)">#resize</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#create-instance_method" title="Fox::FXId#create (method)">#create</a></span>, <span class='object_link'><a href="FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(p, target = nil, selector = 0, opts = 0, x = 0, y = 0, width = 0, height = 0, padLeft = 3, padRight = 3, padTop = 2, padBottom = 2)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXText (class)">FXText</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return an initialized FXText instance.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>p</code>
+<dd>
+<p>the parent window for this text widget <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
+</dd><dt><code>target</code>
+<dd>
+<p>the message target, if any, for this text widget <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span></p>
+</dd><dt><code>selector</code>
+<dd>
+<p>the message identifier for this text widget [Integer]</p>
+</dd><dt><code>opts</code>
+<dd>
+<p>text options [Integer]</p>
+</dd><dt><code>x</code>
+<dd>
+<p>initial x-position [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>initial y-position [Integer]</p>
+</dd><dt><code>width</code>
+<dd>
+<p>initial width [Integer]</p>
+</dd><dt><code>height</code>
+<dd>
+<p>initial height [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+324
+325</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 324</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_selector'>selector</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_padLeft'>padLeft</span><span class='op'>=</span><span class='int'>3</span><span class='comma'>,</span> <span class='id identifier rubyid_padRight'>padRight</span><span class='op'>=</span><span class='int'>3</span><span class='comma'>,</span> <span class='id identifier rubyid_padTop'>padTop</span><span class='op'>=</span><span class='int'>2</span><span class='comma'>,</span> <span class='id identifier rubyid_padBottom'>padBottom</span><span class='op'>=</span><span class='int'>2</span><span class='rparen'>)</span> <span class='comment'># :yields: theText
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="activeBackColor=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="activeBackColor-instance_method">
+  
+    #<strong>activeBackColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Active background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+251
+252
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 251</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_activeBackColor'>activeBackColor</span>
+  <span class='ivar'>@activeBackColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="anchorPos=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="anchorPos-instance_method">
+  
+    #<strong>anchorPos</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Anchor position [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+275
+276
+277</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 275</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_anchorPos'>anchorPos</span>
+  <span class='ivar'>@anchorPos</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="barColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="barColor-instance_method">
+  
+    #<strong>barColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Bar color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+260
+261
+262</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 260</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barColor'>barColor</span>
+  <span class='ivar'>@barColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="barColumns=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="barColumns-instance_method">
+  
+    #<strong>barColumns</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Number of columns used for line numbers [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+218
+219
+220</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 218</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barColumns'>barColumns</span>
+  <span class='ivar'>@barColumns</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="cursorCol=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cursorCol-instance_method">
+  
+    #<strong>cursorCol</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Cursor column [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+281
+282
+283</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 281</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cursorCol'>cursorCol</span>
+  <span class='ivar'>@cursorCol</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="cursorColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cursorColor-instance_method">
+  
+    #<strong>cursorColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Cursor color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+254
+255
+256</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 254</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cursorColor'>cursorColor</span>
+  <span class='ivar'>@cursorColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cursorPos-instance_method">
+  
+    #<strong>cursorPos</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Cursor position [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+284
+285
+286</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 284</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cursorPos'>cursorPos</span>
+  <span class='ivar'>@cursorPos</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="cursorRow=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cursorRow-instance_method">
+  
+    #<strong>cursorRow</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Cursor row [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+278
+279
+280</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 278</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cursorRow'>cursorRow</span>
+  <span class='ivar'>@cursorRow</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="delimiters=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="delimiters-instance_method">
+  
+    #<strong>delimiters</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Word delimiters [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delimiters'>delimiters</span>
+  <span class='ivar'>@delimiters</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="editable=-instance_method">
+  
+    #<strong>editable=</strong>(value)  &#x21d2; <tt>Object</tt>  <span class="extras">(writeonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether text is editable [Boolean]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 224</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_editable='>editable=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@editable</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="font=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="font-instance_method">
+  
+    #<strong>font</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Text font <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">Fox::FXFont</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+233
+234
+235</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 233</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_font'>font</span>
+  <span class='ivar'>@font</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="helpText=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="helpText-instance_method">
+  
+    #<strong>helpText</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Status line help text [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+263
+264
+265</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 263</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_helpText'>helpText</span>
+  <span class='ivar'>@helpText</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="hiliteBackColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hiliteBackColor-instance_method">
+  
+    #<strong>hiliteBackColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Highlight text background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+248
+249
+250</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 248</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hiliteBackColor'>hiliteBackColor</span>
+  <span class='ivar'>@hiliteBackColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="hiliteMatchTime=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hiliteMatchTime-instance_method">
+  
+    #<strong>hiliteMatchTime</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Brace and parenthesis match highlighting time, in milliseconds [Integer]. A <em>hiliteMatchTime</em> of 0 disables brace matching.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+305
+306
+307</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 305</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hiliteMatchTime'>hiliteMatchTime</span>
+  <span class='ivar'>@hiliteMatchTime</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="hiliteStyles=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hiliteStyles-instance_method">
+  
+    #<strong>hiliteStyles</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Array of hilite styles [an Array of FXHiliteStyle instances]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+308
+309
+310</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 308</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hiliteStyles'>hiliteStyles</span>
+  <span class='ivar'>@hiliteStyles</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="hiliteTextColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hiliteTextColor-instance_method">
+  
+    #<strong>hiliteTextColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Highlight text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+245
+246
+247</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 245</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hiliteTextColor'>hiliteTextColor</span>
+  <span class='ivar'>@hiliteTextColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="length-instance_method">
+  
+    #<strong>length</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The length of the text buffer [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+272
+273
+274</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 272</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_length'>length</span>
+  <span class='ivar'>@length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="marginBottom=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="marginBottom-instance_method">
+  
+    #<strong>marginBottom</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Bottom margin [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 203</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_marginBottom'>marginBottom</span>
+  <span class='ivar'>@marginBottom</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="marginLeft=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="marginLeft-instance_method">
+  
+    #<strong>marginLeft</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Left margin [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+206
+207
+208</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 206</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_marginLeft'>marginLeft</span>
+  <span class='ivar'>@marginLeft</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="marginRight=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="marginRight-instance_method">
+  
+    #<strong>marginRight</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Right margin [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+209
+210
+211</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 209</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_marginRight'>marginRight</span>
+  <span class='ivar'>@marginRight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="marginTop=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="marginTop-instance_method">
+  
+    #<strong>marginTop</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Top margin [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+200
+201
+202</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 200</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_marginTop'>marginTop</span>
+  <span class='ivar'>@marginTop</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="modified=-instance_method">
+  
+    #<strong>modified=</strong>(value)  &#x21d2; <tt>Object</tt>  <span class="extras">(writeonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether text is modified [Boolean]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+221
+222
+223</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 221</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_modified='>modified=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@modified</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="numberColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="numberColor-instance_method">
+  
+    #<strong>numberColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Line number color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+257
+258
+259</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 257</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_numberColor'>numberColor</span>
+  <span class='ivar'>@numberColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="selBackColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="selBackColor-instance_method">
+  
+    #<strong>selBackColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Selected text background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+239
+240
+241</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 239</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selBackColor'>selBackColor</span>
+  <span class='ivar'>@selBackColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="selEndPos-instance_method">
+  
+    #<strong>selEndPos</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Selection end position [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+290
+291
+292</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 290</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selEndPos'>selEndPos</span>
+  <span class='ivar'>@selEndPos</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="selStartPos-instance_method">
+  
+    #<strong>selStartPos</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Selection start position [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+287
+288
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 287</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selStartPos'>selStartPos</span>
+  <span class='ivar'>@selStartPos</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="selTextColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="selTextColor-instance_method">
+  
+    #<strong>selTextColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Selected text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+242
+243
+244</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 242</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selTextColor'>selTextColor</span>
+  <span class='ivar'>@selTextColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="styled=-instance_method">
+  
+    #<strong>styled=</strong>(value)  &#x21d2; <tt>Object</tt>  <span class="extras">(writeonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether text is styled [Boolean]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+227
+228
+229</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 227</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_styled='>styled=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@styled</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tabColumns=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tabColumns-instance_method">
+  
+    #<strong>tabColumns</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Tab columns [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+215
+216
+217</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 215</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tabColumns'>tabColumns</span>
+  <span class='ivar'>@tabColumns</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="text=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="text-instance_method">
+  
+    #<strong>text</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The text buffer [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+269
+270
+271</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 269</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_text'>text</span>
+  <span class='ivar'>@text</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="textColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="textColor-instance_method">
+  
+    #<strong>textColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+236
+237
+238</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 236</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_textColor'>textColor</span>
+  <span class='ivar'>@textColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="textStyle=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="textStyle-instance_method">
+  
+    #<strong>textStyle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Text widget style [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+293
+294
+295</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 293</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_textStyle'>textStyle</span>
+  <span class='ivar'>@textStyle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tipText=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tipText-instance_method">
+  
+    #<strong>tipText</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Tool tip message [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+266
+267
+268</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 266</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tipText'>tipText</span>
+  <span class='ivar'>@tipText</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="visibleColumns=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="visibleColumns-instance_method">
+  
+    #<strong>visibleColumns</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Number of visible columns [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+299
+300
+301</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 299</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_visibleColumns'>visibleColumns</span>
+  <span class='ivar'>@visibleColumns</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="visibleRows=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="visibleRows-instance_method">
+  
+    #<strong>visibleRows</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Number of visible rows [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+296
+297
+298</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 296</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_visibleRows'>visibleRows</span>
+  <span class='ivar'>@visibleRows</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="wrapColumns=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="wrapColumns-instance_method">
+  
+    #<strong>wrapColumns</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Wrap columns [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212
+213
+214</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 212</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_wrapColumns'>wrapColumns</span>
+  <span class='ivar'>@wrapColumns</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="appendStyledText-instance_method">
+  
+    #<strong>appendStyledText</strong>(text, style = 0, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Append <em>text</em> to the end of the text buffer. If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is added.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+387</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 387</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_appendStyledText'>appendStyledText</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_style'>style</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="appendText-instance_method">
+  
+    #<strong>appendText</strong>(text, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Append <em>text</em> to the end of the text buffer. If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is added.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+381</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 381</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_appendText'>appendText</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="changeStyle-instance_method">
+  
+    #<strong>changeStyle</strong>(pos, style)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change the style of text range at position <em>pos</em> in the text buffer to <em>style</em>. Here, <em>style</em> an array of bytes indicating the new style.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+410</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 410</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_changeStyle'>changeStyle</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_style'>style</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="countCols-instance_method">
+  
+    #<strong>countCols</strong>(start, end_)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Count number of columns; <em>start</em> should be on a row start</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+465</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 465</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_countCols'>countCols</span><span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_end_'>end_</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="countLines-instance_method">
+  
+    #<strong>countLines</strong>(start, end_)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Count number of newlines</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+468</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 468</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_countLines'>countLines</span><span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_end_'>end_</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="countRows-instance_method">
+  
+    #<strong>countRows</strong>(start, end_)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Count number of rows; <em>start</em> should be on a row start</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+462</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 462</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_countRows'>countRows</span><span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_end_'>end_</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dec-instance_method">
+  
+    #<strong>dec</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Retreat to the previous valid UTF8 character start</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+510</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 510</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dec'>dec</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="editable?-instance_method">
+  
+    #<strong>editable?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if text is editable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+334</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 334</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_editable?'>editable?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="extendSelection-instance_method">
+  
+    #<strong>extendSelection</strong>(pos, textSelectionMode = SELECT_CHARS, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Extend selection to <em>pos</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the text widget&#39;s message target before any previously selected text is deselected, then a <code>SEL_SELECTED</code> message is sent after the new text is selected.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+564</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 564</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_extendSelection'>extendSelection</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_textSelectionMode'>textSelectionMode</span><span class='op'>=</span><span class='const'>SELECT_CHARS</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="extractStyle-instance_method">
+  
+    #<strong>extractStyle</strong>(pos, n)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Extract <em>n</em> bytes of style info from position <em>pos</em> in the style buffer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+361</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 361</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_extractStyle'>extractStyle</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="extractText-instance_method">
+  
+    #<strong>extractText</strong>(pos, n)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Extract <em>n</em> bytes of text from position <em>pos</em> in the text buffer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+358</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 358</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_extractText'>extractText</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="findText-instance_method">
+  
+    #<strong>findText</strong>(string, start = 0, flags = SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Search for <em>string</em> in text buffer, and return the extent of the string as a two-element array of arrays. The first array contains the beginning index (or indices if <code>SEARCH_REGEX</code>) and the second array contains the ending index (or indices if <code>SEARCH_REGEX</code>) of the first match. The search starts from the given <em>start</em> position, scans forward (<code>SEARCH_FORWARD</code>) or backward (<code>SEARCH_BACKWARD</code>), and wraps around if <code>SEARCH_WRAP</code> has been specified.  The search type is either a plain search (<code>SEARCH_EXACT</code>), case insensitive search (<code>SEARCH_IGNORECASE</code>), or regular expression search (<code>SEARCH_REGEX</code>).</p>
+
+<p>For regular expression searches, the found regex match begin and end is returned at index 0 and captures are returned as entries starting at index 1 in both beginning and ending arrays.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+450</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 450</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_findText'>findText</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='id identifier rubyid_start'>start</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_flags'>flags</span><span class='op'>=</span><span class='const'>SEARCH_FORWARD</span><span class='op'>|</span><span class='const'>SEARCH_WRAP</span><span class='op'>|</span><span class='const'>SEARCH_EXACT</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getBottomLine-instance_method">
+  
+    #<strong>getBottomLine</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the position of the bottom line</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+525</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 525</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getBottomLine'>getBottomLine</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getByte-instance_method">
+  
+    #<strong>getByte</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get character at position <em>pos</em> in text buffer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+346</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 346</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getByte'>getByte</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getChar-instance_method">
+  
+    #<strong>getChar</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get wide character at position <em>pos</em>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+349</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 349</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getChar'>getChar</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getCharLen-instance_method">
+  
+    #<strong>getCharLen</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get length of wide character at position <em>pos</em>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+352</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 352</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getCharLen'>getCharLen</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getPosAt-instance_method">
+  
+    #<strong>getPosAt</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return text position at given visible (<em>x</em>, <em>y</em>) coordinate</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+459</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 459</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getPosAt'>getPosAt</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getStyle-instance_method">
+  
+    #<strong>getStyle</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get style at position <em>pos</em> in style buffer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+355</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 355</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getStyle'>getStyle</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getTopLine-instance_method">
+  
+    #<strong>getTopLine</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return position of top line</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+519</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 519</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getTopLine'>getTopLine</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inc-instance_method">
+  
+    #<strong>inc</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Advance to the next valid UTF8 character start</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+513</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 513</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inc'>inc</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="insertStyledText-instance_method">
+  
+    #<strong>insertStyledText</strong>(pos, text, style = 0, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Insert <em>text</em> at position <em>pos</em> in the text buffer. If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is inserted.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+399</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 399</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_insertStyledText'>insertStyledText</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_style'>style</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="insertText-instance_method">
+  
+    #<strong>insertText</strong>(pos, text, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Insert <em>text</em> at position <em>pos</em> in the text buffer. If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is inserted.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+393</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 393</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_insertText'>insertText</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="killHighlight-instance_method">
+  
+    #<strong>killHighlight</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Unhighlight the text</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+575</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 575</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_killHighlight'>killHighlight</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="killSelection-instance_method">
+  
+    #<strong>killSelection</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Kill the selection. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the text widget&#39;s message target before the text is deselected.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+569</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 569</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_killSelection'>killSelection</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftWord-instance_method">
+  
+    #<strong>leftWord</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return end of previous word</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+495</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 495</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_leftWord'>leftWord</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lineEnd-instance_method">
+  
+    #<strong>lineEnd</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return position of end of line containing position <em>pos</em></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+474</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 474</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lineEnd'>lineEnd</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lineStart-instance_method">
+  
+    #<strong>lineStart</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return position of beginning of line containing position <em>pos</em></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+471</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 471</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lineStart'>lineStart</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="makePositionVisible-instance_method">
+  
+    #<strong>makePositionVisible</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Scroll text to make the given position visible</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+578</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 578</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_makePositionVisible'>makePositionVisible</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="modified?-instance_method">
+  
+    #<strong>modified?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if text was modified</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+331</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 331</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_modified?'>modified?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="nextLine-instance_method">
+  
+    #<strong>nextLine</strong>(pos, nl = 1)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return start of next line</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+477</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 477</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nextLine'>nextLine</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_nl'>nl</span><span class='op'>=</span><span class='int'>1</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="nextRow-instance_method">
+  
+    #<strong>nextRow</strong>(pos, nr = 1)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return start of next row</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+489</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 489</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nextRow'>nextRow</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_nr'>nr</span><span class='op'>=</span><span class='int'>1</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="numRows-instance_method">
+  
+    #<strong>numRows</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return number of rows in buffer.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+581</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 581</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_numRows'>numRows</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="overstrike=-instance_method">
+  
+    #<strong>overstrike=</strong>(os)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set overstrike mode to <code>true</code> or <code>false</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+337</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 337</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_overstrike='>overstrike=</span><span class='lparen'>(</span><span class='id identifier rubyid_os'>os</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="overstrike?-instance_method">
+  
+    #<strong>overstrike?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if overstrike mode is activated.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+340</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 340</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_overstrike?'>overstrike?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="positionSelected?-instance_method">
+  
+    #<strong>positionSelected?</strong>(pos)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if position <em>pos</em> is selected</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+453</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 453</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_positionSelected?'>positionSelected?</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="positionVisible?-instance_method">
+  
+    #<strong>positionVisible?</strong>(pos)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if position <em>pos</em> is fully visible</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+456</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 456</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_positionVisible?'>positionVisible?</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prevLine-instance_method">
+  
+    #<strong>prevLine</strong>(pos, nl = 1)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return start of previous line</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+480</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 480</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prevLine'>prevLine</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_nl'>nl</span><span class='op'>=</span><span class='int'>1</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prevRow-instance_method">
+  
+    #<strong>prevRow</strong>(pos, nr = 1)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return start of previous row</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+492</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 492</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prevRow'>prevRow</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_nr'>nr</span><span class='op'>=</span><span class='int'>1</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="removeText-instance_method">
+  
+    #<strong>removeText</strong>(pos, n, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Remove <em>n</em> characters of text at position <em>pos</em> in the buffer If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the text widget&#39;s message target before the text is removed and a <code>SEL_CHANGED</code> message is sent after the change occurs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+405</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 405</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_removeText'>removeText</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_n'>n</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="replaceStyledText-instance_method">
+  
+    #<strong>replaceStyledText</strong>(pos, m, text, style = 0, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Replace the <em>m</em> characters at <em>pos</em> with <em>text</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the text widget&#39;s message target before the old text is removed, and a <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> message is sent after the new text is inserted.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+375</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 375</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replaceStyledText'>replaceStyledText</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_style'>style</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="replaceText-instance_method">
+  
+    #<strong>replaceText</strong>(pos, m, text, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Replace the <em>m</em> characters at <em>pos</em> with <em>text</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the text widget&#39;s message target before the old text is removed, and a <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> message is sent after the new text is inserted.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+368</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 368</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replaceText'>replaceText</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightWord-instance_method">
+  
+    #<strong>rightWord</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return begin of next word</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+498</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 498</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rightWord'>rightWord</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rowEnd-instance_method">
+  
+    #<strong>rowEnd</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return row end</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+486</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 486</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rowEnd'>rowEnd</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rowStart-instance_method">
+  
+    #<strong>rowStart</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return row start</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+483</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 483</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rowStart'>rowStart</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="selectAll-instance_method">
+  
+    #<strong>selectAll</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Select all text. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the text widget&#39;s message target before any previously selected text is deselected, then a <code>SEL_SELECTED</code> message is sent after the new text is selected.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+550</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 550</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selectAll'>selectAll</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setBottomLine-instance_method">
+  
+    #<strong>setBottomLine</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Make line containing <em>pos</em> the bottom line</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+522</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 522</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setBottomLine'>setBottomLine</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setCenterLine-instance_method">
+  
+    #<strong>setCenterLine</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Make line containing <em>pos</em> the center line</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+528</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 528</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setCenterLine'>setCenterLine</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setCursorCol-instance_method">
+  
+    #<strong>setCursorCol</strong>(col, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set cursor column. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the text widget&#39;s message target after the change occurs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+538</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 538</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setCursorCol'>setCursorCol</span><span class='lparen'>(</span><span class='id identifier rubyid_col'>col</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setCursorPos-instance_method">
+  
+    #<strong>setCursorPos</strong>(pos, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set cursor position. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the text widget&#39;s message target after the change occurs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+543</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 543</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setCursorPos'>setCursorPos</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setCursorRow-instance_method">
+  
+    #<strong>setCursorRow</strong>(row, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set cursor row. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the text widget&#39;s message target after the change occurs.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+533</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 533</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setCursorRow'>setCursorRow</span><span class='lparen'>(</span><span class='id identifier rubyid_row'>row</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setHighlight-instance_method">
+  
+    #<strong>setHighlight</strong>(pos, len)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Highlight <em>len</em> characters starting at position <em>pos</em></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+572</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 572</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setHighlight'>setHighlight</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setSelection-instance_method">
+  
+    #<strong>setSelection</strong>(pos, len, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Select <em>len</em> characters starting at position <em>pos</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the text widget&#39;s message target before any previously selected text is deselected, then a <code>SEL_SELECTED</code> message is sent after the new text is selected.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+557</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 557</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setSelection'>setSelection</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_len'>len</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setStyledText-instance_method">
+  
+    #<strong>setStyledText</strong>(text, style = 0, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change the text in the buffer to new text If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is set.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+427</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 427</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setStyledText'>setStyledText</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_style'>style</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setText-instance_method">
+  
+    #<strong>setText</strong>(text, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change the text If <em>notify</em> is <code>true</code>, <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> messages are sent to the text widget&#39;s message target after the new text is set.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+421</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 421</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setText'>setText</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setTopLine-instance_method">
+  
+    #<strong>setTopLine</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Make line containing <em>pos</em> the top line</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+516</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 516</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setTopLine'>setTopLine</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shiftText-instance_method">
+  
+    #<strong>shiftText</strong>(startPos, endPos, amount, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Shift block of lines from position <em>startPos</em> up to <em>endPos</em> by given <em>amount</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the text widget&#39;s message target before the old text is removed, and a <code>SEL_INSERTED</code> and <code>SEL_CHANGED</code> message is sent after the new text is inserted.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+434</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 434</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shiftText'>shiftText</span><span class='lparen'>(</span><span class='id identifier rubyid_startPos'>startPos</span><span class='comma'>,</span> <span class='id identifier rubyid_endPos'>endPos</span><span class='comma'>,</span> <span class='id identifier rubyid_amount'>amount</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="styled?-instance_method">
+  
+    #<strong>styled?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if styled text</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+343</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 343</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_styled?'>styled?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_s-instance_method">
+  
+    #<strong>to_s</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the text buffer&#39;s value</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+328</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 328</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span><span class='semicolon'>;</span> <span class='id identifier rubyid_text'>text</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validPos-instance_method">
+  
+    #<strong>validPos</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return validated UTF8 character start position</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+507</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 507</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validPos'>validPos</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="wordEnd-instance_method">
+  
+    #<strong>wordEnd</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return end of word</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+504</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 504</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_wordEnd'>wordEnd</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="wordStart-instance_method">
+  
+    #<strong>wordStart</strong>(pos)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return begin of word</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+501</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXText.rb', line 501</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_wordStart'>wordStart</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:02:49 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXScrollArea
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXScrollArea";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXScrollArea</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXScrollArea
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></li>
+          
+            <li class="next">Fox::FXScrollArea</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXScrollArea.rb<span class="defines">,<br />
+  lib/fox16/core.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The scroll area widget manages a content area and a viewport area through which the content is viewed.  When the content area becomes larger than the viewport area, scrollbars are placed to permit viewing of the entire content by scrolling the content. Depending on the mode, scrollbars may be displayed on an as-needed basis, always, or never. Normally, the scroll area&#39;s size and the content&#39;s size are independent; however, it is possible to disable scrolling in the horizontal (vertical) direction.  In this case, the content width (height) will influence the width (height) of the scroll area widget. For content which is time-consuming to repaint, continuous scrolling may be turned off.</p>
+
+<h3 id="label-Scrollbar+options">Scrollbar options</h3>
+<dl class="rdoc-list note-list"><dt><code>SCROLLERS_NORMAL</code>
+<dd>
+<p>Show the scrollbars when needed</p>
+</dd><dt><code>HSCROLLER_ALWAYS</code>
+<dd>
+<p>Always show horizontal scrollers</p>
+</dd><dt><code>HSCROLLER_NEVER</code>
+<dd>
+<p>Never show horizontal scrollers</p>
+</dd><dt><code>VSCROLLER_ALWAYS</code>
+<dd>
+<p>Always show vertical scrollers</p>
+</dd><dt><code>VSCROLLER_NEVER</code>
+<dd>
+<p>Never show vertical scrollers</p>
+</dd><dt><code>HSCROLLING_ON</code>
+<dd>
+<p>Horizontal scrolling turned on (default)</p>
+</dd><dt><code>HSCROLLING_OFF</code>
+<dd>
+<p>Horizontal scrolling turned off</p>
+</dd><dt><code>VSCROLLING_ON</code>
+<dd>
+<p>Vertical scrolling turned on (default)</p>
+</dd><dt><code>VSCROLLING_OFF</code>
+<dd>
+<p>Vertical scrolling turned off</p>
+</dd><dt><code>SCROLLERS_TRACK</code>
+<dd>
+<p>Scrollers track continuously for smooth scrolling</p>
+</dd><dt><code>SCROLLERS_DONT_TRACK</code>
+<dd>
+<p>Scrollers don&#39;t track continuously</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="FXBitmapView.html" title="Fox::FXBitmapView (class)">FXBitmapView</a></span>, <span class='object_link'><a href="FXFoldingList.html" title="Fox::FXFoldingList (class)">FXFoldingList</a></span>, <span class='object_link'><a href="FXIconList.html" title="Fox::FXIconList (class)">FXIconList</a></span>, <span class='object_link'><a href="FXImageView.html" title="Fox::FXImageView (class)">FXImageView</a></span>, <span class='object_link'><a href="FXList.html" title="Fox::FXList (class)">FXList</a></span>, <span class='object_link'><a href="FXRulerView.html" title="Fox::FXRulerView (class)">FXRulerView</a></span>, <span class='object_link'><a href="FXScintilla.html" title="Fox::FXScintilla (class)">FXScintilla</a></span>, <span class='object_link'><a href="FXScrollWindow.html" title="Fox::FXScrollWindow (class)">FXScrollWindow</a></span>, <span class='object_link'><a href="FXTable.html" title="Fox::FXTable (class)">FXTable</a></span>, <span class='object_link'><a href="FXText.html" title="Fox::FXText (class)">FXText</a></span>, <span class='object_link'><a href="FXTreeList.html" title="Fox::FXTreeList (class)">FXTreeList</a></span></p>
+</div>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contentHeight-instance_method" title="#contentHeight (instance method)">#<strong>contentHeight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Content height, in pixels [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contentWidth-instance_method" title="#contentWidth (instance method)">#<strong>contentWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Content width, in pixels [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#horizontalScrollBar-instance_method" title="#horizontalScrollBar (instance method)">#<strong>horizontalScrollBar</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Horizontal scrollbar <span class='object_link'><a href="FXScrollBar.html" title="Fox::FXScrollBar (class)">FXScrollBar</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#scrollStyle-instance_method" title="#scrollStyle (instance method)">#<strong>scrollStyle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Scroll style [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#verticalScrollBar-instance_method" title="#verticalScrollBar (instance method)">#<strong>verticalScrollBar</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Vertical scrollbar <span class='object_link'><a href="FXScrollBar.html" title="Fox::FXScrollBar (class)">FXScrollBar</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#viewportHeight-instance_method" title="#viewportHeight (instance method)">#<strong>viewportHeight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Viewport height, in pixels [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#viewportWidth-instance_method" title="#viewportWidth (instance method)">#<strong>viewportWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Viewport width, in pixels [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#xPosition-instance_method" title="#xPosition (instance method)">#<strong>xPosition</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Current x-position [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#yPosition-instance_method" title="#yPosition (instance method)">#<strong>yPosition</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Current y-position [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#accelTable-instance_method" title="Fox::FXWindow#accelTable (method)">#accelTable</a></span>, <span class='object_link'><a href="FXWindow.html#backColor-instance_method" title="Fox::FXWindow#backColor (method)">#backColor</a></span>, <span class='object_link'><a href="FXWindow.html#defaultCursor-instance_method" title="Fox::FXWindow#defaultCursor (method)">#defaultCursor</a></span>, <span class='object_link'><a href="FXWindow.html#dragCursor-instance_method" title="Fox::FXWindow#dragCursor (method)">#dragCursor</a></span>, <span class='object_link'><a href="FXWindow.html#first-instance_method" title="Fox::FXWindow#first (method)">#first</a></span>, <span class='object_link'><a href="FXWindow.html#focus-instance_method" title="Fox::FXWindow#focus (method)">#focus</a></span>, <span class='object_link'><a href="FXWindow.html#key-instance_method" title="Fox::FXWindow#key (method)">#key</a></span>, <span class='object_link'><a href="FXWindow.html#last-instance_method" title="Fox::FXWindow#last (method)">#last</a></span>, <span class='object_link'><a href="FXWindow.html#layoutHints-instance_method" title="Fox::FXWindow#layoutHints (method)">#layoutHints</a></span>, <span class='object_link'><a href="FXWindow.html#next-instance_method" title="Fox::FXWindow#next (method)">#next</a></span>, <span class='object_link'><a href="FXWindow.html#numChildren-instance_method" title="Fox::FXWindow#numChildren (method)">#numChildren</a></span>, <span class='object_link'><a href="FXWindow.html#owner-instance_method" title="Fox::FXWindow#owner (method)">#owner</a></span>, <span class='object_link'><a href="FXWindow.html#parent-instance_method" title="Fox::FXWindow#parent (method)">#parent</a></span>, <span class='object_link'><a href="FXWindow.html#prev-instance_method" title="Fox::FXWindow#prev (method)">#prev</a></span>, <span class='object_link'><a href="FXWindow.html#root-instance_method" title="Fox::FXWindow#root (method)">#root</a></span>, <span class='object_link'><a href="FXWindow.html#selector-instance_method" title="Fox::FXWindow#selector (method)">#selector</a></span>, <span class='object_link'><a href="FXWindow.html#shell-instance_method" title="Fox::FXWindow#shell (method)">#shell</a></span>, <span class='object_link'><a href="FXWindow.html#target-instance_method" title="Fox::FXWindow#target (method)">#target</a></span>, <span class='object_link'><a href="FXWindow.html#x-instance_method" title="Fox::FXWindow#x (method)">#x</a></span>, <span class='object_link'><a href="FXWindow.html#y-instance_method" title="Fox::FXWindow#y (method)">#y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#height-instance_method" title="Fox::FXDrawable#height (method)">#height</a></span>, <span class='object_link'><a href="FXDrawable.html#visual-instance_method" title="Fox::FXDrawable#visual (method)">#visual</a></span>, <span class='object_link'><a href="FXDrawable.html#width-instance_method" title="Fox::FXDrawable#width (method)">#width</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#horizontalScrollable%3F-instance_method" title="#horizontalScrollable? (instance method)">#<strong>horizontalScrollable?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if horizontally scrollable.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(parent, opts = 0, x = 0, y = 0, width = 0, height = 0)  &#x21d2; FXScrollArea </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return an initialized FXScrollArea instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#position-instance_method" title="#position (instance method)">#<strong>position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get the current position as an array [x, y].</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#scrollCorner-instance_method" title="#scrollCorner (instance method)">#<strong>scrollCorner</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a reference to the scroll corner (an FXScrollCorner instance) for this window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setPosition-instance_method" title="#setPosition (instance method)">#<strong>setPosition</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set the current position to (<em>x</em>, <em>y</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#verticalScrollable%3F-instance_method" title="#verticalScrollable? (instance method)">#<strong>verticalScrollable?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if vertically scrollable.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXComposite.html#maxChildHeight-instance_method" title="Fox::FXComposite#maxChildHeight (method)">#maxChildHeight</a></span>, <span class='object_link'><a href="FXComposite.html#maxChildWidth-instance_method" title="Fox::FXComposite#maxChildWidth (method)">#maxChildWidth</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#acceptDrop-instance_method" title="Fox::FXWindow#acceptDrop (method)">#acceptDrop</a></span>, <span class='object_link'><a href="FXWindow.html#acquireClipboard-instance_method" title="Fox::FXWindow#acquireClipboard (method)">#acquireClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#acquireSelection-instance_method" title="Fox::FXWindow#acquireSelection (method)">#acquireSelection</a></span>, <span class='object_link'><a href="FXWindow.html#active%3F-instance_method" title="Fox::FXWindow#active? (method)">#active?</a></span>, <span class='object_link'><a href="FXWindow.html#addHotKey-instance_method" title="Fox::FXWindow#addHotKey (method)">#addHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-class_method" title="Fox::FXWindow.after? (method)">after?</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-instance_method" title="Fox::FXWindow#after? (method)">#after?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-class_method" title="Fox::FXWindow.before? (method)">before?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-instance_method" title="Fox::FXWindow#before? (method)">#before?</a></span>, <span class='object_link'><a href="FXWindow.html#beginDrag-instance_method" title="Fox::FXWindow#beginDrag (method)">#beginDrag</a></span>, <span class='object_link'><a href="FXWindow.html#canFocus%3F-instance_method" title="Fox::FXWindow#canFocus? (method)">#canFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#changeFocus-instance_method" title="Fox::FXWindow#changeFocus (method)">#changeFocus</a></span>, <span class='object_link'><a href="FXWindow.html#childAtIndex-instance_method" title="Fox::FXWindow#childAtIndex (method)">#childAtIndex</a></span>, <span class='object_link'><a href="FXWindow.html#childOf%3F-instance_method" title="Fox::FXWindow#childOf? (method)">#childOf?</a></span>, <span class='object_link'><a href="FXWindow.html#children-instance_method" title="Fox::FXWindow#children (method)">#children</a></span>, <span class='object_link'><a href="FXWindow.html#clearDragRectangle-instance_method" title="Fox::FXWindow#clearDragRectangle (method)">#clearDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#clearShape-instance_method" title="Fox::FXWindow#clearShape (method)">#clearShape</a></span>, <span class='object_link'><a href="FXWindow.html#colorType-class_method" title="Fox::FXWindow.colorType (method)">colorType</a></span>, <span class='object_link'><a href="FXWindow.html#colorTypeName-class_method" title="Fox::FXWindow.colorTypeName (method)">colorTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#commonAncestor-class_method" title="Fox::FXWindow.commonAncestor (method)">commonAncestor</a></span>, <span class='object_link'><a href="FXWindow.html#composeContext-instance_method" title="Fox::FXWindow#composeContext (method)">#composeContext</a></span>, <span class='object_link'><a href="FXWindow.html#composite%3F-instance_method" title="Fox::FXWindow#composite? (method)">#composite?</a></span>, <span class='object_link'><a href="FXWindow.html#contains%3F-instance_method" title="Fox::FXWindow#contains? (method)">#contains?</a></span>, <span class='object_link'><a href="FXWindow.html#containsChild%3F-instance_method" title="Fox::FXWindow#containsChild? (method)">#containsChild?</a></span>, <span class='object_link'><a href="FXWindow.html#create-instance_method" title="Fox::FXWindow#create (method)">#create</a></span>, <span class='object_link'><a href="FXWindow.html#createComposeContext-instance_method" title="Fox::FXWindow#createComposeContext (method)">#createComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#cursorPosition-instance_method" title="Fox::FXWindow#cursorPosition (method)">#cursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#default%3F-instance_method" title="Fox::FXWindow#default? (method)">#default?</a></span>, <span class='object_link'><a href="FXWindow.html#defaultHeight-instance_method" title="Fox::FXWindow#defaultHeight (method)">#defaultHeight</a></span>, <span class='object_link'><a href="FXWindow.html#defaultWidth-instance_method" title="Fox::FXWindow#defaultWidth (method)">#defaultWidth</a></span>, <span class='object_link'><a href="FXWindow.html#deleteType-class_method" title="Fox::FXWindow.deleteType (method)">deleteType</a></span>, <span class='object_link'><a href="FXWindow.html#deleteTypeName-class_method" title="Fox::FXWindow.deleteTypeName (method)">deleteTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#destroy-instance_method" title="Fox::FXWindow#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXWindow.html#destroyComposeContext-instance_method" title="Fox::FXWindow#destroyComposeContext (method)">#destroyComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#detach-instance_method" title="Fox::FXWindow#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXWindow.html#didAccept-instance_method" title="Fox::FXWindow#didAccept (method)">#didAccept</a></span>, <span class='object_link'><a href="FXWindow.html#disable-instance_method" title="Fox::FXWindow#disable (method)">#disable</a></span>, <span class='object_link'><a href="FXWindow.html#doesSaveUnder%3F-instance_method" title="Fox::FXWindow#doesSaveUnder? (method)">#doesSaveUnder?</a></span>, <span class='object_link'><a href="FXWindow.html#dragging%3F-instance_method" title="Fox::FXWindow#dragging? (method)">#dragging?</a></span>, <span class='object_link'><a href="FXWindow.html#dropDisable-instance_method" title="Fox::FXWindow#dropDisable (method)">#dropDisable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnable-instance_method" title="Fox::FXWindow#dropEnable (method)">#dropEnable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnabled%3F-instance_method" title="Fox::FXWindow#dropEnabled? (method)">#dropEnabled?</a></span>, <span class='object_link'><a href="FXWindow.html#dropFinished-instance_method" title="Fox::FXWindow#dropFinished (method)">#dropFinished</a></span>, <span class='object_link'><a href="FXWindow.html#dropTarget%3F-instance_method" title="Fox::FXWindow#dropTarget? (method)">#dropTarget?</a></span>, <span class='object_link'><a href="FXWindow.html#each_child-instance_method" title="Fox::FXWindow#each_child (method)">#each_child</a></span>, <span class='object_link'><a href="FXWindow.html#each_child_recursive-instance_method" title="Fox::FXWindow#each_child_recursive (method)">#each_child_recursive</a></span>, <span class='object_link'><a href="FXWindow.html#enable-instance_method" title="Fox::FXWindow#enable (method)">#enable</a></span>, <span class='object_link'><a href="FXWindow.html#enabled%3F-instance_method" title="Fox::FXWindow#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="FXWindow.html#endDrag-instance_method" title="Fox::FXWindow#endDrag (method)">#endDrag</a></span>, <span class='object_link'><a href="FXWindow.html#forceRefresh-instance_method" title="Fox::FXWindow#forceRefresh (method)">#forceRefresh</a></span>, <span class='object_link'><a href="FXWindow.html#getChildAt-instance_method" title="Fox::FXWindow#getChildAt (method)">#getChildAt</a></span>, <span class='object_link'><a href="FXWindow.html#getDNDData-instance_method" title="Fox::FXWindow#getDNDData (method)">#getDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#getHeightForWidth-instance_method" title="Fox::FXWindow#getHeightForWidth (method)">#getHeightForWidth</a></span>, <span class='object_link'><a href="FXWindow.html#getWidthForHeight-instance_method" title="Fox::FXWindow#getWidthForHeight (method)">#getWidthForHeight</a></span>, <span class='object_link'><a href="FXWindow.html#grab-instance_method" title="Fox::FXWindow#grab (method)">#grab</a></span>, <span class='object_link'><a href="FXWindow.html#grabKeyboard-instance_method" title="Fox::FXWindow#grabKeyboard (method)">#grabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#grabbed%3F-instance_method" title="Fox::FXWindow#grabbed? (method)">#grabbed?</a></span>, <span class='object_link'><a href="FXWindow.html#grabbedKeyboard%3F-instance_method" title="Fox::FXWindow#grabbedKeyboard? (method)">#grabbedKeyboard?</a></span>, <span class='object_link'><a href="FXWindow.html#handleDrag-instance_method" title="Fox::FXWindow#handleDrag (method)">#handleDrag</a></span>, <span class='object_link'><a href="FXWindow.html#hasClipboard%3F-instance_method" title="Fox::FXWindow#hasClipboard? (method)">#hasClipboard?</a></span>, <span class='object_link'><a href="FXWindow.html#hasFocus%3F-instance_method" title="Fox::FXWindow#hasFocus? (method)">#hasFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#hasSelection%3F-instance_method" title="Fox::FXWindow#hasSelection? (method)">#hasSelection?</a></span>, <span class='object_link'><a href="FXWindow.html#height-instance_method" title="Fox::FXWindow#height (method)">#height</a></span>, <span class='object_link'><a href="FXWindow.html#height=-instance_method" title="Fox::FXWindow#height= (method)">#height=</a></span>, <span class='object_link'><a href="FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">#hide</a></span>, <span class='object_link'><a href="FXWindow.html#imageType-class_method" title="Fox::FXWindow.imageType (method)">imageType</a></span>, <span class='object_link'><a href="FXWindow.html#inFocusChain%3F-instance_method" title="Fox::FXWindow#inFocusChain? (method)">#inFocusChain?</a></span>, <span class='object_link'><a href="FXWindow.html#indexOfChild-instance_method" title="Fox::FXWindow#indexOfChild (method)">#indexOfChild</a></span>, <span class='object_link'><a href="FXWindow.html#initial%3F-instance_method" title="Fox::FXWindow#initial? (method)">#initial?</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDAction-instance_method" title="Fox::FXWindow#inquireDNDAction (method)">#inquireDNDAction</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDTypes-instance_method" title="Fox::FXWindow#inquireDNDTypes (method)">#inquireDNDTypes</a></span>, <span class='object_link'><a href="FXWindow.html#killFocus-instance_method" title="Fox::FXWindow#killFocus (method)">#killFocus</a></span>, <span class='object_link'><a href="FXWindow.html#layout-instance_method" title="Fox::FXWindow#layout (method)">#layout</a></span>, <span class='object_link'><a href="FXWindow.html#linkAfter-instance_method" title="Fox::FXWindow#linkAfter (method)">#linkAfter</a></span>, <span class='object_link'><a href="FXWindow.html#linkBefore-instance_method" title="Fox::FXWindow#linkBefore (method)">#linkBefore</a></span>, <span class='object_link'><a href="FXWindow.html#lower-instance_method" title="Fox::FXWindow#lower (method)">#lower</a></span>, <span class='object_link'><a href="FXWindow.html#move-instance_method" title="Fox::FXWindow#move (method)">#move</a></span>, <span class='object_link'><a href="FXWindow.html#octetType-class_method" title="Fox::FXWindow.octetType (method)">octetType</a></span>, <span class='object_link'><a href="FXWindow.html#octetTypeName-class_method" title="Fox::FXWindow.octetTypeName (method)">octetTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#offeredDNDType%3F-instance_method" title="Fox::FXWindow#offeredDNDType? (method)">#offeredDNDType?</a></span>, <span class='object_link'><a href="FXWindow.html#raiseWindow-instance_method" title="Fox::FXWindow#raiseWindow (method)">#raiseWindow</a></span>, <span class='object_link'><a href="FXWindow.html#recalc-instance_method" title="Fox::FXWindow#recalc (method)">#recalc</a></span>, <span class='object_link'><a href="FXWindow.html#releaseClipboard-instance_method" title="Fox::FXWindow#releaseClipboard (method)">#releaseClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#releaseSelection-instance_method" title="Fox::FXWindow#releaseSelection (method)">#releaseSelection</a></span>, <span class='object_link'><a href="FXWindow.html#remHotKey-instance_method" title="Fox::FXWindow#remHotKey (method)">#remHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#removeChild-instance_method" title="Fox::FXWindow#removeChild (method)">#removeChild</a></span>, <span class='object_link'><a href="FXWindow.html#repaint-instance_method" title="Fox::FXWindow#repaint (method)">#repaint</a></span>, <span class='object_link'><a href="FXWindow.html#reparent-instance_method" title="Fox::FXWindow#reparent (method)">#reparent</a></span>, <span class='object_link'><a href="FXWindow.html#resize-instance_method" title="Fox::FXWindow#resize (method)">#resize</a></span>, <span class='object_link'><a href="FXWindow.html#scroll-instance_method" title="Fox::FXWindow#scroll (method)">#scroll</a></span>, <span class='object_link'><a href="FXWindow.html#setCursorPosition-instance_method" title="Fox::FXWindow#setCursorPosition (method)">#setCursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#setDNDData-instance_method" title="Fox::FXWindow#setDNDData (method)">#setDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#setDefault-instance_method" title="Fox::FXWindow#setDefault (method)">#setDefault</a></span>, <span class='object_link'><a href="FXWindow.html#setDragRectangle-instance_method" title="Fox::FXWindow#setDragRectangle (method)">#setDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#setFocus-instance_method" title="Fox::FXWindow#setFocus (method)">#setFocus</a></span>, <span class='object_link'><a href="FXWindow.html#setInitial-instance_method" title="Fox::FXWindow#setInitial (method)">#setInitial</a></span>, <span class='object_link'><a href="FXWindow.html#setShape-instance_method" title="Fox::FXWindow#setShape (method)">#setShape</a></span>, <span class='object_link'><a href="FXWindow.html#shell%3F-instance_method" title="Fox::FXWindow#shell? (method)">#shell?</a></span>, <span class='object_link'><a href="FXWindow.html#show-instance_method" title="Fox::FXWindow#show (method)">#show</a></span>, <span class='object_link'><a href="FXWindow.html#shown%3F-instance_method" title="Fox::FXWindow#shown? (method)">#shown?</a></span>, <span class='object_link'><a href="FXWindow.html#stringType-class_method" title="Fox::FXWindow.stringType (method)">stringType</a></span>, <span class='object_link'><a href="FXWindow.html#textType-class_method" title="Fox::FXWindow.textType (method)">textType</a></span>, <span class='object_link'><a href="FXWindow.html#textTypeName-class_method" title="Fox::FXWindow.textTypeName (method)">textTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#tr-instance_method" title="Fox::FXWindow#tr (method)">#tr</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesFrom-instance_method" title="Fox::FXWindow#translateCoordinatesFrom (method)">#translateCoordinatesFrom</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesTo-instance_method" title="Fox::FXWindow#translateCoordinatesTo (method)">#translateCoordinatesTo</a></span>, <span class='object_link'><a href="FXWindow.html#underCursor%3F-instance_method" title="Fox::FXWindow#underCursor? (method)">#underCursor?</a></span>, <span class='object_link'><a href="FXWindow.html#ungrab-instance_method" title="Fox::FXWindow#ungrab (method)">#ungrab</a></span>, <span class='object_link'><a href="FXWindow.html#ungrabKeyboard-instance_method" title="Fox::FXWindow#ungrabKeyboard (method)">#ungrabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#update-instance_method" title="Fox::FXWindow#update (method)">#update</a></span>, <span class='object_link'><a href="FXWindow.html#urilistType-class_method" title="Fox::FXWindow.urilistType (method)">urilistType</a></span>, <span class='object_link'><a href="FXWindow.html#urilistTypeName-class_method" title="Fox::FXWindow.urilistTypeName (method)">urilistTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf16Type-class_method" title="Fox::FXWindow.utf16Type (method)">utf16Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf16TypeName-class_method" title="Fox::FXWindow.utf16TypeName (method)">utf16TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf8Type-class_method" title="Fox::FXWindow.utf8Type (method)">utf8Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf8TypeName-class_method" title="Fox::FXWindow.utf8TypeName (method)">utf8TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#visible=-instance_method" title="Fox::FXWindow#visible= (method)">#visible=</a></span>, <span class='object_link'><a href="FXWindow.html#width-instance_method" title="Fox::FXWindow#width (method)">#width</a></span>, <span class='object_link'><a href="FXWindow.html#width=-instance_method" title="Fox::FXWindow#width= (method)">#width=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#resize-instance_method" title="Fox::FXDrawable#resize (method)">#resize</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#create-instance_method" title="Fox::FXId#create (method)">#create</a></span>, <span class='object_link'><a href="FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(parent, opts = 0, x = 0, y = 0, width = 0, height = 0)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return an initialized FXScrollArea instance.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>parent</code>
+<dd>
+<p>the parent widget for this scroll area <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
+</dd><dt><code>opts</code>
+<dd>
+<p>the options [Integer]</p>
+</dd><dt><code>x</code>
+<dd>
+<p>initial x-position, when the <code>LAYOUT_FIX_X</code> layout hint is in effect [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>initial y-position, when the <code>LAYOUT_FIX_Y</code> layout hint is in effect [Integer]</p>
+</dd><dt><code>width</code>
+<dd>
+<p>initial width, when the <code>LAYOUT_FIX_WIDTH</code> layout hint is in effect [Integer]</p>
+</dd><dt><code>height</code>
+<dd>
+<p>initial height, when the <code>LAYOUT_FIX_HEIGHT</code> layout hint is in effect [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span> <span class='comment'># :yields: theScrollArea
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="contentHeight-instance_method">
+  
+    #<strong>contentHeight</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Content height, in pixels [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contentHeight'>contentHeight</span>
+  <span class='ivar'>@contentHeight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="contentWidth-instance_method">
+  
+    #<strong>contentWidth</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Content width, in pixels [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contentWidth'>contentWidth</span>
+  <span class='ivar'>@contentWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="horizontalScrollBar-instance_method">
+  
+    #<strong>horizontalScrollBar</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Horizontal scrollbar <span class='object_link'><a href="FXScrollBar.html" title="Fox::FXScrollBar (class)">Fox::FXScrollBar</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_horizontalScrollBar'>horizontalScrollBar</span>
+  <span class='ivar'>@horizontalScrollBar</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="scrollStyle=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="scrollStyle-instance_method">
+  
+    #<strong>scrollStyle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Scroll style [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scrollStyle'>scrollStyle</span>
+  <span class='ivar'>@scrollStyle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="verticalScrollBar-instance_method">
+  
+    #<strong>verticalScrollBar</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Vertical scrollbar <span class='object_link'><a href="FXScrollBar.html" title="Fox::FXScrollBar (class)">Fox::FXScrollBar</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_verticalScrollBar'>verticalScrollBar</span>
+  <span class='ivar'>@verticalScrollBar</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="viewportHeight-instance_method">
+  
+    #<strong>viewportHeight</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Viewport height, in pixels [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_viewportHeight'>viewportHeight</span>
+  <span class='ivar'>@viewportHeight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="viewportWidth-instance_method">
+  
+    #<strong>viewportWidth</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Viewport width, in pixels [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_viewportWidth'>viewportWidth</span>
+  <span class='ivar'>@viewportWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="xPosition-instance_method">
+  
+    #<strong>xPosition</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Current x-position [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_xPosition'>xPosition</span>
+  <span class='ivar'>@xPosition</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="yPosition-instance_method">
+  
+    #<strong>yPosition</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Current y-position [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_yPosition'>yPosition</span>
+  <span class='ivar'>@yPosition</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="horizontalScrollable?-instance_method">
+  
+    #<strong>horizontalScrollable?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if horizontally scrollable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_horizontalScrollable?'>horizontalScrollable?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="position-instance_method">
+  
+    #<strong>position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get the current position as an array [x, y]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="scrollCorner-instance_method">
+  
+    #<strong>scrollCorner</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a reference to the scroll corner (an FXScrollCorner instance) for this window.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+207
+208
+209</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 207</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scrollCorner'>scrollCorner</span>
+  <span class='id identifier rubyid_verticalScrollBar'>verticalScrollBar</span><span class='period'>.</span><span class='id identifier rubyid_next'>next</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setPosition-instance_method">
+  
+    #<strong>setPosition</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set the current position to (<em>x</em>, <em>y</em>)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setPosition'>setPosition</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="verticalScrollable?-instance_method">
+  
+    #<strong>verticalScrollable?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if vertically scrollable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXScrollArea.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_verticalScrollable?'>verticalScrollable?</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:29 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: History
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "History";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: History</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h2 id="label-1.6.42+-2F+2020-02-01">1.6.42 / 2020-02-01</h2>
+<ul><li>
+<p>Fix a packing issue in 1.6.41: <code>lib/fox16/input.rb</code> had owner permission only.</p>
+</li></ul>
+
+<h2 id="label-1.6.41+-2F+2020-01-26">1.6.41 / 2020-01-26</h2>
+<ul><li>
+<p>Add support for Ruby-2.7</p>
+</li><li>
+<p>Fix build error on FreeBSD. #51</p>
+</li><li>
+<p>Fix handling of scroll events to FXText instance.</p>
+</li><li>
+<p>Add 8 virtual methods of FXText to be passed through ruby.</p>
+</li><li>
+<p>FXText#findText: Return multi entry array only when searching Regex.</p>
+</li><li>
+<p>Fix several example apps in example/ dir.</p>
+</li><li>
+<p>Update to rake-compiler-dock-1.0 and use parallel cross build.</p>
+</li><li>
+<p>Update to libpng-1.6.37, jpeg-turbo-2.0.4, libtiff-4.1.0 on Windows binary gem.</p>
+</li></ul>
+
+<h2 id="label-1.6.40+-2F+2018-12-28">1.6.40 / 2018-12-28</h2>
+<ul><li>
+<p>Fix some library classes which failed, when Fox was not included into the global namespace.</p>
+</li><li>
+<p>Add new accessor FXImage#dataPtr to access raw image data from FFI, Fiddle or OpenGL.</p>
+</li><li>
+<p>Ensure zero terminated strings in values of C-argv.</p>
+</li><li>
+<p>Remove various Ruby and C++ warnings.</p>
+</li><li>
+<p>Update libfox to 1.6.57.</p>
+</li><li>
+<p>Add support for RubyInstaller-2.6</p>
+</li><li>
+<p>Set minimum required ruby version to 2.2.</p>
+</li></ul>
+
+<h2 id="label-1.6.39+-2F+2017-12-26">1.6.39 / 2017-12-26</h2>
+<ul><li>
+<p>Fix FXGLVisual.supported and .supported?</p>
+</li><li>
+<p>Add support for RubyInstaller-2.5</p>
+</li></ul>
+
+<h2 id="label-1.6.38+-2F+2017-07-27">1.6.38 / 2017-07-27</h2>
+<ul><li>
+<p>Update dependent libraries for Windows binary gem.</p>
+</li><li>
+<p>Replace libjpeg-9b by libjpeg-turbo-1.5.2 on Windows binary gem.</p>
+</li><li>
+<p>Fix build with clang on FreeBSD (and possibly other OS). Fixes #41</p>
+</li></ul>
+
+<h2 id="label-1.6.37+-2F+2017-06-24">1.6.37 / 2017-06-24</h2>
+<ul><li>
+<p>Add a 3rd type of FXRbObjects which is used for callbacks. Fixes #39</p>
+</li></ul>
+
+<h2 id="label-1.6.36+-2F+2017-06-04">1.6.36 / 2017-06-04</h2>
+<ul><li>
+<p>Support the fxruby source gem on Windows (only RubyInstaller-2.4).</p>
+</li><li>
+<p>Replace our self-made directory search methods by pgk-config.</p>
+</li><li>
+<p>Enable the use of Win32 unicode functions. Fixes #30 and #38</p>
+</li><li>
+<p>Fix segfault in vsprintf on Windows 10.</p>
+</li><li>
+<p>Update support for RubyInstaller-2.4.1-1</p>
+</li><li>
+<p>Update to libjpeg-9b</p>
+</li><li>
+<p>More automation for gem releases</p>
+</li></ul>
+
+<h2 id="label-1.6.35+-2F+2017-02-15">1.6.35 / 2017-02-15</h2>
+<ul><li>
+<p>Adjust for Ruby-2.4 with unified Integers</p>
+</li><li>
+<p>Add support for RubyInstaller-2.4</p>
+</li><li>
+<p>Drop support for Ruby-1.8 and 1.9. It may work with them, but is no longer tested.</p>
+</li><li>
+<p>Add compat with SWIG-3.0</p>
+</li><li>
+<p>Fix an issue with FXApp#removeInput introduced in fxruby-1.6.30.</p>
+</li><li>
+<p>Work around missing /usr/lib/libfxscintilla.so file in Ubuntu</p>
+</li><li>
+<p>Update dependent gems.</p>
+</li><li>
+<p>Update libraries for Windows build.</p>
+</li></ul>
+
+<h2 id="label-1.6.34+-2F+2016-04-26">1.6.34 / 2016-04-26</h2>
+<ul><li>
+<p>Add support for RubyInstaller-2.3</p>
+</li><li>
+<p>Avoid RARRAY_PTR() which broke fxruby on ruby-2.3.0.</p>
+</li><li>
+<p>Make use of StringValueCStr() where it is suitable.</p>
+</li><li>
+<p>Fix initialisation of runOnUiThread event handler, when FXApp is called with a block.</p>
+</li><li>
+<p>Disable GVL on RubyInstaller-1.9.3. Fixes #24</p>
+</li></ul>
+
+<h2 id="label-1.6.33+-2F+2015-08-20">1.6.33 / 2015-08-20</h2>
+<ul><li>
+<p>Avoid rb_* calls that are prohibited during GC. Fixes #23</p>
+</li><li>
+<p>Use copy&#39;ing getters for FXVec members in FXMat*, FXMaterial and FXLight.  This fixes the TC_FXMaterial#test_bug test case.</p>
+</li><li>
+<p>Fix test suite, so that all tests pass.</p>
+</li><li>
+<p>Add a travis-ci test setup and connect it to the github account.</p>
+</li></ul>
+
+<h2 id="label-1.6.32+-2F+2015-08-07">1.6.32 / 2015-08-07</h2>
+<ul><li>
+<p>Avoid call to rb_class2name() during GC. Fixes #21</p>
+</li><li>
+<p>Use release mode, unless extconf.rb is called with –enable-debug,  so that all FXTRACE() and FXASSERT() calls are skiped, per default.</p>
+</li><li>
+<p>Remove self made GC detection by ruby&#39;s rb_during_gc().</p>
+</li><li>
+<p>Fix Windows binary x86-mingw32.gem for Ruby versions &lt; 2.0</p>
+</li></ul>
+
+<h2 id="label-1.6.31+-2F+2015-07-21">1.6.31 / 2015-07-21</h2>
+<ul><li>
+<p>Replace pipe2() by pipe() and fcntl(), because pipe2() is not as portable.</p>
+</li><li>
+<p>Add missing include statement. Fixes #20</p>
+</li></ul>
+
+<h2 id="label-1.6.30+-2F+2015-07-07">1.6.30 / 2015-07-07</h2>
+<ul><li>
+<p>Fix crashes in rb_gc_mark(): 0x00000003f54af8 is T_ZOMBIE / T_NONE</p>
+</li><li>
+<p>Release Ruby&#39;s GVL while calls to FXImage#savePixels, #loadPixels  and FXApp#run* methods.</p>
+</li><li>
+<p>Add a working version for FXApp#addInput event handling on Windows.  This works for sockets only for now.</p>
+</li><li>
+<p>Add FXApp#runOnUiThread and FXId#runOnUiThread .  This allows to safely execute GUI code from other threads.</p>
+</li><li>
+<p>Use rake-compiler-dock for building windows binary gems.</p>
+</li></ul>
+
+<h2 id="label-1.6.29+-2F+2015-02-17">1.6.29 / 2015-02-17</h2>
+<ul><li>
+<p>Add Windows binaries for Ruby-2.1 and 2.2.</p>
+</li><li>
+<p>Use shared libs for Windows binary gems to reduce gem size.</p>
+</li><li>
+<p>Allow non owned assignment of image data to FXImage derivations  without copy&#39;ing pixel data.</p>
+</li><li>
+<p>Allow retrival of parts of the pixel data.</p>
+</li><li>
+<p>Fix namespace specifier for FXRGB in kwargs.rb.</p>
+</li><li>
+<p>Change GC&#39;ing of TreeListBox and FXTreeItem. Fixes #10</p>
+</li><li>
+<p>Update to swig version 2.0 or newer. Fixes #13</p>
+</li></ul>
+
+<h2 id="label-1.6.28+-2F+2013-07-05">1.6.28 / 2013-07-05</h2>
+<ul><li>
+<p>Fix build for Ruby-2.0.0-p127+</p>
+</li><li>
+<p>Update libraries for win32 build: libfox-1.6.49</p>
+</li></ul>
+
+<h2 id="label-1.6.27+-2F+2013-04-05">1.6.27 / 2013-04-05</h2>
+<ul><li>
+<p>Add support for Ruby-2.0.</p>
+</li><li>
+<p>Add cross compilation for x64-mingw32 target.</p>
+</li></ul>
+
+<h2 id="label-1.6.26+-2F+2013-02-16">1.6.26 / 2013-02-16</h2>
+<ul><li>
+<p>Mark all text strings retrieved from fox as UTF-8 when running on Ruby 1.9</p>
+</li><li>
+<p>Fix loading error on Ruby 1.8.7 by renaming the C++ extension to fox16_c</p>
+</li><li>
+<p>Update libraries for windows cross compilation</p>
+</li></ul>
+
+<h2 id="label-1.6.25+-2F+2012-06-17">1.6.25 / 2012-06-17</h2>
+<ul><li>
+<p>Windows: Fix slow loading of fox16.so by using a more recent mingw-w64 compiler  (reported by Allen Doug and Igor Jorobus)</p>
+</li><li>
+<p>Fix two possible segfaults in conjunction with FXSplashWindow (reported by Igor Jorobus)</p>
+</li></ul>
+
+<h2 id="label-1.6.24+-2F+2012-06-06">1.6.24 / 2012-06-06</h2>
+<ul><li>
+<p>Update libraries for win32 build: libz-1.2.7 libpng-1.5.10 libjpeg-8d libtiff-4.0.1 libfox-1.6.45</p>
+</li><li>
+<p>Avoid Segfauls in lots of methods when called with nil instead of FXApp, FXComposite or FXWindow objects</p>
+</li></ul>
+
+<h2 id="label-1.6.23+-2F+2012-03-08">1.6.23 / 2012-03-08</h2>
+<ul><li>
+<p>Add YARD documentation support</p>
+</li><li>
+<p>Use generated Manifest.txt</p>
+</li><li>
+<p>Support for parallel task execution with drake</p>
+</li></ul>
+
+<h2 id="label-1.6.22+-2F+2012-02-21">1.6.22 / 2012-02-21</h2>
+<ul><li>
+<p>Allow better access to raw pixel data of FXImage and derivatives</p>
+</li><li>
+<p>Build Windows binary gem per cross compiler on Linux</p>
+</li><li>
+<p>Add support for Rubinius (currently requires rubinius from git)</p>
+</li><li>
+<p>Add alias FXApp#modalWindow, as described in rdoc</p>
+</li><li>
+<p>Add quality parameter to FXJPGImage and FXJPGIcon</p>
+</li><li>
+<p>Fix invalid memory access in final GC call when using FXMenuCommand with acckey</p>
+</li><li>
+<p>Fix double referenced foxObj when borrowed object registration is triggered from C++</p>
+</li><li>
+<p>Fix Segfault while GC&#39;ing FXWindows</p>
+</li><li>
+<p>Fix &#39;object allocation not allowed while garbage collection&#39; bug</p>
+</li><li>
+<p>Fix clipboard handling on windows</p>
+</li><li>
+<p>Add missing namespace qualifier to FXSEL in FXAccelTable</p>
+</li><li>
+<p>Fix GC bug in FXAccelTable</p>
+</li><li>
+<p>Fix double free in FXMemoryStream#giveBuffer</p>
+</li><li>
+<p>Fix invalid memory access in typemap to zero terminated FXchar* (such as fillItems methods)</p>
+</li><li>
+<p>Fix FXApp#addInput for Ruby 1.9 on Linux</p>
+</li><li>
+<p>Fix “ruby_code case not handled: Regexp” issue with newer rubygems</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.20+-28November+09-2C+2009-29">Changes For Version 1.6.20 (November 09, 2009)</h2>
+<ul><li>
+<p>Integrated the Hoe and rake-compiler extensions into the Rakefile and  removed redundant tasks.</p>
+</li><li>
+<p>Did some work to provide support for MinGW builds.</p>
+</li><li>
+<p>The previous release of FXRuby couldn&#39;t be built from source against Ruby 1.9.1 final  due to a change in some of the file-related utility libraries  (see RubyForge Bug #23786). This problem has been corrected.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.19+-28March+6-2C+2009-29">Changes For Version 1.6.19 (March 6, 2009)</h2>
+<ul><li>
+<p>The previous release of FXRuby couldn&#39;t be built from source against Ruby 1.9.1 final  due to a change in some of the file-related utility libraries  (see RubyForge Bug #23786). This problem has been corrected.</p>
+</li><li>
+<p>The previous release of FXRuby couldn&#39;t be built from source against Ruby versions 1.8.5 or  earlier (see RubyForge Bug #23967). This problem has been corrected.</p>
+</li><li>
+<p>A change in the return value for Ruby&#39;s <code>instance_variables</code> method broke  some of the code related to message handling in FXRuby (see RubyForge  Bug #23787). This problem has been corrected.</p>
+</li><li>
+<p>The <code>addAccel</code> method for the <code>FXAccelTable</code> class  now accepts lambda functions (or any other objects that respond to <code>call</code>). See  the API documentation  for <code>FXAccelTable</code> for examples of how this works.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.18+-28December+29-2C+2008-29">Changes For Version 1.6.18 (December 29, 2008)</h2>
+<ul><li>
+<p>Some users were having trouble building FXRuby on 64-bit operating systems  (see RubyForge Bug #23375). This problem has been corrected.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.17+-28December+24-2C+2008-29">Changes For Version 1.6.17 (December 24, 2008)</h2>
+<ul><li>
+<p>The Ruby interpreter was generating a large number of warning messages about redefined methods  in the <code>kwargs.rb</code> library  (see RubyForge  Bug #19231 and elsewhere). This problem has been corrected.</p>
+</li><li>
+<p>Due to recent changes in Ruby&#39;s garbage collection algorithm, FXRuby applications could under some circumstances  crash for large numbers of table items  (see RubyForge bugs ).  This bug has been fixed.</p>
+</li><li>
+<p>The documentation for the <code>FXTable</code> class referred to the non-existent <code>setColumnX</code>  and <code>setRowY</code> instance methods  (see RubyForge  Bug #21987). These entries have been removed from the documentation.</p>
+</li><li>
+<p>A number of instance methods for the <code>FXTable</code> class could crash an application if they  were passed out-of-bounds index arguments  (see RubyForge  Bug #21987). These methods now raise <code>IndexError</code> when they&#39;re passed out-of-bounds  indexes.</p>
+</li><li>
+<p>Due to a change in the URL scheme for the Dilbert web site, the <code>dilbert.rb</code> example  program was no longer working properly  (see RubyForge  Bug #21538). This has been fixed.</p>
+</li><li>
+<p>The <code>lower</code> method for the <code>FXRangef</code> was returning  ´self´ instead of an <code>FXVec3f</code> instance for the range&#39;s low  bound  (see RubyForge  Bug #22488). This has been fixed.</p>
+</li><li>
+<p>Made a number of minor fixes for compatibility with Ruby 1.9.1.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.16+-28July+3-2C+2008-29">Changes For Version 1.6.16 (July 3, 2008)</h2>
+<ul><li>
+<p>Historically, if you called <code>create</code> on a  window before its parent window was created, your application would  crash (see RubyForge  Bug #20702 and elsewhere). Now, the code should raise a  ´RuntimeError´ with a message indicating the  problem.</p>
+</li><li>
+<p>The message data that the <code>FXPicker</code> widget  sends along with its ´SEL_CHANGED´ and  ´SEL_COMMAND´ messages wasn&#39;t being handled  properly, and as a result, applications using this widget could crash  (see RubyForge  Bug #20780). This problem has been fixed.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.15+-28June+4-2C+2008-29">Changes For Version 1.6.15 (June 4, 2008)</h2>
+<ul><li>
+<p>FXRuby applications could crash (with a segmentation fault) if  ´nil´ was passed in as the first argument to  <code>FXDialogBox.new</code> or  <code>FXMainWindow.new</code> (see RubyForge  Bug #14642). These methods now raise an  ´ArgumentError´ if ´nil´ is  passed as the first argument.</p>
+</li><li>
+<p>You should only ever construct one <code>FXApp</code>  object per application, but there was no protection against doing so  in the code (see RubyForge  Bug #16275). Now, <code>FXApp.new</code> will  raise a <code>RuntimeException</code> if an  <code>FXApp</code> object already exists.</p>
+</li><li>
+<p>The <code>babelfish.rb</code> example program, which  previously depended on an external web service to perform translation  between languages, was broken since that web service no longer exists  (see RubyForge  Bug #16962). The example has now been updated to use Dr. Nic&#39;s  Tranexp library instead.</p>
+</li><li>
+<p>The value of the ´MBOX_SAVE_CANCEL_DONTSAVE´  option (for the <code>FXMessageBox</code> class) wasn&#39;t  wrapped properly and was unusable (see RubyForge  Bug #17094). There was also no constant corresponding to the  ´MBOX_CLICKED_DONTSAVE´ return value. Both of these  problems have been fixed.</p>
+</li><li>
+<p>The fields for new <code>FXHiliteStyle</code> objects  were uninitialized and as a result sometimes gave unpredictable  results (see RubyForge  Bug #19637). This has been fixed.</p>
+</li><li>
+<p>The <code>columnHeaderFont</code> and  <code>rowHeaderFont</code> attributes for  <code>FXTable</code> weren&#39;t implemented properly (see  RubyForge  Bug #20142). This has been fixed.</p>
+</li><li>
+<p>Ruby 1.8.7 adds a new <code>first</code> method to  the <code>Enumerable</code> module, and this conflicts with  the existing <code>first</code> method defined in the  <code>FXWindow</code> base class for a number of FXRuby  classes which mix in <code>Enumerable</code> (see RubyForge  Bug #20418). This problem has been resolved.</p>
+</li><li>
+<p>Due to a bug in the <code>extconf.rb</code> script, the  build was failing for Ruby 1.9.0 (see RubyForge  Bug #20426). This has been fixed.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.14+-28March+29-2C+2008-29">Changes For Version 1.6.14 (March 29, 2008)</h2>
+<ul><li>
+<p>Updated the documentation for the <code>FXImage</code>  class to indicate which methods call <code>render</code>  after they&#39;re finished, and which ones do not.</p>
+</li><li>
+<p>Corrected a little typo in the  <code>gembrowser.rb</code> example program.</p>
+</li><li>
+<p>Updated the <code>dilbert.rb</code> example program to  use the more popular-and-likely-to-be-installed Hpricot HTML  parser library instead of Rubyful Soup.</p>
+</li><li>
+<p>Re-added the documentation for the  ´TOGGLEBUTTON_KEEPSTATE´ option, which had  mysteriously disappeared (see RubyForge  Bug #2286).</p>
+</li><li>
+<p>Made a number of minor fixes to support building FXRuby against  Ruby 1.9.</p>
+</li><li>
+<p>Added a binary gem for OS X. This works with the Ruby that&#39;s  included with OS X (Leopard).</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.32 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.13+-28November+9-2C+2007-29">Changes For Version 1.6.13 (November 9, 2007)</h2>
+<ul><li>
+<p>Calls to the <code>extractText</code> method for the  <code>FXTable</code> class were causing various  memory-related errors on certain platforms (see RubyForge  Bug #15444). This problem has been fixed.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.28 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.12+-28October+19-2C+2007-29">Changes For Version 1.6.12 (October 19, 2007)</h2>
+<ul><li>
+<p>The API documentation for <code>FXMDIClient</code>  referred to the non-existent instance method  <code>activeChild=</code> (see RubyForge  Bug #10259). This method has been added.</p>
+</li><li>
+<p>The API documentation for <code>FXMDIClient</code>  also referred to the non-existent instance methods  <code>getMDIChildFirst</code> and  <code>getMDIChildLast</code>. These entries have been  removed.</p>
+</li><li>
+<p>The API documentation for <code>FXMDIChild</code>  referred to non-existent instance methods  <code>getMDINext</code> and  <code>getMDIPrev</code> (see RubyForge  Bug #10436). The documentation has been corrected.</p>
+</li><li>
+<p>Added the ´:repeat´ parameter for the  <code>addChore</code> and  <code>addTimeout</code> methods. See the documentation for  more details, and <code>gltest.rb</code> for an example of its  use.</p>
+</li><li>
+<p>Corrected a number of minor typos in the API  documentation.</p>
+</li><li>
+<p>Corrected a typo in the <code>imageviewer.rb</code>  example.</p>
+</li><li>
+<p>Modified the <code>inputs.rb</code> example program to  use <code>Pipe.read_nonblock()</code> instead of  <code>Pipe.read()</code>.</p>
+</li><li>
+<p>Fixed a bug in the implementation of the  <code>findText</code> method for the  <code>FXText</code> class, when used with the  ´SEARCH_REGEX´ option.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.28 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.11+-28April+18-2C+2007-29">Changes For Version 1.6.11 (April 18, 2007)</h2>
+<ul><li>
+<p>Added <code>editable</code> as an alias for  <code>FXTextField#editable?</code>.</p>
+</li><li>
+<p>Added <code>each_child_recursive</code> instance  method for the <code>FXWindow</code> class. This method  performs a depth-first traversal of the widget tree starting at the  receiver window.</p>
+</li><li>
+<p>Corrected some errors in the keyword arguments support for the  <code>FXVec2d</code>, <code>FXVec2f</code>,  <code>FXVec3d</code>, <code>FVec3f</code>,  <code>FXVec4d</code> and <code>FXVec4f</code>  classes.</p>
+</li><li>
+<p>Corrected an error in the keyword arguments support for the  <code>FXIconDict</code> class.</p>
+</li><li>
+<p>Modified the gem specification so that the RDoc generated during  a gem install is consistent with that generated by other methods (see  RubyForge  Bug #10035).</p>
+</li><li>
+<p>Changes to the <code>iterators</code> library in version  1.6.6 introduced a bug in the <code>each</code> method for  the <code>FXFoldingList</code>,  <code>FXTreeList</code> and  <code>FXTreeListBox</code> classes (see RubyForge  Bug #10175). This problem has been fixed.</p>
+</li><li>
+<p>Applied submitted patches for building FXRuby against Ruby 1.9  (see RubyForge  Bug #10181). Please note that building FXRuby against the Ruby  1.9 code base is still officially unsupported; however, I&#39;m glad to  accept patches that will help make this possible.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.25 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.9+-28April+8-2C+2007-29">Changes For Version 1.6.9 (April 8, 2007)</h2>
+<ul><li>
+<p>A bug was discovered in the keyword arguments library support  for the <code>FXMenuBar</code> class (see RubyForge  Bug #9927). This problem has been fixed.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.25 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.8+-28April+5-2C+2007-29">Changes For Version 1.6.8 (April 5, 2007)</h2>
+<ul><li>
+<p>Due to an internal bookkeeping error, applications like the  <code>glviewer.rb</code> example program which create multiple  <code>FXGLViewer</code> instances could cause an assertion  to fail. When this assertion fails on Windows, the program simply  crashes (see RubyForge  Bug #9775). This problem has been fixed.</p>
+</li><li>
+<p>The keyword arguments library, introduced in version 1.6.5, is  now included automatically when you load FXRuby; it is no longer  necessary to explicitly require it.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.25 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.7+-28March+31-2C+2007-29">Changes For Version 1.6.7 (March 31, 2007)</h2>
+<ul><li>
+<p>The binary gem for Windows was built with FOX version 1.6.25 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.6+-28February+10-2C+2007-29">Changes For Version 1.6.6 (February 10, 2007)</h2>
+<ul><li>
+<p>Somewhere along the way, the RAA browser example program got  broken due to changes in the SOAP interface to RAA (see RubyForge  Bug #7977). This has been fixed.</p>
+</li><li>
+<p>Some debugging code that was meant to detect errors in FXRuby  message data conversion was inadvertently causing some user  applications to crash when running under Windows (see RubyForge  Bug #8049). This debugging code has been changed to avoid the  problem.</p>
+</li><li>
+<p>Modified the implementations of the each iterator methods for  <code>FXFoldingList</code>,  <code>FXFoldingItem</code>,  <code>FXTreeItem</code>, <code>FXTreeList</code>  and <code>FXTreeListBox</code> (see RubyForge  Bug #8090). The new implementation is a bit more robust in  terms of modifications (such as deletion) of the iterated-over  elements.</p>
+</li><li>
+<p>A bug in the new keyword arguments library (introduced in  version 1.6.5) caused the <code>initialize</code> method  for the <code>FXDCWindow</code> class to do the wrong thing  (see RubyForge  Bug #8441). This has been corrected.</p>
+</li><li>
+<p>A different bug in the keyword arguments library caused the  <code>initialize</code> method for the  <code>FXFont</code> class to do the wrong thing (see RubyForge  Bug #8517). This also has been corrected.</p>
+</li><li>
+<p>Yet another bug in the keyword arguments library broke the part  of the code that used to yield ´self´ to an  optional block attached to the call to <code>new</code>  (see RubyForge  Bug #8518). This has been corrected.</p>
+</li><li>
+<p>Most of the FXRuby example programs have been updated to use the  keyword arguments library.</p>
+</li><li>
+<p>Added a new “virtual” keyword argument  ´:padding´ that can be used in place of (or in  addition to) the ´:padLeft´,  ´:padRight´, ´:padTop´ and  ´:padBottom´ arguments for a constructor. When a  ´:padding´ value is passed in to the arguments  hash, that value will be used for any of the four regular padding  values that aren&#39;t otherwise specified. See the example programs for,  you know, examples.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.20 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.5+-28January+20-2C+2007-29">Changes For Version 1.6.5 (January 20, 2007)</h2>
+<ul><li>
+<p>Clicking outside of the visible cells for an  <code>FXTable</code> when there was no current selection  caused the code to raise an exception (see RubyForge  Bug #5907). This problem has been fixed.</p>
+</li><li>
+<p>The <code>hasTimeout?</code> method for the  <code>FXApp</code> class was implemented incorrectly (see  RubyForge  Bug #7564). This problem has been fixed.</p>
+</li><li>
+<p>The <code>FXFoldingList</code> and  <code>FXFoldingItem</code> classes did not have each  iterator methods like most of the other list-based widgets (see RubyForge  Patch #7978). These have been added.</p>
+</li><li>
+<p>The API documentation for <code>FXMDIClient</code>  claimed that <code>FXScrollArea</code> was its base class  (see RubyForge  Bug #7979). This has been corrected; the base class for  <code>FXMDIClient</code> is  <code>FXComposite</code>.</p>
+</li><li>
+<p>There was a small typo in the documentation for the  <code>FXFoldingList</code> class options (see RubyForge  Bug #7981). This has been fixed.</p>
+</li><li>
+<p>Added preliminary support for keyword-style arguments, as  described in the "Differences Between  FOX and FXRuby" section of the FXRuby User&#39;s Guide.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.20 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.4+-28November+30-2C+2006-29">Changes For Version 1.6.4 (November 30, 2006)</h2>
+<ul><li>
+<p>A change made in Ruby 1.8.5 for cyclic requires led to a problem  that caused the Ruby interpreter to emit a large number of warnings  (see RubyForge  Bug #5633). This problem has been fixed.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.16 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.3+-28October+27-2C+2006-29">Changes For Version 1.6.3 (October 27, 2006)</h2>
+<ul><li>
+<p>Widgets of some classes (namely  <code>FXTopWindow</code> and  <code>FXMDIChild</code>) weren&#39;t properly sending a  ´SEL_CLOSE´ message to their message targets (see  RubyForge  Bug #5498). Thanks to a change in FOX version 1.6.16, this  problem has been fixed.</p>
+</li><li>
+<p>The <code>getControlFor</code> method for the  <code>FXComboTableItem</code> class was coded incorrectly  (see RubyForge  Bug #5906). This has been fixed.</p>
+</li><li>
+<p>There was a minor typo in the API documentation for the  <code>FXTriStateButton</code> class (see RubyForge Bug #5962). This has been fixed.</p>
+</li><li>
+<p>The <code>each_row</code> and  <code>each_column</code> iterator methods for the  <code>FXTable</code> class were incorrectly coded (see  RubyForge  Bug #6036). This has been fixed.</p>
+</li><li>
+<p>The <code>new</code> class methods for  <code>FXColorItem</code>, <code>FXDirItem</code>,  <code>FXFileItem</code>,  <code>FXFoldingItem</code>,  <code>FXHeaderItem</code>,  <code>FXIconItem</code>, <code>FXListItem</code>  and <code>FXTreeItem</code> were all raising exceptions when  a non-´nil´ value was passed in for the last  argument (see RubyForge  Bug #6197). A similar problem was present for various instance  methods in the <code>FXColorList</code>,  <code>FXListBox</code> and  <code>FXMDIClient</code> classes. These problems have been  fixed.</p>
+</li><li>
+<p>A few problems were discovered for the  <code>inputs.rb</code> example program (see RubyForge  Bug #6209). These problems have been fixed.</p>
+</li><li>
+<p>Several instance methods for the <code>FXTable</code>  class were not actually present under their documented names (see  RubyForge  Bug #6211). This has been fixed.</p>
+</li><li>
+<p>The build script was not compatible with changes made in the  recently-released FXScintilla 1.71 (see RubyForge  Bug #6313). This has been fixed.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.16 and  FXScintilla version 1.71.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.2+-28September+13-2C+2006-29">Changes For Version 1.6.2 (September 13, 2006)</h2>
+<ul><li>
+<p>The <code>expandTree()</code> and  <code>collapseTree()</code> methods for the  <code>FXFoldingList</code> class were incorrectly identified  as <code>expandFolding()</code> and  <code>collapseFolding()</code> in the API documentation  (see RubyForge  Bug #5354). This has been fixed.</p>
+</li><li>
+<p>The <code>FXDockTitle</code> class was not supported  (see RubyForge  Bug #5632). This has been fixed.</p>
+</li><li>
+<p>The API documentation for the <code>FXGLCanvas</code>  class claimed it had a <code>shared?</code> method, but it  didn&#39;t (see RubyForge  Bug #5591). Now it does.</p>
+</li><li>
+<p>The <code>FXGradientBar</code> class was not supported  (see RubyForge  Bug #5746). This has been fixed.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.14 and  FXScintilla version 1.67 (from CVS).</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.7+-28September+13-2C+2006-29">Changes For Version 1.4.7 (September 13, 2006)</h2>
+<ul><li>
+<p>The <code>children</code> instance method for the  <code>FXWindow</code> class always returned an array of  <code>FXWindow</code> instances, even if the actual types  should have been instances of subclasses of  <code>FXWindow</code> (see RubyForge  Bug #4342). This has been fixed.</p>
+</li><li>
+<p>The <code>dilbert.rb</code> example program was broken  due to a change in the Dilbert.com web site structure (see RubyForge  Bug #4597). This has been fixed.</p>
+</li><li>
+<p>The <code>expandTree()</code> and  <code>collapseTree()</code> methods for the  <code>FXFoldingList</code> class were incorrectly identified  as <code>expandFolding()</code> and  <code>collapseFolding()</code> in the API documentation  (see RubyForge  Bug #5354). This has been fixed.</p>
+</li><li>
+<p>The <code>FXDockTitle</code> class was not supported  (see RubyForge  Bug #5632). This has been fixed.</p>
+</li><li>
+<p>The API documentation for the <code>FXGLCanvas</code>  class claimed it had a <code>shared?</code> method, but it  didn&#39;t (see RubyForge  Bug #5591). Now it does.</p>
+</li><li>
+<p>The <code>FXGradientBar</code> class was not supported  (see RubyForge  Bug #5746). This has been fixed.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.4.34 and  FXScintilla version 1.63.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.1+-28July+21-2C+2006-29">Changes For Version 1.6.1 (July 21, 2006)</h2>
+<ul><li>
+<p>The message data sent along for the  ´SEL_INSERTED´, ´SEL_DELETED´  and ´SEL_REPLACED´ messages from an a  <code>FXText</code> widget to its target was not being  converted properly (see RubyForge  Bug #4666). This has been fixed.</p>
+</li><li>
+<p>The code related to the localization of application messages in  FOX wasn&#39;t implemented properly in FXRuby, and as a result,  constructing certain dialogs (like the color dialog) could cause a  program to crash (see RubyForge  Bug #5000). This has been fixed.</p>
+</li><li>
+<p>The "Stop Spin" button in the gltest.rb example program didn&#39;t  stop the cubes from spinning after either the "Spin Timer" or "Spin  Chore" option was selected (see RubyForge  Bug #5001). This was actually a symptom of a larger problem,  that FXRuby wasn&#39;t properly handling timers and chores. These problems  have been fixed.</p>
+</li><li>
+<p>Setting the current item for an  <code>FXComboBox</code> to -1 (to indicate that there&#39;s no  current item) would cause FXRuby to erroneously raise an  <code>IndexError</code> (see RubyForge  Bug #5007). This has been fixed.</p>
+</li><li>
+<p>The documentation for the <code>reparent</code>  instance method for the <code>FXWindow</code> class was  incorrect (see RubyForge  Bug #5035). This has been fixed.</p>
+</li><li>
+<p>The <code>textedit.rb</code> example program was not up  to date with some of the changes for FOX 1.6. This example has been  updated.</p>
+</li><li>
+<p>The new <code>font</code> method for the  <code>FXFont</code> class was not documented. This has been  fixed.</p>
+</li><li>
+<p>The <code>dilbert.rb</code> example program has been  modified to use the RubyfulSoup HTML library instead of the  html-parser library.</p>
+</li><li>
+<p>As discussed in various forums (see for example <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/182827">this post</a>, the <code>autorequire</code> directive for  RubyGems specifications is now deprecated. As a result, this has been  removed from the FXRuby gem specification. This change will break any  code that was using a statement like:´require_gem &#39;fxruby&#39;´as  the sole means for loading FXRuby. Such programs should instead  use:´require &#39;fox16&#39;´which will work  for either gem based or non-gem based installations.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.8 and  FXScintilla version 1.67 (from CVS).</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.6.0+-28May+29-2C+2006-29">Changes For Version 1.6.0 (May 29, 2006)</h2>
+<ul><li>
+<p>This is the first release of FXRuby compatible with FOX version  1.6. One of the most signficant changes for FOX 1.6 has been the  addition of Unicode support; all FOX widgets and internal string  processing routines are now Unicode aware. For a comprehensive  overview of the changes made to FOX since version 1.4 (including those  made in the FOX 1.5 development series), please refer to the  <a href="http://www.fox-toolkit.com/news.html">News archives</a> at  the FOX web site.</p>
+</li><li>
+<p>Added the <code>allowSide</code>,  <code>disallowSide</code> and  <code>allowedSide?</code> methods for the  <code>FXDockBar</code> class, as complements to the  <code>allowedSides</code> accessor methods (see RubyForge  Feature Request #2307).</p>
+</li><li>
+<p>Added the <code>visible=</code> and  <code>visible?</code> accessor methods for the  <code>FXWindow</code> class, as complements to the  <code>show</code>, <code>hide</code> and  <code>shown?</code> methods (see RubyForge  Feature Request #3579).</p>
+</li><li>
+<p>The <code>browser.rb</code> example was making use of a  deprecated API (see RubyForge  Bug #4325). This has been fixed.</p>
+</li><li>
+<p>The <code>children</code> instance method for the  <code>FXWindow</code> class always returned an array of  <code>FXWindow</code> instances, even if the actual types  should have been instances of subclasses of  <code>FXWindow</code> (see RubyForge  Bug #4342). This has been fixed.</p>
+</li><li>
+<p>The <code>dilbert.rb</code> example program was broken  due to a change in the Dilbert.com web site structure (see RubyForge  Bug #4597). This has been fixed.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.6.5 and  FXScintilla version 1.67 (from CVS).</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.6+-28April+26-2C+2006-29">Changes For Version 1.4.6 (April 26, 2006)</h2>
+<ul><li>
+<p>FXRuby would not compile properly on some x86-64 systems (see  RubyForge  Bug #3729). This error has been corrected. Thanks to Javier  Goizueta for initially reporting this problem, and especially to  Tobias Peters for providing a patch.</p>
+</li><li>
+<p>The <code>FXIconDict</code> widget was accidentally  "lost" in the transition between FXRuby versions 1.2 and 1.4 (see  RubyForge  Bug #4117). This error has been corrected. Thanks to Manfred  Usselmann for reporting this problem.</p>
+</li><li>
+<p>The <code>FXSwitcher</code> widget was not sending the  appropriate message data to its message target for the  ´SEL_COMMAND´ message type (see RubyForge  Bug #4157). This error has been corrected. Thanks to Manfred  Usselmann for reporting this problem.</p>
+</li><li>
+<p>The <code>FXSeparator</code> class wasn&#39;t implemented  properly (see RubyForge  Bug #4158). This error has been corrected. Thanks to Gerard  Menochet for reporting this problem.</p>
+</li><li>
+<p>The <code>findItemByData</code> method was  implemented incorrectly for the <code>FXComboBox</code>,  <code>FXFoldingList</code>,  <code>FXIconList</code>, <code>FXList</code> and  <code>FXListBox</code> classes (see RubyForge  Bug #4172). This error has been corrected. Thanks to Gerard  Menochet for reporting this problem.</p>
+</li><li>
+<p>The <code>FXListBox</code> widget was not sending the  appropriate message data to its message target for the  ´SEL_COMMAND´ message type (see RubyForge  Bug #4255). This error has been corrected. Thanks to Gerard  Menochet for reporting this problem.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.4.29 and  FXScintilla version 1.63.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.5+-28April+10-2C+2006-29">Changes For Version 1.4.5 (April 10, 2006)</h2>
+<ul><li>
+<p>The <code>FXTextField</code> class was not properly  responding to the ´ID_INSERT_STRING´ command (see  RubyForge  Bug #3320). This error has been corrected. Thanks to Uwe Hartl  for reporting this problem.</p>
+</li><li>
+<p>The <code>text</code> and  <code>getText</code> methods for the  <code>FXMenuCaption</code> class were returning  ´nil´ instead of the actual value (see RubyForge  Bug #3458). This error has been corrected. Thanks to Meinrad  Recheis (Henon) for reporting this problem.</p>
+</li><li>
+<p>The API documentation for the <code>FXMDIChild</code>  class erroneously listed ´SEL_CLOSEALL´ as one of  the message types that an MDI child window might send to its message  target (see RubyForge  Bug #3508). This error has been corrected. Thanks to Meinrad  Recheis (Henon) for reporting this problem.</p>
+</li><li>
+<p>Calling the <code>selectRange</code> method for  class <code>FXTable</code> would cause a fatal error instead  of merely raising an <code>IndexError</code> exception (see  RubyForge  Bug #3615). This error has been corrected. Thanks to Meinrad  Recheis (Henon) for reporting this problem.</p>
+</li><li>
+<p>Due to an error in the SWIG interface files, the  <code>FXChoiceBox</code> class was basically unusable (see  RubyForge  Bug #3676). This error has been corrected. Thanks to Uwe Hartl  for reporting this problem.</p>
+</li><li>
+<p>The API documentation for the  <code>FXRealSlider</code> and  <code>FXRealSpinner</code> classes erroneously claimed that  the message data for the ´SEL_COMMAND´ and  ´SEL_CHANGED´ messages sent by these widgets to  their targets were integers (see RubyForge  Bug #3749). Along the same lines, the message data for those  widgets wasn&#39;t being converted correctly (see RubyForge  Bug #3750). Both of these errors have been corrected. Thanks  to Meinrad Recheis (Henon) for reporting these problems.</p>
+</li><li>
+<p>The API documentation for the Fox module incorrectly listed the  names of the <code>FXSELTYPE</code> and  <code>FXSELID</code> methods as  <code>SELTYPE</code> and <code>SELID</code>  (see RubyForge  Bug #3940). This error has been corrected. Thanks to Joel  VanderWerf for reporting this problem.</p>
+</li><li>
+<p>The <code>FXTableItem</code> constructor was supposed  to (optionally) accept a reference to an arbitrary Ruby object as its  third argument, but this wasn&#39;t working properly (see RubyForge  Bug #4005). This error has been corrected. Thanks to Mark  Volkman for reporting this problem.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.4.29 and  FXScintilla version 1.63.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.4+-28January+21-2C+2006-29">Changes For Version 1.4.4 (January 21, 2006)</h2>
+<ul><li>
+<p>The build instructions for Unix platforms had not been updated  recently and as such contained some errors (see RubyForge  Bug #3014). These errors have been corrected. Thanks to Dave  Burns for reporting this problem.</p>
+</li><li>
+<p>The <code>extendSelection</code> method for the  <code>FXTable</code> class was raising an exception if an  out of bounds row or column index was passed in (see RubyForge  Bug #3050). This has been changed so that  <code>extendSelection</code> instead returns false for out  of bounds arguments. Thanks to Leonid Moiseichuk for reporting this  problem.</p>
+</li><li>
+<p>The <code>each_child</code> iterator method for the  <code>FXWindow</code> class would fail if the child window  was destroyed in the block (see RubyForge  Bug #3134). Thanks to Liam Irish for reporting this problem  and providing a patch.</p>
+</li><li>
+<p>The message data for the ´SEL_REPLACED´  message sent by the <code>FXTable</code> class to its target  was not being handled properly (see RubyForge  Bug #3244). There were also problems with the message data for  the ´SEL_SELECTED´ and  ´SEL_DESELECTED´ messages. Furthermore, the  ´SEL_REPLACED´ message was not documented in the  RDoc documentation for the <code>FXTable</code> class. All  of these problems have been corrected. Thanks to _blackdog for  reporting this problem.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.4.29 and  FXScintilla version 1.63.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.3+-28November+7-2C+2005-29">Changes For Version 1.4.3 (November 7, 2005)</h2>
+<ul><li>
+<p>The ´TOGGLEBUTTON_KEEPSTATE´ option for the  <code>FXToggleButton</code> class was not documented (see  RubyForge  Bug #2286). This oversight has been corrected. Thanks to Tim  Smith for reporting this problem.</p>
+</li><li>
+<p>The <code>scintilla.rb</code> library file was not up to  date with the latest FXScintilla release, and as a result it was  missing some methods (see RubyForge  Bug #2479). This oversight has been corrected. Thanks to Maxim  Kulkin for reporting this problem.</p>
+</li><li>
+<p>Due to changes in the APIs for timers and chores, the mechanisms  for removing chores and timeouts were broken (see RubyForge  Bug #2563). This bug has been fixed. Thanks to "moinker" for  reporting this problem.</p>
+</li><li>
+<p>An error in the test setup caused all of the tests for the  <code>FXList</code> class to fail (see RubyForge  Bug #2564). This bug has been fixed. Thanks to Peter for  reporting this problem.</p>
+</li><li>
+<p>Due to a bug in the test suite runner script, not all test cases  were being exercised (see RubyForge  Bug #2565). This bug has been fixed.</p>
+</li><li>
+<p>Calling the <code>getPixel</code> method for the  <code>FXImage</code> class when the client-side pixel buffer  for the image has already been released would cause a program to crash  (see RubyForge  Bug #2611). Now, <code>getPixel</code> will raise  an exception if it&#39;s called after the pixel buffer has been released.  The documentation for <code>getPixel</code> has been  updated accordingly. Thanks to Gonzalo Garramuno for reporting this  problem.</p>
+</li><li>
+<p>The <code>makePositionVisible</code> method for the  <code>FXTable</code> class was raising an exception when  passed out-of-bounds values for the row or column index (see RubyForge  Bug #2660). This could happen, for example, if you were to  click in a table area outside of the regular cells (which indirectly  triggers a call to <code>makePositionVisible</code>). This  was actually inconsistent with standard FOX behavior, which simply  ignores out of bounds values for that method&#39;s arguments. This bug has  been fixed, and the documentation for  <code>makePositionVisible</code> has been updated  accordingly. Thanks to Ralf Jonas for reporting this problem.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.4.21 and  FXScintilla version 1.63.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.2+-28August+22-2C+2005-29">Changes For Version 1.4.2 (August 22, 2005)</h2>
+<ul><li>
+<p>Due to a bug in the implementation, the  <code>checked?</code> method for the  <code>FXCheckButton</code> class always returned  ´false´ (see RubyForge  Bug #1852). This bug has been fixed. Thanks to Meinrad Recheis  for reporting this problem.</p>
+</li><li>
+<p>The API documentation for the <code>FXTable</code>  class listed several obsolete attributes (see RubyForge  Bug #1928). Those errors have been corrected. Thanks to Pavel  Sokolov for reporting these problems.</p>
+</li><li>
+<p>There were a number of bugs in the  <code>textedit.rb</code> example program (see RubyForge  Bug #1979), and those bugs have been fixed. Thanks to Claude  Marinier for reporting these problems.</p>
+</li><li>
+<p>The API documentation for the <code>FXTreeList</code>  class&#39; <code>new</code> method still showed the number of  visible items (´nvis´) as its second argument  (see RubyForge  Bug #2171). This problem has been corrected. Thanks to Bill  Atkins for reporting this problem.</p>
+</li><li>
+<p>The API documentation for the <code>FXTopWindow</code>  class had a number of errors (see RubyForge  Bug #2269). This problem has been corrected.</p>
+</li><li>
+<p>The API documentation for the <code>FXTreeList</code>  class still listed the obsolete <code>reparentItem</code>  method (see RubyForge  Bug #2270). This problem has been corrected. Thanks to Jacob  Hansen for reporting this problem.</p>
+</li><li>
+<p>Due to a bug in how the SWIG typemaps for the  ´FXlong´ type were defined, some methods for the  <code>FXFileStream</code> class were broken (see RubyForge  Bug #2275). This problem has been corrected. Thanks to Gonzalo  Garramuno for reporting this problem.</p>
+</li><li>
+<p>Merged in all of the fixes for FXRuby 1.2.6.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.4.17 and  FXScintilla version 1.63.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.1+-28August+20-2C+2005-29">Changes For Version 1.4.1 (August 20, 2005)</h2>
+<ul><li>
+<p>This is the second release of FXRuby which is compatible with  FOX 1.4, and as such should be considered an "unstable" release. For a  history of the changes made during the FOX 1.3 and 1.4 development,  see the <a href="http://www.fox-toolkit.com/news.html">News</a>  page at the FOX Web site.</p>
+</li><li>
+<p>The unit tests (in the <code>tests</code> subdirectory)  had not been updated to require the ´fox14´  feature, and were still looking at ´fox12´. This  has been corrected.</p>
+</li><li>
+<p>A number of minor problems were corrected for the Windows build  of FXRuby.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.4.17 and  FXScintilla version 1.63.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.4.0+-28August+19-2C+2005-29">Changes For Version 1.4.0 (August 19, 2005)</h2>
+<ul><li>
+<p>This is the first release of FXRuby which is compatible with FOX  1.4, and as such should be considered an “unstable” release. For a  history of the changes made during the FOX 1.3 and 1.4 development,  see the <a href="http://www.fox-toolkit.com/news.html">News</a>  page at the FOX Web site.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.2.6+-28April+15-2C+2005-29">Changes For Version 1.2.6 (April 15, 2005)</h2>
+<ul><li>
+<p>Some additional problems related to calling the  <code>setTableSize</code> method for an  <code>FXTable</code> were discovered (see RubyForge  Bug #1597). This problem has been corrected. Thanks to Joel  VanderWerf for reporting this problem.</p>
+</li><li>
+<p>The <code>iconlist.rb</code> example program had a  "Sort" pulldown menu filled with a number of commands that didn&#39;t  really do anything, including sorting the items (see RubyForge  Bug #1654). This pulldown menu has been removed from that  example.</p>
+</li><li>
+<p>The API documentation for the <code>FXDC</code> class  erroneously referred to the <code>font</code> attribute as  <code>textFont</code> (see RubyForge  Bug #1667). This problem has been corrected. Thanks to Meinrad  Recheis for reporting this problem.</p>
+</li><li>
+<p>The <code>checked?</code>,  <code>unchecked?</code> and  <code>maybe?</code> methods for the  <code>FXMenuCheck</code> class were missing (see RubyForge  Bug #1677). This problem has been corrected. Thanks to Oliver  Smith for reporting this problem.</p>
+</li><li>
+<p>The API documentation for the  <code>FXScrollArea</code> class incorrectly spelled the  names of the <code>horizontalScrollBar</code> and  <code>verticalScrollBar</code> methods as  <code>horizontalScrollbar</code> and  <code>verticalScrollbar</code> (see RubyForge  Bug #1678). The documentation has been corrected. Thanks to  Jannis Pohlmann for reporting this mistake.</p>
+</li><li>
+<p>Some code in the <code>groupbox.rb</code> example  program was calling the <code>getRootWindow</code> method,  but that method has been renamed to <code>getRoot</code>  (see RubyForge  Bug #1692). This problem has been corrected. Thanks to  Jaroslav Stika for reporting this problem.</p>
+</li><li>
+<p>The <code>hasChar?</code> method for the  <code>FXFont</code> class was spelled without a trailing  question mark, but it seems more Ruby-like that it should, so we&#39;ve  added an alias for that (see RubyForge  Bug #1714). This method also now accepts a string of size 1  (i.e. a single character) as its input, as an alternative to an  ordinal value. Thanks to Meinrad Recheis for these suggestions.</p>
+</li><li>
+<p>The API documentation for the <code>FXImage</code>  class mistakenly listed ´IMAGE_ALPHA´ as a valid  image rendering hint, but this flag is no longer needed since FOX  images now always contain an alpha channel (see RubyForge  Bug #1715). The documentation has been corrected. Thanks to  Meinrad Recheis for reporting this mistake.</p>
+</li><li>
+<p>Due to an error in the SWIG interface files, the  <code>data</code> method for the  <code>FXSettings</code> class was not being wrapped  properly. As a result, this method was unavailable and in turn led to  other dependent methods (like <code>each_section</code>)  to be unavailable as well (see RubyForge  Bug #1771). This error has been corrected. Thanks to Jannis  Pohlmann for reporting this problem.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.2.16 and  FXScintilla version 1.62.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.2.5+-28March+1-2C+2005-29">Changes For Version 1.2.5 (March 1, 2005)</h2>
+<ul><li>
+<p>The change made for FXRuby version 1.2.4 regarding garbage  collection for table items corrected only one of the problems  described in RubyForge  Bug #1445; There was still a problem related to the  "destructive" effects of the <code>setTableSize</code>  method for the <code>FXTable</code> class. This problem has  now been corrected as well. Thanks to David Peoples, Jamey Cribbs and  Joel VanderWerf for their assistance in helping me to track down this  problem.</p>
+</li><li>
+<p>The <code>extractText</code> and  <code>overlayText</code> methods for the  <code>FXTable</code> class were implemented incorrectly and  weren&#39;t listed in the API documentation. These problems have been  corrected.</p>
+</li><li>
+<p>The checks for out-of-bounds indices in the  <code>getColumnX</code>,  <code>setColumnX</code>, <code>getRowY</code>,  <code>setRowY</code> and  <code>updateRange</code> methods for the  <code>FXTable</code> class were incorrect. These have been  fixed.</p>
+</li><li>
+<p>The <code>setTableSize</code> method for the  <code>FXTable</code> class now raises  <code>ArgError</code> if either the number of rows or  columns passed in as arguments is less than zero.</p>
+</li><li>
+<p>A typo in one of the source files was causing the build to fail  when compiled against Ruby versions 1.8.1 or earlier (see RubyForge  Bug #1551). This error has been corrected. Thanks to Alex  McGuire for reporting this problem.</p>
+</li><li>
+<p>The <code>selectItem</code> method for the  <code>FXTable</code> class was removed in FOX 1.2, so we&#39;ve  added a convenience method for this that just calls the  <code>selectRange</code> method under the hood (see RubyForge  Bug #1562). Thanks to Joel VanderWerf for this  suggestion.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.2.13 and  FXScintilla version 1.62.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.2.4+-28February+23-2C+2005-29">Changes For Version 1.2.4 (February 23, 2005)</h2>
+<ul><li>
+<p>Due to a change in some of the internal Ruby C APIs, a  compile-time error for FXRuby was introduced in some of the Ruby 1.8.2  preview releases (see RubyForge  Bug #1039). One should not see any compile-time errors when  compiling FXRuby (versions 1.2.3 or later) against the Ruby 1.8.2  final release, but I&#39;ve neverthless made a change to how those  internal APIs are used, to avoid any potential problems. Thanks to the  many users who pointed out this problem.</p>
+</li><li>
+<p>Joel VanderWerf suggested some enhancements to the  <code>image.rb</code> example program in order to improve its  startup time (see RubyForge  Bug #1281). Those changes have been incorporated. Thanks to  Joel for this suggestion.</p>
+</li><li>
+<p>One change for the <code>FXImage</code> class between  FOX versions 1.0 and 1.2 is the nature of the pixel buffer that&#39;s  passed to the <code>FXImage</code> constructor. Previously,  this pixel buffer was expected to be a string of bytes; now it&#39;s  expected to be an array of ´FXColor´ values. This  modification was not implemented correctly for FXRuby versions 1.2.3  and earlier (see RubyForge  Bug #1427). This bug has been corrected, and the example  program (<code>image.rb</code>) and test cases have been  updated as well. Thanks to Oliver Smith and others for reporting this  problem.</p>
+</li><li>
+<p>A couple of different problems, reported by Patrick Fernie and  David Peoples, exposed a flaw in how FXRuby manages the links between  FOX objects and their Ruby peers when the FOX objects are destroyed  (see RubyForge  Bug #1445). Without going into all the gory details, let&#39;s  just say that since we have no explicit control over when Ruby&#39;s  garbage collector decides to "collect" those Ruby peers that point to  C++ objects that have been destroyed, we need to take steps to  neutralize those Ruby peer objects so that they can&#39;t cause your  application to crash in the meantime; I&#39;ve implemented a fix to take  care of this situation. Thanks to Patrick and David for reporting  these problems.</p>
+</li><li>
+<p>The API documentation for FXRuby 1.2 still contained references  to the old "spellings" of the <code>fxparseAccel</code>  and <code>fxparseHotKey</code> method names, which were  all lowercase (i.e. <code>fxparseaccel</code> and  <code>fxparsehotkey</code>). (see RubyForge  Bug #1470). These errors have been corrected.</p>
+</li><li>
+<p>Added the <code>FXScrollArea#scrollCorner</code>  method, which returns a reference to the scroll corner for any window  derived from <code>FXScrollArea</code> (see RubyForge  Feature Request #1226). Thanks to Brian Sheehan for this  suggestion.</p>
+</li><li>
+<p>Added the <code>FXMemoryBuffer#to_a</code> method,  which is just an alias for the <code>data</code> accessor  method that returns a copy of the data buffer as an array (see RubyForge  Feature Request #1295). Thanks to Meinrad Recheis for this  suggestion.</p>
+</li><li>
+<p>Added the <code>appendRows</code> and  <code>appendColumns</code> methods to the  <code>FXTable</code> class (see RubyForge  Feature Request #1295). Thanks to Brett Hallett for this  suggestion.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.2.13 and  FXScintilla version 1.62.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.2.3+-28January+22-2C+2005-29">Changes For Version 1.2.3 (January 22, 2005)</h2>
+<ul><li>
+<p>Since group boxes containing radio buttons no longer enforce the  radio behavior of radio buttons (i.e. keeping only one radio button  selected at a time), some of the example programs were no longer  working as desired (see RubyForge  Bug #751 and RubyForge  Bug #1280). This problem has been corrected. Thanks to Yuri  Leikind and Barry DeZonia for reporting this problem.</p>
+</li><li>
+<p>Bob Sidebotham reported a little typo in the  <code>table.rb</code> example program (see RubyForge  Bug #990). This has been corrected.</p>
+</li><li>
+<p>The API documentation for <code>FXList</code> did not  reflect the changes for FOX 1.2; the  <code>retrieveItem()</code> has been renamed to  <code>getItem()</code> and  <code>insertItem()</code> has been renamed to  <code>setItem()</code> (see RubyForge  Bug #1037 and RubyForge  Bug #1257). This has been corrected. Thanks to Remy Drouilhet  and Stephan Kamper for reporting this problem.</p>
+</li><li>
+<p>The Windows installer was missing some of the documentation  files (see RubyForge  Bug #1139). This has been corrected. Thanks to Curt Hibbs and  Mark Smith for reporting this problem.</p>
+</li><li>
+<p>The <code>browser.rb</code> example program was broken  (see RubyForge  Bug #1146). This has been corrected. Thanks to Stefan Lang for  reporting this problem.</p>
+</li><li>
+<p>The attribute setter for  <code>FXHeaderItem#justification</code> was defined  incorrectly (see RubyForge  Bug #1276). This has been corrected. Thanks to Joel VanderWerf  for reporting this problem (and providing a patch to fix it).</p>
+</li><li>
+<p>The <code>filenames</code> alias for the  <code>FXFileDialog#getFilenames()</code> instance method  was missing (see RubyForge  Bug #1277). This error has been corrected. Thanks to Barry  DeZonia for reporting this problem.</p>
+</li><li>
+<p>The API documentation for the  <code>FXFileDialog</code> class methods  <code>getOpenFilenames()</code>,  <code>getOpenDirectory()</code>,  <code>getOpenFilename()</code> and  <code>getSaveFilename()</code> was extremely inadequate  (see RubyForge  Bug #1279). This documentation has been improved. Thanks to  Barry DeZonia for reporting this problem.</p>
+</li><li>
+<p>Brett Hallett contributed a Ruby port of the "ratio" example  program from the regular FOX distribution, for demonstrating the use  of the new <code>FXSpring</code> layout manager (see RubyForge  Bug #1282). Many thanks to Brett for this addition!</p>
+</li><li>
+<p>Joel VanderWerf contributed code to simplify how programs  interact with modal and non-modal dialog boxes (see RubyForge  Bug #1283). See the API documentation for the new  <code>FXDialogBox#execute_modal</code> and  <code>FXDialogBox#execute_nonmodal</code> methods for  examples of their use.</p>
+</li><li>
+<p>The attribute setters for  <code>FXRealSpinner#selBackColor</code> and  <code>FXSpinner#selBackColor</code> were defined  incorrectly (see RubyForge  Bug #1297). These have been corrected. Thanks to Meinrad  Recheis for reporting this problem.</p>
+</li><li>
+<p>The <code>tooltipPause</code> attribute reader for  the <code>FXApp</code> class was missing (see RubyForge  Patch #1306). Thanks to Joel VanderWerf for reporting this  omission and providing a patch to fix it.</p>
+</li><li>
+<p>The API documentation for the  <code>FXToolBarTab</code> class was missing (see RubyForge  Bug #1322). Thanks to Joel VanderWerf for reporting this  omission.</p>
+</li><li>
+<p>The attribute accessors for  <code>FXText#visibleRows</code> and  <code>FXText#visibleColumns</code> were defined and  documented incorrectly (see RubyForge  Bug #1325). These have been corrected. Thanks to Karl El-Koura  for reporting this problem.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.2.13 and  FXScintilla version 1.62.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.2.2+-28October+1-2C+2004-29">Changes For Version 1.2.2 (October 1, 2004)</h2>
+<ul><li>
+<p>In order to avoid versioning problems when dealing with a mix of  applications based on either FXRuby 1.0 or 1.2, the feature name for  FXRuby has been changed from “fox” to “fox12”. For most application  developers, this means that you will need to modify the source code  for applications targeted at FXRuby 1.2 to begin with the line  ´require &#39;fox12&#39;´Note that no  changes should be required for legacy applications targeted at FXRuby  1.0.</p>
+</li><li>
+<p>Made a number of updates to the documentation, to reflect API  changes for FXRuby 1.2.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.2.9 and  FXScintilla version 1.61.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.2a2+-28July+10-2C+2004-29">Changes For Version 1.2a2 (July 10, 2004)</h2>
+<ul><li>
+<p>This is the second "alpha" release of FXRuby 1.2. This release  should be compatible with any FOX library version 1.2; it is not  compatible with any previous FOX library versions. As this is an alpha  release, users should expect a certain amount of instability, bugs,  etc.</p>
+</li><li>
+<p>For this release, all of the FOX 1.2 classes are available with  the exception of the <code>FXBitmapView</code> class. There  is a small problem with how the <code>FXBitmapView</code>  class is declared in the FOX 1.2 header files, and I&#39;m trying to  decide how best to resolve that problem. The goal is to have this  problem resolved by the next alpha release of FXRuby.</p>
+</li><li>
+<p>For this release, all of the RDoc-based online documentation has  been brought up to date with the new APIs.</p>
+</li><li>
+<p>Portions of the FXRuby User&#39;s Guide were still out of date with  respect to the new APIs (see SourceForge Bug #988623). This has been fixed.</p>
+</li><li>
+<p>The <code>mditest.rb</code> example program was not up  to date with the new APIs. This has been fixed.</p>
+</li><li>
+<p>The <code>glviewer.rb</code> example program was not up  to date with the new APIs (see SourceForge Bug #986479). This has been fixed. Thanks to Remy Drouilhet  for reporting this problem and suggesting the fixes.</p>
+</li><li>
+<p>The <code>FXGLGroup#bounds</code> method was defined  incorrectly (see SourceForge Bug #986476). This has been fixed. Thanks to Remy Drouilhet  for reporting this problem and suggesting the fix.</p>
+</li><li>
+<p>The <code>scintilla-test.rb</code> example program was  not up to date with the new APIs (see SourceForge Bug #986172). This has been fixed. Thanks to Peter Watkins for  reporting this problem and submitting a corrected version of the  program.</p>
+</li><li>
+<p>There was a small typo in the table.rb example program (see  SourceForge Bug #988152). This has been fixed. Thanks to Jamey Cribbs for  reporting this problem and suggesting the fix.</p>
+</li><li>
+<p>Due to an oversight on my part, one of the overloaded  constructors for the <code>FXRegion</code> class wasn&#39;t  wrapped properly (see SourceForge Bug #986181). This has been fixed. Thanks to Bil Bas for  reporting this problem.</p>
+</li><li>
+<p>Removed some obsolete aliases for the old leading and trailing  rows and columns for the <code>FXTable</code> class (see  SourceForge Bug #988038). Thanks to Yuri Leikind for reporting this  problem.</p>
+</li><li>
+<p>Added <code>FXTable</code> instance methods  <code>horizontalGridShown=()</code> and  <code>verticalGridShown=()</code> to complement the  already available <code>horizontalGridShown?</code> and  <code>verticalGridShown?</code> methods.</p>
+</li><li>
+<p>The binary gem for the 1.2a1 release on Windows didn&#39;t have PNG  or JPEG image support built-in (see SourceForge Bug #986180). This has been fixed. Thanks to Bil Bas for  reporting this problem.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.2.7 and  FXScintilla version 1.61.</p>
+</li></ul>
+
+<h2 id="label-Changes+For+Version+1.2a1+-28June+28-2C+2004-29">Changes For Version 1.2a1 (June 28, 2004)</h2>
+<ul><li>
+<p>This is the first "alpha" release of FXRuby 1.2. This release  should be compatible with any FOX library version 1.2; it is not  compatible with any previous FOX library versions. As this is an alpha  release, users should expect a certain amount of instability, bugs,  etc.  The intent of this first alpha release is twofold. The primary  intent is allow application developers who have current projects based  on FXRuby 1.0 to begin the process of updating their applications for  compatibility with FXRuby 1.2. For this release, all of the classes  that existed in FXRuby 1.0 have been updated for compatibility with  FOX 1.2, and so developers should at least be able to begin to "port"  their applications forward now. Note that there have been a number of  changes for FOX 1.2 and FXRuby 1.2, both in terms of API changes and  less obvious "behavioral" changes. For a detailed summary of these  changes, please see "What&#39;s New in FOX 1.2" (also available as a PDF).  Note that few, if any, of the new classes introduced in FOX 1.2 are  available in this first alpha release of FXRuby 1.2. Support for those  new classes should come along quickly in subsequent alpha releases of  FXRuby 1.2.  The secondary intent of this first alpha release is to introduce  the new RubyGems-based packaging  of FXRuby and to begin to work out the inevitable kinks in that  system.</p>
+</li><li>
+<p>The binary gem for Windows was built with FOX version 1.2.4 and  FXScintilla version 1.57.</p>
+</li></ul>
+</div></div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:02:45 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

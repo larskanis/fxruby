@@ -1,0 +1,2998 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXFont
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXFont";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXFont</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXFont
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next">Fox::FXFont</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXFont.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Font class</p>
+
+<h3 id="label-Font+pitch+hints">Font pitch hints</h3>
+<dl class="rdoc-list note-list"><dt><code>Fixed</code>
+<dd>
+<p>Fixed pitch, mono-spaced</p>
+</dd><dt><code>Variable</code>
+<dd>
+<p>Variable pitch, proportional spacing</p>
+</dd></dl>
+
+<h3 id="label-Font+style+hints">Font style hints</h3>
+<dl class="rdoc-list note-list"><dt><code>Decorative</code>
+<dd>
+<p>Fancy fonts</p>
+</dd><dt><code>Modern</code>
+<dd>
+<p>Monospace typewriter font</p>
+</dd><dt><code>Roman</code>
+<dd>
+<p>Variable width times-like font, serif</p>
+</dd><dt><code>Script</code>
+<dd>
+<p>Script or cursive</p>
+</dd><dt><code>Swiss</code>
+<dd>
+<p>Helvetica/swiss type font, sans-serif</p>
+</dd><dt><code>System</code>
+<dd>
+<p>System font</p>
+</dd><dt><code>X11</code>
+<dd>
+<p>Raw X11 font string</p>
+</dd><dt><code>Scalable</code>
+<dd>
+<p>Scalable fonts</p>
+</dd><dt><code>Polymorphic</code>
+<dd>
+<p>Polymorphic fonts, e.g. parametric weight, slant, etc.</p>
+</dd><dt><code>Rotatable</code>
+<dd>
+<p>Rotatable fonts</p>
+</dd></dl>
+
+<h3 id="label-Font+slant+options">Font slant options</h3>
+<dl class="rdoc-list note-list"><dt><code>ReverseOblique</code>
+<dd>
+<p>Reversed oblique</p>
+</dd><dt><code>ReverseItalic</code>
+<dd>
+<p>Reversed italic</p>
+</dd><dt><code>Straight</code>
+<dd>
+<p>Straight, not slanted</p>
+</dd><dt><code>Italic</code>
+<dd>
+<p>Italics</p>
+</dd><dt><code>Oblique</code>
+<dd>
+<p>Oblique slant</p>
+</dd></dl>
+
+<h3 id="label-Font+weight+options">Font weight options</h3>
+<dl class="rdoc-list note-list"><dt><code>Thin</code>
+<dd>
+<p>Thin</p>
+</dd><dt><code>ExtraLight</code>
+<dd>
+<p>Extra light</p>
+</dd><dt><code>Light</code>
+<dd>
+<p>Light</p>
+</dd><dt><code>Normal</code>
+<dd>
+<p>Normal or regular weight</p>
+</dd><dt><code>Medium</code>
+<dd>
+<p>Medium bold face</p>
+</dd><dt><code>DemiBold</code>
+<dd>
+<p>Demi bold face</p>
+</dd><dt><code>Bold</code>
+<dd>
+<p>Bold face</p>
+</dd><dt><code>ExtraBold</code>
+<dd>
+<p>Extra</p>
+</dd><dt><code>Black</code>
+<dd>
+<p>Black</p>
+</dd></dl>
+
+<h3 id="label-Condensed+or+expanded+options">Condensed or expanded options</h3>
+<dl class="rdoc-list note-list"><dt><code>UltraCondensed</code>
+<dd>
+<p>Ultra condensed printing</p>
+</dd><dt><code>ExtraCondensed</code>
+<dd>
+<p>Extra condensed</p>
+</dd><dt><code>Condensed</code>
+<dd>
+<p>Condensed</p>
+</dd><dt><code>SemiCondensed</code>
+<dd>
+<p>Semi-condensed</p>
+</dd><dt><code>NonExpanded</code>
+<dd>
+<p>Regular printing</p>
+</dd><dt><code>SemiExpanded</code>
+<dd>
+<p>Semi expanded</p>
+</dd></dl>
+
+<p><code>Expanded</code>:; Expanded</p>
+<dl class="rdoc-list note-list"><dt><code>ExtraExpanded</code>
+<dd>
+<p>Extra expanded</p>
+</dd><dt><code>UltraExpanded</code>
+<dd>
+<p>Ultra expanded</p>
+</dd></dl>
+
+<h3 id="label-Font+character+set+encoding">Font character set encoding</h3>
+<dl class="rdoc-list note-list"><dt><code>FONTENCODING_DEFAULT</code>
+<dd>
+<p>Don&#39;t care character encoding</p>
+</dd><dt><code>FONTENCODING_ISO_8859_1</code>
+<dd>
+<p>West European (Latin1)</p>
+</dd><dt><code>FONTENCODING_ISO_8859_2</code>
+<dd>
+<p>Central and East European (Latin2)</p>
+</dd><dt><code>FONTENCODING_ISO_8859_3</code>
+<dd>
+<p>Esperanto (Latin3)</p>
+</dd><dt><code>FONTENCODING_ISO_8859_4</code>
+<dd>
+<p>ISO-8859-4 character encoding</p>
+</dd><dt><code>FONTENCODING_ISO_8859_5</code>
+<dd>
+<p>Cyrillic (almost obsolete)</p>
+</dd><dt><code>FONTENCODING_ISO_8859_6</code>
+<dd>
+<p>Arabic</p>
+</dd><dt><code>FONTENCODING_ISO_8859_7</code>
+<dd>
+<p>Greek</p>
+</dd><dt><code>FONTENCODING_ISO_8859_8</code>
+<dd>
+<p>Hebrew</p>
+</dd><dt><code>FONTENCODING_ISO_8859_9</code>
+<dd>
+<p>Turkish (Latin5)</p>
+</dd><dt><code>FONTENCODING_ISO_8859_10</code>
+<dd>
+<p>ISO-8859-10 character encoding</p>
+</dd><dt><code>FONTENCODING_ISO_8859_11</code>
+<dd>
+<p>Thai</p>
+</dd><dt><code>FONTENCODING_ISO_8859_13</code>
+<dd>
+<p>Baltic</p>
+</dd><dt><code>FONTENCODING_ISO_8859_14</code>
+<dd>
+<p>ISO-8859-14 character encoding</p>
+</dd><dt><code>FONTENCODING_ISO_8859_15</code>
+<dd>
+<p>ISO-8859-15 character encoding</p>
+</dd><dt><code>FONTENCODING_ISO_8859_16</code>
+<dd>
+<p>ISO-8859-16 character encoding</p>
+</dd><dt><code>FONTENCODING_KOI8</code>
+<dd>
+<p>KOI-8 character encoding</p>
+</dd><dt><code>FONTENCODING_KOI8_R</code>
+<dd>
+<p>Russian</p>
+</dd><dt><code>FONTENCODING_KOI8_U</code>
+<dd>
+<p>Ukrainian</p>
+</dd><dt><code>FONTENCODING_KOI8_UNIFIED</code>
+<dd>
+<p>x</p>
+</dd><dt><code>FONTENCODING_CP437</code>
+<dd>
+<p>IBM-PC code page</p>
+</dd><dt><code>FONTENCODING_CP850</code>
+<dd>
+<p>IBM-PC Multilingual</p>
+</dd><dt><code>FONTENCODING_CP851</code>
+<dd>
+<p>IBM-PC Greek</p>
+</dd><dt><code>FONTENCODING_CP852</code>
+<dd>
+<p>IBM-PC Latin2</p>
+</dd><dt><code>FONTENCODING_CP855</code>
+<dd>
+<p>IBM-PC Cyrillic</p>
+</dd><dt><code>FONTENCODING_CP856</code>
+<dd>
+<p>IBM-PC Hebrew</p>
+</dd><dt><code>FONTENCODING_CP857</code>
+<dd>
+<p>IBM-PC Turkish</p>
+</dd><dt><code>FONTENCODING_CP860</code>
+<dd>
+<p>IBM-PC Portugese</p>
+</dd><dt><code>FONTENCODING_CP861</code>
+<dd>
+<p>IBM-PC Iceland</p>
+</dd><dt><code>FONTENCODING_CP862</code>
+<dd>
+<p>IBM-PC Israel</p>
+</dd><dt><code>FONTENCODING_CP863</code>
+<dd>
+<p>IBM-PC Canadian/French</p>
+</dd><dt><code>FONTENCODING_CP864</code>
+<dd>
+<p>IBM-PC Arabic</p>
+</dd><dt><code>FONTENCODING_CP865</code>
+<dd>
+<p>IBM-PC Nordic</p>
+</dd><dt><code>FONTENCODING_CP866</code>
+<dd>
+<p>IBM-PC Cyrillic #2</p>
+</dd><dt><code>FONTENCODING_CP869</code>
+<dd>
+<p>IBM-PC Greek #2</p>
+</dd><dt><code>FONTENCODING_CP870</code>
+<dd>
+<p>Latin-2 Multilingual</p>
+</dd><dt><code>FONTENCODING_CP1250</code>
+<dd>
+<p>Windows Central European</p>
+</dd><dt><code>FONTENCODING_CP1251</code>
+<dd>
+<p>Windows Russian</p>
+</dd><dt><code>FONTENCODING_CP1252</code>
+<dd>
+<p>Windows Latin1</p>
+</dd><dt><code>FONTENCODING_CP1253</code>
+<dd>
+<p>Windows Greek</p>
+</dd><dt><code>FONTENCODING_CP1254</code>
+<dd>
+<p>Windows Turkish</p>
+</dd><dt><code>FONTENCODING_CP1255</code>
+<dd>
+<p>Windows Hebrew</p>
+</dd><dt><code>FONTENCODING_CP1256</code>
+<dd>
+<p>Windows Arabic</p>
+</dd><dt><code>FONTENCODING_CP1257</code>
+<dd>
+<p>Windows Baltic</p>
+</dd><dt><code>FONTENCODING_CP1258</code>
+<dd>
+<p>Windows Vietnam</p>
+</dd><dt><code>FONTENCODING_CP874</code>
+<dd>
+<p>Windows Thai</p>
+</dd><dt><code>FONTENCODING_UNICODE</code>
+<dd>
+<p>Unicode</p>
+</dd><dt><code>FONTENCODING_LATIN1</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_1</code>, Latin 1 (West European)</p>
+</dd><dt><code>FONTENCODING_LATIN2</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_2</code>, Latin 2 (East European)</p>
+</dd><dt><code>FONTENCODING_LATIN3</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_3</code>, Latin 3 (South European)</p>
+</dd><dt><code>FONTENCODING_LATIN4</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_4</code>, Latin 4 (North European)</p>
+</dd><dt><code>FONTENCODING_LATIN5</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_9</code>, Latin 5 (Turkish)</p>
+</dd><dt><code>FONTENCODING_LATIN6</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_10</code>, Latin 6 (Nordic)</p>
+</dd><dt><code>FONTENCODING_LATIN7</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_13</code>, Latin 7 (Baltic Rim)</p>
+</dd><dt><code>FONTENCODING_LATIN8</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_14</code>, Latin 8 (Celtic)</p>
+</dd><dt><code>FONTENCODING_LATIN9</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_15</code>, Latin 9 (a.k.a. Latin 0)</p>
+</dd><dt><code>FONTENCODING_LATIN10</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_16</code>, Latin 10</p>
+</dd><dt><code>FONTENCODING_USASCII</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_1</code>, Latin 1</p>
+</dd><dt><code>FONTENCODING_WESTEUROPE</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_1</code>, Latin 1 (West European)</p>
+</dd><dt><code>FONTENCODING_EASTEUROPE</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_2</code>, Latin 2 (East European)</p>
+</dd><dt><code>FONTENCODING_SOUTHEUROPE</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_3</code>, Latin 3 (South European)</p>
+</dd><dt><code>FONTENCODING_NORTHEUROPE</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_4</code>, Latin 4 (North European)</p>
+</dd><dt><code>FONTENCODING_CYRILLIC</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_5</code>, Cyrillic</p>
+</dd><dt><code>FONTENCODING_RUSSIAN</code>
+<dd>
+<p>same as <code>FONTENCODING_KOI8</code>, Cyrillic</p>
+</dd><dt><code>FONTENCODING_ARABIC</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_6</code>, Arabic</p>
+</dd><dt><code>FONTENCODING_GREEK</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_7</code>, Greek</p>
+</dd><dt><code>FONTENCODING_HEBREW</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_8</code>, Hebrew</p>
+</dd><dt><code>FONTENCODING_TURKISH</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_9</code>, Latin 5 (Turkish)</p>
+</dd><dt><code>FONTENCODING_NORDIC</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_10</code>, Latin 6 (Nordic)</p>
+</dd><dt><code>FONTENCODING_THAI</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_11</code>, Thai</p>
+</dd><dt><code>FONTENCODING_BALTIC</code>
+<dd>
+<p>same as <code>FONTENCODING_ISO_8859_13</code>, Latin 7 (Baltic Rim)</p>
+</dd><dt><code>FONTENCODING_CELTIC</code>
+<dd>
+<p>same as &lt;tt&gt;FONTENCODING_ISO_8859_14, Latin 8 (Celtic)</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actualEncoding-instance_method" title="#actualEncoding (instance method)">#<strong>actualEncoding</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Actual encoding [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actualName-instance_method" title="#actualName (instance method)">#<strong>actualName</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Actual font family name [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actualSetWidth-instance_method" title="#actualSetWidth (instance method)">#<strong>actualSetWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Actual set width [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actualSize-instance_method" title="#actualSize (instance method)">#<strong>actualSize</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Actual size in deci-points [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actualSlant-instance_method" title="#actualSlant (instance method)">#<strong>actualSlant</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Actual slant [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actualWeight-instance_method" title="#actualWeight (instance method)">#<strong>actualWeight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Actual font weight [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#angle-instance_method" title="#angle (instance method)">#<strong>angle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Font angle [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#encoding-instance_method" title="#encoding (instance method)">#<strong>encoding</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Encoding [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#family-instance_method" title="#family (instance method)">#<strong>family</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Family part of name [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontAscent-instance_method" title="#fontAscent (instance method)">#<strong>fontAscent</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Ascent from baseline [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontDesc-instance_method" title="#fontDesc (instance method)">#<strong>fontDesc</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Font description <span class='object_link'><a href="FXFontDesc.html" title="Fox::FXFontDesc (class)">FXFontDesc</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontDescent-instance_method" title="#fontDescent (instance method)">#<strong>fontDescent</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Descent from baseline [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontHeight-instance_method" title="#fontHeight (instance method)">#<strong>fontHeight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Height of tallest character in font [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontLeading-instance_method" title="#fontLeading (instance method)">#<strong>fontLeading</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Font leading [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontSpacing-instance_method" title="#fontSpacing (instance method)">#<strong>fontSpacing</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Font line spacing [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontWidth-instance_method" title="#fontWidth (instance method)">#<strong>fontWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Width of widest character in font [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#foundry-instance_method" title="#foundry (instance method)">#<strong>foundry</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Foundry part of name [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hints-instance_method" title="#hints (instance method)">#<strong>hints</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Hints [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#maxChar-instance_method" title="#maxChar (instance method)">#<strong>maxChar</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Last character glyph in font [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Font family name [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setWidth-instance_method" title="#setWidth (instance method)">#<strong>setWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set width [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#size-instance_method" title="#size (instance method)">#<strong>size</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Size in decipoints [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#slant-instance_method" title="#slant (instance method)">#<strong>slant</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Slant [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#weight-instance_method" title="#weight (instance method)">#<strong>weight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Font weight [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#listFonts-class_method" title="listFonts (class method)">.<strong>listFonts</strong>(face, weight = 0, slant = 0, setWidth = 0, encoding = 0, hints = 0)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>List all fonts matching hints.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fontMono%3F-instance_method" title="#fontMono? (instance method)">#<strong>fontMono?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if font is monospaced.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getCharWidth-instance_method" title="#getCharWidth (instance method)">#<strong>getCharWidth</strong>(ch)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Calculate width of single wide character <em>ch</em> in this font.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getFont-instance_method" title="#getFont (instance method)">#<strong>getFont</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the font description as a string suitable for parsing with <span class='object_link'><a href="#setFont-instance_method" title="Fox::FXFont#setFont (method)">#setFont</a></span>, see above.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getTextHeight-instance_method" title="#getTextHeight (instance method)">#<strong>getTextHeight</strong>(text)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the height of given <em>text</em> in this font.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getTextWidth-instance_method" title="#getTextWidth (instance method)">#<strong>getTextWidth</strong>(text)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the width of given <em>text</em> in this font.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hasChar%3F-instance_method" title="#hasChar? (instance method)">#<strong>hasChar?</strong>(ch)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if font has glyph for <em>ch</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(a, string)  &#x21d2; FXFont </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Construct a font with given font description of the form:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#leftBearing-instance_method" title="#leftBearing (instance method)">#<strong>leftBearing</strong>(ch)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the left-side bearing (the distance from the origin to the leftmost pixel in the character) for <em>ch</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightBearing-instance_method" title="#rightBearing (instance method)">#<strong>rightBearing</strong>(ch)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the right-side bearing (the distance from the origin to the rightmost pixel in the character) for <em>ch</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setFont-instance_method" title="#setFont (instance method)">#<strong>setFont</strong>(string)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change the font to the specified font description string.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#create-instance_method" title="Fox::FXId#create (method)">#create</a></span>, <span class='object_link'><a href="FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(a, string)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXFont (class)">FXFont</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Construct a font with given font description of the form:</p>
+
+<pre class="code ruby"><code class="ruby">    fontname [ &quot;[&quot; foundry &quot;]&quot; ] [&quot;,&quot; size [&quot;,&quot; weight [&quot;,&quot; slant [&quot;,&quot; setwidth [&quot;,&quot; encoding [&quot;,&quot; hints]]]]]]
+
+For example:
+
+    &quot;helvetica [bitstream],120,bold,italic,normal,iso8859-1,0&quot;
+
+Typically, at least the font name, and size must be given for
+normal font matching.  As a special case, raw X11 fonts can also be
+passed, for example:
+
+    &quot;9x15bold&quot;
+</code></pre>
+
+<p>Note: use of the raw X11 fonts is stronly discouraged.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+258
+259</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 258</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_fontDesc'>fontDesc</span><span class='rparen'>)</span> <span class='comment'># :yields: theFont
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="actualEncoding-instance_method">
+  
+    #<strong>actualEncoding</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Actual encoding [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+206
+207
+208</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 206</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actualEncoding'>actualEncoding</span>
+  <span class='ivar'>@actualEncoding</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="actualName-instance_method">
+  
+    #<strong>actualName</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Actual font family name [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182
+183
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 182</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actualName'>actualName</span>
+  <span class='ivar'>@actualName</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="actualSetWidth-instance_method">
+  
+    #<strong>actualSetWidth</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Actual set width [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212
+213
+214</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 212</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actualSetWidth'>actualSetWidth</span>
+  <span class='ivar'>@actualSetWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="actualSize-instance_method">
+  
+    #<strong>actualSize</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Actual size in deci-points [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188
+189
+190</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 188</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actualSize'>actualSize</span>
+  <span class='ivar'>@actualSize</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="actualSlant-instance_method">
+  
+    #<strong>actualSlant</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Actual slant [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+200
+201
+202</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 200</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actualSlant'>actualSlant</span>
+  <span class='ivar'>@actualSlant</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="actualWeight-instance_method">
+  
+    #<strong>actualWeight</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Actual font weight [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 194</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actualWeight'>actualWeight</span>
+  <span class='ivar'>@actualWeight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="angle=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="angle-instance_method">
+  
+    #<strong>angle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Font angle [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+221
+222
+223</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 221</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_angle'>angle</span>
+  <span class='ivar'>@angle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="encoding-instance_method">
+  
+    #<strong>encoding</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Encoding [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 203</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_encoding'>encoding</span>
+  <span class='ivar'>@encoding</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="family-instance_method">
+  
+    #<strong>family</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Family part of name [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 173</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_family'>family</span>
+  <span class='ivar'>@family</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fontAscent-instance_method">
+  
+    #<strong>fontAscent</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Ascent from baseline [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+239
+240
+241</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 239</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontAscent'>fontAscent</span>
+  <span class='ivar'>@fontAscent</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="fontDesc=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fontDesc-instance_method">
+  
+    #<strong>fontDesc</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Font description <span class='object_link'><a href="FXFontDesc.html" title="Fox::FXFontDesc (class)">Fox::FXFontDesc</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+218
+219
+220</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 218</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontDesc'>fontDesc</span>
+  <span class='ivar'>@fontDesc</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fontDescent-instance_method">
+  
+    #<strong>fontDescent</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Descent from baseline [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+242
+243
+244</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 242</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontDescent'>fontDescent</span>
+  <span class='ivar'>@fontDescent</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fontHeight-instance_method">
+  
+    #<strong>fontHeight</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Height of tallest character in font [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+236
+237
+238</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 236</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontHeight'>fontHeight</span>
+  <span class='ivar'>@fontHeight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fontLeading-instance_method">
+  
+    #<strong>fontLeading</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Font leading [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+245
+246
+247</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 245</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontLeading'>fontLeading</span>
+  <span class='ivar'>@fontLeading</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fontSpacing-instance_method">
+  
+    #<strong>fontSpacing</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Font line spacing [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+248
+249
+250</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 248</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontSpacing'>fontSpacing</span>
+  <span class='ivar'>@fontSpacing</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fontWidth-instance_method">
+  
+    #<strong>fontWidth</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Width of widest character in font [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+233
+234
+235</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 233</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontWidth'>fontWidth</span>
+  <span class='ivar'>@fontWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="foundry-instance_method">
+  
+    #<strong>foundry</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Foundry part of name [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 176</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_foundry'>foundry</span>
+  <span class='ivar'>@foundry</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hints-instance_method">
+  
+    #<strong>hints</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Hints [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+215
+216
+217</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 215</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hints'>hints</span>
+  <span class='ivar'>@hints</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="maxChar-instance_method">
+  
+    #<strong>maxChar</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Last character glyph in font [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_maxChar'>maxChar</span>
+  <span class='ivar'>@maxChar</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Font family name [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179
+180
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="setWidth-instance_method">
+  
+    #<strong>setWidth</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set width [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+209
+210
+211</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 209</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setWidth'>setWidth</span>
+  <span class='ivar'>@setWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="size-instance_method">
+  
+    #<strong>size</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Size in decipoints [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+185
+186
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 185</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
+  <span class='ivar'>@size</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="slant-instance_method">
+  
+    #<strong>slant</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Slant [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+197
+198
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 197</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_slant'>slant</span>
+  <span class='ivar'>@slant</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="weight-instance_method">
+  
+    #<strong>weight</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Font weight [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+191
+192
+193</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 191</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_weight'>weight</span>
+  <span class='ivar'>@weight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="listFonts-class_method">
+  
+    .<strong>listFonts</strong>(face, weight = 0, slant = 0, setWidth = 0, encoding = 0, hints = 0)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>List all fonts matching hints. Returns an array of FXFontDesc objects.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+357
+358</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 357</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Fox::FXFont (class)">FXFont</a></span></span><span class='period'>.</span><span class='id identifier rubyid_listFonts'>listFonts</span><span class='lparen'>(</span><span class='id identifier rubyid_face'>face</span><span class='comma'>,</span> <span class='id identifier rubyid_weight'>weight</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_slant'>slant</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_setWidth'>setWidth</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_hints'>hints</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="fontMono?-instance_method">
+  
+    #<strong>fontMono?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if font is monospaced.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+315</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 315</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fontMono?'>fontMono?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getCharWidth-instance_method">
+  
+    #<strong>getCharWidth</strong>(ch)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Calculate width of single wide character <em>ch</em> in this font</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+342</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 342</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getCharWidth'>getCharWidth</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getFont-instance_method">
+  
+    #<strong>getFont</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the font description as a string suitable for parsing with <span class='object_link'><a href="#setFont-instance_method" title="Fox::FXFont#setFont (method)">#setFont</a></span>, see above.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+310</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 310</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getFont'>getFont</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getTextHeight-instance_method">
+  
+    #<strong>getTextHeight</strong>(text)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the height of given <em>text</em> in this font.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+352</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 352</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getTextHeight'>getTextHeight</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getTextWidth-instance_method">
+  
+    #<strong>getTextWidth</strong>(text)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the width of given <em>text</em> in this font.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+347</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 347</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getTextWidth'>getTextWidth</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hasChar?-instance_method">
+  
+    #<strong>hasChar?</strong>(ch)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if font has glyph for <em>ch</em>. Here, <em>ch</em> can either be an ordinal value, e.g.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_aFont'>aFont</span><span class='period'>.</span><span class='id identifier rubyid_hasChar?'>hasChar?</span><span class='lparen'>(</span><span class='CHAR'>?a</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>or a string of length one (i.e. a single character), e.g.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_aFont'>aFont</span><span class='period'>.</span><span class='id identifier rubyid_hasChar?'>hasChar?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+327</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 327</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hasChar?'>hasChar?</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftBearing-instance_method">
+  
+    #<strong>leftBearing</strong>(ch)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the left-side bearing (the distance from the origin to the leftmost pixel in the character) for <em>ch</em>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+332</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 332</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_leftBearing'>leftBearing</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightBearing-instance_method">
+  
+    #<strong>rightBearing</strong>(ch)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the right-side bearing (the distance from the origin to the rightmost pixel in the character) for <em>ch</em>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+337</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 337</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rightBearing'>rightBearing</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setFont-instance_method">
+  
+    #<strong>setFont</strong>(string)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change the font to the specified font description string. Returns <code>true</code> on success.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+304</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 304</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setFont'>setFont</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:02:47 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

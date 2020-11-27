@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-Introduction">Introduction</h1>
+
+<p><strong>This is the RDoc-generated API documentation for FXRuby version 1.6.</strong> If you have some constructive comments about the content, format or presentation, please do send those to me (at <a href="mailto:lyle@rubyforge.org">lyle@rubyforge.org</a>).</p>
+
+<h1 id="label-Page+layout">Page layout</h1>
+
+<p>The page layout is roughly the same for every class. The page begins with a brief description of the class and is then followed by one or more of the following sections:</p>
+<dl class="rdoc-list label-list"><dt><strong>Attributes</strong>
+<dd>
+<p>This section lists the names of all the attributes for this widget. As with all Ruby object “attributes”, these are actually just the names of instance methods for the class, but it is nevertheless natural to think of these as attributes (or <em>properties</em>) of the widget. Most attributes are both readable and writeable, but some are only read-only, so be sure to check the attributes listing within the main class documentation section to be sure.</p>
+</dd><dt><strong>Events</strong>
+<dd>
+<p>This section lists the types for all of the messages that this widget might send to its message target, and the circumstances under which those messages are sent. When it&#39;s important, the message data associated with that event is also described.</p>
+</dd><dt><strong>Options</strong>
+<dd>
+<p>Most widgets have one or more options that affect their appearance or behavior. These options can be passed into the class&#39;s <em>new</em> method when the object is first instantiated. They can usually also be changed after the object exists via some object-specific accessor method. For example, the options for an FXButton can be get or set via the FXButton#buttonStyle accessor methods.</p>
+</dd></dl>
+
+<h1 id="label-Where-27s+the+code-3F">Where&#39;s the code?</h1>
+
+<p>One difference you may notice from documentation generated for other Ruby extensions is that there&#39;s no source code attached to the instance methods when you click on them (i.e. they will appear to be empty method definitions). That&#39;s because most of these functions are in fact implemented in C++ code (since FXRuby is itself a C++ extension to Ruby).</p>
+
+<h1 id="label-TODO">TODO</h1>
+
+<p>A few notes and suggestions from Hugh Sasse:</p>
+<ul><li>
+<p>It may help to add information about what happens when block_given?() is true or false, i.e. does this affect the return value for a method?</p>
+</li><li>
+<p>In lieu of (or in addition) to short code examples embedded in the API documentation, links to examples that are shipped with FXRuby might be good.</p>
+</li></ul>
+<hr>
+
+<p>The HTML pages for this documentation were generated using RDoc (<a href="http://rdoc.sourceforge.net">rdoc.sourceforge.net</a>).</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:02:45 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

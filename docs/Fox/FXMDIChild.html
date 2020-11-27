@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXMDIChild
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXMDIChild";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXMDIChild</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXMDIChild
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></li>
+          
+            <li class="next">Fox::FXMDIChild</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXMDIChild.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The MDI child window contains the application work area in a Multiple Document Interface application.  GUI Controls are connected to the MDI child via delegation through the MDI client, which forwards messages it receives to the active MDI child. The MDI child itself tries to further delegate messages to its single content window, and if not handled there, to its target object. When the MDI child is maximized, it sends a SEL_MAXIMIZE message; when the MDI child is minimized, it sends a SEL_MINIMIZE message.  When it is restored, it sends a SEL_RESTORE message to its target.  The MDI child also notifies its target when it becomes the active MDI child, via the SEL_SELECTED message. The void* in the SEL_SELECTED message refers to the previously active MDI child, if any.  When an MDI child ceases to be the active one, a SEL_DESELECTED message is sent.  The void* in the SEL_DESELECTED message refers to the newly activated MDI child, if any.  Thus, interception of SEL_SELECTED and SEL_DESELECTED allows the target object to determine whether the user switched between MDI windows of the same document (target) or between MDI windows belonging to the same document. When the MDI child is closed, it sends a SEL_CLOSE message to its target. The target has an opportunity to object to the closing; if the MDI child should not be closed, it should return 1 (objection). If the MDI child should be closed, the target can either just return 0 or simply not handle the SEL_CLOSE message. The SEL_UPDATE message can be used to modify the MDI child&#39;s title (via ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).</p>
+
+<h3 id="label-Events">Events</h3>
+
+<p>The following messages are sent by FXMDIChild to its target:</p>
+<dl class="rdoc-list note-list"><dt><code>SEL_LEFTBUTTONPRESS</code>
+<dd>
+<p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+<dd>
+<p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code>
+<dd>
+<p>sent when the middle mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code>
+<dd>
+<p>sent when the middle mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_RIGHTBUTTONPRESS</code>
+<dd>
+<p>sent when the right mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code>
+<dd>
+<p>sent when the right mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_SELECTED</code>
+<dd>
+<p>sent when the window is selected; the message data is a reference to the MDI client&#39;s previous active child window, or <code>nil</code> if there was no active child window.</p>
+</dd><dt><code>SEL_DESELECTED</code>
+<dd>
+<p>sent when the window is deselected; the message data is a reference to the MDI client&#39;s new active child window, or <code>nil</code> if there is no active child window.</p>
+</dd><dt><code>SEL_MAXIMIZE</code>
+<dd>
+<p>sent when the window is maximized</p>
+</dd><dt><code>SEL_MINIMIZE</code>
+<dd>
+<p>sent when the window is minimized</p>
+</dd><dt><code>SEL_RESTORE</code>
+<dd>
+<p>sent when the window is restored to its normal size and position</p>
+</dd><dt><code>SEL_CLOSE</code>
+<dd>
+<p>sent when the user is trying to close this window. The message handler for this message should return 1 (or true) if the target objects to closing the window; otherwise it should just return false (or zero).</p>
+</dd><dt><code>SEL_DELETE</code>
+<dd>
+<p>sent immediately before this window is destroyed</p>
+</dd></dl>
+
+<h3 id="label-MDI+Child+Window+styles">MDI Child Window styles</h3>
+<dl class="rdoc-list note-list"><dt><code>MDI_NORMAL</code>
+<dd>
+<p>Normal display mode</p>
+</dd><dt><code>MDI_MAXIMIZED</code>
+<dd>
+<p>Window appears maximized</p>
+</dd><dt><code>MDI_MINIMIZED</code>
+<dd>
+<p>Window is iconified or minimized</p>
+</dd><dt><code>MDI_TRACKING</code>
+<dd>
+<p>Track continuously during dragging</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#baseColor-instance_method" title="#baseColor (instance method)">#<strong>baseColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Base color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#borderColor-instance_method" title="#borderColor (instance method)">#<strong>borderColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Border color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contentWindow-instance_method" title="#contentWindow (instance method)">#<strong>contentWindow</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Content window <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#font-instance_method" title="#font (instance method)">#<strong>font</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Title font <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">FXFont</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hiliteColor-instance_method" title="#hiliteColor (instance method)">#<strong>hiliteColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Highlight color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#icon-instance_method" title="#icon (instance method)">#<strong>icon</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Window icon <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">FXIcon</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iconHeight-instance_method" title="#iconHeight (instance method)">#<strong>iconHeight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Iconified height [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iconWidth-instance_method" title="#iconWidth (instance method)">#<strong>iconWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Iconified width [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iconX-instance_method" title="#iconX (instance method)">#<strong>iconX</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Iconified position x-coordinate [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iconY-instance_method" title="#iconY (instance method)">#<strong>iconY</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Iconified position y-coordinate [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#menu-instance_method" title="#menu (instance method)">#<strong>menu</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Window menu <span class='object_link'><a href="FXPopup.html" title="Fox::FXPopup (class)">FXPopup</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalHeight-instance_method" title="#normalHeight (instance method)">#<strong>normalHeight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Normal (restored) height [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalWidth-instance_method" title="#normalWidth (instance method)">#<strong>normalWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Normal (restored) width [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalX-instance_method" title="#normalX (instance method)">#<strong>normalX</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Normal (restored) position x-coordinate [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalY-instance_method" title="#normalY (instance method)">#<strong>normalY</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Normal (restored) position y-coordinate [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shadowColor-instance_method" title="#shadowColor (instance method)">#<strong>shadowColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Shadow color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title-instance_method" title="#title (instance method)">#<strong>title</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Window title [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#titleBackColor-instance_method" title="#titleBackColor (instance method)">#<strong>titleBackColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Title background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#titleColor-instance_method" title="#titleColor (instance method)">#<strong>titleColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Title color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#accelTable-instance_method" title="Fox::FXWindow#accelTable (method)">#accelTable</a></span>, <span class='object_link'><a href="FXWindow.html#backColor-instance_method" title="Fox::FXWindow#backColor (method)">#backColor</a></span>, <span class='object_link'><a href="FXWindow.html#defaultCursor-instance_method" title="Fox::FXWindow#defaultCursor (method)">#defaultCursor</a></span>, <span class='object_link'><a href="FXWindow.html#dragCursor-instance_method" title="Fox::FXWindow#dragCursor (method)">#dragCursor</a></span>, <span class='object_link'><a href="FXWindow.html#first-instance_method" title="Fox::FXWindow#first (method)">#first</a></span>, <span class='object_link'><a href="FXWindow.html#focus-instance_method" title="Fox::FXWindow#focus (method)">#focus</a></span>, <span class='object_link'><a href="FXWindow.html#key-instance_method" title="Fox::FXWindow#key (method)">#key</a></span>, <span class='object_link'><a href="FXWindow.html#last-instance_method" title="Fox::FXWindow#last (method)">#last</a></span>, <span class='object_link'><a href="FXWindow.html#layoutHints-instance_method" title="Fox::FXWindow#layoutHints (method)">#layoutHints</a></span>, <span class='object_link'><a href="FXWindow.html#next-instance_method" title="Fox::FXWindow#next (method)">#next</a></span>, <span class='object_link'><a href="FXWindow.html#numChildren-instance_method" title="Fox::FXWindow#numChildren (method)">#numChildren</a></span>, <span class='object_link'><a href="FXWindow.html#owner-instance_method" title="Fox::FXWindow#owner (method)">#owner</a></span>, <span class='object_link'><a href="FXWindow.html#parent-instance_method" title="Fox::FXWindow#parent (method)">#parent</a></span>, <span class='object_link'><a href="FXWindow.html#prev-instance_method" title="Fox::FXWindow#prev (method)">#prev</a></span>, <span class='object_link'><a href="FXWindow.html#root-instance_method" title="Fox::FXWindow#root (method)">#root</a></span>, <span class='object_link'><a href="FXWindow.html#selector-instance_method" title="Fox::FXWindow#selector (method)">#selector</a></span>, <span class='object_link'><a href="FXWindow.html#shell-instance_method" title="Fox::FXWindow#shell (method)">#shell</a></span>, <span class='object_link'><a href="FXWindow.html#target-instance_method" title="Fox::FXWindow#target (method)">#target</a></span>, <span class='object_link'><a href="FXWindow.html#x-instance_method" title="Fox::FXWindow#x (method)">#x</a></span>, <span class='object_link'><a href="FXWindow.html#y-instance_method" title="Fox::FXWindow#y (method)">#y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#height-instance_method" title="Fox::FXDrawable#height (method)">#height</a></span>, <span class='object_link'><a href="FXDrawable.html#visual-instance_method" title="Fox::FXDrawable#visual (method)">#visual</a></span>, <span class='object_link'><a href="FXDrawable.html#width-instance_method" title="Fox::FXDrawable#width (method)">#width</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getTracking-instance_method" title="#getTracking (instance method)">#<strong>getTracking</strong>  &#x21d2; Object </a>
+    
+
+    
+      (also: #isTracking?, #tracking)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if tracking, <code>false</code> otherwise.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(p, name, ic = nil, pup = nil, opts = 0, x = 0, y = 0, width = 0, height = 0)  &#x21d2; FXMDIChild </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Construct MDI Child window with given name and icon.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#maximize-instance_method" title="#maximize (instance method)">#<strong>maximize</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Maximize this window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#maximized%3F-instance_method" title="#maximized? (instance method)">#<strong>maximized?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if maximized.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#minimize-instance_method" title="#minimize (instance method)">#<strong>minimize</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Minimize this window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#minimized%3F-instance_method" title="#minimized? (instance method)">#<strong>minimized?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if minimized.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#restore-instance_method" title="#restore (instance method)">#<strong>restore</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Restore this window to its normal position and size.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setTracking-instance_method" title="#setTracking (instance method)">#<strong>setTracking</strong>(tracking)  &#x21d2; Object </a>
+    
+
+    
+      (also: #tracking=)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set tracking instead of just outline.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXComposite.html#maxChildHeight-instance_method" title="Fox::FXComposite#maxChildHeight (method)">#maxChildHeight</a></span>, <span class='object_link'><a href="FXComposite.html#maxChildWidth-instance_method" title="Fox::FXComposite#maxChildWidth (method)">#maxChildWidth</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#acceptDrop-instance_method" title="Fox::FXWindow#acceptDrop (method)">#acceptDrop</a></span>, <span class='object_link'><a href="FXWindow.html#acquireClipboard-instance_method" title="Fox::FXWindow#acquireClipboard (method)">#acquireClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#acquireSelection-instance_method" title="Fox::FXWindow#acquireSelection (method)">#acquireSelection</a></span>, <span class='object_link'><a href="FXWindow.html#active%3F-instance_method" title="Fox::FXWindow#active? (method)">#active?</a></span>, <span class='object_link'><a href="FXWindow.html#addHotKey-instance_method" title="Fox::FXWindow#addHotKey (method)">#addHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-class_method" title="Fox::FXWindow.after? (method)">after?</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-instance_method" title="Fox::FXWindow#after? (method)">#after?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-class_method" title="Fox::FXWindow.before? (method)">before?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-instance_method" title="Fox::FXWindow#before? (method)">#before?</a></span>, <span class='object_link'><a href="FXWindow.html#beginDrag-instance_method" title="Fox::FXWindow#beginDrag (method)">#beginDrag</a></span>, <span class='object_link'><a href="FXWindow.html#canFocus%3F-instance_method" title="Fox::FXWindow#canFocus? (method)">#canFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#changeFocus-instance_method" title="Fox::FXWindow#changeFocus (method)">#changeFocus</a></span>, <span class='object_link'><a href="FXWindow.html#childAtIndex-instance_method" title="Fox::FXWindow#childAtIndex (method)">#childAtIndex</a></span>, <span class='object_link'><a href="FXWindow.html#childOf%3F-instance_method" title="Fox::FXWindow#childOf? (method)">#childOf?</a></span>, <span class='object_link'><a href="FXWindow.html#children-instance_method" title="Fox::FXWindow#children (method)">#children</a></span>, <span class='object_link'><a href="FXWindow.html#clearDragRectangle-instance_method" title="Fox::FXWindow#clearDragRectangle (method)">#clearDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#clearShape-instance_method" title="Fox::FXWindow#clearShape (method)">#clearShape</a></span>, <span class='object_link'><a href="FXWindow.html#colorType-class_method" title="Fox::FXWindow.colorType (method)">colorType</a></span>, <span class='object_link'><a href="FXWindow.html#colorTypeName-class_method" title="Fox::FXWindow.colorTypeName (method)">colorTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#commonAncestor-class_method" title="Fox::FXWindow.commonAncestor (method)">commonAncestor</a></span>, <span class='object_link'><a href="FXWindow.html#composeContext-instance_method" title="Fox::FXWindow#composeContext (method)">#composeContext</a></span>, <span class='object_link'><a href="FXWindow.html#composite%3F-instance_method" title="Fox::FXWindow#composite? (method)">#composite?</a></span>, <span class='object_link'><a href="FXWindow.html#contains%3F-instance_method" title="Fox::FXWindow#contains? (method)">#contains?</a></span>, <span class='object_link'><a href="FXWindow.html#containsChild%3F-instance_method" title="Fox::FXWindow#containsChild? (method)">#containsChild?</a></span>, <span class='object_link'><a href="FXWindow.html#create-instance_method" title="Fox::FXWindow#create (method)">#create</a></span>, <span class='object_link'><a href="FXWindow.html#createComposeContext-instance_method" title="Fox::FXWindow#createComposeContext (method)">#createComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#cursorPosition-instance_method" title="Fox::FXWindow#cursorPosition (method)">#cursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#default%3F-instance_method" title="Fox::FXWindow#default? (method)">#default?</a></span>, <span class='object_link'><a href="FXWindow.html#defaultHeight-instance_method" title="Fox::FXWindow#defaultHeight (method)">#defaultHeight</a></span>, <span class='object_link'><a href="FXWindow.html#defaultWidth-instance_method" title="Fox::FXWindow#defaultWidth (method)">#defaultWidth</a></span>, <span class='object_link'><a href="FXWindow.html#deleteType-class_method" title="Fox::FXWindow.deleteType (method)">deleteType</a></span>, <span class='object_link'><a href="FXWindow.html#deleteTypeName-class_method" title="Fox::FXWindow.deleteTypeName (method)">deleteTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#destroy-instance_method" title="Fox::FXWindow#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXWindow.html#destroyComposeContext-instance_method" title="Fox::FXWindow#destroyComposeContext (method)">#destroyComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#detach-instance_method" title="Fox::FXWindow#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXWindow.html#didAccept-instance_method" title="Fox::FXWindow#didAccept (method)">#didAccept</a></span>, <span class='object_link'><a href="FXWindow.html#disable-instance_method" title="Fox::FXWindow#disable (method)">#disable</a></span>, <span class='object_link'><a href="FXWindow.html#doesSaveUnder%3F-instance_method" title="Fox::FXWindow#doesSaveUnder? (method)">#doesSaveUnder?</a></span>, <span class='object_link'><a href="FXWindow.html#dragging%3F-instance_method" title="Fox::FXWindow#dragging? (method)">#dragging?</a></span>, <span class='object_link'><a href="FXWindow.html#dropDisable-instance_method" title="Fox::FXWindow#dropDisable (method)">#dropDisable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnable-instance_method" title="Fox::FXWindow#dropEnable (method)">#dropEnable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnabled%3F-instance_method" title="Fox::FXWindow#dropEnabled? (method)">#dropEnabled?</a></span>, <span class='object_link'><a href="FXWindow.html#dropFinished-instance_method" title="Fox::FXWindow#dropFinished (method)">#dropFinished</a></span>, <span class='object_link'><a href="FXWindow.html#dropTarget%3F-instance_method" title="Fox::FXWindow#dropTarget? (method)">#dropTarget?</a></span>, <span class='object_link'><a href="FXWindow.html#each_child-instance_method" title="Fox::FXWindow#each_child (method)">#each_child</a></span>, <span class='object_link'><a href="FXWindow.html#each_child_recursive-instance_method" title="Fox::FXWindow#each_child_recursive (method)">#each_child_recursive</a></span>, <span class='object_link'><a href="FXWindow.html#enable-instance_method" title="Fox::FXWindow#enable (method)">#enable</a></span>, <span class='object_link'><a href="FXWindow.html#enabled%3F-instance_method" title="Fox::FXWindow#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="FXWindow.html#endDrag-instance_method" title="Fox::FXWindow#endDrag (method)">#endDrag</a></span>, <span class='object_link'><a href="FXWindow.html#forceRefresh-instance_method" title="Fox::FXWindow#forceRefresh (method)">#forceRefresh</a></span>, <span class='object_link'><a href="FXWindow.html#getChildAt-instance_method" title="Fox::FXWindow#getChildAt (method)">#getChildAt</a></span>, <span class='object_link'><a href="FXWindow.html#getDNDData-instance_method" title="Fox::FXWindow#getDNDData (method)">#getDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#getHeightForWidth-instance_method" title="Fox::FXWindow#getHeightForWidth (method)">#getHeightForWidth</a></span>, <span class='object_link'><a href="FXWindow.html#getWidthForHeight-instance_method" title="Fox::FXWindow#getWidthForHeight (method)">#getWidthForHeight</a></span>, <span class='object_link'><a href="FXWindow.html#grab-instance_method" title="Fox::FXWindow#grab (method)">#grab</a></span>, <span class='object_link'><a href="FXWindow.html#grabKeyboard-instance_method" title="Fox::FXWindow#grabKeyboard (method)">#grabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#grabbed%3F-instance_method" title="Fox::FXWindow#grabbed? (method)">#grabbed?</a></span>, <span class='object_link'><a href="FXWindow.html#grabbedKeyboard%3F-instance_method" title="Fox::FXWindow#grabbedKeyboard? (method)">#grabbedKeyboard?</a></span>, <span class='object_link'><a href="FXWindow.html#handleDrag-instance_method" title="Fox::FXWindow#handleDrag (method)">#handleDrag</a></span>, <span class='object_link'><a href="FXWindow.html#hasClipboard%3F-instance_method" title="Fox::FXWindow#hasClipboard? (method)">#hasClipboard?</a></span>, <span class='object_link'><a href="FXWindow.html#hasFocus%3F-instance_method" title="Fox::FXWindow#hasFocus? (method)">#hasFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#hasSelection%3F-instance_method" title="Fox::FXWindow#hasSelection? (method)">#hasSelection?</a></span>, <span class='object_link'><a href="FXWindow.html#height-instance_method" title="Fox::FXWindow#height (method)">#height</a></span>, <span class='object_link'><a href="FXWindow.html#height=-instance_method" title="Fox::FXWindow#height= (method)">#height=</a></span>, <span class='object_link'><a href="FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">#hide</a></span>, <span class='object_link'><a href="FXWindow.html#imageType-class_method" title="Fox::FXWindow.imageType (method)">imageType</a></span>, <span class='object_link'><a href="FXWindow.html#inFocusChain%3F-instance_method" title="Fox::FXWindow#inFocusChain? (method)">#inFocusChain?</a></span>, <span class='object_link'><a href="FXWindow.html#indexOfChild-instance_method" title="Fox::FXWindow#indexOfChild (method)">#indexOfChild</a></span>, <span class='object_link'><a href="FXWindow.html#initial%3F-instance_method" title="Fox::FXWindow#initial? (method)">#initial?</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDAction-instance_method" title="Fox::FXWindow#inquireDNDAction (method)">#inquireDNDAction</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDTypes-instance_method" title="Fox::FXWindow#inquireDNDTypes (method)">#inquireDNDTypes</a></span>, <span class='object_link'><a href="FXWindow.html#killFocus-instance_method" title="Fox::FXWindow#killFocus (method)">#killFocus</a></span>, <span class='object_link'><a href="FXWindow.html#layout-instance_method" title="Fox::FXWindow#layout (method)">#layout</a></span>, <span class='object_link'><a href="FXWindow.html#linkAfter-instance_method" title="Fox::FXWindow#linkAfter (method)">#linkAfter</a></span>, <span class='object_link'><a href="FXWindow.html#linkBefore-instance_method" title="Fox::FXWindow#linkBefore (method)">#linkBefore</a></span>, <span class='object_link'><a href="FXWindow.html#lower-instance_method" title="Fox::FXWindow#lower (method)">#lower</a></span>, <span class='object_link'><a href="FXWindow.html#move-instance_method" title="Fox::FXWindow#move (method)">#move</a></span>, <span class='object_link'><a href="FXWindow.html#octetType-class_method" title="Fox::FXWindow.octetType (method)">octetType</a></span>, <span class='object_link'><a href="FXWindow.html#octetTypeName-class_method" title="Fox::FXWindow.octetTypeName (method)">octetTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#offeredDNDType%3F-instance_method" title="Fox::FXWindow#offeredDNDType? (method)">#offeredDNDType?</a></span>, <span class='object_link'><a href="FXWindow.html#position-instance_method" title="Fox::FXWindow#position (method)">#position</a></span>, <span class='object_link'><a href="FXWindow.html#raiseWindow-instance_method" title="Fox::FXWindow#raiseWindow (method)">#raiseWindow</a></span>, <span class='object_link'><a href="FXWindow.html#recalc-instance_method" title="Fox::FXWindow#recalc (method)">#recalc</a></span>, <span class='object_link'><a href="FXWindow.html#releaseClipboard-instance_method" title="Fox::FXWindow#releaseClipboard (method)">#releaseClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#releaseSelection-instance_method" title="Fox::FXWindow#releaseSelection (method)">#releaseSelection</a></span>, <span class='object_link'><a href="FXWindow.html#remHotKey-instance_method" title="Fox::FXWindow#remHotKey (method)">#remHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#removeChild-instance_method" title="Fox::FXWindow#removeChild (method)">#removeChild</a></span>, <span class='object_link'><a href="FXWindow.html#repaint-instance_method" title="Fox::FXWindow#repaint (method)">#repaint</a></span>, <span class='object_link'><a href="FXWindow.html#reparent-instance_method" title="Fox::FXWindow#reparent (method)">#reparent</a></span>, <span class='object_link'><a href="FXWindow.html#resize-instance_method" title="Fox::FXWindow#resize (method)">#resize</a></span>, <span class='object_link'><a href="FXWindow.html#scroll-instance_method" title="Fox::FXWindow#scroll (method)">#scroll</a></span>, <span class='object_link'><a href="FXWindow.html#setCursorPosition-instance_method" title="Fox::FXWindow#setCursorPosition (method)">#setCursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#setDNDData-instance_method" title="Fox::FXWindow#setDNDData (method)">#setDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#setDefault-instance_method" title="Fox::FXWindow#setDefault (method)">#setDefault</a></span>, <span class='object_link'><a href="FXWindow.html#setDragRectangle-instance_method" title="Fox::FXWindow#setDragRectangle (method)">#setDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#setFocus-instance_method" title="Fox::FXWindow#setFocus (method)">#setFocus</a></span>, <span class='object_link'><a href="FXWindow.html#setInitial-instance_method" title="Fox::FXWindow#setInitial (method)">#setInitial</a></span>, <span class='object_link'><a href="FXWindow.html#setShape-instance_method" title="Fox::FXWindow#setShape (method)">#setShape</a></span>, <span class='object_link'><a href="FXWindow.html#shell%3F-instance_method" title="Fox::FXWindow#shell? (method)">#shell?</a></span>, <span class='object_link'><a href="FXWindow.html#show-instance_method" title="Fox::FXWindow#show (method)">#show</a></span>, <span class='object_link'><a href="FXWindow.html#shown%3F-instance_method" title="Fox::FXWindow#shown? (method)">#shown?</a></span>, <span class='object_link'><a href="FXWindow.html#stringType-class_method" title="Fox::FXWindow.stringType (method)">stringType</a></span>, <span class='object_link'><a href="FXWindow.html#textType-class_method" title="Fox::FXWindow.textType (method)">textType</a></span>, <span class='object_link'><a href="FXWindow.html#textTypeName-class_method" title="Fox::FXWindow.textTypeName (method)">textTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#tr-instance_method" title="Fox::FXWindow#tr (method)">#tr</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesFrom-instance_method" title="Fox::FXWindow#translateCoordinatesFrom (method)">#translateCoordinatesFrom</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesTo-instance_method" title="Fox::FXWindow#translateCoordinatesTo (method)">#translateCoordinatesTo</a></span>, <span class='object_link'><a href="FXWindow.html#underCursor%3F-instance_method" title="Fox::FXWindow#underCursor? (method)">#underCursor?</a></span>, <span class='object_link'><a href="FXWindow.html#ungrab-instance_method" title="Fox::FXWindow#ungrab (method)">#ungrab</a></span>, <span class='object_link'><a href="FXWindow.html#ungrabKeyboard-instance_method" title="Fox::FXWindow#ungrabKeyboard (method)">#ungrabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#update-instance_method" title="Fox::FXWindow#update (method)">#update</a></span>, <span class='object_link'><a href="FXWindow.html#urilistType-class_method" title="Fox::FXWindow.urilistType (method)">urilistType</a></span>, <span class='object_link'><a href="FXWindow.html#urilistTypeName-class_method" title="Fox::FXWindow.urilistTypeName (method)">urilistTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf16Type-class_method" title="Fox::FXWindow.utf16Type (method)">utf16Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf16TypeName-class_method" title="Fox::FXWindow.utf16TypeName (method)">utf16TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf8Type-class_method" title="Fox::FXWindow.utf8Type (method)">utf8Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf8TypeName-class_method" title="Fox::FXWindow.utf8TypeName (method)">utf8TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#visible=-instance_method" title="Fox::FXWindow#visible= (method)">#visible=</a></span>, <span class='object_link'><a href="FXWindow.html#width-instance_method" title="Fox::FXWindow#width (method)">#width</a></span>, <span class='object_link'><a href="FXWindow.html#width=-instance_method" title="Fox::FXWindow#width= (method)">#width=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#resize-instance_method" title="Fox::FXDrawable#resize (method)">#resize</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#create-instance_method" title="Fox::FXId#create (method)">#create</a></span>, <span class='object_link'><a href="FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(p, name, ic = nil, pup = nil, opts = 0, x = 0, y = 0, width = 0, height = 0)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXMDIChild (class)">FXMDIChild</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Construct MDI Child window with given name and icon</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 116</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_ic'>ic</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_pup'>pup</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span> <span class='comment'># :yields: theMDIChild
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="baseColor=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="baseColor-instance_method">
+  
+    #<strong>baseColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Base color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_baseColor'>baseColor</span>
+  <span class='ivar'>@baseColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="borderColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="borderColor-instance_method">
+  
+    #<strong>borderColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Border color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_borderColor'>borderColor</span>
+  <span class='ivar'>@borderColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="contentWindow-instance_method">
+  
+    #<strong>contentWindow</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Content window <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">Fox::FXWindow</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contentWindow'>contentWindow</span>
+  <span class='ivar'>@contentWindow</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="font=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="font-instance_method">
+  
+    #<strong>font</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Title font <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">Fox::FXFont</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 113</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_font'>font</span>
+  <span class='ivar'>@font</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="hiliteColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="hiliteColor-instance_method">
+  
+    #<strong>hiliteColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Highlight color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hiliteColor'>hiliteColor</span>
+  <span class='ivar'>@hiliteColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="icon=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="icon-instance_method">
+  
+    #<strong>icon</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Window icon <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">Fox::FXIcon</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_icon'>icon</span>
+  <span class='ivar'>@icon</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="iconHeight=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="iconHeight-instance_method">
+  
+    #<strong>iconHeight</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Iconified height [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iconHeight'>iconHeight</span>
+  <span class='ivar'>@iconHeight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="iconWidth=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="iconWidth-instance_method">
+  
+    #<strong>iconWidth</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Iconified width [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iconWidth'>iconWidth</span>
+  <span class='ivar'>@iconWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="iconX=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="iconX-instance_method">
+  
+    #<strong>iconX</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Iconified position x-coordinate [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iconX'>iconX</span>
+  <span class='ivar'>@iconX</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="iconY=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="iconY-instance_method">
+  
+    #<strong>iconY</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Iconified position y-coordinate [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 74</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iconY'>iconY</span>
+  <span class='ivar'>@iconY</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="menu=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="menu-instance_method">
+  
+    #<strong>menu</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Window menu <span class='object_link'><a href="FXPopup.html" title="Fox::FXPopup (class)">Fox::FXPopup</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 110</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_menu'>menu</span>
+  <span class='ivar'>@menu</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="normalHeight=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="normalHeight-instance_method">
+  
+    #<strong>normalHeight</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Normal (restored) height [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalHeight'>normalHeight</span>
+  <span class='ivar'>@normalHeight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="normalWidth=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="normalWidth-instance_method">
+  
+    #<strong>normalWidth</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Normal (restored) width [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalWidth'>normalWidth</span>
+  <span class='ivar'>@normalWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="normalX=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="normalX-instance_method">
+  
+    #<strong>normalX</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Normal (restored) position x-coordinate [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalX'>normalX</span>
+  <span class='ivar'>@normalX</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="normalY=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="normalY-instance_method">
+  
+    #<strong>normalY</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Normal (restored) position y-coordinate [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_normalY'>normalY</span>
+  <span class='ivar'>@normalY</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="shadowColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="shadowColor-instance_method">
+  
+    #<strong>shadowColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Shadow color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shadowColor'>shadowColor</span>
+  <span class='ivar'>@shadowColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="title=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="title-instance_method">
+  
+    #<strong>title</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Window title [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title'>title</span>
+  <span class='ivar'>@title</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="titleBackColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="titleBackColor-instance_method">
+  
+    #<strong>titleBackColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Title background color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_titleBackColor'>titleBackColor</span>
+  <span class='ivar'>@titleBackColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="titleColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="titleColor-instance_method">
+  
+    #<strong>titleColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Title color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 101</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_titleColor'>titleColor</span>
+  <span class='ivar'>@titleColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="getTracking-instance_method">
+  
+    #<strong>getTracking</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='isTracking?-instance_method'>isTracking?</span>, <span id='tracking-instance_method'>tracking</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if tracking, <code>false</code> otherwise.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getTracking'>getTracking</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="maximize-instance_method">
+  
+    #<strong>maximize</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Maximize this window. If <em>notify</em> is <code>true</code>, …</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_maximize'>maximize</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="maximized?-instance_method">
+  
+    #<strong>maximized?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if maximized</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_maximized?'>maximized?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="minimize-instance_method">
+  
+    #<strong>minimize</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Minimize this window. If <em>notify</em> is <code>true</code>, …</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 123</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_minimize'>minimize</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="minimized?-instance_method">
+  
+    #<strong>minimized?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if minimized</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_minimized?'>minimized?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="restore-instance_method">
+  
+    #<strong>restore</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Restore this window to its normal position and size. If <em>notify</em> is <code>true</code>, …</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_restore'>restore</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setTracking-instance_method">
+  
+    #<strong>setTracking</strong>(tracking)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='tracking=-instance_method'>tracking=</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set tracking instead of just outline</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIChild.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setTracking'>setTracking</span><span class='lparen'>(</span><span class='id identifier rubyid_tracking'>tracking</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:07 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

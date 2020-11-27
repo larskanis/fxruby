@@ -1,0 +1,3040 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXHeader
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXHeader";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXHeader</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXHeader
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXFrame.html" title="Fox::FXFrame (class)">FXFrame</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXFrame.html" title="Fox::FXFrame (class)">FXFrame</a></span></li>
+          
+            <li class="next">Fox::FXHeader</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd>Enumerable</dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXHeader.rb<span class="defines">,<br />
+  lib/fox16/core.rb,<br /> lib/fox16/iterators.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Header control may be placed over a table or list to provide a resizable captions above a number of columns. Each caption comprises a label and an optional icon; in addition, an arrow may be shown to indicate whether the items in that column are sorted, and if so, whether they are sorted in increasing or decreasing order. Each caption can be interactively resized.  During the resizing, if the HEADER_TRACKING was specified, the header control sends a SEL_CHANGED message to its target, with the message data set to the caption number being resized, of the type FXint. If the HEADER_TRACKING was not specified the SEL_CHANGED message is sent at the end of the resizing operation. Clicking on a caption causes a message of type SEL_COMMAND to be sent to the target, with the message data set to the caption number being clicked. A single click on a split causes a message of type SEL_CLICKED to be sent to the target; a typical response to this message would be to adjust the size of the split to fit the contents displayed underneath it. The contents may be scrolled by calling setPosition().</p>
+
+<h3 id="label-Events">Events</h3>
+
+<p>The following messages are sent by FXHeader to its target:</p>
+<dl class="rdoc-list note-list"><dt><code>SEL_CHANGED</code>
+<dd>
+<p>sent continuously while a header item is being resized, if the <code>HEADER_TRACKING</code> option was specified, or at the end of the resize if <code>HEADER_TRACKING</code> was not specfied. The message data is an integer indicating the index of the item being resized.</p>
+</dd><dt><code>SEL_COMMAND</code>
+<dd>
+<p>sent when a header item is clicked; the message data is an integer indicating the index of the current item.</p>
+</dd><dt><code>SEL_CLICKED</code>
+<dd>
+<p>sent when a header item is clicked; the message data is an integer indicating the index of the current item.</p>
+</dd><dt><code>SEL_LEFTBUTTONPRESS</code>
+<dd>
+<p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+<dd>
+<p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
+</dd><dt><code>SEL_REPLACED</code>
+<dd>
+<p>sent when a header item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.</p>
+</dd><dt><code>SEL_INSERTED</code>
+<dd>
+<p>sent after a header item is inserted; the message data is an Integer indicating the index of the item that was inserted.</p>
+</dd><dt><code>SEL_DELETED</code>
+<dd>
+<p>sent when a header item is about to be removed; the message data is an Integer indicating the index of the item to be removed.</p>
+</dd></dl>
+
+<h3 id="label-Header+style+options">Header style options</h3>
+<dl class="rdoc-list note-list"><dt><code>HEADER_BUTTON</code>
+<dd>
+<p>Button style can be clicked</p>
+</dd><dt><code>HEADER_HORIZONTAL</code>
+<dd>
+<p>Horizontal header control (default)</p>
+</dd><dt><code>HEADER_VERTICAL</code>
+<dd>
+<p>Vertical header control</p>
+</dd><dt><code>HEADER_TRACKING</code>
+<dd>
+<p>Tracks continuously while moving</p>
+</dd><dt><code>HEADER_RESIZE</code>
+<dd>
+<p>Allow resizing sections</p>
+</dd><dt><code>HEADER_NORMAL</code>
+<dd>
+<p>Normal options, same as <code>HEADER_HORIZONTAL|FRAME_NORMAL</code></p>
+</dd></dl>
+
+<h3 id="label-Message+identifiers">Message identifiers</h3>
+<dl class="rdoc-list note-list"><dt><code>ID_TIPTIMER</code>
+<dd>
+<p>x</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#font-instance_method" title="#font (instance method)">#<strong>font</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Text font <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">FXFont</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#headerStyle-instance_method" title="#headerStyle (instance method)">#<strong>headerStyle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Header style options [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#helpText-instance_method" title="#helpText (instance method)">#<strong>helpText</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Status line help text for this header.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#numItems-instance_method" title="#numItems (instance method)">#<strong>numItems</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Number of items [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#position-instance_method" title="#position (instance method)">#<strong>position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Current position [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#textColor-instance_method" title="#textColor (instance method)">#<strong>textColor</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#totalSize-instance_method" title="#totalSize (instance method)">#<strong>totalSize</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Total size of all items [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXFrame.html" title="Fox::FXFrame (class)">FXFrame</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXFrame.html#baseColor-instance_method" title="Fox::FXFrame#baseColor (method)">#baseColor</a></span>, <span class='object_link'><a href="FXFrame.html#borderColor-instance_method" title="Fox::FXFrame#borderColor (method)">#borderColor</a></span>, <span class='object_link'><a href="FXFrame.html#borderWidth-instance_method" title="Fox::FXFrame#borderWidth (method)">#borderWidth</a></span>, <span class='object_link'><a href="FXFrame.html#frameStyle-instance_method" title="Fox::FXFrame#frameStyle (method)">#frameStyle</a></span>, <span class='object_link'><a href="FXFrame.html#hiliteColor-instance_method" title="Fox::FXFrame#hiliteColor (method)">#hiliteColor</a></span>, <span class='object_link'><a href="FXFrame.html#padBottom-instance_method" title="Fox::FXFrame#padBottom (method)">#padBottom</a></span>, <span class='object_link'><a href="FXFrame.html#padLeft-instance_method" title="Fox::FXFrame#padLeft (method)">#padLeft</a></span>, <span class='object_link'><a href="FXFrame.html#padRight-instance_method" title="Fox::FXFrame#padRight (method)">#padRight</a></span>, <span class='object_link'><a href="FXFrame.html#padTop-instance_method" title="Fox::FXFrame#padTop (method)">#padTop</a></span>, <span class='object_link'><a href="FXFrame.html#shadowColor-instance_method" title="Fox::FXFrame#shadowColor (method)">#shadowColor</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#accelTable-instance_method" title="Fox::FXWindow#accelTable (method)">#accelTable</a></span>, <span class='object_link'><a href="FXWindow.html#backColor-instance_method" title="Fox::FXWindow#backColor (method)">#backColor</a></span>, <span class='object_link'><a href="FXWindow.html#defaultCursor-instance_method" title="Fox::FXWindow#defaultCursor (method)">#defaultCursor</a></span>, <span class='object_link'><a href="FXWindow.html#dragCursor-instance_method" title="Fox::FXWindow#dragCursor (method)">#dragCursor</a></span>, <span class='object_link'><a href="FXWindow.html#focus-instance_method" title="Fox::FXWindow#focus (method)">#focus</a></span>, <span class='object_link'><a href="FXWindow.html#key-instance_method" title="Fox::FXWindow#key (method)">#key</a></span>, <span class='object_link'><a href="FXWindow.html#last-instance_method" title="Fox::FXWindow#last (method)">#last</a></span>, <span class='object_link'><a href="FXWindow.html#layoutHints-instance_method" title="Fox::FXWindow#layoutHints (method)">#layoutHints</a></span>, <span class='object_link'><a href="FXWindow.html#next-instance_method" title="Fox::FXWindow#next (method)">#next</a></span>, <span class='object_link'><a href="FXWindow.html#numChildren-instance_method" title="Fox::FXWindow#numChildren (method)">#numChildren</a></span>, <span class='object_link'><a href="FXWindow.html#owner-instance_method" title="Fox::FXWindow#owner (method)">#owner</a></span>, <span class='object_link'><a href="FXWindow.html#parent-instance_method" title="Fox::FXWindow#parent (method)">#parent</a></span>, <span class='object_link'><a href="FXWindow.html#prev-instance_method" title="Fox::FXWindow#prev (method)">#prev</a></span>, <span class='object_link'><a href="FXWindow.html#root-instance_method" title="Fox::FXWindow#root (method)">#root</a></span>, <span class='object_link'><a href="FXWindow.html#selector-instance_method" title="Fox::FXWindow#selector (method)">#selector</a></span>, <span class='object_link'><a href="FXWindow.html#shell-instance_method" title="Fox::FXWindow#shell (method)">#shell</a></span>, <span class='object_link'><a href="FXWindow.html#target-instance_method" title="Fox::FXWindow#target (method)">#target</a></span>, <span class='object_link'><a href="FXWindow.html#x-instance_method" title="Fox::FXWindow#x (method)">#x</a></span>, <span class='object_link'><a href="FXWindow.html#y-instance_method" title="Fox::FXWindow#y (method)">#y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#height-instance_method" title="Fox::FXDrawable#height (method)">#height</a></span>, <span class='object_link'><a href="FXDrawable.html#visual-instance_method" title="Fox::FXDrawable#visual (method)">#visual</a></span>, <span class='object_link'><a href="FXDrawable.html#width-instance_method" title="Fox::FXDrawable#width (method)">#width</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#appendItem-instance_method" title="#appendItem (instance method)">#<strong>appendItem</strong>(text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Append a new item with the specified text, icon, size and user data object, and return the index of the appended item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#arrowDown%3F-instance_method" title="#arrowDown? (instance method)">#<strong>arrowDown?</strong>(index)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if the specified header item&#39;s arrow points down.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#arrowMaybe%3F-instance_method" title="#arrowMaybe? (instance method)">#<strong>arrowMaybe?</strong>(index)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if the specified header item does not display any arrow.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#arrowUp%3F-instance_method" title="#arrowUp? (instance method)">#<strong>arrowUp?</strong>(index)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if the specified header item&#39;s arrow points up.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clearItems-instance_method" title="#clearItems (instance method)">#<strong>clearItems</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Remove all items from this header.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each-instance_method" title="#each (instance method)">#<strong>each</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Calls block once for each item in the list, passing a reference to that item as a parameter.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#extractItem-instance_method" title="#extractItem (instance method)">#<strong>extractItem</strong>(index, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Extract item from list and return a reference to the item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillItems-instance_method" title="#fillItems (instance method)">#<strong>fillItems</strong>(strings, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fill the header by appending items from an array of strings.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#first-instance_method" title="#first (instance method)">#<strong>first</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Override Enumerable#first with FXWindow#first for backwards compatibility.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getArrowDir-instance_method" title="#getArrowDir (instance method)">#<strong>getArrowDir</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return sort direction for the item at index, one of <code>FALSE</code>, <code>TRUE</code> or <code>MAYBE</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItem-instance_method" title="#getItem (instance method)">#<strong>getItem</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the item (a FXHeaderItem instance) at the given index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemAt-instance_method" title="#getItemAt (instance method)">#<strong>getItemAt</strong>(coord)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the item-index given its coordinate offset.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemData-instance_method" title="#getItemData (instance method)">#<strong>getItemData</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return user data for item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemIcon-instance_method" title="#getItemIcon (instance method)">#<strong>getItemIcon</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return icon of item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemIconPosition-instance_method" title="#getItemIconPosition (instance method)">#<strong>getItemIconPosition</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return relative icon and text position of the item at <em>index</em>, one of <code>ABOVE</code>, <code>BELOW</code>, <code>BEFORE</code> or <code>AFTER</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemJustify-instance_method" title="#getItemJustify (instance method)">#<strong>getItemJustify</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return item justification for the item at <em>index</em>, one of <code>LEFT</code>, <code>RIGHT</code>, <code>CENTER_X</code>, <code>TOP</code>, <code>BOTTOM</code> or <code>CENTER_Y</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemOffset-instance_method" title="#getItemOffset (instance method)">#<strong>getItemOffset</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the offset (in pixels) of the left side of the item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemSize-instance_method" title="#getItemSize (instance method)">#<strong>getItemSize</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return size of item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getItemText-instance_method" title="#getItemText (instance method)">#<strong>getItemText</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get text of item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(p, target = nil, selector = 0, opts = HEADER_NORMAL, x = 0, y = 0, width = 0, height = 0, padLeft = DEFAULT_PAD, padRight = DEFAULT_PAD, padTop = DEFAULT_PAD, padBottom = DEFAULT_PAD)  &#x21d2; FXHeader </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return an initialized FXHeader instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#insertItem-instance_method" title="#insertItem (instance method)">#<strong>insertItem</strong>(index, text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Insert a new item at the specified <em>index</em> with the specified text, icon, size and user data object, and return the index of the inserted item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#isItemPressed-instance_method" title="#isItemPressed (instance method)">#<strong>isItemPressed</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if button item at specified index is pressed in.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#makeItemVisible-instance_method" title="#makeItemVisible (instance method)">#<strong>makeItemVisible</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Scroll to make the specified item visible.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prependItem-instance_method" title="#prependItem (instance method)">#<strong>prependItem</strong>(text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Prepend a new item with the specified text, icon, size and user data object, and return the index of the appended item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#removeItem-instance_method" title="#removeItem (instance method)">#<strong>removeItem</strong>(index, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Remove the item at the specified index from this header.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setArrowDir-instance_method" title="#setArrowDir (instance method)">#<strong>setArrowDir</strong>(index, dir = MAYBE)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change arrow (sort) direction for item at index, where <em>dir</em> is either <code>FALSE</code>, <code>TRUE</code> or <code>MAYBE</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItem-instance_method" title="#setItem (instance method)">#<strong>setItem</strong>(index, text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Replace the item at <em>index</em> with a new item with the specified text, icon, size and user data object, and return the index of the replaced item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItemData-instance_method" title="#setItemData (instance method)">#<strong>setItemData</strong>(index, ptr)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change user data object of item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItemIcon-instance_method" title="#setItemIcon (instance method)">#<strong>setItemIcon</strong>(index, icon)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change icon of item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItemIconPosition-instance_method" title="#setItemIconPosition (instance method)">#<strong>setItemIconPosition</strong>(index, mode)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change relative position of icon and text of item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItemJustify-instance_method" title="#setItemJustify (instance method)">#<strong>setItemJustify</strong>(index, justify)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change item justification.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItemPressed-instance_method" title="#setItemPressed (instance method)">#<strong>setItemPressed</strong>(index, pressed = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Changed button item&#39;s pressed state.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItemSize-instance_method" title="#setItemSize (instance method)">#<strong>setItemSize</strong>(index, size)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change size of item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setItemText-instance_method" title="#setItemText (instance method)">#<strong>setItemText</strong>(index, text)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Change text label for item at index.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#updateItem-instance_method" title="#updateItem (instance method)">#<strong>updateItem</strong>(index)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Repaint header at index.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#acceptDrop-instance_method" title="Fox::FXWindow#acceptDrop (method)">#acceptDrop</a></span>, <span class='object_link'><a href="FXWindow.html#acquireClipboard-instance_method" title="Fox::FXWindow#acquireClipboard (method)">#acquireClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#acquireSelection-instance_method" title="Fox::FXWindow#acquireSelection (method)">#acquireSelection</a></span>, <span class='object_link'><a href="FXWindow.html#active%3F-instance_method" title="Fox::FXWindow#active? (method)">#active?</a></span>, <span class='object_link'><a href="FXWindow.html#addHotKey-instance_method" title="Fox::FXWindow#addHotKey (method)">#addHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-class_method" title="Fox::FXWindow.after? (method)">after?</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-instance_method" title="Fox::FXWindow#after? (method)">#after?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-class_method" title="Fox::FXWindow.before? (method)">before?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-instance_method" title="Fox::FXWindow#before? (method)">#before?</a></span>, <span class='object_link'><a href="FXWindow.html#beginDrag-instance_method" title="Fox::FXWindow#beginDrag (method)">#beginDrag</a></span>, <span class='object_link'><a href="FXWindow.html#canFocus%3F-instance_method" title="Fox::FXWindow#canFocus? (method)">#canFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#changeFocus-instance_method" title="Fox::FXWindow#changeFocus (method)">#changeFocus</a></span>, <span class='object_link'><a href="FXWindow.html#childAtIndex-instance_method" title="Fox::FXWindow#childAtIndex (method)">#childAtIndex</a></span>, <span class='object_link'><a href="FXWindow.html#childOf%3F-instance_method" title="Fox::FXWindow#childOf? (method)">#childOf?</a></span>, <span class='object_link'><a href="FXWindow.html#children-instance_method" title="Fox::FXWindow#children (method)">#children</a></span>, <span class='object_link'><a href="FXWindow.html#clearDragRectangle-instance_method" title="Fox::FXWindow#clearDragRectangle (method)">#clearDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#clearShape-instance_method" title="Fox::FXWindow#clearShape (method)">#clearShape</a></span>, <span class='object_link'><a href="FXWindow.html#colorType-class_method" title="Fox::FXWindow.colorType (method)">colorType</a></span>, <span class='object_link'><a href="FXWindow.html#colorTypeName-class_method" title="Fox::FXWindow.colorTypeName (method)">colorTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#commonAncestor-class_method" title="Fox::FXWindow.commonAncestor (method)">commonAncestor</a></span>, <span class='object_link'><a href="FXWindow.html#composeContext-instance_method" title="Fox::FXWindow#composeContext (method)">#composeContext</a></span>, <span class='object_link'><a href="FXWindow.html#composite%3F-instance_method" title="Fox::FXWindow#composite? (method)">#composite?</a></span>, <span class='object_link'><a href="FXWindow.html#contains%3F-instance_method" title="Fox::FXWindow#contains? (method)">#contains?</a></span>, <span class='object_link'><a href="FXWindow.html#containsChild%3F-instance_method" title="Fox::FXWindow#containsChild? (method)">#containsChild?</a></span>, <span class='object_link'><a href="FXWindow.html#create-instance_method" title="Fox::FXWindow#create (method)">#create</a></span>, <span class='object_link'><a href="FXWindow.html#createComposeContext-instance_method" title="Fox::FXWindow#createComposeContext (method)">#createComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#cursorPosition-instance_method" title="Fox::FXWindow#cursorPosition (method)">#cursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#default%3F-instance_method" title="Fox::FXWindow#default? (method)">#default?</a></span>, <span class='object_link'><a href="FXWindow.html#defaultHeight-instance_method" title="Fox::FXWindow#defaultHeight (method)">#defaultHeight</a></span>, <span class='object_link'><a href="FXWindow.html#defaultWidth-instance_method" title="Fox::FXWindow#defaultWidth (method)">#defaultWidth</a></span>, <span class='object_link'><a href="FXWindow.html#deleteType-class_method" title="Fox::FXWindow.deleteType (method)">deleteType</a></span>, <span class='object_link'><a href="FXWindow.html#deleteTypeName-class_method" title="Fox::FXWindow.deleteTypeName (method)">deleteTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#destroy-instance_method" title="Fox::FXWindow#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXWindow.html#destroyComposeContext-instance_method" title="Fox::FXWindow#destroyComposeContext (method)">#destroyComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#detach-instance_method" title="Fox::FXWindow#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXWindow.html#didAccept-instance_method" title="Fox::FXWindow#didAccept (method)">#didAccept</a></span>, <span class='object_link'><a href="FXWindow.html#disable-instance_method" title="Fox::FXWindow#disable (method)">#disable</a></span>, <span class='object_link'><a href="FXWindow.html#doesSaveUnder%3F-instance_method" title="Fox::FXWindow#doesSaveUnder? (method)">#doesSaveUnder?</a></span>, <span class='object_link'><a href="FXWindow.html#dragging%3F-instance_method" title="Fox::FXWindow#dragging? (method)">#dragging?</a></span>, <span class='object_link'><a href="FXWindow.html#dropDisable-instance_method" title="Fox::FXWindow#dropDisable (method)">#dropDisable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnable-instance_method" title="Fox::FXWindow#dropEnable (method)">#dropEnable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnabled%3F-instance_method" title="Fox::FXWindow#dropEnabled? (method)">#dropEnabled?</a></span>, <span class='object_link'><a href="FXWindow.html#dropFinished-instance_method" title="Fox::FXWindow#dropFinished (method)">#dropFinished</a></span>, <span class='object_link'><a href="FXWindow.html#dropTarget%3F-instance_method" title="Fox::FXWindow#dropTarget? (method)">#dropTarget?</a></span>, <span class='object_link'><a href="FXWindow.html#each_child-instance_method" title="Fox::FXWindow#each_child (method)">#each_child</a></span>, <span class='object_link'><a href="FXWindow.html#each_child_recursive-instance_method" title="Fox::FXWindow#each_child_recursive (method)">#each_child_recursive</a></span>, <span class='object_link'><a href="FXWindow.html#enable-instance_method" title="Fox::FXWindow#enable (method)">#enable</a></span>, <span class='object_link'><a href="FXWindow.html#enabled%3F-instance_method" title="Fox::FXWindow#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="FXWindow.html#endDrag-instance_method" title="Fox::FXWindow#endDrag (method)">#endDrag</a></span>, <span class='object_link'><a href="FXWindow.html#forceRefresh-instance_method" title="Fox::FXWindow#forceRefresh (method)">#forceRefresh</a></span>, <span class='object_link'><a href="FXWindow.html#getChildAt-instance_method" title="Fox::FXWindow#getChildAt (method)">#getChildAt</a></span>, <span class='object_link'><a href="FXWindow.html#getDNDData-instance_method" title="Fox::FXWindow#getDNDData (method)">#getDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#getHeightForWidth-instance_method" title="Fox::FXWindow#getHeightForWidth (method)">#getHeightForWidth</a></span>, <span class='object_link'><a href="FXWindow.html#getWidthForHeight-instance_method" title="Fox::FXWindow#getWidthForHeight (method)">#getWidthForHeight</a></span>, <span class='object_link'><a href="FXWindow.html#grab-instance_method" title="Fox::FXWindow#grab (method)">#grab</a></span>, <span class='object_link'><a href="FXWindow.html#grabKeyboard-instance_method" title="Fox::FXWindow#grabKeyboard (method)">#grabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#grabbed%3F-instance_method" title="Fox::FXWindow#grabbed? (method)">#grabbed?</a></span>, <span class='object_link'><a href="FXWindow.html#grabbedKeyboard%3F-instance_method" title="Fox::FXWindow#grabbedKeyboard? (method)">#grabbedKeyboard?</a></span>, <span class='object_link'><a href="FXWindow.html#handleDrag-instance_method" title="Fox::FXWindow#handleDrag (method)">#handleDrag</a></span>, <span class='object_link'><a href="FXWindow.html#hasClipboard%3F-instance_method" title="Fox::FXWindow#hasClipboard? (method)">#hasClipboard?</a></span>, <span class='object_link'><a href="FXWindow.html#hasFocus%3F-instance_method" title="Fox::FXWindow#hasFocus? (method)">#hasFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#hasSelection%3F-instance_method" title="Fox::FXWindow#hasSelection? (method)">#hasSelection?</a></span>, <span class='object_link'><a href="FXWindow.html#height-instance_method" title="Fox::FXWindow#height (method)">#height</a></span>, <span class='object_link'><a href="FXWindow.html#height=-instance_method" title="Fox::FXWindow#height= (method)">#height=</a></span>, <span class='object_link'><a href="FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">#hide</a></span>, <span class='object_link'><a href="FXWindow.html#imageType-class_method" title="Fox::FXWindow.imageType (method)">imageType</a></span>, <span class='object_link'><a href="FXWindow.html#inFocusChain%3F-instance_method" title="Fox::FXWindow#inFocusChain? (method)">#inFocusChain?</a></span>, <span class='object_link'><a href="FXWindow.html#indexOfChild-instance_method" title="Fox::FXWindow#indexOfChild (method)">#indexOfChild</a></span>, <span class='object_link'><a href="FXWindow.html#initial%3F-instance_method" title="Fox::FXWindow#initial? (method)">#initial?</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDAction-instance_method" title="Fox::FXWindow#inquireDNDAction (method)">#inquireDNDAction</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDTypes-instance_method" title="Fox::FXWindow#inquireDNDTypes (method)">#inquireDNDTypes</a></span>, <span class='object_link'><a href="FXWindow.html#killFocus-instance_method" title="Fox::FXWindow#killFocus (method)">#killFocus</a></span>, <span class='object_link'><a href="FXWindow.html#layout-instance_method" title="Fox::FXWindow#layout (method)">#layout</a></span>, <span class='object_link'><a href="FXWindow.html#linkAfter-instance_method" title="Fox::FXWindow#linkAfter (method)">#linkAfter</a></span>, <span class='object_link'><a href="FXWindow.html#linkBefore-instance_method" title="Fox::FXWindow#linkBefore (method)">#linkBefore</a></span>, <span class='object_link'><a href="FXWindow.html#lower-instance_method" title="Fox::FXWindow#lower (method)">#lower</a></span>, <span class='object_link'><a href="FXWindow.html#move-instance_method" title="Fox::FXWindow#move (method)">#move</a></span>, <span class='object_link'><a href="FXWindow.html#octetType-class_method" title="Fox::FXWindow.octetType (method)">octetType</a></span>, <span class='object_link'><a href="FXWindow.html#octetTypeName-class_method" title="Fox::FXWindow.octetTypeName (method)">octetTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#offeredDNDType%3F-instance_method" title="Fox::FXWindow#offeredDNDType? (method)">#offeredDNDType?</a></span>, <span class='object_link'><a href="FXWindow.html#raiseWindow-instance_method" title="Fox::FXWindow#raiseWindow (method)">#raiseWindow</a></span>, <span class='object_link'><a href="FXWindow.html#recalc-instance_method" title="Fox::FXWindow#recalc (method)">#recalc</a></span>, <span class='object_link'><a href="FXWindow.html#releaseClipboard-instance_method" title="Fox::FXWindow#releaseClipboard (method)">#releaseClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#releaseSelection-instance_method" title="Fox::FXWindow#releaseSelection (method)">#releaseSelection</a></span>, <span class='object_link'><a href="FXWindow.html#remHotKey-instance_method" title="Fox::FXWindow#remHotKey (method)">#remHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#removeChild-instance_method" title="Fox::FXWindow#removeChild (method)">#removeChild</a></span>, <span class='object_link'><a href="FXWindow.html#repaint-instance_method" title="Fox::FXWindow#repaint (method)">#repaint</a></span>, <span class='object_link'><a href="FXWindow.html#reparent-instance_method" title="Fox::FXWindow#reparent (method)">#reparent</a></span>, <span class='object_link'><a href="FXWindow.html#resize-instance_method" title="Fox::FXWindow#resize (method)">#resize</a></span>, <span class='object_link'><a href="FXWindow.html#scroll-instance_method" title="Fox::FXWindow#scroll (method)">#scroll</a></span>, <span class='object_link'><a href="FXWindow.html#setCursorPosition-instance_method" title="Fox::FXWindow#setCursorPosition (method)">#setCursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#setDNDData-instance_method" title="Fox::FXWindow#setDNDData (method)">#setDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#setDefault-instance_method" title="Fox::FXWindow#setDefault (method)">#setDefault</a></span>, <span class='object_link'><a href="FXWindow.html#setDragRectangle-instance_method" title="Fox::FXWindow#setDragRectangle (method)">#setDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#setFocus-instance_method" title="Fox::FXWindow#setFocus (method)">#setFocus</a></span>, <span class='object_link'><a href="FXWindow.html#setInitial-instance_method" title="Fox::FXWindow#setInitial (method)">#setInitial</a></span>, <span class='object_link'><a href="FXWindow.html#setShape-instance_method" title="Fox::FXWindow#setShape (method)">#setShape</a></span>, <span class='object_link'><a href="FXWindow.html#shell%3F-instance_method" title="Fox::FXWindow#shell? (method)">#shell?</a></span>, <span class='object_link'><a href="FXWindow.html#show-instance_method" title="Fox::FXWindow#show (method)">#show</a></span>, <span class='object_link'><a href="FXWindow.html#shown%3F-instance_method" title="Fox::FXWindow#shown? (method)">#shown?</a></span>, <span class='object_link'><a href="FXWindow.html#stringType-class_method" title="Fox::FXWindow.stringType (method)">stringType</a></span>, <span class='object_link'><a href="FXWindow.html#textType-class_method" title="Fox::FXWindow.textType (method)">textType</a></span>, <span class='object_link'><a href="FXWindow.html#textTypeName-class_method" title="Fox::FXWindow.textTypeName (method)">textTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#tr-instance_method" title="Fox::FXWindow#tr (method)">#tr</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesFrom-instance_method" title="Fox::FXWindow#translateCoordinatesFrom (method)">#translateCoordinatesFrom</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesTo-instance_method" title="Fox::FXWindow#translateCoordinatesTo (method)">#translateCoordinatesTo</a></span>, <span class='object_link'><a href="FXWindow.html#underCursor%3F-instance_method" title="Fox::FXWindow#underCursor? (method)">#underCursor?</a></span>, <span class='object_link'><a href="FXWindow.html#ungrab-instance_method" title="Fox::FXWindow#ungrab (method)">#ungrab</a></span>, <span class='object_link'><a href="FXWindow.html#ungrabKeyboard-instance_method" title="Fox::FXWindow#ungrabKeyboard (method)">#ungrabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#update-instance_method" title="Fox::FXWindow#update (method)">#update</a></span>, <span class='object_link'><a href="FXWindow.html#urilistType-class_method" title="Fox::FXWindow.urilistType (method)">urilistType</a></span>, <span class='object_link'><a href="FXWindow.html#urilistTypeName-class_method" title="Fox::FXWindow.urilistTypeName (method)">urilistTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf16Type-class_method" title="Fox::FXWindow.utf16Type (method)">utf16Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf16TypeName-class_method" title="Fox::FXWindow.utf16TypeName (method)">utf16TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf8Type-class_method" title="Fox::FXWindow.utf8Type (method)">utf8Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf8TypeName-class_method" title="Fox::FXWindow.utf8TypeName (method)">utf8TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#visible=-instance_method" title="Fox::FXWindow#visible= (method)">#visible=</a></span>, <span class='object_link'><a href="FXWindow.html#width-instance_method" title="Fox::FXWindow#width (method)">#width</a></span>, <span class='object_link'><a href="FXWindow.html#width=-instance_method" title="Fox::FXWindow#width= (method)">#width=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#resize-instance_method" title="Fox::FXDrawable#resize (method)">#resize</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#create-instance_method" title="Fox::FXId#create (method)">#create</a></span>, <span class='object_link'><a href="FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(p, target = nil, selector = 0, opts = HEADER_NORMAL, x = 0, y = 0, width = 0, height = 0, padLeft = DEFAULT_PAD, padRight = DEFAULT_PAD, padTop = DEFAULT_PAD, padBottom = DEFAULT_PAD)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXHeader (class)">FXHeader</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return an initialized FXHeader instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_selector'>selector</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='const'>HEADER_NORMAL</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_padLeft'>padLeft</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='comma'>,</span> <span class='id identifier rubyid_padRight'>padRight</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='comma'>,</span> <span class='id identifier rubyid_padTop'>padTop</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='comma'>,</span> <span class='id identifier rubyid_padBottom'>padBottom</span><span class='op'>=</span><span class='const'>DEFAULT_PAD</span><span class='rparen'>)</span> <span class='comment'># :yields: theHeader
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="font=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="font-instance_method">
+  
+    #<strong>font</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Text font <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">Fox::FXFont</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_font'>font</span>
+  <span class='ivar'>@font</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="headerStyle=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="headerStyle-instance_method">
+  
+    #<strong>headerStyle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Header style options [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 156</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_headerStyle'>headerStyle</span>
+  <span class='ivar'>@headerStyle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="helpText=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="helpText-instance_method">
+  
+    #<strong>helpText</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Status line help text for this header</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_helpText'>helpText</span>
+  <span class='ivar'>@helpText</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="numItems-instance_method">
+  
+    #<strong>numItems</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Number of items [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141
+142
+143</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_numItems'>numItems</span>
+  <span class='ivar'>@numItems</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="position=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="position-instance_method">
+  
+    #<strong>position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Current position [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_position'>position</span>
+  <span class='ivar'>@position</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="textColor=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="textColor-instance_method">
+  
+    #<strong>textColor</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Text color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 153</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_textColor'>textColor</span>
+  <span class='ivar'>@textColor</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="totalSize-instance_method">
+  
+    #<strong>totalSize</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Total size of all items [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144
+145
+146</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_totalSize'>totalSize</span>
+  <span class='ivar'>@totalSize</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="appendItem-instance_method">
+  
+    #<strong>appendItem</strong>(text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Append a new item with the specified text, icon, size and user data object, and return the index of the appended item. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the header&#39;s message target after the item is appended.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_appendItem'>appendItem</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="arrowDown?-instance_method">
+  
+    #<strong>arrowDown?</strong>(index)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if the specified header item&#39;s arrow points down. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+165
+166
+167
+168
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 165</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_arrowDown?'>arrowDown?</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='op'>||</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_numItems'>numItems</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>IndexError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>header item index out of bounds</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_getArrowDir'>getArrowDir</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='op'>::</span><span class='const'>FALSE</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="arrowMaybe?-instance_method">
+  
+    #<strong>arrowMaybe?</strong>(index)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if the specified header item does not display any arrow. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177
+178
+179
+180
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 177</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_arrowMaybe?'>arrowMaybe?</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='op'>||</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_numItems'>numItems</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>IndexError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>header item index out of bounds</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_getArrowDir'>getArrowDir</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='op'>::</span><span class='const'>MAYBE</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="arrowUp?-instance_method">
+  
+    #<strong>arrowUp?</strong>(index)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if the specified header item&#39;s arrow points up. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155
+156
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 153</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_arrowUp?'>arrowUp?</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='op'>||</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_numItems'>numItems</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>IndexError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>header item index out of bounds</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_getArrowDir'>getArrowDir</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='op'>::</span><span class='const'>TRUE</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clearItems-instance_method">
+  
+    #<strong>clearItems</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Remove all items from this header. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the header&#39;s message target before each item is removed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+277</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 277</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clearItems'>clearItems</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each-instance_method">
+  
+    #<strong>each</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Calls block once for each item in the list, passing a reference to that item as a parameter.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/iterators.rb', line 79</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each'>each</span> <span class='comment'># :yields: aHeaderItem
+</span>  <span class='int'>0</span><span class='period'>.</span><span class='id identifier rubyid_upto'>upto</span><span class='lparen'>(</span><span class='id identifier rubyid_numItems'>numItems</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='kw'>yield</span> <span class='id identifier rubyid_getItem'>getItem</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="extractItem-instance_method">
+  
+    #<strong>extractItem</strong>(index, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Extract item from list and return a reference to the item. If <em>notify</em> is  <code>true</code>, a <code>SEL_DELETED</code> message is sent to the header&#39;s message target before the item is extracted from the list. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+262</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 262</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_extractItem'>extractItem</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillItems-instance_method">
+  
+    #<strong>fillItems</strong>(strings, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fill the header by appending items from an array of strings. Returns the number of items appended.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillItems'>fillItems</span><span class='lparen'>(</span><span class='id identifier rubyid_strings'>strings</span><span class='comma'>,</span> <span class='id identifier rubyid_icon'>icon</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_size'>size</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="first-instance_method">
+  
+    #<strong>first</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Override Enumerable#first with FXWindow#first for backwards compatibility.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/iterators.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_first'>first</span>
+  <span class='id identifier rubyid_getFirst'>getFirst</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getArrowDir-instance_method">
+  
+    #<strong>getArrowDir</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return sort direction for the item at index, one of <code>FALSE</code>, <code>TRUE</code> or <code>MAYBE</code>. If <em>dir</em> is <code>TRUE</code>, the arrow will point up; if <em>dir</em> is <code>FALSE</code>, the arrow points down; and if <em>dir</em> is <code>MAYBE</code>, no arrow is drawn. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+350</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 350</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getArrowDir'>getArrowDir</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItem-instance_method">
+  
+    #<strong>getItem</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the item (a FXHeaderItem instance) at the given index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItem'>getItem</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemAt-instance_method">
+  
+    #<strong>getItemAt</strong>(coord)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the item-index given its coordinate offset. Returns -1 if the specified coordinate is before the first item in the header, or <em>numItems</em> if the coordinate is after the last item in the header.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemAt'>getItemAt</span><span class='lparen'>(</span><span class='id identifier rubyid_coord'>coord</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemData-instance_method">
+  
+    #<strong>getItemData</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return user data for item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+332</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 332</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemData'>getItemData</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemIcon-instance_method">
+  
+    #<strong>getItemIcon</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return icon of item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+301</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 301</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemIcon'>getItemIcon</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemIconPosition-instance_method">
+  
+    #<strong>getItemIconPosition</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return relative icon and text position of the item at <em>index</em>, one of <code>ABOVE</code>, <code>BELOW</code>, <code>BEFORE</code> or <code>AFTER</code>. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+384</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 384</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemIconPosition'>getItemIconPosition</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemJustify-instance_method">
+  
+    #<strong>getItemJustify</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return item justification for the item at <em>index</em>, one of <code>LEFT</code>, <code>RIGHT</code>, <code>CENTER_X</code>, <code>TOP</code>, <code>BOTTOM</code> or <code>CENTER_Y</code>. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+367</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 367</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemJustify'>getItemJustify</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemOffset-instance_method">
+  
+    #<strong>getItemOffset</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the offset (in pixels) of the left side of the item at index. (If it&#39;s a vertical header, return the offset of the top side of the item). Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+320</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 320</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemOffset'>getItemOffset</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemSize-instance_method">
+  
+    #<strong>getItemSize</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return size of item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+313</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 313</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemSize'>getItemSize</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getItemText-instance_method">
+  
+    #<strong>getItemText</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get text of item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 289</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getItemText'>getItemText</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="insertItem-instance_method">
+  
+    #<strong>insertItem</strong>(index, text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Insert a new item at the specified <em>index</em> with the specified text, icon, size and user data object, and return the index of the inserted item. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the header&#39;s message target after the item is inserted. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+213</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 213</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_insertItem'>insertItem</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="isItemPressed-instance_method">
+  
+    #<strong>isItemPressed</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if button item at specified index is pressed in. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+396</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 396</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_isItemPressed'>isItemPressed</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="makeItemVisible-instance_method">
+  
+    #<strong>makeItemVisible</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Scroll to make the specified item visible.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+399</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 399</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_makeItemVisible'>makeItemVisible</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prependItem-instance_method">
+  
+    #<strong>prependItem</strong>(text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Prepend a new item with the specified text, icon, size and user data object, and return the index of the appended item. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the header&#39;s message target after the item is appended.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+246</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 246</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prependItem'>prependItem</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="removeItem-instance_method">
+  
+    #<strong>removeItem</strong>(index, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Remove the item at the specified index from this header. If <em>notify</em> is  <code>true</code>, a <code>SEL_DELETED</code> message is sent to the header&#39;s message target before the item is removed. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+270</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 270</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_removeItem'>removeItem</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setArrowDir-instance_method">
+  
+    #<strong>setArrowDir</strong>(index, dir = MAYBE)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change arrow (sort) direction for item at index, where <em>dir</em> is either <code>FALSE</code>, <code>TRUE</code> or <code>MAYBE</code>. If <em>dir</em> is <code>TRUE</code>, the arrow will point up; if <em>dir</em> is <code>FALSE</code>, the arrow points down; and if <em>dir</em> is <code>MAYBE</code>, no arrow is drawn. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+341</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 341</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setArrowDir'>setArrowDir</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_dir'>dir</span><span class='op'>=</span><span class='const'>MAYBE</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItem-instance_method">
+  
+    #<strong>setItem</strong>(index, text, icon = nil, size = 0, data = nil, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Replace the item at <em>index</em> with a new item with the specified text, icon, size and user data object, and return the index of the replaced item. If <em>notify</em> is <code>true</code>, a <code>SEL_REPLACED</code> message is sent to the header&#39;s message target before the item is replaced. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+188</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 188</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItem'>setItem</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItemData-instance_method">
+  
+    #<strong>setItemData</strong>(index, ptr)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change user data object of item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+326</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 326</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItemData'>setItemData</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItemIcon-instance_method">
+  
+    #<strong>setItemIcon</strong>(index, icon)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change icon of item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+295</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 295</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItemIcon'>setItemIcon</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_icon'>icon</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItemIconPosition-instance_method">
+  
+    #<strong>setItemIconPosition</strong>(index, mode)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change relative position of icon and text of item. Passing FXHeaderItem::BEFORE or FXHeaderItem::AFTER places the icon before or after the text, and passing FXHeaderItem::ABOVE or FXHeaderItem::BELOW places it above or below the text, respectively. The default of FXHeaderItem::BEFORE places the icon in front of the text. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+377</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 377</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItemIconPosition'>setItemIconPosition</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_mode'>mode</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItemJustify-instance_method">
+  
+    #<strong>setItemJustify</strong>(index, justify)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change item justification. Horizontal justification is controlled by passing FXHeaderItem::RIGHT, FXHeaderItem::LEFT, or FXHeaderItem::CENTER_X. Vertical justification is controlled by FXHeaderItem::TOP, FXHeaderItem::BOTTOM, or FXHeaderItem::CENTER_Y. The default is a combination of FXHeaderItem::LEFT and FXHeaderItem::CENTER_Y. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+360</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 360</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItemJustify'>setItemJustify</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_justify'>justify</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItemPressed-instance_method">
+  
+    #<strong>setItemPressed</strong>(index, pressed = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Changed button item&#39;s pressed state. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+390</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 390</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItemPressed'>setItemPressed</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_pressed'>pressed</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItemSize-instance_method">
+  
+    #<strong>setItemSize</strong>(index, size)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change size of item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+307</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 307</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItemSize'>setItemSize</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setItemText-instance_method">
+  
+    #<strong>setItemText</strong>(index, text)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Change text label for item at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+283</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 283</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setItemText'>setItemText</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="updateItem-instance_method">
+  
+    #<strong>updateItem</strong>(index)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Repaint header at index. Raises IndexError if <em>index</em> is out of bounds.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+405</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXHeader.rb', line 405</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_updateItem'>updateItem</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:02:53 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

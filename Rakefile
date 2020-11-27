@@ -340,3 +340,13 @@ namespace :fxruby do
     ruby 'scripts/generate_kwargs_lib.rb'
   end
 end
+
+namespace :docs do
+  desc "Update the docs in git for github pages"
+  task :update do
+    rm_rf 'docs'
+    sh 'git', 'rm', '-rfq', 'docs' do end
+    sh 'yardoc', '--output-dir', 'docs'
+    sh 'git', 'add', 'docs'
+  end
+end

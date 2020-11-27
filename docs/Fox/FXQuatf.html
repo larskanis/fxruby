@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXQuatf
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXQuatf";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXQuatf</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXQuatf
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXVec4f.html" title="Fox::FXVec4f (class)">FXVec4f</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXVec4f.html" title="Fox::FXVec4f (class)">FXVec4f</a></span></li>
+          
+            <li class="next">Fox::FXQuatf</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXQuatf.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXVec4f.html" title="Fox::FXVec4f (class)">FXVec4f</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXVec4f.html#w-instance_method" title="Fox::FXVec4f#w (method)">#w</a></span>, <span class='object_link'><a href="FXVec4f.html#x-instance_method" title="Fox::FXVec4f#x (method)">#x</a></span>, <span class='object_link'><a href="FXVec4f.html#y-instance_method" title="Fox::FXVec4f#y (method)">#y</a></span>, <span class='object_link'><a href="FXVec4f.html#z-instance_method" title="Fox::FXVec4f#z (method)">#z</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#*-instance_method" title="#* (instance method)">#<strong>*</strong>(vec)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Compute the rotation of a vector <em>vec</em> by this quaternion; returns the rotated vector (a new FXVec3f instance).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#adjust!-instance_method" title="#adjust! (instance method)">#<strong>adjust!</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Adjust quaternion length; returns a reference to self.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#arc!-instance_method" title="#arc! (instance method)">#<strong>arc!</strong>(a, b)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Construct a quaternion from arc a-&gt;b on unit sphere and return reference to self.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#conj-instance_method" title="#conj (instance method)">#<strong>conj</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the conjugate of this quaternion (a new FXQuatf instance).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exp-instance_method" title="#exp (instance method)">#<strong>exp</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the exponentiation of this quaternion (a new FXQuatf instance).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getAxes-instance_method" title="#getAxes (instance method)">#<strong>getAxes</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get quaternion axes as a 3-element array of FXVec3f instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getAxisAngle-instance_method" title="#getAxisAngle (instance method)">#<strong>getAxisAngle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the rotation axis and angle for this quaternion, i.e.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getRollPitchYaw-instance_method" title="#getRollPitchYaw (instance method)">#<strong>getRollPitchYaw</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Obtain roll, pitch and yaw angles (in radians) from quaternion, e.g.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getXAxis-instance_method" title="#getXAxis (instance method)">#<strong>getXAxis</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the local x-axis as an FXVec3f instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getYAxis-instance_method" title="#getYAxis (instance method)">#<strong>getYAxis</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the local y-axis as an FXVec3f instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getZAxis-instance_method" title="#getZAxis (instance method)">#<strong>getZAxis</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the local z-axis as an FXVec3f instance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(x, y, z, w)  &#x21d2; FXQuatf </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Construct an FXQuatf from components.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#invert-instance_method" title="#invert (instance method)">#<strong>invert</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the inverse of this quaternion (a new FXQuatf instance).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lerp!-instance_method" title="#lerp! (instance method)">#<strong>lerp!</strong>(u, v, f)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Spherical lerp, return reference to self.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#log-instance_method" title="#log (instance method)">#<strong>log</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the logarithm of this quaternion (a new FXQuatf instance).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setAxes-instance_method" title="#setAxes (instance method)">#<strong>setAxes</strong>(ex, ey, ez)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set quaternion from axes (where <em>ex</em>, <em>ey</em> and <em>ez</em> are FXVec3f instances).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setAxisAngle-instance_method" title="#setAxisAngle (instance method)">#<strong>setAxisAngle</strong>(axis, phi = 0.0)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set quaternion from rotation axis and angle.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setRollPitchYaw-instance_method" title="#setRollPitchYaw (instance method)">#<strong>setRollPitchYaw</strong>(roll, pitch, yaw)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set quaternion from yaw (z), pitch (y) and roll (x).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unitinvert-instance_method" title="#unitinvert (instance method)">#<strong>unitinvert</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Invert unit quaternion (returns a new FXQuatf instance).</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXVec4f.html" title="Fox::FXVec4f (class)">FXVec4f</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXVec4f.html#%2B-instance_method" title="Fox::FXVec4f#+ (method)">#+</a></span>, <span class='object_link'><a href="FXVec4f.html#--instance_method" title="Fox::FXVec4f#- (method)">#-</a></span>, <span class='object_link'><a href="FXVec4f.html#-@-instance_method" title="Fox::FXVec4f#-@ (method)">#-@</a></span>, <span class='object_link'><a href="FXVec4f.html#%2F-instance_method" title="Fox::FXVec4f#/ (method)">#/</a></span>, <span class='object_link'><a href="FXVec4f.html#==-instance_method" title="Fox::FXVec4f#== (method)">#==</a></span>, <span class='object_link'><a href="FXVec4f.html#[]-instance_method" title="Fox::FXVec4f#[] (method)">#[]</a></span>, <span class='object_link'><a href="FXVec4f.html#[]=-instance_method" title="Fox::FXVec4f#[]= (method)">#[]=</a></span>, <span class='object_link'><a href="FXVec4f.html#clamp-instance_method" title="Fox::FXVec4f#clamp (method)">#clamp</a></span>, <span class='object_link'><a href="FXVec4f.html#cross-instance_method" title="Fox::FXVec4f#cross (method)">#cross</a></span>, <span class='object_link'><a href="FXVec4f.html#crosses%3F-instance_method" title="Fox::FXVec4f#crosses? (method)">#crosses?</a></span>, <span class='object_link'><a href="FXVec4f.html#distance-instance_method" title="Fox::FXVec4f#distance (method)">#distance</a></span>, <span class='object_link'><a href="FXVec4f.html#dot-instance_method" title="Fox::FXVec4f#dot (method)">#dot</a></span>, <span class='object_link'><a href="FXVec4f.html#hi-instance_method" title="Fox::FXVec4f#hi (method)">#hi</a></span>, <span class='object_link'><a href="FXVec4f.html#inspect-instance_method" title="Fox::FXVec4f#inspect (method)">#inspect</a></span>, <span class='object_link'><a href="FXVec4f.html#length-instance_method" title="Fox::FXVec4f#length (method)">#length</a></span>, <span class='object_link'><a href="FXVec4f.html#length2-instance_method" title="Fox::FXVec4f#length2 (method)">#length2</a></span>, <span class='object_link'><a href="FXVec4f.html#lo-instance_method" title="Fox::FXVec4f#lo (method)">#lo</a></span>, <span class='object_link'><a href="FXVec4f.html#normalize-instance_method" title="Fox::FXVec4f#normalize (method)">#normalize</a></span>, <span class='object_link'><a href="FXVec4f.html#plane-class_method" title="Fox::FXVec4f.plane (method)">plane</a></span>, <span class='object_link'><a href="FXVec4f.html#to_a-instance_method" title="Fox::FXVec4f#to_a (method)">#to_a</a></span>, <span class='object_link'><a href="FXVec4f.html#to_s-instance_method" title="Fox::FXVec4f#to_s (method)">#to_s</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(x, y, z, w)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXQuatf (class)">FXQuatf</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Construct an FXQuatf from components.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x [Float]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y [Float]</p>
+</dd><dt><code>z</code>
+<dd>
+<p>z [Float]</p>
+</dd><dt><code>width</code>
+<dd>
+<p>w [Float]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 4</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="*-instance_method">
+  
+    #<strong>*</strong>(vec)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Compute the rotation of a vector <em>vec</em> by this quaternion; returns the rotated vector (a new FXVec3f instance).</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>vec</code>
+<dd>
+<p>the vector to be rotated <span class='object_link'><a href="FXVec3f.html" title="Fox::FXVec3f (class)">Fox::FXVec3f</a></span></p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='op'>*</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="adjust!-instance_method">
+  
+    #<strong>adjust!</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Adjust quaternion length; returns a reference to self.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_adjust!'>adjust!</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="arc!-instance_method">
+  
+    #<strong>arc!</strong>(a, b)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Construct a quaternion from arc a-&gt;b on unit sphere and return reference to self.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>a</code>
+<dd>
+<p><span class='object_link'><a href="FXVec3f.html" title="Fox::FXVec3f (class)">Fox::FXVec3f</a></span></p>
+</dd><dt><code>b</code>
+<dd>
+<p><span class='object_link'><a href="FXVec3f.html" title="Fox::FXVec3f (class)">Fox::FXVec3f</a></span></p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_arc!'>arc!</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="conj-instance_method">
+  
+    #<strong>conj</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the conjugate of this quaternion (a new FXQuatf instance).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 134</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_conj'>conj</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="exp-instance_method">
+  
+    #<strong>exp</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the exponentiation of this quaternion (a new FXQuatf instance).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_exp'>exp</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getAxes-instance_method">
+  
+    #<strong>getAxes</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get quaternion axes as a 3-element array of FXVec3f instances.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getAxes'>getAxes</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getAxisAngle-instance_method">
+  
+    #<strong>getAxisAngle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the rotation axis and angle for this quaternion, i.e.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_axis'>axis</span><span class='comma'>,</span> <span class='id identifier rubyid_angle'>angle</span> <span class='op'>=</span> <span class='id identifier rubyid_aQuaternion'>aQuaternion</span><span class='period'>.</span><span class='id identifier rubyid_getAxisAngle'>getAxisAngle</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>where <em>axis</em> is an FXVec3f instance and <em>angle</em> is the angle of rotation in radians.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getAxisAngle'>getAxisAngle</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getRollPitchYaw-instance_method">
+  
+    #<strong>getRollPitchYaw</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Obtain roll, pitch and yaw angles (in radians) from quaternion, e.g.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_roll'>roll</span><span class='comma'>,</span> <span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span> <span class='id identifier rubyid_yaw'>yaw</span> <span class='op'>=</span> <span class='id identifier rubyid_aQuaternion'>aQuaternion</span><span class='period'>.</span><span class='id identifier rubyid_getRollPitchYaw'>getRollPitchYaw</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getRollPitchYaw'>getRollPitchYaw</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getXAxis-instance_method">
+  
+    #<strong>getXAxis</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the local x-axis as an FXVec3f instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getXAxis'>getXAxis</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getYAxis-instance_method">
+  
+    #<strong>getYAxis</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the local y-axis as an FXVec3f instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getYAxis'>getYAxis</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getZAxis-instance_method">
+  
+    #<strong>getZAxis</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the local z-axis as an FXVec3f instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 109</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getZAxis'>getZAxis</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="invert-instance_method">
+  
+    #<strong>invert</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the inverse of this quaternion (a new FXQuatf instance).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_invert'>invert</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lerp!-instance_method">
+  
+    #<strong>lerp!</strong>(u, v, f)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Spherical lerp, return reference to self.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>u</code>
+<dd>
+<p><span class='object_link'><a href="" title="Fox::FXQuatf (class)">Fox::FXQuatf</a></span></p>
+</dd><dt><code>v</code>
+<dd>
+<p><span class='object_link'><a href="" title="Fox::FXQuatf (class)">Fox::FXQuatf</a></span></p>
+</dd><dt><code>f</code>
+<dd><dl class="rdoc-list label-list"><dt>Float
+<dd></dd></dl>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lerp!'>lerp!</span><span class='lparen'>(</span><span class='id identifier rubyid_u'>u</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="log-instance_method">
+  
+    #<strong>log</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the logarithm of this quaternion (a new FXQuatf instance).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setAxes-instance_method">
+  
+    #<strong>setAxes</strong>(ex, ey, ez)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set quaternion from axes (where <em>ex</em>, <em>ey</em> and <em>ez</em> are FXVec3f instances).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setAxes'>setAxes</span><span class='lparen'>(</span><span class='id identifier rubyid_ex'>ex</span><span class='comma'>,</span> <span class='id identifier rubyid_ey'>ey</span><span class='comma'>,</span> <span class='id identifier rubyid_ez'>ez</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setAxisAngle-instance_method">
+  
+    #<strong>setAxisAngle</strong>(axis, phi = 0.0)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set quaternion from rotation axis and angle.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>axis</code>
+<dd>
+<p>the rotation axis <span class='object_link'><a href="FXVec3f.html" title="Fox::FXVec3f (class)">Fox::FXVec3f</a></span></p>
+</dd><dt><code>angle</code>
+<dd>
+<p>the rotation angle (in radians) [Float]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setAxisAngle'>setAxisAngle</span><span class='lparen'>(</span><span class='id identifier rubyid_axis'>axis</span><span class='comma'>,</span> <span class='id identifier rubyid_phi'>phi</span><span class='op'>=</span><span class='float'>0.0</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setRollPitchYaw-instance_method">
+  
+    #<strong>setRollPitchYaw</strong>(roll, pitch, yaw)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set quaternion from yaw (z), pitch (y) and roll (x).</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>roll</code>
+<dd>
+<p>roll angle in radians [Float]</p>
+</dd><dt><code>pitch</code>
+<dd>
+<p>pitch angle in radians [Float]</p>
+</dd><dt><code>yaw</code>
+<dd>
+<p>yaw angle in radians [Float]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setRollPitchYaw'>setRollPitchYaw</span><span class='lparen'>(</span><span class='id identifier rubyid_roll'>roll</span><span class='comma'>,</span> <span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span> <span class='id identifier rubyid_yaw'>yaw</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="unitinvert-instance_method">
+  
+    #<strong>unitinvert</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Invert unit quaternion (returns a new FXQuatf instance).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXQuatf.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unitinvert'>unitinvert</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:02:50 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

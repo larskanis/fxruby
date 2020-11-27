@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXColor
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXColor";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXColor</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXColor
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Fox::FXColor</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/fox16/colors.rb</dd>
+  </dl>
+  
+</div>
+
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="GhostWhite-constant" class="">GhostWhite =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Colors from X Windows (Contributed by Jeff Heard)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>248</span><span class='comma'>,</span> <span class='int'>248</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="WhiteSmoke-constant" class="">WhiteSmoke =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>245</span><span class='comma'>,</span> <span class='int'>245</span><span class='comma'>,</span> <span class='int'>245</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="FloralWhite-constant" class="">FloralWhite =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>250</span><span class='comma'>,</span> <span class='int'>240</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OldLace-constant" class="">OldLace =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>253</span><span class='comma'>,</span> <span class='int'>245</span><span class='comma'>,</span> <span class='int'>230</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="AntiqueWhite-constant" class="">AntiqueWhite =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>250</span><span class='comma'>,</span> <span class='int'>235</span><span class='comma'>,</span> <span class='int'>215</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PapayaWhip-constant" class="">PapayaWhip =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>239</span><span class='comma'>,</span> <span class='int'>213</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="BlanchedAlmond-constant" class="">BlanchedAlmond =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>235</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PeachPuff-constant" class="">PeachPuff =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>218</span><span class='comma'>,</span> <span class='int'>185</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="NavajoWhite-constant" class="">NavajoWhite =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>222</span><span class='comma'>,</span> <span class='int'>173</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LemonChiffon-constant" class="">LemonChiffon =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>250</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MintCream-constant" class="">MintCream =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>245</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>250</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="AliceBlue-constant" class="">AliceBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>240</span><span class='comma'>,</span> <span class='int'>248</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LavenderBlush-constant" class="">LavenderBlush =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>240</span><span class='comma'>,</span> <span class='int'>245</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MistyRose-constant" class="">MistyRose =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>228</span><span class='comma'>,</span> <span class='int'>225</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSlateGray-constant" class="">DarkSlateGray =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>47</span><span class='comma'>,</span>  <span class='int'>79</span><span class='comma'>,</span>  <span class='int'>79</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSlateGrey-constant" class="">DarkSlateGrey =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>47</span><span class='comma'>,</span>  <span class='int'>79</span><span class='comma'>,</span>  <span class='int'>79</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DimGray-constant" class="">DimGray =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>105</span><span class='comma'>,</span> <span class='int'>105</span><span class='comma'>,</span> <span class='int'>105</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DimGrey-constant" class="">DimGrey =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>105</span><span class='comma'>,</span> <span class='int'>105</span><span class='comma'>,</span> <span class='int'>105</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateGray-constant" class="">SlateGray =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>112</span><span class='comma'>,</span> <span class='int'>128</span><span class='comma'>,</span> <span class='int'>144</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateGrey-constant" class="">SlateGrey =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>112</span><span class='comma'>,</span> <span class='int'>128</span><span class='comma'>,</span> <span class='int'>144</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSlateGray-constant" class="">LightSlateGray =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>119</span><span class='comma'>,</span> <span class='int'>136</span><span class='comma'>,</span> <span class='int'>153</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSlateGrey-constant" class="">LightSlateGrey =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>119</span><span class='comma'>,</span> <span class='int'>136</span><span class='comma'>,</span> <span class='int'>153</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGrey-constant" class="">LightGrey =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>211</span><span class='comma'>,</span> <span class='int'>211</span><span class='comma'>,</span> <span class='int'>211</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGray-constant" class="">LightGray =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>211</span><span class='comma'>,</span> <span class='int'>211</span><span class='comma'>,</span> <span class='int'>211</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MidnightBlue-constant" class="">MidnightBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>25</span><span class='comma'>,</span>  <span class='int'>25</span><span class='comma'>,</span> <span class='int'>112</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="NavyBlue-constant" class="">NavyBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span>   <span class='int'>0</span><span class='comma'>,</span> <span class='int'>128</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="CornflowerBlue-constant" class="">CornflowerBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>100</span><span class='comma'>,</span> <span class='int'>149</span><span class='comma'>,</span> <span class='int'>237</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSlateBlue-constant" class="">DarkSlateBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>72</span><span class='comma'>,</span>  <span class='int'>61</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateBlue-constant" class="">SlateBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>106</span><span class='comma'>,</span>  <span class='int'>90</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumSlateBlue-constant" class="">MediumSlateBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>123</span><span class='comma'>,</span> <span class='int'>104</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSlateBlue-constant" class="">LightSlateBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>132</span><span class='comma'>,</span> <span class='int'>112</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumBlue-constant" class="">MediumBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span>   <span class='int'>0</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RoyalBlue-constant" class="">RoyalBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>65</span><span class='comma'>,</span> <span class='int'>105</span><span class='comma'>,</span> <span class='int'>225</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DodgerBlue-constant" class="">DodgerBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>30</span><span class='comma'>,</span> <span class='int'>144</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepSkyBlue-constant" class="">DeepSkyBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>191</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SkyBlue-constant" class="">SkyBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>135</span><span class='comma'>,</span> <span class='int'>206</span><span class='comma'>,</span> <span class='int'>235</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSkyBlue-constant" class="">LightSkyBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>135</span><span class='comma'>,</span> <span class='int'>206</span><span class='comma'>,</span> <span class='int'>250</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SteelBlue-constant" class="">SteelBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>70</span><span class='comma'>,</span> <span class='int'>130</span><span class='comma'>,</span> <span class='int'>180</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSteelBlue-constant" class="">LightSteelBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>176</span><span class='comma'>,</span> <span class='int'>196</span><span class='comma'>,</span> <span class='int'>222</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightBlue-constant" class="">LightBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>173</span><span class='comma'>,</span> <span class='int'>216</span><span class='comma'>,</span> <span class='int'>230</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PowderBlue-constant" class="">PowderBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>176</span><span class='comma'>,</span> <span class='int'>224</span><span class='comma'>,</span> <span class='int'>230</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleTurquoise-constant" class="">PaleTurquoise =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>175</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkTurquoise-constant" class="">DarkTurquoise =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>206</span><span class='comma'>,</span> <span class='int'>209</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumTurquoise-constant" class="">MediumTurquoise =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>72</span><span class='comma'>,</span> <span class='int'>209</span><span class='comma'>,</span> <span class='int'>204</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightCyan-constant" class="">LightCyan =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>224</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="CadetBlue-constant" class="">CadetBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>95</span><span class='comma'>,</span> <span class='int'>158</span><span class='comma'>,</span> <span class='int'>160</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumAquamarine-constant" class="">MediumAquamarine =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>102</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>170</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGreen-constant" class="">DarkGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>100</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOliveGreen-constant" class="">DarkOliveGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>85</span><span class='comma'>,</span> <span class='int'>107</span><span class='comma'>,</span>  <span class='int'>47</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSeaGreen-constant" class="">DarkSeaGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>143</span><span class='comma'>,</span> <span class='int'>188</span><span class='comma'>,</span> <span class='int'>143</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SeaGreen-constant" class="">SeaGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>46</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span>  <span class='int'>87</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumSeaGreen-constant" class="">MediumSeaGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>60</span><span class='comma'>,</span> <span class='int'>179</span><span class='comma'>,</span> <span class='int'>113</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSeaGreen-constant" class="">LightSeaGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>32</span><span class='comma'>,</span> <span class='int'>178</span><span class='comma'>,</span> <span class='int'>170</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleGreen-constant" class="">PaleGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>152</span><span class='comma'>,</span> <span class='int'>251</span><span class='comma'>,</span> <span class='int'>152</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SpringGreen-constant" class="">SpringGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>127</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LawnGreen-constant" class="">LawnGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>124</span><span class='comma'>,</span> <span class='int'>252</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumSpringGreen-constant" class="">MediumSpringGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>250</span><span class='comma'>,</span> <span class='int'>154</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="GreenYellow-constant" class="">GreenYellow =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>173</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span>  <span class='int'>47</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LimeGreen-constant" class="">LimeGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>50</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span>  <span class='int'>50</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="YellowGreen-constant" class="">YellowGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>154</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span>  <span class='int'>50</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="ForestGreen-constant" class="">ForestGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>34</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span>  <span class='int'>34</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OliveDrab-constant" class="">OliveDrab =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>107</span><span class='comma'>,</span> <span class='int'>142</span><span class='comma'>,</span>  <span class='int'>35</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkKhaki-constant" class="">DarkKhaki =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>189</span><span class='comma'>,</span> <span class='int'>183</span><span class='comma'>,</span> <span class='int'>107</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleGoldenrod-constant" class="">PaleGoldenrod =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>232</span><span class='comma'>,</span> <span class='int'>170</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGoldenrodYellow-constant" class="">LightGoldenrodYellow =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>250</span><span class='comma'>,</span> <span class='int'>250</span><span class='comma'>,</span> <span class='int'>210</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightYellow-constant" class="">LightYellow =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>224</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGoldenrod-constant" class="">LightGoldenrod =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>221</span><span class='comma'>,</span> <span class='int'>130</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGoldenrod-constant" class="">DarkGoldenrod =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>184</span><span class='comma'>,</span> <span class='int'>134</span><span class='comma'>,</span>  <span class='int'>11</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RosyBrown-constant" class="">RosyBrown =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>188</span><span class='comma'>,</span> <span class='int'>143</span><span class='comma'>,</span> <span class='int'>143</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="IndianRed-constant" class="">IndianRed =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span>  <span class='int'>92</span><span class='comma'>,</span>  <span class='int'>92</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SaddleBrown-constant" class="">SaddleBrown =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>69</span><span class='comma'>,</span>  <span class='int'>19</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SandyBrown-constant" class="">SandyBrown =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>244</span><span class='comma'>,</span> <span class='int'>164</span><span class='comma'>,</span>  <span class='int'>96</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSalmon-constant" class="">DarkSalmon =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>233</span><span class='comma'>,</span> <span class='int'>150</span><span class='comma'>,</span> <span class='int'>122</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSalmon-constant" class="">LightSalmon =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>160</span><span class='comma'>,</span> <span class='int'>122</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrange-constant" class="">DarkOrange =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>140</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightCoral-constant" class="">LightCoral =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>240</span><span class='comma'>,</span> <span class='int'>128</span><span class='comma'>,</span> <span class='int'>128</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OrangeRed-constant" class="">OrangeRed =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span>  <span class='int'>69</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="HotPink-constant" class="">HotPink =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>105</span><span class='comma'>,</span> <span class='int'>180</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepPink-constant" class="">DeepPink =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span>  <span class='int'>20</span><span class='comma'>,</span> <span class='int'>147</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightPink-constant" class="">LightPink =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>182</span><span class='comma'>,</span> <span class='int'>193</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleVioletRed-constant" class="">PaleVioletRed =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>219</span><span class='comma'>,</span> <span class='int'>112</span><span class='comma'>,</span> <span class='int'>147</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumVioletRed-constant" class="">MediumVioletRed =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>199</span><span class='comma'>,</span>  <span class='int'>21</span><span class='comma'>,</span> <span class='int'>133</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="VioletRed-constant" class="">VioletRed =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>208</span><span class='comma'>,</span>  <span class='int'>32</span><span class='comma'>,</span> <span class='int'>144</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumOrchid-constant" class="">MediumOrchid =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>186</span><span class='comma'>,</span>  <span class='int'>85</span><span class='comma'>,</span> <span class='int'>211</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrchid-constant" class="">DarkOrchid =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>153</span><span class='comma'>,</span>  <span class='int'>50</span><span class='comma'>,</span> <span class='int'>204</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkViolet-constant" class="">DarkViolet =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>148</span><span class='comma'>,</span>   <span class='int'>0</span><span class='comma'>,</span> <span class='int'>211</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="BlueViolet-constant" class="">BlueViolet =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>138</span><span class='comma'>,</span>  <span class='int'>43</span><span class='comma'>,</span> <span class='int'>226</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumPurple-constant" class="">MediumPurple =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>147</span><span class='comma'>,</span> <span class='int'>112</span><span class='comma'>,</span> <span class='int'>219</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="AntiqueWhite1-constant" class="">AntiqueWhite1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>239</span><span class='comma'>,</span> <span class='int'>219</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="AntiqueWhite2-constant" class="">AntiqueWhite2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>223</span><span class='comma'>,</span> <span class='int'>204</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="AntiqueWhite3-constant" class="">AntiqueWhite3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>192</span><span class='comma'>,</span> <span class='int'>176</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="AntiqueWhite4-constant" class="">AntiqueWhite4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>131</span><span class='comma'>,</span> <span class='int'>120</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PeachPuff1-constant" class="">PeachPuff1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>218</span><span class='comma'>,</span> <span class='int'>185</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PeachPuff2-constant" class="">PeachPuff2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>203</span><span class='comma'>,</span> <span class='int'>173</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PeachPuff3-constant" class="">PeachPuff3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>175</span><span class='comma'>,</span> <span class='int'>149</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PeachPuff4-constant" class="">PeachPuff4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>119</span><span class='comma'>,</span> <span class='int'>101</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="NavajoWhite1-constant" class="">NavajoWhite1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>222</span><span class='comma'>,</span> <span class='int'>173</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="NavajoWhite2-constant" class="">NavajoWhite2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>207</span><span class='comma'>,</span> <span class='int'>161</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="NavajoWhite3-constant" class="">NavajoWhite3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>179</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="NavajoWhite4-constant" class="">NavajoWhite4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>121</span><span class='comma'>,</span>  <span class='int'>94</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LemonChiffon1-constant" class="">LemonChiffon1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>250</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LemonChiffon2-constant" class="">LemonChiffon2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>233</span><span class='comma'>,</span> <span class='int'>191</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LemonChiffon3-constant" class="">LemonChiffon3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>201</span><span class='comma'>,</span> <span class='int'>165</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LemonChiffon4-constant" class="">LemonChiffon4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>137</span><span class='comma'>,</span> <span class='int'>112</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LavenderBlush1-constant" class="">LavenderBlush1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>240</span><span class='comma'>,</span> <span class='int'>245</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LavenderBlush2-constant" class="">LavenderBlush2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>224</span><span class='comma'>,</span> <span class='int'>229</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LavenderBlush3-constant" class="">LavenderBlush3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>193</span><span class='comma'>,</span> <span class='int'>197</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LavenderBlush4-constant" class="">LavenderBlush4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>131</span><span class='comma'>,</span> <span class='int'>134</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MistyRose1-constant" class="">MistyRose1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>228</span><span class='comma'>,</span> <span class='int'>225</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MistyRose2-constant" class="">MistyRose2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>213</span><span class='comma'>,</span> <span class='int'>210</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MistyRose3-constant" class="">MistyRose3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>183</span><span class='comma'>,</span> <span class='int'>181</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MistyRose4-constant" class="">MistyRose4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>125</span><span class='comma'>,</span> <span class='int'>123</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateBlue1-constant" class="">SlateBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>131</span><span class='comma'>,</span> <span class='int'>111</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateBlue2-constant" class="">SlateBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>122</span><span class='comma'>,</span> <span class='int'>103</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateBlue3-constant" class="">SlateBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>105</span><span class='comma'>,</span>  <span class='int'>89</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateBlue4-constant" class="">SlateBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>71</span><span class='comma'>,</span>  <span class='int'>60</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RoyalBlue1-constant" class="">RoyalBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>72</span><span class='comma'>,</span> <span class='int'>118</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RoyalBlue2-constant" class="">RoyalBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>67</span><span class='comma'>,</span> <span class='int'>110</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RoyalBlue3-constant" class="">RoyalBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>58</span><span class='comma'>,</span>  <span class='int'>95</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RoyalBlue4-constant" class="">RoyalBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>39</span><span class='comma'>,</span>  <span class='int'>64</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DodgerBlue1-constant" class="">DodgerBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>30</span><span class='comma'>,</span> <span class='int'>144</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DodgerBlue2-constant" class="">DodgerBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>28</span><span class='comma'>,</span> <span class='int'>134</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DodgerBlue3-constant" class="">DodgerBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>24</span><span class='comma'>,</span> <span class='int'>116</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DodgerBlue4-constant" class="">DodgerBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>16</span><span class='comma'>,</span>  <span class='int'>78</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SteelBlue1-constant" class="">SteelBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>99</span><span class='comma'>,</span> <span class='int'>184</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SteelBlue2-constant" class="">SteelBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>92</span><span class='comma'>,</span> <span class='int'>172</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SteelBlue3-constant" class="">SteelBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>79</span><span class='comma'>,</span> <span class='int'>148</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SteelBlue4-constant" class="">SteelBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>54</span><span class='comma'>,</span> <span class='int'>100</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepSkyBlue1-constant" class="">DeepSkyBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>191</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepSkyBlue2-constant" class="">DeepSkyBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>178</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepSkyBlue3-constant" class="">DeepSkyBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>154</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepSkyBlue4-constant" class="">DeepSkyBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>104</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SkyBlue1-constant" class="">SkyBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>135</span><span class='comma'>,</span> <span class='int'>206</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SkyBlue2-constant" class="">SkyBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>126</span><span class='comma'>,</span> <span class='int'>192</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SkyBlue3-constant" class="">SkyBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>108</span><span class='comma'>,</span> <span class='int'>166</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SkyBlue4-constant" class="">SkyBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>74</span><span class='comma'>,</span> <span class='int'>112</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSkyBlue1-constant" class="">LightSkyBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>176</span><span class='comma'>,</span> <span class='int'>226</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSkyBlue2-constant" class="">LightSkyBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>164</span><span class='comma'>,</span> <span class='int'>211</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSkyBlue3-constant" class="">LightSkyBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>141</span><span class='comma'>,</span> <span class='int'>182</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSkyBlue4-constant" class="">LightSkyBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>96</span><span class='comma'>,</span> <span class='int'>123</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateGray1-constant" class="">SlateGray1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>198</span><span class='comma'>,</span> <span class='int'>226</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateGray2-constant" class="">SlateGray2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>185</span><span class='comma'>,</span> <span class='int'>211</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateGray3-constant" class="">SlateGray3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>159</span><span class='comma'>,</span> <span class='int'>182</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SlateGray4-constant" class="">SlateGray4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>108</span><span class='comma'>,</span> <span class='int'>123</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSteelBlue1-constant" class="">LightSteelBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>202</span><span class='comma'>,</span> <span class='int'>225</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSteelBlue2-constant" class="">LightSteelBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>188</span><span class='comma'>,</span> <span class='int'>210</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSteelBlue3-constant" class="">LightSteelBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>162</span><span class='comma'>,</span> <span class='int'>181</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSteelBlue4-constant" class="">LightSteelBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>110</span><span class='comma'>,</span> <span class='int'>123</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightBlue1-constant" class="">LightBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>191</span><span class='comma'>,</span> <span class='int'>239</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightBlue2-constant" class="">LightBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>178</span><span class='comma'>,</span> <span class='int'>223</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightBlue3-constant" class="">LightBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>154</span><span class='comma'>,</span> <span class='int'>192</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightBlue4-constant" class="">LightBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>104</span><span class='comma'>,</span> <span class='int'>131</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightCyan1-constant" class="">LightCyan1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>224</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightCyan2-constant" class="">LightCyan2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>209</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightCyan3-constant" class="">LightCyan3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>180</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightCyan4-constant" class="">LightCyan4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>122</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleTurquoise1-constant" class="">PaleTurquoise1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>187</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleTurquoise2-constant" class="">PaleTurquoise2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>174</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleTurquoise3-constant" class="">PaleTurquoise3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>150</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleTurquoise4-constant" class="">PaleTurquoise4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>102</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="CadetBlue1-constant" class="">CadetBlue1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>152</span><span class='comma'>,</span> <span class='int'>245</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="CadetBlue2-constant" class="">CadetBlue2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>142</span><span class='comma'>,</span> <span class='int'>229</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="CadetBlue3-constant" class="">CadetBlue3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>122</span><span class='comma'>,</span> <span class='int'>197</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="CadetBlue4-constant" class="">CadetBlue4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>83</span><span class='comma'>,</span> <span class='int'>134</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSlateGray1-constant" class="">DarkSlateGray1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>151</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSlateGray2-constant" class="">DarkSlateGray2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>141</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSlateGray3-constant" class="">DarkSlateGray3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>121</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSlateGray4-constant" class="">DarkSlateGray4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>82</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSeaGreen1-constant" class="">DarkSeaGreen1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>193</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>193</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSeaGreen2-constant" class="">DarkSeaGreen2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>180</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>180</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSeaGreen3-constant" class="">DarkSeaGreen3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>155</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>155</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkSeaGreen4-constant" class="">DarkSeaGreen4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>105</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span> <span class='int'>105</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SeaGreen1-constant" class="">SeaGreen1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>84</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>159</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SeaGreen2-constant" class="">SeaGreen2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>78</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>148</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SeaGreen3-constant" class="">SeaGreen3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>67</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>128</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SeaGreen4-constant" class="">SeaGreen4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>46</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span>  <span class='int'>87</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleGreen1-constant" class="">PaleGreen1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>154</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>154</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleGreen2-constant" class="">PaleGreen2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>144</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>144</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleGreen3-constant" class="">PaleGreen3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>124</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>124</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleGreen4-constant" class="">PaleGreen4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>84</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span>  <span class='int'>84</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SpringGreen1-constant" class="">SpringGreen1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>127</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SpringGreen2-constant" class="">SpringGreen2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>118</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SpringGreen3-constant" class="">SpringGreen3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>102</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="SpringGreen4-constant" class="">SpringGreen4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span>  <span class='int'>0</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span>  <span class='int'>69</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OliveDrab1-constant" class="">OliveDrab1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>192</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span>  <span class='int'>62</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OliveDrab2-constant" class="">OliveDrab2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>179</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span>  <span class='int'>58</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OliveDrab3-constant" class="">OliveDrab3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>154</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span>  <span class='int'>50</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OliveDrab4-constant" class="">OliveDrab4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>105</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span>  <span class='int'>34</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOliveGreen1-constant" class="">DarkOliveGreen1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>202</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>112</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOliveGreen2-constant" class="">DarkOliveGreen2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>188</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>104</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOliveGreen3-constant" class="">DarkOliveGreen3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>162</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span>  <span class='int'>90</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOliveGreen4-constant" class="">DarkOliveGreen4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>110</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span>  <span class='int'>61</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGoldenrod1-constant" class="">LightGoldenrod1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>236</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGoldenrod2-constant" class="">LightGoldenrod2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>220</span><span class='comma'>,</span> <span class='int'>130</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGoldenrod3-constant" class="">LightGoldenrod3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>190</span><span class='comma'>,</span> <span class='int'>112</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGoldenrod4-constant" class="">LightGoldenrod4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>129</span><span class='comma'>,</span>  <span class='int'>76</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightYellow1-constant" class="">LightYellow1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>224</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightYellow2-constant" class="">LightYellow2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>209</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightYellow3-constant" class="">LightYellow3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>180</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightYellow4-constant" class="">LightYellow4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span> <span class='int'>122</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGoldenrod1-constant" class="">DarkGoldenrod1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>185</span><span class='comma'>,</span>  <span class='int'>15</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGoldenrod2-constant" class="">DarkGoldenrod2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>173</span><span class='comma'>,</span>  <span class='int'>14</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGoldenrod3-constant" class="">DarkGoldenrod3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>149</span><span class='comma'>,</span>  <span class='int'>12</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGoldenrod4-constant" class="">DarkGoldenrod4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>101</span><span class='comma'>,</span>   <span class='int'>8</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RosyBrown1-constant" class="">RosyBrown1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>193</span><span class='comma'>,</span> <span class='int'>193</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RosyBrown2-constant" class="">RosyBrown2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>180</span><span class='comma'>,</span> <span class='int'>180</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RosyBrown3-constant" class="">RosyBrown3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>155</span><span class='comma'>,</span> <span class='int'>155</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="RosyBrown4-constant" class="">RosyBrown4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span> <span class='int'>105</span><span class='comma'>,</span> <span class='int'>105</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="IndianRed1-constant" class="">IndianRed1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>106</span><span class='comma'>,</span> <span class='int'>106</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="IndianRed2-constant" class="">IndianRed2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span>  <span class='int'>99</span><span class='comma'>,</span>  <span class='int'>99</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="IndianRed3-constant" class="">IndianRed3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span>  <span class='int'>85</span><span class='comma'>,</span>  <span class='int'>85</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="IndianRed4-constant" class="">IndianRed4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>58</span><span class='comma'>,</span>  <span class='int'>58</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSalmon1-constant" class="">LightSalmon1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>160</span><span class='comma'>,</span> <span class='int'>122</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSalmon2-constant" class="">LightSalmon2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>149</span><span class='comma'>,</span> <span class='int'>114</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSalmon3-constant" class="">LightSalmon3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>129</span><span class='comma'>,</span>  <span class='int'>98</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightSalmon4-constant" class="">LightSalmon4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>87</span><span class='comma'>,</span>  <span class='int'>66</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrange1-constant" class="">DarkOrange1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>127</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrange2-constant" class="">DarkOrange2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>118</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrange3-constant" class="">DarkOrange3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>102</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrange4-constant" class="">DarkOrange4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>69</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OrangeRed1-constant" class="">OrangeRed1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span>  <span class='int'>69</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OrangeRed2-constant" class="">OrangeRed2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span>  <span class='int'>64</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OrangeRed3-constant" class="">OrangeRed3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span>  <span class='int'>55</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="OrangeRed4-constant" class="">OrangeRed4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>37</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepPink1-constant" class="">DeepPink1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span>  <span class='int'>20</span><span class='comma'>,</span> <span class='int'>147</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepPink2-constant" class="">DeepPink2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span>  <span class='int'>18</span><span class='comma'>,</span> <span class='int'>137</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepPink3-constant" class="">DeepPink3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span>  <span class='int'>16</span><span class='comma'>,</span> <span class='int'>118</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DeepPink4-constant" class="">DeepPink4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>10</span><span class='comma'>,</span>  <span class='int'>80</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="HotPink1-constant" class="">HotPink1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>110</span><span class='comma'>,</span> <span class='int'>180</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="HotPink2-constant" class="">HotPink2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>106</span><span class='comma'>,</span> <span class='int'>167</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="HotPink3-constant" class="">HotPink3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span>  <span class='int'>96</span><span class='comma'>,</span> <span class='int'>144</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="HotPink4-constant" class="">HotPink4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>58</span><span class='comma'>,</span>  <span class='int'>98</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightPink1-constant" class="">LightPink1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>174</span><span class='comma'>,</span> <span class='int'>185</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightPink2-constant" class="">LightPink2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>162</span><span class='comma'>,</span> <span class='int'>173</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightPink3-constant" class="">LightPink3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>140</span><span class='comma'>,</span> <span class='int'>149</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightPink4-constant" class="">LightPink4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>95</span><span class='comma'>,</span> <span class='int'>101</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleVioletRed1-constant" class="">PaleVioletRed1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>130</span><span class='comma'>,</span> <span class='int'>171</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleVioletRed2-constant" class="">PaleVioletRed2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span> <span class='int'>121</span><span class='comma'>,</span> <span class='int'>159</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleVioletRed3-constant" class="">PaleVioletRed3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span> <span class='int'>104</span><span class='comma'>,</span> <span class='int'>137</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="PaleVioletRed4-constant" class="">PaleVioletRed4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>71</span><span class='comma'>,</span>  <span class='int'>93</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="VioletRed1-constant" class="">VioletRed1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span>  <span class='int'>62</span><span class='comma'>,</span> <span class='int'>150</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="VioletRed2-constant" class="">VioletRed2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>238</span><span class='comma'>,</span>  <span class='int'>58</span><span class='comma'>,</span> <span class='int'>140</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="VioletRed3-constant" class="">VioletRed3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>205</span><span class='comma'>,</span>  <span class='int'>50</span><span class='comma'>,</span> <span class='int'>120</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="VioletRed4-constant" class="">VioletRed4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>  <span class='int'>34</span><span class='comma'>,</span>  <span class='int'>82</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumOrchid1-constant" class="">MediumOrchid1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>224</span><span class='comma'>,</span> <span class='int'>102</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumOrchid2-constant" class="">MediumOrchid2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>209</span><span class='comma'>,</span>  <span class='int'>95</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumOrchid3-constant" class="">MediumOrchid3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>180</span><span class='comma'>,</span>  <span class='int'>82</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumOrchid4-constant" class="">MediumOrchid4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>122</span><span class='comma'>,</span>  <span class='int'>55</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrchid1-constant" class="">DarkOrchid1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>191</span><span class='comma'>,</span>  <span class='int'>62</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrchid2-constant" class="">DarkOrchid2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>178</span><span class='comma'>,</span>  <span class='int'>58</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrchid3-constant" class="">DarkOrchid3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>154</span><span class='comma'>,</span>  <span class='int'>50</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkOrchid4-constant" class="">DarkOrchid4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>104</span><span class='comma'>,</span>  <span class='int'>34</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumPurple1-constant" class="">MediumPurple1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>171</span><span class='comma'>,</span> <span class='int'>130</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumPurple2-constant" class="">MediumPurple2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>159</span><span class='comma'>,</span> <span class='int'>121</span><span class='comma'>,</span> <span class='int'>238</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumPurple3-constant" class="">MediumPurple3 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>137</span><span class='comma'>,</span> <span class='int'>104</span><span class='comma'>,</span> <span class='int'>205</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MediumPurple4-constant" class="">MediumPurple4 =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span> <span class='int'>93</span><span class='comma'>,</span>  <span class='int'>71</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGrey-constant" class="">DarkGrey =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>169</span><span class='comma'>,</span> <span class='int'>169</span><span class='comma'>,</span> <span class='int'>169</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkGray-constant" class="">DarkGray =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>169</span><span class='comma'>,</span> <span class='int'>169</span><span class='comma'>,</span> <span class='int'>169</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkBlue-constant" class="">DarkBlue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>0</span>  <span class='comma'>,</span>   <span class='int'>0</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkCyan-constant" class="">DarkCyan =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>0</span>  <span class='comma'>,</span> <span class='int'>139</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkMagenta-constant" class="">DarkMagenta =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>   <span class='int'>0</span><span class='comma'>,</span> <span class='int'>139</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="DarkRed-constant" class="">DarkRed =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>139</span><span class='comma'>,</span>   <span class='int'>0</span><span class='comma'>,</span>   <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="LightGreen-constant" class="">LightGreen =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>144</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>144</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="White-constant" class="">White =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Other basic colors</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Black-constant" class="">Black =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Red-constant" class="">Red =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Pink-constant" class="">Pink =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>175</span><span class='comma'>,</span> <span class='int'>175</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Orange-constant" class="">Orange =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>200</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Yellow-constant" class="">Yellow =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Green-constant" class="">Green =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Magenta-constant" class="">Magenta =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>255</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Cyan-constant" class="">Cyan =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="Blue-constant" class="">Blue =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXRGB</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>255</span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:45 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

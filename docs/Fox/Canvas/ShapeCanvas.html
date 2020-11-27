@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::Canvas::ShapeCanvas
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::Canvas::ShapeCanvas";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Canvas.html" title="Fox::Canvas (module)">Canvas</a></span></span>
+     &raquo; 
+    <span class="title">ShapeCanvas</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::Canvas::ShapeCanvas
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="../FXCanvas.html" title="Fox::FXCanvas (class)">FXCanvas</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="../FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="../FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="../FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="../FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="../FXCanvas.html" title="Fox::FXCanvas (class)">FXCanvas</a></span></li>
+          
+            <li class="next">Fox::Canvas::ShapeCanvas</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../../Responder.html" title="Responder (module)">Responder</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/fox16/canvas.rb</dd>
+  </dl>
+  
+</div>
+
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="FLAG_SHOWN-constant" class="">FLAG_SHOWN =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Window state flags</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000001</span></pre></dd>
+      
+        <dt id="FLAG_ENABLED-constant" class="">FLAG_ENABLED =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Is shown</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000002</span></pre></dd>
+      
+        <dt id="FLAG_UPDATE-constant" class="">FLAG_UPDATE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Able to receive input</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000004</span></pre></dd>
+      
+        <dt id="FLAG_DROPTARGET-constant" class="">FLAG_DROPTARGET =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Is subject to GUI update</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000008</span></pre></dd>
+      
+        <dt id="FLAG_FOCUSED-constant" class="">FLAG_FOCUSED =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Drop target</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000010</span></pre></dd>
+      
+        <dt id="FLAG_DIRTY-constant" class="">FLAG_DIRTY =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Has focus</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000020</span></pre></dd>
+      
+        <dt id="FLAG_RECALC-constant" class="">FLAG_RECALC =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Needs layout</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000040</span></pre></dd>
+      
+        <dt id="FLAG_TIP-constant" class="">FLAG_TIP =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Needs recalculation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000080</span></pre></dd>
+      
+        <dt id="FLAG_HELP-constant" class="">FLAG_HELP =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Show tip</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000100</span></pre></dd>
+      
+        <dt id="FLAG_DEFAULT-constant" class="">FLAG_DEFAULT =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Show help</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000200</span></pre></dd>
+      
+        <dt id="FLAG_INITIAL-constant" class="">FLAG_INITIAL =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Default widget</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000400</span></pre></dd>
+      
+        <dt id="FLAG_SHELL-constant" class="">FLAG_SHELL =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Initial widget</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00000800</span></pre></dd>
+      
+        <dt id="FLAG_ACTIVE-constant" class="">FLAG_ACTIVE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Shell window</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00001000</span></pre></dd>
+      
+        <dt id="FLAG_PRESSED-constant" class="">FLAG_PRESSED =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Window is active</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00002000</span></pre></dd>
+      
+        <dt id="FLAG_KEY-constant" class="">FLAG_KEY =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Button has been pressed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00004000</span></pre></dd>
+      
+        <dt id="FLAG_CARET-constant" class="">FLAG_CARET =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Keyboard key pressed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00008000</span></pre></dd>
+      
+        <dt id="FLAG_CHANGED-constant" class="">FLAG_CHANGED =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Caret is on</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00010000</span></pre></dd>
+      
+        <dt id="FLAG_LASSO-constant" class="">FLAG_LASSO =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Window data changed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00020000</span></pre></dd>
+      
+        <dt id="FLAG_TRYDRAG-constant" class="">FLAG_TRYDRAG =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Lasso mode</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00040000</span></pre></dd>
+      
+        <dt id="FLAG_DODRAG-constant" class="">FLAG_DODRAG =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Tentative drag mode</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00080000</span></pre></dd>
+      
+        <dt id="FLAG_SCROLLINSIDE-constant" class="">FLAG_SCROLLINSIDE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Doing drag mode</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00100000</span></pre></dd>
+      
+        <dt id="FLAG_SCROLLING-constant" class="">FLAG_SCROLLING =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Scroll only when inside</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>0x00200000</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#scene-instance_method" title="#scene (instance method)">#<strong>scene</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute scene.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="../FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FXWindow.html#accelTable-instance_method" title="Fox::FXWindow#accelTable (method)">#accelTable</a></span>, <span class='object_link'><a href="../FXWindow.html#backColor-instance_method" title="Fox::FXWindow#backColor (method)">#backColor</a></span>, <span class='object_link'><a href="../FXWindow.html#defaultCursor-instance_method" title="Fox::FXWindow#defaultCursor (method)">#defaultCursor</a></span>, <span class='object_link'><a href="../FXWindow.html#dragCursor-instance_method" title="Fox::FXWindow#dragCursor (method)">#dragCursor</a></span>, <span class='object_link'><a href="../FXWindow.html#first-instance_method" title="Fox::FXWindow#first (method)">#first</a></span>, <span class='object_link'><a href="../FXWindow.html#focus-instance_method" title="Fox::FXWindow#focus (method)">#focus</a></span>, <span class='object_link'><a href="../FXWindow.html#key-instance_method" title="Fox::FXWindow#key (method)">#key</a></span>, <span class='object_link'><a href="../FXWindow.html#last-instance_method" title="Fox::FXWindow#last (method)">#last</a></span>, <span class='object_link'><a href="../FXWindow.html#layoutHints-instance_method" title="Fox::FXWindow#layoutHints (method)">#layoutHints</a></span>, <span class='object_link'><a href="../FXWindow.html#next-instance_method" title="Fox::FXWindow#next (method)">#next</a></span>, <span class='object_link'><a href="../FXWindow.html#numChildren-instance_method" title="Fox::FXWindow#numChildren (method)">#numChildren</a></span>, <span class='object_link'><a href="../FXWindow.html#owner-instance_method" title="Fox::FXWindow#owner (method)">#owner</a></span>, <span class='object_link'><a href="../FXWindow.html#parent-instance_method" title="Fox::FXWindow#parent (method)">#parent</a></span>, <span class='object_link'><a href="../FXWindow.html#prev-instance_method" title="Fox::FXWindow#prev (method)">#prev</a></span>, <span class='object_link'><a href="../FXWindow.html#root-instance_method" title="Fox::FXWindow#root (method)">#root</a></span>, <span class='object_link'><a href="../FXWindow.html#selector-instance_method" title="Fox::FXWindow#selector (method)">#selector</a></span>, <span class='object_link'><a href="../FXWindow.html#shell-instance_method" title="Fox::FXWindow#shell (method)">#shell</a></span>, <span class='object_link'><a href="../FXWindow.html#target-instance_method" title="Fox::FXWindow#target (method)">#target</a></span>, <span class='object_link'><a href="../FXWindow.html#x-instance_method" title="Fox::FXWindow#x (method)">#x</a></span>, <span class='object_link'><a href="../FXWindow.html#y-instance_method" title="Fox::FXWindow#y (method)">#y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="../FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FXDrawable.html#height-instance_method" title="Fox::FXDrawable#height (method)">#height</a></span>, <span class='object_link'><a href="../FXDrawable.html#visual-instance_method" title="Fox::FXDrawable#visual (method)">#visual</a></span>, <span class='object_link'><a href="../FXDrawable.html#width-instance_method" title="Fox::FXDrawable#width (method)">#width</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="../FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="../FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="../FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deselectShape-instance_method" title="#deselectShape (instance method)">#<strong>deselectShape</strong>(shape, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Deselect one shape.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disableShape-instance_method" title="#disableShape (instance method)">#<strong>disableShape</strong>(shape)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Disable one shape.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enableShape-instance_method" title="#enableShape (instance method)">#<strong>enableShape</strong>(shape)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Enable one shape.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#findShape-instance_method" title="#findShape (instance method)">#<strong>findShape</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Find the shape of the least depth containing this point.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(p, tgt = nil, sel = 0, opts = FRAME_NORMAL, x = 0, y = 0, w = 0, h = 0)  &#x21d2; ShapeCanvas </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of ShapeCanvas.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#killSelection-instance_method" title="#killSelection (instance method)">#<strong>killSelection</strong>(notify)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Kill selection.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onClicked-instance_method" title="#onClicked (instance method)">#<strong>onClicked</strong>(sender, sel, ptr)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clicked on canvas.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onCommand-instance_method" title="#onCommand (instance method)">#<strong>onCommand</strong>(sender, sel, ptr)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Command message.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onDoubleClicked-instance_method" title="#onDoubleClicked (instance method)">#<strong>onDoubleClicked</strong>(sender, sel, ptr)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Double-clicked on canvas.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onLeftBtnPress-instance_method" title="#onLeftBtnPress (instance method)">#<strong>onLeftBtnPress</strong>(sender, sel, evt)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Left button press.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onLeftBtnRelease-instance_method" title="#onLeftBtnRelease (instance method)">#<strong>onLeftBtnRelease</strong>(sender, sel, evt)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Left button release.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMotion-instance_method" title="#onMotion (instance method)">#<strong>onMotion</strong>(sender, sel, evt)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Motion.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onPaint-instance_method" title="#onPaint (instance method)">#<strong>onPaint</strong>(sender, sel, evt)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Paint.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onTripleClicked-instance_method" title="#onTripleClicked (instance method)">#<strong>onTripleClicked</strong>(sender, sel, ptr)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Triple-clicked on canvas.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#selectShape-instance_method" title="#selectShape (instance method)">#<strong>selectShape</strong>(shape, notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Select one shape.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#updateShape-instance_method" title="#updateShape (instance method)">#<strong>updateShape</strong>(shape)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Repaint.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../../Responder.html" title="Responder (module)">Responder</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">#FXMAPFUNC</a></span>, <span class='object_link'><a href="../../Responder.html#FXMAPFUNCS-instance_method" title="Responder#FXMAPFUNCS (method)">#FXMAPFUNCS</a></span>, <span class='object_link'><a href="../../Responder.html#FXMAPTYPE-instance_method" title="Responder#FXMAPTYPE (method)">#FXMAPTYPE</a></span>, <span class='object_link'><a href="../../Responder.html#FXMAPTYPES-instance_method" title="Responder#FXMAPTYPES (method)">#FXMAPTYPES</a></span>, <span class='object_link'><a href="../../Responder.html#addMapEntry-instance_method" title="Responder#addMapEntry (method)">#addMapEntry</a></span>, <span class='object_link'><a href="../../Responder.html#assocIndex-instance_method" title="Responder#assocIndex (method)">#assocIndex</a></span>, <span class='object_link'><a href="../../Responder.html#identifier-instance_method" title="Responder#identifier (method)">#identifier</a></span>, <span class='object_link'><a href="../../Responder.html#messageMap-instance_method" title="Responder#messageMap (method)">#messageMap</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FXWindow.html#acceptDrop-instance_method" title="Fox::FXWindow#acceptDrop (method)">#acceptDrop</a></span>, <span class='object_link'><a href="../FXWindow.html#acquireClipboard-instance_method" title="Fox::FXWindow#acquireClipboard (method)">#acquireClipboard</a></span>, <span class='object_link'><a href="../FXWindow.html#acquireSelection-instance_method" title="Fox::FXWindow#acquireSelection (method)">#acquireSelection</a></span>, <span class='object_link'><a href="../FXWindow.html#active%3F-instance_method" title="Fox::FXWindow#active? (method)">#active?</a></span>, <span class='object_link'><a href="../FXWindow.html#addHotKey-instance_method" title="Fox::FXWindow#addHotKey (method)">#addHotKey</a></span>, <span class='object_link'><a href="../FXWindow.html#after%3F-class_method" title="Fox::FXWindow.after? (method)">after?</a></span>, <span class='object_link'><a href="../FXWindow.html#after%3F-instance_method" title="Fox::FXWindow#after? (method)">#after?</a></span>, <span class='object_link'><a href="../FXWindow.html#before%3F-class_method" title="Fox::FXWindow.before? (method)">before?</a></span>, <span class='object_link'><a href="../FXWindow.html#before%3F-instance_method" title="Fox::FXWindow#before? (method)">#before?</a></span>, <span class='object_link'><a href="../FXWindow.html#beginDrag-instance_method" title="Fox::FXWindow#beginDrag (method)">#beginDrag</a></span>, <span class='object_link'><a href="../FXWindow.html#canFocus%3F-instance_method" title="Fox::FXWindow#canFocus? (method)">#canFocus?</a></span>, <span class='object_link'><a href="../FXWindow.html#changeFocus-instance_method" title="Fox::FXWindow#changeFocus (method)">#changeFocus</a></span>, <span class='object_link'><a href="../FXWindow.html#childAtIndex-instance_method" title="Fox::FXWindow#childAtIndex (method)">#childAtIndex</a></span>, <span class='object_link'><a href="../FXWindow.html#childOf%3F-instance_method" title="Fox::FXWindow#childOf? (method)">#childOf?</a></span>, <span class='object_link'><a href="../FXWindow.html#children-instance_method" title="Fox::FXWindow#children (method)">#children</a></span>, <span class='object_link'><a href="../FXWindow.html#clearDragRectangle-instance_method" title="Fox::FXWindow#clearDragRectangle (method)">#clearDragRectangle</a></span>, <span class='object_link'><a href="../FXWindow.html#clearShape-instance_method" title="Fox::FXWindow#clearShape (method)">#clearShape</a></span>, <span class='object_link'><a href="../FXWindow.html#colorType-class_method" title="Fox::FXWindow.colorType (method)">colorType</a></span>, <span class='object_link'><a href="../FXWindow.html#colorTypeName-class_method" title="Fox::FXWindow.colorTypeName (method)">colorTypeName</a></span>, <span class='object_link'><a href="../FXWindow.html#commonAncestor-class_method" title="Fox::FXWindow.commonAncestor (method)">commonAncestor</a></span>, <span class='object_link'><a href="../FXWindow.html#composeContext-instance_method" title="Fox::FXWindow#composeContext (method)">#composeContext</a></span>, <span class='object_link'><a href="../FXWindow.html#composite%3F-instance_method" title="Fox::FXWindow#composite? (method)">#composite?</a></span>, <span class='object_link'><a href="../FXWindow.html#contains%3F-instance_method" title="Fox::FXWindow#contains? (method)">#contains?</a></span>, <span class='object_link'><a href="../FXWindow.html#containsChild%3F-instance_method" title="Fox::FXWindow#containsChild? (method)">#containsChild?</a></span>, <span class='object_link'><a href="../FXWindow.html#create-instance_method" title="Fox::FXWindow#create (method)">#create</a></span>, <span class='object_link'><a href="../FXWindow.html#createComposeContext-instance_method" title="Fox::FXWindow#createComposeContext (method)">#createComposeContext</a></span>, <span class='object_link'><a href="../FXWindow.html#cursorPosition-instance_method" title="Fox::FXWindow#cursorPosition (method)">#cursorPosition</a></span>, <span class='object_link'><a href="../FXWindow.html#default%3F-instance_method" title="Fox::FXWindow#default? (method)">#default?</a></span>, <span class='object_link'><a href="../FXWindow.html#defaultHeight-instance_method" title="Fox::FXWindow#defaultHeight (method)">#defaultHeight</a></span>, <span class='object_link'><a href="../FXWindow.html#defaultWidth-instance_method" title="Fox::FXWindow#defaultWidth (method)">#defaultWidth</a></span>, <span class='object_link'><a href="../FXWindow.html#deleteType-class_method" title="Fox::FXWindow.deleteType (method)">deleteType</a></span>, <span class='object_link'><a href="../FXWindow.html#deleteTypeName-class_method" title="Fox::FXWindow.deleteTypeName (method)">deleteTypeName</a></span>, <span class='object_link'><a href="../FXWindow.html#destroy-instance_method" title="Fox::FXWindow#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="../FXWindow.html#destroyComposeContext-instance_method" title="Fox::FXWindow#destroyComposeContext (method)">#destroyComposeContext</a></span>, <span class='object_link'><a href="../FXWindow.html#detach-instance_method" title="Fox::FXWindow#detach (method)">#detach</a></span>, <span class='object_link'><a href="../FXWindow.html#didAccept-instance_method" title="Fox::FXWindow#didAccept (method)">#didAccept</a></span>, <span class='object_link'><a href="../FXWindow.html#disable-instance_method" title="Fox::FXWindow#disable (method)">#disable</a></span>, <span class='object_link'><a href="../FXWindow.html#doesSaveUnder%3F-instance_method" title="Fox::FXWindow#doesSaveUnder? (method)">#doesSaveUnder?</a></span>, <span class='object_link'><a href="../FXWindow.html#dragging%3F-instance_method" title="Fox::FXWindow#dragging? (method)">#dragging?</a></span>, <span class='object_link'><a href="../FXWindow.html#dropDisable-instance_method" title="Fox::FXWindow#dropDisable (method)">#dropDisable</a></span>, <span class='object_link'><a href="../FXWindow.html#dropEnable-instance_method" title="Fox::FXWindow#dropEnable (method)">#dropEnable</a></span>, <span class='object_link'><a href="../FXWindow.html#dropEnabled%3F-instance_method" title="Fox::FXWindow#dropEnabled? (method)">#dropEnabled?</a></span>, <span class='object_link'><a href="../FXWindow.html#dropFinished-instance_method" title="Fox::FXWindow#dropFinished (method)">#dropFinished</a></span>, <span class='object_link'><a href="../FXWindow.html#dropTarget%3F-instance_method" title="Fox::FXWindow#dropTarget? (method)">#dropTarget?</a></span>, <span class='object_link'><a href="../FXWindow.html#each_child-instance_method" title="Fox::FXWindow#each_child (method)">#each_child</a></span>, <span class='object_link'><a href="../FXWindow.html#each_child_recursive-instance_method" title="Fox::FXWindow#each_child_recursive (method)">#each_child_recursive</a></span>, <span class='object_link'><a href="../FXWindow.html#enable-instance_method" title="Fox::FXWindow#enable (method)">#enable</a></span>, <span class='object_link'><a href="../FXWindow.html#enabled%3F-instance_method" title="Fox::FXWindow#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="../FXWindow.html#endDrag-instance_method" title="Fox::FXWindow#endDrag (method)">#endDrag</a></span>, <span class='object_link'><a href="../FXWindow.html#forceRefresh-instance_method" title="Fox::FXWindow#forceRefresh (method)">#forceRefresh</a></span>, <span class='object_link'><a href="../FXWindow.html#getChildAt-instance_method" title="Fox::FXWindow#getChildAt (method)">#getChildAt</a></span>, <span class='object_link'><a href="../FXWindow.html#getDNDData-instance_method" title="Fox::FXWindow#getDNDData (method)">#getDNDData</a></span>, <span class='object_link'><a href="../FXWindow.html#getHeightForWidth-instance_method" title="Fox::FXWindow#getHeightForWidth (method)">#getHeightForWidth</a></span>, <span class='object_link'><a href="../FXWindow.html#getWidthForHeight-instance_method" title="Fox::FXWindow#getWidthForHeight (method)">#getWidthForHeight</a></span>, <span class='object_link'><a href="../FXWindow.html#grab-instance_method" title="Fox::FXWindow#grab (method)">#grab</a></span>, <span class='object_link'><a href="../FXWindow.html#grabKeyboard-instance_method" title="Fox::FXWindow#grabKeyboard (method)">#grabKeyboard</a></span>, <span class='object_link'><a href="../FXWindow.html#grabbed%3F-instance_method" title="Fox::FXWindow#grabbed? (method)">#grabbed?</a></span>, <span class='object_link'><a href="../FXWindow.html#grabbedKeyboard%3F-instance_method" title="Fox::FXWindow#grabbedKeyboard? (method)">#grabbedKeyboard?</a></span>, <span class='object_link'><a href="../FXWindow.html#handleDrag-instance_method" title="Fox::FXWindow#handleDrag (method)">#handleDrag</a></span>, <span class='object_link'><a href="../FXWindow.html#hasClipboard%3F-instance_method" title="Fox::FXWindow#hasClipboard? (method)">#hasClipboard?</a></span>, <span class='object_link'><a href="../FXWindow.html#hasFocus%3F-instance_method" title="Fox::FXWindow#hasFocus? (method)">#hasFocus?</a></span>, <span class='object_link'><a href="../FXWindow.html#hasSelection%3F-instance_method" title="Fox::FXWindow#hasSelection? (method)">#hasSelection?</a></span>, <span class='object_link'><a href="../FXWindow.html#height-instance_method" title="Fox::FXWindow#height (method)">#height</a></span>, <span class='object_link'><a href="../FXWindow.html#height=-instance_method" title="Fox::FXWindow#height= (method)">#height=</a></span>, <span class='object_link'><a href="../FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">#hide</a></span>, <span class='object_link'><a href="../FXWindow.html#imageType-class_method" title="Fox::FXWindow.imageType (method)">imageType</a></span>, <span class='object_link'><a href="../FXWindow.html#inFocusChain%3F-instance_method" title="Fox::FXWindow#inFocusChain? (method)">#inFocusChain?</a></span>, <span class='object_link'><a href="../FXWindow.html#indexOfChild-instance_method" title="Fox::FXWindow#indexOfChild (method)">#indexOfChild</a></span>, <span class='object_link'><a href="../FXWindow.html#initial%3F-instance_method" title="Fox::FXWindow#initial? (method)">#initial?</a></span>, <span class='object_link'><a href="../FXWindow.html#inquireDNDAction-instance_method" title="Fox::FXWindow#inquireDNDAction (method)">#inquireDNDAction</a></span>, <span class='object_link'><a href="../FXWindow.html#inquireDNDTypes-instance_method" title="Fox::FXWindow#inquireDNDTypes (method)">#inquireDNDTypes</a></span>, <span class='object_link'><a href="../FXWindow.html#killFocus-instance_method" title="Fox::FXWindow#killFocus (method)">#killFocus</a></span>, <span class='object_link'><a href="../FXWindow.html#layout-instance_method" title="Fox::FXWindow#layout (method)">#layout</a></span>, <span class='object_link'><a href="../FXWindow.html#linkAfter-instance_method" title="Fox::FXWindow#linkAfter (method)">#linkAfter</a></span>, <span class='object_link'><a href="../FXWindow.html#linkBefore-instance_method" title="Fox::FXWindow#linkBefore (method)">#linkBefore</a></span>, <span class='object_link'><a href="../FXWindow.html#lower-instance_method" title="Fox::FXWindow#lower (method)">#lower</a></span>, <span class='object_link'><a href="../FXWindow.html#move-instance_method" title="Fox::FXWindow#move (method)">#move</a></span>, <span class='object_link'><a href="../FXWindow.html#octetType-class_method" title="Fox::FXWindow.octetType (method)">octetType</a></span>, <span class='object_link'><a href="../FXWindow.html#octetTypeName-class_method" title="Fox::FXWindow.octetTypeName (method)">octetTypeName</a></span>, <span class='object_link'><a href="../FXWindow.html#offeredDNDType%3F-instance_method" title="Fox::FXWindow#offeredDNDType? (method)">#offeredDNDType?</a></span>, <span class='object_link'><a href="../FXWindow.html#position-instance_method" title="Fox::FXWindow#position (method)">#position</a></span>, <span class='object_link'><a href="../FXWindow.html#raiseWindow-instance_method" title="Fox::FXWindow#raiseWindow (method)">#raiseWindow</a></span>, <span class='object_link'><a href="../FXWindow.html#recalc-instance_method" title="Fox::FXWindow#recalc (method)">#recalc</a></span>, <span class='object_link'><a href="../FXWindow.html#releaseClipboard-instance_method" title="Fox::FXWindow#releaseClipboard (method)">#releaseClipboard</a></span>, <span class='object_link'><a href="../FXWindow.html#releaseSelection-instance_method" title="Fox::FXWindow#releaseSelection (method)">#releaseSelection</a></span>, <span class='object_link'><a href="../FXWindow.html#remHotKey-instance_method" title="Fox::FXWindow#remHotKey (method)">#remHotKey</a></span>, <span class='object_link'><a href="../FXWindow.html#removeChild-instance_method" title="Fox::FXWindow#removeChild (method)">#removeChild</a></span>, <span class='object_link'><a href="../FXWindow.html#repaint-instance_method" title="Fox::FXWindow#repaint (method)">#repaint</a></span>, <span class='object_link'><a href="../FXWindow.html#reparent-instance_method" title="Fox::FXWindow#reparent (method)">#reparent</a></span>, <span class='object_link'><a href="../FXWindow.html#resize-instance_method" title="Fox::FXWindow#resize (method)">#resize</a></span>, <span class='object_link'><a href="../FXWindow.html#scroll-instance_method" title="Fox::FXWindow#scroll (method)">#scroll</a></span>, <span class='object_link'><a href="../FXWindow.html#setCursorPosition-instance_method" title="Fox::FXWindow#setCursorPosition (method)">#setCursorPosition</a></span>, <span class='object_link'><a href="../FXWindow.html#setDNDData-instance_method" title="Fox::FXWindow#setDNDData (method)">#setDNDData</a></span>, <span class='object_link'><a href="../FXWindow.html#setDefault-instance_method" title="Fox::FXWindow#setDefault (method)">#setDefault</a></span>, <span class='object_link'><a href="../FXWindow.html#setDragRectangle-instance_method" title="Fox::FXWindow#setDragRectangle (method)">#setDragRectangle</a></span>, <span class='object_link'><a href="../FXWindow.html#setFocus-instance_method" title="Fox::FXWindow#setFocus (method)">#setFocus</a></span>, <span class='object_link'><a href="../FXWindow.html#setInitial-instance_method" title="Fox::FXWindow#setInitial (method)">#setInitial</a></span>, <span class='object_link'><a href="../FXWindow.html#setShape-instance_method" title="Fox::FXWindow#setShape (method)">#setShape</a></span>, <span class='object_link'><a href="../FXWindow.html#shell%3F-instance_method" title="Fox::FXWindow#shell? (method)">#shell?</a></span>, <span class='object_link'><a href="../FXWindow.html#show-instance_method" title="Fox::FXWindow#show (method)">#show</a></span>, <span class='object_link'><a href="../FXWindow.html#shown%3F-instance_method" title="Fox::FXWindow#shown? (method)">#shown?</a></span>, <span class='object_link'><a href="../FXWindow.html#stringType-class_method" title="Fox::FXWindow.stringType (method)">stringType</a></span>, <span class='object_link'><a href="../FXWindow.html#textType-class_method" title="Fox::FXWindow.textType (method)">textType</a></span>, <span class='object_link'><a href="../FXWindow.html#textTypeName-class_method" title="Fox::FXWindow.textTypeName (method)">textTypeName</a></span>, <span class='object_link'><a href="../FXWindow.html#tr-instance_method" title="Fox::FXWindow#tr (method)">#tr</a></span>, <span class='object_link'><a href="../FXWindow.html#translateCoordinatesFrom-instance_method" title="Fox::FXWindow#translateCoordinatesFrom (method)">#translateCoordinatesFrom</a></span>, <span class='object_link'><a href="../FXWindow.html#translateCoordinatesTo-instance_method" title="Fox::FXWindow#translateCoordinatesTo (method)">#translateCoordinatesTo</a></span>, <span class='object_link'><a href="../FXWindow.html#underCursor%3F-instance_method" title="Fox::FXWindow#underCursor? (method)">#underCursor?</a></span>, <span class='object_link'><a href="../FXWindow.html#ungrab-instance_method" title="Fox::FXWindow#ungrab (method)">#ungrab</a></span>, <span class='object_link'><a href="../FXWindow.html#ungrabKeyboard-instance_method" title="Fox::FXWindow#ungrabKeyboard (method)">#ungrabKeyboard</a></span>, <span class='object_link'><a href="../FXWindow.html#update-instance_method" title="Fox::FXWindow#update (method)">#update</a></span>, <span class='object_link'><a href="../FXWindow.html#urilistType-class_method" title="Fox::FXWindow.urilistType (method)">urilistType</a></span>, <span class='object_link'><a href="../FXWindow.html#urilistTypeName-class_method" title="Fox::FXWindow.urilistTypeName (method)">urilistTypeName</a></span>, <span class='object_link'><a href="../FXWindow.html#utf16Type-class_method" title="Fox::FXWindow.utf16Type (method)">utf16Type</a></span>, <span class='object_link'><a href="../FXWindow.html#utf16TypeName-class_method" title="Fox::FXWindow.utf16TypeName (method)">utf16TypeName</a></span>, <span class='object_link'><a href="../FXWindow.html#utf8Type-class_method" title="Fox::FXWindow.utf8Type (method)">utf8Type</a></span>, <span class='object_link'><a href="../FXWindow.html#utf8TypeName-class_method" title="Fox::FXWindow.utf8TypeName (method)">utf8TypeName</a></span>, <span class='object_link'><a href="../FXWindow.html#visible=-instance_method" title="Fox::FXWindow#visible= (method)">#visible=</a></span>, <span class='object_link'><a href="../FXWindow.html#width-instance_method" title="Fox::FXWindow#width (method)">#width</a></span>, <span class='object_link'><a href="../FXWindow.html#width=-instance_method" title="Fox::FXWindow#width= (method)">#width=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FXDrawable.html#resize-instance_method" title="Fox::FXDrawable#resize (method)">#resize</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FXId.html#create-instance_method" title="Fox::FXId#create (method)">#create</a></span>, <span class='object_link'><a href="../FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="../FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="../FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="../FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="../FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="../FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="../FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="../FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(p, tgt = nil, sel = 0, opts = FRAME_NORMAL, x = 0, y = 0, w = 0, h = 0)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::Canvas::ShapeCanvas (class)">ShapeCanvas</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of ShapeCanvas.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 375</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='const'>FRAME_NORMAL</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='comment'># Initialize base class
+</span>  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span>
+
+  <span class='comment'># Start with an empty group
+</span>  <span class='ivar'>@scene</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="ShapeGroup.html" title="Fox::Canvas::ShapeGroup (class)">ShapeGroup</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ShapeGroup.html#initialize-instance_method" title="Fox::Canvas::ShapeGroup#initialize (method)">new</a></span></span>
+
+  <span class='comment'># Selection policy
+</span>  <span class='ivar'>@selectionPolicy</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SingleSelectionPolicy.html" title="Fox::Canvas::SingleSelectionPolicy (class)">SingleSelectionPolicy</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SingleSelectionPolicy.html#initialize-instance_method" title="Fox::Canvas::SingleSelectionPolicy#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@flags</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='comment'># Map
+</span>  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_PAINT</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onPaint</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_MOTION</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onMotion</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_LEFTBUTTONPRESS</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onLeftBtnPress</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_LEFTBUTTONRELEASE</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onLeftBtnRelease</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_CLICKED</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onClicked</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_DOUBLECLICKED</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onDoubleClicked</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_TRIPLECLICKED</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onTripleClicked</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onCommand</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="scene=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="scene-instance_method">
+  
+    #<strong>scene</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute scene.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+373
+374
+375</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 373</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_scene'>scene</span>
+  <span class='ivar'>@scene</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="deselectShape-instance_method">
+  
+    #<strong>deselectShape</strong>(shape, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Deselect one shape</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+449
+450
+451
+452
+453
+454
+455</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 449</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deselectShape'>deselectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='ivar'>@selectionPolicy</span><span class='period'>.</span><span class='id identifier rubyid_deselectShape'>deselectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="CanvasError.html" title="Fox::Canvas::CanvasError (class)">CanvasError</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="disableShape-instance_method">
+  
+    #<strong>disableShape</strong>(shape)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Disable one shape</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 428</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_disableShape'>disableShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_enabled?'>enabled?</span>
+      <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_disable'>disable</span>
+      <span class='id identifier rubyid_updateShape'>updateShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="CanvasError.html" title="Fox::Canvas::CanvasError (class)">CanvasError</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enableShape-instance_method">
+  
+    #<strong>enableShape</strong>(shape)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Enable one shape</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 416</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_enableShape'>enableShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_enabled?'>enabled?</span>
+      <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_enable'>enable</span>
+      <span class='id identifier rubyid_updateShape'>updateShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="CanvasError.html" title="Fox::Canvas::CanvasError (class)">CanvasError</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="findShape-instance_method">
+  
+    #<strong>findShape</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Find the shape of the least depth containing this point</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+399
+400
+401
+402
+403
+404</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 399</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_findShape'>findShape</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_reverse_each'>reverse_each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shape'>shape</span><span class='op'>|</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_shape'>shape</span> <span class='kw'>if</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_hit?'>hit?</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="killSelection-instance_method">
+  
+    #<strong>killSelection</strong>(notify)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Kill selection</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 458</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_killSelection'>killSelection</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_changes'>changes</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shape'>shape</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_selected?'>selected?</span>
+      <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_deselect'>deselect</span>
+      <span class='id identifier rubyid_updateShape'>updateShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_changes'>changes</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_notify'>notify</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span> <span class='op'>!=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_DESELECTED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_changes'>changes</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onClicked-instance_method">
+  
+    #<strong>onClicked</strong>(sender, sel, ptr)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clicked on canvas</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+591
+592
+593</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 591</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onClicked'>onClicked</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_CLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onCommand-instance_method">
+  
+    #<strong>onCommand</strong>(sender, sel, ptr)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Command message</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+586
+587
+588</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 586</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onCommand'>onCommand</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_COMMAND</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onDoubleClicked-instance_method">
+  
+    #<strong>onDoubleClicked</strong>(sender, sel, ptr)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Double-clicked on canvas</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+596
+597
+598</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 596</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onDoubleClicked'>onDoubleClicked</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_DOUBLECLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onLeftBtnPress-instance_method">
+  
+    #<strong>onLeftBtnPress</strong>(sender, sel, evt)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Left button press</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 506</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onLeftBtnPress'>onLeftBtnPress</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_FOCUS_SELF</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
+    <span class='id identifier rubyid_grab'>grab</span>
+    <span class='id identifier rubyid_flags'>flags</span> <span class='op'>&amp;=</span> <span class='op'>~</span><span class='const'><span class='object_link'><a href="#FLAG_UPDATE-constant" title="Fox::Canvas::ShapeCanvas::FLAG_UPDATE (constant)">FLAG_UPDATE</a></span></span>
+
+    <span class='comment'># Give target the first chance at handling this
+</span>    <span class='kw'>return</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_LEFTBUTTONPRESS</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+    <span class='comment'># Locate shape
+</span>    <span class='id identifier rubyid_shape'>shape</span> <span class='op'>=</span> <span class='id identifier rubyid_findShape'>findShape</span><span class='lparen'>(</span><span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_win_x'>win_x</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_win_y'>win_y</span><span class='rparen'>)</span>
+
+    <span class='comment'># No shape here
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='kw'>return</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Change current shape
+</span>    <span class='ivar'>@currentShape</span> <span class='op'>=</span> <span class='id identifier rubyid_shape'>shape</span>
+
+    <span class='comment'># Change item selection
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_enabled?'>enabled?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_selected?'>selected?</span>
+      <span class='id identifier rubyid_selectShape'>selectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Are we dragging?
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_selected?'>selected?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_draggable?'>draggable?</span>
+      <span class='id identifier rubyid_flags'>flags</span> <span class='op'>|=</span> <span class='const'><span class='object_link'><a href="#FLAG_TRYDRAG-constant" title="Fox::Canvas::ShapeCanvas::FLAG_TRYDRAG (constant)">FLAG_TRYDRAG</a></span></span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_flags'>flags</span> <span class='op'>|=</span> <span class='const'><span class='object_link'><a href="#FLAG_PRESSED-constant" title="Fox::Canvas::ShapeCanvas::FLAG_PRESSED (constant)">FLAG_PRESSED</a></span></span>
+    <span class='kw'>return</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onLeftBtnRelease-instance_method">
+  
+    #<strong>onLeftBtnRelease</strong>(sender, sel, evt)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Left button release</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 543</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onLeftBtnRelease'>onLeftBtnRelease</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_flg'>flg</span> <span class='op'>=</span> <span class='ivar'>@flags</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
+    <span class='id identifier rubyid_ungrab'>ungrab</span>
+    <span class='ivar'>@flags</span> <span class='op'>|=</span> <span class='const'><span class='object_link'><a href="#FLAG_UPDATE-constant" title="Fox::Canvas::ShapeCanvas::FLAG_UPDATE (constant)">FLAG_UPDATE</a></span></span>
+    <span class='ivar'>@flags</span> <span class='op'>&amp;=</span> <span class='op'>~</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#FLAG_PRESSED-constant" title="Fox::Canvas::ShapeCanvas::FLAG_PRESSED (constant)">FLAG_PRESSED</a></span></span><span class='op'>|</span><span class='const'>FLAG_TRYDRAG</span><span class='op'>|</span><span class='const'>FLAG_LASSO</span><span class='op'>|</span><span class='const'>FLAG_DODRAG</span><span class='rparen'>)</span>
+
+    <span class='comment'># First chance callback
+</span>    <span class='kw'>return</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_LEFTBUTTONRELEASE</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+
+    <span class='comment'># Was dragging
+</span>    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_flg'>flg</span> <span class='op'>&amp;</span> <span class='const'><span class='object_link'><a href="#FLAG_DODRAG-constant" title="Fox::Canvas::ShapeCanvas::FLAG_DODRAG (constant)">FLAG_DODRAG</a></span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_ENDDRAG</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Must have pressed
+</span>    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_flg'>flg</span> <span class='op'>&amp;</span> <span class='const'><span class='object_link'><a href="#FLAG_PRESSED-constant" title="Fox::Canvas::ShapeCanvas::FLAG_PRESSED (constant)">FLAG_PRESSED</a></span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>      <span class='comment'># Change selection
+</span>
+      <span class='kw'>if</span> <span class='ivar'>@currentShape</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@currentShape</span><span class='period'>.</span><span class='id identifier rubyid_enabled?'>enabled?</span>
+        <span class='id identifier rubyid_deselectShape'>deselectShape</span><span class='lparen'>(</span><span class='ivar'>@currentShape</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># Generate clicked callbacks
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_click_count'>click_count</span> <span class='op'>==</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_CLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='ivar'>@currentShape</span><span class='rparen'>)</span>
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_click_count'>click_count</span> <span class='op'>==</span> <span class='int'>2</span>
+        <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_DOUBLECLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='ivar'>@currentShape</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_elseif'>elseif</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_click_count'>click_count</span> <span class='op'>==</span> <span class='int'>3</span>
+        <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_TRIPLECLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='ivar'>@currentShape</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># Generate command callback only when clicked on item
+</span>      <span class='kw'>if</span> <span class='ivar'>@currentShape</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@currentShape</span><span class='period'>.</span><span class='id identifier rubyid_enabled?'>enabled?</span>
+        <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_COMMAND</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='ivar'>@currentShape</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>return</span> <span class='int'>1</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='int'>0</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMotion-instance_method">
+  
+    #<strong>onMotion</strong>(sender, sel, evt)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Motion</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 486</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onMotion'>onMotion</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+  <span class='comment'># Drag and drop mode
+</span>  <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@flags</span> <span class='op'>&amp;</span> <span class='const'><span class='object_link'><a href="#FLAG_DODRAG-constant" title="Fox::Canvas::ShapeCanvas::FLAG_DODRAG (constant)">FLAG_DODRAG</a></span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_DRAGGED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Tentative drag and drop
+</span>  <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@flags</span> <span class='op'>&amp;</span> <span class='const'><span class='object_link'><a href="#FLAG_TRYDRAG-constant" title="Fox::Canvas::ShapeCanvas::FLAG_TRYDRAG (constant)">FLAG_TRYDRAG</a></span></span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_moved?'>moved?</span>
+      <span class='ivar'>@flags</span> <span class='op'>&amp;=</span> <span class='op'>~</span><span class='const'><span class='object_link'><a href="#FLAG_TRYDRAG-constant" title="Fox::Canvas::ShapeCanvas::FLAG_TRYDRAG (constant)">FLAG_TRYDRAG</a></span></span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='id identifier rubyid_this'>this</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>SEL_BEGINDRAG</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+        <span class='ivar'>@flags</span> <span class='op'>|=</span> <span class='const'><span class='object_link'><a href="#FLAG_DODRAG-constant" title="Fox::Canvas::ShapeCanvas::FLAG_DODRAG (constant)">FLAG_DODRAG</a></span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onPaint-instance_method">
+  
+    #<strong>onPaint</strong>(sender, sel, evt)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Paint</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 474</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onPaint'>onPaint</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_dc'>dc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../FXDCWindow.html" title="Fox::FXDCWindow (class)">FXDCWindow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../FXDCWindow.html#initialize-instance_method" title="Fox::FXDCWindow#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_foreground'>foreground</span> <span class='op'>=</span> <span class='id identifier rubyid_backColor'>backColor</span>
+  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_fillRectangle'>fillRectangle</span><span class='lparen'>(</span><span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_rect'>rect</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_rect'>rect</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_rect'>rect</span><span class='period'>.</span><span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_evt'>evt</span><span class='period'>.</span><span class='id identifier rubyid_rect'>rect</span><span class='period'>.</span><span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_shape'>shape</span><span class='op'>|</span>
+    <span class='id identifier rubyid_shape'>shape</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span><span class='lparen'>(</span><span class='id identifier rubyid_dc'>dc</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_dc'>dc</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span>
+  <span class='kw'>return</span> <span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onTripleClicked-instance_method">
+  
+    #<strong>onTripleClicked</strong>(sender, sel, ptr)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Triple-clicked on canvas</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+601
+602
+603</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 601</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onTripleClicked'>onTripleClicked</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_target'>target</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='comma'>,</span> <span class='const'>SEL_TRIPLECLICKED</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="selectShape-instance_method">
+  
+    #<strong>selectShape</strong>(shape, notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Select one shape</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+440
+441
+442
+443
+444
+445
+446</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 440</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_selectShape'>selectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='ivar'>@selectionPolicy</span><span class='period'>.</span><span class='id identifier rubyid_selectShape'>selectShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="CanvasError.html" title="Fox::Canvas::CanvasError (class)">CanvasError</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="updateShape-instance_method">
+  
+    #<strong>updateShape</strong>(shape)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Repaint</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+407
+408
+409
+410
+411
+412
+413</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/canvas.rb', line 407</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_updateShape'>updateShape</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_shape'>shape</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="CanvasError.html" title="Fox::Canvas::CanvasError (class)">CanvasError</a></span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:45 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

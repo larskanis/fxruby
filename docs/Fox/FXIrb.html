@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXIrb
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXIrb";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXIrb</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXIrb
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXText.html" title="Fox::FXText (class)">FXText</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXScrollArea.html" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="FXText.html" title="Fox::FXText (class)">FXText</a></span></li>
+          
+            <li class="next">Fox::FXIrb</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../Responder.html" title="Responder (module)">Responder</a></span>, Singleton</dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/fox16/irb.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#input-instance_method" title="#input (instance method)">#<strong>input</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute input.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXText.html" title="Fox::FXText (class)">FXText</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXText.html#activeBackColor-instance_method" title="Fox::FXText#activeBackColor (method)">#activeBackColor</a></span>, <span class='object_link'><a href="FXText.html#anchorPos-instance_method" title="Fox::FXText#anchorPos (method)">#anchorPos</a></span>, <span class='object_link'><a href="FXText.html#barColor-instance_method" title="Fox::FXText#barColor (method)">#barColor</a></span>, <span class='object_link'><a href="FXText.html#barColumns-instance_method" title="Fox::FXText#barColumns (method)">#barColumns</a></span>, <span class='object_link'><a href="FXText.html#cursorCol-instance_method" title="Fox::FXText#cursorCol (method)">#cursorCol</a></span>, <span class='object_link'><a href="FXText.html#cursorColor-instance_method" title="Fox::FXText#cursorColor (method)">#cursorColor</a></span>, <span class='object_link'><a href="FXText.html#cursorPos-instance_method" title="Fox::FXText#cursorPos (method)">#cursorPos</a></span>, <span class='object_link'><a href="FXText.html#cursorRow-instance_method" title="Fox::FXText#cursorRow (method)">#cursorRow</a></span>, <span class='object_link'><a href="FXText.html#delimiters-instance_method" title="Fox::FXText#delimiters (method)">#delimiters</a></span>, <span class='object_link'><a href="FXText.html#editable=-instance_method" title="Fox::FXText#editable= (method)">#editable</a></span>, <span class='object_link'><a href="FXText.html#font-instance_method" title="Fox::FXText#font (method)">#font</a></span>, <span class='object_link'><a href="FXText.html#helpText-instance_method" title="Fox::FXText#helpText (method)">#helpText</a></span>, <span class='object_link'><a href="FXText.html#hiliteBackColor-instance_method" title="Fox::FXText#hiliteBackColor (method)">#hiliteBackColor</a></span>, <span class='object_link'><a href="FXText.html#hiliteMatchTime-instance_method" title="Fox::FXText#hiliteMatchTime (method)">#hiliteMatchTime</a></span>, <span class='object_link'><a href="FXText.html#hiliteStyles-instance_method" title="Fox::FXText#hiliteStyles (method)">#hiliteStyles</a></span>, <span class='object_link'><a href="FXText.html#hiliteTextColor-instance_method" title="Fox::FXText#hiliteTextColor (method)">#hiliteTextColor</a></span>, <span class='object_link'><a href="FXText.html#length-instance_method" title="Fox::FXText#length (method)">#length</a></span>, <span class='object_link'><a href="FXText.html#marginBottom-instance_method" title="Fox::FXText#marginBottom (method)">#marginBottom</a></span>, <span class='object_link'><a href="FXText.html#marginLeft-instance_method" title="Fox::FXText#marginLeft (method)">#marginLeft</a></span>, <span class='object_link'><a href="FXText.html#marginRight-instance_method" title="Fox::FXText#marginRight (method)">#marginRight</a></span>, <span class='object_link'><a href="FXText.html#marginTop-instance_method" title="Fox::FXText#marginTop (method)">#marginTop</a></span>, <span class='object_link'><a href="FXText.html#modified=-instance_method" title="Fox::FXText#modified= (method)">#modified</a></span>, <span class='object_link'><a href="FXText.html#numberColor-instance_method" title="Fox::FXText#numberColor (method)">#numberColor</a></span>, <span class='object_link'><a href="FXText.html#selBackColor-instance_method" title="Fox::FXText#selBackColor (method)">#selBackColor</a></span>, <span class='object_link'><a href="FXText.html#selEndPos-instance_method" title="Fox::FXText#selEndPos (method)">#selEndPos</a></span>, <span class='object_link'><a href="FXText.html#selStartPos-instance_method" title="Fox::FXText#selStartPos (method)">#selStartPos</a></span>, <span class='object_link'><a href="FXText.html#selTextColor-instance_method" title="Fox::FXText#selTextColor (method)">#selTextColor</a></span>, <span class='object_link'><a href="FXText.html#styled=-instance_method" title="Fox::FXText#styled= (method)">#styled</a></span>, <span class='object_link'><a href="FXText.html#tabColumns-instance_method" title="Fox::FXText#tabColumns (method)">#tabColumns</a></span>, <span class='object_link'><a href="FXText.html#text-instance_method" title="Fox::FXText#text (method)">#text</a></span>, <span class='object_link'><a href="FXText.html#textColor-instance_method" title="Fox::FXText#textColor (method)">#textColor</a></span>, <span class='object_link'><a href="FXText.html#textStyle-instance_method" title="Fox::FXText#textStyle (method)">#textStyle</a></span>, <span class='object_link'><a href="FXText.html#tipText-instance_method" title="Fox::FXText#tipText (method)">#tipText</a></span>, <span class='object_link'><a href="FXText.html#visibleColumns-instance_method" title="Fox::FXText#visibleColumns (method)">#visibleColumns</a></span>, <span class='object_link'><a href="FXText.html#visibleRows-instance_method" title="Fox::FXText#visibleRows (method)">#visibleRows</a></span>, <span class='object_link'><a href="FXText.html#wrapColumns-instance_method" title="Fox::FXText#wrapColumns (method)">#wrapColumns</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXScrollArea.html" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXScrollArea.html#contentHeight-instance_method" title="Fox::FXScrollArea#contentHeight (method)">#contentHeight</a></span>, <span class='object_link'><a href="FXScrollArea.html#contentWidth-instance_method" title="Fox::FXScrollArea#contentWidth (method)">#contentWidth</a></span>, <span class='object_link'><a href="FXScrollArea.html#horizontalScrollBar-instance_method" title="Fox::FXScrollArea#horizontalScrollBar (method)">#horizontalScrollBar</a></span>, <span class='object_link'><a href="FXScrollArea.html#scrollStyle-instance_method" title="Fox::FXScrollArea#scrollStyle (method)">#scrollStyle</a></span>, <span class='object_link'><a href="FXScrollArea.html#verticalScrollBar-instance_method" title="Fox::FXScrollArea#verticalScrollBar (method)">#verticalScrollBar</a></span>, <span class='object_link'><a href="FXScrollArea.html#viewportHeight-instance_method" title="Fox::FXScrollArea#viewportHeight (method)">#viewportHeight</a></span>, <span class='object_link'><a href="FXScrollArea.html#viewportWidth-instance_method" title="Fox::FXScrollArea#viewportWidth (method)">#viewportWidth</a></span>, <span class='object_link'><a href="FXScrollArea.html#xPosition-instance_method" title="Fox::FXScrollArea#xPosition (method)">#xPosition</a></span>, <span class='object_link'><a href="FXScrollArea.html#yPosition-instance_method" title="Fox::FXScrollArea#yPosition (method)">#yPosition</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#accelTable-instance_method" title="Fox::FXWindow#accelTable (method)">#accelTable</a></span>, <span class='object_link'><a href="FXWindow.html#backColor-instance_method" title="Fox::FXWindow#backColor (method)">#backColor</a></span>, <span class='object_link'><a href="FXWindow.html#defaultCursor-instance_method" title="Fox::FXWindow#defaultCursor (method)">#defaultCursor</a></span>, <span class='object_link'><a href="FXWindow.html#dragCursor-instance_method" title="Fox::FXWindow#dragCursor (method)">#dragCursor</a></span>, <span class='object_link'><a href="FXWindow.html#first-instance_method" title="Fox::FXWindow#first (method)">#first</a></span>, <span class='object_link'><a href="FXWindow.html#focus-instance_method" title="Fox::FXWindow#focus (method)">#focus</a></span>, <span class='object_link'><a href="FXWindow.html#key-instance_method" title="Fox::FXWindow#key (method)">#key</a></span>, <span class='object_link'><a href="FXWindow.html#last-instance_method" title="Fox::FXWindow#last (method)">#last</a></span>, <span class='object_link'><a href="FXWindow.html#layoutHints-instance_method" title="Fox::FXWindow#layoutHints (method)">#layoutHints</a></span>, <span class='object_link'><a href="FXWindow.html#next-instance_method" title="Fox::FXWindow#next (method)">#next</a></span>, <span class='object_link'><a href="FXWindow.html#numChildren-instance_method" title="Fox::FXWindow#numChildren (method)">#numChildren</a></span>, <span class='object_link'><a href="FXWindow.html#owner-instance_method" title="Fox::FXWindow#owner (method)">#owner</a></span>, <span class='object_link'><a href="FXWindow.html#parent-instance_method" title="Fox::FXWindow#parent (method)">#parent</a></span>, <span class='object_link'><a href="FXWindow.html#prev-instance_method" title="Fox::FXWindow#prev (method)">#prev</a></span>, <span class='object_link'><a href="FXWindow.html#root-instance_method" title="Fox::FXWindow#root (method)">#root</a></span>, <span class='object_link'><a href="FXWindow.html#selector-instance_method" title="Fox::FXWindow#selector (method)">#selector</a></span>, <span class='object_link'><a href="FXWindow.html#shell-instance_method" title="Fox::FXWindow#shell (method)">#shell</a></span>, <span class='object_link'><a href="FXWindow.html#target-instance_method" title="Fox::FXWindow#target (method)">#target</a></span>, <span class='object_link'><a href="FXWindow.html#x-instance_method" title="Fox::FXWindow#x (method)">#x</a></span>, <span class='object_link'><a href="FXWindow.html#y-instance_method" title="Fox::FXWindow#y (method)">#y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#height-instance_method" title="Fox::FXDrawable#height (method)">#height</a></span>, <span class='object_link'><a href="FXDrawable.html#visual-instance_method" title="Fox::FXDrawable#visual (method)">#visual</a></span>, <span class='object_link'><a href="FXDrawable.html#width-instance_method" title="Fox::FXDrawable#width (method)">#width</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#app-instance_method" title="Fox::FXId#app (method)">#app</a></span>, <span class='object_link'><a href="FXId.html#userData-instance_method" title="Fox::FXId#userData (method)">#userData</a></span>, <span class='object_link'><a href="FXId.html#xid-instance_method" title="Fox::FXId#xid (method)">#xid</a></span></p>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#init-class_method" title="init (class method)">.<strong>init</strong>(p, tgt, sel, opts)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">#<strong>create</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gets-instance_method" title="#gets (instance method)">#<strong>gets</strong>(prompt)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(p, tgt, sel, opts)  &#x21d2; FXIrb </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of FXIrb.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#newLineEntered-instance_method" title="#newLineEntered (instance method)">#<strong>newLineEntered</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onKeyRelease-instance_method" title="#onKeyRelease (instance method)">#<strong>onKeyRelease</strong>(sender, sel, event)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#processCommandLine-instance_method" title="#processCommandLine (instance method)">#<strong>processCommandLine</strong>(cmd)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sendCommand-instance_method" title="#sendCommand (instance method)">#<strong>sendCommand</strong>(cmd)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write-instance_method" title="#write (instance method)">#<strong>write</strong>(obj)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder.html" title="Responder (module)">Responder</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">#FXMAPFUNC</a></span>, <span class='object_link'><a href="../Responder.html#FXMAPFUNCS-instance_method" title="Responder#FXMAPFUNCS (method)">#FXMAPFUNCS</a></span>, <span class='object_link'><a href="../Responder.html#FXMAPTYPE-instance_method" title="Responder#FXMAPTYPE (method)">#FXMAPTYPE</a></span>, <span class='object_link'><a href="../Responder.html#FXMAPTYPES-instance_method" title="Responder#FXMAPTYPES (method)">#FXMAPTYPES</a></span>, <span class='object_link'><a href="../Responder.html#addMapEntry-instance_method" title="Responder#addMapEntry (method)">#addMapEntry</a></span>, <span class='object_link'><a href="../Responder.html#assocIndex-instance_method" title="Responder#assocIndex (method)">#assocIndex</a></span>, <span class='object_link'><a href="../Responder.html#identifier-instance_method" title="Responder#identifier (method)">#identifier</a></span>, <span class='object_link'><a href="../Responder.html#messageMap-instance_method" title="Responder#messageMap (method)">#messageMap</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXText.html" title="Fox::FXText (class)">FXText</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXText.html#appendStyledText-instance_method" title="Fox::FXText#appendStyledText (method)">#appendStyledText</a></span>, <span class='object_link'><a href="FXText.html#appendText-instance_method" title="Fox::FXText#appendText (method)">#appendText</a></span>, <span class='object_link'><a href="FXText.html#changeStyle-instance_method" title="Fox::FXText#changeStyle (method)">#changeStyle</a></span>, <span class='object_link'><a href="FXText.html#countCols-instance_method" title="Fox::FXText#countCols (method)">#countCols</a></span>, <span class='object_link'><a href="FXText.html#countLines-instance_method" title="Fox::FXText#countLines (method)">#countLines</a></span>, <span class='object_link'><a href="FXText.html#countRows-instance_method" title="Fox::FXText#countRows (method)">#countRows</a></span>, <span class='object_link'><a href="FXText.html#dec-instance_method" title="Fox::FXText#dec (method)">#dec</a></span>, <span class='object_link'><a href="FXText.html#editable%3F-instance_method" title="Fox::FXText#editable? (method)">#editable?</a></span>, <span class='object_link'><a href="FXText.html#extendSelection-instance_method" title="Fox::FXText#extendSelection (method)">#extendSelection</a></span>, <span class='object_link'><a href="FXText.html#extractStyle-instance_method" title="Fox::FXText#extractStyle (method)">#extractStyle</a></span>, <span class='object_link'><a href="FXText.html#extractText-instance_method" title="Fox::FXText#extractText (method)">#extractText</a></span>, <span class='object_link'><a href="FXText.html#findText-instance_method" title="Fox::FXText#findText (method)">#findText</a></span>, <span class='object_link'><a href="FXText.html#getBottomLine-instance_method" title="Fox::FXText#getBottomLine (method)">#getBottomLine</a></span>, <span class='object_link'><a href="FXText.html#getByte-instance_method" title="Fox::FXText#getByte (method)">#getByte</a></span>, <span class='object_link'><a href="FXText.html#getChar-instance_method" title="Fox::FXText#getChar (method)">#getChar</a></span>, <span class='object_link'><a href="FXText.html#getCharLen-instance_method" title="Fox::FXText#getCharLen (method)">#getCharLen</a></span>, <span class='object_link'><a href="FXText.html#getPosAt-instance_method" title="Fox::FXText#getPosAt (method)">#getPosAt</a></span>, <span class='object_link'><a href="FXText.html#getStyle-instance_method" title="Fox::FXText#getStyle (method)">#getStyle</a></span>, <span class='object_link'><a href="FXText.html#getTopLine-instance_method" title="Fox::FXText#getTopLine (method)">#getTopLine</a></span>, <span class='object_link'><a href="FXText.html#inc-instance_method" title="Fox::FXText#inc (method)">#inc</a></span>, <span class='object_link'><a href="FXText.html#insertStyledText-instance_method" title="Fox::FXText#insertStyledText (method)">#insertStyledText</a></span>, <span class='object_link'><a href="FXText.html#insertText-instance_method" title="Fox::FXText#insertText (method)">#insertText</a></span>, <span class='object_link'><a href="FXText.html#killHighlight-instance_method" title="Fox::FXText#killHighlight (method)">#killHighlight</a></span>, <span class='object_link'><a href="FXText.html#killSelection-instance_method" title="Fox::FXText#killSelection (method)">#killSelection</a></span>, <span class='object_link'><a href="FXText.html#leftWord-instance_method" title="Fox::FXText#leftWord (method)">#leftWord</a></span>, <span class='object_link'><a href="FXText.html#lineEnd-instance_method" title="Fox::FXText#lineEnd (method)">#lineEnd</a></span>, <span class='object_link'><a href="FXText.html#lineStart-instance_method" title="Fox::FXText#lineStart (method)">#lineStart</a></span>, <span class='object_link'><a href="FXText.html#makePositionVisible-instance_method" title="Fox::FXText#makePositionVisible (method)">#makePositionVisible</a></span>, <span class='object_link'><a href="FXText.html#modified%3F-instance_method" title="Fox::FXText#modified? (method)">#modified?</a></span>, <span class='object_link'><a href="FXText.html#nextLine-instance_method" title="Fox::FXText#nextLine (method)">#nextLine</a></span>, <span class='object_link'><a href="FXText.html#nextRow-instance_method" title="Fox::FXText#nextRow (method)">#nextRow</a></span>, <span class='object_link'><a href="FXText.html#numRows-instance_method" title="Fox::FXText#numRows (method)">#numRows</a></span>, <span class='object_link'><a href="FXText.html#overstrike=-instance_method" title="Fox::FXText#overstrike= (method)">#overstrike=</a></span>, <span class='object_link'><a href="FXText.html#overstrike%3F-instance_method" title="Fox::FXText#overstrike? (method)">#overstrike?</a></span>, <span class='object_link'><a href="FXText.html#positionSelected%3F-instance_method" title="Fox::FXText#positionSelected? (method)">#positionSelected?</a></span>, <span class='object_link'><a href="FXText.html#positionVisible%3F-instance_method" title="Fox::FXText#positionVisible? (method)">#positionVisible?</a></span>, <span class='object_link'><a href="FXText.html#prevLine-instance_method" title="Fox::FXText#prevLine (method)">#prevLine</a></span>, <span class='object_link'><a href="FXText.html#prevRow-instance_method" title="Fox::FXText#prevRow (method)">#prevRow</a></span>, <span class='object_link'><a href="FXText.html#removeText-instance_method" title="Fox::FXText#removeText (method)">#removeText</a></span>, <span class='object_link'><a href="FXText.html#replaceStyledText-instance_method" title="Fox::FXText#replaceStyledText (method)">#replaceStyledText</a></span>, <span class='object_link'><a href="FXText.html#replaceText-instance_method" title="Fox::FXText#replaceText (method)">#replaceText</a></span>, <span class='object_link'><a href="FXText.html#rightWord-instance_method" title="Fox::FXText#rightWord (method)">#rightWord</a></span>, <span class='object_link'><a href="FXText.html#rowEnd-instance_method" title="Fox::FXText#rowEnd (method)">#rowEnd</a></span>, <span class='object_link'><a href="FXText.html#rowStart-instance_method" title="Fox::FXText#rowStart (method)">#rowStart</a></span>, <span class='object_link'><a href="FXText.html#selectAll-instance_method" title="Fox::FXText#selectAll (method)">#selectAll</a></span>, <span class='object_link'><a href="FXText.html#setBottomLine-instance_method" title="Fox::FXText#setBottomLine (method)">#setBottomLine</a></span>, <span class='object_link'><a href="FXText.html#setCenterLine-instance_method" title="Fox::FXText#setCenterLine (method)">#setCenterLine</a></span>, <span class='object_link'><a href="FXText.html#setCursorCol-instance_method" title="Fox::FXText#setCursorCol (method)">#setCursorCol</a></span>, <span class='object_link'><a href="FXText.html#setCursorPos-instance_method" title="Fox::FXText#setCursorPos (method)">#setCursorPos</a></span>, <span class='object_link'><a href="FXText.html#setCursorRow-instance_method" title="Fox::FXText#setCursorRow (method)">#setCursorRow</a></span>, <span class='object_link'><a href="FXText.html#setHighlight-instance_method" title="Fox::FXText#setHighlight (method)">#setHighlight</a></span>, <span class='object_link'><a href="FXText.html#setSelection-instance_method" title="Fox::FXText#setSelection (method)">#setSelection</a></span>, <span class='object_link'><a href="FXText.html#setStyledText-instance_method" title="Fox::FXText#setStyledText (method)">#setStyledText</a></span>, <span class='object_link'><a href="FXText.html#setText-instance_method" title="Fox::FXText#setText (method)">#setText</a></span>, <span class='object_link'><a href="FXText.html#setTopLine-instance_method" title="Fox::FXText#setTopLine (method)">#setTopLine</a></span>, <span class='object_link'><a href="FXText.html#shiftText-instance_method" title="Fox::FXText#shiftText (method)">#shiftText</a></span>, <span class='object_link'><a href="FXText.html#styled%3F-instance_method" title="Fox::FXText#styled? (method)">#styled?</a></span>, <span class='object_link'><a href="FXText.html#to_s-instance_method" title="Fox::FXText#to_s (method)">#to_s</a></span>, <span class='object_link'><a href="FXText.html#validPos-instance_method" title="Fox::FXText#validPos (method)">#validPos</a></span>, <span class='object_link'><a href="FXText.html#wordEnd-instance_method" title="Fox::FXText#wordEnd (method)">#wordEnd</a></span>, <span class='object_link'><a href="FXText.html#wordStart-instance_method" title="Fox::FXText#wordStart (method)">#wordStart</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXScrollArea.html" title="Fox::FXScrollArea (class)">FXScrollArea</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXScrollArea.html#horizontalScrollable%3F-instance_method" title="Fox::FXScrollArea#horizontalScrollable? (method)">#horizontalScrollable?</a></span>, <span class='object_link'><a href="FXScrollArea.html#position-instance_method" title="Fox::FXScrollArea#position (method)">#position</a></span>, <span class='object_link'><a href="FXScrollArea.html#scrollCorner-instance_method" title="Fox::FXScrollArea#scrollCorner (method)">#scrollCorner</a></span>, <span class='object_link'><a href="FXScrollArea.html#setPosition-instance_method" title="Fox::FXScrollArea#setPosition (method)">#setPosition</a></span>, <span class='object_link'><a href="FXScrollArea.html#verticalScrollable%3F-instance_method" title="Fox::FXScrollArea#verticalScrollable? (method)">#verticalScrollable?</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">FXComposite</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXComposite.html#maxChildHeight-instance_method" title="Fox::FXComposite#maxChildHeight (method)">#maxChildHeight</a></span>, <span class='object_link'><a href="FXComposite.html#maxChildWidth-instance_method" title="Fox::FXComposite#maxChildWidth (method)">#maxChildWidth</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXWindow.html#acceptDrop-instance_method" title="Fox::FXWindow#acceptDrop (method)">#acceptDrop</a></span>, <span class='object_link'><a href="FXWindow.html#acquireClipboard-instance_method" title="Fox::FXWindow#acquireClipboard (method)">#acquireClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#acquireSelection-instance_method" title="Fox::FXWindow#acquireSelection (method)">#acquireSelection</a></span>, <span class='object_link'><a href="FXWindow.html#active%3F-instance_method" title="Fox::FXWindow#active? (method)">#active?</a></span>, <span class='object_link'><a href="FXWindow.html#addHotKey-instance_method" title="Fox::FXWindow#addHotKey (method)">#addHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-class_method" title="Fox::FXWindow.after? (method)">after?</a></span>, <span class='object_link'><a href="FXWindow.html#after%3F-instance_method" title="Fox::FXWindow#after? (method)">#after?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-class_method" title="Fox::FXWindow.before? (method)">before?</a></span>, <span class='object_link'><a href="FXWindow.html#before%3F-instance_method" title="Fox::FXWindow#before? (method)">#before?</a></span>, <span class='object_link'><a href="FXWindow.html#beginDrag-instance_method" title="Fox::FXWindow#beginDrag (method)">#beginDrag</a></span>, <span class='object_link'><a href="FXWindow.html#canFocus%3F-instance_method" title="Fox::FXWindow#canFocus? (method)">#canFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#changeFocus-instance_method" title="Fox::FXWindow#changeFocus (method)">#changeFocus</a></span>, <span class='object_link'><a href="FXWindow.html#childAtIndex-instance_method" title="Fox::FXWindow#childAtIndex (method)">#childAtIndex</a></span>, <span class='object_link'><a href="FXWindow.html#childOf%3F-instance_method" title="Fox::FXWindow#childOf? (method)">#childOf?</a></span>, <span class='object_link'><a href="FXWindow.html#children-instance_method" title="Fox::FXWindow#children (method)">#children</a></span>, <span class='object_link'><a href="FXWindow.html#clearDragRectangle-instance_method" title="Fox::FXWindow#clearDragRectangle (method)">#clearDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#clearShape-instance_method" title="Fox::FXWindow#clearShape (method)">#clearShape</a></span>, <span class='object_link'><a href="FXWindow.html#colorType-class_method" title="Fox::FXWindow.colorType (method)">colorType</a></span>, <span class='object_link'><a href="FXWindow.html#colorTypeName-class_method" title="Fox::FXWindow.colorTypeName (method)">colorTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#commonAncestor-class_method" title="Fox::FXWindow.commonAncestor (method)">commonAncestor</a></span>, <span class='object_link'><a href="FXWindow.html#composeContext-instance_method" title="Fox::FXWindow#composeContext (method)">#composeContext</a></span>, <span class='object_link'><a href="FXWindow.html#composite%3F-instance_method" title="Fox::FXWindow#composite? (method)">#composite?</a></span>, <span class='object_link'><a href="FXWindow.html#contains%3F-instance_method" title="Fox::FXWindow#contains? (method)">#contains?</a></span>, <span class='object_link'><a href="FXWindow.html#containsChild%3F-instance_method" title="Fox::FXWindow#containsChild? (method)">#containsChild?</a></span>, <span class='object_link'><a href="FXWindow.html#createComposeContext-instance_method" title="Fox::FXWindow#createComposeContext (method)">#createComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#cursorPosition-instance_method" title="Fox::FXWindow#cursorPosition (method)">#cursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#default%3F-instance_method" title="Fox::FXWindow#default? (method)">#default?</a></span>, <span class='object_link'><a href="FXWindow.html#defaultHeight-instance_method" title="Fox::FXWindow#defaultHeight (method)">#defaultHeight</a></span>, <span class='object_link'><a href="FXWindow.html#defaultWidth-instance_method" title="Fox::FXWindow#defaultWidth (method)">#defaultWidth</a></span>, <span class='object_link'><a href="FXWindow.html#deleteType-class_method" title="Fox::FXWindow.deleteType (method)">deleteType</a></span>, <span class='object_link'><a href="FXWindow.html#deleteTypeName-class_method" title="Fox::FXWindow.deleteTypeName (method)">deleteTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#destroy-instance_method" title="Fox::FXWindow#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXWindow.html#destroyComposeContext-instance_method" title="Fox::FXWindow#destroyComposeContext (method)">#destroyComposeContext</a></span>, <span class='object_link'><a href="FXWindow.html#detach-instance_method" title="Fox::FXWindow#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXWindow.html#didAccept-instance_method" title="Fox::FXWindow#didAccept (method)">#didAccept</a></span>, <span class='object_link'><a href="FXWindow.html#disable-instance_method" title="Fox::FXWindow#disable (method)">#disable</a></span>, <span class='object_link'><a href="FXWindow.html#doesSaveUnder%3F-instance_method" title="Fox::FXWindow#doesSaveUnder? (method)">#doesSaveUnder?</a></span>, <span class='object_link'><a href="FXWindow.html#dragging%3F-instance_method" title="Fox::FXWindow#dragging? (method)">#dragging?</a></span>, <span class='object_link'><a href="FXWindow.html#dropDisable-instance_method" title="Fox::FXWindow#dropDisable (method)">#dropDisable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnable-instance_method" title="Fox::FXWindow#dropEnable (method)">#dropEnable</a></span>, <span class='object_link'><a href="FXWindow.html#dropEnabled%3F-instance_method" title="Fox::FXWindow#dropEnabled? (method)">#dropEnabled?</a></span>, <span class='object_link'><a href="FXWindow.html#dropFinished-instance_method" title="Fox::FXWindow#dropFinished (method)">#dropFinished</a></span>, <span class='object_link'><a href="FXWindow.html#dropTarget%3F-instance_method" title="Fox::FXWindow#dropTarget? (method)">#dropTarget?</a></span>, <span class='object_link'><a href="FXWindow.html#each_child-instance_method" title="Fox::FXWindow#each_child (method)">#each_child</a></span>, <span class='object_link'><a href="FXWindow.html#each_child_recursive-instance_method" title="Fox::FXWindow#each_child_recursive (method)">#each_child_recursive</a></span>, <span class='object_link'><a href="FXWindow.html#enable-instance_method" title="Fox::FXWindow#enable (method)">#enable</a></span>, <span class='object_link'><a href="FXWindow.html#enabled%3F-instance_method" title="Fox::FXWindow#enabled? (method)">#enabled?</a></span>, <span class='object_link'><a href="FXWindow.html#endDrag-instance_method" title="Fox::FXWindow#endDrag (method)">#endDrag</a></span>, <span class='object_link'><a href="FXWindow.html#forceRefresh-instance_method" title="Fox::FXWindow#forceRefresh (method)">#forceRefresh</a></span>, <span class='object_link'><a href="FXWindow.html#getChildAt-instance_method" title="Fox::FXWindow#getChildAt (method)">#getChildAt</a></span>, <span class='object_link'><a href="FXWindow.html#getDNDData-instance_method" title="Fox::FXWindow#getDNDData (method)">#getDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#getHeightForWidth-instance_method" title="Fox::FXWindow#getHeightForWidth (method)">#getHeightForWidth</a></span>, <span class='object_link'><a href="FXWindow.html#getWidthForHeight-instance_method" title="Fox::FXWindow#getWidthForHeight (method)">#getWidthForHeight</a></span>, <span class='object_link'><a href="FXWindow.html#grab-instance_method" title="Fox::FXWindow#grab (method)">#grab</a></span>, <span class='object_link'><a href="FXWindow.html#grabKeyboard-instance_method" title="Fox::FXWindow#grabKeyboard (method)">#grabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#grabbed%3F-instance_method" title="Fox::FXWindow#grabbed? (method)">#grabbed?</a></span>, <span class='object_link'><a href="FXWindow.html#grabbedKeyboard%3F-instance_method" title="Fox::FXWindow#grabbedKeyboard? (method)">#grabbedKeyboard?</a></span>, <span class='object_link'><a href="FXWindow.html#handleDrag-instance_method" title="Fox::FXWindow#handleDrag (method)">#handleDrag</a></span>, <span class='object_link'><a href="FXWindow.html#hasClipboard%3F-instance_method" title="Fox::FXWindow#hasClipboard? (method)">#hasClipboard?</a></span>, <span class='object_link'><a href="FXWindow.html#hasFocus%3F-instance_method" title="Fox::FXWindow#hasFocus? (method)">#hasFocus?</a></span>, <span class='object_link'><a href="FXWindow.html#hasSelection%3F-instance_method" title="Fox::FXWindow#hasSelection? (method)">#hasSelection?</a></span>, <span class='object_link'><a href="FXWindow.html#height-instance_method" title="Fox::FXWindow#height (method)">#height</a></span>, <span class='object_link'><a href="FXWindow.html#height=-instance_method" title="Fox::FXWindow#height= (method)">#height=</a></span>, <span class='object_link'><a href="FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">#hide</a></span>, <span class='object_link'><a href="FXWindow.html#imageType-class_method" title="Fox::FXWindow.imageType (method)">imageType</a></span>, <span class='object_link'><a href="FXWindow.html#inFocusChain%3F-instance_method" title="Fox::FXWindow#inFocusChain? (method)">#inFocusChain?</a></span>, <span class='object_link'><a href="FXWindow.html#indexOfChild-instance_method" title="Fox::FXWindow#indexOfChild (method)">#indexOfChild</a></span>, <span class='object_link'><a href="FXWindow.html#initial%3F-instance_method" title="Fox::FXWindow#initial? (method)">#initial?</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDAction-instance_method" title="Fox::FXWindow#inquireDNDAction (method)">#inquireDNDAction</a></span>, <span class='object_link'><a href="FXWindow.html#inquireDNDTypes-instance_method" title="Fox::FXWindow#inquireDNDTypes (method)">#inquireDNDTypes</a></span>, <span class='object_link'><a href="FXWindow.html#killFocus-instance_method" title="Fox::FXWindow#killFocus (method)">#killFocus</a></span>, <span class='object_link'><a href="FXWindow.html#layout-instance_method" title="Fox::FXWindow#layout (method)">#layout</a></span>, <span class='object_link'><a href="FXWindow.html#linkAfter-instance_method" title="Fox::FXWindow#linkAfter (method)">#linkAfter</a></span>, <span class='object_link'><a href="FXWindow.html#linkBefore-instance_method" title="Fox::FXWindow#linkBefore (method)">#linkBefore</a></span>, <span class='object_link'><a href="FXWindow.html#lower-instance_method" title="Fox::FXWindow#lower (method)">#lower</a></span>, <span class='object_link'><a href="FXWindow.html#move-instance_method" title="Fox::FXWindow#move (method)">#move</a></span>, <span class='object_link'><a href="FXWindow.html#octetType-class_method" title="Fox::FXWindow.octetType (method)">octetType</a></span>, <span class='object_link'><a href="FXWindow.html#octetTypeName-class_method" title="Fox::FXWindow.octetTypeName (method)">octetTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#offeredDNDType%3F-instance_method" title="Fox::FXWindow#offeredDNDType? (method)">#offeredDNDType?</a></span>, <span class='object_link'><a href="FXWindow.html#position-instance_method" title="Fox::FXWindow#position (method)">#position</a></span>, <span class='object_link'><a href="FXWindow.html#raiseWindow-instance_method" title="Fox::FXWindow#raiseWindow (method)">#raiseWindow</a></span>, <span class='object_link'><a href="FXWindow.html#recalc-instance_method" title="Fox::FXWindow#recalc (method)">#recalc</a></span>, <span class='object_link'><a href="FXWindow.html#releaseClipboard-instance_method" title="Fox::FXWindow#releaseClipboard (method)">#releaseClipboard</a></span>, <span class='object_link'><a href="FXWindow.html#releaseSelection-instance_method" title="Fox::FXWindow#releaseSelection (method)">#releaseSelection</a></span>, <span class='object_link'><a href="FXWindow.html#remHotKey-instance_method" title="Fox::FXWindow#remHotKey (method)">#remHotKey</a></span>, <span class='object_link'><a href="FXWindow.html#removeChild-instance_method" title="Fox::FXWindow#removeChild (method)">#removeChild</a></span>, <span class='object_link'><a href="FXWindow.html#repaint-instance_method" title="Fox::FXWindow#repaint (method)">#repaint</a></span>, <span class='object_link'><a href="FXWindow.html#reparent-instance_method" title="Fox::FXWindow#reparent (method)">#reparent</a></span>, <span class='object_link'><a href="FXWindow.html#resize-instance_method" title="Fox::FXWindow#resize (method)">#resize</a></span>, <span class='object_link'><a href="FXWindow.html#scroll-instance_method" title="Fox::FXWindow#scroll (method)">#scroll</a></span>, <span class='object_link'><a href="FXWindow.html#setCursorPosition-instance_method" title="Fox::FXWindow#setCursorPosition (method)">#setCursorPosition</a></span>, <span class='object_link'><a href="FXWindow.html#setDNDData-instance_method" title="Fox::FXWindow#setDNDData (method)">#setDNDData</a></span>, <span class='object_link'><a href="FXWindow.html#setDefault-instance_method" title="Fox::FXWindow#setDefault (method)">#setDefault</a></span>, <span class='object_link'><a href="FXWindow.html#setDragRectangle-instance_method" title="Fox::FXWindow#setDragRectangle (method)">#setDragRectangle</a></span>, <span class='object_link'><a href="FXWindow.html#setFocus-instance_method" title="Fox::FXWindow#setFocus (method)">#setFocus</a></span>, <span class='object_link'><a href="FXWindow.html#setInitial-instance_method" title="Fox::FXWindow#setInitial (method)">#setInitial</a></span>, <span class='object_link'><a href="FXWindow.html#setShape-instance_method" title="Fox::FXWindow#setShape (method)">#setShape</a></span>, <span class='object_link'><a href="FXWindow.html#shell%3F-instance_method" title="Fox::FXWindow#shell? (method)">#shell?</a></span>, <span class='object_link'><a href="FXWindow.html#show-instance_method" title="Fox::FXWindow#show (method)">#show</a></span>, <span class='object_link'><a href="FXWindow.html#shown%3F-instance_method" title="Fox::FXWindow#shown? (method)">#shown?</a></span>, <span class='object_link'><a href="FXWindow.html#stringType-class_method" title="Fox::FXWindow.stringType (method)">stringType</a></span>, <span class='object_link'><a href="FXWindow.html#textType-class_method" title="Fox::FXWindow.textType (method)">textType</a></span>, <span class='object_link'><a href="FXWindow.html#textTypeName-class_method" title="Fox::FXWindow.textTypeName (method)">textTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#tr-instance_method" title="Fox::FXWindow#tr (method)">#tr</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesFrom-instance_method" title="Fox::FXWindow#translateCoordinatesFrom (method)">#translateCoordinatesFrom</a></span>, <span class='object_link'><a href="FXWindow.html#translateCoordinatesTo-instance_method" title="Fox::FXWindow#translateCoordinatesTo (method)">#translateCoordinatesTo</a></span>, <span class='object_link'><a href="FXWindow.html#underCursor%3F-instance_method" title="Fox::FXWindow#underCursor? (method)">#underCursor?</a></span>, <span class='object_link'><a href="FXWindow.html#ungrab-instance_method" title="Fox::FXWindow#ungrab (method)">#ungrab</a></span>, <span class='object_link'><a href="FXWindow.html#ungrabKeyboard-instance_method" title="Fox::FXWindow#ungrabKeyboard (method)">#ungrabKeyboard</a></span>, <span class='object_link'><a href="FXWindow.html#update-instance_method" title="Fox::FXWindow#update (method)">#update</a></span>, <span class='object_link'><a href="FXWindow.html#urilistType-class_method" title="Fox::FXWindow.urilistType (method)">urilistType</a></span>, <span class='object_link'><a href="FXWindow.html#urilistTypeName-class_method" title="Fox::FXWindow.urilistTypeName (method)">urilistTypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf16Type-class_method" title="Fox::FXWindow.utf16Type (method)">utf16Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf16TypeName-class_method" title="Fox::FXWindow.utf16TypeName (method)">utf16TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#utf8Type-class_method" title="Fox::FXWindow.utf8Type (method)">utf8Type</a></span>, <span class='object_link'><a href="FXWindow.html#utf8TypeName-class_method" title="Fox::FXWindow.utf8TypeName (method)">utf8TypeName</a></span>, <span class='object_link'><a href="FXWindow.html#visible=-instance_method" title="Fox::FXWindow#visible= (method)">#visible=</a></span>, <span class='object_link'><a href="FXWindow.html#width-instance_method" title="Fox::FXWindow#width (method)">#width</a></span>, <span class='object_link'><a href="FXWindow.html#width=-instance_method" title="Fox::FXWindow#width= (method)">#width=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../Responder2.html" title="Responder2 (module)">Responder2</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Responder2.html#connect-instance_method" title="Responder2#connect (method)">#connect</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">FXDrawable</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXDrawable.html#resize-instance_method" title="Fox::FXDrawable#resize (method)">#resize</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXId.html" title="Fox::FXId (class)">FXId</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXId.html#created%3F-instance_method" title="Fox::FXId#created? (method)">#created?</a></span>, <span class='object_link'><a href="FXId.html#destroy-instance_method" title="Fox::FXId#destroy (method)">#destroy</a></span>, <span class='object_link'><a href="FXId.html#detach-instance_method" title="Fox::FXId#detach (method)">#detach</a></span>, <span class='object_link'><a href="FXId.html#runOnUiThread-instance_method" title="Fox::FXId#runOnUiThread (method)">#runOnUiThread</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(p, tgt, sel, opts)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXIrb (class)">FXIrb</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of FXIrb.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span>
+ <span class='const'><span class='object_link'><a href="../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_KEYRELEASE</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onKeyRelease</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+ <span class='kw'>super</span>
+ <span class='id identifier rubyid_setFont'>setFont</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">FXFont</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXFont.html#initialize-instance_method" title="Fox::FXFont#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">FXApp</a></span></span><span class='period'>.</span><span class='id identifier rubyid_instance'><span class='object_link'><a href="FXApp.html#instance-class_method" title="Fox::FXApp.instance (method)">instance</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-misc-fixed-medium-r-semicondensed-*-*-120-*-*-c-*-iso8859-1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="input-instance_method">
+  
+    #<strong>input</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute input.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_input'>input</span>
+  <span class='ivar'>@input</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="init-class_method">
+  
+    .<strong>init</strong>(p, tgt, sel, opts)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Fox::FXIrb (class)">FXIrb</a></span></span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span>
+ <span class='kw'>unless</span> <span class='ivar'>@__instance__</span>
+  <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_critical'>critical</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>begin</span>
+	  <span class='ivar'>@__instance__</span> <span class='op'>||=</span> <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='rparen'>)</span>
+  <span class='kw'>ensure</span>
+	  <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_critical'>critical</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+ <span class='kw'>end</span>
+ <span class='kw'>return</span> <span class='ivar'>@__instance__</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create-instance_method">
+  
+    #<strong>create</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+ <span class='kw'>super</span>
+ <span class='id identifier rubyid_setFocus'>setFocus</span> <span class='comment'># IRB initialization
+</span>
+ <span class='ivar'>@redir</span> <span class='op'>=</span> <span class='const'>Redirect</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+ <span class='ivar'>@input</span> <span class='op'>=</span> <span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_pipe'>pipe</span>
+ <span class='ivar'>@irb</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span>
+  <span class='const'><span class='object_link'><a href="../IRB.html" title="IRB (module)">IRB</a></span></span><span class='period'>.</span><span class='id identifier rubyid_start_in_fxirb'><span class='object_link'><a href="../IRB.html#start_in_fxirb-class_method" title="IRB.start_in_fxirb (method)">start_in_fxirb</a></span></span><span class='lparen'>(</span><span class='ivar'>@redir</span><span class='rparen'>)</span>
+ <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gets-instance_method">
+  
+    #<strong>gets</strong>(prompt)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162
+163
+164</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gets'>gets</span><span class='lparen'>(</span><span class='id identifier rubyid_prompt'>prompt</span><span class='rparen'>)</span>
+ <span class='ivar'>@running</span> <span class='op'>=</span> <span class='kw'>false</span>
+ <span class='ivar'>@anchor</span> <span class='op'>=</span> <span class='id identifier rubyid_getLength'>getLength</span>
+ <span class='kw'>return</span> <span class='ivar'>@input</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="newLineEntered-instance_method">
+  
+    #<strong>newLineEntered</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131
+132
+133
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_newLineEntered'>newLineEntered</span>
+ <span class='kw'>if</span> <span class='ivar'>@running</span>
+  <span class='id identifier rubyid_start'>start</span> <span class='op'>=</span> <span class='id identifier rubyid_prevLine'>prevLine</span><span class='lparen'>(</span><span class='id identifier rubyid_getLength'>getLength</span><span class='rparen'>)</span>
+  <span class='ivar'>@input</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='id identifier rubyid_extractText'>extractText</span><span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_getLength'>getLength</span> <span class='op'>-</span> <span class='id identifier rubyid_start'>start</span><span class='rparen'>)</span><span class='rparen'>)</span>
+ <span class='kw'>else</span>
+  <span class='id identifier rubyid_processCommandLine'>processCommandLine</span><span class='lparen'>(</span><span class='id identifier rubyid_extractText'>extractText</span><span class='lparen'>(</span><span class='ivar'>@anchor</span><span class='comma'>,</span> <span class='id identifier rubyid_getLength'>getLength</span><span class='op'>-</span><span class='ivar'>@anchor</span><span class='rparen'>)</span><span class='rparen'>)</span>
+ <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onKeyRelease-instance_method">
+  
+    #<strong>onKeyRelease</strong>(sender, sel, event)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122
+123
+124
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 122</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_onKeyRelease'>onKeyRelease</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+ <span class='kw'>if</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Fox.html#KEY_Return-constant" title="Fox::KEY_Return (constant)">KEY_Return</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Fox.html#KEY_KP_Enter-constant" title="Fox::KEY_KP_Enter (constant)">KEY_KP_Enter</a></span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_newLineEntered'>newLineEntered</span>
+ <span class='kw'>end</span>
+ <span class='kw'>return</span> <span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="processCommandLine-instance_method">
+  
+    #<strong>processCommandLine</strong>(cmd)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140
+141
+142</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_processCommandLine'>processCommandLine</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
+ <span class='ivar'>@redir</span><span class='period'>.</span><span class='id identifier rubyid_redir'>redir</span>
+ <span class='ivar'>@running</span> <span class='op'>=</span> <span class='kw'>true</span>
+ <span class='ivar'>@input</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_cmd'>cmd</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="sendCommand-instance_method">
+  
+    #<strong>sendCommand</strong>(cmd)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144
+145
+146
+147
+148
+149
+150</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sendCommand'>sendCommand</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_setCursorPos'>setCursorPos</span><span class='lparen'>(</span><span class='id identifier rubyid_getLength'>getLength</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_makePositionVisible'>makePositionVisible</span><span class='lparen'>(</span><span class='id identifier rubyid_getLength'>getLength</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_isPosVisible'>isPosVisible</span><span class='lparen'>(</span><span class='id identifier rubyid_getLength'>getLength</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
+ <span class='id identifier rubyid_appendText'>appendText</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_processCommandLine'>processCommandLine</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="write-instance_method">
+  
+    #<strong>write</strong>(obj)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154
+155
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/irb.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+ <span class='id identifier rubyid_appendText'>appendText</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_setCursorPos'>setCursorPos</span><span class='lparen'>(</span><span class='id identifier rubyid_getLength'>getLength</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_makePositionVisible'>makePositionVisible</span><span class='lparen'>(</span><span class='id identifier rubyid_getLength'>getLength</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_isPosVisible'>isPosVisible</span><span class='lparen'>(</span><span class='id identifier rubyid_getLength'>getLength</span><span class='rparen'>)</span>
+ <span class='kw'>return</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:44 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

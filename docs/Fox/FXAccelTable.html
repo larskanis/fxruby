@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXAccelTable
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXAccelTable";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXAccelTable</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXAccelTable
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></li>
+          
+            <li class="next">Fox::FXAccelTable</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXAccelTable.rb<span class="defines">,<br />
+  lib/fox16/accel_table.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>The accelerator table sends a message to a specific target object when the indicated key and modifier combination is pressed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addAccel-instance_method" title="#addAccel (instance method)">#<strong>addAccel</strong>(hotKey, *args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add an accelerator to the table.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addAccelOrig-instance_method" title="#addAccelOrig (instance method)">#<strong>addAccelOrig</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hasAccel%3F-instance_method" title="#hasAccel? (instance method)">#<strong>hasAccel?</strong>(hotKey)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return <code>true</code> if accelerator specified.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; FXAccelTable </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Construct empty accelerator table.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#removeAccel-instance_method" title="#removeAccel (instance method)">#<strong>removeAccel</strong>(hotKey)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Remove mapping for specified hot key.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#removeAccelOrig-instance_method" title="#removeAccelOrig (instance method)">#<strong>removeAccelOrig</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Remove mapping for specified hot key.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#targetOfAccel-instance_method" title="#targetOfAccel (instance method)">#<strong>targetOfAccel</strong>(hotKey)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Return the target object of the given accelerator, or <code>nil</code> if the accelerator is not present in this accelerator table.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">FXObject</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FXObject.html#bind-instance_method" title="Fox::FXObject#bind (method)">#bind</a></span>, <span class='object_link'><a href="FXObject.html#handle-instance_method" title="Fox::FXObject#handle (method)">#handle</a></span>, <span class='object_link'><a href="FXObject.html#load-instance_method" title="Fox::FXObject#load (method)">#load</a></span>, <span class='object_link'><a href="FXObject.html#save-instance_method" title="Fox::FXObject#save (method)">#save</a></span>, <span class='object_link'><a href="FXObject.html#subclasses-class_method" title="Fox::FXObject.subclasses (method)">subclasses</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXAccelTable (class)">FXAccelTable</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Construct empty accelerator table.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXAccelTable.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='comment'># :yields: acceleratorTable
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="addAccel-instance_method">
+  
+    #<strong>addAccel</strong>(hotKey, *args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add an accelerator to the table. The <em>hotKey</em> is a code returned by the Fox.fxparseAccel method.</p>
+
+<p>There are several forms for <em>addAccel</em>; the original form (from FOX) takes either three or four arguments. For example, to associate the Ctrl+H keypress with sending the “hide” command to a window, you might use code like this:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_hotKey'>hotKey</span> <span class='op'>=</span> <span class='id identifier rubyid_fxparseAccel'><span class='object_link'><a href="../Fox.html#fxparseAccel-class_method" title="Fox.fxparseAccel (method)">fxparseAccel</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ctrl+H</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_window'>window</span><span class='comma'>,</span> <span class='const'>FXSEL</span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></span><span class='op'>::</span><span class='const'>ID_HIDE</span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>If you instead want to trigger the command on the key release (instead of the key press), pass a zero for the third argument and pass the command as the fourth argument:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_window'>window</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='const'>FXSEL</span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></span><span class='op'>::</span><span class='const'>ID_HIDE</span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>You can even pass in two different messages, corresponding to the key press and key release events for the hot key, although this is less common.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_window'>window</span><span class='comma'>,</span>
+  <span class='const'>FXSEL</span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></span><span class='op'>::</span><span class='const'>ID_HIDE</span><span class='rparen'>)</span><span class='comma'>,</span>
+  <span class='const'>FXSEL</span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></span><span class='op'>::</span><span class='const'>ID_SHOW</span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>The problem with this form is that you need to be familiar with the message types and identifiers that different widgets respond to, and this information isn&#39;t very well documented. A more straightforward way to use <em>addAccel</em> from Ruby code is to instead pass one or more callable objects in as the second and third arguments. For example:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_hide'>hide</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>or to trigger the event on the key release event:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_hide'>hide</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>Or to handle both the key press and key release events:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_hide'>hide</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_show'>show</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/accel_table.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tgt'>tgt</span><span class='comma'>,</span> <span class='id identifier rubyid_seldn'>seldn</span><span class='comma'>,</span> <span class='id identifier rubyid_selup'>selup</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:call</span>
+      <span class='id identifier rubyid_tgt'>tgt</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="FXPseudoTarget.html" title="Fox::FXPseudoTarget (class)">FXPseudoTarget</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXPseudoTarget.html#initialize-instance_method" title="Fox::FXPseudoTarget#initialize (method)">new</a></span></span>
+      <span class='id identifier rubyid_seldn'>seldn</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXSEL</span><span class='lparen'>(</span><span class='const'>SEL_KEYPRESS</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_tgt'>tgt</span><span class='period'>.</span><span class='id identifier rubyid_pconnect'>pconnect</span><span class='lparen'>(</span><span class='const'>SEL_KEYPRESS</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_tgt'>tgt</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>1</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:call</span>
+        <span class='id identifier rubyid_tgt'>tgt</span> <span class='op'>=</span> <span class='id identifier rubyid_tgt'>tgt</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="FXPseudoTarget.html" title="Fox::FXPseudoTarget (class)">FXPseudoTarget</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXPseudoTarget.html#initialize-instance_method" title="Fox::FXPseudoTarget#initialize (method)">new</a></span></span>
+        <span class='id identifier rubyid_selup'>selup</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>FXSEL</span><span class='lparen'>(</span><span class='const'>SEL_KEYRELEASE</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_tgt'>tgt</span><span class='period'>.</span><span class='id identifier rubyid_pconnect'>pconnect</span><span class='lparen'>(</span><span class='const'>SEL_KEYRELEASE</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_seldn'>seldn</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_selup'>selup</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>2</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>  <span class='comment'># FIXME: The target objects stored in the accelerator table are currently
+</span>  <span class='comment'># private. Therefore FXRbAccelTable::markfunc() doesn&#39;t mark them as used.
+</span>  <span class='comment'># As a workaround the objects are additionally stored in @targets Hash.
+</span>
+  <span class='ivar'>@targets</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>@targets</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@targets</span><span class='lbracket'>[</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_tgt'>tgt</span>
+  <span class='id identifier rubyid_addAccelOrig'>addAccelOrig</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='comma'>,</span> <span class='id identifier rubyid_seldn'>seldn</span><span class='comma'>,</span> <span class='id identifier rubyid_selup'>selup</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addAccelOrig-instance_method">
+  
+    #<strong>addAccelOrig</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/accel_table.rb', line 3</span>
+
+<span class='kw'>alias</span> <span class='id identifier rubyid_addAccelOrig'>addAccelOrig</span> <span class='id identifier rubyid_addAccel'>addAccel</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hasAccel?-instance_method">
+  
+    #<strong>hasAccel?</strong>(hotKey)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return <code>true</code> if accelerator specified. Here, <em>hotKey</em> is a code representing an accelerator key as returned by the Fox.fxparseAccel method. For example,</p>
+
+<pre class="code ruby"><code class="ruby">if accelTable.hasAccel?(fxparseAccel(&quot;Ctrl+S&quot;))
+  ...
+end
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXAccelTable.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hasAccel?'>hasAccel?</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="removeAccel-instance_method">
+  
+    #<strong>removeAccel</strong>(hotKey)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Remove mapping for specified hot key. Here, <em>hotKey</em> is a code representing an accelerator key as returned by the Fox.fxparseAccel method. For example,</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_removeAccel'>removeAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_fxparseAccel'><span class='object_link'><a href="../Fox.html#fxparseAccel-class_method" title="Fox.fxparseAccel (method)">fxparseAccel</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ctrl+S</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXAccelTable.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_removeAccel'>removeAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="removeAccelOrig-instance_method">
+  
+    #<strong>removeAccelOrig</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Remove mapping for specified hot key. Here, <em>hotKey</em> is a code representing an accelerator key as returned by the Fox.fxparseAccel method. For example,</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_removeAccel'>removeAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_fxparseAccel'><span class='object_link'><a href="../Fox.html#fxparseAccel-class_method" title="Fox.fxparseAccel (method)">fxparseAccel</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ctrl+S</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/accel_table.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_removeAccel'>removeAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="targetOfAccel-instance_method">
+  
+    #<strong>targetOfAccel</strong>(hotKey)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Return the target object of the given accelerator, or <code>nil</code> if the accelerator is not present in this accelerator table. Here, <em>hotKey</em> is a code representing an accelerator key as returned by the Fox.fxparseAccel method. For example,</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_doc'>doc</span> <span class='op'>=</span> <span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_targetofAccel'>targetofAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_fxparseAccel'><span class='object_link'><a href="../Fox.html#fxparseAccel-class_method" title="Fox.fxparseAccel (method)">fxparseAccel</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ctrl+S</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXAccelTable.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_targetOfAccel'>targetOfAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:03:24 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>

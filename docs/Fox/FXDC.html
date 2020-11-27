@@ -1,0 +1,5231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Fox::FXDC
+  
+    &mdash; FXRuby API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Fox::FXDC";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span>
+     &raquo; 
+    <span class="title">FXDC</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Fox::FXDC
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Fox::FXDC</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>rdoc-sources/FXDC.rb<span class="defines">,<br />
+  lib/fox16/core.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>A device context is used to maintain the state of the graphics drawing system. Defining your drawing code in terms of the Abstract Device Context allows the drawing commands to be rendered on different types of surfaces, such as windows and images (FXDCWindow), or on paper (FXDCPrint). WYSYWYG may be obtained by using the same identical drawing code in your application regardless of the actual device surface being utilized.</p>
+
+<h3 id="label-Drawing+-28BITBLT-29+functions">Drawing (BITBLT) functions</h3>
+<dl class="rdoc-list note-list"><dt><code>BLT_CLR</code>
+<dd>
+<p>D := 0</p>
+</dd><dt><code>BLT_SRC_AND_DST</code>
+<dd>
+<p>D := S &amp; D</p>
+</dd><dt><code>BLT_SRC_AND_NOT_DST</code>
+<dd>
+<p>D := S &amp; ~D</p>
+</dd><dt><code>BLT_SRC</code>
+<dd>
+<p>D := S</p>
+</dd><dt><code>BLT_NOT_SRC_AND_DST</code>
+<dd>
+<p>D := ~S &amp; D</p>
+</dd><dt><code>BLT_DST</code>
+<dd>
+<p>D := D</p>
+</dd><dt><code>BLT_SRC_XOR_DST</code>
+<dd>
+<p>D := S ^ D</p>
+</dd><dt><code>BLT_SRC_OR_DST</code>
+<dd>
+<p>D := S | D</p>
+</dd><dt><code>BLT_NOT_SRC_AND_NOT_DST</code>
+<dd>
+<p>D := ~S &amp; ~D  ==  D := ~(S | D)</p>
+</dd><dt><code>BLT_NOT_SRC_XOR_DST</code>
+<dd>
+<p>D := ~S ^ D</p>
+</dd><dt><code>BLT_NOT_DST</code>
+<dd>
+<p>D := ~D</p>
+</dd><dt><code>BLT_SRC_OR_NOT_DST</code>
+<dd>
+<p>D := S | ~D</p>
+</dd><dt><code>BLT_NOT_SRC</code>
+<dd>
+<p>D := ~S</p>
+</dd><dt><code>BLT_NOT_SRC_OR_DST</code>
+<dd>
+<p>D := ~S | D</p>
+</dd><dt><code>BLT_NOT_SRC_OR_NOT_DST</code>
+<dd>
+<p>D := ~S | ~D  ==  ~(S &amp; D)</p>
+</dd><dt><code>BLT_SET</code>
+<dd>
+<p>D := 1</p>
+</dd></dl>
+
+<h3 id="label-Line+Styles">Line Styles</h3>
+<dl class="rdoc-list note-list"><dt><code>LINE_SOLID</code>
+<dd>
+<p>Solid lines</p>
+</dd><dt><code>LINE_ONOFF_DASH</code>
+<dd>
+<p>On-off dashed lines</p>
+</dd><dt><code>LINE_DOUBLE_DASH</code>
+<dd>
+<p>Double dashed lines</p>
+</dd></dl>
+
+<h3 id="label-Line+Cap+Styles">Line Cap Styles</h3>
+<dl class="rdoc-list note-list"><dt><code>CAP_NOT_LAST</code>
+<dd>
+<p>Don&#39;t include last end cap</p>
+</dd><dt><code>CAP_BUTT</code>
+<dd>
+<p>Butting line end caps</p>
+</dd><dt><code>CAP_ROUND</code>
+<dd>
+<p>Round line end caps</p>
+</dd><dt><code>CAP_PROJECTING</code>
+<dd>
+<p>Projecting line end caps</p>
+</dd></dl>
+
+<h3 id="label-Line+Join+Styles">Line Join Styles</h3>
+<dl class="rdoc-list note-list"><dt><code>JOIN_MITER</code>
+<dd>
+<p>Mitered or pointy joints</p>
+</dd><dt><code>JOIN_ROUND</code>
+<dd>
+<p>Round line joints</p>
+</dd><dt><code>JOIN_BEVEL</code>
+<dd>
+<p>Beveled or flat joints</p>
+</dd></dl>
+
+<h3 id="label-Fill+Styles">Fill Styles</h3>
+<dl class="rdoc-list note-list"><dt><code>FILL_SOLID</code>
+<dd>
+<p>Fill with solid color</p>
+</dd><dt><code>FILL_TILED</code>
+<dd>
+<p>Fill with tiled bitmap</p>
+</dd><dt><code>FILL_STIPPLED</code>
+<dd>
+<p>Fill where stipple mask is 1</p>
+</dd><dt><code>FILL_OPAQUESTIPPLED</code>
+<dd>
+<p>Fill with foreground where mask is 1, background otherwise</p>
+</dd></dl>
+
+<h3 id="label-Fill+Rules">Fill Rules</h3>
+<dl class="rdoc-list note-list"><dt><code>RULE_EVEN_ODD</code>
+<dd>
+<p>Even odd polygon filling</p>
+</dd><dt><code>RULE_WINDING</code>
+<dd>
+<p>Winding rule polygon filling</p>
+</dd></dl>
+
+<h3 id="label-Stipple-2Fdither+patterns">Stipple/dither patterns</h3>
+<dl class="rdoc-list note-list"><dt><code>STIPPLE_0</code>
+<dd>
+<p>Stipple pattern 0</p>
+</dd><dt><code>STIPPLE_NONE</code>
+<dd>
+<p>Stipple pattern 0</p>
+</dd><dt><code>STIPPLE_BLACK</code>
+<dd>
+<p>All ones</p>
+</dd><dt><code>STIPPLE_1</code>
+<dd>
+<p>Stipple pattern 1</p>
+</dd><dt><code>STIPPLE_2</code>
+<dd>
+<p>Stipple pattern 2</p>
+</dd><dt><code>STIPPLE_3</code>
+<dd>
+<p>Stipple pattern 3</p>
+</dd><dt><code>STIPPLE_4</code>
+<dd>
+<p>Stipple pattern 4</p>
+</dd><dt><code>STIPPLE_5</code>
+<dd>
+<p>Stipple pattern 5</p>
+</dd><dt><code>STIPPLE_6</code>
+<dd>
+<p>Stipple pattern 6</p>
+</dd><dt><code>STIPPLE_7</code>
+<dd>
+<p>Stipple pattern 7</p>
+</dd><dt><code>STIPPLE_8</code>
+<dd>
+<p>Stipple pattern 8</p>
+</dd><dt><code>STIPPLE_GRAY</code>
+<dd>
+<p>50% gray</p>
+</dd><dt><code>STIPPLE_9</code>
+<dd>
+<p>Stipple pattern 9</p>
+</dd><dt><code>STIPPLE_10</code>
+<dd>
+<p>Stipple pattern 10</p>
+</dd><dt><code>STIPPLE_11</code>
+<dd>
+<p>Stipple pattern 11</p>
+</dd><dt><code>STIPPLE_12</code>
+<dd>
+<p>Stipple pattern 12</p>
+</dd><dt><code>STIPPLE_13</code>
+<dd>
+<p>Stipple pattern 13</p>
+</dd><dt><code>STIPPLE_14</code>
+<dd>
+<p>Stipple pattern 14</p>
+</dd><dt><code>STIPPLE_15</code>
+<dd>
+<p>Stipple pattern 15</p>
+</dd><dt><code>STIPPLE_16</code>
+<dd>
+<p>Stipple pattern 16</p>
+</dd><dt><code>STIPPLE_WHITE</code>
+<dd>
+<p>All zeroes</p>
+</dd><dt><code>STIPPLE_HORZ</code>
+<dd>
+<p>Horizontal hatch pattern</p>
+</dd><dt><code>STIPPLE_VERT</code>
+<dd>
+<p>Vertical hatch pattern</p>
+</dd><dt><code>STIPPLE_CROSS</code>
+<dd>
+<p>Cross-hatch pattern</p>
+</dd><dt><code>STIPPLE_DIAG</code>
+<dd>
+<p>Diagonal // hatch pattern</p>
+</dd><dt><code>STIPPLE_REVDIAG</code>
+<dd>
+<p>Reverse diagonal \ hatch pattern</p>
+</dd><dt><code>STIPPLE_CROSSDIAG</code>
+<dd>
+<p>Cross-diagonal hatch pattern</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="FXDCPrint.html" title="Fox::FXDCPrint (class)">FXDCPrint</a></span>, <span class='object_link'><a href="FXDCWindow.html" title="Fox::FXDCWindow (class)">FXDCWindow</a></span></p>
+</div>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#app-instance_method" title="#app (instance method)">#<strong>app</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Application <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">FXApp</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#background-instance_method" title="#background (instance method)">#<strong>background</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Background drawing color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clipHeight-instance_method" title="#clipHeight (instance method)">#<strong>clipHeight</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Height of clip rectangle, in pixels [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clipRectangle-instance_method" title="#clipRectangle (instance method)">#<strong>clipRectangle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clip rectangle <span class='object_link'><a href="FXRectangle.html" title="Fox::FXRectangle (class)">FXRectangle</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clipRegion=-instance_method" title="#clipRegion= (instance method)">#<strong>clipRegion</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+      <span class="note title writeonly">writeonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clip region <span class='object_link'><a href="FXRegion.html" title="Fox::FXRegion (class)">FXRegion</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clipWidth-instance_method" title="#clipWidth (instance method)">#<strong>clipWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Width of clip rectangle, in pixels [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clipX-instance_method" title="#clipX (instance method)">#<strong>clipX</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>X-coordinate of clip rectangle [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clipY-instance_method" title="#clipY (instance method)">#<strong>clipY</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Y-coordinate of clip rectangle [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dashLength-instance_method" title="#dashLength (instance method)">#<strong>dashLength</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Dash length [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dashOffset-instance_method" title="#dashOffset (instance method)">#<strong>dashOffset</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Dash offset [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dashPattern-instance_method" title="#dashPattern (instance method)">#<strong>dashPattern</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Dash pattern [String].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillRule-instance_method" title="#fillRule (instance method)">#<strong>fillRule</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fill rule, one of <code>RULE_EVEN_ODD</code> or <code>RULE_WINDING</code> [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillStyle-instance_method" title="#fillStyle (instance method)">#<strong>fillStyle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fill style, one of <code>FILL_SOLID</code>, <code>FILL_TILED</code>, <code>FILL_STIPPLED</code> or <code>FILL_OPAQUESTIPPLED</code> [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#font-instance_method" title="#font (instance method)">#<strong>font</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Font to draw text with <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">FXFont</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#foreground-instance_method" title="#foreground (instance method)">#<strong>foreground</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Foreground drawing color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">FXColor</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#function-instance_method" title="#function (instance method)">#<strong>function</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Raster op function, one of <code>BLT_CLR</code>, <code>BLT_SRC</code>, <code>BLT_DST</code>, etc.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lineCap-instance_method" title="#lineCap (instance method)">#<strong>lineCap</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Line cap style, one of <code>CAP_NOT_LAST</code>, <code>CAP_BUTT</code>, <code>CAP_ROUND</code> or <code>CAP_PROJECTING</code> [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lineJoin-instance_method" title="#lineJoin (instance method)">#<strong>lineJoin</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Line join style, one of <code>JOIN_MITER</code>, <code>JOIN_ROUND</code> or <code>JOIN_BEVEL</code> [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lineStyle-instance_method" title="#lineStyle (instance method)">#<strong>lineStyle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Line style, one of <code>LINE_SOLID</code>, <code>LINE_ONOFF_DASH</code> or <code>LINE_DOUBLE_DASH</code> [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lineWidth-instance_method" title="#lineWidth (instance method)">#<strong>lineWidth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Line width; a line width of zero means thinnest and fastest possible [Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stipple-instance_method" title="#stipple (instance method)">#<strong>stipple</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Stipple pattern [FXBitmap or Integer].</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tile-instance_method" title="#tile (instance method)">#<strong>tile</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Tile image <span class='object_link'><a href="FXImage.html" title="Fox::FXImage (class)">FXImage</a></span>.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clearClipMask-instance_method" title="#clearClipMask (instance method)">#<strong>clearClipMask</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clear clip mask.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clearClipRectangle-instance_method" title="#clearClipRectangle (instance method)">#<strong>clearClipRectangle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clear clipping.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clipChildren-instance_method" title="#clipChildren (instance method)">#<strong>clipChildren</strong>(yes)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>When you call <span class='object_link'><a href="#clipChildren-instance_method" title="Fox::FXDC#clipChildren (method)">#clipChildren</a></span> with the argument <code>true</code>, anything that you draw into this window will be clipped by its child windows.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawArc-instance_method" title="#drawArc (instance method)">#<strong>drawArc</strong>(x, y, w, h, start, extent)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw an arc.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawArcs-instance_method" title="#drawArcs (instance method)">#<strong>drawArcs</strong>(arcs)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw arcs, where <em>arcs</em> is an array of FXArc instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawArea-instance_method" title="#drawArea (instance method)">#<strong>drawArea</strong>(source, sx, sy, sw, sh, dx, dy, dw, dh)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Copy some rectangular area from <em>source</em> into the drawable attached to this device context, stretching it to width <em>dw</em> and height <em>dh</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawBitmap-instance_method" title="#drawBitmap (instance method)">#<strong>drawBitmap</strong>(bitmap, dx, dy)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw <em>bitmap</em> into the drawable attached to this device context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawCircle-instance_method" title="#drawCircle (instance method)">#<strong>drawCircle</strong>(x, y, r)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a circle centered at (<em>x</em>, <em>y</em>), with specified radius.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawEllipse-instance_method" title="#drawEllipse (instance method)">#<strong>drawEllipse</strong>(x, y, w, h)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw an ellipse.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawFocusRectangle-instance_method" title="#drawFocusRectangle (instance method)">#<strong>drawFocusRectangle</strong>(x, y, w, h)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw focus rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawHashBox-instance_method" title="#drawHashBox (instance method)">#<strong>drawHashBox</strong>(x, y, w, h, b = 1)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw hashed box with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawIcon-instance_method" title="#drawIcon (instance method)">#<strong>drawIcon</strong>(icon, dx, dy)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw <em>icon</em> into the drawable attached to this device context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawIconShaded-instance_method" title="#drawIconShaded (instance method)">#<strong>drawIconShaded</strong>(icon, dx, dy)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a shaded version of an icon into the drawable attached to this device context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawIconSunken-instance_method" title="#drawIconSunken (instance method)">#<strong>drawIconSunken</strong>(icon, dx, dy)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a sunken version of an icon into the drawable attached to this device context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawImage-instance_method" title="#drawImage (instance method)">#<strong>drawImage</strong>(image, dx, dy)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw <em>image</em> into the drawable attached to this device context.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawImageText-instance_method" title="#drawImageText (instance method)">#<strong>drawImageText</strong>(x, y, string)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw <em>string</em> at position (<em>x</em>, <em>y</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawLine-instance_method" title="#drawLine (instance method)">#<strong>drawLine</strong>(x1, y1, x2, y2)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw the line from (<em>x1</em>, <em>y1</em>) to (<em>x2</em>, <em>y2</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawLines-instance_method" title="#drawLines (instance method)">#<strong>drawLines</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw connected lines, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawLineSegments-instance_method" title="#drawLineSegments (instance method)">#<strong>drawLineSegments</strong>(segments)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw mutiple, unconnected lines (i.e. line segments), where <em>segments</em> is an array of FXSegment instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawLinesRel-instance_method" title="#drawLinesRel (instance method)">#<strong>drawLinesRel</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw connected lines, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawPoint-instance_method" title="#drawPoint (instance method)">#<strong>drawPoint</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a point at (<em>x</em>, <em>y</em>) in the current foreground drawing color.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawPoints-instance_method" title="#drawPoints (instance method)">#<strong>drawPoints</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw multiple points, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawPointsRel-instance_method" title="#drawPointsRel (instance method)">#<strong>drawPointsRel</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw multiple points, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawRectangle-instance_method" title="#drawRectangle (instance method)">#<strong>drawRectangle</strong>(x, y, w, h)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawRectangles-instance_method" title="#drawRectangles (instance method)">#<strong>drawRectangles</strong>(rectangles)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw multiple rectangles, where <em>rectangles</em> is an array of FXRectangle instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawRoundRectangle-instance_method" title="#drawRoundRectangle (instance method)">#<strong>drawRoundRectangle</strong>(x, y, w, h, ew, eh)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a rounded rectangle with ellipse width <em>ew</em> and ellipse height <em>eh</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#drawText-instance_method" title="#drawText (instance method)">#<strong>drawText</strong>(x, y, string)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw <em>string</em> at position (<em>x</em>, <em>y</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillArc-instance_method" title="#fillArc (instance method)">#<strong>fillArc</strong>(x, y, w, h, start, extent)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled arc (see documentation for <span class='object_link'><a href="#drawArc-instance_method" title="Fox::FXDC#drawArc (method)">#drawArc</a></span>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillArcs-instance_method" title="#fillArcs (instance method)">#<strong>fillArcs</strong>(arcs)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled arcs, where <em>arcs</em> is an array of FXArc instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillChord-instance_method" title="#fillChord (instance method)">#<strong>fillChord</strong>(x, y, w, h, ang1, ang2)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillChords-instance_method" title="#fillChords (instance method)">#<strong>fillChords</strong>(chords, nchords)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillCircle-instance_method" title="#fillCircle (instance method)">#<strong>fillCircle</strong>(x, y, r)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a filled circle centered at (<em>x</em>, <em>y</em>), with specified radius.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillComplexPolygon-instance_method" title="#fillComplexPolygon (instance method)">#<strong>fillComplexPolygon</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillComplexPolygonRel-instance_method" title="#fillComplexPolygonRel (instance method)">#<strong>fillComplexPolygonRel</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillConcavePolygon-instance_method" title="#fillConcavePolygon (instance method)">#<strong>fillConcavePolygon</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillConcavePolygonRel-instance_method" title="#fillConcavePolygonRel (instance method)">#<strong>fillConcavePolygonRel</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillEllipse-instance_method" title="#fillEllipse (instance method)">#<strong>fillEllipse</strong>(x, y, w, h)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a filled ellipse.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillPolygon-instance_method" title="#fillPolygon (instance method)">#<strong>fillPolygon</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillPolygonRel-instance_method" title="#fillPolygonRel (instance method)">#<strong>fillPolygonRel</strong>(points)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillRectangle-instance_method" title="#fillRectangle (instance method)">#<strong>fillRectangle</strong>(x, y, w, h)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillRectangles-instance_method" title="#fillRectangles (instance method)">#<strong>fillRectangles</strong>(rectangles)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw filled rectangles, where <em>rectangles</em> is an array of FXRectangle instances.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fillRoundRectangle-instance_method" title="#fillRoundRectangle (instance method)">#<strong>fillRoundRectangle</strong>(x, y, w, h, ew, eh)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Draw a filled rounded rectangle with ellipse width <em>ew</em> and ellipse height <em>eh</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(app)  &#x21d2; FXDC </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Construct dummy DC.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#readPixel-instance_method" title="#readPixel (instance method)">#<strong>readPixel</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a color value (i.e. an FXColor) for the pixel at (<em>x</em>, <em>y</em>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setClipMask-instance_method" title="#setClipMask (instance method)">#<strong>setClipMask</strong>(bitmap, dx = 0, dy = 0)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set clip mask to <em>bitmap</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setClipRectangle-instance_method" title="#setClipRectangle (instance method)">#<strong>setClipRectangle</strong>(rectangle)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set clip rectangle.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setDashes-instance_method" title="#setDashes (instance method)">#<strong>setDashes</strong>(dashOffset, dashPattern)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set dash pattern and dash offset.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(app)  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXDC (class)">FXDC</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Construct dummy DC</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 199</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_app'>app</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="app-instance_method">
+  
+    #<strong>app</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Application <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">Fox::FXApp</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 133</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_app'>app</span>
+  <span class='ivar'>@app</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="background=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="background-instance_method">
+  
+    #<strong>background</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Background drawing color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_background'>background</span>
+  <span class='ivar'>@background</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="clipHeight-instance_method">
+  
+    #<strong>clipHeight</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Height of clip rectangle, in pixels [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clipHeight'>clipHeight</span>
+  <span class='ivar'>@clipHeight</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="clipRectangle-instance_method">
+  
+    #<strong>clipRectangle</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clip rectangle <span class='object_link'><a href="FXRectangle.html" title="Fox::FXRectangle (class)">Fox::FXRectangle</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clipRectangle'>clipRectangle</span>
+  <span class='ivar'>@clipRectangle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="clipRegion=-instance_method">
+  
+    #<strong>clipRegion=</strong>(value)  &#x21d2; <tt>Object</tt>  <span class="extras">(writeonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clip region <span class='object_link'><a href="FXRegion.html" title="Fox::FXRegion (class)">Fox::FXRegion</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clipRegion='>clipRegion=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@clipRegion</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="clipWidth-instance_method">
+  
+    #<strong>clipWidth</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Width of clip rectangle, in pixels [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 190</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clipWidth'>clipWidth</span>
+  <span class='ivar'>@clipWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="clipX-instance_method">
+  
+    #<strong>clipX</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>X-coordinate of clip rectangle [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185
+186</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 184</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clipX'>clipX</span>
+  <span class='ivar'>@clipX</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="clipY-instance_method">
+  
+    #<strong>clipY</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Y-coordinate of clip rectangle [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 187</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clipY'>clipY</span>
+  <span class='ivar'>@clipY</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="dashLength-instance_method">
+  
+    #<strong>dashLength</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Dash length [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+148
+149
+150</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 148</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dashLength'>dashLength</span>
+  <span class='ivar'>@dashLength</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="dashOffset-instance_method">
+  
+    #<strong>dashOffset</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Dash offset [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 145</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dashOffset'>dashOffset</span>
+  <span class='ivar'>@dashOffset</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="dashPattern-instance_method">
+  
+    #<strong>dashPattern</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Dash pattern [String]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 142</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dashPattern'>dashPattern</span>
+  <span class='ivar'>@dashPattern</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="fillRule=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fillRule-instance_method">
+  
+    #<strong>fillRule</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fill rule, one of <code>RULE_EVEN_ODD</code> or <code>RULE_WINDING</code> [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 166</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillRule'>fillRule</span>
+  <span class='ivar'>@fillRule</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="fillStyle=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="fillStyle-instance_method">
+  
+    #<strong>fillStyle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fill style, one of <code>FILL_SOLID</code>, <code>FILL_TILED</code>, <code>FILL_STIPPLED</code> or <code>FILL_OPAQUESTIPPLED</code> [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillStyle'>fillStyle</span>
+  <span class='ivar'>@fillStyle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="font=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="font-instance_method">
+  
+    #<strong>font</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Font to draw text with <span class='object_link'><a href="FXFont.html" title="Fox::FXFont (class)">Fox::FXFont</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+196
+197
+198</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 196</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_font'>font</span>
+  <span class='ivar'>@font</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="foreground=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="foreground-instance_method">
+  
+    #<strong>foreground</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Foreground drawing color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 136</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_foreground'>foreground</span>
+  <span class='ivar'>@foreground</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="function=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="function-instance_method">
+  
+    #<strong>function</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Raster op function, one of <code>BLT_CLR</code>, <code>BLT_SRC</code>, <code>BLT_DST</code>, etc. (see list above) [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_function'>function</span>
+  <span class='ivar'>@function</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="lineCap=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="lineCap-instance_method">
+  
+    #<strong>lineCap</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Line cap style, one of <code>CAP_NOT_LAST</code>, <code>CAP_BUTT</code>, <code>CAP_ROUND</code> or <code>CAP_PROJECTING</code> [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 154</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lineCap'>lineCap</span>
+  <span class='ivar'>@lineCap</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="lineJoin=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="lineJoin-instance_method">
+  
+    #<strong>lineJoin</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Line join style, one of <code>JOIN_MITER</code>, <code>JOIN_ROUND</code> or <code>JOIN_BEVEL</code> [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lineJoin'>lineJoin</span>
+  <span class='ivar'>@lineJoin</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="lineStyle=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="lineStyle-instance_method">
+  
+    #<strong>lineStyle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Line style, one of <code>LINE_SOLID</code>, <code>LINE_ONOFF_DASH</code> or <code>LINE_DOUBLE_DASH</code> [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lineStyle'>lineStyle</span>
+  <span class='ivar'>@lineStyle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="lineWidth=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="lineWidth-instance_method">
+  
+    #<strong>lineWidth</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Line width; a line width of zero means thinnest and fastest possible [Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 151</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lineWidth'>lineWidth</span>
+  <span class='ivar'>@lineWidth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="stipple=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="stipple-instance_method">
+  
+    #<strong>stipple</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Stipple pattern [FXBitmap or Integer]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 175</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stipple'>stipple</span>
+  <span class='ivar'>@stipple</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tile=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tile-instance_method">
+  
+    #<strong>tile</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Tile image <span class='object_link'><a href="FXImage.html" title="Fox::FXImage (class)">Fox::FXImage</a></span></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 172</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tile'>tile</span>
+  <span class='ivar'>@tile</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="clearClipMask-instance_method">
+  
+    #<strong>clearClipMask</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clear clip mask.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+703</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 703</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clearClipMask'>clearClipMask</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clearClipRectangle-instance_method">
+  
+    #<strong>clearClipRectangle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clear clipping.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+685</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 685</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clearClipRectangle'>clearClipRectangle</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clipChildren-instance_method">
+  
+    #<strong>clipChildren</strong>(yes)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>When you call <span class='object_link'><a href="#clipChildren-instance_method" title="Fox::FXDC#clipChildren (method)">#clipChildren</a></span> with the argument <code>true</code>, anything that you draw into this window will be clipped by its child windows. In other words, the child windows “obscure” the parent window. This is the default behavior. If you call <span class='object_link'><a href="#clipChildren-instance_method" title="Fox::FXDC#clipChildren (method)">#clipChildren</a></span> with <code>false</code>, anything that you draw into this window will be visible in its child windows (i.e. the drawing will <strong>not</strong> be clipped).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>yes</code>
+<dd>
+<p>if <code>true</code>, drawing is clipped against child windows [Boolean]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+717</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 717</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clipChildren'>clipChildren</span><span class='lparen'>(</span><span class='id identifier rubyid_yes'>yes</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawArc-instance_method">
+  
+    #<strong>drawArc</strong>(x, y, w, h, start, extent)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw an arc. The argument <em>start</em> specifies the start of the arc relative to the three-o&#39;clock position from the center, in units of degrees*64. The argument <em>extent</em> specifies the path and extent of the arc, relative to the start of the arc (also in units of degrees*64). The arguments <em>x</em>, <em>y</em>, <em>w</em>, and <em>h</em> specify the bounding rectangle of the arc.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>w</code>
+<dd>
+<p>width of the bounding rectangle, in pixels [Integer]</p>
+</dd><dt><code>h</code>
+<dd>
+<p>height of the bounding rectangle, in pixels [Integer]</p>
+</dd><dt><code>start</code>
+<dd>
+<p>starting angle of the arc, in 64ths of a degree [Integer]</p>
+</dd><dt><code>extent</code>
+<dd>
+<p>the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawArcs-instance_method" title="Fox::FXDC#drawArcs (method)">#drawArcs</a></span>, <span class='object_link'><a href="#fillArc-instance_method" title="Fox::FXDC#fillArc (method)">#fillArc</a></span> and <span class='object_link'><a href="#fillArcs-instance_method" title="Fox::FXDC#fillArcs (method)">#fillArcs</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+358</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 358</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawArc'>drawArc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_extent'>extent</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawArcs-instance_method">
+  
+    #<strong>drawArcs</strong>(arcs)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw arcs, where <em>arcs</em> is an array of FXArc instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>arcs</code>
+<dd>
+<p>an array of FXArc instances [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawArc-instance_method" title="Fox::FXDC#drawArc (method)">#drawArc</a></span>, <span class='object_link'><a href="#fillArc-instance_method" title="Fox::FXDC#fillArc (method)">#fillArc</a></span> and <span class='object_link'><a href="#fillArcs-instance_method" title="Fox::FXDC#fillArcs (method)">#fillArcs</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+369</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 369</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawArcs'>drawArcs</span><span class='lparen'>(</span><span class='id identifier rubyid_arcs'>arcs</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawArea-instance_method">
+  
+    #<strong>drawArea</strong>(source, sx, sy, sw, sh, dx, dy, dw, dh)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Copy some rectangular area from <em>source</em> into the drawable attached to this device context, stretching it to width <em>dw</em> and height <em>dh</em>.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>source</code>
+<dd>
+<p>the source drawable from which to copy <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">Fox::FXDrawable</a></span></p>
+</dd><dt><code>sx</code>
+<dd>
+<p>x-coordinate of the upper left corner of the source rectangle [Integer]</p>
+</dd><dt><code>sy</code>
+<dd>
+<p>y-coordinate of the upper left corner of the source rectangle [Integer]</p>
+</dd><dt><code>sw</code>
+<dd>
+<p>width of the source rectangle, in pixels [Integer]</p>
+</dd><dt><code>sh</code>
+<dd>
+<p>height of the source rectangle, in pixels [Integer]</p>
+</dd><dt><code>dx</code>
+<dd>
+<p>x-coordinate of the the destination point in this drawable [Integer]</p>
+</dd><dt><code>dy</code>
+<dd>
+<p>y-coordinate of the the destination point in this drawable [Integer]</p>
+</dd><dt><code>dw</code>
+<dd>
+<p>destination width, in pixels [Integer]</p>
+</dd><dt><code>dh</code>
+<dd>
+<p>destination height, in pixels [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+541</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 541</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawArea'>drawArea</span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_sx'>sx</span><span class='comma'>,</span> <span class='id identifier rubyid_sy'>sy</span><span class='comma'>,</span> <span class='id identifier rubyid_sw'>sw</span><span class='comma'>,</span> <span class='id identifier rubyid_sh'>sh</span><span class='comma'>,</span> <span class='id identifier rubyid_dx'>dx</span><span class='comma'>,</span> <span class='id identifier rubyid_dy'>dy</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawBitmap-instance_method">
+  
+    #<strong>drawBitmap</strong>(bitmap, dx, dy)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw <em>bitmap</em> into the drawable attached to this device context.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>bitmap</code>
+<dd>
+<p>bitmap to draw <span class='object_link'><a href="FXBitmap.html" title="Fox::FXBitmap (class)">Fox::FXBitmap</a></span></p>
+</dd><dt><code>dx</code>
+<dd>
+<p>x-coordinate of the the destination point in this drawable [Integer]</p>
+</dd><dt><code>dy</code>
+<dd>
+<p>y-coordinate of the the destination point in this drawable [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+581</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 581</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawBitmap'>drawBitmap</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span> <span class='id identifier rubyid_dx'>dx</span><span class='comma'>,</span> <span class='id identifier rubyid_dy'>dy</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawCircle-instance_method">
+  
+    #<strong>drawCircle</strong>(x, y, r)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a circle centered at (<em>x</em>, <em>y</em>), with specified radius.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+
+<p><code>x</code>::	x-coordinate of the circle&#39;s center [Integer] <code>y</code>::	y-coordinate of the circle&#39;s center [Integer] <code>r</code>::	radius of the circle, in pixels [Integer]</p>
+
+<p>See also #fillCircle.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+608
+609
+610</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 608</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawCircle'>drawCircle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_drawArc'>drawArc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='op'>-</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>-</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='int'>2</span><span class='op'>*</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='int'>2</span><span class='op'>*</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>360</span><span class='op'>*</span><span class='int'>64</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawEllipse-instance_method">
+  
+    #<strong>drawEllipse</strong>(x, y, w, h)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw an ellipse.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+374</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 374</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawEllipse'>drawEllipse</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawFocusRectangle-instance_method">
+  
+    #<strong>drawFocusRectangle</strong>(x, y, w, h)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw focus rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>width</code>
+<dd>
+<p>width of the rectangle, in pixels [Integer]</p>
+</dd><dt><code>height</code>
+<dd>
+<p>height of the rectangle, in pixels [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+525</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 525</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawFocusRectangle'>drawFocusRectangle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawHashBox-instance_method">
+  
+    #<strong>drawHashBox</strong>(x, y, w, h, b = 1)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw hashed box with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>width</code>
+<dd>
+<p>width of the box, in pixels [Integer]</p>
+</dd><dt><code>height</code>
+<dd>
+<p>height of the box, in pixels [Integer]</p>
+</dd><dt><code>b</code>
+<dd>
+<p>border width, in pixels [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+513</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 513</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawHashBox'>drawHashBox</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='op'>=</span><span class='int'>1</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawIcon-instance_method">
+  
+    #<strong>drawIcon</strong>(icon, dx, dy)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw <em>icon</em> into the drawable attached to this device context.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>icon</code>
+<dd>
+<p>icon to draw <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">Fox::FXIcon</a></span></p>
+</dd><dt><code>dx</code>
+<dd>
+<p>x-coordinate of the the destination point in this drawable [Integer]</p>
+</dd><dt><code>dy</code>
+<dd>
+<p>y-coordinate of the the destination point in this drawable [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+592</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 592</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawIcon'>drawIcon</span><span class='lparen'>(</span><span class='id identifier rubyid_icon'>icon</span><span class='comma'>,</span> <span class='id identifier rubyid_dx'>dx</span><span class='comma'>,</span> <span class='id identifier rubyid_dy'>dy</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawIconShaded-instance_method">
+  
+    #<strong>drawIconShaded</strong>(icon, dx, dy)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a shaded version of an icon into the drawable attached to this device context. This is typically used for drawing disabled labels and buttons.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>icon</code>
+<dd>
+<p>icon to draw <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">Fox::FXIcon</a></span></p>
+</dd><dt><code>dx</code>
+<dd>
+<p>x-coordinate of the the destination point in this drawable [Integer]</p>
+</dd><dt><code>dy</code>
+<dd>
+<p>y-coordinate of the the destination point in this drawable [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+604</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 604</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawIconShaded'>drawIconShaded</span><span class='lparen'>(</span><span class='id identifier rubyid_icon'>icon</span><span class='comma'>,</span> <span class='id identifier rubyid_dx'>dx</span><span class='comma'>,</span> <span class='id identifier rubyid_dy'>dy</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawIconSunken-instance_method">
+  
+    #<strong>drawIconSunken</strong>(icon, dx, dy)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a sunken version of an icon into the drawable attached to this device context.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>icon</code>
+<dd>
+<p>icon to draw <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">Fox::FXIcon</a></span></p>
+</dd><dt><code>dx</code>
+<dd>
+<p>x-coordinate of the the destination point in this drawable [Integer]</p>
+</dd><dt><code>dy</code>
+<dd>
+<p>y-coordinate of the the destination point in this drawable [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+615</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 615</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawIconSunken'>drawIconSunken</span><span class='lparen'>(</span><span class='id identifier rubyid_icon'>icon</span><span class='comma'>,</span> <span class='id identifier rubyid_dx'>dx</span><span class='comma'>,</span> <span class='id identifier rubyid_dy'>dy</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawImage-instance_method">
+  
+    #<strong>drawImage</strong>(image, dx, dy)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw <em>image</em> into the drawable attached to this device context.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>image</code>
+<dd>
+<p>image to draw <span class='object_link'><a href="FXImage.html" title="Fox::FXImage (class)">Fox::FXImage</a></span></p>
+</dd><dt><code>dx</code>
+<dd>
+<p>x-coordinate of the the destination point in this drawable [Integer]</p>
+</dd><dt><code>dy</code>
+<dd>
+<p>y-coordinate of the the destination point in this drawable [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+570</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 570</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawImage'>drawImage</span><span class='lparen'>(</span><span class='id identifier rubyid_image'>image</span><span class='comma'>,</span> <span class='id identifier rubyid_dx'>dx</span><span class='comma'>,</span> <span class='id identifier rubyid_dy'>dy</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawImageText-instance_method">
+  
+    #<strong>drawImageText</strong>(x, y, string)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw <em>string</em> at position (<em>x</em>, <em>y</em>).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>string</code>
+<dd>
+<p>the text string to draw [String]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawText-instance_method" title="Fox::FXDC#drawText (method)">#drawText</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+641</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 641</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawImageText'>drawImageText</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawLine-instance_method">
+  
+    #<strong>drawLine</strong>(x1, y1, x2, y2)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw the line from (<em>x1</em>, <em>y1</em>) to (<em>x2</em>, <em>y2</em>).</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>x1</code>
+<dd>
+<p>x-coordinate of the starting point [Integer]</p>
+</dd><dt><code>y1</code>
+<dd>
+<p>y-coordinate of the starting point [Integer]</p>
+</dd><dt><code>x2</code>
+<dd>
+<p>x-coordinate of the ending point [Integer]</p>
+</dd><dt><code>y2</code>
+<dd>
+<p>y-coordinate of the ending point [Integer]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawLines-instance_method" title="Fox::FXDC#drawLines (method)">#drawLines</a></span> and <span class='object_link'><a href="#drawLinesRel-instance_method" title="Fox::FXDC#drawLinesRel (method)">#drawLinesRel</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+260</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 260</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawLine'>drawLine</span><span class='lparen'>(</span><span class='id identifier rubyid_x1'>x1</span><span class='comma'>,</span> <span class='id identifier rubyid_y1'>y1</span><span class='comma'>,</span> <span class='id identifier rubyid_x2'>x2</span><span class='comma'>,</span> <span class='id identifier rubyid_y2'>y2</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawLines-instance_method">
+  
+    #<strong>drawLines</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw connected lines, where <em>points</em> is an array of FXPoint instances. The number of lines drawn is equal to the size of the <em>points</em> array minus one. Treats all points&#39; coordinates as relative to the origin.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>array of FXPoint instances that defines all points on the line [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawLine-instance_method" title="Fox::FXDC#drawLine (method)">#drawLine</a></span> and <span class='object_link'><a href="#drawLinesRel-instance_method" title="Fox::FXDC#drawLinesRel (method)">#drawLinesRel</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+274</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 274</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawLines'>drawLines</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawLineSegments-instance_method">
+  
+    #<strong>drawLineSegments</strong>(segments)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw mutiple, unconnected lines (i.e. line segments), where <em>segments</em> is an array of FXSegment instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>segments</code>
+<dd>
+<p>an array of FXSegment instances [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+299</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 299</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawLineSegments'>drawLineSegments</span><span class='lparen'>(</span><span class='id identifier rubyid_segments'>segments</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawLinesRel-instance_method">
+  
+    #<strong>drawLinesRel</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw connected lines, where <em>points</em> is an array of FXPoint instances. The number of lines drawn is equal to the size of the <em>points</em> array minus one. Treats each point&#39;s coordinates (after the first) as relative to the previous point.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>array of FXPoint instances that defines all points on the line [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawLine-instance_method" title="Fox::FXDC#drawLine (method)">#drawLine</a></span> and <span class='object_link'><a href="#drawLines-instance_method" title="Fox::FXDC#drawLines (method)">#drawLines</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 289</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawLinesRel'>drawLinesRel</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawPoint-instance_method">
+  
+    #<strong>drawPoint</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a point at (<em>x</em>, <em>y</em>) in the current foreground drawing color.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the point [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the point [Integer]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawPoints-instance_method" title="Fox::FXDC#drawPoints (method)">#drawPoints</a></span> and <span class='object_link'><a href="#drawPointsRel-instance_method" title="Fox::FXDC#drawPointsRel (method)">#drawPointsRel</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+221</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 221</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawPoint'>drawPoint</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawPoints-instance_method">
+  
+    #<strong>drawPoints</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw multiple points, where <em>points</em> is an array of FXPoint instances.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>array of FXPoint instances [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawPoint-instance_method" title="Fox::FXDC#drawPoint (method)">#drawPoint</a></span> and <span class='object_link'><a href="#drawPointsRel-instance_method" title="Fox::FXDC#drawPointsRel (method)">#drawPointsRel</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+232</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 232</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawPoints'>drawPoints</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawPointsRel-instance_method">
+  
+    #<strong>drawPointsRel</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw multiple points, where <em>points</em> is an array of FXPoint instances. Unlike <span class='object_link'><a href="#drawPoints-instance_method" title="Fox::FXDC#drawPoints (method)">#drawPoints</a></span>, where each of the points is drawn relative to the origin, <span class='object_link'><a href="#drawPointsRel-instance_method" title="Fox::FXDC#drawPointsRel (method)">#drawPointsRel</a></span> treats all coordinates after the first as relative to the previous point.</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>array of FXPoint instances [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawPoint-instance_method" title="Fox::FXDC#drawPoint (method)">#drawPoint</a></span> and <span class='object_link'><a href="#drawPoints-instance_method" title="Fox::FXDC#drawPoints (method)">#drawPoints</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+246</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 246</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawPointsRel'>drawPointsRel</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawRectangle-instance_method">
+  
+    #<strong>drawRectangle</strong>(x, y, w, h)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of upper-left corner of the rectangle [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of upper-left corner of the rectangle [Integer]</p>
+</dd><dt><code>width</code>
+<dd>
+<p>width of the rectangle, in pixels [Integer]</p>
+</dd><dt><code>height</code>
+<dd>
+<p>height of the rectangle, in pixels [Integer]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawRectangles-instance_method" title="Fox::FXDC#drawRectangles (method)">#drawRectangles</a></span>, <span class='object_link'><a href="#fillRectangle-instance_method" title="Fox::FXDC#fillRectangle (method)">#fillRectangle</a></span> and <span class='object_link'><a href="#fillRectangles-instance_method" title="Fox::FXDC#fillRectangles (method)">#fillRectangles</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+313</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 313</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawRectangle'>drawRectangle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawRectangles-instance_method">
+  
+    #<strong>drawRectangles</strong>(rectangles)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw multiple rectangles, where <em>rectangles</em> is an array of FXRectangle instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>rectangles</code>
+<dd>
+<p>an array of FXRectangle instances [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawRectangle-instance_method" title="Fox::FXDC#drawRectangle (method)">#drawRectangle</a></span>, <span class='object_link'><a href="#fillRectangle-instance_method" title="Fox::FXDC#fillRectangle (method)">#fillRectangle</a></span> and <span class='object_link'><a href="#fillRectangles-instance_method" title="Fox::FXDC#fillRectangles (method)">#fillRectangles</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+324</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 324</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawRectangles'>drawRectangles</span><span class='lparen'>(</span><span class='id identifier rubyid_rectangles'>rectangles</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawRoundRectangle-instance_method">
+  
+    #<strong>drawRoundRectangle</strong>(x, y, w, h, ew, eh)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a rounded rectangle with ellipse width <em>ew</em> and ellipse height <em>eh</em>.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>w</code>
+<dd>
+<p>width of the bounding rectangle, in pixels [Integer]</p>
+</dd><dt><code>h</code>
+<dd>
+<p>height of the bounding rectangle, in pixels [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+336</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 336</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawRoundRectangle'>drawRoundRectangle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_ew'>ew</span><span class='comma'>,</span> <span class='id identifier rubyid_eh'>eh</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="drawText-instance_method">
+  
+    #<strong>drawText</strong>(x, y, string)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw <em>string</em> at position (<em>x</em>, <em>y</em>).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner [Integer]</p>
+</dd><dt><code>string</code>
+<dd>
+<p>the text string to draw [String]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawImageText-instance_method" title="Fox::FXDC#drawImageText (method)">#drawImageText</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+628</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 628</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_drawText'>drawText</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillArc-instance_method">
+  
+    #<strong>fillArc</strong>(x, y, w, h, start, extent)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled arc (see documentation for <span class='object_link'><a href="#drawArc-instance_method" title="Fox::FXDC#drawArc (method)">#drawArc</a></span>).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>w</code>
+<dd>
+<p>width of the bounding rectangle, in pixels [Integer]</p>
+</dd><dt><code>h</code>
+<dd>
+<p>height of the bounding rectangle, in pixels [Integer]</p>
+</dd><dt><code>start</code>
+<dd>
+<p>starting angle of the arc, in 64ths of a degree [Integer]</p>
+</dd><dt><code>extent</code>
+<dd>
+<p>the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawArc-instance_method" title="Fox::FXDC#drawArc (method)">#drawArc</a></span>, <span class='object_link'><a href="#drawArcs-instance_method" title="Fox::FXDC#drawArcs (method)">#drawArcs</a></span> and <span class='object_link'><a href="#fillArcs-instance_method" title="Fox::FXDC#fillArcs (method)">#fillArcs</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+430</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 430</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillArc'>fillArc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_extent'>extent</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillArcs-instance_method">
+  
+    #<strong>fillArcs</strong>(arcs)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled arcs, where <em>arcs</em> is an array of FXArc instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>arcs</code>
+<dd>
+<p>an array of FXArc instances [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawArc-instance_method" title="Fox::FXDC#drawArc (method)">#drawArc</a></span>, <span class='object_link'><a href="#drawArcs-instance_method" title="Fox::FXDC#drawArcs (method)">#drawArcs</a></span> and <span class='object_link'><a href="#fillArc-instance_method" title="Fox::FXDC#fillArc (method)">#fillArc</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+441</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 441</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillArcs'>fillArcs</span><span class='lparen'>(</span><span class='id identifier rubyid_arcs'>arcs</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillChord-instance_method">
+  
+    #<strong>fillChord</strong>(x, y, w, h, ang1, ang2)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+413</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 413</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillChord'>fillChord</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_ang1'>ang1</span><span class='comma'>,</span> <span class='id identifier rubyid_ang2'>ang2</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillChords-instance_method">
+  
+    #<strong>fillChords</strong>(chords, nchords)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+414</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 414</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillChords'>fillChords</span><span class='lparen'>(</span><span class='id identifier rubyid_chords'>chords</span><span class='comma'>,</span> <span class='id identifier rubyid_nchords'>nchords</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillCircle-instance_method">
+  
+    #<strong>fillCircle</strong>(x, y, r)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a filled circle centered at (<em>x</em>, <em>y</em>), with specified radius.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+
+<p><code>x</code>::	x-coordinate of the circle&#39;s center [Integer] <code>y</code>::	y-coordinate of the circle&#39;s center [Integer] <code>r</code>::	radius of the circle, in pixels [Integer]</p>
+
+<p>See also #drawCircle.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+623
+624
+625</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 623</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillCircle'>fillCircle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fillArc'>fillArc</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='op'>-</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>-</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='int'>2</span><span class='op'>*</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='int'>2</span><span class='op'>*</span><span class='id identifier rubyid_r'>r</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>360</span><span class='op'>*</span><span class='int'>64</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillComplexPolygon-instance_method">
+  
+    #<strong>fillComplexPolygon</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>an array of FXPoint instances [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+473</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 473</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillComplexPolygon'>fillComplexPolygon</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillComplexPolygonRel-instance_method">
+  
+    #<strong>fillComplexPolygonRel</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>an array of FXPoint instances [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+500</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 500</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillComplexPolygonRel'>fillComplexPolygonRel</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillConcavePolygon-instance_method">
+  
+    #<strong>fillConcavePolygon</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>an array of FXPoint instances [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+464</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 464</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillConcavePolygon'>fillConcavePolygon</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillConcavePolygonRel-instance_method">
+  
+    #<strong>fillConcavePolygonRel</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>an array of FXPoint instances [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+491</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 491</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillConcavePolygonRel'>fillConcavePolygonRel</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillEllipse-instance_method">
+  
+    #<strong>fillEllipse</strong>(x, y, w, h)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a filled ellipse.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+446</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 446</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillEllipse'>fillEllipse</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillPolygon-instance_method">
+  
+    #<strong>fillPolygon</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>an array of FXPoint instances [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+455</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 455</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillPolygon'>fillPolygon</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillPolygonRel-instance_method">
+  
+    #<strong>fillPolygonRel</strong>(points)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>points</code>
+<dd>
+<p>an array of FXPoint instances [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+482</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 482</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillPolygonRel'>fillPolygonRel</span><span class='lparen'>(</span><span class='id identifier rubyid_points'>points</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillRectangle-instance_method">
+  
+    #<strong>fillRectangle</strong>(x, y, w, h)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner of the rectangle [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner of the rectangle [Integer]</p>
+</dd><dt><code>width</code>
+<dd>
+<p>width of the rectangle, in pixels [Integer]</p>
+</dd><dt><code>height</code>
+<dd>
+<p>height of the rectangle, in pixels [Integer]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawRectangle-instance_method" title="Fox::FXDC#drawRectangle (method)">#drawRectangle</a></span>, <span class='object_link'><a href="#drawRectangles-instance_method" title="Fox::FXDC#drawRectangles (method)">#drawRectangles</a></span> and <span class='object_link'><a href="#fillRectangles-instance_method" title="Fox::FXDC#fillRectangles (method)">#fillRectangles</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+388</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 388</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillRectangle'>fillRectangle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillRectangles-instance_method">
+  
+    #<strong>fillRectangles</strong>(rectangles)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw filled rectangles, where <em>rectangles</em> is an array of FXRectangle instances.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>rectangles</code>
+<dd>
+<p>an array of FXRectangle instances [Array]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#drawRectangle-instance_method" title="Fox::FXDC#drawRectangle (method)">#drawRectangle</a></span>, <span class='object_link'><a href="#drawRectangles-instance_method" title="Fox::FXDC#drawRectangles (method)">#drawRectangles</a></span> and <span class='object_link'><a href="#fillRectangle-instance_method" title="Fox::FXDC#fillRectangle (method)">#fillRectangle</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+399</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 399</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillRectangles'>fillRectangles</span><span class='lparen'>(</span><span class='id identifier rubyid_rectangles'>rectangles</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fillRoundRectangle-instance_method">
+  
+    #<strong>fillRoundRectangle</strong>(x, y, w, h, ew, eh)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Draw a filled rounded rectangle with ellipse width <em>ew</em> and ellipse height <em>eh</em>.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
+</dd><dt><code>w</code>
+<dd>
+<p>width of the bounding rectangle, in pixels [Integer]</p>
+</dd><dt><code>h</code>
+<dd>
+<p>height of the bounding rectangle, in pixels [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+411</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 411</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fillRoundRectangle'>fillRoundRectangle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_ew'>ew</span><span class='comma'>,</span> <span class='id identifier rubyid_eh'>eh</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="readPixel-instance_method">
+  
+    #<strong>readPixel</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a color value (i.e. an FXColor) for the pixel at (<em>x</em>, <em>y</em>).</p>
+
+<h4 id="label-Parameters-3A">Parameters:</h4>
+<dl class="rdoc-list note-list"><dt><code>x</code>
+<dd>
+<p>x-coordinate of the pixel of interest [Integer]</p>
+</dd><dt><code>y</code>
+<dd>
+<p>y-coordinate of the pixel of interest [Integer]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+209</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 209</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_readPixel'>readPixel</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setClipMask-instance_method">
+  
+    #<strong>setClipMask</strong>(bitmap, dx = 0, dy = 0)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set clip mask to <em>bitmap</em>.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>bitmap</code>
+<dd>
+<p>a bitmap to use for clipping <span class='object_link'><a href="FXBitmap.html" title="Fox::FXBitmap (class)">Fox::FXBitmap</a></span></p>
+</dd><dt><code>dx</code>
+<dd><dl class="rdoc-list label-list"><dt>Integer
+<dd></dd></dl>
+</dd><dt><code>dy</code>
+<dd><dl class="rdoc-list label-list"><dt>Integer
+<dd></dd></dl>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#setClipRectangle-instance_method" title="Fox::FXDC#setClipRectangle (method)">#setClipRectangle</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+698</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 698</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setClipMask'>setClipMask</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span> <span class='id identifier rubyid_dx'>dx</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_dy'>dy</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setClipRectangle-instance_method">
+  
+    #<strong>setClipRectangle</strong>(rectangle)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set clip rectangle.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>rectangle</code>
+<dd>
+<p>a rectangle that defines the clipping region [Integer]</p>
+</dd></dl>
+
+<p>See also <span class='object_link'><a href="#setClipMask-instance_method" title="Fox::FXDC#setClipMask (method)">#setClipMask</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+669</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 669</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setClipRectangle'>setClipRectangle</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setDashes-instance_method">
+  
+    #<strong>setDashes</strong>(dashOffset, dashPattern)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set dash pattern and dash offset. A dash pattern of [1, 2, 3, 4] is a repeating pattern of 1 foreground pixel, 2 background pixels, 3 foreground pixels, and 4 background pixels. The offset is where in the pattern the system will start counting. The maximum length of the dash pattern array is 32 elements.</p>
+
+<h3 id="label-Parameters-3A">Parameters:</h3>
+<dl class="rdoc-list note-list"><dt><code>dashOffset</code>
+<dd>
+<p>indicates which element of the dash pattern to start with (zero for the beginning) [Integer]</p>
+</dd><dt><code>dashPattern</code>
+<dd>
+<p>array of integers indicating the dash pattern [Array]</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+655</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDC.rb', line 655</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setDashes'>setDashes</span><span class='lparen'>(</span><span class='id identifier rubyid_dashOffset'>dashOffset</span><span class='comma'>,</span> <span class='id identifier rubyid_dashPattern'>dashPattern</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Fri Nov 27 17:02:46 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.24 (ruby-2.7.2).
+</div>
+
+    </div>
+  </body>
+</html>
