@@ -133,6 +133,13 @@ module Fox
       # Default: make 6 control points
       def makeControlPoints
       end
+
+      protected def apply_dc(dc)
+        oldForeground = dc.foreground
+        dc.foreground = foreground
+        yield
+        dc.foreground = oldForeground
+      end
     end
 
     class ShapeGroup
@@ -191,29 +198,28 @@ module Fox
       end
 
       def draw(dc)
-        # Save old values
-        oldForeground = dc.foreground
-        oldLineWidth = dc.lineWidth
-        oldLineCap = dc.lineCap
-        oldLineJoin = dc.lineJoin
-        oldLineStyle = dc.lineStyle
+        apply_dc(dc) do
+          # Save old values
+          oldLineWidth = dc.lineWidth
+          oldLineCap = dc.lineCap
+          oldLineJoin = dc.lineJoin
+          oldLineStyle = dc.lineStyle
 
-        # Set properties for this line
-        dc.foreground = foreground
-        dc.lineWidth = lineWidth
-        dc.lineCap = lineCap
-        dc.lineJoin = lineJoin
-        dc.lineStyle = lineStyle
+          # Set properties for this line
+          dc.lineWidth = lineWidth
+          dc.lineCap = lineCap
+          dc.lineJoin = lineJoin
+          dc.lineStyle = lineStyle
 
-        # Draw the line
-        dc.drawLine(x1, y1, x2, y2)
+          # Draw the line
+          dc.drawLine(x1, y1, x2, y2)
 
-        # Restore old properties
-        dc.lineWidth = oldLineWidth
-        dc.lineCap = oldLineCap
-        dc.lineJoin = oldLineJoin
-        dc.lineStyle = oldLineStyle
-        dc.foreground = oldForeground
+          # Restore old properties
+          dc.lineWidth = oldLineWidth
+          dc.lineCap = oldLineCap
+          dc.lineJoin = oldLineJoin
+          dc.lineStyle = oldLineStyle
+        end
       end
     end
 
@@ -228,31 +234,42 @@ module Fox
       end
 
       def draw(dc)
-        oldForeground = dc.foreground
-        dc.foreground = foreground
-        dc.drawRectangle(x, y, width, height)
-        dc.foreground = oldForeground
+        apply_dc(dc) do
+          dc.lineWidth = 5 if selected?
+          dc.drawRectangle(x, y, width, height)
+        end
       end
     end
 
-    class TextShape < RectangleShape
+    class TextShape < Shape
 
       attr_reader :font, :text
+      attr_accessor :width, :height
 
       def initialize(x, y, w, h, text=nil)
-        super(x, y, w, h)
+        super(x, y)
+        @width = w
+        @height = h
         @text = text
         @font = FXApp.instance.normalFont
       end
 
       def draw(dc)
-        super(dc)
-        oldForeground = dc.foreground
-        oldTextFont = dc.font
-        dc.font = @font
-        dc.drawImageText(x, y, text)
-        dc.font = oldTextFont if oldTextFont
-        dc.foreground = oldForeground
+        old_foreground = dc.foreground
+        apply_dc(dc) do
+          if selected?
+            dc.lineWidth = 5
+            dc.drawRectangle(x - 3, y - 3, width + 6, height + 6)
+          end
+
+          old_background = dc.background
+          dc.background = old_foreground
+          oldTextFont = dc.font
+          dc.font = @font
+          dc.drawImageText(x, y + height, text)
+          dc.font = oldTextFont if oldTextFont
+          dc.background = old_foreground
+        end
       end
     end
 
@@ -274,14 +291,13 @@ module Fox
       end
 
       def draw(dc)
-        oldForeground = dc.foreground
-        oldLineWidth = dc.lineWidth
-        dc.foreground = foreground
-        dc.lineWidth = 5 if selected?
-        dc.drawArc(x, y, width, height,      0, 64*180)
-        dc.drawArc(x, y, width, height, 64*180, 64*360)
-        dc.foreground = oldForeground
-        dc.lineWidth = oldLineWidth
+        apply_dc(dc) do
+          oldLineWidth = dc.lineWidth
+          dc.lineWidth = 5 if selected?
+          dc.drawArc(x, y, width, height,      0, 64*180)
+          dc.drawArc(x, y, width, height, 64*180, 64*360)
+          dc.lineWidth = oldLineWidth
+        end
       end
     end
 
@@ -293,11 +309,26 @@ module Fox
       attr_accessor :image
 
       def initialize(x, y, image)
+        super(x, y)
         @image = image
       end
 
+      def width
+        @image.width
+      end
+
+      def height
+        @image.height
+      end
+
       def draw(dc)
-        dc.drawImage(image)
+        apply_dc(dc) do
+          if selected?
+            dc.lineWidth = 5
+            dc.drawRectangle(x - 3, y - 3, width + 5, height + 5)
+          end
+          dc.drawImage(image, x, y)
+        end
       end
     end
 

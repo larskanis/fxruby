@@ -52,6 +52,8 @@ class CanvasDemo < FXMainWindow
     FXMenuTitle.new(menu_bar, "&Edit", nil, edit_menu)
     FXMenuTitle.new(menu_bar, "&Help", nil, help_menu)
 
+    @birdImage = FXPNGImage.new(app, File.binread(File.expand_path("../icons/dippy.png", __FILE__)))
+
     # Status bar
     FXStatusBar.new(self,
       LAYOUT_SIDE_BOTTOM|LAYOUT_FILL_X|STATUSBAR_WITH_DRAGCORNER)
@@ -70,12 +72,14 @@ class CanvasDemo < FXMainWindow
     scene.addShape(CircleShape.new(50, 50, 20))
     scene.addShape(LineShape.new(10, 10, 70, 70))
     scene.addShape(RectangleShape.new(90, 90, 30, 40))
-    scene.addShape(TextShape.new(60, 60, 30, 40, "Hello!"))
+    scene.addShape(TextShape.new(100, 40, 50, 15, "Hello g!"))
+    scene.addShape(ImageShape.new(160, 5, @birdImage ))
     scene
   end
 
   def create
     super
+    @birdImage.create
     show(PLACEMENT_SCREEN)
   end
 end
