@@ -9,7 +9,7 @@ module Fox
   # A group of OpenGL objects
   #
   class FXGLGroup < FXGLObject
-    include OpenGL
+    include OpenGL if defined?(OpenGL)
     include Enumerable
 
     FLT_MAX =  1.0e+20
