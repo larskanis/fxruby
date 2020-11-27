@@ -1,3 +1,14 @@
+## 1.6.43 / 2020-11-27
+
+* Make FXRuby compatible to ruby-3.0
+* Migration to the `opengl-bindings` gem.
+  The `opengl` gem is deprecated since years and no longer maintained.
+  `opengl-bindings` is the announced successor.
+* Add an alternative location for API documentation: https://larskanis.github.io/fxruby/
+  This is because https://rubydoc.info is too often down.
+* Fix Canvas::ImageShape and shape selection. #60
+  This changes the position the text of TextShape is printed on the canvas.
+
 ## 1.6.42 / 2020-02-01
 
 * Fix a packing issue in 1.6.41: `lib/fox16/input.rb` had owner permission only.
