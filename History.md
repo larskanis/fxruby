@@ -1,3 +1,8 @@
+## 1.6.44 / 2020-12-31
+
+* Add binary gem support for ruby-3.0. #66
+* Drop support for ruby-2.2
+
 ## 1.6.43 / 2020-11-27
 
 * Make FXRuby compatible to ruby-3.0
