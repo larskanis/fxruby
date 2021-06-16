@@ -18,7 +18,7 @@ install:
   - c:/msys64/usr/bin/bash -lc "pacman --noconfirm --remove mingw-w64-i686-gcc-ada mingw-w64-i686-gcc-objc mingw-w64-x86_64-gcc-ada mingw-w64-x86_64-gcc-objc"
   - c:/msys64/usr/bin/bash -lc "pacman -Syu --noconfirm --ask 20"
   - c:/msys64/usr/bin/bash -lc "pacman -Su --noconfirm"
-  - c:/msys64/usr/bin/bash -lc "pacman -S --noconfirm --needed ${MINGW_PACKAGE_PREFIX}-fox ${MINGW_PACKAGE_PREFIX}-swig"
+  - c:/msys64/usr/bin/bash -lc "pacman -S --noconfirm --needed ${MINGW_PACKAGE_PREFIX}-fox ${MINGW_PACKAGE_PREFIX}-swig ${MINGW_PACKAGE_PREFIX}-gcc"
   - swig -version
   - gem install bundler --conservative
   - bundle config set force_ruby_platform true
