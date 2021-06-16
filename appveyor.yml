@@ -30,8 +30,8 @@ test_script:
 environment:
   matrix:
     - ruby_version: "head-x64"
-      MINGW_PACKAGE_PREFIX: "mingw-w64-x86_64"
-      MSYSTEM: "MINGW64"
+      MINGW_PACKAGE_PREFIX: "mingw-w64-ucrt-x86_64"
+      MSYSTEM: "UCRT64"
     - ruby_version: "24"
       MINGW_PACKAGE_PREFIX: "mingw-w64-i686"
       MSYSTEM: "MINGW32"
