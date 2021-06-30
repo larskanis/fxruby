@@ -3,8 +3,7 @@ image: Visual Studio 2019
 clone_depth: 1
 
 init:
-  - SET PATH=c:/Ruby%ruby_version%/bin;c:/msys64/%MSYSTEM%/bin;%PATH%
-  - SET RAKEOPT=-rdevkit
+  - SET PATH=c:/Ruby%ruby_version%/bin;%PATH%
 install:
   - ps: |
       if ($env:ruby_version -like "*head*") {
@@ -13,7 +12,9 @@ install:
       }
   - ruby --version
   - gem --version
+  - gcc -v
   - ridk version
+  - ridk enable
   # Remove gcc-ada and gcc-objc, since they are no longer supported by msys2 and therefore cause a dependency issue
   - c:/msys64/usr/bin/bash -lc "pacman --noconfirm --remove mingw-w64-i686-gcc-ada mingw-w64-i686-gcc-objc mingw-w64-x86_64-gcc-ada mingw-w64-x86_64-gcc-objc"
   - c:/msys64/usr/bin/bash -lc "pacman -Syu --noconfirm --ask 20"
@@ -30,8 +31,4 @@ test_script:
 environment:
   matrix:
     - ruby_version: "head-x64"
-      MINGW_PACKAGE_PREFIX: "mingw-w64-ucrt-x86_64"
-      MSYSTEM: "UCRT64"
     - ruby_version: "24"
-      MINGW_PACKAGE_PREFIX: "mingw-w64-i686"
-      MSYSTEM: "MINGW32"
