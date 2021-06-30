@@ -12,7 +12,6 @@ install:
       }
   - ruby --version
   - gem --version
-  - gcc -v
   - ridk version
   - ridk enable
   # Remove gcc-ada and gcc-objc, since they are no longer supported by msys2 and therefore cause a dependency issue
@@ -20,6 +19,7 @@ install:
   - c:/msys64/usr/bin/bash -lc "pacman -Syu --noconfirm --ask 20"
   - c:/msys64/usr/bin/bash -lc "pacman -Su --noconfirm"
   - c:/msys64/usr/bin/bash -lc "pacman -S --noconfirm --needed ${MINGW_PACKAGE_PREFIX}-fox ${MINGW_PACKAGE_PREFIX}-swig ${MINGW_PACKAGE_PREFIX}-gcc"
+  - gcc -v
   - swig -version
   - gem install bundler --conservative
   - bundle config set force_ruby_platform true
