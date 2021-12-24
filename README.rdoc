@@ -34,11 +34,16 @@ FXRuby supportes everything of FOX, that is useful in Ruby:
 FXRuby runs on Linux, Windows and OS-X with Ruby-2.2 or newer. Installation on Unix requires
 FOX development headers and libraries installed:
 * on Debian/Ubuntu: <tt>sudo apt-get install g++ libxrandr-dev libfox-1.6-dev</tt>
+* on Mac: <tt>sudo port install rb-fxruby</tt> OR <tt>brew install fox && brew install xquartz</tt>
+* on Windows: the binary fxruby gems already contain all required libraries
 * see also detailed installation instructions in the {Wiki}[https://github.com/lylejohnson/fxruby/wiki]
-* on Windows: the binary fxruby gems already contain all required libararies
 
 Then, install the gem:
 * gem install fxruby
+
+On Mac, before running applications, you must also run: <tt>open -a /Applications/Utilities/XQuartz.app</tt>
+
+(otherwise, you end up getting this message when running applications on Mac: <tt>FXRbApp::openDisplay: unable to open display :0.0</tt>)
 
 == DIRECTORIES
 The directory structure is:
