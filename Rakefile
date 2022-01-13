@@ -92,7 +92,7 @@ gem_spec = Bundler.load_gemspec('fxruby.gemspec')
 
 ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
   ext.cross_compile = true
-  ext.cross_platform = ['x86-mingw32', 'x64-mingw32']
+  ext.cross_platform = ['x86-mingw32', 'x64-mingw-ucrt', 'x64-mingw32']
   # Enable FXTRACE and FXASSERT for 'rake compile'
   ext.config_options << "--enable-debug"
 
@@ -109,6 +109,7 @@ ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
 
     platform_host_map =  {
       'x86-mingw32' => ['i686-w64-mingw32'],
+      'x64-mingw-ucrt' => ['x86_64-w64-mingw32'],
       'x64-mingw32' => ['x86_64-w64-mingw32'],
     }
 
@@ -117,7 +118,7 @@ ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
 
       gcc_shared_dlls = %w[libwinpthread-1.dll libgcc_s_dw2-1.dll libgcc_s_sjlj-1.dll libgcc_s_seh-1.dll libstdc++-6.dll]
 
-      dlls = gcc_shared_dlls.select{|dll| File.exist?("ports/#{host}/bin/#{dll}") }
+      dlls = gcc_shared_dlls.select{|dll| File.exist?("ports/#{gemplat}/bin/#{dll}") }
       dlls += [
           "libfxscintilla-20.dll",
           "libFOX-1.6-0.dll",
@@ -127,11 +128,11 @@ ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
           "zlib1.dll",
       ]
 
-      spec.files += dlls.map{|dll| "ports/#{host}/bin/#{dll}" }
+      spec.files += dlls.map{|dll| "ports/#{gemplat}/bin/#{dll}" }
 
       unless ENV['FXRUBY_MINGW_DEBUG']
         dlls.each do |dll|
-          task "ports/#{host}/bin/#{dll}" do |t|
+          task "ports/#{gemplat}/bin/#{dll}" do |t|
             sh "#{host}-strip", t.name
           end
         end

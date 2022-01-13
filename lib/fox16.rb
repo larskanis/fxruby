@@ -19,10 +19,7 @@ rescue LoadError
     end
 
     # Temporary add this directory for DLL search, so that bundled DLLs can be found.
-    ports_dir = RbConfig::CONFIG["host"].gsub('i686-pc-mingw32') do
-      major_minor < '2.0' ? 'i586-mingw32msvc' : 'i686-w64-mingw32'
-    end
-    ports_bin = File.expand_path("../../ports/#{ports_dir}/bin", __FILE__)
+    ports_bin = File.expand_path("../../ports/#{RUBY_PLATFORM}/bin", __FILE__)
     add_dll_path.call(ports_bin) do
       require "#{major_minor}/fox16_c"
     end

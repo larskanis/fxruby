@@ -55,7 +55,7 @@ module BuildRecipeCommons
   end
 
   def port_path
-    "#{target}/#{host}"
+    "#{target}/#{RUBY_PLATFORM}"
   end
 
   # When using rake-compiler-dock on Windows, the underlying Virtualbox shared
@@ -69,7 +69,7 @@ module BuildRecipeCommons
   end
 
   def cook_and_activate
-    checkpoint = File.join(self.target, "#{self.name}-#{self.version}-#{self.host}.installed")
+    checkpoint = File.join(self.target, "#{self.name}-#{self.version}-#{RUBY_PLATFORM}.installed")
     unless File.exist?(checkpoint)
       chdir_for_build do
         self.cook
@@ -178,7 +178,7 @@ def do_rake_compiler_setup
         "--without-xft",
         "--without-x",
         debug ? "--enable-debug" : "--enable-release",
-        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""}",
+        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""} -D__USE_MINGW_ANSI_STDIO=1 -DHAVE_VSSCANF",
         "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""}",
       ]
       recipe.cook_and_activate
@@ -191,11 +191,12 @@ def do_rake_compiler_setup
           "#{ENV['MAKE'] || "make"}"
         end
 
-#         # This can be uncommented when fxscintilla is used from the source repository.
-#         def configure
-#           execute "bootstrap", "./bootstrap.sh"
-#           super
-#         end
+        def configure
+          # This can be uncommented when fxscintilla is used from the source repository.
+          #execute "bootstrap", "./bootstrap.sh"
+          execute "rm custom pkg-config", "sudo rm -f /usr/bin/x86_64-w64-mingw32-pkg-config"
+          super
+        end
 
         def compile
           execute "compile_lexers", "cd lexers && #{mk}"
