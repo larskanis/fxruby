@@ -1,6 +1,7 @@
 ## 1.6.45 / 2022-01-14
 
 * Add binary gem support for ruby-3.1 on platform x64-mingw-ucrt and drop ruby-2.3.
+* Update to libz-1.2.11, libjpeg-turbo-2.1.2, libtiff-4.3.0 for Windows binary gems.
 
 ## 1.6.44 / 2020-12-31
 

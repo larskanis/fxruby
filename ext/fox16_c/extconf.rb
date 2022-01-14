@@ -20,8 +20,7 @@ def fxscintilla_support_suppressed?
   !with_config("fxscintilla", true)
 end
 
-# Stick at zlib-1.2.7 for compatibility to MSYS1 based RubyInstaller.
-LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.7.3'
+LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.11'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
 LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.37'
@@ -30,10 +29,10 @@ LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_V
 # LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
 # LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '2.0.6'
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '2.1.2'
 LIBJPEG_SOURCE_URI = "https://downloads.sourceforge.net/libjpeg-turbo/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.1.0'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.3.0'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
 LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.57'
