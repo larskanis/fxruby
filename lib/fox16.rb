@@ -18,8 +18,9 @@ rescue LoadError
       end
     end
 
+    ruby_plat = RUBY_PLATFORM.gsub("i386", "x86")
     # Temporary add this directory for DLL search, so that bundled DLLs can be found.
-    ports_bin = File.expand_path("../../ports/#{RUBY_PLATFORM}/bin", __FILE__)
+    ports_bin = File.expand_path("../../ports/#{ruby_plat}/bin", __FILE__)
     add_dll_path.call(ports_bin) do
       require "#{major_minor}/fox16_c"
     end
