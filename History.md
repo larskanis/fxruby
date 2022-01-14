@@ -1,3 +1,7 @@
+## 1.6.45 / 2022-01-14
+
+* Add binary gem support for ruby-3.1 on platform x64-mingw-ucrt and drop ruby-2.3.
+
 ## 1.6.44 / 2020-12-31
 
 * Add binary gem support for ruby-3.0. #66
