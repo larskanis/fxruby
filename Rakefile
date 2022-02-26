@@ -205,6 +205,21 @@ namespace :swig do
     line.gsub! /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_VALUE_METHOD_FUNC(\\1), self, RUBY_VALUE_METHOD_FUNC(\\2), self);'
     line.gsub! /rb_rescue\(RUBY_METHOD_FUNC\((.*)\), \(VALUE\)a, RUBY_METHOD_FUNC\((.*)\), 0\)/, 'rb_rescue(RUBY_VALUE_METHOD_FUNC(\\1), (VALUE)a, RUBY_VALUE_METHOD_FUNC(\\2), 0)'
 
+    # Allow Truffleruby-22.1.0 to compile the sources without fxscintilla.
+    # Unfortunately Truffleruby still fails with various runtime errors.
+    if RUBY_ENGINE == "truffleruby"
+      line.gsub! '#include <ruby.h>', <<-EOT
+        #include <ruby.h>
+        #define rb_define_virtual_variable(x,y,z)
+      EOT
+      line.gsub!('rb_define_class("swig_runtime_data", rb_cObject);', 'rb_define_class("SWIG_RUNTIME_DATA", rb_cObject);')
+      line.gsub! 'rb_define_readonly_variable("$swig_runtime_data_type_pointer" SWIG_RUNTIME_VERSION SWIG_TYPE_TABLE_NAME, &swig_runtime_data_type_pointer);', <<-EOT
+        if (rb_gv_get("$swig_runtime_data_type_pointer" SWIG_RUNTIME_VERSION SWIG_TYPE_TABLE_NAME) == RUBY_Qnil) {
+          rb_gv_set("$swig_runtime_data_type_pointer" SWIG_RUNTIME_VERSION SWIG_TYPE_TABLE_NAME, swig_runtime_data_type_pointer);
+        }
+      EOT
+    end
+
     line
   end
 
