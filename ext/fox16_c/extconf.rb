@@ -190,12 +190,11 @@ def do_rake_compiler_setup
           "#{ENV['MAKE'] || "make"}"
         end
 
-        def configure
-          # This can be uncommented when fxscintilla is used from the source repository.
-          #execute "bootstrap", "./bootstrap.sh"
-          execute "rm custom pkg-config", "sudo rm -f /usr/bin/x86_64-w64-mingw32-pkg-config"
-          super
-        end
+#         # This can be uncommented when fxscintilla is used from the source repository.
+#         def configure
+#           execute "bootstrap", "./bootstrap.sh"
+#           super
+#         end
 
         def compile
           execute "compile_lexers", "cd lexers && #{mk}"
