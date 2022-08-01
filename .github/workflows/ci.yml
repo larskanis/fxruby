@@ -64,7 +64,3 @@ jobs:
       - name: Linux Print logs if job failed
         if: ${{ failure() && matrix.os == 'ubuntu' }}
         run: cat ~/.xpra/*
-
-      - name: Linux Shutdown xpra
-        if: ${{ success() && matrix.os == 'ubuntu' }}
-        run: xpra stop :9
