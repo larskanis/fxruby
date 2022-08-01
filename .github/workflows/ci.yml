@@ -51,6 +51,7 @@ jobs:
         if: matrix.os == 'ubuntu'
         run: |
           xpra --xvfb="Xorg +extension GLX -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :9
+          echo "DISPLAY=:9"  >> $GITHUB_ENV
 
       - name: MacOS Start XQuartz
         if: matrix.os == 'macos'
@@ -58,7 +59,7 @@ jobs:
           open -a /Applications/Utilities/XQuartz.app
 
       - name: Run tests
-        run: bundle exec rake test DISPLAY=:9
+        run: bundle exec rake test
 
       - name: Linux Print logs if job failed
         if: ${{ failure() && matrix.os == 'ubuntu' }}
