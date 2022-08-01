@@ -30,7 +30,7 @@ jobs:
       - uses: ruby/setup-ruby-pkgs@v1
         with:
           ruby-version: ${{ matrix.ruby }}      # passed to ruby/setup-ruby
-          apt-get: "xpra xserver-xorg-video-dummy g\+\+ libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig" # Ubuntu
+          apt-get: "xpra xserver-xorg-video-dummy g\\+\\+ libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig" # Ubuntu
           brew: "fox swig xquartz"     # macOS
           mingw: "fox swig gcc"   # Windows mingw / mswin /ucrt
 
