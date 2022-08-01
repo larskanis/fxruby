@@ -66,5 +66,5 @@ jobs:
         run: cat ~/.xpra/*
 
       - name: Linux Shutdown xpra
-        if: ${{ success() && matrix.os != 'ubuntu' }}
+        if: ${{ success() && matrix.os == 'ubuntu' }}
         run: xpra stop :9
