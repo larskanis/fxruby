@@ -30,9 +30,9 @@ jobs:
       - uses: ruby/setup-ruby-pkgs@v1
         with:
           ruby-version: ${{ matrix.ruby }}      # passed to ruby/setup-ruby
-          apt: "xpra xserver-xorg-video-dummy g++ libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig" # Ubuntu
-          brew:              # macOS
-          mingw: "fox swig gcc"            # Windows mingw / mswin /ucrt
+          apt-get: "xpra xserver-xorg-video-dummy g++ libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig" # Ubuntu
+          brew: "fox swig xquartz"     # macOS
+          mingw: "fox swig gcc"   # Windows mingw / mswin /ucrt
 
       - name: Print tool versions
         run: |
@@ -47,18 +47,23 @@ jobs:
       - name: Compile extension
         run: bundle exec rake compile
 
-      - name: Start xpra to enable GLX
+      - name: Linux Start xpra to enable GLX
         if: matrix.os == 'ubuntu'
         run: |
           xpra --xvfb="Xorg +extension GLX -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :9
 
+      - name: MacOS Start XQuartz
+        if: matrix.os == 'macos'
+        run: |
+          open -a /Applications/Utilities/XQuartz.app
+
       - name: Run tests
         run: bundle exec rake test DISPLAY=:9
 
-      - name: Print logs if job failed
+      - name: Linux Print logs if job failed
         if: ${{ failure() && matrix.os == 'ubuntu' }}
         run: cat ~/.xpra/*
 
-      - name: Shutdown xpra
+      - name: Linux Shutdown xpra
         if: ${{ success() && matrix.os != 'ubuntu' }}
         run: xpra stop :9
