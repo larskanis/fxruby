@@ -45,7 +45,7 @@ private
 
   def assert_same_file_contents(expected, actual)
     expected_contents, actual_contents = nil, nil
-    File.open(expected, 'rb') { |f| expected_contents = f.read }
+    File.open(expected, 'rb') { |f| expected_contents = crlf_to_lf(f.read) }
     File.open(actual, 'rb')   { |f| actual_contents = crlf_to_lf(f.read) }
     assert_equal(expected_contents, actual_contents)
   end

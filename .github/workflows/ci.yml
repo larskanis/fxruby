@@ -1,0 +1,66 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  job_test_gem:
+    name: Test in source tree
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows
+            ruby: "head"
+          - os: windows
+            ruby: "2.4"
+          - os: ubuntu
+            ruby: "head"
+          - os: ubuntu
+            ruby: "3.1"
+          - os: ubuntu
+            ruby: "2.3"
+          - os: macos
+            ruby: "head"
+
+    runs-on: ${{ matrix.os }}-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby-pkgs@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}      # passed to ruby/setup-ruby
+          apt-get: "xpra xserver-xorg-video-dummy libxrandr-dev libfox-1.6-dev libfxscintilla-dev swig" # Ubuntu
+          brew: "fox swig xquartz"     # macOS
+          mingw: "fox swig gcc"   # Windows mingw / mswin /ucrt
+
+      - name: Print tool versions
+        run: |
+          ruby -v
+          gcc -v
+          swig -version
+          gem env
+
+      - name: Bundle install
+        run: bundle install
+
+      - name: Compile extension
+        run: bundle exec rake compile
+
+      - name: Linux Start xpra to enable GLX
+        if: matrix.os == 'ubuntu'
+        run: |
+          xpra --xvfb="Xorg +extension GLX -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :9
+          echo "DISPLAY=:9"  >> $GITHUB_ENV
+
+      - name: MacOS Start XQuartz
+        if: matrix.os == 'macos'
+        run: |
+          open -a /Applications/Utilities/XQuartz.app
+
+      - name: Run tests
+        run: bundle exec rake test
+
+      - name: Linux Print logs if job failed
+        if: ${{ failure() && matrix.os == 'ubuntu' }}
+        run: cat ~/.xpra/*
