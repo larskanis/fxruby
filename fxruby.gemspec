@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'LGPL-2.1'
   spec.metadata["changelog_uri"] = "https://github.com/larskanis/fxruby/blob/1.6/History.md"
   spec.metadata["documentation_uri"] = "https://rubydoc.info/gems/fxruby/frames"
-  
+
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f=~/^fox-includes|^web/
   end
@@ -53,4 +53,10 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = [">= 2.3", "< 4"]
 
   spec.add_runtime_dependency 'mini_portile2', '~> 2.1'
+
+  yardopts = File.read(".yardopts")
+  spec.rdoc_options  = ["--main", "README.rdoc",
+                        "--title", "FXRuby API Documentation"]
+  docfiles = yardopts.lines.map(&:strip).select{|r| r=~/^[^-]/ }
+  spec.extra_rdoc_files = `git ls-files -z #{docfiles.join(" ")}`.split("\x0")
 end
