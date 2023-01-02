@@ -66,7 +66,7 @@
 </li><li>
 <p>Latest fxruby <a href="http://badge.fury.io/rb/fxruby"><img src="https://badge.fury.io/rb/fxruby.svg" alt="Gem Version" /></a></p>
 </li><li>
-<p>Status on Linux: <a href="https://travis-ci.com/larskanis/fxruby"><img src="https://travis-ci.com/larskanis/fxruby.svg?branch=1.6" alt="Build Status on Linux" /></a> on Windows: <a href="https://ci.appveyor.com/project/larskanis/fxruby/branch/1.6"><img src="https://ci.appveyor.com/api/projects/status/too7sj4gq643ts8w/branch/1.6?svg=true" alt="Build Status on Windows" /></a></p>
+<p>CI-Status: <a href="https://github.com/larskanis/fxruby/actions/workflows/ci.yml"><img src="https://github.com/larskanis/fxruby/actions/workflows/ci.yml/badge.svg?branch=1.6" alt="Build Status" /></a> and on Windows: <a href="https://ci.appveyor.com/project/larskanis/fxruby/branch/1.6"><img src="https://ci.appveyor.com/api/projects/status/too7sj4gq643ts8w/branch/1.6?svg=true" alt="Build Status on Windows" /></a></p>
 </li></ul>
 
 <h2 id="label-DESCRIPTION-3A">DESCRIPTION:</h2>
@@ -96,15 +96,21 @@
 <ul><li>
 <p>on Debian/Ubuntu: <code>sudo apt-get install g++ libxrandr-dev libfox-1.6-dev</code></p>
 </li><li>
-<p>see also detailed installation instructions in the <a href="https://github.com/lylejohnson/fxruby/wiki">Wiki</a></p>
+<p>on Mac: <code>sudo port install rb-fxruby</code> OR <code>brew install fox &amp;&amp; brew install xquartz</code></p>
 </li><li>
-<p>on Windows: the binary fxruby gems already contain all required libararies</p>
+<p>on Windows: the binary fxruby gems already contain all required libraries</p>
+</li><li>
+<p>see also detailed installation instructions in the <a href="https://github.com/lylejohnson/fxruby/wiki">Wiki</a></p>
 </li></ul>
 
 <p>Then, install the gem:</p>
 <ul><li>
 <p>gem install fxruby</p>
 </li></ul>
+
+<p>On Mac, before running applications, you must also run: <code>open -a /Applications/Utilities/XQuartz.app</code></p>
+
+<p>(otherwise, you end up getting this message when running applications on Mac: <code>FXRbApp::openDisplay: unable to open display :0.0</code>)</p>
 
 <h2 id="label-DIRECTORIES">DIRECTORIES</h2>
 
@@ -127,7 +133,7 @@
 <p>Contains a test battery for FXRuby.</p>
 </li></ul>
 
-<p>If you&#39;re looking at a checkout of the source code from its GIT repository, you might see some additional directories of interest:</p>
+<p>If you’re looking at a checkout of the source code from its GIT repository, you might see some additional directories of interest:</p>
 <ul><li>
 <p>fox-includes/</p>
 
@@ -604,9 +610,9 @@ DAMAGES.
 </div></div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:10:27 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:47:15 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

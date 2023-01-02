@@ -121,7 +121,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>A Tree List Widget organizes items in a hierarchical, tree-like fashion. Subtrees can be collapsed or expanded by double-clicking on an item or by clicking on the optional plus button in front of the item. Each item may have a text and optional open-icon as well as a closed-icon. The items may be connected by optional lines to show the hierarchical relationship. When an item&#39;s selected state changes, the treelist emits a SEL_SELECTED or SEL_DESELECTED message.  If an item is opened or closed, a message of type SEL_OPENED or SEL_CLOSED is sent.  When the subtree under an item is expanded, a SEL_EXPANDED or SEL_COLLAPSED message is issued. A change of the current item is signified by the SEL_CHANGED message. In addition, the tree list sends SEL_COMMAND messages when the user clicks on an item, and SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED when the user clicks once, twice, or thrice, respectively. When items are added or removed, the tree list sends messages of the type SEL_INSERTED or SEL_DELETED. In each of these cases, a pointer to the item, if any, is passed in the 3rd argument of the message.</p>
+<p>A Tree List Widget organizes items in a hierarchical, tree-like fashion. Subtrees can be collapsed or expanded by double-clicking on an item or by clicking on the optional plus button in front of the item. Each item may have a text and optional open-icon as well as a closed-icon. The items may be connected by optional lines to show the hierarchical relationship. When an item’s selected state changes, the treelist emits a SEL_SELECTED or SEL_DESELECTED message.  If an item is opened or closed, a message of type SEL_OPENED or SEL_CLOSED is sent.  When the subtree under an item is expanded, a SEL_EXPANDED or SEL_COLLAPSED message is issued. A change of the current item is signified by the SEL_CHANGED message. In addition, the tree list sends SEL_COMMAND messages when the user clicks on an item, and SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED when the user clicks once, twice, or thrice, respectively. When items are added or removed, the tree list sends messages of the type SEL_INSERTED or SEL_DELETED. In each of these cases, a pointer to the item, if any, is passed in the 3rd argument of the message.</p>
 
 <h3 id="label-Events">Events</h3>
 
@@ -840,7 +840,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Set this item&#39;s state to closed.</p>
+<p>Set this item’s state to closed.</p>
 </div></span>
   
 </li>
@@ -1176,7 +1176,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Return item&#39;s closed icon.</p>
+<p>Return item’s closed icon.</p>
 </div></span>
   
 </li>
@@ -1200,7 +1200,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Return item&#39;s user data.</p>
+<p>Return item’s user data.</p>
 </div></span>
   
 </li>
@@ -1248,7 +1248,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Return item&#39;s open icon.</p>
+<p>Return item’s open icon.</p>
 </div></span>
   
 </li>
@@ -1272,7 +1272,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Return item&#39;s text.</p>
+<p>Return item’s text.</p>
 </div></span>
   
 </li>
@@ -1682,7 +1682,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Set this item&#39;s state to opened.</p>
+<p>Set this item’s state to opened.</p>
 </div></span>
   
 </li>
@@ -1850,7 +1850,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Change item&#39;s closed icon, deleting the old icon if it&#39;s owned.</p>
+<p>Change item’s closed icon, deleting the old icon if it’s owned.</p>
 </div></span>
   
 </li>
@@ -1874,7 +1874,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Change item&#39;s user data.</p>
+<p>Change item’s user data.</p>
 </div></span>
   
 </li>
@@ -1898,7 +1898,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Change item&#39;s open icon, deleting the old icon if it&#39;s owned.</p>
+<p>Change item’s open icon, deleting the old icon if it’s owned.</p>
 </div></span>
   
 </li>
@@ -1922,7 +1922,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Change item&#39;s text.</p>
+<p>Change item’s text.</p>
 </div></span>
   
 </li>
@@ -3039,7 +3039,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Append item with given text and optional icons, and user-data pointer as last child of <em>father</em>. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list&#39;s message target after the item is added.</p>
+<p>Append item with given text and optional icons, and user-data pointer as last child of <em>father</em>. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list’s message target after the item is added.</p>
 
 
   </div>
@@ -3076,7 +3076,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Remove all items from the list. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list&#39;s message target before each item is removed.</p>
+<p>Remove all items from the list. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list’s message target before each item is removed.</p>
 
 
   </div>
@@ -3113,7 +3113,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Set this item&#39;s state to closed. The primary result of this change is that the item&#39;s icon will change to its “closed” icon. This is different from the <span class='object_link'><a href="#collapseTree-instance_method" title="Fox::FXTreeList#collapseTree (method)">#collapseTree</a></span> method, which actually collapses part of the tree list, making some items invisible. If <em>notify</em> is <code>true</code>, a <code>SEL_CLOSED</code> message is sent to the list&#39;s message target after the item is closed.</p>
+<p>Set this item’s state to closed. The primary result of this change is that the item’s icon will change to its “closed” icon. This is different from the <span class='object_link'><a href="#collapseTree-instance_method" title="Fox::FXTreeList#collapseTree (method)">#collapseTree</a></span> method, which actually collapses part of the tree list, making some items invisible. If <em>notify</em> is <code>true</code>, a <code>SEL_CLOSED</code> message is sent to the list’s message target after the item is closed.</p>
 
 
   </div>
@@ -3150,7 +3150,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Collapse sub-tree rooted at <em>tree</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_COLLAPSED</code> message is sent to the list&#39;s message target after the sub-tree is collapsed.</p>
+<p>Collapse sub-tree rooted at <em>tree</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_COLLAPSED</code> message is sent to the list’s message target after the sub-tree is collapsed.</p>
 
 
   </div>
@@ -3187,7 +3187,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Deselect item. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the list&#39;s message target after the item is deselected.</p>
+<p>Deselect item. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the list’s message target after the item is deselected.</p>
 
 
   </div>
@@ -3351,7 +3351,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Expand sub-tree rooted at <em>tree</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_EXPANDED</code> message is sent to the list&#39;s message target after the sub-tree is expanded.</p>
+<p>Expand sub-tree rooted at <em>tree</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_EXPANDED</code> message is sent to the list’s message target after the sub-tree is expanded.</p>
 
 
   </div>
@@ -3388,7 +3388,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Extend selection from anchor item to <em>item</em>. If <em>notify</em> is <code>true</code>, a series of <code>SEL_SELECTED</code> and <code>SEL_DESELECTED</code> messages may be sent to the list&#39;s message target, indicating the changes.</p>
+<p>Extend selection from anchor item to <em>item</em>. If <em>notify</em> is <code>true</code>, a series of <code>SEL_SELECTED</code> and <code>SEL_DESELECTED</code> messages may be sent to the list’s message target, indicating the changes.</p>
 
 
   </div>
@@ -3425,7 +3425,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Extract item from list and return a reference to the item. If <em>notify</em> is  <code>true</code> and the extraction causes the list&#39;s current item to change, a <code>SEL_CHANGED</code> message is sent to the list&#39;s message target before the item is extracted from the list.</p>
+<p>Extract item from list and return a reference to the item. If <em>notify</em> is  <code>true</code> and the extraction causes the list’s current item to change, a <code>SEL_CHANGED</code> message is sent to the list’s message target before the item is extracted from the list.</p>
 
 
   </div>
@@ -3462,7 +3462,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Fill tree list by appending items from array of strings and return the number of items added. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list&#39;s message target after each item is added.</p>
+<p>Fill tree list by appending items from array of strings and return the number of items added. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list’s message target after each item is added.</p>
 
 
   </div>
@@ -3651,7 +3651,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Return item&#39;s closed icon</p>
+<p>Return item’s closed icon</p>
 
 
   </div>
@@ -3688,7 +3688,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Return item&#39;s user data</p>
+<p>Return item’s user data</p>
 
 
   </div>
@@ -3762,7 +3762,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Return item&#39;s open icon</p>
+<p>Return item’s open icon</p>
 
 
   </div>
@@ -3799,7 +3799,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Return item&#39;s text</p>
+<p>Return item’s text</p>
 
 
   </div>
@@ -3910,7 +3910,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Insert item with given text and optional icons, and user-data pointer under <em>father</em> before <em>other</em> item. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list&#39;s message target after the item is added.</p>
+<p>Insert item with given text and optional icons, and user-data pointer under <em>father</em> before <em>other</em> item. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list’s message target after the item is added.</p>
 
 
   </div>
@@ -4297,7 +4297,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Deselect all items. If <em>notify</em> is <code>true</code>, <code>SEL_DESELECTED</code> messages will be sent to the list&#39;s message target indicating the affected items.</p>
+<p>Deselect all items. If <em>notify</em> is <code>true</code>, <code>SEL_DESELECTED</code> messages will be sent to the list’s message target indicating the affected items.</p>
 
 
   </div>
@@ -4494,7 +4494,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Set this item&#39;s state to opened. The primary result of this change is that the item&#39;s icon will change to its “open” icon. This is different from the <span class='object_link'><a href="#expandTree-instance_method" title="Fox::FXTreeList#expandTree (method)">#expandTree</a></span> method, which actually collapses part of the tree list, making some items invisible. If <em>notify</em> is <code>true</code>, a <code>SEL_OPENED</code> message is sent to the list&#39;s message target after the item is opened.</p>
+<p>Set this item’s state to opened. The primary result of this change is that the item’s icon will change to its “open” icon. This is different from the <span class='object_link'><a href="#expandTree-instance_method" title="Fox::FXTreeList#expandTree (method)">#expandTree</a></span> method, which actually collapses part of the tree list, making some items invisible. If <em>notify</em> is <code>true</code>, a <code>SEL_OPENED</code> message is sent to the list’s message target after the item is opened.</p>
 
 
   </div>
@@ -4531,7 +4531,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Prepend item with given text and optional icons, and user-data pointer as first child of <em>father</em>. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list&#39;s message target after the item is added.</p>
+<p>Prepend item with given text and optional icons, and user-data pointer as first child of <em>father</em>. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list’s message target after the item is added.</p>
 
 
   </div>
@@ -4568,7 +4568,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Remove item. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list&#39;s message target before the item is removed.</p>
+<p>Remove item. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list’s message target before the item is removed.</p>
 
 
   </div>
@@ -4605,7 +4605,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Remove items in range [<em>fromItem</em>, <em>toItem</em>] inclusively. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list&#39;s message target before each item is removed.</p>
+<p>Remove items in range [<em>fromItem</em>, <em>toItem</em>] inclusively. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list’s message target before each item is removed.</p>
 
 
   </div>
@@ -4685,7 +4685,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Select item. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> message is sent to the list&#39;s message target after the item is selected.</p>
+<p>Select item. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> message is sent to the list’s message target after the item is selected.</p>
 
 
   </div>
@@ -4722,7 +4722,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Change current item. If there is already a current item, that item is first closed. After <em>item</em> is set as the tree list&#39;s current item, it is opened and selected. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the list&#39;s message target after the current item changes.</p>
+<p>Change current item. If there is already a current item, that item is first closed. After <em>item</em> is set as the tree list’s current item, it is opened and selected. If <em>notify</em> is <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the list’s message target after the current item changes.</p>
 
 
   </div>
@@ -4759,7 +4759,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Change item&#39;s closed icon, deleting the old icon if it&#39;s owned</p>
+<p>Change item’s closed icon, deleting the old icon if it’s owned</p>
 
 
   </div>
@@ -4796,7 +4796,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Change item&#39;s user data</p>
+<p>Change item’s user data</p>
 
 
   </div>
@@ -4833,7 +4833,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Change item&#39;s open icon, deleting the old icon if it&#39;s owned</p>
+<p>Change item’s open icon, deleting the old icon if it’s owned</p>
 
 
   </div>
@@ -4870,7 +4870,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Change item&#39;s text</p>
+<p>Change item’s text</p>
 
 
   </div>
@@ -5018,7 +5018,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Toggle item selection. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message is sent to the list&#39;s message target to indicate the change.</p>
+<p>Toggle item selection. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message is sent to the list’s message target to indicate the change.</p>
 
 
   </div>
@@ -5085,9 +5085,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:10:59 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:47:46 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

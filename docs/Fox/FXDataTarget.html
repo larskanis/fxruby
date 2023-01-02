@@ -117,7 +117,7 @@
 <span class='id identifier rubyid_textfield'>textfield</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="FXTextField.html" title="Fox::FXTextField (class)">FXTextField</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXTextField.html#initialize-instance_method" title="Fox::FXTextField#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='int'>12</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='const'>FXDataTarget</span><span class='op'>::</span><span class='const'>ID_VALUE</span><span class='rparen'>)</span>
 </code></pre>
 
-<p>Data targets also allow connecting other kinds of widgets (like FXRadioButton and FXMenuCommand) to a variable. In this case, the new value of the connected variable is computed by subtracting <code>FXDataTarget::ID_OPTION</code> from the message identifier. For example, to tie a group of radio buttons to a single data target&#39;s value (so that the buttons are mutually exclusive), use code like this:</p>
+<p>Data targets also allow connecting other kinds of widgets (like FXRadioButton and FXMenuCommand) to a variable. In this case, the new value of the connected variable is computed by subtracting <code>FXDataTarget::ID_OPTION</code> from the message identifier. For example, to tie a group of radio buttons to a single data target’s value (so that the buttons are mutually exclusive), use code like this:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>FXDataTarget</span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Fox::FXDataTarget#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_radio1'>radio1</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="FXRadioButton.html" title="Fox::FXRadioButton (class)">FXRadioButton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXRadioButton.html#initialize-instance_method" title="Fox::FXRadioButton#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1st choice</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='const'>FXDataTarget</span><span class='op'>::</span><span class='const'>ID_OPTION</span><span class='rparen'>)</span>
@@ -125,7 +125,7 @@
 <span class='id identifier rubyid_radio3'>radio3</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="FXRadioButton.html" title="Fox::FXRadioButton (class)">FXRadioButton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXRadioButton.html#initialize-instance_method" title="Fox::FXRadioButton#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>3rd choice</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='const'>FXDataTarget</span><span class='op'>::</span><span class='const'>ID_OPTION</span> <span class='op'>+</span> <span class='int'>2</span><span class='rparen'>)</span>
 </code></pre>
 
-<p>Note that if you&#39;d like the data target to “forward” its <code>SEL_COMMAND</code> or <code>SEL_CHANGED</code> to some other target object after it has updated the data target value, you can do that just as you would for any other widget. For example, continuing the previous code snippet:</p>
+<p>Note that if you’d like the data target to “forward” its <code>SEL_COMMAND</code> or <code>SEL_CHANGED</code> to some other target object after it has updated the data target value, you can do that just as you would for any other widget. For example, continuing the previous code snippet:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='rparen'>)</span> <span class='lbrace'>{</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The new data target value is </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -149,7 +149,7 @@
 <p>Causes the FXDataTarget to ask sender for value</p>
 </dd><dt><code>ID_OPTION</code>
 <dd>
-<p><code>ID_OPTION</code>+<em>i</em> will set the value to <em>i</em>, where -10000 &lt;= <em>i</em> &lt;= 10000</p>
+<p><code>ID_OPTION+</code><em>i</em> will set the value to <em>i</em>, where -10000 &lt;= <em>i</em> &lt;= 10000</p>
 </dd></dl>
 
 
@@ -240,7 +240,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>The data target&#39;s current value [Object].</p>
+<p>The data target’s current value [Object].</p>
 </div></span>
   
 </li>
@@ -303,7 +303,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the stringified representation of this data target&#39;s value.</p>
+<p>Returns the stringified representation of this data target’s value.</p>
 </div></span>
   
 </li>
@@ -481,7 +481,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>The data target&#39;s current value [Object]</p>
+<p>The data target’s current value [Object]</p>
 
 
   </div>
@@ -529,7 +529,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the stringified representation of this data target&#39;s value.</p>
+<p>Returns the stringified representation of this data target’s value.</p>
 
 
   </div>
@@ -563,9 +563,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:11:15 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:48:01 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

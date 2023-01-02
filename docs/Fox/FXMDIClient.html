@@ -112,7 +112,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>The MDI client window manages a number of MDI child windows in a multiple-document interface (MDI) application. MDI child windows usually receive messages from the GUI controls by delegation via the MDI client.  This is accomplished by making the MDI client window the target for most GUI controls.  The MDI client filters out messages intented for itself, and delegates the remaining messages to its currently active MDI child, if any. If you use the auto-gray or auto-hide feature available in some GUI controls, these controls can be automatically grayed out or hidden when there is no active MDI child. When delegating messages via MDI client to MDI child windows of different types, care should be taken that message ID&#39;s do not overlap, so that all message ID&#39;s only map to the intented handlers no matter which MDI child window type is active. The MDI client sends a SEL_CHANGED message to its target when the active MDI child is switched, with the void  # pointer refering to the new MDI child. A MDI Window selection dialog can be brought up through the ID_MDI_OVER_X messages; a menu button connected to the MDI client with the ID_MDI_OVER_X message will be automatically grayed out if there are less than X MDI child windows.</p>
+<p>The MDI client window manages a number of MDI child windows in a multiple-document interface (MDI) application. MDI child windows usually receive messages from the GUI controls by delegation via the MDI client.  This is accomplished by making the MDI client window the target for most GUI controls.  The MDI client filters out messages intented for itself, and delegates the remaining messages to its currently active MDI child, if any. If you use the auto-gray or auto-hide feature available in some GUI controls, these controls can be automatically grayed out or hidden when there is no active MDI child. When delegating messages via MDI client to MDI child windows of different types, care should be taken that message ID’s do not overlap, so that all message ID’s only map to the intented handlers no matter which MDI child window type is active. The MDI client sends a SEL_CHANGED message to its target when the active MDI child is switched, with the void  # pointer refering to the new MDI child. A MDI Window selection dialog can be brought up through the ID_MDI_OVER_X messages; a menu button connected to the MDI client with the ID_MDI_OVER_X message will be automatically grayed out if there are less than X MDI child windows.</p>
 
 <h3 id="label-Events">Events</h3>
 
@@ -771,9 +771,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:11:06 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:47:52 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

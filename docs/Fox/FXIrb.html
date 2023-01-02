@@ -694,9 +694,9 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
  <span class='kw'>super</span>
- <span class='id identifier rubyid_setFocus'>setFocus</span> <span class='comment'># IRB initialization
-</span>
- <span class='ivar'>@redir</span> <span class='op'>=</span> <span class='const'>Redirect</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+ <span class='id identifier rubyid_setFocus'>setFocus</span>
+ <span class='comment'># IRB initialization
+</span> <span class='ivar'>@redir</span> <span class='op'>=</span> <span class='const'>Redirect</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
  <span class='ivar'>@input</span> <span class='op'>=</span> <span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_pipe'>pipe</span>
  <span class='ivar'>@irb</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span>
   <span class='const'><span class='object_link'><a href="../IRB.html" title="IRB (module)">IRB</a></span></span><span class='period'>.</span><span class='id identifier rubyid_start_in_fxirb'><span class='object_link'><a href="../IRB.html#start_in_fxirb-class_method" title="IRB.start_in_fxirb (method)">start_in_fxirb</a></span></span><span class='lparen'>(</span><span class='ivar'>@redir</span><span class='rparen'>)</span>
@@ -932,9 +932,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:11:34 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:48:19 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

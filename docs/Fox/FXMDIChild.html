@@ -112,7 +112,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>The MDI child window contains the application work area in a Multiple Document Interface application.  GUI Controls are connected to the MDI child via delegation through the MDI client, which forwards messages it receives to the active MDI child. The MDI child itself tries to further delegate messages to its single content window, and if not handled there, to its target object. When the MDI child is maximized, it sends a SEL_MAXIMIZE message; when the MDI child is minimized, it sends a SEL_MINIMIZE message.  When it is restored, it sends a SEL_RESTORE message to its target.  The MDI child also notifies its target when it becomes the active MDI child, via the SEL_SELECTED message. The void* in the SEL_SELECTED message refers to the previously active MDI child, if any.  When an MDI child ceases to be the active one, a SEL_DESELECTED message is sent.  The void* in the SEL_DESELECTED message refers to the newly activated MDI child, if any.  Thus, interception of SEL_SELECTED and SEL_DESELECTED allows the target object to determine whether the user switched between MDI windows of the same document (target) or between MDI windows belonging to the same document. When the MDI child is closed, it sends a SEL_CLOSE message to its target. The target has an opportunity to object to the closing; if the MDI child should not be closed, it should return 1 (objection). If the MDI child should be closed, the target can either just return 0 or simply not handle the SEL_CLOSE message. The SEL_UPDATE message can be used to modify the MDI child&#39;s title (via ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).</p>
+<p>The MDI child window contains the application work area in a Multiple Document Interface application.  GUI Controls are connected to the MDI child via delegation through the MDI client, which forwards messages it receives to the active MDI child. The MDI child itself tries to further delegate messages to its single content window, and if not handled there, to its target object. When the MDI child is maximized, it sends a SEL_MAXIMIZE message; when the MDI child is minimized, it sends a SEL_MINIMIZE message.  When it is restored, it sends a SEL_RESTORE message to its target.  The MDI child also notifies its target when it becomes the active MDI child, via the SEL_SELECTED message. The void* in the SEL_SELECTED message refers to the previously active MDI child, if any.  When an MDI child ceases to be the active one, a SEL_DESELECTED message is sent.  The void* in the SEL_DESELECTED message refers to the newly activated MDI child, if any.  Thus, interception of SEL_SELECTED and SEL_DESELECTED allows the target object to determine whether the user switched between MDI windows of the same document (target) or between MDI windows belonging to the same document. When the MDI child is closed, it sends a SEL_CLOSE message to its target. The target has an opportunity to object to the closing; if the MDI child should not be closed, it should return 1 (objection). If the MDI child should be closed, the target can either just return 0 or simply not handle the SEL_CLOSE message. The SEL_UPDATE message can be used to modify the MDI child’s title (via ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).</p>
 
 <h3 id="label-Events">Events</h3>
 
@@ -137,10 +137,10 @@
 <p>sent when the right mouse button goes up; the message data is an FXEvent instance.</p>
 </dd><dt><code>SEL_SELECTED</code>
 <dd>
-<p>sent when the window is selected; the message data is a reference to the MDI client&#39;s previous active child window, or <code>nil</code> if there was no active child window.</p>
+<p>sent when the window is selected; the message data is a reference to the MDI client’s previous active child window, or <code>nil</code> if there was no active child window.</p>
 </dd><dt><code>SEL_DESELECTED</code>
 <dd>
-<p>sent when the window is deselected; the message data is a reference to the MDI client&#39;s new active child window, or <code>nil</code> if there is no active child window.</p>
+<p>sent when the window is deselected; the message data is a reference to the MDI client’s new active child window, or <code>nil</code> if there is no active child window.</p>
 </dd><dt><code>SEL_MAXIMIZE</code>
 <dd>
 <p>sent when the window is maximized</p>
@@ -2165,9 +2165,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:10:57 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:47:44 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

@@ -121,7 +121,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>A Icon List Widget displays a list of items, each with a text and optional icon.  Icon List can display its items in essentially three different ways; in big-icon mode, the bigger of the two icons is used for each item, and the text is placed underneath the icon. In mini- icon mode, the icons are listed in rows and columns, with the smaller icon preceding the text.  Finally, in detail mode the icons are listed in a single column, and all fields of the text are shown under a header control with one button for each subfield. When an item&#39;s selected state changes, the icon list sends a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message.  A change of the current item is signified by the <code>SEL_CHANGED</code> message. The icon list sends <code>SEL_COMMAND</code> messages when the user clicks on an item, and <code>SEL_CLICKED</code>, <code>SEL_DOUBLECLICKED</code>, and <code>SEL_TRIPLECLICKED</code> when the user clicks once, twice, or thrice, respectively. When items are added, replaced, or removed, the icon list sends messages of the type <code>SEL_INSERTED</code>, <code>SEL_REPLACED</code>, or <code>SEL_DELETED</code>. In each of these cases, the index to the item, if any, is passed in the 3rd argument of the message.</p>
+<p>A Icon List Widget displays a list of items, each with a text and optional icon.  Icon List can display its items in essentially three different ways; in big-icon mode, the bigger of the two icons is used for each item, and the text is placed underneath the icon. In mini- icon mode, the icons are listed in rows and columns, with the smaller icon preceding the text.  Finally, in detail mode the icons are listed in a single column, and all fields of the text are shown under a header control with one button for each subfield. When an item’s selected state changes, the icon list sends a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message.  A change of the current item is signified by the <code>SEL_CHANGED</code> message. The icon list sends <code>SEL_COMMAND</code> messages when the user clicks on an item, and <code>SEL_CLICKED</code>, <code>SEL_DOUBLECLICKED</code>, and <code>SEL_TRIPLECLICKED</code> when the user clicks once, twice, or thrice, respectively. When items are added, replaced, or removed, the icon list sends messages of the type <code>SEL_INSERTED</code>, <code>SEL_REPLACED</code>, or <code>SEL_DELETED</code>. In each of these cases, the index to the item, if any, is passed in the 3rd argument of the message.</p>
 
 <h3 id="label-Events">Events</h3>
 
@@ -2872,7 +2872,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Append a new item with given <em>text</em> and optional <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list&#39;s message target after the item is appended.</p>
+<p>Append a new item with given <em>text</em> and optional <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list’s message target after the item is appended.</p>
 
 
   </div>
@@ -2909,7 +2909,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Remove all items from list. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list&#39;s message target before each item is removed.</p>
+<p>Remove all items from list. If <em>notify</em> is <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list’s message target before each item is removed.</p>
 
 
   </div>
@@ -2946,7 +2946,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Deselect item at <em>index</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the list&#39;s message target after the item is deselected. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Deselect item at <em>index</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the list’s message target after the item is deselected. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -3104,7 +3104,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Extend selection from anchor index to <em>index</em>. If <em>notify</em> is  <code>true</code>, a series of <code>SEL_SELECTED</code> and <code>SEL_DESELECTED</code> messages are sent to the list&#39;s message target as the selected-state of different items changes. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Extend selection from anchor index to <em>index</em>. If <em>notify</em> is  <code>true</code>, a series of <code>SEL_SELECTED</code> and <code>SEL_DESELECTED</code> messages are sent to the list’s message target as the selected-state of different items changes. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -3141,7 +3141,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Extract item from list and return a reference to the item. If <em>notify</em> is  <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list&#39;s message target before the item is extracted from the list. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Extract item from list and return a reference to the item. If <em>notify</em> is  <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list’s message target before the item is extracted from the list. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -3659,7 +3659,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Insert item at <em>index</em> with given <em>text</em>, <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list&#39;s message target after the item is inserted. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Insert item at <em>index</em> with given <em>text</em>, <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list’s message target after the item is inserted. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -3896,7 +3896,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Deselect all items. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the list&#39;s message target for all the items that were selected before killSelection was called.</p>
+<p>Deselect all items. If <em>notify</em> is <code>true</code>, a <code>SEL_DESELECTED</code> message is sent to the list’s message target for all the items that were selected before killSelection was called.</p>
 
 
   </div>
@@ -3970,7 +3970,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Move item from <em>oldIndex</em> to <em>newIndex</em> and return the new index of the item.. If <em>notify</em> is <code>true</code> and this move causes the current item to change, a <code>SEL_CHANGED</code> message is sent to the list&#39;s message target to indicate this change in the current item. Raises IndexError if either <em>oldIndex</em> or <em>newIndex</em> is out of bounds.</p>
+<p>Move item from <em>oldIndex</em> to <em>newIndex</em> and return the new index of the item.. If <em>notify</em> is <code>true</code> and this move causes the current item to change, a <code>SEL_CHANGED</code> message is sent to the list’s message target to indicate this change in the current item. Raises IndexError if either <em>oldIndex</em> or <em>newIndex</em> is out of bounds.</p>
 
 
   </div>
@@ -4007,7 +4007,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Prepend a new item with given <em>text</em> and optional <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list&#39;s message target after the item is prepended.</p>
+<p>Prepend a new item with given <em>text</em> and optional <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_INSERTED</code> message is sent to the list’s message target after the item is prepended.</p>
 
 
   </div>
@@ -4081,7 +4081,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Remove item at <em>index</em> from the list. If <em>notify</em> is  <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list&#39;s message target before the item is removed. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Remove item at <em>index</em> from the list. If <em>notify</em> is  <code>true</code>, a <code>SEL_DELETED</code> message is sent to the list’s message target before the item is removed. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -4118,7 +4118,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Select items in rectangle. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> message is sent to the list&#39;s message target after each previously unselected item is selected.</p>
+<p>Select items in rectangle. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> message is sent to the list’s message target after each previously unselected item is selected.</p>
 
 
   </div>
@@ -4155,7 +4155,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Select item at <em>index</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> message is sent to the list&#39;s message target after the item is selected. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Select item at <em>index</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_SELECTED</code> message is sent to the list’s message target after the item is selected. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -4192,7 +4192,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Change current item index. If <em>notify</em> is  <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the list&#39;s message target after the current item changes. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Change current item index. If <em>notify</em> is  <code>true</code>, a <code>SEL_CHANGED</code> message is sent to the list’s message target after the current item changes. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -4377,7 +4377,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Replace item <em>text</em>, <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em> for the item at <em>index</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_REPLACED</code> message is sent to the list&#39;s message target before the item is replaced. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Replace item <em>text</em>, <em>bigIcon</em>, <em>miniIcon</em> and user <em>data</em> for the item at <em>index</em>. If <em>notify</em> is <code>true</code>, a <code>SEL_REPLACED</code> message is sent to the list’s message target before the item is replaced. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -4599,7 +4599,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Toggle item at <em>index</em>. If <em>notify</em> is  <code>true</code>, either a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message is sent to the list&#39;s message target to indicate the item&#39;s new state. Raises IndexError if <em>index</em> is out of bounds.</p>
+<p>Toggle item at <em>index</em>. If <em>notify</em> is  <code>true</code>, either a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message is sent to the list’s message target to indicate the item’s new state. Raises IndexError if <em>index</em> is out of bounds.</p>
 
 
   </div>
@@ -4666,9 +4666,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:10:56 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:47:43 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

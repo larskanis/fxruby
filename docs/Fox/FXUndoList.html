@@ -113,11 +113,11 @@
 
 <h2 id="label-Class+Constants">Class Constants</h2>
 
-<p>[FXUndoList::ID_UNDO]	Message identifier for the undo method. 			When a <code>SEL_COMMAND</code> message with this identifier 			is sent to an undo list, it undoes the last command. 			FXUndoList also provides a <code>SEL_UPDATE</code> handler for this 			identifier, that enables or disables the sender 			depending on whether it&#39;s possible to undo.</p>
+<p>[FXUndoList::ID_UNDO]	Message identifier for the undo method. 			When a <code>SEL_COMMAND</code> message with this identifier 			is sent to an undo list, it undoes the last command. 			FXUndoList also provides a <code>SEL_UPDATE</code> handler for this 			identifier, that enables or disables the sender 			depending on whether it’s possible to undo.</p>
 
 <p>[FXUndoList::ID_UNDO_ALL]	Message identifier for the “undo all” method. FXUndoList handles both 			the <code>SEL_COMMAND</code> and <code>SEL_UPDATE</code> messages for this message 			identifier.</p>
 
-<p>[FXUndoList::ID_REDO]	Message identifier for the redo method. When a <code>SEL_COMMAND</code> message 			with this identifier is sent to an undo list, it redoes the last command. 			FXUndoList also provides a <code>SEL_UPDATE</code> handler for this identifier, 			that enables or disables the sender depending on whether it&#39;s possible to 			redo.</p>
+<p>[FXUndoList::ID_REDO]	Message identifier for the redo method. When a <code>SEL_COMMAND</code> message 			with this identifier is sent to an undo list, it redoes the last command. 			FXUndoList also provides a <code>SEL_UPDATE</code> handler for this identifier, 			that enables or disables the sender depending on whether it’s possible to 			redo.</p>
 
 <p>[FXUndoList::ID_REDO_ALL]	Message identifier for the “redo all” method. FXUndoList handles both 			the <code>SEL_COMMAND</code> and <code>SEL_UPDATE</code> messages for this message 			identifier.</p>
 
@@ -998,9 +998,9 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/fox16/undolist.rb', line 94</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>  <span class='comment'># Be sure to call base class initialize
-</span>
-  <span class='kw'>super</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='comment'># Be sure to call base class initialize
+</span>  <span class='kw'>super</span>
 
   <span class='comment'># Set up the message map for this instance
 </span>  <span class='const'><span class='object_link'><a href="../Responder.html#FXMAPFUNC-instance_method" title="Responder#FXMAPFUNC (method)">FXMAPFUNC</a></span></span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='comma'>,</span> <span class='const'>ID_CLEAR</span><span class='comma'>,</span>    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>onCmdClear</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -2550,9 +2550,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:11:36 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:48:21 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>

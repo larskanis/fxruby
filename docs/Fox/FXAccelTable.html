@@ -394,7 +394,7 @@
   <span class='const'>FXSEL</span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="FXWindow.html" title="Fox::FXWindow (class)">FXWindow</a></span></span><span class='op'>::</span><span class='const'>ID_SHOW</span><span class='rparen'>)</span><span class='rparen'>)</span>
 </code></pre>
 
-<p>The problem with this form is that you need to be familiar with the message types and identifiers that different widgets respond to, and this information isn&#39;t very well documented. A more straightforward way to use <em>addAccel</em> from Ruby code is to instead pass one or more callable objects in as the second and third arguments. For example:</p>
+<p>The problem with this form is that you need to be familiar with the message types and identifiers that different widgets respond to, and this information isn’t very well documented. A more straightforward way to use <em>addAccel</em> from Ruby code is to instead pass one or more callable objects in as the second and third arguments. For example:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_accelTable'>accelTable</span><span class='period'>.</span><span class='id identifier rubyid_addAccel'>addAccel</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_window'>window</span><span class='period'>.</span><span class='id identifier rubyid_hide'>hide</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 </code></pre>
@@ -473,11 +473,11 @@
         <span class='id identifier rubyid_selup'>selup</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>2</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-  <span class='kw'>end</span>  <span class='comment'># FIXME: The target objects stored in the accelerator table are currently
+  <span class='kw'>end</span>
+  <span class='comment'># FIXME: The target objects stored in the accelerator table are currently
 </span>  <span class='comment'># private. Therefore FXRbAccelTable::markfunc() doesn&#39;t mark them as used.
 </span>  <span class='comment'># As a workaround the objects are additionally stored in @targets Hash.
-</span>
-  <span class='ivar'>@targets</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>@targets</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+</span>  <span class='ivar'>@targets</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>@targets</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@targets</span><span class='lbracket'>[</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_tgt'>tgt</span>
   <span class='id identifier rubyid_addAccelOrig'>addAccelOrig</span><span class='lparen'>(</span><span class='id identifier rubyid_hotKey'>hotKey</span><span class='comma'>,</span> <span class='id identifier rubyid_tgt'>tgt</span><span class='comma'>,</span> <span class='id identifier rubyid_seldn'>seldn</span><span class='comma'>,</span> <span class='id identifier rubyid_selup'>selup</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -705,9 +705,9 @@ end
 </div>
 
       <div id="footer">
-  Generated on Fri Nov 27 21:11:14 2020 by
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.24 (ruby-2.7.2).
+  Generated on Mon Jan  2 11:48:00 2023 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.28 (ruby-3.1.2).
 </div>
 
     </div>
