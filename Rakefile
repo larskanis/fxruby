@@ -154,6 +154,7 @@ namespace :gem do
       sh "bundle package"
     end
 
+    desc "Build a binary gem for platform #{plat}"
     task plat => ['gem', 'prepare'] do
       debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
       RakeCompilerDock.sh <<-EOT, platform: plat
