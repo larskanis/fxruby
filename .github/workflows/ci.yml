@@ -16,7 +16,7 @@ jobs:
           - os: ubuntu
             ruby: "head"
           - os: ubuntu
-            ruby: "3.1"
+            ruby: "3.2"
           - os: ubuntu
             ruby: "2.3"
           - os: macos
@@ -25,7 +25,7 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: ruby/setup-ruby-pkgs@v1
         with:
