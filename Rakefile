@@ -80,8 +80,8 @@ CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_
 
 CLOBBER.include( "pkg" )
 
-# Make sure extension is built before tests are run
-task :test => [:compile] do
+# Tests need to run with binary gems, so that the task doesn't depend on compile
+task :test do
   sh "ruby -w -W2 -Ilib test/TS_All.rb -v"
 end
 
