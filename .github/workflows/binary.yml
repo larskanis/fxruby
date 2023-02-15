@@ -75,7 +75,7 @@ jobs:
       - run: bundle install
       - run: gem install --local fxruby-*${{ matrix.platform }}.gem --verbose
       - name: Run specs
-        run: ruby -rfox16 -S rake test
+        run: ruby -w -W2 -rfox16 test/TS_All.rb -v
 
       - name: Print logs if job failed
         if: ${{ failure() && matrix.os == 'windows-latest' }}
