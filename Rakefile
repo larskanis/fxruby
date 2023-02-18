@@ -124,7 +124,7 @@ ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
           "libFOX-1.6-0.dll",
           "libjpeg-62.dll",
           "libpng16-16.dll",
-          "libtiff-5.dll",
+          "libtiff-6.dll",
           "zlib1.dll",
       ]
 
