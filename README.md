@@ -1,12 +1,11 @@
-= FXRuby
+# FXRuby
 
 * http://github.com/larskanis/fxruby
 * Full API-description: http://rubydoc.info/gems/fxruby/frames or https://larskanis.github.io/fxruby/
-* Latest fxruby {<img src="https://badge.fury.io/rb/fxruby.svg" alt="Gem Version" />}[http://badge.fury.io/rb/fxruby]
-* CI-Status: {<img src="https://github.com/larskanis/fxruby/actions/workflows/ci.yml/badge.svg?branch=1.6" alt="Build Status" />}[https://github.com/larskanis/fxruby/actions/workflows/ci.yml] and on Windows: {<img src="https://ci.appveyor.com/api/projects/status/too7sj4gq643ts8w/branch/1.6?svg=true" alt="Build Status on Windows" />}[https://ci.appveyor.com/project/larskanis/fxruby/branch/1.6]
+* Latest fxruby [![Gem Version](https://badge.fury.io/rb/fxruby.svg)](http://badge.fury.io/rb/fxruby)
+* CI-Status: [![Build Status](https://github.com/larskanis/fxruby/actions/workflows/ci.yml/badge.svg?branch=1.6)](https://github.com/larskanis/fxruby/actions/workflows/ci.yml) and on Windows: [![Build Status on Windows](https://ci.appveyor.com/api/projects/status/too7sj4gq643ts8w/branch/1.6?svg=true)](https://ci.appveyor.com/project/larskanis/fxruby/branch/1.6)
 
-
-== DESCRIPTION:
+## DESCRIPTION:
 
 FXRuby is a library for developing powerful and sophisticated
 cross-platform graphical user interfaces (GUIs) for your Ruby
@@ -17,24 +16,24 @@ Ruby programming language that you already know and love, while at the
 same time taking advantage of the performance and functionality of a
 featureful, highly optimized C++ toolkit.
 
-== FEATURES:
+## FEATURES:
 
 FXRuby supportes everything of FOX, that is useful in Ruby:
 * MDI/SDI application window layouts, floating toolbars
 * Rich set of controls (tables, imagelists, menus, canvas, ...)
 * Flexible layout management
 * Image read/write support in many formats
-* Embedded OpenGL graphics through the {opengl-bindings}[https://github.com/vaiorabbit/ruby-opengl] gem
+* Embedded OpenGL graphics through the [opengl-bindings](https://github.com/vaiorabbit/ruby-opengl) gem
 * Thread support
 
-== INSTALL:
+## INSTALL:
 
 FXRuby runs on Linux, Windows and OS-X with Ruby-2.2 or newer. Installation on Unix requires
 FOX development headers and libraries installed:
 * on Debian/Ubuntu: <tt>sudo apt-get install g++ libxrandr-dev libfox-1.6-dev</tt>
 * on Mac: <tt>sudo port install rb-fxruby</tt> OR <tt>brew install fox && brew install xquartz</tt>
 * on Windows: the binary fxruby gems already contain all required libraries
-* see also detailed installation instructions in the {Wiki}[https://github.com/lylejohnson/fxruby/wiki]
+* see also detailed installation instructions in the [Wiki](https://github.com/lylejohnson/fxruby/wiki)
 
 Then, install the gem:
 * gem install fxruby
@@ -43,7 +42,7 @@ On Mac, before running applications, you must also run: <tt>open -a /Application
 
 (otherwise, you end up getting this message when running applications on Mac: <tt>FXRbApp::openDisplay: unable to open display :0.0</tt>)
 
-== DIRECTORIES
+## DIRECTORIES
 The directory structure is:
 
 * examples/
@@ -86,8 +85,9 @@ you might see some additional directories of interest:
   the code found in the ext/fox directory).
 
 
-== LICENSE
+## LICENSE
 
+```
         GNU LESSER GENERAL PUBLIC LICENSE
             Version 2.1, February 1999
 
@@ -544,3 +544,4 @@ you might see some additional directories of interest:
   FAILURE OF THE LIBRARY TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
   SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
   DAMAGES.
+```
