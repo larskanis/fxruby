@@ -1,3 +1,9 @@
+## 1.6.46 / 2023-02-19
+
+* Add binary gem support for ruby-3.2 on platform x64-mingw-ucrt and drop ruby-2.4.
+* Update to libz-1.2.13, libpng-1.6.39, libjpeg-turbo-2.1.5.1, libtiff-4.5.0 for Windows binary gems.
+* Add documentation options to gemspec, so that "gem install fxruby" generates suitable documentation.
+
 ## 1.6.45 / 2022-01-14
 
 * Add binary gem support for ruby-3.1 on platform x64-mingw-ucrt and drop ruby-2.3.
