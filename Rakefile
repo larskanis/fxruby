@@ -161,7 +161,7 @@ namespace :gem do
         sudo apt update &&
         sudo apt install yasm &&
         bundle --local --without=test &&
-        rake native:#{plat} pkg/#{ext_task.gem_spec.full_name}-#{plat}.gem MAKE=\"nice make V=1 VERBOSE=1 -j `nproc`\" #{debug}
+        rake native:#{plat} pkg/#{ext_task.gem_spec.full_name}-#{plat}.gem MAKE=\"nice make V=1 VERBOSE=1 -j `nproc`\" #{debug}  RUBY_CC_VERSION=${RUBY_CC_VERSION/:2.4.0/}
       EOT
     end
   end
