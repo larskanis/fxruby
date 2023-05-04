@@ -55,7 +55,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'mini_portile2', '~> 2.1'
 
   yardopts = File.read(".yardopts")
-  spec.rdoc_options  = ["--main", "README.rdoc",
+  spec.rdoc_options  = ["--main", "README.md",
                         "--title", "FXRuby API Documentation"]
   docfiles = yardopts.lines.map(&:strip).select{|r| r=~/^[^-]/ }
   spec.extra_rdoc_files = `git ls-files -z #{docfiles.join(" ")}`.split("\x0")

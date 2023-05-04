@@ -1,4 +1,4 @@
---readme          README.rdoc
+--readme          README.md
 --title           "FXRuby API Documentation"
 --exclude '/aliases|kwargs|missingdep|responder/'
 --protected
@@ -9,4 +9,4 @@ lib/fox16/*.rb
 -
 History.md
 rdoc-sources/*.rdoc
-README.rdoc
+README.md
