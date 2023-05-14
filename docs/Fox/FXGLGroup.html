@@ -93,7 +93,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd>Enumerable, OpenGL</dd>
+      <dd>Enumerable</dd>
   </dl>
   
   
@@ -584,7 +584,6 @@
   
   
   
-  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXGLObject.html" title="Fox::FXGLObject (class)">FXGLObject</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="FXGLObject.html#canDelete-instance_method" title="Fox::FXGLObject#canDelete (method)">#canDelete</a></span>, <span class='object_link'><a href="FXGLObject.html#copy-instance_method" title="Fox::FXGLObject#copy (method)">#copy</a></span></p>
 
@@ -627,13 +626,13 @@
       <pre class="lines">
 
 
+20
 21
 22
-23
-24</pre>
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='kw'>super</span>
@@ -677,12 +676,12 @@
       <pre class="lines">
 
 
+35
 36
-37
-38</pre>
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_pos'>pos</span><span class='rbracket'>]</span>
@@ -718,12 +717,12 @@
       <pre class="lines">
 
 
+42
 43
-44
-45</pre>
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_pos'>pos</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span>
@@ -763,12 +762,12 @@
       <pre class="lines">
 
 
+130
 131
-132
-133</pre>
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_obj'>obj</span>
@@ -804,6 +803,7 @@
       <pre class="lines">
 
 
+59
 60
 61
 62
@@ -812,11 +812,10 @@
 65
 66
 67
-68
-69</pre>
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bounds'>bounds</span>
   <span class='id identifier rubyid_box'>box</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -859,12 +858,12 @@
       <pre class="lines">
 
 
+101
 102
-103
-104</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_canDrag'>canDrag</span>
   <span class='kw'>true</span>
@@ -900,12 +899,12 @@
       <pre class="lines">
 
 
+161
 162
-163
-164</pre>
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear'>clear</span>
   <span class='ivar'>@list</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
@@ -941,12 +940,12 @@
       <pre class="lines">
 
 
+109
 110
-111
-112</pre>
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drag'>drag</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='comma'>,</span> <span class='id identifier rubyid_fx'>fx</span><span class='comma'>,</span> <span class='id identifier rubyid_fy'>fy</span><span class='comma'>,</span> <span class='id identifier rubyid_tx'>tx</span><span class='comma'>,</span> <span class='id identifier rubyid_ty'>ty</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>|</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_drag'>drag</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='comma'>,</span> <span class='id identifier rubyid_fx'>fx</span><span class='comma'>,</span> <span class='id identifier rubyid_fy'>fy</span><span class='comma'>,</span> <span class='id identifier rubyid_tx'>tx</span><span class='comma'>,</span> <span class='id identifier rubyid_ty'>ty</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -982,12 +981,12 @@
       <pre class="lines">
 
 
+73
 74
-75
-76</pre>
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_draw'>draw</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='op'>|</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_draw'>draw</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1027,13 +1026,13 @@
       <pre class="lines">
 
 
+49
 50
 51
-52
-53</pre>
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_child'>each_child</span> <span class='comment'># :yields: childObject
 </span>  <span class='ivar'>@list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='kw'>yield</span> <span class='id identifier rubyid_child'>child</span> <span class='rbrace'>}</span>
@@ -1070,6 +1069,7 @@
       <pre class="lines">
 
 
+80
 81
 82
 83
@@ -1077,20 +1077,19 @@
 85
 86
 87
-88
-89</pre>
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hit'>hit</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
 <span class='comment'>#     GL.PushName(0xffffffff)
-</span>  <span class='id identifier rubyid_glPushName'>glPushName</span><span class='lparen'>(</span><span class='int'>1000000</span><span class='rparen'>)</span>
+</span>  <span class='const'>GL</span><span class='period'>.</span><span class='const'>PushName</span><span class='lparen'>(</span><span class='int'>1000000</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
-    <span class='id identifier rubyid_glLoadName'>glLoadName</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>LoadName</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_hit'>hit</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_glPopName'>glPopName</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>PopName</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1123,13 +1122,13 @@
       <pre class="lines">
 
 
+93
 94
 95
-96
-97</pre>
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_identify'>identify</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_objIndex'>objIndex</span> <span class='op'>=</span> <span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
@@ -1179,12 +1178,12 @@
       <pre class="lines">
 
 
+116
 117
-118
-119</pre>
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 116</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span>
@@ -1220,12 +1219,12 @@
       <pre class="lines">
 
 
+123
 124
-125
-126</pre>
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prepend'>prepend</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span><span class='period'>.</span><span class='id identifier rubyid_unshift'>unshift</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
@@ -1265,16 +1264,16 @@
       <pre class="lines">
 
 
+148
 149
 150
 151
 152
 153
-154
-155</pre>
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove'>remove</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="FXGLObject.html" title="Fox::FXGLObject (class)">FXGLObject</a></span></span>
@@ -1314,12 +1313,12 @@
       <pre class="lines">
 
 
+139
 140
-141
-142</pre>
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='comma'>,</span> <span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='ivar'>@list</span><span class='lbracket'>[</span><span class='id identifier rubyid_pos'>pos</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span>
@@ -1355,12 +1354,12 @@
       <pre class="lines">
 
 
+28
 29
-30
-31</pre>
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glgroup.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
   <span class='ivar'>@list</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
@@ -1375,9 +1374,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jan  2 11:48:20 2023 by
+  Generated on Sun May 14 21:56:16 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.28 (ruby-3.1.2).
+  0.9.34 (ruby-3.2.0).
 </div>
 
     </div>

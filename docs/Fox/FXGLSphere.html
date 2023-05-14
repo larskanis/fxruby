@@ -93,11 +93,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd>GLU, OpenGL</dd>
-  </dl>
-  
   
 
   
@@ -321,8 +316,6 @@
   
   
   
-  
-  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXGLShape.html" title="Fox::FXGLShape (class)">FXGLShape</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="FXGLShape.html#getMaterial-instance_method" title="Fox::FXGLShape#getMaterial (method)">#getMaterial</a></span>, <span class='object_link'><a href="FXGLShape.html#setMaterial-instance_method" title="Fox::FXGLShape#setMaterial (method)">#setMaterial</a></span>, <span class='object_link'><a href="FXGLShape.html#setRange-instance_method" title="Fox::FXGLShape#setRange (method)">#setRange</a></span></p>
 
@@ -390,21 +383,21 @@
       <pre class="lines">
 
 
-446
-447
-448
-449
-450
-451
-452
-453
-454
-455
-456
-457</pre>
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 446</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 431</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>4</span>
@@ -456,12 +449,12 @@
       <pre class="lines">
 
 
-421
-422
-423</pre>
+406
+407
+408</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 421</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 406</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_radius'>radius</span>
   <span class='ivar'>@radius</span>
@@ -499,12 +492,12 @@
       <pre class="lines">
 
 
-424
-425
-426</pre>
+409
+410
+411</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 424</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 409</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_slices'>slices</span>
   <span class='ivar'>@slices</span>
@@ -542,12 +535,12 @@
       <pre class="lines">
 
 
-427
-428
-429</pre>
+412
+413
+414</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 427</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 412</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stacks'>stacks</span>
   <span class='ivar'>@stacks</span>
@@ -590,21 +583,21 @@
       <pre class="lines">
 
 
-462
-463
-464
-465
-466
-467</pre>
+447
+448
+449
+450
+451
+452</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 462</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 447</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawshape'>drawshape</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_quad'>quad</span> <span class='op'>=</span> <span class='id identifier rubyid_gluNewQuadric'>gluNewQuadric</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluQuadricDrawStyle'>gluQuadricDrawStyle</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU_FILL</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluSphere'>gluSphere</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@stacks</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluDeleteQuadric'>gluDeleteQuadric</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_quad'>quad</span> <span class='op'>=</span> <span class='const'>GLU</span><span class='period'>.</span><span class='const'>NewQuadric</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>QuadricDrawStyle</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU</span><span class='op'>::</span><span class='const'>FILL</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>Sphere</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@stacks</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>DeleteQuadric</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -616,9 +609,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jan  2 11:48:21 2023 by
+  Generated on Sun May 14 21:56:17 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.28 (ruby-3.1.2).
+  0.9.34 (ruby-3.2.0).
 </div>
 
     </div>

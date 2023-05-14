@@ -93,11 +93,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd>GLU, OpenGL</dd>
-  </dl>
-  
   
 
   
@@ -380,8 +375,6 @@
   
   
   
-  
-  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXGLShape.html" title="Fox::FXGLShape (class)">FXGLShape</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="FXGLShape.html#getMaterial-instance_method" title="Fox::FXGLShape#getMaterial (method)">#getMaterial</a></span>, <span class='object_link'><a href="FXGLShape.html#setMaterial-instance_method" title="Fox::FXGLShape#setMaterial (method)">#setMaterial</a></span>, <span class='object_link'><a href="FXGLShape.html#setRange-instance_method" title="Fox::FXGLShape#setRange (method)">#setRange</a></span></p>
 
@@ -449,23 +442,23 @@
       <pre class="lines">
 
 
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
 375
-376
-377
-378
-379
-380
-381
-382
-383
-384
-385
-386
-387
-388</pre>
+376</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 375</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 363</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>5</span>
@@ -519,12 +512,12 @@
       <pre class="lines">
 
 
-344
-345
-346</pre>
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 344</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 332</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_height'>height</span>
   <span class='ivar'>@height</span>
@@ -562,12 +555,12 @@
       <pre class="lines">
 
 
-356
-357
-358</pre>
+344
+345
+346</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 356</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 344</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loops'>loops</span>
   <span class='ivar'>@loops</span>
@@ -605,12 +598,12 @@
       <pre class="lines">
 
 
-347
-348
-349</pre>
+335
+336
+337</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 347</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 335</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_radius'>radius</span>
   <span class='ivar'>@radius</span>
@@ -648,12 +641,12 @@
       <pre class="lines">
 
 
-350
-351
-352</pre>
+338
+339
+340</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 350</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 338</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_slices'>slices</span>
   <span class='ivar'>@slices</span>
@@ -691,12 +684,12 @@
       <pre class="lines">
 
 
-353
-354
-355</pre>
+341
+342
+343</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 353</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 341</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stacks'>stacks</span>
   <span class='ivar'>@stacks</span>
@@ -739,37 +732,37 @@
       <pre class="lines">
 
 
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
 393
-394
-395
-396
-397
-398
-399
-400
-401
-402
-403
-404
-405
-406</pre>
+394</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 393</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 381</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawshape'>drawshape</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_quad'>quad</span> <span class='op'>=</span> <span class='id identifier rubyid_gluNewQuadric'>gluNewQuadric</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluQuadricDrawStyle'>gluQuadricDrawStyle</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU_FILL</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glPushMatrix'>glPushMatrix</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glRotated'>glRotated</span><span class='lparen'>(</span><span class='op'>-</span><span class='int'>90</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluCylinder'>gluCylinder</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@height</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@stacks</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluQuadricOrientation'>gluQuadricOrientation</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU_INSIDE</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluDisk'>gluDisk</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@loops</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glTranslated'>glTranslated</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@height</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluQuadricOrientation'>gluQuadricOrientation</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU_OUTSIDE</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluDisk'>gluDisk</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@loops</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glPopMatrix'>glPopMatrix</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_gluDeleteQuadric'>gluDeleteQuadric</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_quad'>quad</span> <span class='op'>=</span> <span class='const'>GLU</span><span class='period'>.</span><span class='const'>NewQuadric</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>QuadricDrawStyle</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU</span><span class='op'>::</span><span class='const'>FILL</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>PushMatrix</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Rotated</span><span class='lparen'>(</span><span class='op'>-</span><span class='int'>90</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>Cylinder</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@height</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@stacks</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>QuadricOrientation</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU</span><span class='op'>::</span><span class='const'>INSIDE</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>Disk</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@loops</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Translated</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@height</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>QuadricOrientation</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='const'>GLU</span><span class='op'>::</span><span class='const'>OUTSIDE</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>Disk</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@radius</span><span class='comma'>,</span> <span class='ivar'>@slices</span><span class='comma'>,</span> <span class='ivar'>@loops</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>PopMatrix</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>GLU</span><span class='period'>.</span><span class='const'>DeleteQuadric</span><span class='lparen'>(</span><span class='id identifier rubyid_quad'>quad</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -781,9 +774,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jan  2 11:48:21 2023 by
+  Generated on Sun May 14 21:56:17 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.28 (ruby-3.1.2).
+  0.9.34 (ruby-3.2.0).
 </div>
 
     </div>

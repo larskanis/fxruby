@@ -16,6 +16,6 @@ group :development do
 end
 
 group :test do
-  gem 'opengl-bindings', '~> 1.0'
+  gem 'opengl-bindings2', '~> 2.0'
   gem 'test-unit', '~> 3.1'
 end

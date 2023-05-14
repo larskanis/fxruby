@@ -91,11 +91,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd>OpenGL</dd>
-  </dl>
-  
   
 
   
@@ -303,7 +298,6 @@
   
   
   
-  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXGLObject.html" title="Fox::FXGLObject (class)">FXGLObject</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="FXGLObject.html#canDelete-instance_method" title="Fox::FXGLObject#canDelete (method)">#canDelete</a></span>, <span class='object_link'><a href="FXGLObject.html#canDrag-instance_method" title="Fox::FXGLObject#canDrag (method)">#canDrag</a></span>, <span class='object_link'><a href="FXGLObject.html#copy-instance_method" title="Fox::FXGLObject#copy (method)">#copy</a></span>, <span class='object_link'><a href="FXGLObject.html#drag-instance_method" title="Fox::FXGLObject#drag (method)">#drag</a></span>, <span class='object_link'><a href="FXGLObject.html#identify-instance_method" title="Fox::FXGLObject#identify (method)">#identify</a></span></p>
 
@@ -356,6 +350,10 @@
       <pre class="lines">
 
 
+91
+92
+93
+94
 95
 96
 97
@@ -364,14 +362,10 @@
 100
 101
 102
-103
-104
-105
-106
-107</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -424,12 +418,12 @@
       <pre class="lines">
 
 
-75
-76
-77</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fm'>fm</span>
   <span class='ivar'>@fm</span>
@@ -467,12 +461,12 @@
       <pre class="lines">
 
 
-78
-79
-80</pre>
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to'>to</span>
   <span class='ivar'>@to</span>
@@ -515,17 +509,17 @@
       <pre class="lines">
 
 
+108
+109
+110
+111
 112
 113
 114
-115
-116
-117
-118
-119</pre>
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bounds'>bounds</span>
   <span class='const'><span class='object_link'><a href="FXRangef.html" title="Fox::FXRangef (class)">FXRangef</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXRangef.html#initialize-instance_method" title="Fox::FXRangef#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='ivar'>@fm</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='ivar'>@to</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span>
@@ -566,25 +560,25 @@
       <pre class="lines">
 
 
+120
+121
+122
+123
 124
 125
 126
-127
-128
-129
-130
-131</pre>
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_draw'>draw</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glColor3d'>glColor3d</span><span class='lparen'>(</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glPointSize'>glPointSize</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Fox.html#HANDLE_SIZE-constant" title="Fox::HANDLE_SIZE (constant)">HANDLE_SIZE</a></span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_LINES</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@fm</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@to</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Color3d</span><span class='lparen'>(</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>PointSize</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Fox.html#HANDLE_SIZE-constant" title="Fox::HANDLE_SIZE (constant)">HANDLE_SIZE</a></span></span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>LINES</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@fm</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@to</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -617,21 +611,21 @@
       <pre class="lines">
 
 
+132
+133
+134
+135
 136
-137
-138
-139
-140
-141</pre>
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hit'>hit</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_LINES</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@fm</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@to</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>LINES</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@fm</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@to</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -643,9 +637,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jan  2 11:48:21 2023 by
+  Generated on Sun May 14 21:56:17 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.28 (ruby-3.1.2).
+  0.9.34 (ruby-3.2.0).
 </div>
 
     </div>

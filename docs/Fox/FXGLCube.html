@@ -93,11 +93,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd>OpenGL</dd>
-  </dl>
-  
   
 
   
@@ -289,7 +284,6 @@
   
   
   
-  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="FXGLShape.html" title="Fox::FXGLShape (class)">FXGLShape</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="FXGLShape.html#getMaterial-instance_method" title="Fox::FXGLShape#getMaterial (method)">#getMaterial</a></span>, <span class='object_link'><a href="FXGLShape.html#setMaterial-instance_method" title="Fox::FXGLShape#setMaterial (method)">#setMaterial</a></span>, <span class='object_link'><a href="FXGLShape.html#setRange-instance_method" title="Fox::FXGLShape#setRange (method)">#setRange</a></span></p>
 
@@ -357,6 +351,12 @@
       <pre class="lines">
 
 
+171
+172
+173
+174
+175
+176
 177
 178
 179
@@ -364,16 +364,10 @@
 181
 182
 183
-184
-185
-186
-187
-188
-189
-190</pre>
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>7</span>
@@ -427,12 +421,12 @@
       <pre class="lines">
 
 
-157
-158
-159</pre>
+151
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_depth'>depth</span>
   <span class='ivar'>@depth</span>
@@ -470,12 +464,12 @@
       <pre class="lines">
 
 
-154
-155
-156</pre>
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_height'>height</span>
   <span class='ivar'>@height</span>
@@ -513,12 +507,12 @@
       <pre class="lines">
 
 
-151
-152
-153</pre>
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_width'>width</span>
   <span class='ivar'>@width</span>
@@ -561,6 +555,12 @@
       <pre class="lines">
 
 
+189
+190
+191
+192
+193
+194
 195
 196
 197
@@ -613,16 +613,10 @@
 244
 245
 246
-247
-248
-249
-250
-251
-252
-253</pre>
+247</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'lib/fox16/glshapes.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drawshape'>drawshape</span><span class='lparen'>(</span><span class='id identifier rubyid_viewer'>viewer</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_xmax'>xmax</span> <span class='op'>=</span> <span class='op'>-</span><span class='float'>0.5</span><span class='op'>*</span><span class='ivar'>@width</span><span class='comma'>,</span> <span class='float'>0.5</span><span class='op'>*</span><span class='ivar'>@width</span>
@@ -630,58 +624,58 @@
   <span class='id identifier rubyid_zmin'>zmin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span> <span class='op'>=</span> <span class='op'>-</span><span class='float'>0.5</span><span class='op'>*</span><span class='ivar'>@depth</span><span class='comma'>,</span> <span class='float'>0.5</span><span class='op'>*</span><span class='ivar'>@depth</span>
 
   <span class='comment'># Draw low face
-</span>  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_TRIANGLE_STRIP</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glNormal3d'>glNormal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='op'>-</span><span class='float'>1.0</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</span>  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>TRIANGLE_STRIP</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Normal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='op'>-</span><span class='float'>1.0</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 
   <span class='comment'># Draw east face
-</span>  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_TRIANGLE_STRIP</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glNormal3d'>glNormal3d</span><span class='lparen'>(</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</span>  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>TRIANGLE_STRIP</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Normal3d</span><span class='lparen'>(</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 
   <span class='comment'># Draw high face
-</span>  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_TRIANGLE_STRIP</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glNormal3d'>glNormal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>1.0</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</span>  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>TRIANGLE_STRIP</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Normal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>1.0</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 
   <span class='comment'># Draw west face
-</span>  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_TRIANGLE_STRIP</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glNormal3d'>glNormal3d</span><span class='lparen'>(</span><span class='op'>-</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</span>  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>TRIANGLE_STRIP</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Normal3d</span><span class='lparen'>(</span><span class='op'>-</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 
   <span class='comment'># Draw north face
-</span>  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_TRIANGLE_STRIP</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glNormal3d'>glNormal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</span>  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>TRIANGLE_STRIP</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Normal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymax'>ymax</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 
   <span class='comment'># Draw south face
-</span>  <span class='id identifier rubyid_glBegin'>glBegin</span><span class='lparen'>(</span><span class='const'>GL_TRIANGLE_STRIP</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glNormal3d'>glNormal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='op'>-</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_glVertex3d'>glVertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_glEnd'>glEnd</span><span class='lparen'>(</span><span class='rparen'>)</span>
+</span>  <span class='const'>GL</span><span class='period'>.</span><span class='const'>Begin</span><span class='lparen'>(</span><span class='const'>GL</span><span class='op'>::</span><span class='const'>TRIANGLE_STRIP</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Normal3d</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='op'>-</span><span class='float'>1.0</span><span class='comma'>,</span> <span class='float'>0.0</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmin'>xmin</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmax'>zmax</span><span class='rparen'>)</span>
+    <span class='const'>GL</span><span class='period'>.</span><span class='const'>Vertex3d</span><span class='lparen'>(</span><span class='id identifier rubyid_xmax'>xmax</span><span class='comma'>,</span> <span class='id identifier rubyid_ymin'>ymin</span><span class='comma'>,</span> <span class='id identifier rubyid_zmin'>zmin</span><span class='rparen'>)</span>
+  <span class='const'>GL</span><span class='period'>.</span><span class='const'>End</span><span class='lparen'>(</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -693,9 +687,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jan  2 11:48:21 2023 by
+  Generated on Sun May 14 21:56:17 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.28 (ruby-3.1.2).
+  0.9.34 (ruby-3.2.0).
 </div>
 
     </div>
