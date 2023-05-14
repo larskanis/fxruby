@@ -9,7 +9,6 @@ module Fox
   # A group of OpenGL objects
   #
   class FXGLGroup < FXGLObject
-    include OpenGL if defined?(OpenGL)
     include Enumerable
 
     FLT_MAX =  1.0e+20
@@ -80,12 +79,12 @@ module Fox
     #
     def hit(viewer)
 #     GL.PushName(0xffffffff)
-      glPushName(1000000)
+      GL.PushName(1000000)
       @list.each_with_index do |obj, i|
-        glLoadName(i)
+        GL.LoadName(i)
         obj.hit(viewer)
       end
-      glPopName
+      GL.PopName
     end
 
     #

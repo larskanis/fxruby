@@ -23,7 +23,7 @@ FXRuby supportes everything of FOX, that is useful in Ruby:
 * Rich set of controls (tables, imagelists, menus, canvas, ...)
 * Flexible layout management
 * Image read/write support in many formats
-* Embedded OpenGL graphics through the [opengl-bindings](https://github.com/vaiorabbit/ruby-opengl) gem
+* Embedded OpenGL graphics through the [opengl-bindings2](https://github.com/vaiorabbit/ruby-opengl) gem
 * Thread support
 
 ## INSTALL:

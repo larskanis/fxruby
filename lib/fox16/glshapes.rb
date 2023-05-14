@@ -9,8 +9,6 @@ module Fox
   # OpenGL point object
   #
   class FXGLPoint < FXGLObject
-    include OpenGL
-
     # Point position, in model coordinates (a 3-element array)
     attr_accessor :pos
 
@@ -48,20 +46,20 @@ module Fox
     # Draw this point into _viewer_ (an FXGLViewer instance).
     #
     def draw(viewer)
-      glColor3d(0.0, 0.0, 1.0)
-      glPointSize(HANDLE_SIZE)
-      glBegin(GL_POINTS)
-      glVertex3d(*@pos)
-      glEnd()
+      GL.Color3d(0.0, 0.0, 1.0)
+      GL.PointSize(HANDLE_SIZE)
+      GL.Begin(GL::POINTS)
+      GL.Vertex3d(*@pos)
+      GL.End()
     end
 
     #
     # Perform hit test for this point in _viewer_ (an FXGLViewer instance).
     #
     def hit(viewer)
-      glBegin(GL_POINTS)
-      glVertex3d(*@pos)
-      glEnd()
+      GL.Begin(GL::POINTS)
+      GL.Vertex3d(*@pos)
+      GL.End()
     end
   end
 
@@ -69,8 +67,6 @@ module Fox
   # OpenGL line object
   #
   class FXGLLine < FXGLObject
-    include OpenGL
-
     # Starting point for line [FXGLPoint]
     attr_accessor :fm
 
@@ -122,22 +118,22 @@ module Fox
     # Draw this line into _viewer_ (an FXGLViewer instance).
     #
     def draw(viewer)
-      glColor3d(1.0, 0.0, 0.0)
-      glPointSize(HANDLE_SIZE)
-      glBegin(GL_LINES)
-      glVertex3d(*@fm.pos)
-      glVertex3d(*@to.pos)
-      glEnd()
+      GL.Color3d(1.0, 0.0, 0.0)
+      GL.PointSize(HANDLE_SIZE)
+      GL.Begin(GL::LINES)
+      GL.Vertex3d(*@fm.pos)
+      GL.Vertex3d(*@to.pos)
+      GL.End()
     end
 
     #
     # Perform hit-test for this line in _viewer_ (an FXGLViewer instance).
     #
     def hit(viewer)
-      glBegin(GL_LINES)
-      glVertex3d(*@fm.pos)
-      glVertex3d(*@to.pos)
-      glEnd()
+      GL.Begin(GL::LINES)
+      GL.Vertex3d(*@fm.pos)
+      GL.Vertex3d(*@to.pos)
+      GL.End()
     end
   end
 
@@ -145,8 +141,6 @@ module Fox
   # OpenGL cube object
   #
   class FXGLCube < FXGLShape
-    include OpenGL
-
     # Cube width [Float]
     attr_accessor :width
 
@@ -198,58 +192,58 @@ module Fox
       zmin, zmax = -0.5*@depth, 0.5*@depth
 
       # Draw low face
-      glBegin(GL_TRIANGLE_STRIP)
-        glNormal3d(0.0, 0.0, -1.0)
-        glVertex3d(xmin, ymin, zmin)
-        glVertex3d(xmin, ymax, zmin)
-        glVertex3d(xmax, ymin, zmin)
-        glVertex3d(xmax, ymax, zmin)
-      glEnd()
+      GL.Begin(GL::TRIANGLE_STRIP)
+        GL.Normal3d(0.0, 0.0, -1.0)
+        GL.Vertex3d(xmin, ymin, zmin)
+        GL.Vertex3d(xmin, ymax, zmin)
+        GL.Vertex3d(xmax, ymin, zmin)
+        GL.Vertex3d(xmax, ymax, zmin)
+      GL.End()
 
       # Draw east face
-      glBegin(GL_TRIANGLE_STRIP)
-        glNormal3d(1.0, 0.0, 0.0)
-        glVertex3d(xmax, ymin, zmin)
-        glVertex3d(xmax, ymax, zmin)
-        glVertex3d(xmax, ymin, zmax)
-        glVertex3d(xmax, ymax, zmax)
-      glEnd()
+      GL.Begin(GL::TRIANGLE_STRIP)
+        GL.Normal3d(1.0, 0.0, 0.0)
+        GL.Vertex3d(xmax, ymin, zmin)
+        GL.Vertex3d(xmax, ymax, zmin)
+        GL.Vertex3d(xmax, ymin, zmax)
+        GL.Vertex3d(xmax, ymax, zmax)
+      GL.End()
 
       # Draw high face
-      glBegin(GL_TRIANGLE_STRIP)
-        glNormal3d(0.0, 0.0, 1.0)
-        glVertex3d(xmax, ymin, zmax)
-        glVertex3d(xmax, ymax, zmax)
-        glVertex3d(xmin, ymin, zmax)
-        glVertex3d(xmin, ymax, zmax)
-      glEnd()
+      GL.Begin(GL::TRIANGLE_STRIP)
+        GL.Normal3d(0.0, 0.0, 1.0)
+        GL.Vertex3d(xmax, ymin, zmax)
+        GL.Vertex3d(xmax, ymax, zmax)
+        GL.Vertex3d(xmin, ymin, zmax)
+        GL.Vertex3d(xmin, ymax, zmax)
+      GL.End()
 
       # Draw west face
-      glBegin(GL_TRIANGLE_STRIP)
-        glNormal3d(-1.0, 0.0, 0.0)
-        glVertex3d(xmin, ymin, zmax)
-        glVertex3d(xmin, ymax, zmax)
-        glVertex3d(xmin, ymin, zmin)
-        glVertex3d(xmin, ymax, zmin)
-      glEnd()
+      GL.Begin(GL::TRIANGLE_STRIP)
+        GL.Normal3d(-1.0, 0.0, 0.0)
+        GL.Vertex3d(xmin, ymin, zmax)
+        GL.Vertex3d(xmin, ymax, zmax)
+        GL.Vertex3d(xmin, ymin, zmin)
+        GL.Vertex3d(xmin, ymax, zmin)
+      GL.End()
 
       # Draw north face
-      glBegin(GL_TRIANGLE_STRIP)
-        glNormal3d(0.0, 1.0, 0.0)
-        glVertex3d(xmin, ymax, zmin)
-        glVertex3d(xmin, ymax, zmax)
-        glVertex3d(xmax, ymax, zmin)
-        glVertex3d(xmax, ymax, zmax)
-      glEnd()
+      GL.Begin(GL::TRIANGLE_STRIP)
+        GL.Normal3d(0.0, 1.0, 0.0)
+        GL.Vertex3d(xmin, ymax, zmin)
+        GL.Vertex3d(xmin, ymax, zmax)
+        GL.Vertex3d(xmax, ymax, zmin)
+        GL.Vertex3d(xmax, ymax, zmax)
+      GL.End()
 
       # Draw south face
-      glBegin(GL_TRIANGLE_STRIP)
-        glNormal3d(0.0, -1.0, 0.0)
-        glVertex3d(xmin, ymin, zmax)
-        glVertex3d(xmin, ymin, zmin)
-        glVertex3d(xmax, ymin, zmax)
-        glVertex3d(xmax, ymin, zmin)
-      glEnd()
+      GL.Begin(GL::TRIANGLE_STRIP)
+        GL.Normal3d(0.0, -1.0, 0.0)
+        GL.Vertex3d(xmin, ymin, zmax)
+        GL.Vertex3d(xmin, ymin, zmin)
+        GL.Vertex3d(xmax, ymin, zmax)
+        GL.Vertex3d(xmax, ymin, zmin)
+      GL.End()
     end
   end
 
@@ -257,9 +251,6 @@ module Fox
   # OpenGL cone object
   #
   class FXGLCone < FXGLShape
-    include OpenGL
-    include GLU
-
     # Cone fidelity
     SLICES_NUMBER = 20
     STACKS_NUMBER = 20
@@ -316,15 +307,15 @@ module Fox
     # Draw this cone into _viewer_ (an FXGLViewer instance).
     #
     def drawshape(viewer)
-      quad = gluNewQuadric()
-      gluQuadricDrawStyle(quad, GLU_FILL)
-      glPushMatrix()
-      glRotated(-90, 1, 0, 0)
-      gluCylinder(quad, @radius, 0, @height, @slices, @stacks)
-      gluQuadricOrientation(quad, GLU_INSIDE)
-      gluDisk(quad, 0, @radius, @slices, @loops)
-      gluDeleteQuadric(quad)
-      glPopMatrix()
+      quad = GLU.NewQuadric()
+      GLU.QuadricDrawStyle(quad, GLU::FILL)
+      GL.PushMatrix()
+      GL.Rotated(-90, 1, 0, 0)
+      GLU.Cylinder(quad, @radius, 0, @height, @slices, @stacks)
+      GLU.QuadricOrientation(quad, GLU::INSIDE)
+      GLU.Disk(quad, 0, @radius, @slices, @loops)
+      GLU.DeleteQuadric(quad)
+      GL.PopMatrix()
     end
   end
 
@@ -332,9 +323,6 @@ module Fox
   # OpenGL cylinder object
   #
   class FXGLCylinder < FXGLShape
-    include OpenGL
-    include GLU
-
     # Cylinder fidelity
     SLICES_NUMBER = 20
     STACKS_NUMBER = 20
@@ -391,18 +379,18 @@ module Fox
     # Draw this cylinder into _viewer_ (an FXGLViewer instance).
     #
     def drawshape(viewer)
-      quad = gluNewQuadric()
-      gluQuadricDrawStyle(quad, GLU_FILL)
-      glPushMatrix()
-      glRotated(-90, 1, 0, 0)
-      gluCylinder(quad, @radius, @radius, @height, @slices, @stacks)
-      gluQuadricOrientation(quad, GLU_INSIDE)
-      gluDisk(quad, 0, @radius, @slices, @loops)
-      glTranslated(0, 0, @height)
-      gluQuadricOrientation(quad, GLU_OUTSIDE)
-      gluDisk(quad, 0, @radius, @slices, @loops)
-      glPopMatrix()
-      gluDeleteQuadric(quad)
+      quad = GLU.NewQuadric()
+      GLU.QuadricDrawStyle(quad, GLU::FILL)
+      GL.PushMatrix()
+      GL.Rotated(-90, 1, 0, 0)
+      GLU.Cylinder(quad, @radius, @radius, @height, @slices, @stacks)
+      GLU.QuadricOrientation(quad, GLU::INSIDE)
+      GLU.Disk(quad, 0, @radius, @slices, @loops)
+      GL.Translated(0, 0, @height)
+      GLU.QuadricOrientation(quad, GLU::OUTSIDE)
+      GLU.Disk(quad, 0, @radius, @slices, @loops)
+      GL.PopMatrix()
+      GLU.DeleteQuadric(quad)
     end
   end
 
@@ -410,9 +398,6 @@ module Fox
   # OpenGL sphere object
   #
   class FXGLSphere < FXGLShape
-    include OpenGL
-    include GLU
-
     # Sphere fidelity
     SLICES_NUMBER = 20
     STACKS_NUMBER = 20
@@ -460,10 +445,10 @@ module Fox
     # Draw this sphere into _viewer_ (an FXGLViewer instance).
     #
     def drawshape(viewer)
-      quad = gluNewQuadric()
-      gluQuadricDrawStyle(quad, GLU_FILL)
-      gluSphere(quad, @radius, @slices, @stacks)
-      gluDeleteQuadric(quad)
+      quad = GLU.NewQuadric()
+      GLU.QuadricDrawStyle(quad, GLU::FILL)
+      GLU.Sphere(quad, @radius, @slices, @stacks)
+      GLU.DeleteQuadric(quad)
     end
   end
 end
