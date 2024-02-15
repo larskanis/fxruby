@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 
-require "getoptlong"
+require "optparse"
 
 ##
 # IFace data stucture
@@ -363,18 +363,14 @@ class ScintillaIFaceToRuby
 end
 
 def main
-	options = GetoptLong.new(["-i", GetoptLong::REQUIRED_ARGUMENT],
-													 ["-o", GetoptLong::REQUIRED_ARGUMENT])
-
 	input = output = nil
-	options.each do |opt, arg|
-		case opt
-		when "-i"
-			input = File.open(arg, File::RDONLY)
-		when "-o"
-			output = File.open(arg, File::CREAT|File::WRONLY|File::TRUNC)
-		end
-	end
+
+	OptionParser.new do |opts|
+		opts.banner = "Usage: #{$0} [options]"
+		opts.on("-i FILENAME", "Input file") { |arg| input = File.open(arg, File::RDONLY) }
+		opts.on("-o FILENAME", "Output file") { |arg| output = File.open(arg, File::CREAT|File::WRONLY|File::TRUNC) }
+	end.parse! ARGV
+
 	input = $stdin unless input
 	output = $stdout unless output
 
