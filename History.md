@@ -1,3 +1,9 @@
+## 1.6.47 / 2024-02-15
+
+* Migrate from opengl-bindings to opengl-bindings2. #74
+* Update to libz-1.3.1, libpng-1.6.42, libjpeg-turbo-3.0.2, libtiff-4.6.0 for Windows binary gems.
+* Add binary gem support for ruby-3.3 on Windows.
+
 ## 1.6.46 / 2023-02-19
 
 * Add binary gem support for ruby-3.2 on platform x64-mingw-ucrt and drop ruby-2.4.
