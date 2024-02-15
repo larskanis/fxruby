@@ -20,20 +20,20 @@ def fxscintilla_support_suppressed?
   !with_config("fxscintilla", true)
 end
 
-LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.2.13'
+LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.3.1'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.39'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.42'
 # LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 LIBPNG_SOURCE_URI = "https://netcologne.dl.sourceforge.net/project/libpng/libpng16/#{LIBPNG_VERSION}/libpng-#{LIBPNG_VERSION}.tar.xz"
 
 # LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
 # LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '2.1.5.1'
-LIBJPEG_SOURCE_URI = "https://downloads.sourceforge.net/libjpeg-turbo/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '3.0.2'
+LIBJPEG_SOURCE_URI = "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/#{LIBJPEG_VERSION}/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.5.0'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.6.0'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
 LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.57'
