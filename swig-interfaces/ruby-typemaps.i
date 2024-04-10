@@ -775,7 +775,7 @@ inline void* to_FXEvent(VALUE obj){
   $result=Qnil;
   if($1){
     $result=rb_ary_new();
-    register FXGLObject** p=$1;
+    FXGLObject** p=$1;
     while(*p){
       rb_ary_push($result,to_ruby(*p));
       p++;

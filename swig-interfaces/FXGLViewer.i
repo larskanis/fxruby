@@ -275,7 +275,7 @@ public:
       VALUE objects = rb_ary_new();
       FXGLObject** items = self->lasso(x1, y1, x2, y2);
       if (items) {
-        register FXGLObject** p = items;
+        FXGLObject** p = items;
         while (*p) {
           rb_ary_push(objects, to_ruby(*p));
           p++;

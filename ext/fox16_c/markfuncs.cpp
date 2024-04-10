@@ -222,7 +222,7 @@ void FXRbWindow::markfunc(FXWindow* self){
     FXRbGcMark(self->FXWindow::getDragCursor());
 
     // Mark child windows
-    register FXWindow* child=self->FXWindow::getFirst();
+    FXWindow* child=self->FXWindow::getFirst();
     while(child!=NULL){
       FXRbGcMark(child);
       child=child->FXWindow::getNext();

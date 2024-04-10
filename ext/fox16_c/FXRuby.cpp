@@ -1530,7 +1530,7 @@ void FXRbTreeList::enumerateItem(FXTreeItem* item,FXObjectListOf<FXTreeItem>& it
 // Visit all of the items between fm and to (inclusive), plus their
 // child items, and add to the items list
 void FXRbTreeList::enumerateItems(FXTreeItem* fm,FXTreeItem* to,FXObjectListOf<FXTreeItem>& items){
-  register FXTreeItem *item;
+  FXTreeItem *item;
   if(fm && to){
     do{
       item=fm;
@@ -1561,7 +1561,7 @@ void FXRbFoldingList::enumerateItem(FXFoldingItem* item,FXObjectListOf<FXFolding
  * child items, and add to the items list.
  */
 void FXRbFoldingList::enumerateItems(FXFoldingItem* fm,FXFoldingItem* to,FXObjectListOf<FXFoldingItem>& items){
-  register FXFoldingItem *item;
+  FXFoldingItem *item;
   if(fm && to){
     do{
       item=fm;

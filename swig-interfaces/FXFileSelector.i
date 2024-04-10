@@ -132,7 +132,7 @@ public:
         VALUE result = rb_ary_new();
         FXString *filenames = self->getFilenames();
         if (filenames) {
-            register FXString *p = filenames;
+            FXString *p = filenames;
             while ((*p) != FXString::null) {
                 rb_ary_push(result, to_ruby(*p));
                 p++;
