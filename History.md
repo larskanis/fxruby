@@ -1,3 +1,8 @@
+## 1.6.48 / 2024-07-02
+
+* Remove 'register' classifier from variables since it's disallowed in C++17.
+* Update to libpng-1.6.43, libjpeg-turbo-3.0.3, libfox-1.6.58 for Windows binary gems.
+
 ## 1.6.47 / 2024-02-15
 
 * Migrate from opengl-bindings to opengl-bindings2. #74
