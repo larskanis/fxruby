@@ -66,3 +66,7 @@ jobs:
       - name: Linux Print logs if job failed
         if: ${{ failure() && matrix.os == 'ubuntu' }}
         run: cat ~/.xpra/*
+
+      - name: Print logs if mkmf failed
+        if: ${{ failure() }}
+        run: find -name mkmf.log | xargs cat
