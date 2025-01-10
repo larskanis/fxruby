@@ -23,20 +23,20 @@ end
 LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.3.1'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.43'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.44'
 # LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 LIBPNG_SOURCE_URI = "https://netcologne.dl.sourceforge.net/project/libpng/libpng16/#{LIBPNG_VERSION}/libpng-#{LIBPNG_VERSION}.tar.xz"
 
 # LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
 # LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '3.0.3'
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '3.1.0'
 LIBJPEG_SOURCE_URI = "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/#{LIBJPEG_VERSION}/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
 
-LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.6.0'
+LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.7.0'
 LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.tar.gz"
 
-LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.58'
+LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.59'
 LIBFOX_SOURCE_URI         = "http://fox-toolkit.org/ftp/fox-#{LIBFOX_VERSION}.tar.gz"
 
 LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
@@ -87,6 +87,7 @@ class BuildRecipe < MiniPortile
   def configure_defaults
     [
       "--host=#{host}",    # build for specific target (host)
+      "--build=x86_64-linux-gnu", # workaround old config.guess of fxscintilla not recognizing aarch64 host platform
       "--disable-static",
       "--enable-shared",
     ]
