@@ -17,13 +17,13 @@ jobs:
           - os: windows
             ruby: "head"
           - os: windows
-            ruby: "2.6"
+            ruby: "2.7"
           - os: ubuntu
             ruby: "head"
           - os: ubuntu
-            ruby: "3.3"
+            ruby: "3.4"
           - os: ubuntu
-            ruby: "2.6"
+            ruby: "2.7"
           - os: macos
             ruby: "head"
 
