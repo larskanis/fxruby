@@ -16,7 +16,8 @@ class TC_FXShell < Test::Unit::TestCase
   end
 
   def test_nil_parent_raises_argument_error
-    assert_raise(ArgumentError){ FXShell.new(nil, 0, 0, 0, 0, 0) }
+    err = assert_raise{ FXShell.new(nil, 0, 0, 0, 0, 0) }
+    assert_match(/NULL pointer/, err.to_s)
   end
 
   def test_new

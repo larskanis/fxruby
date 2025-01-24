@@ -23,7 +23,8 @@ class TC_FXGLViewer < Fox::TestCase
   end
 
   def test_nil_app_raises_argument_error
-    assert_raise(ArgumentError){ FXGLVisual.supported?(nil) }
+    err = assert_raise{ FXGLVisual.supported?(nil) }
+    assert_match(/NULL pointer/, err.to_s)
   end
 
 =begin

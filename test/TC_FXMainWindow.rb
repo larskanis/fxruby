@@ -5,9 +5,10 @@ class TC_FXMainWindow < Test::Unit::TestCase
   include Fox
 
   def test_nil_app_raises_argument_error
-    assert_raise ArgumentError do
+    err = assert_raise do
       FXMainWindow.new(nil, "title")
     end
+    assert_match(/NULL pointer/, err.to_s)
   end
 
   def test_non_created_app_raises_runtime_error

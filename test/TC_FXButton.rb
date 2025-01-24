@@ -11,7 +11,8 @@ class TC_FXButton < Fox::TestCase
   end
 
   def test_nil_parent_raises_argument_error
-    assert_raise(ArgumentError){ FXButton.new(nil, "buttonText") }
+    err = assert_raise{ FXButton.new(nil, "buttonText") }
+    assert_match(/NULL pointer/, err.to_s)
   end
 
   def testText

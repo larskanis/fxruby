@@ -10,7 +10,8 @@ class TC_FXMessageBox < Fox::TestCase
   end
 
   def test_nil_app_raises_argument_error
-    assert_raise(ArgumentError){ FXMessageBox.new(nil, "Save?", "Save?", :opts => MBOX_SAVE_CANCEL_DONTSAVE) }
+    err = assert_raise{ FXMessageBox.new(nil, "Save?", "Save?", :opts => MBOX_SAVE_CANCEL_DONTSAVE) }
+    assert_match(/NULL pointer/, err.to_s)
   end
 
   def test_construct_with_save_cancel_dontsave
