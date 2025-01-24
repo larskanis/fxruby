@@ -295,6 +295,9 @@ dir_config('fox', '/usr/local/include/fox-1.6', '/usr/local/lib')
 dir_config('fxscintilla', '/usr/local/include/fxscintilla', '/usr/local/lib')
 
 unless enable_config("win32-cross")
+  if RUBY_PLATFORM =~ /^arm64-darwin/
+    dir_config('x11', '/opt/homebrew/include', '/opt/homebrew/lib')
+  end
   checking_for "fox per pkg-config" do
     pkg_config("fox")
   end

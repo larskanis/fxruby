@@ -49,6 +49,14 @@ jobs:
       - name: Bundle install
         run: bundle install
 
+      - name: Un-Install pkg-config
+        if: matrix.os == 'macos'
+        run: |
+          # pkg-config formula is deprecated but it's still installed
+          # in GitHub Actions runner now. We can remove this once
+          # pkg-config formula is removed from GitHub Actions runner.
+          brew uninstall pkg-config || :
+
       - name: Compile extension
         run: bundle exec rake compile
 
@@ -61,7 +69,7 @@ jobs:
       - name: MacOS Start XQuartz
         if: matrix.os == 'macos'
         run: |
-          open -a /Applications/Utilities/XQuartz.app
+          open -a XQuartz
           # wait some seconds until XQuartz has started
           sleep 10
 
@@ -71,3 +79,8 @@ jobs:
       - name: Linux Print logs if job failed
         if: ${{ failure() && matrix.os == 'ubuntu' }}
         run: cat ~/.xpra/*
+
+      - name: Print compile logs if failed
+        if: ${{ failure() && matrix.os != 'windows' }}
+        run: find . -name '*.log' -print0 | xargs -0 cat
+
