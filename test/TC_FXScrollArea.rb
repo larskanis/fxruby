@@ -11,7 +11,8 @@ class TC_FXScrollArea < Fox::TestCase
   end
 
   def test_nil_parent_raises_argument_error
-    assert_raise(ArgumentError){ FXScrollArea.new(nil) }
+    err = assert_raise{ FXScrollArea.new(nil) }
+    assert_match(/NULL pointer/, err.to_s)
   end
 
   def test_position_get

@@ -21,7 +21,8 @@ class TC_FXApp2 < Fox::TestCase
   end
 
   def test_nil_window_raises_argument_error
-    assert_raise(ArgumentError){ app.runPopup(nil) }
+    err = assert_raise{ app.runPopup(nil) }
+    assert_match(/NULL pointer/, err.to_s)
   end
 
   def check_events(pipe_rd, pipe_wr)
