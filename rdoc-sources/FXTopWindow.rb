@@ -43,7 +43,7 @@ module Fox
   # +SEL_CLOSE+::
   #   sent when the user clicks the close button in the upper right-hand
   #   corner of the top-level window.
-  # +SEL_SESSION_NOTIFY+:
+  # +SEL_SESSION_NOTIFY+::
   #   sent when the session is closed.:
   # +SEL_SESSION_CLOSED+::
   #   sent after the session is closed.
