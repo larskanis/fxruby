@@ -120,6 +120,20 @@
 
 <p>When a dialog box receives a <code>SEL_COMMAND</code> message with identifier <code>ID_CANCEL</code> or <code>ID_ACCEPT</code>, the dialog box breaks out of the modal loop and returns a completion code of either 0 or 1, respectively.</p>
 
+<p>A modal dialog can be closed directly from a button:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="FXButton.html" title="Fox::FXButton (class)">FXButton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXButton.html#initialize-instance_method" title="Fox::FXButton#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;OK</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='const'>ID_ACCEPT</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>A modal dialog can also be closed from an event handler like so:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'><span class='object_link'><a href="FXButton.html" title="Fox::FXButton (class)">FXButton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FXButton.html#initialize-instance_method" title="Fox::FXButton#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;OK</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_bu'>bu</span><span class='op'>|</span>
+  <span class='id identifier rubyid_bu'>bu</span><span class='period'>.</span><span class='id identifier rubyid_connect'>connect</span><span class='lparen'>(</span><span class='const'>SEL_COMMAND</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_handle'>handle</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Fox.html" title="Fox (module)">Fox</a></span></span><span class='period'>.</span><span class='const'>MKUINT</span><span class='lparen'>(</span><span class='const'>ID_ACCEPT</span><span class='comma'>,</span> <span class='const'>SEL_COMMAND</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
 <p>To close a dialog box when it’s not running modally, simply call <span class='object_link'><a href="FXWindow.html#hide-instance_method" title="Fox::FXWindow#hide (method)">Fox::FXWindow#hide</a></span> (or send it the <code>ID_HIDE</code> command message).</p>
 
 <h3 id="label-Message+identifiers">Message identifiers</h3>
@@ -341,11 +355,11 @@
       <pre class="lines">
 
 
-23
-24</pre>
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDialogBox.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDialogBox.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_owner'>owner</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='const'>DECOR_TITLE</span><span class='op'>|</span><span class='const'>DECOR_BORDER</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_padLeft'>padLeft</span><span class='op'>=</span><span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_padRight'>padRight</span><span class='op'>=</span><span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_padTop'>padTop</span><span class='op'>=</span><span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_padBottom'>padBottom</span><span class='op'>=</span><span class='int'>10</span><span class='comma'>,</span> <span class='id identifier rubyid_hSpacing'>hSpacing</span><span class='op'>=</span><span class='int'>4</span><span class='comma'>,</span> <span class='id identifier rubyid_vSpacing'>vSpacing</span><span class='op'>=</span><span class='int'>4</span><span class='rparen'>)</span> <span class='comment'># :yields: theDialogBox
 </span><span class='kw'>end</span></pre>
@@ -387,10 +401,10 @@
       <pre class="lines">
 
 
-29</pre>
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDialogBox.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXDialogBox.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_placement'>placement</span><span class='op'>=</span><span class='const'>PLACEMENT_CURSOR</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -403,9 +417,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 21:55:42 2023 by
+  Generated on Tue Mar 11 16:01:43 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.34 (ruby-3.2.0).
+  0.9.37 (ruby-3.5.0).
 </div>
 
     </div>
