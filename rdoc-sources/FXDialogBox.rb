@@ -6,6 +6,18 @@ module Fox
   # +ID_CANCEL+ or +ID_ACCEPT+, the dialog box breaks out of the modal
   # loop and returns a completion code of either 0 or 1, respectively.
   #
+  # A modal dialog can be closed directly from a button:
+  #
+  #   FXButton.new(self, "&OK", nil, self, ID_ACCEPT)
+  #
+  # A modal dialog can also be closed from an event handler like so:
+  #
+  #   FXButton.new(self, "&OK") do |bu|
+  #     bu.connect(SEL_COMMAND) do
+  #       handle(self, Fox.MKUINT(ID_ACCEPT, SEL_COMMAND), nil)
+  #     end
+  #   end
+  #
   # To close a dialog box when it's not running modally, simply call
   # {#hide} (or send it the +ID_HIDE+ command message).
   #
