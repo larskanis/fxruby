@@ -4,7 +4,7 @@ module Fox
   # = Tooltip styles
   # TOOLTIP_PERMANENT:: Tooltip stays up indefinitely
   # TOOLTIP_VARIABLE::  Tooltip stays up variable time, depending on the length of the string
-  # TOOLTIP_NORMAL::
+  # TOOLTIP_NORMAL::    Normal tooltip
   #
   # = Message identifiers
   #
