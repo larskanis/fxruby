@@ -100,6 +100,7 @@ class BuildRecipeCMake < MiniPortileCMake
     case host
     when /x86_64/ then "amd64"
     when /i686/ then "x86"
+    when /aarch64/ then "aarch64"
     else raise "unknown host #{host}"
     end
   end
@@ -170,6 +171,11 @@ def do_rake_compiler_setup
     end
 
     libtiff_recipe = BuildRecipe.new("libtiff", LIBTIFF_VERSION, [LIBTIFF_SOURCE_URI]).tap do |recipe|
+      if RUBY_PLATFORM=~/aarch64-mingw/
+        recipe.configure_options += [
+          "LDFLAGS=-lclang_rt.builtins-aarch64",
+        ]
+      end
       recipe.cook_and_activate
     end
 
@@ -179,8 +185,8 @@ def do_rake_compiler_setup
         "--without-xft",
         "--without-x",
         debug ? "--enable-debug" : "--enable-release",
-        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""} -D__USE_MINGW_ANSI_STDIO=1 -DHAVE_VSSCANF",
-        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""}",
+        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""} -D__USE_MINGW_ANSI_STDIO=1 -DHAVE_VSSCANF -Wno-register",
+        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""} #{"-lclang_rt.builtins-aarch64" if RUBY_PLATFORM=~/aarch64-mingw/}",
       ]
       recipe.cook_and_activate
     end
@@ -214,6 +220,10 @@ def do_rake_compiler_setup
 
       recipe.configure_options += [
         "PKG_CONFIG_PATH=#{libfox_recipe.path}/lib/pkgconfig",
+        # Fix undefined symbol __chkstk:
+        "LDFLAGS=#{"-lclang_rt.builtins-aarch64" if RUBY_PLATFORM=~/aarch64-mingw/}",
+        # Avoid gcc error: fxscintilla-FXSCINTILLA-3_5_2/fox/PlatFOX.cxx:1034: undefined reference to `_imp___ZN11FXScintilla11sendMessageEjml'
+        "CPPFLAGS=-DFOXDLL_EXPORTS",
       ]
       recipe.cook_and_activate
     end

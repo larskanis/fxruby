@@ -76,7 +76,7 @@ LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintil
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
 
-CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h*", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*" )
+CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h*", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw*" )
 
 CLOBBER.include( "pkg" )
 CLOBBER.include( "ports/archives" )
@@ -93,7 +93,7 @@ gem_spec = Bundler.load_gemspec('fxruby.gemspec')
 
 ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
   ext.cross_compile = true
-  ext.cross_platform = ['x86-mingw32', 'x64-mingw-ucrt', 'x64-mingw32']
+  ext.cross_platform = ['x86-mingw32', 'x64-mingw-ucrt', 'x64-mingw32', 'aarch64-mingw-ucrt']
   # Enable FXTRACE and FXASSERT for 'rake compile'
   ext.config_options << "--enable-debug"
 
@@ -112,6 +112,7 @@ ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
       'x86-mingw32' => ['i686-w64-mingw32'],
       'x64-mingw-ucrt' => ['x86_64-w64-mingw32'],
       'x64-mingw32' => ['x86_64-w64-mingw32'],
+      'aarch64-mingw-ucrt' => ['aarch64-w64-mingw32'],
     }
 
     gemplat = spec.platform.to_s
@@ -159,6 +160,8 @@ namespace :gem do
     task plat => ['gem', 'prepare'] do
       debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
       RakeCompilerDock.sh <<-EOT, platform: plat
+        # Fool libtool to allow building a shared library although linking to libclang_rt.builtins-aarch64.a
+        sudo cp  /llvm-mingw-20250114-ucrt-ubuntu-20.04-aarch64/aarch64-w64-mingw32/bin/libc++.dll /llvm-mingw-20250114-ucrt-ubuntu-20.04-aarch64/aarch64-w64-mingw32/lib/libclang_rt.builtins-aarch64.0
         sudo apt-get update &&
         sudo apt-get install -y yasm libtool m4 automake &&
         bundle --local --without=test &&
