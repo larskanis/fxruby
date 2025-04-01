@@ -46,7 +46,7 @@ jobs:
             ruby: "3.4"
             platform: "x64-mingw-ucrt"
           - os: windows-latest
-            ruby: "3.1.4-1"
+            ruby: "3.1.7-1"
             platform: "x86-mingw32"
           - os: windows-latest
             ruby: "2.7"
