@@ -51,7 +51,7 @@ module BuildRecipeCommons
     rootdir = File.expand_path('../../..', __FILE__)
     self.target = File.join(rootdir, "ports")
     self.host = RbConfig::CONFIG["CC"].match(/(.*)-/)[1]
-    self.patch_files = Dir[File.join(rootdir, "patches", self.name, self.version, "*.diff")].sort
+    self.patch_files = Dir[File.join(rootdir, "patches", self.name, self.version, "*.patch")].sort
   end
 
   def port_path
