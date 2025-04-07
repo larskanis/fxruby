@@ -39,10 +39,10 @@ LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.
 LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.59'
 LIBFOX_SOURCE_URI         = "http://fox-toolkit.org/ftp/fox-#{LIBFOX_VERSION}.tar.gz"
 
-LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
-LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
-# LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '3.5.2'
-# LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
+# LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
+# LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
+LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '3.5.2'
+LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
 
 module BuildRecipeCommons
   def initialize(name, version, files)
@@ -192,17 +192,18 @@ def do_rake_compiler_setup
           "#{ENV['MAKE'] || "make"}"
         end
 
-#         # This can be uncommented when fxscintilla is used from the source repository.
-#         def configure
-#           execute "bootstrap", "./bootstrap.sh"
-#           super
-#         end
+        def configure
+          # This is necessary when fxscintilla is used from the github repository.
+          execute "bootstrap", "./bootstrap.sh"
+
+          super
+        end
 
         def compile
           execute "compile_lexers", "cd lexers && #{mk}"
           execute "compile_lexlib", "cd lexlib && #{mk}"
           execute "compile_src", "cd src && #{mk}"
-          execute "compile_fox", "cd fox && #{mk} libfxscintilla_la_LDFLAGS='-version-info 23:0:3 -export-dynamic -no-undefined -L#{libfox_path}/lib -lFOX-1.6'"
+          execute "compile_fox", "cd fox && #{mk} libfxscintilla_la_LDFLAGS='-version-info 25:0:0 -export-dynamic -no-undefined -L#{libfox_path}/lib -lFOX-1.6'"
         end
 
         def install

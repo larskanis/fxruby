@@ -35,9 +35,19 @@ module Fox
       sendMessage(2003, pos, text)
     end
 
+    # Change the text that is being inserted in response to SC_MOD_INSERTCHECK
+    def changeInsertion(length, text)
+      sendMessage(2672, length, text)
+    end
+
     # Delete all text in the document.
     def clearAll
       sendMessage(2004, 0, 0)
+    end
+
+    # Delete a range of text in the document.
+    def deleteRange(pos, deleteLength)
+      sendMessage(2645, pos, deleteLength)
     end
 
     # Set all style bytes to 0, remove all folding information.
@@ -225,6 +235,21 @@ module Fox
       sendMessage(2121, 0, 0)
     end
 
+    # Clear explicit tabstops on a line.
+    def clearTabStops(line)
+      sendMessage(2675, line, 0)
+    end
+
+    # Add an explicit tab stop for a line.
+    def addTabStop(line, x)
+      sendMessage(2676, line, x)
+    end
+
+    # Find the next explicit tab stop position on a line after a position.
+    def getNextTabStop(line, x)
+      sendMessage(2677, line, x)
+    end
+
     # The SC_CP_UTF8 value can be used to enter Unicode mode.
     # This is the same value as CP_UTF8 in Windows
     SC_CP_UTF8 = 65001
@@ -235,10 +260,17 @@ module Fox
       sendMessage(2037, codePage, 0)
     end
 
-    # In palette mode, Scintilla uses the environment's palette calls to display
-    # more colours. This may lead to ugly displays.
-    def setUsePalette(usePalette)
-      sendMessage(2039, usePalette, 0)
+    SC_IME_WINDOWED = 0
+    SC_IME_INLINE = 1
+
+    # Is the IME displayed in a winow or inline?
+    def getIMEInteraction
+      sendMessage(2678, 0, 0)
+    end
+
+    # Choose to display the the IME in a winow or inline.
+    def setIMEInteraction(imeInteraction)
+      sendMessage(2679, imeInteraction, 0)
     end
 
     MARKER_MAX = 31
@@ -277,6 +309,7 @@ module Fox
     SC_MARK_AVAILABLE = 28
     SC_MARK_UNDERLINE = 29
     SC_MARK_RGBAIMAGE = 30
+    SC_MARK_BOOKMARK = 31
 
     SC_MARK_CHARACTER = 10000
 
@@ -361,6 +394,8 @@ module Fox
     def markerSetAlpha(markerNumber, alpha)
       sendMessage(2476, markerNumber, alpha)
     end
+
+    SC_MAX_MARGIN = 4
 
     SC_MARGIN_SYMBOL = 0
     SC_MARGIN_NUMBER = 1
@@ -583,6 +618,32 @@ module Fox
       sendMessage(2060, style, caseForce)
     end
 
+    SC_FONT_SIZE_MULTIPLIER = 100
+
+    # Set the size of characters of a style. Size is in points multiplied by 100.
+    def styleSetSizeFractional(style, caseForce)
+      sendMessage(2061, style, caseForce)
+    end
+
+    # Get the size of characters of a style in points multiplied by 100
+    def styleGetSizeFractional(style)
+      sendMessage(2062, style, 0)
+    end
+
+    SC_WEIGHT_NORMAL = 400
+    SC_WEIGHT_SEMIBOLD = 600
+    SC_WEIGHT_BOLD = 700
+
+    # Set the weight of characters of a style.
+    def styleSetWeight(style, weight)
+      sendMessage(2063, style, weight)
+    end
+
+    # Get the weight of characters of a style.
+    def styleGetWeight(style)
+      sendMessage(2064, style, 0)
+    end
+
     # Set the character set of the font in a style.
     def styleSetCharacterSet(style, characterSet)
       sendMessage(2066, style, characterSet)
@@ -669,6 +730,12 @@ module Fox
       sendMessage(2077, 0, characters)
     end
 
+    # Get the set of characters making up words for when moving or selecting by word.
+    # Retuns the number of characters
+    def getWordChars
+      sendMessage(2646, 0, characters)
+    end
+
     # Start a sequence of actions that is undone and redone as a unit.
     # May be nested.
     def beginUndoAction
@@ -694,7 +761,11 @@ module Fox
     INDIC_DOTS = 10
     INDIC_SQUIGGLELOW = 11
     INDIC_DOTBOX = 12
-    INDIC_MAX = 31
+    INDIC_SQUIGGLEPIXMAP = 13
+    INDIC_COMPOSITIONTHICK = 14
+    INDIC_IME = 32
+    INDIC_IME_MAX = 35
+    INDIC_MAX = 35
     INDIC_CONTAINER = 8
     INDIC0_MASK = 0x20
     INDIC1_MASK = 0x40
@@ -1000,11 +1071,15 @@ module Fox
       sendMessage(2129, pos, 0)
     end
 
+    # Count characters between two positions.
+    def countCharacters(startPos, endPos)
+      sendMessage(2633, startPos, endPos)
+    end
+
     # Show or hide the horizontal scroll bar.
     def setHScrollBar(show)
       sendMessage(2130, show, 0)
     end
-
     # Is the horizontal scroll bar visible?
     def getHScrollBar
       sendMessage(2131, 0, 0) == 1 ? true : false
@@ -1049,11 +1124,6 @@ module Fox
     # Get the foreground colour of the caret.
     def getCaretFore
       sendMessage(2138, 0, 0)
-    end
-
-    # In palette mode?
-    def getUsePalette
-      sendMessage(2139, 0, 0) == 1 ? true : false
     end
 
     # In read-only mode?
@@ -1122,11 +1192,12 @@ module Fox
       sendMessage(2149, 0, 0)
     end
 
-    SCFIND_WHOLEWORD = 2
-    SCFIND_MATCHCASE = 4
+    SCFIND_WHOLEWORD = 0x2
+    SCFIND_MATCHCASE = 0x4
     SCFIND_WORDSTART = 0x00100000
     SCFIND_REGEXP = 0x00200000
     SCFIND_POSIX = 0x00400000
+    SCFIND_CXX11REGEX = 0x00800000
 
     # Find some text in the document.
     def findText(flags, ft)
@@ -1231,6 +1302,13 @@ module Fox
     # Ensure the caret is visible.
     def scrollCaret
       sendMessage(2169, 0, 0)
+    end
+
+    # Scroll the argument positions and the range between them into view giving
+    # priority to the primary position then the secondary position.
+    # This may be used to make a search match visible.
+    def scrollRange(secondary, primary)
+      sendMessage(2569, secondary, primary)
     end
 
     # Replace the selected text with the argument text.
@@ -1413,6 +1491,11 @@ module Fox
       sendMessage(2203, 0, 0)
     end
 
+    # Set the start position in order to change when backspacing removes the calltip.
+    def callTipSetPosStart(posStart)
+      sendMessage(2214, posStart, 0)
+    end
+
     # Highlight a segment of the definition.
     def callTipSetHlt(start, last)
       sendMessage(2204, start, last)
@@ -1436,6 +1519,11 @@ module Fox
     # Enable use of STYLE_CALLTIP and set call tip tab size in pixels.
     def callTipUseStyle(tabSize)
       sendMessage(2212, tabSize, 0)
+    end
+
+    # Set position of calltip, above or below text.
+    def callTipSetPosition(above)
+      sendMessage(2213, above, 0)
     end
 
     # Find the display line of a document line taking hidden lines into account.
@@ -1495,6 +1583,11 @@ module Fox
       sendMessage(2228, line, 0) == 1 ? true : false
     end
 
+    # Are all lines visible?
+    def getAllLinesVisible
+      sendMessage(2236, 0, 0) == 1 ? true : false
+    end
+
     # Show the children of a header line.
     def setFoldExpanded(line, expanded)
       sendMessage(2229, line, expanded)
@@ -1510,9 +1603,47 @@ module Fox
       sendMessage(2231, line, 0)
     end
 
+    SC_FOLDACTION_CONTRACT = 0
+    SC_FOLDACTION_EXPAND = 1
+    SC_FOLDACTION_TOGGLE = 2
+
+    # Expand or contract a fold header.
+    def foldLine(line, action)
+      sendMessage(2237, line, action)
+    end
+
+    # Expand or contract a fold header and its children.
+    def foldChildren(line, action)
+      sendMessage(2238, line, action)
+    end
+
+    # Expand a fold header and all children. Use the level argument instead of the line's current level.
+    def expandChildren(line, level)
+      sendMessage(2239, line, level)
+    end
+
+    # Expand or contract all fold headers.
+    def foldAll(action)
+      sendMessage(2662, action, 0)
+    end
+
     # Ensure a particular line is visible by expanding any header line hiding it.
     def ensureVisible(line)
       sendMessage(2232, line, 0)
+    end
+
+    SC_AUTOMATICFOLD_SHOW = 0x0001
+    SC_AUTOMATICFOLD_CLICK = 0x0002
+    SC_AUTOMATICFOLD_CHANGE = 0x0004
+
+    # Set automatic folding behaviours.
+    def setAutomaticFold(automaticFold)
+      sendMessage(2663, automaticFold, 0)
+    end
+
+    # Get automatic folding behaviours.
+    def getAutomaticFold
+      sendMessage(2664, 0, 0)
     end
 
     SC_FOLDFLAG_LINEBEFORE_EXPANDED = 0x0002
@@ -1520,6 +1651,7 @@ module Fox
     SC_FOLDFLAG_LINEAFTER_EXPANDED = 0x0008
     SC_FOLDFLAG_LINEAFTER_CONTRACTED = 0x0010
     SC_FOLDFLAG_LEVELNUMBERS = 0x0040
+    SC_FOLDFLAG_LINESTATE = 0x0080
 
     # Set some style options for folding.
     def setFoldFlags(flags)
@@ -1577,6 +1709,7 @@ module Fox
     SC_WRAP_NONE = 0
     SC_WRAP_WORD = 1
     SC_WRAP_CHAR = 2
+    SC_WRAP_WHITESPACE = 3
 
     # Sets whether text is word wrapped.
     def setWrapMode(mode)
@@ -1591,6 +1724,7 @@ module Fox
     SC_WRAPVISUALFLAG_NONE = 0x0000
     SC_WRAPVISUALFLAG_END = 0x0001
     SC_WRAPVISUALFLAG_START = 0x0002
+    SC_WRAPVISUALFLAG_MARGIN = 0x0004
 
     # Set the display mode of visual flags for wrapped lines.
     def setWrapVisualFlags(wrapVisualFlags)
@@ -1715,7 +1849,7 @@ module Fox
       sendMessage(2282, length, text)
     end
 
-    # Is drawing done in two phases with backgrounds drawn before faoregrounds?
+    # Is drawing done in two phases with backgrounds drawn before foregrounds?
     def getTwoPhaseDraw
       sendMessage(2283, 0, 0) == 1 ? true : false
     end
@@ -1724,6 +1858,23 @@ module Fox
     # and then the foreground. This avoids chopping off characters that overlap the next run.
     def setTwoPhaseDraw(twoPhase)
       sendMessage(2284, twoPhase, 0)
+    end
+
+    SC_PHASES_ONE = 0
+    SC_PHASES_TWO = 1
+    SC_PHASES_MULTIPLE = 2
+
+    # How many phases is drawing done in?
+    def getPhasesDraw
+      sendMessage(2673, 0, 0)
+    end
+
+    # In one phase draw, text is drawn in a series of rectangular blocks with no overlap.
+    # In two phase draw, text is drawn in a series of lines allowing runs to overlap horizontally.
+    # In multiple phase draw, each element is drawn over the whole drawing area, allowing text
+    # to overlap from one line to the next.
+    def setPhasesDraw(phases)
+      sendMessage(2674, phases, 0)
     end
 
     # Control font anti-aliasing.
@@ -2254,6 +2405,8 @@ module Fox
     SC_STATUS_OK = 0
     SC_STATUS_FAILURE = 1
     SC_STATUS_BADALLOC = 2
+    SC_STATUS_WARN_START = 1000
+    SC_STATUS_WARN_REGEX = 1001
 
     # Change error status - 0 = OK.
     def setStatus(statusCode)
@@ -2334,7 +2487,7 @@ module Fox
       sendMessage(2396, 0, 0)
     end
 
-    # Get and Set the xOffset (ie, horizonal scroll position).
+    # Get and Set the xOffset (ie, horizontal scroll position).
     def setXOffset(newOffset)
       sendMessage(2397, newOffset, 0)
     end
@@ -2375,7 +2528,7 @@ module Fox
     # where most code reside, and the lines after the caret, eg. the body of a function.
     CARET_EVEN = 0x08
 
-    # Set the way the caret is kept visible when going sideway.
+    # Set the way the caret is kept visible when going sideways.
     # The exclusion zone is given in pixels.
     def setXCaretPolicy(caretPolicy, caretSlop)
       sendMessage(2402, caretPolicy, caretSlop)
@@ -2461,6 +2614,12 @@ module Fox
     # page into account. Maximum value returned is the last position in the document.
     def positionAfter(pos)
       sendMessage(2418, pos, 0)
+    end
+
+    # Given a valid document position, return a position that differs in a number
+    # of characters. Returned value is always between 0 and last position in document.
+    def positionRelative(pos, relative)
+      sendMessage(2670, pos, relative)
     end
 
     # Copy a range of text to the clipboard. Positions are clipped into the document.
@@ -2594,6 +2753,22 @@ module Fox
       sendMessage(2443, 0, characters)
     end
 
+    # Get the set of characters making up whitespace for when moving or selecting by word.
+    def getWhitespaceChars
+      sendMessage(2647, 0, characters)
+    end
+
+    # Set the set of characters making up punctuation characters
+    # Should be called after SetWordChars.
+    def setPunctuationChars(characters)
+      sendMessage(2648, 0, characters)
+    end
+
+    # Get the set of characters making up punctuation characters
+    def getPunctuationChars
+      sendMessage(2649, 0, characters)
+    end
+
     # Reset the set of characters for whitespace and word characters to the defaults.
     def setCharsDefault
       sendMessage(2444, 0, 0)
@@ -2608,6 +2783,46 @@ module Fox
     # Returns the length of the item text
     def autoCGetCurrentText
       sendMessage(2610, 0, s)
+    end
+
+    SC_CASEINSENSITIVEBEHAVIOUR_RESPECTCASE = 0
+    SC_CASEINSENSITIVEBEHAVIOUR_IGNORECASE = 1
+
+    # Set auto-completion case insensitive behaviour to either prefer case-sensitive matches or have no preference.
+    def autoCSetCaseInsensitiveBehaviour(behaviour)
+      sendMessage(2634, behaviour, 0)
+    end
+
+    # Get auto-completion case insensitive behaviour.
+    def autoCGetCaseInsensitiveBehaviour
+      sendMessage(2635, 0, 0)
+    end
+
+    SC_MULTIAUTOC_ONCE = 0
+    SC_MULTIAUTOC_EACH = 1
+
+    # Change the effect of autocompleting when there are multiple selections.
+    def autoCSetMulti(multi)
+      sendMessage(2636, multi, 0)
+    end
+
+    # Retrieve the effect of autocompleting when there are multiple selections..
+    def autoCGetMulti
+      sendMessage(2637, 0, 0)
+    end
+
+    SC_ORDER_PRESORTED = 0
+    SC_ORDER_PERFORMSORT = 1
+    SC_ORDER_CUSTOM = 2
+
+    # Set the way autocompletion lists are ordered.
+    def autoCSetOrder(order)
+      sendMessage(2660, order, 0)
+    end
+
+    # Get the way autocompletion lists are ordered.
+    def autoCGetOrder
+      sendMessage(2661, 0, 0)
     end
 
     # Enlarge the document to a particular size of text bytes.
@@ -2719,7 +2934,7 @@ module Fox
       sendMessage(2502, value, 0)
     end
 
-    # Get the current indicator vaue
+    # Get the current indicator value
     def getIndicatorValue
       sendMessage(2503, 0, 0)
     end
@@ -2773,6 +2988,19 @@ module Fox
     # characters in the document.
     def getCharacterPointer
       sendMessage(2520, 0, 0)
+    end
+
+    # Return a read-only pointer to a range of characters in the document.
+    # May move the gap so that the range is contiguous, but will only move up
+    # to rangeLength bytes.
+    def getRangePointer(position, rangeLength)
+      sendMessage(2643, position, rangeLength)
+    end
+
+    # Return a position which, to avoid performance costs, should not be within
+    # the range of a call to GetRangePointer.
+    def getGapPosition
+      sendMessage(2644, 0, 0)
     end
 
     # Always interpret keyboard input as Unicode
@@ -2939,6 +3167,7 @@ module Fox
     ANNOTATION_HIDDEN = 0
     ANNOTATION_STANDARD = 1
     ANNOTATION_BOXED = 2
+    ANNOTATION_INDENTED = 3
 
     # Set the visibility for the annotations for a view
     def annotationSetVisible(visible)
@@ -2960,6 +3189,16 @@ module Fox
       sendMessage(2551, 0, 0)
     end
 
+    # Release all extended (>255) style numbers
+    def releaseAllExtendedStyles
+      sendMessage(2552, 0, 0)
+    end
+
+    # Allocate some extended (>255) style numbers and return the start of the range
+    def allocateExtendedStyles(numberStyles)
+      sendMessage(2553, numberStyles, 0)
+    end
+
     UNDO_MAY_COALESCE = 1
 
     # Add a container action to the undo stack
@@ -2976,6 +3215,16 @@ module Fox
     # Return INVALID_POSITION if not close to text.
     def charPositionFromPointClose(x, y)
       sendMessage(2562, x, y)
+    end
+
+    # Set whether switching to rectangular mode while selecting with the mouse is allowed.
+    def setMouseSelectionRectangularSwitch(mouseSelectionRectangularSwitch)
+      sendMessage(2668, mouseSelectionRectangularSwitch, 0)
+    end
+
+    # Whether switching to rectangular mode while selecting with the mouse is allowed.
+    def getMouseSelectionRectangularSwitch
+      sendMessage(2669, 0, 0) == 1 ? true : false
     end
 
     # Set whether multiple selections can be made
@@ -3023,6 +3272,11 @@ module Fox
       sendMessage(2570, 0, 0)
     end
 
+    # Is every selected range empty?
+    def getSelectionEmpty
+      sendMessage(2650, 0, 0) == 1 ? true : false
+    end
+
     # Clear selections to a single empty stream selection
     def clearSelections
       sendMessage(2571, 0, 0)
@@ -3036,6 +3290,11 @@ module Fox
     # Add a selection
     def addSelection(caret, anchor)
       sendMessage(2573, caret, anchor)
+    end
+
+    # Drop one selection
+    def dropSelectionN(selection)
+      sendMessage(2671, selection, 0)
     end
 
     # Set the main selection
@@ -3085,7 +3344,7 @@ module Fox
 
     # Sets the position that ends the selection - this becomes the currentPosition.
     def setSelectionNEnd(selection, pos)
-      sendMessage(2586, selection, pos, 0)
+      sendMessage(2586, selection, pos)
     end
 
     # Returns the position at the end of the selection.
@@ -3232,13 +3491,18 @@ module Fox
       sendMessage(2625, height, 0)
     end
 
+    # Set the scale factor in percent for future RGBA image data.
+    def rGBAImageSetScale(scalePercent)
+      sendMessage(2651, scalePercent, 0)
+    end
+
     # Define a marker from RGBA data.
     # It has the width and height from RGBAImageSetWidth/Height
     def markerDefineRGBAImage(markerNumber, pixels)
       sendMessage(2626, markerNumber, pixels)
     end
 
-    # Register an RGBA image for use in autocompletion lists. 
+    # Register an RGBA image for use in autocompletion lists.
     # It has the width and height from RGBAImageSetWidth/Height
     def registerRGBAImage(type, pixels)
       sendMessage(2627, type, pixels)
@@ -3252,6 +3516,100 @@ module Fox
     # Scroll to end of document.
     def scrollToEnd
       sendMessage(2629, 0, 0)
+    end
+
+    SC_TECHNOLOGY_DEFAULT = 0
+    SC_TECHNOLOGY_DIRECTWRITE = 1
+    SC_TECHNOLOGY_DIRECTWRITERETAIN = 2
+    SC_TECHNOLOGY_DIRECTWRITEDC = 3
+
+    # Set the technology used.
+    def setTechnology(technology)
+      sendMessage(2630, technology, 0)
+    end
+
+    # Get the tech.
+    def getTechnology
+      sendMessage(2631, 0, 0)
+    end
+
+    # Create an ILoader*.
+    def createLoader(bytes)
+      sendMessage(2632, bytes, 0)
+    end
+
+    # On OS X, show a find indicator.
+    def findIndicatorShow(start, last)
+      sendMessage(2640, start, last)
+    end
+
+    # On OS X, flash a find indicator, then fade out.
+    def findIndicatorFlash(start, last)
+      sendMessage(2641, start, last)
+    end
+
+    # On OS X, hide the find indicator.
+    def findIndicatorHide
+      sendMessage(2642, 0, 0)
+    end
+
+    # Move caret to before first visible character on display line.
+    # If already there move to first character on display line.
+    def vCHomeDisplay
+      sendMessage(2652, 0, 0)
+    end
+
+    # Like VCHomeDisplay but extending selection to new caret position.
+    def vCHomeDisplayExtend
+      sendMessage(2653, 0, 0)
+    end
+
+    # Is the caret line always visible?
+    def getCaretLineVisibleAlways
+      sendMessage(2654, 0, 0) == 1 ? true : false
+    end
+
+    # Sets the caret line to always visible.
+    def setCaretLineVisibleAlways(alwaysVisible)
+      sendMessage(2655, alwaysVisible, 0)
+    end
+
+    # Line end types which may be used in addition to LF, CR, and CRLF
+    # SC_LINE_END_TYPE_UNICODE includes U+2028 Line Separator,
+    # U+2029 Paragraph Separator, and U+0085 Next Line
+    SC_LINE_END_TYPE_DEFAULT = 0
+    SC_LINE_END_TYPE_UNICODE = 1
+
+    # Set the line end types that the application wants to use. May not be used if incompatible with lexer or encoding.
+    def setLineEndTypesAllowed(lineEndBitSet)
+      sendMessage(2656, lineEndBitSet, 0)
+    end
+
+    # Get the line end types currently allowed.
+    def getLineEndTypesAllowed
+      sendMessage(2657, 0, 0)
+    end
+
+    # Get the line end types currently recognised. May be a subset of the allowed types due to lexer limitation.
+    def getLineEndTypesActive
+      sendMessage(2658, 0, 0)
+    end
+
+    # Set the way a character is drawn.
+    def setRepresentation(encodedCharacter, representation)
+      sendMessage(2665, encodedCharacter, representation)
+    end
+
+    # Set the way a character is drawn.
+    def getRepresentation(encodedCharacter)
+      buffer = "".ljust(encodedCharacter)
+      sendMessage(2666, encodedCharacter, buffer)
+      buffer
+    end
+
+    # Remove a character representation.
+    def clearRepresentation(encodedCharacter)
+      sendMessage(2667, encodedCharacter, 0)
     end
 
     # Start notifying the container of all key presses and commands.
@@ -3365,6 +3723,58 @@ module Fox
       sendMessage(4017, 0, descriptions)
     end
 
+    # Bit set of LineEndType enumertion for which line ends beyond the standard
+    # LF, CR, and CRLF are supported by the lexer.
+    def getLineEndTypesSupported
+      sendMessage(4018, 0, 0)
+    end
+
+    # Allocate a set of sub styles for a particular base style, returning start of range
+    def allocateSubStyles(styleBase, numberStyles)
+      sendMessage(4020, styleBase, numberStyles)
+    end
+
+    # The starting style number for the sub styles associated with a base style
+    def getSubStylesStart(styleBase)
+      sendMessage(4021, styleBase, 0)
+    end
+
+    # The number of sub styles associated with a base style
+    def getSubStylesLength(styleBase)
+      sendMessage(4022, styleBase, 0)
+    end
+
+    # For a sub style, return the base style, else return the argument.
+    def getStyleFromSubStyle(subStyle)
+      sendMessage(4027, subStyle, 0)
+    end
+
+    # For a secondary style, return the primary style, else return the argument.
+    def getPrimaryStyleFromStyle(style)
+      sendMessage(4028, style, 0)
+    end
+
+    # Free allocated sub styles
+    def freeSubStyles
+      sendMessage(4023, 0, 0)
+    end
+
+    # Set the identifiers that are shown in a particular style
+    def setIdentifiers(style, identifiers)
+      sendMessage(4024, style, identifiers)
+    end
+
+    # Where styles are duplicated by a feature such as active/inactive code
+    # return the distance between the two types.
+    def distanceToSecondaryStyles
+      sendMessage(4025, 0, 0)
+    end
+
+    # Get the set of base styles that can be extended with sub styles
+    def getSubStyleBases
+      sendMessage(4026, 0, styles)
+    end
+
     # Notifications
     # Type of modification and the action which caused the modification.
     # These are defined as a bit mask to make it easy to specify which notifications are wanted.
@@ -3389,7 +3799,9 @@ module Fox
     SC_MOD_CHANGEANNOTATION = 0x20000
     SC_MOD_CONTAINER = 0x40000
     SC_MOD_LEXERSTATE = 0x80000
-    SC_MODEVENTMASKALL = 0xFFFFF
+    SC_MOD_INSERTCHECK = 0x100000
+    SC_MOD_CHANGETABSTOPS = 0x200000
+    SC_MODEVENTMASKALL = 0x3FFFFF
 
     SC_UPDATE_CONTENT = 0x1
     SC_UPDATE_SELECTION = 0x2
@@ -3537,6 +3949,21 @@ module Fox
     SCLEX_TXT2TAGS = 99
     SCLEX_A68K = 100
     SCLEX_MODULA = 101
+    SCLEX_COFFEESCRIPT = 102
+    SCLEX_TCMD = 103
+    SCLEX_AVS = 104
+    SCLEX_ECL = 105
+    SCLEX_OSCRIPT = 106
+    SCLEX_VISUALPROLOG = 107
+    SCLEX_LITERATEHASKELL = 108
+    SCLEX_STTXT = 109
+    SCLEX_KVIRC = 110
+    SCLEX_RUST = 111
+    SCLEX_DMAP = 112
+    SCLEX_AS = 113
+    SCLEX_DMIS = 114
+    SCLEX_REGISTRY = 115
+    SCLEX_BIBTEX = 116
 
     # When a lexer specifies its language as SCLEX_AUTOMATIC it receives a
     # value assigned in sequence from SCLEX_AUTOMATIC+1.
@@ -3581,6 +4008,12 @@ module Fox
     SCE_C_GLOBALCLASS = 19
     SCE_C_STRINGRAW = 20
     SCE_C_TRIPLEVERBATIM = 21
+    SCE_C_HASHQUOTEDSTRING = 22
+    SCE_C_PREPROCESSORCOMMENT = 23
+    SCE_C_PREPROCESSORCOMMENTDOC = 24
+    SCE_C_USERLITERAL = 25
+    SCE_C_TASKMARKER = 26
+    SCE_C_ESCAPESEQUENCE = 27
     # Lexical states for SCLEX_D
     SCE_D_DEFAULT = 0
     SCE_D_COMMENT = 1
@@ -3788,6 +4221,16 @@ module Fox
     SCE_PL_SUB_PROTOTYPE = 40
     SCE_PL_FORMAT_IDENT = 41
     SCE_PL_FORMAT = 42
+    SCE_PL_STRING_VAR = 43
+    SCE_PL_XLAT = 44
+    SCE_PL_REGEX_VAR = 54
+    SCE_PL_REGSUBST_VAR = 55
+    SCE_PL_BACKTICKS_VAR = 57
+    SCE_PL_HERE_QQ_VAR = 61
+    SCE_PL_HERE_QX_VAR = 62
+    SCE_PL_STRING_QQ_VAR = 64
+    SCE_PL_STRING_QX_VAR = 65
+    SCE_PL_STRING_QR_VAR = 66
     # Lexical states for SCLEX_RUBY
     SCE_RB_DEFAULT = 0
     SCE_RB_ERROR = 1
@@ -3843,6 +4286,10 @@ module Fox
     SCE_B_ERROR = 16
     SCE_B_HEXNUMBER = 17
     SCE_B_BINNUMBER = 18
+    SCE_B_COMMENTBLOCK = 19
+    SCE_B_DOCLINE = 20
+    SCE_B_DOCBLOCK = 21
+    SCE_B_DOCKEYWORD = 22
     # Lexical states for SCLEX_PROPERTIES
     SCE_PROPS_DEFAULT = 0
     SCE_PROPS_COMMENT = 1
@@ -3856,6 +4303,14 @@ module Fox
     SCE_L_TAG = 2
     SCE_L_MATH = 3
     SCE_L_COMMENT = 4
+    SCE_L_TAG2 = 5
+    SCE_L_MATH2 = 6
+    SCE_L_COMMENT2 = 7
+    SCE_L_VERBATIM = 8
+    SCE_L_SHORTCMD = 9
+    SCE_L_SPECIAL = 10
+    SCE_L_CMDOPT = 11
+    SCE_L_ERROR = 12
     # Lexical states for SCLEX_LUA
     SCE_LUA_DEFAULT = 0
     SCE_LUA_COMMENT = 1
@@ -3877,6 +4332,7 @@ module Fox
     SCE_LUA_WORD6 = 17
     SCE_LUA_WORD7 = 18
     SCE_LUA_WORD8 = 19
+    SCE_LUA_LABEL = 20
     # Lexical states for SCLEX_ERRORLIST
     SCE_ERR_DEFAULT = 0
     SCE_ERR_PYTHON = 1
@@ -3900,6 +4356,7 @@ module Fox
     SCE_ERR_TIDY = 19
     SCE_ERR_JAVA_STACK = 20
     SCE_ERR_VALUE = 21
+    SCE_ERR_GCC_INCLUDED_FROM = 22
     # Lexical states for SCLEX_BATCH
     SCE_BAT_DEFAULT = 0
     SCE_BAT_COMMENT = 1
@@ -3909,6 +4366,18 @@ module Fox
     SCE_BAT_COMMAND = 5
     SCE_BAT_IDENTIFIER = 6
     SCE_BAT_OPERATOR = 7
+    # Lexical states for SCLEX_TCMD
+    SCE_TCMD_DEFAULT = 0
+    SCE_TCMD_COMMENT = 1
+    SCE_TCMD_WORD = 2
+    SCE_TCMD_LABEL = 3
+    SCE_TCMD_HIDE = 4
+    SCE_TCMD_COMMAND = 5
+    SCE_TCMD_IDENTIFIER = 6
+    SCE_TCMD_OPERATOR = 7
+    SCE_TCMD_ENVIRONMENT = 8
+    SCE_TCMD_EXPANSION = 9
+    SCE_TCMD_CLABEL = 10
     # Lexical states for SCLEX_MAKEFILE
     SCE_MAKE_DEFAULT = 0
     SCE_MAKE_COMMENT = 1
@@ -4054,7 +4523,7 @@ module Fox
     SCE_SCRIPTOL_TRIPLE = 13
     SCE_SCRIPTOL_CLASSNAME = 14
     SCE_SCRIPTOL_PREPROCESSOR = 15
-    # Lexical states for SCLEX_ASM
+    # Lexical states for SCLEX_ASM, SCLEX_AS
     SCE_ASM_DEFAULT = 0
     SCE_ASM_COMMENT = 1
     SCE_ASM_NUMBER = 2
@@ -4111,6 +4580,7 @@ module Fox
     SCE_CSS_EXTENDED_PSEUDOCLASS = 20
     SCE_CSS_EXTENDED_PSEUDOELEMENT = 21
     SCE_CSS_MEDIA = 22
+    SCE_CSS_VARIABLE = 23
     # Lexical states for SCLEX_POV
     SCE_POV_DEFAULT = 0
     SCE_POV_COMMENT = 1
@@ -4333,6 +4803,7 @@ module Fox
     SCE_KIX_KEYWORD = 7
     SCE_KIX_FUNCTIONS = 8
     SCE_KIX_OPERATOR = 9
+    SCE_KIX_COMMENTSTREAM = 10
     SCE_KIX_IDENTIFIER = 31
     # Lexical states for SCLEX_GUI4CLI
     SCE_GC_DEFAULT = 0
@@ -4436,6 +4907,7 @@ module Fox
     SCE_VHDL_STDPACKAGE = 12
     SCE_VHDL_STDTYPE = 13
     SCE_VHDL_USERWORD = 14
+    SCE_VHDL_BLOCK_COMMENT = 15
     # Lexical states for SCLEX_CAML
     SCE_CAML_DEFAULT = 0
     SCE_CAML_IDENTIFIER = 1
@@ -4471,6 +4943,12 @@ module Fox
     SCE_HA_COMMENTBLOCK = 14
     SCE_HA_COMMENTBLOCK2 = 15
     SCE_HA_COMMENTBLOCK3 = 16
+    SCE_HA_PRAGMA = 17
+    SCE_HA_PREPROCESSOR = 18
+    SCE_HA_STRINGEOL = 19
+    SCE_HA_RESERVED_OPERATOR = 20
+    SCE_HA_LITERATE_COMMENT = 21
+    SCE_HA_LITERATE_CODEDELIM = 22
     # Lexical states of SCLEX_TADS3
     SCE_T3_DEFAULT = 0
     SCE_T3_X_DEFAULT = 1
@@ -4546,6 +5024,7 @@ module Fox
     SCE_SQL_USER3 = 21
     SCE_SQL_USER4 = 22
     SCE_SQL_QUOTEDIDENTIFIER = 23
+    SCE_SQL_QOPERATOR = 24
     # Lexical states for SCLEX_SMALLTALK
     SCE_ST_DEFAULT = 0
     SCE_ST_STRING = 1
@@ -4760,7 +5239,7 @@ module Fox
     SCE_R_IDENTIFIER = 9
     SCE_R_INFIX = 10
     SCE_R_INFIXEOL = 11
-    # Lexical state for SCLEX_MAGIKSF
+    # Lexical state for SCLEX_MAGIK
     SCE_MAGIK_DEFAULT = 0
     SCE_MAGIK_COMMENT = 1
     SCE_MAGIK_HYPER_COMMENT = 16
@@ -4793,6 +5272,9 @@ module Fox
     SCE_POWERSHELL_FUNCTION = 11
     SCE_POWERSHELL_USER1 = 12
     SCE_POWERSHELL_COMMENTSTREAM = 13
+    SCE_POWERSHELL_HERE_STRING = 14
+    SCE_POWERSHELL_HERE_CHARACTER = 15
+    SCE_POWERSHELL_COMMENTDOCKEYWORD = 16
     # Lexical state for SCLEX_MYSQL
     SCE_MYSQL_DEFAULT = 0
     SCE_MYSQL_COMMENT = 1
@@ -4816,6 +5298,7 @@ module Fox
     SCE_MYSQL_USER2 = 19
     SCE_MYSQL_USER3 = 20
     SCE_MYSQL_HIDDENCOMMAND = 21
+    SCE_MYSQL_PLACEHOLDER = 22
     # Lexical state for SCLEX_PO
     SCE_PO_DEFAULT = 0
     SCE_PO_COMMENT = 1
@@ -4826,6 +5309,13 @@ module Fox
     SCE_PO_MSGCTXT = 6
     SCE_PO_MSGCTXT_TEXT = 7
     SCE_PO_FUZZY = 8
+    SCE_PO_PROGRAMMER_COMMENT = 9
+    SCE_PO_REFERENCE = 10
+    SCE_PO_FLAGS = 11
+    SCE_PO_MSGID_TEXT_EOL = 12
+    SCE_PO_MSGSTR_TEXT_EOL = 13
+    SCE_PO_MSGCTXT_TEXT_EOL = 14
+    SCE_PO_ERROR = 15
     # Lexical states for SCLEX_PASCAL
     SCE_PAS_DEFAULT = 0
     SCE_PAS_IDENTIFIER = 1
@@ -4976,6 +5466,225 @@ module Fox
     SCE_MODULA_PRGKEY = 15
     SCE_MODULA_OPERATOR = 16
     SCE_MODULA_BADSTR = 17
+    # Lexical states for SCLEX_COFFEESCRIPT
+    SCE_COFFEESCRIPT_DEFAULT = 0
+    SCE_COFFEESCRIPT_COMMENT = 1
+    SCE_COFFEESCRIPT_COMMENTLINE = 2
+    SCE_COFFEESCRIPT_COMMENTDOC = 3
+    SCE_COFFEESCRIPT_NUMBER = 4
+    SCE_COFFEESCRIPT_WORD = 5
+    SCE_COFFEESCRIPT_STRING = 6
+    SCE_COFFEESCRIPT_CHARACTER = 7
+    SCE_COFFEESCRIPT_UUID = 8
+    SCE_COFFEESCRIPT_PREPROCESSOR = 9
+    SCE_COFFEESCRIPT_OPERATOR = 10
+    SCE_COFFEESCRIPT_IDENTIFIER = 11
+    SCE_COFFEESCRIPT_STRINGEOL = 12
+    SCE_COFFEESCRIPT_VERBATIM = 13
+    SCE_COFFEESCRIPT_REGEX = 14
+    SCE_COFFEESCRIPT_COMMENTLINEDOC = 15
+    SCE_COFFEESCRIPT_WORD2 = 16
+    SCE_COFFEESCRIPT_COMMENTDOCKEYWORD = 17
+    SCE_COFFEESCRIPT_COMMENTDOCKEYWORDERROR = 18
+    SCE_COFFEESCRIPT_GLOBALCLASS = 19
+    SCE_COFFEESCRIPT_STRINGRAW = 20
+    SCE_COFFEESCRIPT_TRIPLEVERBATIM = 21
+    SCE_COFFEESCRIPT_COMMENTBLOCK = 22
+    SCE_COFFEESCRIPT_VERBOSE_REGEX = 23
+    SCE_COFFEESCRIPT_VERBOSE_REGEX_COMMENT = 24
+    # Lexical states for SCLEX_AVS
+    SCE_AVS_DEFAULT = 0
+    SCE_AVS_COMMENTBLOCK = 1
+    SCE_AVS_COMMENTBLOCKN = 2
+    SCE_AVS_COMMENTLINE = 3
+    SCE_AVS_NUMBER = 4
+    SCE_AVS_OPERATOR = 5
+    SCE_AVS_IDENTIFIER = 6
+    SCE_AVS_STRING = 7
+    SCE_AVS_TRIPLESTRING = 8
+    SCE_AVS_KEYWORD = 9
+    SCE_AVS_FILTER = 10
+    SCE_AVS_PLUGIN = 11
+    SCE_AVS_FUNCTION = 12
+    SCE_AVS_CLIPPROP = 13
+    SCE_AVS_USERDFN = 14
+    # Lexical states for SCLEX_ECL
+    SCE_ECL_DEFAULT = 0
+    SCE_ECL_COMMENT = 1
+    SCE_ECL_COMMENTLINE = 2
+    SCE_ECL_NUMBER = 3
+    SCE_ECL_STRING = 4
+    SCE_ECL_WORD0 = 5
+    SCE_ECL_OPERATOR = 6
+    SCE_ECL_CHARACTER = 7
+    SCE_ECL_UUID = 8
+    SCE_ECL_PREPROCESSOR = 9
+    SCE_ECL_UNKNOWN = 10
+    SCE_ECL_IDENTIFIER = 11
+    SCE_ECL_STRINGEOL = 12
+    SCE_ECL_VERBATIM = 13
+    SCE_ECL_REGEX = 14
+    SCE_ECL_COMMENTLINEDOC = 15
+    SCE_ECL_WORD1 = 16
+    SCE_ECL_COMMENTDOCKEYWORD = 17
+    SCE_ECL_COMMENTDOCKEYWORDERROR = 18
+    SCE_ECL_WORD2 = 19
+    SCE_ECL_WORD3 = 20
+    SCE_ECL_WORD4 = 21
+    SCE_ECL_WORD5 = 22
+    SCE_ECL_COMMENTDOC = 23
+    SCE_ECL_ADDED = 24
+    SCE_ECL_DELETED = 25
+    SCE_ECL_CHANGED = 26
+    SCE_ECL_MOVED = 27
+    # Lexical states for SCLEX_OSCRIPT
+    SCE_OSCRIPT_DEFAULT = 0
+    SCE_OSCRIPT_LINE_COMMENT = 1
+    SCE_OSCRIPT_BLOCK_COMMENT = 2
+    SCE_OSCRIPT_DOC_COMMENT = 3
+    SCE_OSCRIPT_PREPROCESSOR = 4
+    SCE_OSCRIPT_NUMBER = 5
+    SCE_OSCRIPT_SINGLEQUOTE_STRING = 6
+    SCE_OSCRIPT_DOUBLEQUOTE_STRING = 7
+    SCE_OSCRIPT_CONSTANT = 8
+    SCE_OSCRIPT_IDENTIFIER = 9
+    SCE_OSCRIPT_GLOBAL = 10
+    SCE_OSCRIPT_KEYWORD = 11
+    SCE_OSCRIPT_OPERATOR = 12
+    SCE_OSCRIPT_LABEL = 13
+    SCE_OSCRIPT_TYPE = 14
+    SCE_OSCRIPT_FUNCTION = 15
+    SCE_OSCRIPT_OBJECT = 16
+    SCE_OSCRIPT_PROPERTY = 17
+    SCE_OSCRIPT_METHOD = 18
+    # Lexical states for SCLEX_VISUALPROLOG
+    SCE_VISUALPROLOG_DEFAULT = 0
+    SCE_VISUALPROLOG_KEY_MAJOR = 1
+    SCE_VISUALPROLOG_KEY_MINOR = 2
+    SCE_VISUALPROLOG_KEY_DIRECTIVE = 3
+    SCE_VISUALPROLOG_COMMENT_BLOCK = 4
+    SCE_VISUALPROLOG_COMMENT_LINE = 5
+    SCE_VISUALPROLOG_COMMENT_KEY = 6
+    SCE_VISUALPROLOG_COMMENT_KEY_ERROR = 7
+    SCE_VISUALPROLOG_IDENTIFIER = 8
+    SCE_VISUALPROLOG_VARIABLE = 9
+    SCE_VISUALPROLOG_ANONYMOUS = 10
+    SCE_VISUALPROLOG_NUMBER = 11
+    SCE_VISUALPROLOG_OPERATOR = 12
+    SCE_VISUALPROLOG_CHARACTER = 13
+    SCE_VISUALPROLOG_CHARACTER_TOO_MANY = 14
+    SCE_VISUALPROLOG_CHARACTER_ESCAPE_ERROR = 15
+    SCE_VISUALPROLOG_STRING = 16
+    SCE_VISUALPROLOG_STRING_ESCAPE = 17
+    SCE_VISUALPROLOG_STRING_ESCAPE_ERROR = 18
+    SCE_VISUALPROLOG_STRING_EOL_OPEN = 19
+    SCE_VISUALPROLOG_STRING_VERBATIM = 20
+    SCE_VISUALPROLOG_STRING_VERBATIM_SPECIAL = 21
+    SCE_VISUALPROLOG_STRING_VERBATIM_EOL = 22
+    # Lexical states for SCLEX_STTXT
+    SCE_STTXT_DEFAULT = 0
+    SCE_STTXT_COMMENT = 1
+    SCE_STTXT_COMMENTLINE = 2
+    SCE_STTXT_KEYWORD = 3
+    SCE_STTXT_TYPE = 4
+    SCE_STTXT_FUNCTION = 5
+    SCE_STTXT_FB = 6
+    SCE_STTXT_NUMBER = 7
+    SCE_STTXT_HEXNUMBER = 8
+    SCE_STTXT_PRAGMA = 9
+    SCE_STTXT_OPERATOR = 10
+    SCE_STTXT_CHARACTER = 11
+    SCE_STTXT_STRING1 = 12
+    SCE_STTXT_STRING2 = 13
+    SCE_STTXT_STRINGEOL = 14
+    SCE_STTXT_IDENTIFIER = 15
+    SCE_STTXT_DATETIME = 16
+    SCE_STTXT_VARS = 17
+    SCE_STTXT_PRAGMAS = 18
+    # Lexical states for SCLEX_KVIRC
+    SCE_KVIRC_DEFAULT = 0
+    SCE_KVIRC_COMMENT = 1
+    SCE_KVIRC_COMMENTBLOCK = 2
+    SCE_KVIRC_STRING = 3
+    SCE_KVIRC_WORD = 4
+    SCE_KVIRC_KEYWORD = 5
+    SCE_KVIRC_FUNCTION_KEYWORD = 6
+    SCE_KVIRC_FUNCTION = 7
+    SCE_KVIRC_VARIABLE = 8
+    SCE_KVIRC_NUMBER = 9
+    SCE_KVIRC_OPERATOR = 10
+    SCE_KVIRC_STRING_FUNCTION = 11
+    SCE_KVIRC_STRING_VARIABLE = 12
+    # Lexical states for SCLEX_RUST
+    SCE_RUST_DEFAULT = 0
+    SCE_RUST_COMMENTBLOCK = 1
+    SCE_RUST_COMMENTLINE = 2
+    SCE_RUST_COMMENTBLOCKDOC = 3
+    SCE_RUST_COMMENTLINEDOC = 4
+    SCE_RUST_NUMBER = 5
+    SCE_RUST_WORD = 6
+    SCE_RUST_WORD2 = 7
+    SCE_RUST_WORD3 = 8
+    SCE_RUST_WORD4 = 9
+    SCE_RUST_WORD5 = 10
+    SCE_RUST_WORD6 = 11
+    SCE_RUST_WORD7 = 12
+    SCE_RUST_STRING = 13
+    SCE_RUST_STRINGR = 14
+    SCE_RUST_CHARACTER = 15
+    SCE_RUST_OPERATOR = 16
+    SCE_RUST_IDENTIFIER = 17
+    SCE_RUST_LIFETIME = 18
+    SCE_RUST_MACRO = 19
+    SCE_RUST_LEXERROR = 20
+    SCE_RUST_BYTESTRING = 21
+    SCE_RUST_BYTESTRINGR = 22
+    SCE_RUST_BYTECHARACTER = 23
+    # Lexical states for SCLEX_DMAP
+    SCE_DMAP_DEFAULT = 0
+    SCE_DMAP_COMMENT = 1
+    SCE_DMAP_NUMBER = 2
+    SCE_DMAP_STRING1 = 3
+    SCE_DMAP_STRING2 = 4
+    SCE_DMAP_STRINGEOL = 5
+    SCE_DMAP_OPERATOR = 6
+    SCE_DMAP_IDENTIFIER = 7
+    SCE_DMAP_WORD = 8
+    SCE_DMAP_WORD2 = 9
+    SCE_DMAP_WORD3 = 10
+    # Lexical states for SCLEX_DMIS
+    SCE_DMIS_DEFAULT = 0
+    SCE_DMIS_COMMENT = 1
+    SCE_DMIS_STRING = 2
+    SCE_DMIS_NUMBER = 3
+    SCE_DMIS_KEYWORD = 4
+    SCE_DMIS_MAJORWORD = 5
+    SCE_DMIS_MINORWORD = 6
+    SCE_DMIS_UNSUPPORTED_MAJOR = 7
+    SCE_DMIS_UNSUPPORTED_MINOR = 8
+    SCE_DMIS_LABEL = 9
+    # Lexical states for SCLEX_REGISTRY
+    SCE_REG_DEFAULT = 0
+    SCE_REG_COMMENT = 1
+    SCE_REG_VALUENAME = 2
+    SCE_REG_STRING = 3
+    SCE_REG_HEXDIGIT = 4
+    SCE_REG_VALUETYPE = 5
+    SCE_REG_ADDEDKEY = 6
+    SCE_REG_DELETEDKEY = 7
+    SCE_REG_ESCAPED = 8
+    SCE_REG_KEYPATH_GUID = 9
+    SCE_REG_STRING_GUID = 10
+    SCE_REG_PARAMETER = 11
+    SCE_REG_OPERATOR = 12
+    # Lexical state for SCLEX_BIBTEX
+    SCE_BIBTEX_DEFAULT = 0
+    SCE_BIBTEX_ENTRY = 1
+    SCE_BIBTEX_UNKNOWN_ENTRY = 2
+    SCE_BIBTEX_KEY = 3
+    SCE_BIBTEX_PARAMETER = 4
+    SCE_BIBTEX_VALUE = 5
+    SCE_BIBTEX_COMMENT = 6
 
     # Events
 
@@ -5007,11 +5716,30 @@ module Fox
     SCN_AUTOCCANCELLED = 2025
     SCN_AUTOCCHARDELETED = 2026
     SCN_HOTSPOTRELEASECLICK = 2027
+    SCN_FOCUSIN = 2028
+    SCN_FOCUSOUT = 2029
+
+    # There are no provisional features currently
+
+    # Provisional
 
     # Deprecated
 
     # Deprecated in 2.21
     # The SC_CP_DBCS value can be used to indicate a DBCS mode for GTK+.
     SC_CP_DBCS = 1
+
+    # Deprecated in 2.30
+
+    # In palette mode?
+    def getUsePalette
+      sendMessage(2139, 0, 0) == 1 ? true : false
+    end
+
+    # In palette mode, Scintilla uses the environment's palette calls to display
+    # more colours. This may lead to ugly displays.
+    def setUsePalette(usePalette)
+      sendMessage(2039, usePalette, 0)
+    end
   end
 end

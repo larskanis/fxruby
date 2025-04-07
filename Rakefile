@@ -70,8 +70,8 @@ class FoxGemHelper < Bundler::GemHelper
 end
 
 # Some constants we'll need
-LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
-LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
+LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '3.5.2'
+LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
 
 SWIG = (RUBY_PLATFORM =~ /mingw/) ? "swig.exe" : "swig"
 SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdefaultargs -I../fox-includes"
@@ -79,6 +79,7 @@ SWIGFLAGS = "-c++ -ruby -nodefaultdtor -nodefaultctor -w302 -features compactdef
 CLEAN.include( ".config", "ext/fox16_c/Makefile", "ext/fox16_c/*.o", "ext/fox16_c/*.bundle", "ext/fox16_c/mkmf.log", "ext/fox16_c/conftest.dSYM", "ext/fox16_c/swigruby.h*", "ext/fox16_c/librb.c", "ext/fox16_c/include/inlinestubs.h", "ext/fox16_c/*_wrap.cpp", "tmp", "ports/*.installed", "ports/*mingw32*" )
 
 CLOBBER.include( "pkg" )
+CLOBBER.include( "ports/archives" )
 
 # Tests need to run with binary gems, so that the task doesn't depend on compile
 task :test do
@@ -120,7 +121,7 @@ ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
 
       dlls = gcc_shared_dlls.select{|dll| File.exist?("ports/#{gemplat}/bin/#{dll}") }
       dlls += [
-          "libfxscintilla-20.dll",
+          "libfxscintilla-25.dll",
           "libFOX-1.6-0.dll",
           "libjpeg-62.dll",
           "libpng16-16.dll",
@@ -158,8 +159,8 @@ namespace :gem do
     task plat => ['gem', 'prepare'] do
       debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
       RakeCompilerDock.sh <<-EOT, platform: plat
-        sudo apt update &&
-        sudo apt install yasm &&
+        sudo apt-get update &&
+        sudo apt-get install -y yasm libtool m4 automake &&
         bundle --local --without=test &&
         rake native:#{plat} pkg/#{ext_task.gem_spec.full_name}-#{plat}.gem MAKE=\"nice make V=1 VERBOSE=1 -j `nproc`\" #{debug}  RUBY_CC_VERSION=#{RakeCompilerDock.ruby_cc_version("~>2.7", "~>3.0")}
       EOT
@@ -338,20 +339,20 @@ namespace :fxruby do
 
 
   directory "ports/archives"
-  file "ports/archives/fxscintilla-2.28.0.tar.gz" => ["ports/archives"] do |t|
+  file "ports/archives/FXSCINTILLA-3_5_2.tar.gz" => ["ports/archives"] do |t|
     sh "wget #{LIBFXSCINTILLA_SOURCE_URI} -O #{t.name}"
   end
 
   directory "tmp/fxscintilla"
-  task "tmp/fxscintilla/fxscintilla-2.28.0/include/Scintilla.iface" => ["tmp/fxscintilla", "ports/archives/fxscintilla-2.28.0.tar.gz"] do
+  task "tmp/fxscintilla/fxscintilla-FXSCINTILLA-3_5_2/include/Scintilla.iface" => ["tmp/fxscintilla", "ports/archives/FXSCINTILLA-3_5_2.tar.gz"] do
     chdir "tmp/fxscintilla" do
-      sh "tar xzf ../../ports/archives/fxscintilla-2.28.0.tar.gz"
+      sh "tar xzf ../../ports/archives/FXSCINTILLA-3_5_2.tar.gz"
     end
   end
 
   task :scintilla => 'lib/fox16/scintilla.rb'
-  file 'lib/fox16/scintilla.rb' => ["tmp/fxscintilla/fxscintilla-2.28.0/include/Scintilla.iface", 'scripts/iface.rb'] do
-    ruby "scripts/iface.rb -i tmp/fxscintilla/fxscintilla-2.28.0/include/Scintilla.iface -o lib/fox16/scintilla.rb"
+  file 'lib/fox16/scintilla.rb' => ["tmp/fxscintilla/fxscintilla-FXSCINTILLA-3_5_2/include/Scintilla.iface", 'scripts/iface.rb'] do
+    ruby "scripts/iface.rb -i tmp/fxscintilla/fxscintilla-FXSCINTILLA-3_5_2/include/Scintilla.iface -o lib/fox16/scintilla.rb"
   end
 
   task :generate_kwargs_lib => 'lib/fox16/kwargs.rb'
