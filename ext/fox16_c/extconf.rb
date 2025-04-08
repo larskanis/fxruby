@@ -39,10 +39,10 @@ LIBTIFF_SOURCE_URI = "http://download.osgeo.org/libtiff/tiff-#{LIBTIFF_VERSION}.
 LIBFOX_VERSION            = ENV['LIBFOX_VERSION'] || '1.6.59'
 LIBFOX_SOURCE_URI         = "http://fox-toolkit.org/ftp/fox-#{LIBFOX_VERSION}.tar.gz"
 
-LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
-LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
-# LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '3.5.2'
-# LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
+# LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '2.28.0'
+# LIBFXSCINTILLA_SOURCE_URI         = "http://download.savannah.gnu.org/releases/fxscintilla/fxscintilla-#{LIBFXSCINTILLA_VERSION}.tar.gz"
+LIBFXSCINTILLA_VERSION            = ENV['LIBFXSCINTILLA_VERSION'] || '3.5.2'
+LIBFXSCINTILLA_SOURCE_URI         = "https://github.com/yetanothergeek/fxscintilla/archive/FXSCINTILLA-#{LIBFXSCINTILLA_VERSION.gsub(".","_")}.tar.gz"
 
 module BuildRecipeCommons
   def initialize(name, version, files)
@@ -51,7 +51,7 @@ module BuildRecipeCommons
     rootdir = File.expand_path('../../..', __FILE__)
     self.target = File.join(rootdir, "ports")
     self.host = RbConfig::CONFIG["CC"].match(/(.*)-/)[1]
-    self.patch_files = Dir[File.join(rootdir, "patches", self.name, self.version, "*.diff")].sort
+    self.patch_files = Dir[File.join(rootdir, "patches", self.name, self.version, "*.patch")].sort
   end
 
   def port_path
@@ -100,6 +100,7 @@ class BuildRecipeCMake < MiniPortileCMake
     case host
     when /x86_64/ then "amd64"
     when /i686/ then "x86"
+    when /aarch64/ then "aarch64"
     else raise "unknown host #{host}"
     end
   end
@@ -170,6 +171,11 @@ def do_rake_compiler_setup
     end
 
     libtiff_recipe = BuildRecipe.new("libtiff", LIBTIFF_VERSION, [LIBTIFF_SOURCE_URI]).tap do |recipe|
+      if RUBY_PLATFORM=~/aarch64-mingw/
+        recipe.configure_options += [
+          "LDFLAGS=-lclang_rt.builtins-aarch64",
+        ]
+      end
       recipe.cook_and_activate
     end
 
@@ -179,8 +185,8 @@ def do_rake_compiler_setup
         "--without-xft",
         "--without-x",
         debug ? "--enable-debug" : "--enable-release",
-        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""} -D__USE_MINGW_ANSI_STDIO=1 -DHAVE_VSSCANF",
-        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""}",
+        "CPPFLAGS=-I#{libjpeg_recipe.path}/include -I#{libpng_recipe.path}/include -I#{libtiff_recipe.path}/include -I#{libz_recipe.path}/include -DUNICODE=1 #{debug ? "-ggdb" : ""} -D__USE_MINGW_ANSI_STDIO=1 -DHAVE_VSSCANF -Wno-register",
+        "LDFLAGS=-L#{libjpeg_recipe.path}/lib -L#{libpng_recipe.path}/lib -L#{libtiff_recipe.path}/lib -L#{libz_recipe.path}/lib #{debug ? "-ggdb" : ""} #{"-lclang_rt.builtins-aarch64" if RUBY_PLATFORM=~/aarch64-mingw/}",
       ]
       recipe.cook_and_activate
     end
@@ -192,17 +198,18 @@ def do_rake_compiler_setup
           "#{ENV['MAKE'] || "make"}"
         end
 
-#         # This can be uncommented when fxscintilla is used from the source repository.
-#         def configure
-#           execute "bootstrap", "./bootstrap.sh"
-#           super
-#         end
+        def configure
+          # This is necessary when fxscintilla is used from the github repository.
+          execute "bootstrap", "./bootstrap.sh"
+
+          super
+        end
 
         def compile
           execute "compile_lexers", "cd lexers && #{mk}"
           execute "compile_lexlib", "cd lexlib && #{mk}"
           execute "compile_src", "cd src && #{mk}"
-          execute "compile_fox", "cd fox && #{mk} libfxscintilla_la_LDFLAGS='-version-info 23:0:3 -export-dynamic -no-undefined -L#{libfox_path}/lib -lFOX-1.6'"
+          execute "compile_fox", "cd fox && #{mk} libfxscintilla_la_LDFLAGS='-version-info 25:0:0 -export-dynamic -no-undefined -L#{libfox_path}/lib -lFOX-1.6'"
         end
 
         def install
@@ -213,6 +220,10 @@ def do_rake_compiler_setup
 
       recipe.configure_options += [
         "PKG_CONFIG_PATH=#{libfox_recipe.path}/lib/pkgconfig",
+        # Fix undefined symbol __chkstk:
+        "LDFLAGS=#{"-lclang_rt.builtins-aarch64" if RUBY_PLATFORM=~/aarch64-mingw/}",
+        # Avoid gcc error: fxscintilla-FXSCINTILLA-3_5_2/fox/PlatFOX.cxx:1034: undefined reference to `_imp___ZN11FXScintilla11sendMessageEjml'
+        "CPPFLAGS=-DFOXDLL_EXPORTS",
       ]
       recipe.cook_and_activate
     end
