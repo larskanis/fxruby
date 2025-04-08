@@ -160,8 +160,6 @@ namespace :gem do
     task plat => ['gem', 'prepare'] do
       debug = "FXRUBY_MINGW_DEBUG=#{ENV['FXRUBY_MINGW_DEBUG'].inspect}" if ENV['FXRUBY_MINGW_DEBUG']
       RakeCompilerDock.sh <<-EOT, platform: plat
-        # Fool libtool to allow building a shared library although linking to libclang_rt.builtins-aarch64.a
-        sudo cp  /llvm-mingw-20250114-ucrt-ubuntu-20.04-aarch64/aarch64-w64-mingw32/bin/libc++.dll /llvm-mingw-20250114-ucrt-ubuntu-20.04-aarch64/aarch64-w64-mingw32/lib/libclang_rt.builtins-aarch64.0
         sudo apt-get update &&
         sudo apt-get install -y yasm libtool m4 automake &&
         bundle --local --without=test &&
