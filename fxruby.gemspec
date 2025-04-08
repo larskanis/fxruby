@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{FXRuby is the Ruby binding to the FOX GUI toolkit.}
   spec.homepage      = "https://github.com/larskanis/fxruby"
-  spec.license       = 'LGPL-2.1'
+  spec.license       = 'LGPL-2.1-or-later'
   spec.metadata["changelog_uri"] = "https://github.com/larskanis/fxruby/blob/1.6/History.md"
   spec.metadata["documentation_uri"] = "https://rubydoc.info/gems/fxruby/frames"
 
