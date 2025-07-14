@@ -31,9 +31,11 @@ class TC_FXSize < Test::Unit::TestCase
 
   def test_uminus
     size1 = -(@size1)
-    assert(size1.w == -(@size1.w) && size1.h == -(@size1.h))
+    assert_equal(size1.w, -(@size1.w))
+    assert_equal(size1.h, -(@size1.h))
     size2 = -(@size2)
-    assert(size2.w == -(@size2.w) && size2.h == -(@size2.h))
+    assert_equal(size2.w, -(@size2.w))
+    assert_equal(size2.h, -(@size2.h))
   end
 
   def test_float
