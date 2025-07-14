@@ -23,14 +23,14 @@ end
 LIBZ_VERSION = ENV['LIBZ_VERSION'] || '1.3.1'
 LIBZ_SOURCE_URI = "http://zlib.net/fossils/zlib-#{LIBZ_VERSION}.tar.gz"
 
-LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.44'
+LIBPNG_VERSION = ENV['LIBPNG_VERSION'] || '1.6.50'
 # LIBPNG_SOURCE_URI = "http://prdownloads.sourceforge.net/libpng/libpng-#{LIBPNG_VERSION}.tar.gz"
 LIBPNG_SOURCE_URI = "https://netcologne.dl.sourceforge.net/project/libpng/libpng16/#{LIBPNG_VERSION}/libpng-#{LIBPNG_VERSION}.tar.xz"
 
 # LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '9b'
 # LIBJPEG_SOURCE_URI = "http://www.ijg.org/files/jpegsrc.v#{LIBJPEG_VERSION}.tar.gz"
 
-LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '3.1.0'
+LIBJPEG_VERSION = ENV['LIBJPEG_VERSION'] || '3.1.1'
 LIBJPEG_SOURCE_URI = "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/download/#{LIBJPEG_VERSION}/libjpeg-turbo-#{LIBJPEG_VERSION}.tar.gz"
 
 LIBTIFF_VERSION = ENV['LIBTIFF_VERSION'] || '4.7.0'
