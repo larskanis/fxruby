@@ -1,3 +1,12 @@
+## 1.6.49 / 2025-07-14
+
+* Add compatibility to SWIG-4.3. Type of "NULL pointer" error changed in swig 4.3.0. It was ArgumentError before and is NullReferenceError now. #81
+* Add binary gem support for ruby-3.4.
+* Add new binary gem platform aarch64-mingw-ucrt aka Windows-on-ARM. #83
+* Drop support for ruby older than 2.7.
+* Update to libpng-1.6.50, libjpeg-turbo-3.1.1, libtiff-4.7.0, libfox-1.6.59 for Windows binary gems.
+* Some documentation improvements.
+
 ## 1.6.48 / 2024-07-02
 
 * Remove 'register' classifier from variables since it's disallowed in C++17.
