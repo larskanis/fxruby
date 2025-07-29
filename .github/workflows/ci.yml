@@ -17,7 +17,7 @@ jobs:
           - os: windows
             ruby: "head"
           - os: windows
-            ruby: "2.7"
+            ruby: "3.2"
           - os: ubuntu
             ruby: "head"
           - os: ubuntu
@@ -37,7 +37,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}      # passed to ruby/setup-ruby
           apt-get: "xpra xserver-xorg-video-dummy libxrandr-dev libfox-1.6-dev swig" # Ubuntu
           brew: "fox swig xquartz"     # macOS
-          mingw: "fox swig gcc"   # Windows mingw / mswin /ucrt
+          mingw: "fox swig"   # Windows mingw / mswin /ucrt
 
       - name: Print tool versions
         run: |
