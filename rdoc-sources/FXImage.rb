@@ -80,7 +80,10 @@ module Fox
     #
     # Populate the image with new pixel data of the same size or of a new size
     #
-    # Pixel data is copied and IMAGE_OWNED option is set.
+    # Pixel data is copied when IMAGE_OWNED option is set or when provided as Array.
+    # Pixel data is used without copying when IMAGE_OWNED isn't set and provided as String.
+    # In that case the string must be writable and receives modifications to the image.
+    #
     # If called with +width+ and +height+, the size of the serverside representation
     # of the image, if it exists, is adjusted but the contents are not updated yet.
     # This can be done by calling render().
