@@ -76,14 +76,14 @@ class TC_FXImage < Fox::TestCase
 
   def test_setPixels_string
     img = FXImage.new(app, nil, 0, 2, 1)
-    img.pixels = "rgbaRGBA"
+    img.pixels = +"rgbaRGBA"
     assert_equal(0, img.options)
     assert_equal("rgbaRGBA", img.pixel_string)
   end
 
   def test_dataPtr
     img = FXImage.new(app, nil, 0, 2, 1)
-    img.pixels = "rgbaRGBA"
+    img.pixels = +"rgbaRGBA"
     assert_equal(0, img.options)
     assert_equal("rgbaRGBA", Fiddle::Pointer.new(img.dataPtr)[0, 8])
   end
@@ -121,7 +121,7 @@ class TC_FXImage < Fox::TestCase
   end
 
   def image_with_non_owned_data
-    FXImage.new(app, "rgbaRGBA", 0, 1, 2)
+    FXImage.new(app, +"rgbaRGBA", 0, 1, 2)
   end
 
   def test_create_with_non_owned_data
@@ -135,7 +135,7 @@ class TC_FXImage < Fox::TestCase
   end
 
   def set_non_owned_data(img)
-    img.setPixels("rgbaRGBA", 0, 2, 1)
+    img.setPixels(+"rgbaRGBA", 0, 2, 1)
   end
 
   def test_set_pixel_with_non_owned_data

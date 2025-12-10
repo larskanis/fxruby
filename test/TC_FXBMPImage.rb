@@ -15,7 +15,7 @@ class TC_FXBMPImage < Fox::TestCase
 
   def test_image_from_pixel_data
     img = FXBMPImage.new app
-    img.setPixels "rgbaRGBA", 0, 1, 2
+    img.setPixels +"rgbaRGBA", 0, 1, 2
     bmp_data = FXMemoryStream.open(FXStreamSave, nil) do |outfile|
       img.savePixels(outfile)
       outfile.takeBuffer
