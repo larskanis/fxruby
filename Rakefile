@@ -132,6 +132,30 @@ ext_task = Rake::ExtensionTask.new("fox16_c", gem_spec) do |ext|
 
       spec.files += dlls.map{|dll| "ports/#{gemplat}/bin/#{dll}" }
 
+      # Bind the external DLLs per manifest to our fox16_c.so ,
+      # so that they aren't used by any other extension.
+      # Otherwise version dependent incompatibilities can break other gems.
+      manif_fname = "ports/#{gemplat}/bin/fxruby-assembly.manifest"
+      File.binwrite manif_fname, <<~EOT
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+        <assemblyIdentity type="win32" name="fxruby-assembly" version="1.0.0.0"></assemblyIdentity>
+
+        #{ dlls.map{|dll| %Q{<file name="#{dll}"/>} }.join }
+        </assembly>
+      EOT
+      spec.files += [manif_fname]
+
+      # Windows manifest files don't allow file paths but only file names.
+      # Therefore move our fox16_c.so into the bin directory
+      # and change to a ruby version dependent file name like "4_0_fox16_c.so".
+      exts, spec.files = spec.files.partition{|f| File.fnmatch("lib/?.?/fox16_c.so", f) }
+      spec.files += exts.map do |f|
+        new = "ports/#{gemplat}/bin/#{File.basename(File.dirname(f)).gsub(".","_")}_#{File.basename(f)}"
+        mv("tmp/#{gemplat}/stage/#{f}", new)
+        new
+      end
+
       unless ENV['FXRUBY_MINGW_DEBUG']
         dlls.each do |dll|
           task "ports/#{gemplat}/bin/#{dll}" do |t|

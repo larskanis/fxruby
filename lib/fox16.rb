@@ -6,24 +6,8 @@ rescue LoadError
     major_minor = RUBY_VERSION[ /^(\d+\.\d+)/ ] or
       raise "Oops, can't extract the major/minor version from #{RUBY_VERSION.dump}"
 
-    add_dll_path = proc do |path, &block|
-      begin
-        require 'ruby_installer/runtime'
-        RubyInstaller::Runtime.add_dll_directory(path, &block)
-      rescue LoadError
-        old_path = ENV['PATH']
-        ENV['PATH'] = "#{path};#{old_path}"
-        block.call
-        ENV['PATH'] = old_path
-      end
-    end
-
     ruby_plat = RUBY_PLATFORM.gsub("i386", "x86")
-    # Temporary add this directory for DLL search, so that bundled DLLs can be found.
-    ports_bin = File.expand_path("../../ports/#{ruby_plat}/bin", __FILE__)
-    add_dll_path.call(ports_bin) do
-      require "#{major_minor}/fox16_c"
-    end
+    require_relative "../ports/#{ruby_plat}/bin/#{major_minor.gsub(".","_")}_fox16_c"
   else
     raise
   end

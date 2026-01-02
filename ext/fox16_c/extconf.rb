@@ -240,11 +240,27 @@ def do_rake_compiler_setup
       FileUtils.cp `#{cmd}`.chomp, "#{libfox_recipe.path}/bin/", verbose: true
     end
 
+    # Compile a DLL manifest to be used in fox16_c.so
+    File.binwrite "fxruby_manifest.xml", <<~EOT
+      <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+      <dependency>
+      <dependentAssembly>
+      <assemblyIdentity version="1.0.0.0" type="win32" name="fxruby-assembly" />
+      </dependentAssembly>
+      </dependency>
+      </assembly>
+    EOT
+    File.binwrite "fxruby_manifest.rc", "2 24 fxruby_manifest.xml"
+    system "#{RbConfig::CONFIG["WINDRES"]} --input fxruby_manifest.rc --output fxruby_manifest.res --output-format=coff"
+
     CONFIG['CXX'] = "#{libfox_recipe.host}-g++" # CXX setting must be prefixed for cross build
     CONFIG['CC'] += "\nCXX=#{CONFIG['CXX']}" # Hack CXX into Makefile for cross compilation
     CONFIG['LDSHARED'].gsub!('gcc', 'g++') # ensure C++ linker is used, so that libstdc++ is linked static
-    $LDFLAGS += " -s" # remove symbol table informations from shared lib
+    $LDFLAGS += " -s fxruby_manifest.res" # remove symbol table informations from shared lib and add manifest
     $libs = append_library($libs, "fxscintilla")
+    major_minor = RUBY_VERSION[ /^(\d+\.\d+)/ ].gsub(".","_")
+    $CPPFLAGS += " -DFXRUBY_INITFUNC=Init_#{major_minor}_fox16_c"
 
   elsif RUBY_PLATFORM =~ /mingw/
     $CFLAGS = $CFLAGS + " -I/usr/local/include"

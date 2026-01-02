@@ -2010,4 +2010,18 @@ Init_fox16_c(void) {
 
   appSensitiveObjs=st_init_numtable();
   appSensitiveDCs=st_init_numtable();
-  }
+}
+
+/* Define an additioal ruby version dependent init function.
+ * It is used in the binary gem when loaded by
+ *     require "4_0_fox16_c"
+ */
+#ifdef FXRUBY_INITFUNC
+extern "C" void
+#if defined _WIN32
+__declspec(dllexport)
+#endif
+FXRUBY_INITFUNC(void) {
+  Init_fox16_c();
+}
+#endif
