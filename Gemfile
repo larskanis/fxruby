@@ -10,7 +10,7 @@ gem 'mini_portile2'
 group :development do
   gem 'rake-compiler', '~> 1.0'
   gem 'rake-compiler-dock', '~> 1.11.0'
-  gem 'yard', '~> 0.8'
+  gem 'yard', '~> 0.8', '>= 0.9.36'
   gem "bundler", ">= 1.12", "< 5.a"
   gem "rake", "~> 13.0"
   gem 'rdoc'
