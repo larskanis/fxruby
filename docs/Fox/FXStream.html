@@ -107,55 +107,55 @@
 <p>A stream is a way to serialize data and objects into a byte stream. Each item of data that is saved or loaded from the stream may be byte-swapped, thus allowing little-endian machines to read data produced on big endian ones and vice-versa. Data is serialized exactly as-is.  There are no tags or other markers inserted into the stream; thus, the stream may be used to save or load arbitrary binary data. Objects derived from FXObjects may be serialized also; whenever a reference to an object is serialized, a table is consulted to determine if the same object has been encountered previously; if not, the object is added to the table and then its contents are serialized.  If the object has been encountered before, only a reference to the object is serialized. When loading back a serialized object, new instances are constructed using the default constructor, and subsequently the object’s contents are loaded. A special container object may be passed in which is placed in the table as if it had been encountered before; this will cause only references to this object to be saved.  The container object is typically the top-level document object which manages all objects contained by it.  Additional objects may be added using addObject(); these will not be actually saved or loaded.</p>
 
 <h3 id="label-Stream+status+codes">Stream status codes</h3>
-<dl class="rdoc-list note-list"><dt><code>FXStreamOK</code>
+<dl class="rdoc-list note-list"><dt><code>FXStreamOK</code></dt>
 <dd>
 <p>OK</p>
-</dd><dt><code>FXStreamEnd</code>
+</dd><dt><code>FXStreamEnd</code></dt>
 <dd>
 <p>Try read past end of stream</p>
-</dd><dt><code>FXStreamFull</code>
+</dd><dt><code>FXStreamFull</code></dt>
 <dd>
 <p>Filled up stream buffer or disk full</p>
-</dd><dt><code>FXStreamNoWrite</code>
+</dd><dt><code>FXStreamNoWrite</code></dt>
 <dd>
 <p>Unable to open for write</p>
-</dd><dt><code>FXStreamNoRead</code>
+</dd><dt><code>FXStreamNoRead</code></dt>
 <dd>
 <p>Unable to open for read</p>
-</dd><dt><code>FXStreamFormat</code>
+</dd><dt><code>FXStreamFormat</code></dt>
 <dd>
 <p>Stream format error</p>
-</dd><dt><code>FXStreamUnknown</code>
+</dd><dt><code>FXStreamUnknown</code></dt>
 <dd>
 <p>Trying to read unknown class</p>
-</dd><dt><code>FXStreamAlloc</code>
+</dd><dt><code>FXStreamAlloc</code></dt>
 <dd>
 <p>Alloc failed</p>
-</dd><dt><code>FXStreamFailure</code>
+</dd><dt><code>FXStreamFailure</code></dt>
 <dd>
 <p>General failure</p>
 </dd></dl>
 
 <h3 id="label-Stream+data+flow+direction">Stream data flow direction</h3>
-<dl class="rdoc-list note-list"><dt><code>FXStreamDead</code>
+<dl class="rdoc-list note-list"><dt><code>FXStreamDead</code></dt>
 <dd>
 <p>Unopened stream</p>
-</dd><dt><code>FXStreamSave</code>
+</dd><dt><code>FXStreamSave</code></dt>
 <dd>
 <p>Saving stuff to stream</p>
-</dd><dt><code>FXStreamLoad</code>
+</dd><dt><code>FXStreamLoad</code></dt>
 <dd>
 <p>Loading stuff from stream</p>
 </dd></dl>
 
 <h3 id="label-Stream+seeking">Stream seeking</h3>
-<dl class="rdoc-list note-list"><dt><code>FXFromStart</code>
+<dl class="rdoc-list note-list"><dt><code>FXFromStart</code></dt>
 <dd>
 <p>Seek from start position</p>
-</dd><dt><code>FXFromCurrent</code>
+</dd><dt><code>FXFromCurrent</code></dt>
 <dd>
 <p>Seek from current position</p>
-</dd><dt><code>FXFromEnd</code>
+</dd><dt><code>FXFromEnd</code></dt>
 <dd>
 <p>Seek from end position</p>
 </dd></dl>
@@ -642,7 +642,7 @@
 <p>Construct stream with given container object.  The container object is an object that will itself not be saved to or loaded from the stream, but which may be referenced by other objects.  These references will be properly saved and restored.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>cont</code>
+<dl class="rdoc-list note-list"><dt><code>cont</code></dt>
 <dd>
 <p>the container object, or <code>nil</code> if there is none <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span>.</p>
 </dd></dl>
@@ -1286,13 +1286,13 @@
 <p>Open stream for reading or for writing. An initial buffer size may be given, which must be at least 16 bytes. If <em>data</em> is not <code>nil</code>, it is expected to point to an external data buffer of length <em>size</em>; otherwise the stream will use an internally managed buffer. Returns <code>true</code> on success, <code>false</code> otherwise.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>save_or_load</code>
+<dl class="rdoc-list note-list"><dt><code>save_or_load</code></dt>
 <dd>
 <p>access mode, either <code>FXStreamSave</code> or <code>FXStreamLoad</code> [Integer]</p>
-</dd><dt><code>size</code>
+</dd><dt><code>size</code></dt>
 <dd>
 <p>initial buffer size [Integer]</p>
-</dd><dt><code>data</code>
+</dd><dt><code>data</code></dt>
 <dd>
 <p>external data buffer (if any) [String]</p>
 </dd></dl>
@@ -1362,9 +1362,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:35 2025 by
+  Generated on Fri Jan  2 19:58:59 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

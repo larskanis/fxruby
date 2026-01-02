@@ -117,82 +117,82 @@
 <h3 id="label-Events">Events</h3>
 
 <p>The following messages are sent from FXTextField to its target:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_COMMAND</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_COMMAND</code></dt>
 <dd>
 <p>sent when the user presses the <strong>Enter</strong> key or tabs out of the text field; the message data is a String containing the text.</p>
-</dd><dt><code>SEL_CHANGED</code>
+</dd><dt><code>SEL_CHANGED</code></dt>
 <dd>
 <p>sent when the text changes; the message data is a String containing the text.</p>
-</dd><dt><code>SEL_VERIFY</code>
+</dd><dt><code>SEL_VERIFY</code></dt>
 <dd>
 <p>sent when the user attempts to enter new text in the text field; the message data is a String containing the proposed new text.</p>
-</dd><dt><code>SEL_KEYPRESS</code>
+</dd><dt><code>SEL_KEYPRESS</code></dt>
 <dd>
 <p>sent when a key goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_KEYRELEASE</code>
+</dd><dt><code>SEL_KEYRELEASE</code></dt>
 <dd>
 <p>sent when a key goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONPRESS</code>
+</dd><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code>
+</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the middle mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code>
+</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the middle mouse button goes up; the message data is an FXEvent instance.</p>
 </dd></dl>
 
 <h3 id="label-Textfield+styles">Textfield styles</h3>
-<dl class="rdoc-list note-list"><dt><code>TEXTFIELD_PASSWD</code>
+<dl class="rdoc-list note-list"><dt><code>TEXTFIELD_PASSWD</code></dt>
 <dd>
 <p>Password mode</p>
-</dd><dt><code>TEXTFIELD_INTEGER</code>
+</dd><dt><code>TEXTFIELD_INTEGER</code></dt>
 <dd>
 <p>Integer mode</p>
-</dd><dt><code>TEXTFIELD_REAL</code>
+</dd><dt><code>TEXTFIELD_REAL</code></dt>
 <dd>
 <p>Real mode</p>
-</dd><dt><code>TEXTFIELD_READONLY</code>
+</dd><dt><code>TEXTFIELD_READONLY</code></dt>
 <dd>
 <p>NOT editable</p>
-</dd><dt><code>TEXTFIELD_ENTER_ONLY</code>
+</dd><dt><code>TEXTFIELD_ENTER_ONLY</code></dt>
 <dd>
 <p>Only callback when enter hit</p>
-</dd><dt><code>TEXTFIELD_LIMITED</code>
+</dd><dt><code>TEXTFIELD_LIMITED</code></dt>
 <dd>
 <p>Limit entry to given number of columns</p>
-</dd><dt><code>TEXTFIELD_OVERSTRIKE</code>
+</dd><dt><code>TEXTFIELD_OVERSTRIKE</code></dt>
 <dd>
 <p>Overstrike mode</p>
-</dd><dt><code>TEXTFIELD_NORMAL</code>
+</dd><dt><code>TEXTFIELD_NORMAL</code></dt>
 <dd>
 <p><code>FRAME_SUNKEN|FRAME_THICK</code></p>
 </dd></dl>
 
 <h3 id="label-Message+identifiers">Message identifiers</h3>
-<dl class="rdoc-list note-list"><dt><code>ID_CURSOR_HOME</code>
-<dt><code>ID_CURSOR_END</code>
-<dt><code>ID_CURSOR_RIGHT</code>
-<dt><code>ID_CURSOR_LEFT</code>
-<dt><code>ID_MARK</code>
-<dt><code>ID_EXTEND</code>
-<dt><code>ID_SELECT_ALL</code>
-<dt><code>ID_DESELECT_ALL</code>
-<dt><code>ID_CUT_SEL</code>
-<dt><code>ID_COPY_SEL</code>
-<dt><code>ID_PASTE_SEL</code>
-<dt><code>ID_DELETE_SEL</code>
-<dt><code>ID_OVERST_STRING</code>
-<dt><code>ID_INSERT_STRING</code>
-<dt><code>ID_BACKSPACE</code>
-<dt><code>ID_DELETE</code>
-<dt><code>ID_TOGGLE_EDITABLE</code>
-<dt><code>ID_TOGGLE_OVERSTRIKE</code>
-<dt><code>ID_BLINK</code>
+<dl class="rdoc-list note-list"><dt><code>ID_CURSOR_HOME</code></dt>
+<dt><code>ID_CURSOR_END</code></dt>
+<dt><code>ID_CURSOR_RIGHT</code></dt>
+<dt><code>ID_CURSOR_LEFT</code></dt>
+<dt><code>ID_MARK</code></dt>
+<dt><code>ID_EXTEND</code></dt>
+<dt><code>ID_SELECT_ALL</code></dt>
+<dt><code>ID_DESELECT_ALL</code></dt>
+<dt><code>ID_CUT_SEL</code></dt>
+<dt><code>ID_COPY_SEL</code></dt>
+<dt><code>ID_PASTE_SEL</code></dt>
+<dt><code>ID_DELETE_SEL</code></dt>
+<dt><code>ID_OVERST_STRING</code></dt>
+<dt><code>ID_INSERT_STRING</code></dt>
+<dt><code>ID_BACKSPACE</code></dt>
+<dt><code>ID_DELETE</code></dt>
+<dt><code>ID_TOGGLE_EDITABLE</code></dt>
+<dt><code>ID_TOGGLE_OVERSTRIKE</code></dt>
+<dt><code>ID_BLINK</code></dt>
 <dd></dd></dl>
 
 
@@ -942,43 +942,43 @@
 <p>Return an initialized FXTextField instance. It should be wide enough to display <em>ncols</em> columns.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>p</code>
+<dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent window for this text field <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
-</dd><dt><code>ncols</code>
+</dd><dt><code>ncols</code></dt>
 <dd>
 <p>number of visible items [Integer]</p>
-</dd><dt><code>target</code>
+</dd><dt><code>target</code></dt>
 <dd>
 <p>the message target, if any, for this text field <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span></p>
-</dd><dt><code>selector</code>
+</dd><dt><code>selector</code></dt>
 <dd>
 <p>the message identifier for this text field [Integer]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>text field options [Integer]</p>
-</dd><dt><code>x</code>
+</dd><dt><code>x</code></dt>
 <dd>
 <p>initial x-position [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>initial y-position [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>initial width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>initial height [Integer]</p>
-</dd><dt><code>padLeft</code>
+</dd><dt><code>padLeft</code></dt>
 <dd>
 <p>internal padding on the left side, in pixels [Integer]</p>
-</dd><dt><code>padRight</code>
+</dd><dt><code>padRight</code></dt>
 <dd>
 <p>internal padding on the right side, in pixels [Integer]</p>
-</dd><dt><code>padTop</code>
+</dd><dt><code>padTop</code></dt>
 <dd>
 <p>internal padding on the top side, in pixels [Integer]</p>
-</dd><dt><code>padBottom</code>
+</dd><dt><code>padBottom</code></dt>
 <dd>
 <p>internal padding on the bottom side, in pixels [Integer]</p>
 </dd></dl>
@@ -2006,9 +2006,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:49 2025 by
+  Generated on Fri Jan  2 19:59:12 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

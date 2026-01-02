@@ -119,217 +119,217 @@
 <h3 id="label-Events">Events</h3>
 
 <p>The following messages are sent by FXGLViewer to its message target:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
 <dd>
 <p>sent when a key goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_KEYRELEASE</code>
+</dd><dt><code>SEL_KEYRELEASE</code></dt>
 <dd>
 <p>sent when a key goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONPRESS</code>
+</dd><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code>
+</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the middle mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code>
+</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the middle mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_RIGHTBUTTONPRESS</code>
+</dd><dt><code>SEL_RIGHTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the right mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code>
+</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the right mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MOTION</code>
+</dd><dt><code>SEL_MOTION</code></dt>
 <dd>
 <p>sent when the mouse pointer is moved; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MOUSEWHEEL</code>
+</dd><dt><code>SEL_MOUSEWHEEL</code></dt>
 <dd>
 <p>sent when the mouse wheel is spun; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_CLICKED</code>
+</dd><dt><code>SEL_CLICKED</code></dt>
 <dd>
 <p>sent when the mouse is single-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly <code>nil</code>)</p>
-</dd><dt><code>SEL_DOUBLECLICKED</code>
+</dd><dt><code>SEL_DOUBLECLICKED</code></dt>
 <dd>
 <p>sent when the mouse is double-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly <code>nil</code>)</p>
-</dd><dt><code>SEL_TRIPLECLICKED</code>
+</dd><dt><code>SEL_TRIPLECLICKED</code></dt>
 <dd>
 <p>sent when the mouse is triple-clicked somewhere in the widget; the message data is a reference to the clicked object (possibly <code>nil</code>)</p>
-</dd><dt><code>SEL_PICKED</code>
+</dd><dt><code>SEL_PICKED</code></dt>
 <dd>
 <p>sent when an object is picked; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_SELECTED</code>
+</dd><dt><code>SEL_SELECTED</code></dt>
 <dd>
 <p>sent when object(s) are selected in the viewer; the message data is an array of references to the selected objects.</p>
-</dd><dt><code>SEL_DESELECTED</code>
+</dd><dt><code>SEL_DESELECTED</code></dt>
 <dd>
 <p>sent when object(s) are deselected in the viewer; the message data is an array of references to the deselected objects.</p>
-</dd><dt><code>SEL_LASSOED</code>
+</dd><dt><code>SEL_LASSOED</code></dt>
 <dd>
 <p>sent when a lasso-selection has been completed; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_INSERTED</code>
+</dd><dt><code>SEL_INSERTED</code></dt>
 <dd>
 <p>sent when the viewer receives a <code>SEL_INSERTED</code> message.</p>
-</dd><dt><code>SEL_DELETED</code>
+</dd><dt><code>SEL_DELETED</code></dt>
 <dd>
 <p>sent when the viewer receives a <code>SEL_COMMAND</code> message with the <code>ID_DELETE_SEL</code> identifier; the message data is an array of references to the selected object(s).</p>
-</dd><dt><code>SEL_DRAGGED</code>
+</dd><dt><code>SEL_DRAGGED</code></dt>
 <dd>
 <p>sent when the selected object is dragged around in the viewer; the message data is a reference to the selected object.</p>
-</dd><dt><code>SEL_COMMAND</code>
+</dd><dt><code>SEL_COMMAND</code></dt>
 <dd>
 <p>sent when the mouse is clicked somewhere in the widget; the message data is a reference to the clicked object (possibly <code>nil</code>)</p>
-</dd><dt><code>SEL_CHANGED</code>
+</dd><dt><code>SEL_CHANGED</code></dt>
 <dd>
 <p>sent when the selection changes; the message data is a reference to the newly selected object (or <code>nil</code>).</p>
 </dd></dl>
 
 <h3 id="label-FXGLViewer+options">FXGLViewer options</h3>
-<dl class="rdoc-list note-list"><dt><code>VIEWER_LIGHTING</code>
+<dl class="rdoc-list note-list"><dt><code>VIEWER_LIGHTING</code></dt>
 <dd>
 <p>Lighting is on</p>
-</dd><dt><code>VIEWER_FOG</code>
+</dd><dt><code>VIEWER_FOG</code></dt>
 <dd>
 <p>Fog mode on</p>
-</dd><dt><code>VIEWER_DITHER</code>
+</dd><dt><code>VIEWER_DITHER</code></dt>
 <dd>
 <p>Dithering</p>
 </dd></dl>
 
 <h3 id="label-Projection+modes+-28class+constants-29">Projection modes (class constants)</h3>
-<dl class="rdoc-list note-list"><dt><code>PARALLEL</code>
+<dl class="rdoc-list note-list"><dt><code>PARALLEL</code></dt>
 <dd>
 <p>Parallel projection</p>
-</dd><dt><code>PERSPECTIVE</code>
+</dd><dt><code>PERSPECTIVE</code></dt>
 <dd>
 <p>Perspective projection</p>
 </dd></dl>
 
 <h3 id="label-Message+identifiers">Message identifiers</h3>
-<dl class="rdoc-list note-list"><dt><code>ID_PERSPECTIVE</code>
+<dl class="rdoc-list note-list"><dt><code>ID_PERSPECTIVE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_PARALLEL</code>
+</dd><dt><code>ID_PARALLEL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_FRONT</code>
+</dd><dt><code>ID_FRONT</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_BACK</code>
+</dd><dt><code>ID_BACK</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LEFT</code>
+</dd><dt><code>ID_LEFT</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_RIGHT</code>
+</dd><dt><code>ID_RIGHT</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_TOP</code>
+</dd><dt><code>ID_TOP</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_BOTTOM</code>
+</dd><dt><code>ID_BOTTOM</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_RESETVIEW</code>
+</dd><dt><code>ID_RESETVIEW</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_FITVIEW</code>
+</dd><dt><code>ID_FITVIEW</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_TIPTIMER</code>
+</dd><dt><code>ID_TIPTIMER</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_TOP_COLOR</code>
+</dd><dt><code>ID_TOP_COLOR</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_BOTTOM_COLOR</code>
+</dd><dt><code>ID_BOTTOM_COLOR</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_BACK_COLOR</code>
+</dd><dt><code>ID_BACK_COLOR</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AMBIENT_COLOR</code>
+</dd><dt><code>ID_AMBIENT_COLOR</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LIGHT_AMBIENT</code>
+</dd><dt><code>ID_LIGHT_AMBIENT</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LIGHT_DIFFUSE</code>
+</dd><dt><code>ID_LIGHT_DIFFUSE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LIGHT_SPECULAR</code>
+</dd><dt><code>ID_LIGHT_SPECULAR</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LIGHTING</code>
+</dd><dt><code>ID_LIGHTING</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_TURBO</code>
+</dd><dt><code>ID_TURBO</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_FOG</code>
+</dd><dt><code>ID_FOG</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_DITHER</code>
+</dd><dt><code>ID_DITHER</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SCALE_X</code>
+</dd><dt><code>ID_SCALE_X</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SCALE_Y</code>
+</dd><dt><code>ID_SCALE_Y</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SCALE_Z</code>
+</dd><dt><code>ID_SCALE_Z</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_DIAL_X</code>
+</dd><dt><code>ID_DIAL_X</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_DIAL_Y</code>
+</dd><dt><code>ID_DIAL_Y</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_DIAL_Z</code>
+</dd><dt><code>ID_DIAL_Z</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_ROLL</code>
+</dd><dt><code>ID_ROLL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_PITCH</code>
+</dd><dt><code>ID_PITCH</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_YAW</code>
+</dd><dt><code>ID_YAW</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_FOV</code>
+</dd><dt><code>ID_FOV</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_ZOOM</code>
+</dd><dt><code>ID_ZOOM</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_CUT_SEL</code>
+</dd><dt><code>ID_CUT_SEL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_COPY_SEL</code>
+</dd><dt><code>ID_COPY_SEL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_PASTE_SEL</code>
+</dd><dt><code>ID_PASTE_SEL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_DELETE_SEL</code>
+</dd><dt><code>ID_DELETE_SEL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_PRINT_IMAGE</code>
+</dd><dt><code>ID_PRINT_IMAGE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_PRINT_VECTOR</code>
+</dd><dt><code>ID_PRINT_VECTOR</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LASSO_ZOOM</code>
+</dd><dt><code>ID_LASSO_ZOOM</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LASSO_SELECT</code>
+</dd><dt><code>ID_LASSO_SELECT</code></dt>
 <dd>
 <p>x</p>
 </dd></dl>
@@ -3496,9 +3496,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:40 2025 by
+  Generated on Fri Jan  2 19:59:04 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

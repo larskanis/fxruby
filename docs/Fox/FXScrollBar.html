@@ -115,61 +115,61 @@
 <h3 id="label-Events">Events</h3>
 
 <p>The following messages are sent by FXScrollBar to its target:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_LEFTBUTTONPRESS</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code>
+</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the middle mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code>
+</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the middle mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_RIGHTBUTTONPRESS</code>
+</dd><dt><code>SEL_RIGHTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the right mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code>
+</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the right mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_CHANGED</code>
+</dd><dt><code>SEL_CHANGED</code></dt>
 <dd>
 <p>sent continuously while the scroll bar is moving; the message data is an integer indicating the current position of the scroll bar.</p>
-</dd><dt><code>SEL_COMMAND</code>
+</dd><dt><code>SEL_COMMAND</code></dt>
 <dd>
 <p>sent at the end of a scrolling operation, to signal that the scrolling is complete. The message data is an integer indicating the new position of the scroll bar.</p>
 </dd></dl>
 
 <h3 id="label-Scrollbar+styles">Scrollbar styles</h3>
-<dl class="rdoc-list note-list"><dt><code>SCROLLBAR_HORIZONTAL</code>
+<dl class="rdoc-list note-list"><dt><code>SCROLLBAR_HORIZONTAL</code></dt>
 <dd>
 <p>Horizontally oriented</p>
-</dd><dt><code>SCROLLBAR_VERTICAL</code>
+</dd><dt><code>SCROLLBAR_VERTICAL</code></dt>
 <dd>
 <p>Vertically oriented (the default)</p>
 </dd></dl>
 
 <h3 id="label-Message+identifiers">Message identifiers</h3>
-<dl class="rdoc-list note-list"><dt><code>ID_TIMEWHEEL</code>
+<dl class="rdoc-list note-list"><dt><code>ID_TIMEWHEEL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTOINC_LINE</code>
+</dd><dt><code>ID_AUTOINC_LINE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTODEC_LINE</code>
+</dd><dt><code>ID_AUTODEC_LINE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTOINC_PAGE</code>
+</dd><dt><code>ID_AUTOINC_PAGE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTODEC_PAGE</code>
+</dd><dt><code>ID_AUTODEC_PAGE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTOINC_PIX</code>
+</dd><dt><code>ID_AUTOINC_PIX</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTODEC_PIX</code>
+</dd><dt><code>ID_AUTODEC_PIX</code></dt>
 <dd>
 <p>x</p>
 </dd></dl>
@@ -560,28 +560,28 @@
 <p>Return an initialized FXScrollBar instance.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>p</code>
+<dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent widget for this scroll bar <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
-</dd><dt><code>target</code>
+</dd><dt><code>target</code></dt>
 <dd>
 <p>the initial message target (if any) for this scroll bar <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span></p>
-</dd><dt><code>selector</code>
+</dd><dt><code>selector</code></dt>
 <dd>
 <p>the message identifier for this scroll bar [Integer]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>the options [Integer]</p>
-</dd><dt><code>x</code>
+</dd><dt><code>x</code></dt>
 <dd>
 <p>initial x-position, when the <code>LAYOUT_FIX_X</code> layout hint is in effect [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>initial y-position, when the <code>LAYOUT_FIX_Y</code> layout hint is in effect [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>initial width, when the <code>LAYOUT_FIX_WIDTH</code> layout hint is in effect [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>initial height, when the <code>LAYOUT_FIX_HEIGHT</code> layout hint is in effect [Integer]</p>
 </dd></dl>
@@ -1009,9 +1009,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:48 2025 by
+  Generated on Fri Jan  2 19:59:11 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

@@ -126,91 +126,91 @@
 <h3 id="label-Events">Events</h3>
 
 <p>The following messages are sent by FXTreeList to its target:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
 <dd>
 <p>sent when a key goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_KEYRELEASE</code>
+</dd><dt><code>SEL_KEYRELEASE</code></dt>
 <dd>
 <p>sent when a key goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONPRESS</code>
+</dd><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_RIGHTBUTTONPRESS</code>
+</dd><dt><code>SEL_RIGHTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the right mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code>
+</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the right mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_COMMAND</code>
+</dd><dt><code>SEL_COMMAND</code></dt>
 <dd>
 <p>sent when a list item is clicked on; the message data is a reference to the item (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_CLICKED</code>
+</dd><dt><code>SEL_CLICKED</code></dt>
 <dd>
 <p>sent when the left mouse button is single-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or <code>nil</code> if no item was clicked.</p>
-</dd><dt><code>SEL_DOUBLECLICKED</code>
+</dd><dt><code>SEL_DOUBLECLICKED</code></dt>
 <dd>
 <p>sent when the left mouse button is double-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or <code>nil</code> if no item was clicked.</p>
-</dd><dt><code>SEL_TRIPLECLICKED</code>
+</dd><dt><code>SEL_TRIPLECLICKED</code></dt>
 <dd>
 <p>sent when the left mouse button is triple-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or <code>nil</code> if no item was clicked.</p>
-</dd><dt><code>SEL_OPENED</code>
+</dd><dt><code>SEL_OPENED</code></dt>
 <dd>
 <p>sent when an item is opened; the message data is a reference to the item (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_CLOSED</code>
+</dd><dt><code>SEL_CLOSED</code></dt>
 <dd>
 <p>sent when an item is closed; the message data is a reference to the item (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_EXPANDED</code>
+</dd><dt><code>SEL_EXPANDED</code></dt>
 <dd>
 <p>sent when a sub-tree is expanded; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_COLLAPSED</code>
+</dd><dt><code>SEL_COLLAPSED</code></dt>
 <dd>
 <p>sent when a sub-tree is collapsed; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_SELECTED</code>
+</dd><dt><code>SEL_SELECTED</code></dt>
 <dd>
 <p>sent when an item is selected; the message data is a reference to the item (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_DESELECTED</code>
+</dd><dt><code>SEL_DESELECTED</code></dt>
 <dd>
 <p>sent when an item is deselected; the message data is a reference to the item (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_CHANGED</code>
+</dd><dt><code>SEL_CHANGED</code></dt>
 <dd>
 <p>sent when the current item changes; the message data is a reference to the current item (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_INSERTED</code>
+</dd><dt><code>SEL_INSERTED</code></dt>
 <dd>
 <p>sent after an item is added to the list; the message data is a reference to the item (an FXTreeItem instance).</p>
-</dd><dt><code>SEL_DELETED</code>
+</dd><dt><code>SEL_DELETED</code></dt>
 <dd>
 <p>sent before an item is removed from the list; the message data is a reference to the item (an FXTreeItem instance).</p>
 </dd></dl>
 
 <h3 id="label-Tree+list+styles">Tree list styles</h3>
-<dl class="rdoc-list note-list"><dt><code>TREELIST_EXTENDEDSELECT</code>
+<dl class="rdoc-list note-list"><dt><code>TREELIST_EXTENDEDSELECT</code></dt>
 <dd>
 <p>Extended selection mode allows for drag-selection of ranges of items</p>
-</dd><dt><code>TREELIST_SINGLESELECT</code>
+</dd><dt><code>TREELIST_SINGLESELECT</code></dt>
 <dd>
 <p>Single selection mode allows up to one item to be selected</p>
-</dd><dt><code>TREELIST_BROWSESELECT</code>
+</dd><dt><code>TREELIST_BROWSESELECT</code></dt>
 <dd>
 <p>Browse selection mode enforces one single item to be selected at all times</p>
-</dd><dt><code>TREELIST_MULTIPLESELECT</code>
+</dd><dt><code>TREELIST_MULTIPLESELECT</code></dt>
 <dd>
 <p>Multiple selection mode is used for selection of individual items</p>
-</dd><dt><code>TREELIST_AUTOSELECT</code>
+</dd><dt><code>TREELIST_AUTOSELECT</code></dt>
 <dd>
 <p>Automatically select under cursor</p>
-</dd><dt><code>TREELIST_SHOWS_LINES</code>
+</dd><dt><code>TREELIST_SHOWS_LINES</code></dt>
 <dd>
 <p>Lines shown</p>
-</dd><dt><code>TREELIST_SHOWS_BOXES</code>
+</dd><dt><code>TREELIST_SHOWS_BOXES</code></dt>
 <dd>
 <p>Boxes to expand shown</p>
-</dd><dt><code>TREELIST_ROOT_BOXES</code>
+</dd><dt><code>TREELIST_ROOT_BOXES</code></dt>
 <dd>
 <p>Display root boxes also</p>
-</dd><dt><code>TREELIST_NORMAL</code>
+</dd><dt><code>TREELIST_NORMAL</code></dt>
 <dd>
 <p>same as <code>TREELIST_EXTENDEDLIST</code></p>
 </dd></dl>
@@ -2147,28 +2147,28 @@
 <p>Construct a new, initially empty tree list.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>p</code>
+<dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent window for this tree list <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
-</dd><dt><code>target</code>
+</dd><dt><code>target</code></dt>
 <dd>
 <p>the message target, if any, for this tree list <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span></p>
-</dd><dt><code>selector</code>
+</dd><dt><code>selector</code></dt>
 <dd>
 <p>the message identifier for this tree list [Integer]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>tree list options [Integer]</p>
-</dd><dt><code>x</code>
+</dd><dt><code>x</code></dt>
 <dd>
 <p>initial x-position [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>initial y-position [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>initial width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>initial height [Integer]</p>
 </dd></dl>
@@ -5085,9 +5085,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:42 2025 by
+  Generated on Fri Jan  2 19:59:05 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

@@ -13,6 +13,8 @@ group :development do
   gem 'yard', '~> 0.8'
   gem "bundler", ">= 1.12", "< 5.a"
   gem "rake", "~> 13.0"
+  gem 'rdoc'
+  gem 'redcarpet', '~> 3.0'
 end
 
 group :test do

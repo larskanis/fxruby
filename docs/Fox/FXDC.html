@@ -107,199 +107,199 @@
 <p>A device context is used to maintain the state of the graphics drawing system. Defining your drawing code in terms of the Abstract Device Context allows the drawing commands to be rendered on different types of surfaces, such as windows and images (FXDCWindow), or on paper (FXDCPrint). WYSYWYG may be obtained by using the same identical drawing code in your application regardless of the actual device surface being utilized.</p>
 
 <h3 id="label-Drawing+-28BITBLT-29+functions">Drawing (BITBLT) functions</h3>
-<dl class="rdoc-list note-list"><dt><code>BLT_CLR</code>
+<dl class="rdoc-list note-list"><dt><code>BLT_CLR</code></dt>
 <dd>
 <p>D := 0</p>
-</dd><dt><code>BLT_SRC_AND_DST</code>
+</dd><dt><code>BLT_SRC_AND_DST</code></dt>
 <dd>
 <p>D := S &amp; D</p>
-</dd><dt><code>BLT_SRC_AND_NOT_DST</code>
+</dd><dt><code>BLT_SRC_AND_NOT_DST</code></dt>
 <dd>
 <p>D := S &amp; ~D</p>
-</dd><dt><code>BLT_SRC</code>
+</dd><dt><code>BLT_SRC</code></dt>
 <dd>
 <p>D := S</p>
-</dd><dt><code>BLT_NOT_SRC_AND_DST</code>
+</dd><dt><code>BLT_NOT_SRC_AND_DST</code></dt>
 <dd>
 <p>D := ~S &amp; D</p>
-</dd><dt><code>BLT_DST</code>
+</dd><dt><code>BLT_DST</code></dt>
 <dd>
 <p>D := D</p>
-</dd><dt><code>BLT_SRC_XOR_DST</code>
+</dd><dt><code>BLT_SRC_XOR_DST</code></dt>
 <dd>
 <p>D := S ^ D</p>
-</dd><dt><code>BLT_SRC_OR_DST</code>
+</dd><dt><code>BLT_SRC_OR_DST</code></dt>
 <dd>
 <p>D := S | D</p>
-</dd><dt><code>BLT_NOT_SRC_AND_NOT_DST</code>
+</dd><dt><code>BLT_NOT_SRC_AND_NOT_DST</code></dt>
 <dd>
 <p>D := ~S &amp; ~D  ==  D := ~(S | D)</p>
-</dd><dt><code>BLT_NOT_SRC_XOR_DST</code>
+</dd><dt><code>BLT_NOT_SRC_XOR_DST</code></dt>
 <dd>
 <p>D := ~S ^ D</p>
-</dd><dt><code>BLT_NOT_DST</code>
+</dd><dt><code>BLT_NOT_DST</code></dt>
 <dd>
 <p>D := ~D</p>
-</dd><dt><code>BLT_SRC_OR_NOT_DST</code>
+</dd><dt><code>BLT_SRC_OR_NOT_DST</code></dt>
 <dd>
 <p>D := S | ~D</p>
-</dd><dt><code>BLT_NOT_SRC</code>
+</dd><dt><code>BLT_NOT_SRC</code></dt>
 <dd>
 <p>D := ~S</p>
-</dd><dt><code>BLT_NOT_SRC_OR_DST</code>
+</dd><dt><code>BLT_NOT_SRC_OR_DST</code></dt>
 <dd>
 <p>D := ~S | D</p>
-</dd><dt><code>BLT_NOT_SRC_OR_NOT_DST</code>
+</dd><dt><code>BLT_NOT_SRC_OR_NOT_DST</code></dt>
 <dd>
 <p>D := ~S | ~D  ==  ~(S &amp; D)</p>
-</dd><dt><code>BLT_SET</code>
+</dd><dt><code>BLT_SET</code></dt>
 <dd>
 <p>D := 1</p>
 </dd></dl>
 
 <h3 id="label-Line+Styles">Line Styles</h3>
-<dl class="rdoc-list note-list"><dt><code>LINE_SOLID</code>
+<dl class="rdoc-list note-list"><dt><code>LINE_SOLID</code></dt>
 <dd>
 <p>Solid lines</p>
-</dd><dt><code>LINE_ONOFF_DASH</code>
+</dd><dt><code>LINE_ONOFF_DASH</code></dt>
 <dd>
 <p>On-off dashed lines</p>
-</dd><dt><code>LINE_DOUBLE_DASH</code>
+</dd><dt><code>LINE_DOUBLE_DASH</code></dt>
 <dd>
 <p>Double dashed lines</p>
 </dd></dl>
 
 <h3 id="label-Line+Cap+Styles">Line Cap Styles</h3>
-<dl class="rdoc-list note-list"><dt><code>CAP_NOT_LAST</code>
+<dl class="rdoc-list note-list"><dt><code>CAP_NOT_LAST</code></dt>
 <dd>
 <p>Don’t include last end cap</p>
-</dd><dt><code>CAP_BUTT</code>
+</dd><dt><code>CAP_BUTT</code></dt>
 <dd>
 <p>Butting line end caps</p>
-</dd><dt><code>CAP_ROUND</code>
+</dd><dt><code>CAP_ROUND</code></dt>
 <dd>
 <p>Round line end caps</p>
-</dd><dt><code>CAP_PROJECTING</code>
+</dd><dt><code>CAP_PROJECTING</code></dt>
 <dd>
 <p>Projecting line end caps</p>
 </dd></dl>
 
 <h3 id="label-Line+Join+Styles">Line Join Styles</h3>
-<dl class="rdoc-list note-list"><dt><code>JOIN_MITER</code>
+<dl class="rdoc-list note-list"><dt><code>JOIN_MITER</code></dt>
 <dd>
 <p>Mitered or pointy joints</p>
-</dd><dt><code>JOIN_ROUND</code>
+</dd><dt><code>JOIN_ROUND</code></dt>
 <dd>
 <p>Round line joints</p>
-</dd><dt><code>JOIN_BEVEL</code>
+</dd><dt><code>JOIN_BEVEL</code></dt>
 <dd>
 <p>Beveled or flat joints</p>
 </dd></dl>
 
 <h3 id="label-Fill+Styles">Fill Styles</h3>
-<dl class="rdoc-list note-list"><dt><code>FILL_SOLID</code>
+<dl class="rdoc-list note-list"><dt><code>FILL_SOLID</code></dt>
 <dd>
 <p>Fill with solid color</p>
-</dd><dt><code>FILL_TILED</code>
+</dd><dt><code>FILL_TILED</code></dt>
 <dd>
 <p>Fill with tiled bitmap</p>
-</dd><dt><code>FILL_STIPPLED</code>
+</dd><dt><code>FILL_STIPPLED</code></dt>
 <dd>
 <p>Fill where stipple mask is 1</p>
-</dd><dt><code>FILL_OPAQUESTIPPLED</code>
+</dd><dt><code>FILL_OPAQUESTIPPLED</code></dt>
 <dd>
 <p>Fill with foreground where mask is 1, background otherwise</p>
 </dd></dl>
 
 <h3 id="label-Fill+Rules">Fill Rules</h3>
-<dl class="rdoc-list note-list"><dt><code>RULE_EVEN_ODD</code>
+<dl class="rdoc-list note-list"><dt><code>RULE_EVEN_ODD</code></dt>
 <dd>
 <p>Even odd polygon filling</p>
-</dd><dt><code>RULE_WINDING</code>
+</dd><dt><code>RULE_WINDING</code></dt>
 <dd>
 <p>Winding rule polygon filling</p>
 </dd></dl>
 
 <h3 id="label-Stipple-2Fdither+patterns">Stipple/dither patterns</h3>
-<dl class="rdoc-list note-list"><dt><code>STIPPLE_0</code>
+<dl class="rdoc-list note-list"><dt><code>STIPPLE_0</code></dt>
 <dd>
 <p>Stipple pattern 0</p>
-</dd><dt><code>STIPPLE_NONE</code>
+</dd><dt><code>STIPPLE_NONE</code></dt>
 <dd>
 <p>Stipple pattern 0</p>
-</dd><dt><code>STIPPLE_BLACK</code>
+</dd><dt><code>STIPPLE_BLACK</code></dt>
 <dd>
 <p>All ones</p>
-</dd><dt><code>STIPPLE_1</code>
+</dd><dt><code>STIPPLE_1</code></dt>
 <dd>
 <p>Stipple pattern 1</p>
-</dd><dt><code>STIPPLE_2</code>
+</dd><dt><code>STIPPLE_2</code></dt>
 <dd>
 <p>Stipple pattern 2</p>
-</dd><dt><code>STIPPLE_3</code>
+</dd><dt><code>STIPPLE_3</code></dt>
 <dd>
 <p>Stipple pattern 3</p>
-</dd><dt><code>STIPPLE_4</code>
+</dd><dt><code>STIPPLE_4</code></dt>
 <dd>
 <p>Stipple pattern 4</p>
-</dd><dt><code>STIPPLE_5</code>
+</dd><dt><code>STIPPLE_5</code></dt>
 <dd>
 <p>Stipple pattern 5</p>
-</dd><dt><code>STIPPLE_6</code>
+</dd><dt><code>STIPPLE_6</code></dt>
 <dd>
 <p>Stipple pattern 6</p>
-</dd><dt><code>STIPPLE_7</code>
+</dd><dt><code>STIPPLE_7</code></dt>
 <dd>
 <p>Stipple pattern 7</p>
-</dd><dt><code>STIPPLE_8</code>
+</dd><dt><code>STIPPLE_8</code></dt>
 <dd>
 <p>Stipple pattern 8</p>
-</dd><dt><code>STIPPLE_GRAY</code>
+</dd><dt><code>STIPPLE_GRAY</code></dt>
 <dd>
 <p>50% gray</p>
-</dd><dt><code>STIPPLE_9</code>
+</dd><dt><code>STIPPLE_9</code></dt>
 <dd>
 <p>Stipple pattern 9</p>
-</dd><dt><code>STIPPLE_10</code>
+</dd><dt><code>STIPPLE_10</code></dt>
 <dd>
 <p>Stipple pattern 10</p>
-</dd><dt><code>STIPPLE_11</code>
+</dd><dt><code>STIPPLE_11</code></dt>
 <dd>
 <p>Stipple pattern 11</p>
-</dd><dt><code>STIPPLE_12</code>
+</dd><dt><code>STIPPLE_12</code></dt>
 <dd>
 <p>Stipple pattern 12</p>
-</dd><dt><code>STIPPLE_13</code>
+</dd><dt><code>STIPPLE_13</code></dt>
 <dd>
 <p>Stipple pattern 13</p>
-</dd><dt><code>STIPPLE_14</code>
+</dd><dt><code>STIPPLE_14</code></dt>
 <dd>
 <p>Stipple pattern 14</p>
-</dd><dt><code>STIPPLE_15</code>
+</dd><dt><code>STIPPLE_15</code></dt>
 <dd>
 <p>Stipple pattern 15</p>
-</dd><dt><code>STIPPLE_16</code>
+</dd><dt><code>STIPPLE_16</code></dt>
 <dd>
 <p>Stipple pattern 16</p>
-</dd><dt><code>STIPPLE_WHITE</code>
+</dd><dt><code>STIPPLE_WHITE</code></dt>
 <dd>
 <p>All zeroes</p>
-</dd><dt><code>STIPPLE_HORZ</code>
+</dd><dt><code>STIPPLE_HORZ</code></dt>
 <dd>
 <p>Horizontal hatch pattern</p>
-</dd><dt><code>STIPPLE_VERT</code>
+</dd><dt><code>STIPPLE_VERT</code></dt>
 <dd>
 <p>Vertical hatch pattern</p>
-</dd><dt><code>STIPPLE_CROSS</code>
+</dd><dt><code>STIPPLE_CROSS</code></dt>
 <dd>
 <p>Cross-hatch pattern</p>
-</dd><dt><code>STIPPLE_DIAG</code>
+</dd><dt><code>STIPPLE_DIAG</code></dt>
 <dd>
 <p>Diagonal // hatch pattern</p>
-</dd><dt><code>STIPPLE_REVDIAG</code>
+</dd><dt><code>STIPPLE_REVDIAG</code></dt>
 <dd>
 <p>Reverse diagonal \ hatch pattern</p>
-</dd><dt><code>STIPPLE_CROSSDIAG</code>
+</dd><dt><code>STIPPLE_CROSSDIAG</code></dt>
 <dd>
 <p>Cross-diagonal hatch pattern</p>
 </dd></dl>
@@ -3164,7 +3164,7 @@
 <p>When you call <span class='object_link'><a href="#clipChildren-instance_method" title="Fox::FXDC#clipChildren (method)">#clipChildren</a></span> with the argument <code>true</code>, anything that you draw into this window will be clipped by its child windows. In other words, the child windows “obscure” the parent window. This is the default behavior. If you call <span class='object_link'><a href="#clipChildren-instance_method" title="Fox::FXDC#clipChildren (method)">#clipChildren</a></span> with <code>false</code>, anything that you draw into this window will be visible in its child windows (i.e. the drawing will <strong>not</strong> be clipped).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>yes</code>
+<dl class="rdoc-list note-list"><dt><code>yes</code></dt>
 <dd>
 <p>if <code>true</code>, drawing is clipped against child windows [Boolean]</p>
 </dd></dl>
@@ -3207,22 +3207,22 @@
 <p>Draw an arc. The argument <em>start</em> specifies the start of the arc relative to the three-o’clock position from the center, in units of degrees*64. The argument <em>extent</em> specifies the path and extent of the arc, relative to the start of the arc (also in units of degrees*64). The arguments <em>x</em>, <em>y</em>, <em>w</em>, and <em>h</em> specify the bounding rectangle of the arc.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>w</code>
+</dd><dt><code>w</code></dt>
 <dd>
 <p>width of the bounding rectangle, in pixels [Integer]</p>
-</dd><dt><code>h</code>
+</dd><dt><code>h</code></dt>
 <dd>
 <p>height of the bounding rectangle, in pixels [Integer]</p>
-</dd><dt><code>start</code>
+</dd><dt><code>start</code></dt>
 <dd>
 <p>starting angle of the arc, in 64ths of a degree [Integer]</p>
-</dd><dt><code>extent</code>
+</dd><dt><code>extent</code></dt>
 <dd>
 <p>the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]</p>
 </dd></dl>
@@ -3267,7 +3267,7 @@
 <p>Draw arcs, where <em>arcs</em> is an array of FXArc instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>arcs</code>
+<dl class="rdoc-list note-list"><dt><code>arcs</code></dt>
 <dd>
 <p>an array of FXArc instances [Array]</p>
 </dd></dl>
@@ -3312,31 +3312,31 @@
 <p>Copy some rectangular area from <em>source</em> into the drawable attached to this device context, stretching it to width <em>dw</em> and height <em>dh</em>.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>source</code>
+<dl class="rdoc-list note-list"><dt><code>source</code></dt>
 <dd>
 <p>the source drawable from which to copy <span class='object_link'><a href="FXDrawable.html" title="Fox::FXDrawable (class)">Fox::FXDrawable</a></span></p>
-</dd><dt><code>sx</code>
+</dd><dt><code>sx</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner of the source rectangle [Integer]</p>
-</dd><dt><code>sy</code>
+</dd><dt><code>sy</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner of the source rectangle [Integer]</p>
-</dd><dt><code>sw</code>
+</dd><dt><code>sw</code></dt>
 <dd>
 <p>width of the source rectangle, in pixels [Integer]</p>
-</dd><dt><code>sh</code>
+</dd><dt><code>sh</code></dt>
 <dd>
 <p>height of the source rectangle, in pixels [Integer]</p>
-</dd><dt><code>dx</code>
+</dd><dt><code>dx</code></dt>
 <dd>
 <p>x-coordinate of the the destination point in this drawable [Integer]</p>
-</dd><dt><code>dy</code>
+</dd><dt><code>dy</code></dt>
 <dd>
 <p>y-coordinate of the the destination point in this drawable [Integer]</p>
-</dd><dt><code>dw</code>
+</dd><dt><code>dw</code></dt>
 <dd>
 <p>destination width, in pixels [Integer]</p>
-</dd><dt><code>dh</code>
+</dd><dt><code>dh</code></dt>
 <dd>
 <p>destination height, in pixels [Integer]</p>
 </dd></dl>
@@ -3379,13 +3379,13 @@
 <p>Draw <em>bitmap</em> into the drawable attached to this device context.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>bitmap</code>
+<dl class="rdoc-list note-list"><dt><code>bitmap</code></dt>
 <dd>
 <p>bitmap to draw <span class='object_link'><a href="FXBitmap.html" title="Fox::FXBitmap (class)">Fox::FXBitmap</a></span></p>
-</dd><dt><code>dx</code>
+</dd><dt><code>dx</code></dt>
 <dd>
 <p>x-coordinate of the the destination point in this drawable [Integer]</p>
-</dd><dt><code>dy</code>
+</dd><dt><code>dy</code></dt>
 <dd>
 <p>y-coordinate of the the destination point in this drawable [Integer]</p>
 </dd></dl>
@@ -3512,16 +3512,16 @@
 <p>Draw focus rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>width of the rectangle, in pixels [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>height of the rectangle, in pixels [Integer]</p>
 </dd></dl>
@@ -3564,19 +3564,19 @@
 <p>Draw hashed box with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>width of the box, in pixels [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>height of the box, in pixels [Integer]</p>
-</dd><dt><code>b</code>
+</dd><dt><code>b</code></dt>
 <dd>
 <p>border width, in pixels [Integer]</p>
 </dd></dl>
@@ -3619,13 +3619,13 @@
 <p>Draw <em>icon</em> into the drawable attached to this device context.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>icon</code>
+<dl class="rdoc-list note-list"><dt><code>icon</code></dt>
 <dd>
 <p>icon to draw <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">Fox::FXIcon</a></span></p>
-</dd><dt><code>dx</code>
+</dd><dt><code>dx</code></dt>
 <dd>
 <p>x-coordinate of the the destination point in this drawable [Integer]</p>
-</dd><dt><code>dy</code>
+</dd><dt><code>dy</code></dt>
 <dd>
 <p>y-coordinate of the the destination point in this drawable [Integer]</p>
 </dd></dl>
@@ -3668,13 +3668,13 @@
 <p>Draw a shaded version of an icon into the drawable attached to this device context. This is typically used for drawing disabled labels and buttons.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>icon</code>
+<dl class="rdoc-list note-list"><dt><code>icon</code></dt>
 <dd>
 <p>icon to draw <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">Fox::FXIcon</a></span></p>
-</dd><dt><code>dx</code>
+</dd><dt><code>dx</code></dt>
 <dd>
 <p>x-coordinate of the the destination point in this drawable [Integer]</p>
-</dd><dt><code>dy</code>
+</dd><dt><code>dy</code></dt>
 <dd>
 <p>y-coordinate of the the destination point in this drawable [Integer]</p>
 </dd></dl>
@@ -3717,13 +3717,13 @@
 <p>Draw a sunken version of an icon into the drawable attached to this device context.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>icon</code>
+<dl class="rdoc-list note-list"><dt><code>icon</code></dt>
 <dd>
 <p>icon to draw <span class='object_link'><a href="FXIcon.html" title="Fox::FXIcon (class)">Fox::FXIcon</a></span></p>
-</dd><dt><code>dx</code>
+</dd><dt><code>dx</code></dt>
 <dd>
 <p>x-coordinate of the the destination point in this drawable [Integer]</p>
-</dd><dt><code>dy</code>
+</dd><dt><code>dy</code></dt>
 <dd>
 <p>y-coordinate of the the destination point in this drawable [Integer]</p>
 </dd></dl>
@@ -3766,13 +3766,13 @@
 <p>Draw <em>image</em> into the drawable attached to this device context.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>image</code>
+<dl class="rdoc-list note-list"><dt><code>image</code></dt>
 <dd>
 <p>image to draw <span class='object_link'><a href="FXImage.html" title="Fox::FXImage (class)">Fox::FXImage</a></span></p>
-</dd><dt><code>dx</code>
+</dd><dt><code>dx</code></dt>
 <dd>
 <p>x-coordinate of the the destination point in this drawable [Integer]</p>
-</dd><dt><code>dy</code>
+</dd><dt><code>dy</code></dt>
 <dd>
 <p>y-coordinate of the the destination point in this drawable [Integer]</p>
 </dd></dl>
@@ -3815,13 +3815,13 @@
 <p>Draw <em>string</em> at position (<em>x</em>, <em>y</em>).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>string</code>
+</dd><dt><code>string</code></dt>
 <dd>
 <p>the text string to draw [String]</p>
 </dd></dl>
@@ -3866,16 +3866,16 @@
 <p>Draw the line from (<em>x1</em>, <em>y1</em>) to (<em>x2</em>, <em>y2</em>).</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>x1</code>
+<dl class="rdoc-list note-list"><dt><code>x1</code></dt>
 <dd>
 <p>x-coordinate of the starting point [Integer]</p>
-</dd><dt><code>y1</code>
+</dd><dt><code>y1</code></dt>
 <dd>
 <p>y-coordinate of the starting point [Integer]</p>
-</dd><dt><code>x2</code>
+</dd><dt><code>x2</code></dt>
 <dd>
 <p>x-coordinate of the ending point [Integer]</p>
-</dd><dt><code>y2</code>
+</dd><dt><code>y2</code></dt>
 <dd>
 <p>y-coordinate of the ending point [Integer]</p>
 </dd></dl>
@@ -3920,7 +3920,7 @@
 <p>Draw connected lines, where <em>points</em> is an array of FXPoint instances. The number of lines drawn is equal to the size of the <em>points</em> array minus one. Treats all points’ coordinates as relative to the origin.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>array of FXPoint instances that defines all points on the line [Array]</p>
 </dd></dl>
@@ -3965,7 +3965,7 @@
 <p>Draw mutiple, unconnected lines (i.e. line segments), where <em>segments</em> is an array of FXSegment instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>segments</code>
+<dl class="rdoc-list note-list"><dt><code>segments</code></dt>
 <dd>
 <p>an array of FXSegment instances [Array]</p>
 </dd></dl>
@@ -4008,7 +4008,7 @@
 <p>Draw connected lines, where <em>points</em> is an array of FXPoint instances. The number of lines drawn is equal to the size of the <em>points</em> array minus one. Treats each point’s coordinates (after the first) as relative to the previous point.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>array of FXPoint instances that defines all points on the line [Array]</p>
 </dd></dl>
@@ -4053,10 +4053,10 @@
 <p>Draw a point at (<em>x</em>, <em>y</em>) in the current foreground drawing color.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the point [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the point [Integer]</p>
 </dd></dl>
@@ -4101,7 +4101,7 @@
 <p>Draw multiple points, where <em>points</em> is an array of FXPoint instances.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4146,7 +4146,7 @@
 <p>Draw multiple points, where <em>points</em> is an array of FXPoint instances. Unlike <span class='object_link'><a href="#drawPoints-instance_method" title="Fox::FXDC#drawPoints (method)">#drawPoints</a></span>, where each of the points is drawn relative to the origin, <span class='object_link'><a href="#drawPointsRel-instance_method" title="Fox::FXDC#drawPointsRel (method)">#drawPointsRel</a></span> treats all coordinates after the first as relative to the previous point.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4191,16 +4191,16 @@
 <p>Draw rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of upper-left corner of the rectangle [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of upper-left corner of the rectangle [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>width of the rectangle, in pixels [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>height of the rectangle, in pixels [Integer]</p>
 </dd></dl>
@@ -4245,7 +4245,7 @@
 <p>Draw multiple rectangles, where <em>rectangles</em> is an array of FXRectangle instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>rectangles</code>
+<dl class="rdoc-list note-list"><dt><code>rectangles</code></dt>
 <dd>
 <p>an array of FXRectangle instances [Array]</p>
 </dd></dl>
@@ -4290,16 +4290,16 @@
 <p>Draw a rounded rectangle with ellipse width <em>ew</em> and ellipse height <em>eh</em>.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>w</code>
+</dd><dt><code>w</code></dt>
 <dd>
 <p>width of the bounding rectangle, in pixels [Integer]</p>
-</dd><dt><code>h</code>
+</dd><dt><code>h</code></dt>
 <dd>
 <p>height of the bounding rectangle, in pixels [Integer]</p>
 </dd></dl>
@@ -4342,13 +4342,13 @@
 <p>Draw <em>string</em> at position (<em>x</em>, <em>y</em>).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner [Integer]</p>
-</dd><dt><code>string</code>
+</dd><dt><code>string</code></dt>
 <dd>
 <p>the text string to draw [String]</p>
 </dd></dl>
@@ -4393,22 +4393,22 @@
 <p>Draw filled arc (see documentation for <span class='object_link'><a href="#drawArc-instance_method" title="Fox::FXDC#drawArc (method)">#drawArc</a></span>).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>w</code>
+</dd><dt><code>w</code></dt>
 <dd>
 <p>width of the bounding rectangle, in pixels [Integer]</p>
-</dd><dt><code>h</code>
+</dd><dt><code>h</code></dt>
 <dd>
 <p>height of the bounding rectangle, in pixels [Integer]</p>
-</dd><dt><code>start</code>
+</dd><dt><code>start</code></dt>
 <dd>
 <p>starting angle of the arc, in 64ths of a degree [Integer]</p>
-</dd><dt><code>extent</code>
+</dd><dt><code>extent</code></dt>
 <dd>
 <p>the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]</p>
 </dd></dl>
@@ -4453,7 +4453,7 @@
 <p>Draw filled arcs, where <em>arcs</em> is an array of FXArc instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>arcs</code>
+<dl class="rdoc-list note-list"><dt><code>arcs</code></dt>
 <dd>
 <p>an array of FXArc instances [Array]</p>
 </dd></dl>
@@ -4597,7 +4597,7 @@
 <p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>an array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4640,7 +4640,7 @@
 <p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>an array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4683,7 +4683,7 @@
 <p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>an array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4726,7 +4726,7 @@
 <p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>an array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4806,7 +4806,7 @@
 <p>Draw filled polygon, where <em>points</em> is an array of FXPoint instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>an array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4849,7 +4849,7 @@
 <p>Draw filled polygon with relative points, where <em>points</em> is an array of FXPoint instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>points</code>
+<dl class="rdoc-list note-list"><dt><code>points</code></dt>
 <dd>
 <p>an array of FXPoint instances [Array]</p>
 </dd></dl>
@@ -4892,16 +4892,16 @@
 <p>Draw filled rectangle with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner of the rectangle [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner of the rectangle [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>width of the rectangle, in pixels [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>height of the rectangle, in pixels [Integer]</p>
 </dd></dl>
@@ -4946,7 +4946,7 @@
 <p>Draw filled rectangles, where <em>rectangles</em> is an array of FXRectangle instances.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>rectangles</code>
+<dl class="rdoc-list note-list"><dt><code>rectangles</code></dt>
 <dd>
 <p>an array of FXRectangle instances [Array]</p>
 </dd></dl>
@@ -4991,16 +4991,16 @@
 <p>Draw a filled rounded rectangle with ellipse width <em>ew</em> and ellipse height <em>eh</em>.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the upper left corner of the bounding rectangle [Integer]</p>
-</dd><dt><code>w</code>
+</dd><dt><code>w</code></dt>
 <dd>
 <p>width of the bounding rectangle, in pixels [Integer]</p>
-</dd><dt><code>h</code>
+</dd><dt><code>h</code></dt>
 <dd>
 <p>height of the bounding rectangle, in pixels [Integer]</p>
 </dd></dl>
@@ -5043,10 +5043,10 @@
 <p>Returns a color value (i.e. an FXColor) for the pixel at (<em>x</em>, <em>y</em>).</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the pixel of interest [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the pixel of interest [Integer]</p>
 </dd></dl>
@@ -5089,14 +5089,14 @@
 <p>Set clip mask to <em>bitmap</em>.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>bitmap</code>
+<dl class="rdoc-list note-list"><dt><code>bitmap</code></dt>
 <dd>
 <p>a bitmap to use for clipping <span class='object_link'><a href="FXBitmap.html" title="Fox::FXBitmap (class)">Fox::FXBitmap</a></span></p>
-</dd><dt><code>dx</code>
-<dd><dl class="rdoc-list label-list"><dt>Integer
+</dd><dt><code>dx</code></dt>
+<dd><dl class="rdoc-list label-list"><dt>Integer</dt>
 <dd></dd></dl>
-</dd><dt><code>dy</code>
-<dd><dl class="rdoc-list label-list"><dt>Integer
+</dd><dt><code>dy</code></dt>
+<dd><dl class="rdoc-list label-list"><dt>Integer</dt>
 <dd></dd></dl>
 </dd></dl>
 
@@ -5140,7 +5140,7 @@
 <p>Set clip rectangle.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>rectangle</code>
+<dl class="rdoc-list note-list"><dt><code>rectangle</code></dt>
 <dd>
 <p>a rectangle that defines the clipping region [Integer]</p>
 </dd></dl>
@@ -5185,10 +5185,10 @@
 <p>Set dash pattern and dash offset. A dash pattern of [1, 2, 3, 4] is a repeating pattern of 1 foreground pixel, 2 background pixels, 3 foreground pixels, and 4 background pixels. The offset is where in the pattern the system will start counting. The maximum length of the dash pattern array is 32 elements.</p>
 
 <h3 id="label-Parameters-3A">Parameters:</h3>
-<dl class="rdoc-list note-list"><dt><code>dashOffset</code>
+<dl class="rdoc-list note-list"><dt><code>dashOffset</code></dt>
 <dd>
 <p>indicates which element of the dash pattern to start with (zero for the beginning) [Integer]</p>
-</dd><dt><code>dashPattern</code>
+</dd><dt><code>dashPattern</code></dt>
 <dd>
 <p>array of integers indicating the dash pattern [Array]</p>
 </dd></dl>
@@ -5221,9 +5221,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:30 2025 by
+  Generated on Fri Jan  2 19:58:56 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

@@ -113,31 +113,31 @@
 <p>An Image is a rectangular array of pixels.  It supports two representations of these pixels: a client-side pixel buffer which is stored as an array of FXColor, and a server-side pixmap which is stored in an organization directly compatible with the screen, for fast drawing onto the device. The server-side representation is not directly accessible from the current process as it lives in the process of the X Server or GDI.</p>
 
 <h3 id="label-Image+rendering+hints">Image rendering hints</h3>
-<dl class="rdoc-list note-list"><dt><code>IMAGE_KEEP</code>
+<dl class="rdoc-list note-list"><dt><code>IMAGE_KEEP</code></dt>
 <dd>
 <p>Keep pixel data in client. By default, FOX discards of the client-side pixel data for an image after you call create() for that image. When the <code>IMAGE_KEEP</code> option is set for FXImage (or one of its subclasses), the client-side buffer is maintained. You will typically want to set this option if you intend to do repeated re-rendering of the image after it has been created.</p>
-</dd><dt><code>IMAGE_OWNED</code>
+</dd><dt><code>IMAGE_OWNED</code></dt>
 <dd>
 <p>If <code>IMAGE_OWNED</code> is set, the image pixel data is copied into the image. If <code>IMAGE_OWNED</code> is not set, a image pixel string is directly used as memory buffer of the image, without copying the data. If pixel data is given as an Array instead of a string, data is copied in any case.</p>
-</dd><dt><code>IMAGE_DITHER</code>
+</dd><dt><code>IMAGE_DITHER</code></dt>
 <dd>
 <p>Dither image to look better</p>
-</dd><dt><code>IMAGE_NEAREST</code>
+</dd><dt><code>IMAGE_NEAREST</code></dt>
 <dd>
 <p>Turn off dithering and map to nearest color</p>
-</dd><dt><code>IMAGE_OPAQUE</code>
+</dd><dt><code>IMAGE_OPAQUE</code></dt>
 <dd>
 <p>Force opaque background</p>
-</dd><dt><code>IMAGE_ALPHACOLOR</code>
+</dd><dt><code>IMAGE_ALPHACOLOR</code></dt>
 <dd>
 <p>By default, FOX will use the transparency color obtained from the image file as the transparency (alpha) color. If you pass the <code>IMAGE_ALPHACOLOR</code> flag, the user-specified transparency color will be used instead.</p>
-</dd><dt><code>IMAGE_SHMI</code>
+</dd><dt><code>IMAGE_SHMI</code></dt>
 <dd>
 <p>Using shared memory image</p>
-</dd><dt><code>IMAGE_SHMP</code>
+</dd><dt><code>IMAGE_SHMP</code></dt>
 <dd>
 <p>Using shared memory pixmap</p>
-</dd><dt><code>IMAGE_ALPHAGUESS</code>
+</dd><dt><code>IMAGE_ALPHAGUESS</code></dt>
 <dd>
 <p>Guess transparency color from corners</p>
 </dd></dl>
@@ -181,7 +181,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><dl class="rdoc-list label-list"><dt>deprecated
+    <span class="summary_desc"><div class='inline'><dl class="rdoc-list label-list"><dt>deprecated</dt>
 <dd>
 <p>Pixel data <span class='object_link'><a href="FXMemoryBuffer.html" title="Fox::FXMemoryBuffer (class)">FXMemoryBuffer</a></span>.</p>
 </dd></dl>
@@ -952,19 +952,19 @@
 <p>Create an image.  If a client-side pixel buffer has been specified, the image owns the pixel buffer. If the <code>IMAGE_OWNED</code> flag is set but a <code>nil</code> pixel buffer is passed, a pixel buffer will be automatically created and will be owned by the image. The flags <code>IMAGE_SHMI</code> and <code>IMAGE_SHMP</code> may be specified for large images to instruct <span class='object_link'><a href="#render-instance_method" title="Fox::FXImage#render (method)">#render</a></span> to use shared memory to communicate with the server.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>a</code>
+<dl class="rdoc-list note-list"><dt><code>a</code></dt>
 <dd>
 <p>an application instance <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">Fox::FXApp</a></span></p>
-</dd><dt><code>pixels</code>
+</dd><dt><code>pixels</code></dt>
 <dd>
 <p>pixels [Array of FXColor values or string of raw [RGBA] values]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>image options [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>image width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>image height [Integer]</p>
 </dd></dl>
@@ -1012,7 +1012,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <dl class="rdoc-list label-list"><dt>deprecated
+    <dl class="rdoc-list label-list"><dt>deprecated</dt>
 <dd>
 <p>Pixel data <span class='object_link'><a href="FXMemoryBuffer.html" title="Fox::FXMemoryBuffer (class)">Fox::FXMemoryBuffer</a></span></p>
 </dd></dl>
@@ -1197,7 +1197,7 @@
 <p>Blend image over uniform color.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>color</code>
+<dl class="rdoc-list note-list"><dt><code>color</code></dt>
 <dd>
 <p>the blended color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -1214,10 +1214,10 @@
       <pre class="lines">
 
 
-292</pre>
+295</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 292</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 295</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_blend'>blend</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1240,19 +1240,19 @@
 <p>Crop image to given rectangle and then re-render the server-side image from the client-side pixel buffer. This method calls resize() to adjust the client and server side representations.  The new image may be smaller or larger than the old one; blank areas are filled with color. There must be at least one pixel of overlap between the old and the new image.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate for top left corner of the clip rectangle [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate for top left corner of the clip rectangle [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>width of the clip rectangle [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>height of the clip rectangle [Integer]</p>
-</dd><dt><code>color</code>
+</dd><dt><code>color</code></dt>
 <dd>
 <p>fill color for blank areas after crop <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -1269,10 +1269,10 @@
       <pre class="lines">
 
 
-210</pre>
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 210</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 213</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_crop'>crop</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1295,10 +1295,10 @@
 <p>Fade an image to a certain color by a certain factor. The <em>factor</em> is some integer value between 0 and 255 inclusive, where a factor of 255 indicates no fading and a factor of zero indicates that the image is completely faded to the fade <em>color</em>.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>color</code>
+<dl class="rdoc-list note-list"><dt><code>color</code></dt>
 <dd>
 <p>the fade color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
-</dd><dt><code>factor</code>
+</dd><dt><code>factor</code></dt>
 <dd>
 <p>fading factor [Integer]</p>
 </dd></dl>
@@ -1315,10 +1315,10 @@
       <pre class="lines">
 
 
-225</pre>
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 228</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fade'>fade</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='comma'>,</span> <span class='id identifier rubyid_factor'>factor</span><span class='op'>=</span><span class='int'>255</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1352,10 +1352,10 @@
       <pre class="lines">
 
 
-213</pre>
+216</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 213</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 216</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fill'>fill</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1378,10 +1378,10 @@
 <p>Return the color of the pixel at (<em>x</em>, <em>y</em>).</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the pixel of interest [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the pixel of interest [Integer]</p>
 </dd></dl>
@@ -1398,10 +1398,10 @@
       <pre class="lines">
 
 
-115</pre>
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getPixel'>getPixel</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1424,16 +1424,16 @@
 <p>Fill image using a bilinear gradient.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>topleft</code>
+<dl class="rdoc-list note-list"><dt><code>topleft</code></dt>
 <dd>
 <p>pixel color for top-left corner <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
-</dd><dt><code>topright</code>
+</dd><dt><code>topright</code></dt>
 <dd>
 <p>pixel color for top-right corner <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
-</dd><dt><code>bottomleft</code>
+</dd><dt><code>bottomleft</code></dt>
 <dd>
 <p>pixel color for bottom-left corner <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
-</dd><dt><code>bottomright</code>
+</dd><dt><code>bottomright</code></dt>
 <dd>
 <p>pixel color for bottom-right corner <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -1450,10 +1450,10 @@
       <pre class="lines">
 
 
-283</pre>
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 283</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 286</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gradient'>gradient</span><span class='lparen'>(</span><span class='id identifier rubyid_topleft'>topleft</span><span class='comma'>,</span> <span class='id identifier rubyid_topright'>topright</span><span class='comma'>,</span> <span class='id identifier rubyid_bottomleft'>bottomleft</span><span class='comma'>,</span> <span class='id identifier rubyid_bottomright'>bottomright</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1500,10 +1500,10 @@
       <pre class="lines">
 
 
-129</pre>
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hasAlpha?'>hasAlpha?</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1526,10 +1526,10 @@
 <p>Fill image using a horizontal gradient.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>left</code>
+<dl class="rdoc-list note-list"><dt><code>left</code></dt>
 <dd>
 <p>starting color, for leftmost pixels <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
-</dd><dt><code>right</code>
+</dd><dt><code>right</code></dt>
 <dd>
 <p>ending color, for rightmost pixels <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -1546,10 +1546,10 @@
       <pre class="lines">
 
 
-261</pre>
+264</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 261</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 264</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hgradient'>hgradient</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1572,19 +1572,19 @@
 <p>Create an image.  If a client-side pixel buffer has been specified, the image owns the pixel buffer. If the <code>IMAGE_OWNED</code> flag is set but a <code>nil</code> pixel buffer is passed, a pixel buffer will be automatically created and will be owned by the image. The flags <code>IMAGE_SHMI</code> and <code>IMAGE_SHMP</code> may be specified for large images to instruct <span class='object_link'><a href="#render-instance_method" title="Fox::FXImage#render (method)">#render</a></span> to use shared memory to communicate with the server.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>a</code>
+<dl class="rdoc-list note-list"><dt><code>a</code></dt>
 <dd>
 <p>an application instance <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">Fox::FXApp</a></span></p>
-</dd><dt><code>pixels</code>
+</dd><dt><code>pixels</code></dt>
 <dd>
 <p>pixels [Array of FXColor values or string of raw [RGBA] values]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>image options [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>image width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>image height [Integer]</p>
 </dd></dl>
@@ -1649,7 +1649,7 @@
 <p>Note that the base class version of <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> expects to read the the pixel data in a neutral format (i.e. without any image format specific information). For example, if you have a 1024x768 image without an alpha channel (and thus only the red, green and blue channels), <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> will attempt to read a total of 1024*768*3*8 bytes from the stream. The behavior of <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> is different for subclasses such as FXPNGImage, where <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> will instead expects to read the image data in a specific image file format (i.e. the PNG file format).</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>store</code>
+<dl class="rdoc-list note-list"><dt><code>store</code></dt>
 <dd>
 <p>opened stream from which to read the pixel data <span class='object_link'><a href="FXStream.html" title="Fox::FXStream (class)">Fox::FXStream</a></span></p>
 </dd></dl>
@@ -1666,10 +1666,10 @@
       <pre class="lines">
 
 
-329</pre>
+332</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 329</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 332</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loadPixels'>loadPixels</span><span class='lparen'>(</span><span class='id identifier rubyid_store'>store</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1692,10 +1692,10 @@
 <p>Mirror image horizontally and/or vertically and then re-render the server-side image from the client-side pixel buffer.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>horizontal</code>
+<dl class="rdoc-list note-list"><dt><code>horizontal</code></dt>
 <dd>
 <p>if <code>true</code>, the image will be flipped from left to right [Boolean]</p>
-</dd><dt><code>vertical</code>
+</dd><dt><code>vertical</code></dt>
 <dd>
 <p>if <code>true</code>, the image will be flipped from top to bottom [Boolean]</p>
 </dd></dl>
@@ -1712,10 +1712,10 @@
       <pre class="lines">
 
 
-183</pre>
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mirror'>mirror</span><span class='lparen'>(</span><span class='id identifier rubyid_horizontal'>horizontal</span><span class='comma'>,</span> <span class='id identifier rubyid_vertical'>vertical</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1753,10 +1753,10 @@
       <pre class="lines">
 
 
-105</pre>
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pixel_string'>pixel_string</span><span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_size'>size</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1790,10 +1790,10 @@
       <pre class="lines">
 
 
-152</pre>
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_release'>release</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1827,10 +1827,10 @@
       <pre class="lines">
 
 
-145</pre>
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_render'>render</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1864,10 +1864,10 @@
       <pre class="lines">
 
 
-139</pre>
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 142</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restore'>restore</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1890,7 +1890,7 @@
 <p>Rotate image counter-clockwise by some number of degrees and then re-render the server-side image from the client-side pixel buffer.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>degrees</code>
+<dl class="rdoc-list note-list"><dt><code>degrees</code></dt>
 <dd>
 <p>number of degrees by which to rotate the image [Integer]</p>
 </dd></dl>
@@ -1907,10 +1907,10 @@
       <pre class="lines">
 
 
-193</pre>
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 196</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rotate'>rotate</span><span class='lparen'>(</span><span class='id identifier rubyid_degrees'>degrees</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1935,7 +1935,7 @@
 <p>Note that the base class version of <span class='object_link'><a href="#savePixels-instance_method" title="Fox::FXImage#savePixels (method)">#savePixels</a></span> saves the pixel data as-is, without any image format specific information. For example, if you have a 1024x768 image without an alpha channel (and thus only the red, green and blue channels) the total number of bytes written to the stream will be 1024*768*3*8. The behavior of <span class='object_link'><a href="#savePixels-instance_method" title="Fox::FXImage#savePixels (method)">#savePixels</a></span> is different for subclasses such as FXPNGImage, where <span class='object_link'><a href="#savePixels-instance_method" title="Fox::FXImage#savePixels (method)">#savePixels</a></span> will instead save the image data in a specific image file format (i.e. the PNG file format).</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>store</code>
+<dl class="rdoc-list note-list"><dt><code>store</code></dt>
 <dd>
 <p>opened stream to which to save the pixel data <span class='object_link'><a href="FXStream.html" title="Fox::FXStream (class)">Fox::FXStream</a></span></p>
 </dd></dl>
@@ -1952,10 +1952,10 @@
       <pre class="lines">
 
 
-310</pre>
+313</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 310</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 313</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_savePixels'>savePixels</span><span class='lparen'>(</span><span class='id identifier rubyid_store'>store</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1980,13 +1980,13 @@
 <p>The optional third argument specifies the <em>quality</em> of the scaling algorithm used. By default, <span class='object_link'><a href="#scale-instance_method" title="Fox::FXImage#scale (method)">#scale</a></span> uses a fast (but low quality) nearest-neighbor algorithm for scaling the image to its new size. To use the higher-quality scaling algorithm from FOX 1.0, you should pass in a value of 1 as the third argument to <span class='object_link'><a href="#scale-instance_method" title="Fox::FXImage#scale (method)">#scale</a></span>.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>width</code>
+<dl class="rdoc-list note-list"><dt><code>width</code></dt>
 <dd>
 <p>new image width, in pixels [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>new image height, in pixels [Integer]</p>
-</dd><dt><code>quality</code>
+</dd><dt><code>quality</code></dt>
 <dd>
 <p>scaling algorithm quality, either 0 or 1 (see above) [Integer]</p>
 </dd></dl>
@@ -2003,10 +2003,10 @@
       <pre class="lines">
 
 
-172</pre>
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 175</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scale'>scale</span><span class='lparen'>(</span><span class='id identifier rubyid_w'>w</span><span class='comma'>,</span> <span class='id identifier rubyid_h'>h</span><span class='comma'>,</span> <span class='id identifier rubyid_quality'>quality</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2029,13 +2029,13 @@
 <p>Set pixel at (<em>x</em>, <em>y</em>) to <em>clr</em>.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>x</code>
+<dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the pixel of interest [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>y-coordinate of the pixel of interest [Integer]</p>
-</dd><dt><code>clr</code>
+</dd><dt><code>clr</code></dt>
 <dd>
 <p>new color value for this pixel <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -2052,10 +2052,10 @@
       <pre class="lines">
 
 
-126</pre>
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setPixel'>setPixel</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_clr'>clr</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2077,19 +2077,21 @@
     
 <p>Populate the image with new pixel data of the same size or of a new size</p>
 
-<p>Pixel data is copied and IMAGE_OWNED option is set. If called with <code>width</code> and <code>height</code>, the size of the serverside representation of the image, if it exists, is adjusted but the contents are not updated yet. This can be done by calling render().</p>
+<p>Pixel data is copied when IMAGE_OWNED option is set or when provided as Array. Pixel data is used without copying when IMAGE_OWNED isn’t set and provided as String. In that case the string must be writable and receives modifications to the image.</p>
+
+<p>If called with <code>width</code> and <code>height</code>, the size of the serverside representation of the image, if it exists, is adjusted but the contents are not updated yet. This can be done by calling render().</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>pixels</code>
+<dl class="rdoc-list note-list"><dt><code>pixels</code></dt>
 <dd>
 <p>pixels [Array of FXColor values or string of raw [RGBA] values]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>image options [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>image width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>image height [Integer]</p>
 </dd></dl>
@@ -2106,11 +2108,11 @@
       <pre class="lines">
 
 
-95
-96</pre>
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setPixels'>setPixels</span><span class='lparen'>(</span><span class='id identifier rubyid_pixels'>pixels</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -2133,19 +2135,21 @@
     
 <p>Populate the image with new pixel data of the same size or of a new size</p>
 
-<p>Pixel data is copied and IMAGE_OWNED option is set. If called with <code>width</code> and <code>height</code>, the size of the serverside representation of the image, if it exists, is adjusted but the contents are not updated yet. This can be done by calling render().</p>
+<p>Pixel data is copied when IMAGE_OWNED option is set or when provided as Array. Pixel data is used without copying when IMAGE_OWNED isn’t set and provided as String. In that case the string must be writable and receives modifications to the image.</p>
+
+<p>If called with <code>width</code> and <code>height</code>, the size of the serverside representation of the image, if it exists, is adjusted but the contents are not updated yet. This can be done by calling render().</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>pixels</code>
+<dl class="rdoc-list note-list"><dt><code>pixels</code></dt>
 <dd>
 <p>pixels [Array of FXColor values or string of raw [RGBA] values]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>image options [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>image width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>image height [Integer]</p>
 </dd></dl>
@@ -2190,10 +2194,10 @@
 <p>Fill image using a vertical gradient.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>top</code>
+<dl class="rdoc-list note-list"><dt><code>top</code></dt>
 <dd>
 <p>starting color, for topmost pixels <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
-</dd><dt><code>bottom</code>
+</dd><dt><code>bottom</code></dt>
 <dd>
 <p>ending color, for bottommost pixels <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -2210,10 +2214,10 @@
       <pre class="lines">
 
 
-271</pre>
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 271</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 274</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_vgradient'>vgradient</span><span class='lparen'>(</span><span class='id identifier rubyid_top'>top</span><span class='comma'>,</span> <span class='id identifier rubyid_bottom'>bottom</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2236,10 +2240,10 @@
 <p>Shear image horizontally and then re-render the server-side image from the client-side pixel buffer. The number of pixels is equal to the <em>shear</em> parameter times 256. The area outside the image is filled with transparent black, unless another <em>color</em> is specified.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>shear</code>
+<dl class="rdoc-list note-list"><dt><code>shear</code></dt>
 <dd>
 <p>how far to shear [Integer]</p>
-</dd><dt><code>color</code>
+</dd><dt><code>color</code></dt>
 <dd>
 <p>fill color for areas outside the sheared image <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -2256,10 +2260,10 @@
       <pre class="lines">
 
 
-238</pre>
+241</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 238</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_xshear'>xshear</span><span class='lparen'>(</span><span class='id identifier rubyid_shear'>shear</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2282,10 +2286,10 @@
 <p>Shear image verticallyand then re-render the server-side image from the client-side pixel buffer. The number of pixels is equal to the <em>shear</em> parameter times 256. The area outside the image is filled with transparent black, unless another <em>color</em> is specified.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>shear</code>
+<dl class="rdoc-list note-list"><dt><code>shear</code></dt>
 <dd>
 <p>how far to shear [Integer]</p>
-</dd><dt><code>color</code>
+</dd><dt><code>color</code></dt>
 <dd>
 <p>fill color for areas outside the sheared image <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
 </dd></dl>
@@ -2302,10 +2306,10 @@
       <pre class="lines">
 
 
-251</pre>
+254</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXImage.rb', line 254</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_yshear'>yshear</span><span class='lparen'>(</span><span class='id identifier rubyid_shear'>shear</span><span class='comma'>,</span> <span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2318,9 +2322,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:32 2025 by
+  Generated on Fri Jan  2 19:58:57 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

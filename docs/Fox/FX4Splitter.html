@@ -117,91 +117,91 @@
 <h3 id="label-Events">Events</h3>
 
 <p>The following messages are sent by FX4Splitter to its target:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_LEFTBUTTONPRESS</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_COMMAND</code>
+</dd><dt><code>SEL_COMMAND</code></dt>
 <dd>
 <p>sent at the end of a resize operation, to signal that the resize is complete</p>
-</dd><dt><code>SEL_CHANGED</code>
+</dd><dt><code>SEL_CHANGED</code></dt>
 <dd>
 <p>sent continuously while a resize operation is occurring</p>
 </dd></dl>
 
 <h3 id="label-Splitter+options">Splitter options</h3>
-<dl class="rdoc-list note-list"><dt><code>FOURSPLITTER_TRACKING</code>
+<dl class="rdoc-list note-list"><dt><code>FOURSPLITTER_TRACKING</code></dt>
 <dd>
 <p>Track continuously during split</p>
-</dd><dt><code>FOURSPLITTER_NORMAL</code>
+</dd><dt><code>FOURSPLITTER_NORMAL</code></dt>
 <dd>
 <p>Normal mode (no continuous tracking)</p>
 </dd></dl>
 
 <h3 id="label-Expansion+options">Expansion options</h3>
-<dl class="rdoc-list note-list"><dt><code>ExpandNone</code>
+<dl class="rdoc-list note-list"><dt><code>ExpandNone</code></dt>
 <dd>
 <p>None expanded</p>
-</dd><dt><code>ExpandTopLeft</code>
+</dd><dt><code>ExpandTopLeft</code></dt>
 <dd>
 <p>Expand top left child</p>
-</dd><dt><code>ExpandTopRight</code>
+</dd><dt><code>ExpandTopRight</code></dt>
 <dd>
 <p>Expand top right child</p>
-</dd><dt><code>ExpandBottomLeft</code>
+</dd><dt><code>ExpandBottomLeft</code></dt>
 <dd>
 <p>Expand bottom left child</p>
-</dd><dt><code>ExpandBottomRight</code>
+</dd><dt><code>ExpandBottomRight</code></dt>
 <dd>
 <p>Expand bottom right child</p>
-</dd><dt><code>ExpandTop</code>
+</dd><dt><code>ExpandTop</code></dt>
 <dd>
 <p>Expand top children</p>
-</dd><dt><code>ExpandBottom</code>
+</dd><dt><code>ExpandBottom</code></dt>
 <dd>
 <p>Expand bottom children</p>
-</dd><dt><code>ExpandLeft</code>
+</dd><dt><code>ExpandLeft</code></dt>
 <dd>
 <p>Expand left children</p>
-</dd><dt><code>ExpandRight</code>
+</dd><dt><code>ExpandRight</code></dt>
 <dd>
 <p>Expand right children</p>
-</dd><dt><code>ExpandAll</code>
+</dd><dt><code>ExpandAll</code></dt>
 <dd>
 <p>Expand all children</p>
 </dd></dl>
 
 <h3 id="label-Message+identifiers">Message identifiers</h3>
-<dl class="rdoc-list note-list"><dt><code>ID_EXPAND_NONE</code>
+<dl class="rdoc-list note-list"><dt><code>ID_EXPAND_NONE</code></dt>
 <dd>
 <p>None expanded</p>
-</dd><dt><code>ID_EXPAND_TOP</code>
+</dd><dt><code>ID_EXPAND_TOP</code></dt>
 <dd>
 <p>Expand top left and top right panes</p>
-</dd><dt><code>ID_EXPAND_BOTTOM</code>
+</dd><dt><code>ID_EXPAND_BOTTOM</code></dt>
 <dd>
 <p>Expand bottom left and bottom right panes</p>
-</dd><dt><code>ID_EXPAND_LEFT</code>
+</dd><dt><code>ID_EXPAND_LEFT</code></dt>
 <dd>
 <p>Expand leftmost panes</p>
-</dd><dt><code>ID_EXPAND_RIGHT</code>
+</dd><dt><code>ID_EXPAND_RIGHT</code></dt>
 <dd>
 <p>Expand rightmost panes</p>
-</dd><dt><code>ID_EXPAND_TOPLEFT</code>
+</dd><dt><code>ID_EXPAND_TOPLEFT</code></dt>
 <dd>
 <p>Expand top left pane</p>
-</dd><dt><code>ID_EXPAND_TOPRIGHT</code>
+</dd><dt><code>ID_EXPAND_TOPRIGHT</code></dt>
 <dd>
 <p>Expand top right pane</p>
-</dd><dt><code>ID_EXPAND_BOTTOMLEFT</code>
+</dd><dt><code>ID_EXPAND_BOTTOMLEFT</code></dt>
 <dd>
 <p>Expand bottom left pane</p>
-</dd><dt><code>ID_EXPAND_BOTTOMRIGHT</code>
+</dd><dt><code>ID_EXPAND_BOTTOMRIGHT</code></dt>
 <dd>
 <p>Expand bottom right pane</p>
-</dd><dt><code>ID_EXPAND_ALL</code>
+</dd><dt><code>ID_EXPAND_ALL</code></dt>
 <dd>
 <p>Expand all panes</p>
 </dd></dl>
@@ -707,28 +707,28 @@
 <p>Return an initialized FX4Splitter instance, initially shown as four unexpanded panes; notifies <em>tgt</em> about size changes.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>p</code>
+<dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent widget for this splitter <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
-</dd><dt><code>target</code>
+</dd><dt><code>target</code></dt>
 <dd>
 <p>message target <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span></p>
-</dd><dt><code>selector</code>
+</dd><dt><code>selector</code></dt>
 <dd>
 <p>message identifier [Integer]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>the options [Integer]</p>
-</dd><dt><code>x</code>
+</dd><dt><code>x</code></dt>
 <dd>
 <p>initial x-position [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>initial y-position [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>initial width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>initial height [Integer]</p>
 </dd></dl>
@@ -1326,9 +1326,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:42 2025 by
+  Generated on Fri Jan  2 19:59:05 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

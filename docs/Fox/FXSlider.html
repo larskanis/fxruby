@@ -117,76 +117,76 @@
 <h3 id="label-Events">Events</h3>
 
 <p>The following messages are sent by FXSlider to its target:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
 <dd>
 <p>sent when a key goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_KEYRELEASE</code>
+</dd><dt><code>SEL_KEYRELEASE</code></dt>
 <dd>
 <p>sent when a key goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONPRESS</code>
+</dd><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the left mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the left mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code>
+</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the middle mouse button goes down; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code>
+</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the middle mouse button goes up; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_COMMAND</code>
+</dd><dt><code>SEL_COMMAND</code></dt>
 <dd>
 <p>sent at the end of a slider move; the message data is the new position of the slider (an Integer).</p>
-</dd><dt><code>SEL_CHANGED</code>
+</dd><dt><code>SEL_CHANGED</code></dt>
 <dd>
 <p>sent continuously while the slider is being moved; the message data is an integer indicating the current slider position.</p>
 </dd></dl>
 
 <h3 id="label-Slider+control+styles">Slider control styles</h3>
-<dl class="rdoc-list note-list"><dt><code>SLIDER_HORIZONTAL</code>
+<dl class="rdoc-list note-list"><dt><code>SLIDER_HORIZONTAL</code></dt>
 <dd>
 <p>Slider shown horizontally</p>
-</dd><dt><code>SLIDER_VERTICAL</code>
+</dd><dt><code>SLIDER_VERTICAL</code></dt>
 <dd>
 <p>Slider shown vertically</p>
-</dd><dt><code>SLIDER_ARROW_UP</code>
+</dd><dt><code>SLIDER_ARROW_UP</code></dt>
 <dd>
 <p>Slider has arrow head pointing up</p>
-</dd><dt><code>SLIDER_ARROW_DOWN</code>
+</dd><dt><code>SLIDER_ARROW_DOWN</code></dt>
 <dd>
 <p>Slider has arrow head pointing down</p>
-</dd><dt><code>SLIDER_ARROW_LEFT</code>
+</dd><dt><code>SLIDER_ARROW_LEFT</code></dt>
 <dd>
 <p>Slider has arrow head pointing left</p>
-</dd><dt><code>SLIDER_ARROW_RIGHT</code>
+</dd><dt><code>SLIDER_ARROW_RIGHT</code></dt>
 <dd>
 <p>Slider has arrow head pointing right</p>
-</dd><dt><code>SLIDER_INSIDE_BAR</code>
+</dd><dt><code>SLIDER_INSIDE_BAR</code></dt>
 <dd>
 <p>Slider is inside the slot rather than overhanging</p>
-</dd><dt><code>SLIDER_TICKS_TOP</code>
+</dd><dt><code>SLIDER_TICKS_TOP</code></dt>
 <dd>
 <p>Ticks on the top of horizontal slider</p>
-</dd><dt><code>SLIDER_TICKS_BOTTOM</code>
+</dd><dt><code>SLIDER_TICKS_BOTTOM</code></dt>
 <dd>
 <p>Ticks on the bottom of horizontal slider</p>
-</dd><dt><code>SLIDER_TICKS_LEFT</code>
+</dd><dt><code>SLIDER_TICKS_LEFT</code></dt>
 <dd>
 <p>Ticks on the left of vertical slider</p>
-</dd><dt><code>SLIDER_TICKS_RIGHT</code>
+</dd><dt><code>SLIDER_TICKS_RIGHT</code></dt>
 <dd>
 <p>Ticks on the right of vertical slider</p>
-</dd><dt><code>SLIDER_NORMAL</code>
+</dd><dt><code>SLIDER_NORMAL</code></dt>
 <dd>
 <p>same as <code>SLIDER_HORIZONTAL</code></p>
 </dd></dl>
 
 <h3 id="label-Message+identifiers">Message identifiers</h3>
-<dl class="rdoc-list note-list"><dt><code>ID_AUTOINC</code>
+<dl class="rdoc-list note-list"><dt><code>ID_AUTOINC</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTODEC</code>
+</dd><dt><code>ID_AUTODEC</code></dt>
 <dd>
 <p>x</p>
 </dd></dl>
@@ -615,40 +615,40 @@
 <p>Return an initialized FXSlider instance.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>p</code>
+<dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent window for this slider <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
-</dd><dt><code>target</code>
+</dd><dt><code>target</code></dt>
 <dd>
 <p>the message target, if any, for this slider <span class='object_link'><a href="FXObject.html" title="Fox::FXObject (class)">Fox::FXObject</a></span></p>
-</dd><dt><code>selector</code>
+</dd><dt><code>selector</code></dt>
 <dd>
 <p>the message identifier for this slider [Integer]</p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>slider options [Integer]</p>
-</dd><dt><code>x</code>
+</dd><dt><code>x</code></dt>
 <dd>
 <p>initial x-position, when the <code>LAYOUT_FIX_X</code> layout hint is in effect [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>initial y-position, when the <code>LAYOUT_FIX_Y</code> layout hint is in effect [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>initial width, when the <code>LAYOUT_FIX_WIDTH</code> layout hint is in effect [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>initial height, when the <code>LAYOUT_FIX_HEIGHT</code> layout hint is in effect [Integer]</p>
-</dd><dt><code>padLeft</code>
+</dd><dt><code>padLeft</code></dt>
 <dd>
 <p>internal padding on the left side, in pixels [Integer]</p>
-</dd><dt><code>padRight</code>
+</dd><dt><code>padRight</code></dt>
 <dd>
 <p>internal padding on the right side, in pixels [Integer]</p>
-</dd><dt><code>padTop</code>
+</dd><dt><code>padTop</code></dt>
 <dd>
 <p>internal padding on the top side, in pixels [Integer]</p>
-</dd><dt><code>padBottom</code>
+</dd><dt><code>padBottom</code></dt>
 <dd>
 <p>internal padding on the bottom side, in pixels [Integer]</p>
 </dd></dl>
@@ -1119,9 +1119,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:34 2025 by
+  Generated on Fri Jan  2 19:58:59 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

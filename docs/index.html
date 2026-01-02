@@ -57,80 +57,121 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-FXRuby">FXRuby</h1>
-<ul><li>
-<p><a href="http://github.com/larskanis/fxruby">github.com/larskanis/fxruby</a></p>
-</li><li>
-<p>Full API-description: <a href="http://rubydoc.info/gems/fxruby/frames">rubydoc.info/gems/fxruby/frames</a> or <a href="https://larskanis.github.io/fxruby">larskanis.github.io/fxruby</a>/</p>
-</li><li>
-<p>Latest fxruby <a href="http://badge.fury.io/rb/fxruby"><img src="https://badge.fury.io/rb/fxruby.svg"></a></p>
-</li><li>
-<p>CI-Status: <a href="https://github.com/larskanis/fxruby/actions/workflows/ci.yml"><img src="https://github.com/larskanis/fxruby/actions/workflows/ci.yml/badge.svg?branch=1.6"></a> and on Windows: <a href="https://ci.appveyor.com/project/larskanis/fxruby/branch/1.6"><img src="https://ci.appveyor.com/api/projects/status/too7sj4gq643ts8w/branch/1.6?svg=true"></a></p>
-</li></ul>
+      <div id="content"><div id='filecontents'><h1 id="fxruby">FXRuby</h1>
 
-<h2 id="label-DESCRIPTION-3A">DESCRIPTION:</h2>
+<ul>
+<li><a href="http://github.com/larskanis/fxruby">http://github.com/larskanis/fxruby</a></li>
+<li>Full API-description: <a href="http://rubydoc.info/gems/fxruby/frames">http://rubydoc.info/gems/fxruby/frames</a> or <a href="https://larskanis.github.io/fxruby/">https://larskanis.github.io/fxruby/</a></li>
+<li>Latest fxruby <a href="http://badge.fury.io/rb/fxruby"><img src="https://badge.fury.io/rb/fxruby.svg" alt="Gem Version"></a></li>
+<li>CI-Status: <a href="https://github.com/larskanis/fxruby/actions/workflows/ci.yml"><img src="https://github.com/larskanis/fxruby/actions/workflows/ci.yml/badge.svg?branch=1.6" alt="Build Status"></a> and on Windows: <a href="https://ci.appveyor.com/project/larskanis/fxruby/branch/1.6"><img src="https://ci.appveyor.com/api/projects/status/too7sj4gq643ts8w/branch/1.6?svg=true" alt="Build Status on Windows"></a></li>
+</ul>
 
-<p>FXRuby is a library for developing powerful and sophisticated cross-platform graphical user interfaces (GUIs) for your Ruby applications. It’s based on the FOX Toolkit, a popular open source C++ library developed by Jeroen van der Zijp. What that means for you as an application developer is that you’re able to write code in the Ruby programming language that you already know and love, while at the same time taking advantage of the performance and functionality of a featureful, highly optimized C++ toolkit.</p>
+<h2 id="description">DESCRIPTION:</h2>
 
-<h2 id="label-FEATURES-3A">FEATURES:</h2>
+<p>FXRuby is a library for developing powerful and sophisticated
+cross-platform graphical user interfaces (GUIs) for your Ruby
+applications. It’s based on the FOX Toolkit, a popular open source
+C++ library developed by Jeroen van der Zijp. What that means for you
+as an application developer is that you’re able to write code in the
+Ruby programming language that you already know and love, while at the
+same time taking advantage of the performance and functionality of a
+featureful, highly optimized C++ toolkit.</p>
 
-<p>FXRuby supportes everything of FOX, that is useful in Ruby: * MDI/SDI application window layouts, floating toolbars * Rich set of controls (tables, imagelists, menus, canvas, …) * Flexible layout management * Image read/write support in many formats * Embedded OpenGL graphics through the <a href="https://github.com/vaiorabbit/ruby-opengl">opengl-bindings2</a> gem * Thread support</p>
+<h2 id="features">FEATURES:</h2>
 
-<h2 id="label-INSTALL-3A">INSTALL:</h2>
+<p>FXRuby supportes everything of FOX, that is useful in Ruby:</p>
 
-<p>FXRuby runs on Linux, Windows and OS-X with Ruby-2.5 or newer. Installation on Unix requires FOX development headers and libraries installed: * on Debian/Ubuntu: <code>sudo apt-get install g++ libxrandr-dev libfox-1.6-dev</code> * on Mac: <code>sudo port install rb-fxruby</code> OR <code>brew install fox &amp;&amp; brew install xquartz</code> * on Windows: the binary fxruby gems already contain all required libraries * see also detailed installation instructions in the <a href="https://github.com/lylejohnson/fxruby/wiki">Wiki</a></p>
+<ul>
+<li>MDI/SDI application window layouts, floating toolbars</li>
+<li>Rich set of controls (tables, imagelists, menus, canvas, ...)</li>
+<li>Flexible layout management</li>
+<li>Image read/write support in many formats</li>
+<li>Embedded OpenGL graphics through the <a href="https://github.com/vaiorabbit/ruby-opengl">opengl-bindings2</a> gem</li>
+<li>Thread support</li>
+</ul>
 
-<p>Then, install the gem: * gem install fxruby</p>
+<h2 id="install">INSTALL:</h2>
 
-<p>On Mac, before running applications, you must also run: <code>open -a /Applications/Utilities/XQuartz.app</code></p>
+<p>FXRuby runs on Linux, Windows and OS-X with Ruby-2.5 or newer. Installation on Unix requires
+FOX development headers and libraries installed:</p>
 
-<p>(otherwise, you end up getting this message when running applications on Mac: <code>FXRbApp::openDisplay: unable to open display :0.0</code>)</p>
+<ul>
+<li>on Debian/Ubuntu: <tt>sudo apt-get install g++ libxrandr-dev libfox-1.6-dev</tt></li>
+<li>on Mac: <tt>sudo port install rb-fxruby</tt> OR <tt>brew install fox &amp;&amp; brew install xquartz</tt></li>
+<li>on Windows: the binary fxruby gems already contain all required libraries</li>
+<li>see also detailed installation instructions in the <a href="https://github.com/lylejohnson/fxruby/wiki">Wiki</a></li>
+</ul>
 
-<h2 id="label-DIRECTORIES">DIRECTORIES</h2>
+<p>Then, install the gem:</p>
+
+<ul>
+<li>gem install fxruby</li>
+</ul>
+
+<p>On Mac, before running applications, you must also run: <tt>open -a /Applications/Utilities/XQuartz.app</tt></p>
+
+<p>(otherwise, you end up getting this message when running applications on Mac: <tt>FXRbApp::openDisplay: unable to open display :0.0</tt>)</p>
+
+<h2 id="directories">DIRECTORIES</h2>
 
 <p>The directory structure is:</p>
-<ul><li>
-<p>examples/</p>
-</li></ul>
 
-<p>Contains example programs demonstrating how to use FXRuby and  its many wonderful features.</p>
-<ul><li>
-<p>ext/fox16_c</p>
-</li></ul>
+<ul>
+<li>examples/</li>
+</ul>
 
-<p>Contains the C++ source code for the shared library part of FXRuby.  These files are required to build FXRuby from the source code.</p>
-<ul><li>
-<p>lib/fox16</p>
-</li></ul>
+<p>Contains example programs demonstrating how to use FXRuby and
+  its many wonderful features.</p>
 
-<p>Contains the Ruby source code for the rest of FXRuby. These files  are not required to “build” FXRuby, but they are a part of the  standard FXRuby runtime environment and must be installed along with  the shared library part.</p>
-<ul><li>
-<p>tests/</p>
-</li></ul>
+<ul>
+<li>ext/fox16_c</li>
+</ul>
+
+<p>Contains the C++ source code for the shared library part of FXRuby.
+  These files are required to build FXRuby from the source code.</p>
+
+<ul>
+<li>lib/fox16</li>
+</ul>
+
+<p>Contains the Ruby source code for the rest of FXRuby. These files
+  are not required to &quot;build&quot; FXRuby, but they are a part of the
+  standard FXRuby runtime environment and must be installed along with
+  the shared library part.</p>
+
+<ul>
+<li>tests/</li>
+</ul>
 
 <p>Contains a test battery for FXRuby.</p>
 
-<p>If you’re looking at a checkout of the source code from its GIT repository, you might see some additional directories of interest:</p>
-<ul><li>
-<p>fox-includes/</p>
-</li></ul>
+<p>If you&#39;re looking at a checkout of the source code from its GIT repository,
+you might see some additional directories of interest:</p>
 
-<p>An archive of the FOX library header files corresponding to this  release of FXRuby.</p>
-<ul><li>
-<p>rdoc-sources/</p>
-</li></ul>
+<ul>
+<li>fox-includes/</li>
+</ul>
 
-<p>A set of “fake” Ruby source files for the various  FXRuby classes, which are used to generate RDoc-style documentation.</p>
-<ul><li>
-<p>swig-interfaces/</p>
-</li></ul>
+<p>An archive of the FOX library header files corresponding to this
+  release of FXRuby.</p>
 
-<p>The SWIG interface files used to generate the C++ wrapper code (i.e.  the code found in the ext/fox directory).</p>
+<ul>
+<li>rdoc-sources/</li>
+</ul>
 
-<h2 id="label-LICENSE">LICENSE</h2>
+<p>A set of &quot;fake&quot; Ruby source files for the various
+  FXRuby classes, which are used to generate RDoc-style documentation.</p>
 
-<pre class="code ruby"><code class="ruby">GNU LESSER GENERAL PUBLIC LICENSE
+<ul>
+<li>swig-interfaces/</li>
+</ul>
+
+<p>The SWIG interface files used to generate the C++ wrapper code (i.e.
+  the code found in the ext/fox directory).</p>
+
+<h2 id="license">LICENSE</h2>
+
+<pre class="code ruby"><code class="ruby">        GNU LESSER GENERAL PUBLIC LICENSE
             Version 2.1, February 1999
 
   Copyright (C) 1991, 1999 Free Software Foundation, Inc.
@@ -590,9 +631,9 @@
 </div></div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:28 2025 by
+  Generated on Fri Jan  2 19:58:55 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>

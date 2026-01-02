@@ -120,379 +120,379 @@
 <h3 id="label-Events">Events</h3>
 
 <p>The following messages are sent by FXWindow to its target:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_MAP</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_MAP</code></dt>
 <dd>
 <p>sent when the window is mapped to the screen; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_UNMAP</code>
+</dd><dt><code>SEL_UNMAP</code></dt>
 <dd>
 <p>sent when the window is unmapped; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_CONFIGURE</code>
+</dd><dt><code>SEL_CONFIGURE</code></dt>
 <dd>
 <p>sent when the window’s size changes; the message data is an FXEvent instance.</p>
-</dd><dt><code>SEL_ENTER</code>
+</dd><dt><code>SEL_ENTER</code></dt>
 <dd>
 <p>sent when the mouse cursor enters this window</p>
-</dd><dt><code>SEL_LEAVE</code>
+</dd><dt><code>SEL_LEAVE</code></dt>
 <dd>
 <p>sent when the mouse cursor leaves this window</p>
-</dd><dt><code>SEL_FOCUSIN</code>
+</dd><dt><code>SEL_FOCUSIN</code></dt>
 <dd>
 <p>sent when this window gains the focus</p>
-</dd><dt><code>SEL_FOCUSOUT</code>
+</dd><dt><code>SEL_FOCUSOUT</code></dt>
 <dd>
 <p>sent when this window loses the focus</p>
-</dd><dt><code>SEL_UPDATE</code>
+</dd><dt><code>SEL_UPDATE</code></dt>
 <dd>
 <p>sent when this window needs an update</p>
-</dd><dt><code>SEL_UNGRABBED</code>
+</dd><dt><code>SEL_UNGRABBED</code></dt>
 <dd>
 <p>sent when this window loses the mouse grab (or capture)</p>
 </dd></dl>
 
 <p>For each of the following keyboard-related events, the message data is an FXEvent instance:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
 <dd>
 <p>sent when a key is pressed</p>
-</dd><dt><code>SEL_KEYRELEASE</code>
+</dd><dt><code>SEL_KEYRELEASE</code></dt>
 <dd>
 <p>sent when a key is released</p>
 </dd></dl>
 
 <p>For each of the following mouse-related events, the message data is an FXEvent instance:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_MOTION</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_MOTION</code></dt>
 <dd>
 <p>sent when the mouse moves</p>
-</dd><dt><code>SEL_LEFTBUTTONPRESS</code>
+</dd><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the left mouse button goes down</p>
-</dd><dt><code>SEL_LEFTBUTTONRELEASE</code>
+</dd><dt><code>SEL_LEFTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the left mouse button goes up</p>
-</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code>
+</dd><dt><code>SEL_MIDDLEBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the middle mouse button goes down</p>
-</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code>
+</dd><dt><code>SEL_MIDDLEBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the middle mouse button goes up</p>
-</dd><dt><code>SEL_RIGHTBUTTONPRESS</code>
+</dd><dt><code>SEL_RIGHTBUTTONPRESS</code></dt>
 <dd>
 <p>sent when the right mouse button goes down</p>
-</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code>
+</dd><dt><code>SEL_RIGHTBUTTONRELEASE</code></dt>
 <dd>
 <p>sent when the right mouse button goes up</p>
-</dd><dt><code>SEL_MOUSEWHEEL</code>
+</dd><dt><code>SEL_MOUSEWHEEL</code></dt>
 <dd>
 <p>sent when the mouse wheel is scrolled</p>
 </dd></dl>
 
 <p>For each of the following selection-related events, the message data is an FXEvent instance:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_SELECTION_GAINED</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_SELECTION_GAINED</code></dt>
 <dd>
 <p>sent when this window acquires the selection</p>
-</dd><dt><code>SEL_SELECTION_LOST</code>
+</dd><dt><code>SEL_SELECTION_LOST</code></dt>
 <dd>
 <p>sent when this window loses the selection</p>
-</dd><dt><code>SEL_SELECTION_REQUEST</code>
+</dd><dt><code>SEL_SELECTION_REQUEST</code></dt>
 <dd>
 <p>sent when this window’s selection is requested</p>
 </dd></dl>
 
 <p>For each of the following clipboard-related events, the message data is an FXEvent instance:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_CLIPBOARD_GAINED</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_CLIPBOARD_GAINED</code></dt>
 <dd>
 <p>sent when this window acquires the clipboard</p>
-</dd><dt><code>SEL_CLIPBOARD_LOST</code>
+</dd><dt><code>SEL_CLIPBOARD_LOST</code></dt>
 <dd>
 <p>sent when this window loses the clipboard</p>
-</dd><dt><code>SEL_CLIPBOARD_REQUEST</code>
+</dd><dt><code>SEL_CLIPBOARD_REQUEST</code></dt>
 <dd>
 <p>sent when this window’s clipboard data is requested</p>
 </dd></dl>
 
 <p>For each of the following drag-and-drop events, the message data is an FXEvent instance:</p>
-<dl class="rdoc-list note-list"><dt><code>SEL_BEGINDRAG</code>
+<dl class="rdoc-list note-list"><dt><code>SEL_BEGINDRAG</code></dt>
 <dd>
 <p>sent at the beginning of a drag operation</p>
-</dd><dt><code>SEL_DRAGGED</code>
+</dd><dt><code>SEL_DRAGGED</code></dt>
 <dd>
 <p>sent while stuff is being dragged around</p>
-</dd><dt><code>SEL_ENDDRAG</code>
+</dd><dt><code>SEL_ENDDRAG</code></dt>
 <dd>
 <p>sent at the end of a drag operation</p>
-</dd><dt><code>SEL_DND_ENTER</code>
+</dd><dt><code>SEL_DND_ENTER</code></dt>
 <dd>
 <p>drag-and-drop enter</p>
-</dd><dt><code>SEL_DND_LEAVE</code>
+</dd><dt><code>SEL_DND_LEAVE</code></dt>
 <dd>
 <p>drag-and-drop leave</p>
-</dd><dt><code>SEL_DND_MOTION</code>
+</dd><dt><code>SEL_DND_MOTION</code></dt>
 <dd>
 <p>drag-and-drop motion</p>
-</dd><dt><code>SEL_DND_DROP</code>
+</dd><dt><code>SEL_DND_DROP</code></dt>
 <dd>
 <p>drag-and-drop motion</p>
-</dd><dt><code>SEL_DND_REQUEST</code>
+</dd><dt><code>SEL_DND_REQUEST</code></dt>
 <dd>
 <p>drag-and-drop request</p>
 </dd></dl>
 
 <h3 id="label-Layout+hints+for+child+widgets">Layout hints for child widgets</h3>
-<dl class="rdoc-list note-list"><dt><code>LAYOUT_NORMAL</code>
+<dl class="rdoc-list note-list"><dt><code>LAYOUT_NORMAL</code></dt>
 <dd>
 <p>Default layout mode</p>
-</dd><dt><code>LAYOUT_SIDE_TOP</code>
+</dd><dt><code>LAYOUT_SIDE_TOP</code></dt>
 <dd>
 <p>Pack on top side (default)</p>
-</dd><dt><code>LAYOUT_SIDE_BOTTOM</code>
+</dd><dt><code>LAYOUT_SIDE_BOTTOM</code></dt>
 <dd>
 <p>Pack on bottom side</p>
-</dd><dt><code>LAYOUT_SIDE_LEFT</code>
+</dd><dt><code>LAYOUT_SIDE_LEFT</code></dt>
 <dd>
 <p>Pack on left side</p>
-</dd><dt><code>LAYOUT_SIDE_RIGHT</code>
+</dd><dt><code>LAYOUT_SIDE_RIGHT</code></dt>
 <dd>
 <p>Pack on right side</p>
-</dd><dt><code>LAYOUT_FILL_COLUMN</code>
+</dd><dt><code>LAYOUT_FILL_COLUMN</code></dt>
 <dd>
 <p>Matrix column is stretchable</p>
-</dd><dt><code>LAYOUT_FILL_ROW</code>
+</dd><dt><code>LAYOUT_FILL_ROW</code></dt>
 <dd>
 <p>Matrix row is stretchable</p>
-</dd><dt><code>LAYOUT_LEFT</code>
+</dd><dt><code>LAYOUT_LEFT</code></dt>
 <dd>
 <p>Stick on left (default)</p>
-</dd><dt><code>LAYOUT_RIGHT</code>
+</dd><dt><code>LAYOUT_RIGHT</code></dt>
 <dd>
 <p>Stick on right</p>
-</dd><dt><code>LAYOUT_CENTER_X</code>
+</dd><dt><code>LAYOUT_CENTER_X</code></dt>
 <dd>
 <p>Center horizontally</p>
-</dd><dt><code>LAYOUT_FIX_X</code>
+</dd><dt><code>LAYOUT_FIX_X</code></dt>
 <dd>
 <p>X fixed</p>
-</dd><dt><code>LAYOUT_TOP</code>
+</dd><dt><code>LAYOUT_TOP</code></dt>
 <dd>
 <p>Stick on top (default)</p>
-</dd><dt><code>LAYOUT_BOTTOM</code>
+</dd><dt><code>LAYOUT_BOTTOM</code></dt>
 <dd>
 <p>Stick on bottom</p>
-</dd><dt><code>LAYOUT_CENTER_Y</code>
+</dd><dt><code>LAYOUT_CENTER_Y</code></dt>
 <dd>
 <p>Center vertically</p>
-</dd><dt><code>LAYOUT_FIX_Y</code>
+</dd><dt><code>LAYOUT_FIX_Y</code></dt>
 <dd>
 <p>Y fixed</p>
-</dd><dt><code>LAYOUT_FIX_WIDTH</code>
+</dd><dt><code>LAYOUT_FIX_WIDTH</code></dt>
 <dd>
 <p>Width fixed</p>
-</dd><dt><code>LAYOUT_FIX_HEIGHT</code>
+</dd><dt><code>LAYOUT_FIX_HEIGHT</code></dt>
 <dd>
 <p>Height fixed</p>
-</dd><dt><code>LAYOUT_MIN_WIDTH</code>
+</dd><dt><code>LAYOUT_MIN_WIDTH</code></dt>
 <dd>
 <p>Minimum width is the default</p>
-</dd><dt><code>LAYOUT_MIN_HEIGHT</code>
+</dd><dt><code>LAYOUT_MIN_HEIGHT</code></dt>
 <dd>
 <p>Minimum height is the default</p>
-</dd><dt><code>LAYOUT_FILL_X</code>
+</dd><dt><code>LAYOUT_FILL_X</code></dt>
 <dd>
 <p>Stretch or shrink horizontally</p>
-</dd><dt><code>LAYOUT_FILL_Y</code>
+</dd><dt><code>LAYOUT_FILL_Y</code></dt>
 <dd>
 <p>Stretch or shrink vertically</p>
-</dd><dt><code>LAYOUT_FILL</code>
+</dd><dt><code>LAYOUT_FILL</code></dt>
 <dd>
 <p>Stretch or shrink in both directions</p>
-</dd><dt><code>LAYOUT_EXPLICIT</code>
+</dd><dt><code>LAYOUT_EXPLICIT</code></dt>
 <dd>
 <p>Explicit placement</p>
-</dd><dt><code>LAYOUT_DOCK_SAME</code>
+</dd><dt><code>LAYOUT_DOCK_SAME</code></dt>
 <dd>
 <p>Dock on same galley, if it fits</p>
-</dd><dt><code>LAYOUT_DOCK_NEXT</code>
+</dd><dt><code>LAYOUT_DOCK_NEXT</code></dt>
 <dd>
 <p>Dock on next galley</p>
 </dd></dl>
 
 <h3 id="label-Frame+border+appearance+styles+-28for+subclasses-29">Frame border appearance styles (for subclasses)</h3>
-<dl class="rdoc-list note-list"><dt><code>FRAME_NONE</code>
+<dl class="rdoc-list note-list"><dt><code>FRAME_NONE</code></dt>
 <dd>
 <p>Default is no frame</p>
-</dd><dt><code>FRAME_SUNKEN</code>
+</dd><dt><code>FRAME_SUNKEN</code></dt>
 <dd>
 <p>Sunken border</p>
-</dd><dt><code>FRAME_RAISED</code>
+</dd><dt><code>FRAME_RAISED</code></dt>
 <dd>
 <p>Raised border</p>
-</dd><dt><code>FRAME_THICK</code>
+</dd><dt><code>FRAME_THICK</code></dt>
 <dd>
 <p>Thick border</p>
-</dd><dt><code>FRAME_GROOVE</code>
+</dd><dt><code>FRAME_GROOVE</code></dt>
 <dd>
 <p>A groove or etched-in border</p>
-</dd><dt><code>FRAME_RIDGE</code>
+</dd><dt><code>FRAME_RIDGE</code></dt>
 <dd>
 <p>A ridge or embossed border</p>
-</dd><dt><code>FRAME_LINE</code>
+</dd><dt><code>FRAME_LINE</code></dt>
 <dd>
 <p>Simple line border</p>
-</dd><dt><code>FRAME_NORMAL</code>
+</dd><dt><code>FRAME_NORMAL</code></dt>
 <dd>
 <p>Regular raised/thick border</p>
 </dd></dl>
 
 <h3 id="label-Packing+style+-28for+packers-29">Packing style (for packers)</h3>
-<dl class="rdoc-list note-list"><dt><code>PACK_NORMAL</code>
+<dl class="rdoc-list note-list"><dt><code>PACK_NORMAL</code></dt>
 <dd>
 <p>Default is each its own size</p>
-</dd><dt><code>PACK_UNIFORM_HEIGHT</code>
+</dd><dt><code>PACK_UNIFORM_HEIGHT</code></dt>
 <dd>
 <p>Uniform height</p>
-</dd><dt><code>PACK_UNIFORM_WIDTH</code>
+</dd><dt><code>PACK_UNIFORM_WIDTH</code></dt>
 <dd>
 <p>Uniform width</p>
 </dd></dl>
 
 <h3 id="label-Message+IDs+common+to+most+windows">Message IDs common to most windows</h3>
-<dl class="rdoc-list note-list"><dt><code>ID_NONE</code>
+<dl class="rdoc-list note-list"><dt><code>ID_NONE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_HIDE</code>
+</dd><dt><code>ID_HIDE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SHOW</code>
+</dd><dt><code>ID_SHOW</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_TOGGLESHOWN</code>
+</dd><dt><code>ID_TOGGLESHOWN</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_LOWER</code>
+</dd><dt><code>ID_LOWER</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_RAISE</code>
+</dd><dt><code>ID_RAISE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_DELETE</code>
+</dd><dt><code>ID_DELETE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_DISABLE</code>
+</dd><dt><code>ID_DISABLE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_ENABLE</code>
+</dd><dt><code>ID_ENABLE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_TOGGLEENABLED</code>
+</dd><dt><code>ID_TOGGLEENABLED</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_UNCHECK</code>
+</dd><dt><code>ID_UNCHECK</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_CHECK</code>
+</dd><dt><code>ID_CHECK</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_UNKNOWN</code>
+</dd><dt><code>ID_UNKNOWN</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_UPDATE</code>
+</dd><dt><code>ID_UPDATE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_AUTOSCROLL</code>
+</dd><dt><code>ID_AUTOSCROLL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_HSCROLLED</code>
+</dd><dt><code>ID_HSCROLLED</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_VSCROLLED</code>
+</dd><dt><code>ID_VSCROLLED</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SETVALUE</code>
+</dd><dt><code>ID_SETVALUE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SETINTVALUE</code>
+</dd><dt><code>ID_SETINTVALUE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SETREALVALUE</code>
+</dd><dt><code>ID_SETREALVALUE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SETSTRINGVALUE</code>
+</dd><dt><code>ID_SETSTRINGVALUE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SETINTRANGE</code>
+</dd><dt><code>ID_SETINTRANGE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_SETREALRANGE</code>
+</dd><dt><code>ID_SETREALRANGE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_GETINTVALUE</code>
+</dd><dt><code>ID_GETINTVALUE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_GETREALVALUE</code>
+</dd><dt><code>ID_GETREALVALUE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_GETSTRINGVALUE</code>
+</dd><dt><code>ID_GETSTRINGVALUE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_GETINTRANGE</code>
+</dd><dt><code>ID_GETINTRANGE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_GETREALRANGE</code>
+</dd><dt><code>ID_GETREALRANGE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_QUERY_MENU</code>
+</dd><dt><code>ID_QUERY_MENU</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_HOTKEY</code>
+</dd><dt><code>ID_HOTKEY</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_ACCEL</code>
+</dd><dt><code>ID_ACCEL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_UNPOST</code>
+</dd><dt><code>ID_UNPOST</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_POST</code>
+</dd><dt><code>ID_POST</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_TILEHORIZONTAL</code>
+</dd><dt><code>ID_MDI_TILEHORIZONTAL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_TILEVERTICAL</code>
+</dd><dt><code>ID_MDI_TILEVERTICAL</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_CASCADE</code>
+</dd><dt><code>ID_MDI_CASCADE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_MAXIMIZE</code>
+</dd><dt><code>ID_MDI_MAXIMIZE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_MINIMIZE</code>
+</dd><dt><code>ID_MDI_MINIMIZE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_RESTORE</code>
+</dd><dt><code>ID_MDI_RESTORE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_CLOSE</code>
+</dd><dt><code>ID_MDI_CLOSE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_WINDOW</code>
+</dd><dt><code>ID_MDI_WINDOW</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_MENUWINDOW</code>
+</dd><dt><code>ID_MDI_MENUWINDOW</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_MENUMINIMIZE</code>
+</dd><dt><code>ID_MDI_MENUMINIMIZE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_MENURESTORE</code>
+</dd><dt><code>ID_MDI_MENURESTORE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_MENUCLOSE</code>
+</dd><dt><code>ID_MDI_MENUCLOSE</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_NEXT</code>
+</dd><dt><code>ID_MDI_NEXT</code></dt>
 <dd>
 <p>x</p>
-</dd><dt><code>ID_MDI_PREV</code>
+</dd><dt><code>ID_MDI_PREV</code></dt>
 <dd>
 <p>x</p>
 </dd></dl>
@@ -4074,25 +4074,25 @@
 <p>Return an initialized FXWindow instance, for an owned window.</p>
 
 <h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>a</code>
+<dl class="rdoc-list note-list"><dt><code>a</code></dt>
 <dd>
 <p>an application instance <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">Fox::FXApp</a></span></p>
-</dd><dt><code>own</code>
+</dd><dt><code>own</code></dt>
 <dd>
 <p>the owner window for this window <span class='object_link'><a href="" title="Fox::FXWindow (class)">Fox::FXWindow</a></span></p>
-</dd><dt><code>opts</code>
+</dd><dt><code>opts</code></dt>
 <dd>
 <p>window options [Integer]</p>
-</dd><dt><code>x</code>
+</dd><dt><code>x</code></dt>
 <dd>
 <p>initial x-position [Integer]</p>
-</dd><dt><code>y</code>
+</dd><dt><code>y</code></dt>
 <dd>
 <p>initial y-position [Integer]</p>
-</dd><dt><code>width</code>
+</dd><dt><code>width</code></dt>
 <dd>
 <p>initial width [Integer]</p>
-</dd><dt><code>height</code>
+</dd><dt><code>height</code></dt>
 <dd>
 <p>initial height [Integer]</p>
 </dd></dl>
@@ -5742,22 +5742,22 @@
   <div class="discussion">
     
 <p>When being dragged over, indicate acceptance or rejection of the dragged data. The <em>action</em> is a constant indicating the suggested drag action, one of:</p>
-<dl class="rdoc-list note-list"><dt><code>DRAG_REJECT</code>
+<dl class="rdoc-list note-list"><dt><code>DRAG_REJECT</code></dt>
 <dd>
 <p>reject all drop actions</p>
-</dd><dt><code>DRAG_ACCEPT</code>
+</dd><dt><code>DRAG_ACCEPT</code></dt>
 <dd>
 <p>accept any drop action</p>
-</dd><dt><code>DRAG_COPY</code>
+</dd><dt><code>DRAG_COPY</code></dt>
 <dd>
 <p>accept this drop as a copy</p>
-</dd><dt><code>DRAG_MOVE</code>
+</dd><dt><code>DRAG_MOVE</code></dt>
 <dd>
 <p>accept this drop as a move</p>
-</dd><dt><code>DRAG_LINK</code>
+</dd><dt><code>DRAG_LINK</code></dt>
 <dd>
 <p>accept this drop as a link</p>
-</dd><dt><code>DRAG_PRIVATE</code>
+</dd><dt><code>DRAG_PRIVATE</code></dt>
 <dd>
 <p>private</p>
 </dd></dl>
@@ -7918,22 +7918,22 @@
   <div class="discussion">
     
 <p>When dragging, inform the drop target of the new position and the drag action. The <em>action</em> is a constant, one of:</p>
-<dl class="rdoc-list note-list"><dt><code>DRAG_REJECT</code>
+<dl class="rdoc-list note-list"><dt><code>DRAG_REJECT</code></dt>
 <dd>
 <p>reject all drop actions</p>
-</dd><dt><code>DRAG_ACCEPT</code>
+</dd><dt><code>DRAG_ACCEPT</code></dt>
 <dd>
 <p>accept any drop action</p>
-</dd><dt><code>DRAG_COPY</code>
+</dd><dt><code>DRAG_COPY</code></dt>
 <dd>
 <p>accept this drop as a copy</p>
-</dd><dt><code>DRAG_MOVE</code>
+</dd><dt><code>DRAG_MOVE</code></dt>
 <dd>
 <p>accept this drop as a move</p>
-</dd><dt><code>DRAG_LINK</code>
+</dd><dt><code>DRAG_LINK</code></dt>
 <dd>
 <p>accept this drop as a link</p>
-</dd><dt><code>DRAG_PRIVATE</code>
+</dd><dt><code>DRAG_PRIVATE</code></dt>
 <dd>
 <p>private</p>
 </dd></dl>
@@ -9938,9 +9938,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Mar 11 16:01:35 2025 by
+  Generated on Fri Jan  2 19:59:00 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.5.0).
+  0.9.38 (ruby-4.0.0).
 </div>
 
     </div>
