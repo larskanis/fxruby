@@ -1,3 +1,11 @@
+## 1.6.50 / 2026-01-02
+
+* Add binary gem support for ruby-4.0.
+* Drop support for ruby older than 3.0.
+* Fix breaking some other gems (date_core.so) by shipped DLLs. #84
+* Update to libpng-1.6.53, libjpeg-turbo-3.1.3, libtiff-4.7.1 for Windows binary gems.
+* Some documentation improvements.
+
 ## 1.6.49 / 2025-07-14
 
 * Add compatibility to SWIG-4.3. Type of "NULL pointer" error changed in swig 4.3.0. It was ArgumentError before and is NullReferenceError now. #81
