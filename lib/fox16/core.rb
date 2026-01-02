@@ -691,12 +691,14 @@ module Fox
 
   class FXImage
     alias initialize_without_data_string initialize
+    private :initialize_without_data_string
     def initialize(a, pix, *args)
       initialize_without_data_string(a, pix, *args)
       @data_string = (options & IMAGE_OWNED) != 0 ? nil : pix
     end
 
     alias setPixels_without_data_string setPixels
+    private :setPixels_without_data_string
     def setPixels(pix, *args)
       setPixels_without_data_string(pix, *args)
       @data_string = (options & IMAGE_OWNED) != 0 ? nil : pix
