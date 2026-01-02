@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-# Specify your gem's runtime dependencies in fxruby.gemspec
-gemspec
+# No fxruby gemspec, since "bundle package" fails on bundler-2.7+, if the extension isn't built
+# gemspec
 
 # For some reason this is required in addition to the gemspec
 # when 'bundle config force_ruby_platform true' is active:
