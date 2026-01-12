@@ -194,12 +194,22 @@ namespace :gem do
   end
 end
 
+$matched_gsubs = Hash.new { |h,e| h[e] = [] }
+def checked_gsub!(str, from, to)
+  old = str.dup
+  n = str.gsub!(from, to)
+
+  $matched_gsubs[[from, to]] << (old != str)
+
+  n
+end
+
 namespace :swig do
   def patch_swigruby(line)
     # Ruby-2.7+ finally changed callback function signatures from (*)(ANYARGS) to a proper signature, on which the compiler is able to check parameter types.
     # Unfortunately this requires a bunch of patches to swig's generated code.
 
-    line.gsub! '#include <ruby.h>', <<-EOT
+    checked_gsub! line, '#include <ruby.h>', <<-EOT
       #include <ruby.h>
 
       #if defined(RB_METHOD_DEFINITION_DECL)
@@ -214,36 +224,37 @@ namespace :swig do
       # define RUBY_VOIDP_METHOD_FUNC(func) ((void *(*)(ANYARGS))(func))
       #endif
     EOT
-    line.gsub! /rb_define_virtual_variable\((.*?), (\w+), NULL\)/, <<-EOT
+
+    checked_gsub! line, /rb_define_virtual_variable\((.*?), (\w+), NULL\)/, <<-EOT
       rb_define_virtual_variable(\\1, RUBY_VALUE_METHOD_FUNC(\\2), RUBY_VOID_METHOD_FUNC((rb_gvar_setter_t*)NULL))
     EOT
 
-    line.gsub!('static VALUE swig_ruby_trackings_count(ANYARGS)', 'static VALUE swig_ruby_trackings_count(ID id, VALUE *var)')
-    line.gsub!('SWIG_ruby_failed(void)', 'SWIG_ruby_failed(VALUE, VALUE)')
+    checked_gsub!(line, 'static VALUE swig_ruby_trackings_count(ANYARGS)', 'static VALUE swig_ruby_trackings_count(ID id, VALUE *var)')
+    checked_gsub!(line, 'SWIG_ruby_failed(void)', 'SWIG_ruby_failed(VALUE, VALUE)')
 
-    line.gsub!(/SWIGINTERN VALUE SWIG_AUX_(\w+)\(VALUE \*args\)\s\{/m, 'SWIGINTERN VALUE SWIG_AUX_\\1(VALUE pargs){VALUE *args=(VALUE *)pargs;')
+    checked_gsub!(line, /SWIGINTERN VALUE SWIG_AUX_(\w+)\(VALUE \*args\)\s\{/m, 'SWIGINTERN VALUE SWIG_AUX_\\1(VALUE pargs){VALUE *args=(VALUE *)pargs;')
 
-    line.gsub! /static int swig_ruby_internal_iterate_callback\(void\* ptr, VALUE obj, void\(\*meth\)\(void\* ptr, VALUE obj\)\)\s*{\s*\(\*meth\)\(ptr, obj\);/m, <<-EOT
+    checked_gsub! line,  /static int swig_ruby_internal_iterate_callback\(void\* ptr, VALUE obj, void\(\*meth\)\(void\* ptr, VALUE obj\)\)\s*{\s*\(\*meth\)\(ptr, obj\);/m, <<-EOT
       static int swig_ruby_internal_iterate_callback(st_data_t ptr, st_data_t obj, st_data_t meth) {
         ((void(*)(void*, VALUE))meth)((void*)ptr, (VALUE)obj);
     EOT
 
-    line.gsub!('(int (*)(ANYARGS))&swig_ruby_internal_iterate_callback', 'RUBY_INT_METHOD_FUNC(swig_ruby_internal_iterate_callback)')
+    checked_gsub!(line, '(int (*)(ANYARGS))&swig_ruby_internal_iterate_callback', 'RUBY_INT_METHOD_FUNC(swig_ruby_internal_iterate_callback)')
 
-    line.gsub! /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_VALUE_METHOD_FUNC(\\1), self, RUBY_VALUE_METHOD_FUNC(\\2), self);'
-    line.gsub! /rb_rescue\(RUBY_METHOD_FUNC\((.*)\), \(VALUE\)a, RUBY_METHOD_FUNC\((.*)\), 0\)/, 'rb_rescue(RUBY_VALUE_METHOD_FUNC(\\1), (VALUE)a, RUBY_VALUE_METHOD_FUNC(\\2), 0)'
+    checked_gsub! line, /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_VALUE_METHOD_FUNC(\\1), self, RUBY_VALUE_METHOD_FUNC(\\2), self);'
+    checked_gsub! line, /rb_rescue\(RUBY_METHOD_FUNC\((.*)\), \(VALUE\)a, RUBY_METHOD_FUNC\((.*)\), 0\)/, 'rb_rescue(RUBY_VALUE_METHOD_FUNC(\\1), (VALUE)a, RUBY_VALUE_METHOD_FUNC(\\2), 0)'
 
-    line.gsub!('VALUE cl = rb_define_class("swig_runtime_data", rb_cObject);', 'VALUE cl = rb_define_class("SWIG_RUNTIME_DATA", rb_cObject);rb_undef_alloc_func(cl);')
+    checked_gsub!(line, 'VALUE cl = rb_define_class("swig_runtime_data", rb_cObject);', 'VALUE cl = rb_define_class("SWIG_RUNTIME_DATA", rb_cObject);rb_undef_alloc_func(cl);')
 
     # Allow Truffleruby-22.1.0 to compile the sources without fxscintilla.
     # Unfortunately Truffleruby still fails with various runtime errors.
     if RUBY_ENGINE == "truffleruby"
-      line.gsub! '#include <ruby.h>', <<-EOT
+      checked_gsub! line,  '#include <ruby.h>', <<-EOT
         #include <ruby.h>
         #define rb_define_virtual_variable(x,y,z)
       EOT
 
-      line.gsub! 'rb_define_readonly_variable("$swig_runtime_data_type_pointer" SWIG_RUNTIME_VERSION SWIG_TYPE_TABLE_NAME, &swig_runtime_data_type_pointer);', <<-EOT
+      checked_gsub! line, 'rb_define_readonly_variable("$swig_runtime_data_type_pointer" SWIG_RUNTIME_VERSION SWIG_TYPE_TABLE_NAME, &swig_runtime_data_type_pointer);', <<-EOT
         if (rb_gv_get("$swig_runtime_data_type_pointer" SWIG_RUNTIME_VERSION SWIG_TYPE_TABLE_NAME) == RUBY_Qnil) {
           rb_gv_set("$swig_runtime_data_type_pointer" SWIG_RUNTIME_VERSION SWIG_TYPE_TABLE_NAME, swig_runtime_data_type_pointer);
         }
@@ -257,13 +268,13 @@ namespace :swig do
     puts "Update #{wrapper_src_file_name}"
 
     line = File.read(wrapper_src_file_name)
-    line.gsub!(/static VALUE mCore;/, "VALUE mCore;")
-    line.gsub!(/mCore = rb_define_module\("Core"\)/, "mFox = rb_define_module(\"Fox\")")
-    line.gsub!(/mCore/, "mFox")
-    line.gsub!(/static VALUE m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui);/, '')
-    line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module.*/, '')
-    line.gsub!(/rb_require.*/, '')
-    line.gsub!(/m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
+    checked_gsub!(line, /static VALUE mCore;/, "VALUE mCore;")
+    checked_gsub!(line, /mCore = rb_define_module\("Core"\)/, "mFox = rb_define_module(\"Fox\")")
+    checked_gsub!(line, /mCore/, "mFox")
+    # checked_gsub!(line, /static VALUE m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui);/, '')
+    checked_gsub!(line, /m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui) = rb_define_module.*/, '')
+    checked_gsub!(line, /rb_require.*/, '')
+    checked_gsub!(line, /m(Dc|Dialogs|Frames|Iconlist|Icons|Image|Label|Layout|List|Mdi|Menu|Fx3d|Scintilla|Table|Text|Treelist|Ui),/, "mFox,")
 
     line = patch_swigruby(line)
 
@@ -394,5 +405,13 @@ namespace :docs do
     sh 'git', 'rm', '-rfq', 'docs' do end
     sh 'yardoc', '--output-dir', 'docs'
     sh 'git', 'add', 'docs'
+  end
+end
+
+task :compile do
+  never_matched = $matched_gsubs.select { |_key, matches| matches.all?(false) }
+
+  never_matched.each do |(from, to), |
+    warn "gsub didn't match on\n  from: #{from}\n  to: #{to}"
   end
 end
