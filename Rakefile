@@ -206,45 +206,6 @@ end
 
 namespace :swig do
   def patch_swigruby(line)
-    # Ruby-2.7+ finally changed callback function signatures from (*)(ANYARGS) to a proper signature, on which the compiler is able to check parameter types.
-    # Unfortunately this requires a bunch of patches to swig's generated code.
-
-    checked_gsub! line, '#include <ruby.h>', <<-EOT
-      #include <ruby.h>
-
-      #if defined(RB_METHOD_DEFINITION_DECL)
-      # define RUBY_VALUE_METHOD_FUNC(func) (func)
-      # define RUBY_INT_METHOD_FUNC(func) (func)
-      # define RUBY_VOID_METHOD_FUNC(func) (func)
-      # define RUBY_VOIDP_METHOD_FUNC(func) (func)
-      #else
-      # define RUBY_VALUE_METHOD_FUNC(func) ((VALUE (*)(ANYARGS))(func))
-      # define RUBY_INT_METHOD_FUNC(func) ((int (*)(ANYARGS))(func))
-      # define RUBY_VOID_METHOD_FUNC(func) ((void (*)(ANYARGS))(func))
-      # define RUBY_VOIDP_METHOD_FUNC(func) ((void *(*)(ANYARGS))(func))
-      #endif
-    EOT
-
-    checked_gsub! line, /rb_define_virtual_variable\((.*?), (\w+), NULL\)/, <<-EOT
-      rb_define_virtual_variable(\\1, RUBY_VALUE_METHOD_FUNC(\\2), RUBY_VOID_METHOD_FUNC((rb_gvar_setter_t*)NULL))
-    EOT
-
-    checked_gsub!(line, 'static VALUE swig_ruby_trackings_count(ANYARGS)', 'static VALUE swig_ruby_trackings_count(ID id, VALUE *var)')
-    checked_gsub!(line, 'SWIG_ruby_failed(void)', 'SWIG_ruby_failed(VALUE, VALUE)')
-
-    checked_gsub!(line, /SWIGINTERN VALUE SWIG_AUX_(\w+)\(VALUE \*args\)\s\{/m, 'SWIGINTERN VALUE SWIG_AUX_\\1(VALUE pargs){VALUE *args=(VALUE *)pargs;')
-
-    checked_gsub! line,  /static int swig_ruby_internal_iterate_callback\(void\* ptr, VALUE obj, void\(\*meth\)\(void\* ptr, VALUE obj\)\)\s*{\s*\(\*meth\)\(ptr, obj\);/m, <<-EOT
-      static int swig_ruby_internal_iterate_callback(st_data_t ptr, st_data_t obj, st_data_t meth) {
-        ((void(*)(void*, VALUE))meth)((void*)ptr, (VALUE)obj);
-    EOT
-
-    checked_gsub!(line, '(int (*)(ANYARGS))&swig_ruby_internal_iterate_callback', 'RUBY_INT_METHOD_FUNC(swig_ruby_internal_iterate_callback)')
-
-    checked_gsub! line, /rb_ensure\(VALUEFUNC\((.*)\), self, VALUEFUNC\((.*)\), self\);/, 'rb_ensure(RUBY_VALUE_METHOD_FUNC(\\1), self, RUBY_VALUE_METHOD_FUNC(\\2), self);'
-    checked_gsub! line, /rb_rescue\(RUBY_METHOD_FUNC\((.*)\), \(VALUE\)a, RUBY_METHOD_FUNC\((.*)\), 0\)/, 'rb_rescue(RUBY_VALUE_METHOD_FUNC(\\1), (VALUE)a, RUBY_VALUE_METHOD_FUNC(\\2), 0)'
-
-    checked_gsub!(line, 'VALUE cl = rb_define_class("swig_runtime_data", rb_cObject);', 'VALUE cl = rb_define_class("SWIG_RUNTIME_DATA", rb_cObject);rb_undef_alloc_func(cl);')
 
     # Allow Truffleruby-22.1.0 to compile the sources without fxscintilla.
     # Unfortunately Truffleruby still fails with various runtime errors.
