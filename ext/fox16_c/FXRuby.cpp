@@ -1185,8 +1185,8 @@ long FXRbHandleMessage_gvlcb(FXObject* recv,ID func,FXObject* sender,FXSelector 
   FXTRACE((100,"FXRbHandleMessage(recv=%p(%s),FXSEL(%s,%d)\n",recv,recv->getClassName(),FXDebugTarget::messageTypeName[FXSELTYPE(key)],FXSELID(key)));
 
   if(FXRbCatchExceptions){
-    retval=rb_rescue2(RUBY_VALUE_METHOD_FUNC(handle_body), reinterpret_cast<VALUE>(&hArgs),
-                      RUBY_VALUE_METHOD_FUNC(handle_rescue), Qnil,
+    retval=rb_rescue2(handle_body, reinterpret_cast<VALUE>(&hArgs),
+                      handle_rescue, Qnil,
                       rb_eStandardError, rb_eNameError, 0);
     }
   else{
@@ -1909,7 +1909,7 @@ void FXRbDestroyAppSensitiveObjects(){
   FXTRACE((100,"%s:%d: Begin destroying objects that hold references to the FXApp...\n",__FILE__,__LINE__));
 
   FXObjectListOf<FXObject> objs;
-  st_foreach(appSensitiveObjs,RUBY_INT_METHOD_FUNC(st_cbfunc_obj),reinterpret_cast<st_data_t>(&objs));
+  st_foreach(appSensitiveObjs,st_cbfunc_obj,reinterpret_cast<st_data_t>(&objs));
   for(FXint i=0;i<objs.no();i++){
     if(objs[i]->isMemberOf(FXMETACLASS(FXRbCursor))){
       if(dynamic_cast<FXRbCursor*>(objs[i])->ownedByApp)
@@ -1939,7 +1939,7 @@ void FXRbDestroyAppSensitiveObjects(){
     }
 
   FXArray<FXDC*> dcs;
-  st_foreach(appSensitiveDCs,RUBY_INT_METHOD_FUNC(st_cbfunc_dc),reinterpret_cast<st_data_t>(&dcs));
+  st_foreach(appSensitiveDCs,st_cbfunc_dc,reinterpret_cast<st_data_t>(&dcs));
   for(FXint j=0;j<dcs.no();j++){
     delete dcs[j];
     }
