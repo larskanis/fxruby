@@ -186,6 +186,7 @@ namespace :gem do
       RakeCompilerDock.sh <<-EOT, platform: plat
         sudo apt-get update &&
         sudo apt-get install -y yasm libtool m4 automake &&
+        sudo chmod go+w /usr/local/rbenv/versions/4.0.0/lib/ruby/gems/4.0.0/plugins -R &&
         bundle config set without test &&
         bundle install --local &&
         rake native:#{plat} pkg/#{ext_task.gem_spec.full_name}-#{plat}.gem MAKE=\"nice make V=1 VERBOSE=1 -j `nproc`\" #{debug}  RUBY_CC_VERSION=#{RakeCompilerDock.ruby_cc_version("~>4.0", "~>3.0")}
