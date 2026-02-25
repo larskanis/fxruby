@@ -1,10 +1,10 @@
 require 'fox16'
 require 'fox16/canvas'
 
-include Fox
-include Canvas
+class CanvasDemo < Fox::FXMainWindow
+  include Fox
+  include Canvas
 
-class CanvasDemo < FXMainWindow
   def initialize(app)
     # Initialize base class first
     super(app, "Canvas Demo", nil, nil, DECOR_ALL, 0, 0, 800, 600)
@@ -85,7 +85,7 @@ class CanvasDemo < FXMainWindow
 end
 
 if __FILE__ == $0
-  app = FXApp.new("CanvasDemo", "FXRuby")
+  app = Fox::FXApp.new("CanvasDemo", "FXRuby")
   CanvasDemo.new(app)
   app.create
   app.run

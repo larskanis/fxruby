@@ -30,7 +30,7 @@ module Fox
         @draggable = false
         @x = x
         @y = y
-        @foreground = FXRGB(0, 0, 0)
+        @foreground = Fox.FXRGB(0, 0, 0)
         @target = nil
         @selector = 0
       end
