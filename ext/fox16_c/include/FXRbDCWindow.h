@@ -44,7 +44,7 @@ public:
 
   // Helper for FXDCWindow initialization block
   static VALUE endit(VALUE obj){
-    FXDCWindow* dc=reinterpret_cast<FXDCWindow*>(DATA_PTR(obj));
+    FXDCWindow* dc=(FXDCWindow*)FXRbConvertPtr(obj, NULL, 0);
     FXASSERT(dc!=0);
     dc->end();
     return Qnil;

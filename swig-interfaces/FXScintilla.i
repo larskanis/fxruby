@@ -177,7 +177,7 @@ public:
           lp=(lParam==Qtrue) ? 1 : 0;
           break;
         case T_DATA:
-          lp=reinterpret_cast<sptr_t>(DATA_PTR(lParam));
+          lp = (sptr_t)FXRbConvertPtr(lParam, NULL, 0);
           break;
         default:
           lp=0;

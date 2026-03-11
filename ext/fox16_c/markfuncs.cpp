@@ -2,6 +2,7 @@
  * $Id: markfuncs.cpp 2928 2008-12-29 19:16:57Z lyle $
  ***********************************************************************/
 
+#include "swigruby.h"
 #include "FXRbCommon.h"
 
 #ifdef MARK

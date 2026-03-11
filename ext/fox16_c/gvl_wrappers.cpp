@@ -3,6 +3,7 @@
  *
  */
 
+#include "swigruby.h"
 #include "FXRbCommon.h"
 
 #ifdef HAVE___THREAD

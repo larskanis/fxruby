@@ -48,7 +48,7 @@ static int FXSWIG_ConvertPtr(VALUE obj, void **ptr, swig_type_info *ty, int flag
 template <class TYPE>
 VALUE showHelper(VALUE self, int argc, VALUE *argv, TYPE *p, swig_type_info *typeinfo) {
   TYPE *win;
-  FXSWIG_ConvertPtr(self,(void**)&win,typeinfo,1);
+  FXSWIG_ConvertPtr(self,(void**)&win,typeinfo,SWIG_POINTER_DISOWN);
   if (argc == 0) {
     win->_show();
     }
@@ -73,7 +73,7 @@ bool FXRbIsInGC(const void* ptr);
 swig_type_info *FXRbTypeQuery(const char *name);
 
 // Wrapper around SWIG_ConvertPtr()
-void* FXRbConvertPtr(VALUE obj,swig_type_info* typeinfo);
+void* FXRbConvertPtr(VALUE obj,swig_type_info* typeinfo, int flags);
 
 // Returns an FXInputHandle for this Ruby file object
 FXInputHandle FXRbGetReadFileHandle(VALUE obj,FXuint mode);
@@ -694,7 +694,7 @@ FXIcon* FXRbCallIconMethod_gvlcb(const FXIconSource *recv,const char *func,TYPE1
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),2,to_ruby(arg1),to_ruby(arg2));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXIcon*>(DATA_PTR(result));
+  return (FXIcon*)FXRbConvertPtr(result, NULL, 0);
   }
 
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4>
@@ -702,7 +702,7 @@ FXIcon* FXRbCallIconMethod_gvlcb(const FXIconSource *recv,const char *func,TYPE1
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),4,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3),to_ruby(arg4));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXIcon*>(DATA_PTR(result));
+  return (FXIcon*)FXRbConvertPtr(result, NULL, 0);
   }
 
 // Call functions with FXImage* return value
@@ -711,7 +711,7 @@ FXImage* FXRbCallImageMethod_gvlcb(const FXIconSource *recv,const char *func,TYP
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),2,to_ruby(arg1),to_ruby(arg2));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXImage*>(DATA_PTR(result));
+  return (FXImage*)FXRbConvertPtr(result, NULL, 0);
   }
 
 template<class TYPE1, class TYPE2, class TYPE3, class TYPE4>
@@ -719,7 +719,7 @@ FXImage* FXRbCallImageMethod_gvlcb(const FXIconSource *recv,const char *func,TYP
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),4,to_ruby(arg1),to_ruby(arg2),to_ruby(arg3),to_ruby(arg4));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXImage*>(DATA_PTR(result));
+  return (FXImage*)FXRbConvertPtr(result, NULL, 0);
   }
 
 // Call functions with "FXWindow*" return value

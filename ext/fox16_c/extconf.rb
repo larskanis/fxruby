@@ -366,7 +366,7 @@ do_rake_compiler_setup
 if RbConfig::MAKEFILE_CONFIG['CC'] =~ /gcc/
   $CXXFLAGS += " -Wno-unused-function"
   $CXXFLAGS += " -Wno-maybe-uninitialized"
-  $CXXFLAGS += " -Wno-attribute-warning -Wno-deprecated-declarations"
+  $CXXFLAGS += " -Wno-attribute-warning"
 end
 
 # Last step: build the makefile

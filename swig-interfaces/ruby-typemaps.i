@@ -247,7 +247,7 @@ inline void* to_FXEvent(VALUE obj){
     FXEventTypeInfo=SWIG_TypeQuery("FXEvent *");
     FXASSERT(FXEventTypeInfo!=0);
     }
-  SWIG_ConvertPtr(obj,&ptr,FXEventTypeInfo,1);
+  SWIG_ConvertPtr(obj,&ptr,FXEventTypeInfo,SWIG_POINTER_DISOWN);
   return ptr;
   }
 %}
@@ -278,7 +278,7 @@ inline void* to_FXEvent(VALUE obj){
 }
 
 /* Convert a Ruby FXDirItem instance into a pointer to a C++ FXDirItem */
-%typemap(in) void* PTR_DIRITEM "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXDirItem,1);";
+%typemap(in) void* PTR_DIRITEM "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXDirItem,SWIG_POINTER_DISOWN);";
 
 %typemap(in) void* PTR_EVENT "$1 = to_FXEvent($input);";
 
@@ -293,7 +293,7 @@ inline void* to_FXEvent(VALUE obj){
 
 /* Convert a Ruby FXIcon reference to a pointer to an FXIcon */
 %typemap(in) void* PTR_ICON(void *tmp) {
-  tmp = FXRbConvertPtr($input, FXRbTypeQuery("FXIcon *"));
+  tmp = FXRbConvertPtr($input, FXRbTypeQuery("FXIcon *"), SWIG_POINTER_DISOWN);
   $1 = (void *) &tmp;
 }
 
@@ -329,10 +329,10 @@ inline void* to_FXEvent(VALUE obj){
 %typemap(in) void* PTR_NULL "$1 = 0;";
 
 /* Convert a Ruby FXObject instance into a pointer to a C++ FXObject */
-%typemap(in) void* PTR_OBJECT "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXObject,1);";
+%typemap(in) void* PTR_OBJECT "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXObject,SWIG_POINTER_DISOWN);";
 
 /* Convert a Ruby FXPoint instance into a pointer to a C++ FXPoint */
-%typemap(in) void* PTR_POINT "$1 = FXRbConvertPtr($input, FXRbTypeQuery(\"FXPoint *\"));";
+%typemap(in) void* PTR_POINT "$1 = FXRbConvertPtr($input, FXRbTypeQuery(\"FXPoint *\"), SWIG_POINTER_DISOWN);";
 
 /* Convert a Ruby number into a pointer to an FXdouble */
 %typemap(in) void* PTR_PDOUBLE(FXdouble value) {
@@ -353,7 +353,7 @@ inline void* to_FXEvent(VALUE obj){
 }
 
 /* Convert a Ruby FXTreeItem instance into a pointer to a C++ FXTreeItem */
-%typemap(in) void* PTR_TREEITEM "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXTreeItem,1);";
+%typemap(in) void* PTR_TREEITEM "SWIG_ConvertPtr($input,&$1,SWIGTYPE_p_FXTreeItem,SWIG_POINTER_DISOWN);";
 
 /* Convert a Ruby number into an FXuchar */
 %typemap(in) void* PTR_UCHAR "$1 = reinterpret_cast<void*>(NUM2UINT($input));";
@@ -371,7 +371,7 @@ inline void* to_FXEvent(VALUE obj){
         $1 = new FXVec3f(NUM2DBL(rb_ary_entry($input, 0)), NUM2DBL(rb_ary_entry($input, 1)), NUM2DBL(rb_ary_entry($input, 2)));
     } else {
         FXVec3f *p;
-	SWIG_ConvertPtr($input, (void **)&p, SWIGTYPE_p_FXVec3f, 1);
+	SWIG_ConvertPtr($input, (void **)&p, SWIGTYPE_p_FXVec3f, SWIG_POINTER_DISOWN);
 	$1 = new FXVec3f(*p);
     }
 }
@@ -383,7 +383,7 @@ inline void* to_FXEvent(VALUE obj){
         tmp = FXVec3f(NUM2DBL(rb_ary_entry($input, 0)), NUM2DBL(rb_ary_entry($input, 1)), NUM2DBL(rb_ary_entry($input, 2)));
         $1 = &tmp;
     } else {
-	SWIG_ConvertPtr($input, (void **) &$1, SWIGTYPE_p_FXVec3f, 1);
+        SWIG_ConvertPtr($input, (void **) &$1, SWIGTYPE_p_FXVec3f, SWIG_POINTER_DISOWN);
     }
 }
 
@@ -397,7 +397,7 @@ inline void* to_FXEvent(VALUE obj){
         $1 = new FXVec4f(NUM2DBL(rb_ary_entry($input, 0)), NUM2DBL(rb_ary_entry($input, 1)), NUM2DBL(rb_ary_entry($input, 2)), NUM2DBL(rb_ary_entry($input, 3)));
     } else {
         FXVec4f *p;
-	SWIG_ConvertPtr($input,(void **)&p,SWIGTYPE_p_FXVec4f,1);
+	SWIG_ConvertPtr($input,(void **)&p,SWIGTYPE_p_FXVec4f,SWIG_POINTER_DISOWN);
 	$1 = new FXVec4f(*p);
     }
 }
@@ -409,7 +409,7 @@ inline void* to_FXEvent(VALUE obj){
         tmp = FXVec4f(NUM2DBL(rb_ary_entry($input, 0)), NUM2DBL(rb_ary_entry($input, 1)), NUM2DBL(rb_ary_entry($input, 2)), NUM2DBL(rb_ary_entry($input, 3)));
         $1 = &tmp;
     } else {
-	SWIG_ConvertPtr($input, (void **) &$1, SWIGTYPE_p_FXVec4f, 1);
+	SWIG_ConvertPtr($input, (void **) &$1, SWIGTYPE_p_FXVec4f, SWIG_POINTER_DISOWN);
     }
 }
 
@@ -651,8 +651,8 @@ inline void* to_FXEvent(VALUE obj){
     $1 = new FXPoint[RARRAY_LEN($input)];
     $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
-        FXPoint *pPoint;
-        Data_Get_Struct(rb_ary_entry($input, i), FXPoint, pPoint);
+        VALUE entry = rb_ary_entry($input, i);
+        FXPoint *pPoint = (FXPoint*)FXRbConvertPtr(entry, FXRbTypeQuery("FXPoint *"), 0);
         $1[i] = *pPoint;
     }
 }
@@ -666,8 +666,8 @@ inline void* to_FXEvent(VALUE obj){
     $1 = new FXSegment[RARRAY_LEN($input)];
     $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
-        FXSegment *pSeg;
-        Data_Get_Struct(rb_ary_entry($input, i), FXSegment, pSeg);
+        VALUE entry = rb_ary_entry($input, i);
+        FXSegment *pSeg = (FXSegment*)FXRbConvertPtr(entry, SWIGTYPE_p_FXSegment, 0);
         $1[i] = *pSeg;
     }
 }
@@ -682,8 +682,8 @@ inline void* to_FXEvent(VALUE obj){
     $1 = new FXRectangle[RARRAY_LEN($input)];
     $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
-        FXRectangle *pRect;
-        Data_Get_Struct(rb_ary_entry($input, i), FXRectangle, pRect);
+        VALUE entry = rb_ary_entry($input, i);
+        FXRectangle *pRect = (FXRectangle*)FXRbConvertPtr(entry, SWIGTYPE_p_FXRectangle, 0);
         $1[i] = *pRect;
     }
 }
@@ -698,8 +698,8 @@ inline void* to_FXEvent(VALUE obj){
     $1 = new FXArc[RARRAY_LEN($input)];
     $2 = static_cast<FXuint>( RARRAY_LEN($input) );
     for (FXuint i = 0; i < $2; i++) {
-        FXArc *pArc;
-        Data_Get_Struct(rb_ary_entry($input, i), FXArc, pArc);
+        VALUE entry = rb_ary_entry($input, i);
+        FXArc *pArc = (FXArc*)FXRbConvertPtr(entry, SWIGTYPE_p_FXArc, 0);
         $1[i] = *pArc;
     }
 }
@@ -766,7 +766,7 @@ inline void* to_FXEvent(VALUE obj){
     if (TYPE($input) == T_FIXNUM || TYPE($input) == T_BIGNUM)) {
         $1 = reinterpret_cast<FXWindow *>(static_cast<long>(NUM2INT($input)));
     } else {
-        SWIG_ConvertPtr($input, (void **) &$1, SWIGTYPE_p_FXWindow, 1);
+        SWIG_ConvertPtr($input, (void **) &$1, SWIGTYPE_p_FXWindow, SWIG_POINTER_DISOWN);
     }
 }
 

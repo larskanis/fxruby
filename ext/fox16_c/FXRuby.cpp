@@ -28,12 +28,12 @@
 #pragma warning (disable : 4786)
 #endif
 
+// SWIG runtime functions we need
+#include "swigruby.h"
+
 #include "FXRbCommon.h"
 #include "FXRbObjRegistry.h"
 #include "impl.h"
-
-// SWIG runtime functions we need
-#include "swigruby.h"
 
 #ifdef __CYGWIN__
 #include <io.h>		// for get_osf_handle()
@@ -842,8 +842,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
   FXushort id=FXSELID(key);
 
   // Extract the FOX object (the receiver) from this Ruby instance
-  FXObject* obj;
-  Data_Get_Struct(recv,FXObject,obj);
+  FXObject *obj = (FXObject*)FXRbConvertPtr(recv, NULL, 0);
 
   FXASSERT(type!=SEL_NONE);
   FXASSERT(type!=SEL_LAST);
@@ -896,7 +895,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
     case SEL_DND_MOTION:
     case SEL_DND_REQUEST:
     case SEL_PICKED:
-      SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
+      SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),SWIG_POINTER_DISOWN);
       return ptr;
     case SEL_IO_READ:
     case SEL_IO_WRITE:
@@ -1072,7 +1071,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
 
   if(type==SEL_CHANGED){
 	  if(obj->isMemberOf(FXMETACLASS(FXPicker))){
-			SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXPoint *"),1);
+			SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXPoint *"),SWIG_POINTER_DISOWN);
 			return ptr;
     }
     if(obj->isMemberOf(FXMETACLASS(FXWindow))){
@@ -1086,7 +1085,7 @@ void* FXRbGetExpectedData(VALUE recv,FXSelector key,VALUE value){
   }
 
 	if(type==SEL_DRAGGED){
-	    SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),1);
+	    SWIG_ConvertPtr(value,&ptr,FXRbTypeQuery("FXEvent *"),SWIG_POINTER_DISOWN);
 	    return ptr;
 	    }
 
@@ -1300,21 +1299,21 @@ FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLObject* recv,const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),0);
-  return NIL_P(result) ? 0 : reinterpret_cast<FXGLObject*>(DATA_PTR(result));
+  return (FXGLObject*)FXRbConvertPtr(result, NULL, 0);
   }
 
 FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLViewer* recv,const char *func,FXint x,FXint y){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),2,INT2NUM(x),INT2NUM(y));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXGLObject*>(DATA_PTR(result));
+  return (FXGLObject*)FXRbConvertPtr(result, NULL, 0);
   }
 
 FXGLObject* FXRbCallGLObjectMethod_gvlcb(FXGLObject* recv,const char *func,FXuint* path,FXint n){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),1,FXRbMakeArray(path,n));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXGLObject*>(DATA_PTR(result));
+  return (FXGLObject*)FXRbConvertPtr(result, NULL, 0);
   }
 
 //----------------------------------------------------------------------
@@ -1329,7 +1328,8 @@ FXGLObject** FXRbCallGLObjectArrayMethod_gvlcb(FXGLViewer* recv,const char *func
     Check_Type(result,T_ARRAY);
     if(FXMALLOC(&objects,FXGLObject*,RARRAY_LEN(result)+1)){
       for(long i=0; i<RARRAY_LEN(result); i++){
-	objects[i]=reinterpret_cast<FXGLObject*>(DATA_PTR(rb_ary_entry(result,i)));
+        VALUE entry = rb_ary_entry(result,i);
+        objects[i]=(FXGLObject*)FXRbConvertPtr(entry, NULL, 0);
         }
       objects[RARRAY_LEN(result)]=0;
       }
@@ -1344,14 +1344,14 @@ FXTableItem* FXRbCallTableItemMethod_gvlcb(FXTable* recv,const char *func,const 
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),3,to_ruby(text),to_ruby_cb(icon),itemData);
-  return NIL_P(result)?0:reinterpret_cast<FXTableItem*>(DATA_PTR(result));
+  return (FXTableItem*)FXRbConvertPtr(result, NULL, 0);
   }
 
 FXTableItem* FXRbCallTableItemMethod_gvlcb(FXTable* recv,const char *func,FXint row,FXint col,FXbool notify){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),3,to_ruby(row),to_ruby(col),to_ruby(notify));
-  return NIL_P(result)?0:reinterpret_cast<FXTableItem*>(DATA_PTR(result));
+  return (FXTableItem*)FXRbConvertPtr(result, NULL, 0);
   }
 
 //----------------------------------------------------------------------
@@ -1360,7 +1360,7 @@ FXTreeItem* FXRbCallTreeItemMethod_gvlcb(const FXTreeList* recv,const char *func
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),2,INT2NUM(x),INT2NUM(y));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXTreeItem*>(DATA_PTR(result));
+  return (FXTreeItem*)FXRbConvertPtr(result, NULL, 0);
   }
 
 //----------------------------------------------------------------------
@@ -1369,7 +1369,7 @@ FXFoldingItem* FXRbCallFoldingItemMethod_gvlcb(const FXFoldingList* recv,const c
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),2,INT2NUM(x),INT2NUM(y));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXFoldingItem*>(DATA_PTR(result));
+  return (FXFoldingItem*)FXRbConvertPtr(result, NULL, 0);
   }
 
 //----------------------------------------------------------------------
@@ -1378,7 +1378,7 @@ FXFileAssoc* FXRbCallFileAssocMethod_gvlcb(const FXFileDict* recv,const char *fu
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),1,to_ruby(pathname));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXFileAssoc*>(DATA_PTR(result));
+  return (FXFileAssoc*)FXRbConvertPtr(result, NULL, 0);
   }
 
 //----------------------------------------------------------------------
@@ -1388,7 +1388,7 @@ FXIcon* FXRbCallIconMethod_gvlcb(const FXTableItem* recv,const char *func){
   FXASSERT(!NIL_P(obj));
 	if(!NIL_P(obj)){
 	  VALUE result=rb_funcall(obj,rb_intern(func),0);
-	  return NIL_P(result) ? 0 : reinterpret_cast<FXIcon*>(DATA_PTR(result));
+	  return (FXIcon*)FXRbConvertPtr(result, NULL, 0);
 		}
 	else{
 		return 0;
@@ -1401,7 +1401,7 @@ FXWindow* FXRbCallWindowMethod_gvlcb(const FXTableItem* recv,const char *func,FX
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),1,to_ruby_cb(table));
-  return NIL_P(result) ? 0 : reinterpret_cast<FXWindow*>(DATA_PTR(result));
+  return (FXWindow*)FXRbConvertPtr(result, NULL, 0);
   }
 
 //----------------------------------------------------------------------
@@ -1411,7 +1411,7 @@ FXRangef FXRbCallRangeMethod_gvlcb(FXObject* recv,const char *func){
   VALUE obj=FXRbGetRubyObj(recv,false);
   FXASSERT(!NIL_P(obj));
   VALUE result=rb_funcall(obj,rb_intern(func),0);
-  return *reinterpret_cast<FXRangef*>(DATA_PTR(result));
+  return *(FXRangef*)FXRbConvertPtr(result, NULL, 0);
   }
 
 //----------------------------------------------------------------------
@@ -1606,11 +1606,34 @@ FXbool FXRbGLViewer::sortProc(FXfloat*& buffer,FXint& used,FXint& size){
  * FXRbConvertPtr() is just a wrapper around SWIG_ConvertPtr().
  */
 
-void* FXRbConvertPtr(VALUE obj,swig_type_info* ty){
+void* FXRbConvertPtr(VALUE obj,swig_type_info* ty, int flags){
   void *ptr;
-  SWIG_ConvertPtr(obj,&ptr,ty,1);
-  return ptr;
+  int res = SWIG_ConvertPtr(obj,&ptr,ty,flags);
+  if( res == SWIG_OK ) return ptr;
+#ifdef HAVE_RB_DURING_GC
+  if( rb_during_gc() ){
+    rb_bug( "FXRbConvertPtr got wrong argument type rubyObj=%p", (void*)obj);
   }
+#endif
+  if( res == SWIG_ERROR_RELEASE_NOT_OWNED ){
+    rb_raise( rb_eTypeError, "clean and disown of non-owned object is not allowed: %" PRIsVALUE, obj);
+  }
+  if( res == SWIG_NullReferenceError ){
+    rb_raise( rb_eTypeError, "object can not be NULL: %" PRIsVALUE, obj);
+  }
+  if( res == SWIG_ObjectPreviouslyDeletedError ){
+    if(ty){
+      rb_raise( rb_eTypeError, "the object has already been deleted: %" PRIsVALUE, ((swig_class *) (ty->clientdata))->klass);
+    } else {
+      rb_raise( rb_eTypeError, "the object has already been deleted");
+    }
+  }
+  if(ty){
+    rb_raise( rb_eTypeError, "wrong argument type %" PRIsVALUE ", expected kind of %" PRIsVALUE, rb_obj_class(obj), ((swig_class *) (ty->clientdata))->klass );
+  } else {
+    rb_raise( rb_eTypeError, "wrong argument type %" PRIsVALUE, rb_obj_class(obj) );
+  }
+}
 
 
 // Returns an FXInputHandle for this Ruby file object
