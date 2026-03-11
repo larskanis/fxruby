@@ -1652,11 +1652,8 @@ FXInputHandle FXRbGetWriteFileHandle(VALUE obj,FXuint mode) {
   if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
   fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #else
-  rb_io_t *fptr;
-  GetOpenFile(obj, fptr);
-  VALUE wrio = fptr->tied_io_for_writing;
-  if(wrio) obj = wrio;
-  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
+  VALUE wrio = rb_io_get_write_io(obj);
+  fd = FIX2INT(rb_funcall(wrio, rb_intern("fileno"), 0));
 #endif
 #ifdef WIN32
 #ifdef __CYGWIN__
