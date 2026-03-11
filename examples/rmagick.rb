@@ -1,8 +1,8 @@
 require 'fox16'
 begin
-  require 'RMagick'
+  require 'rmagick'
 rescue LoadError
-  warn("LoadError: To execute this app you need to have 'RMagick' gem installed.")
+  warn("LoadError: To execute this app you need to have 'rmagick' gem installed.")
   sleep(5)
   exit(false)
 end
@@ -15,16 +15,16 @@ class RMagickExample < FXMainWindow
     super(app, "RMagick Example", :width => 800, :height => 600)
 
     # Construct an ImageList
-    dippy = Magick::ImageList.new(File.join("icons", "dippy.png"))
+    dippy = Magick::ImageList.new(File.expand_path("icons/dippy.png", __dir__))
 
     # Manipulate the image
     text = Magick::Draw.new
-    text.annotate(dippy, 0, 0, 0, 60, "Dippy Duck") do
-      self.gravity = Magick::SouthGravity
-      self.pointsize = 24
-      self.stroke = 'transparent'
-      self.fill = '#0000A9'
-      self.font_weight = Magick::BoldWeight
+    text.annotate(dippy, 0, 0, 0, 60, "Dippy Duck") do |a|
+      a.gravity = Magick::SouthGravity
+      a.pointsize = 24
+      a.stroke = 'transparent'
+      a.fill = '#80C0A9'
+      a.font_weight = Magick::BoldWeight
     end
 
     # Extract image data and use it to construct FXPNGImage
