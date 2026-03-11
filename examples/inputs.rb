@@ -21,7 +21,7 @@ class InputHandlerWindow < FXMainWindow
 
     # Output will be displayed in a multiline text area
     @cmdOutput = FXText.new(textFrame, :opts => LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    @cmdInput.text = "ping rubyinstaller.org"
+    @cmdInput.text = "ping rubyinstaller.org -c4"
 
     # Initialize the pipe
     @pipe = nil
