@@ -356,6 +356,7 @@ end
 if enable_config("debug")
   $CPPFLAGS += " -ggdb"
   $LDFLAGS += " -ggdb"
+  $CPPFLAGS += " -DRUBY_DEBUG=1" # define RUBY_DEBUG otherwise ruby/assert.h defines NDEBUG
 else
   $CPPFLAGS += " -DNDEBUG"
 end
