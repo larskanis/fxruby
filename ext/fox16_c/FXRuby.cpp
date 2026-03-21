@@ -74,7 +74,7 @@ VALUE FXRbNewPointerObj(void *ptr,swig_type_info* ty){
 }
 
 VALUE FXRbNewPointerObjCb(void *ptr,swig_type_info* ty){
-  return SWIG_Ruby_NewPointerObj(ptr, ty, 1);
+  return SWIG_Ruby_NewPointerObj(ptr, ty, SWIG_POINTER_OWN);
 }
 
 

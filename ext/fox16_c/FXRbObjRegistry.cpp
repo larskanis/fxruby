@@ -52,7 +52,7 @@ VALUE FXRbObjRegistry::NewBorrowedObj(void *ptr,swig_type_info* ty){
     ObjDesc *desc;
 
     if(FXMALLOC(&desc,ObjDesc,1)){
-      VALUE obj = SWIG_Ruby_NewPointerObj(ptr,ty,1);
+      VALUE obj = SWIG_Ruby_NewPointerObj(ptr,ty,SWIG_POINTER_OWN);
       FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,safe_rb_obj_classname(obj)));
       desc->obj = obj;
       desc->type = borrowed;
