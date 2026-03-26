@@ -114,7 +114,7 @@
     
 <p>The MDI child window contains the application work area in a Multiple Document Interface application.  GUI Controls are connected to the MDI child via delegation through the MDI client, which forwards messages it receives to the active MDI child. The MDI child itself tries to further delegate messages to its single content window, and if not handled there, to its target object. When the MDI child is maximized, it sends a SEL_MAXIMIZE message; when the MDI child is minimized, it sends a SEL_MINIMIZE message.  When it is restored, it sends a SEL_RESTORE message to its target.  The MDI child also notifies its target when it becomes the active MDI child, via the SEL_SELECTED message. The void* in the SEL_SELECTED message refers to the previously active MDI child, if any.  When an MDI child ceases to be the active one, a SEL_DESELECTED message is sent.  The void* in the SEL_DESELECTED message refers to the newly activated MDI child, if any.  Thus, interception of SEL_SELECTED and SEL_DESELECTED allows the target object to determine whether the user switched between MDI windows of the same document (target) or between MDI windows belonging to the same document. When the MDI child is closed, it sends a SEL_CLOSE message to its target. The target has an opportunity to object to the closing; if the MDI child should not be closed, it should return 1 (objection). If the MDI child should be closed, the target can either just return 0 or simply not handle the SEL_CLOSE message. The SEL_UPDATE message can be used to modify the MDI child’s title (via ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXMDIChild to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_LEFTBUTTONPRESS</code></dt>
@@ -158,7 +158,7 @@
 <p>sent immediately before this window is destroyed</p>
 </dd></dl>
 
-<h3 id="label-MDI+Child+Window+styles">MDI Child Window styles</h3>
+<h3 id="mdi-child-window-styles">MDI Child Window styles</h3>
 <dl class="rdoc-list note-list"><dt><code>MDI_NORMAL</code></dt>
 <dd>
 <p>Normal display mode</p>
@@ -2165,7 +2165,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:04 2026 by
+  Generated on Thu Mar 26 09:48:47 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

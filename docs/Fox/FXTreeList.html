@@ -123,7 +123,7 @@
     
 <p>A Tree List Widget organizes items in a hierarchical, tree-like fashion. Subtrees can be collapsed or expanded by double-clicking on an item or by clicking on the optional plus button in front of the item. Each item may have a text and optional open-icon as well as a closed-icon. The items may be connected by optional lines to show the hierarchical relationship. When an item’s selected state changes, the treelist emits a SEL_SELECTED or SEL_DESELECTED message.  If an item is opened or closed, a message of type SEL_OPENED or SEL_CLOSED is sent.  When the subtree under an item is expanded, a SEL_EXPANDED or SEL_COLLAPSED message is issued. A change of the current item is signified by the SEL_CHANGED message. In addition, the tree list sends SEL_COMMAND messages when the user clicks on an item, and SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED when the user clicks once, twice, or thrice, respectively. When items are added or removed, the tree list sends messages of the type SEL_INSERTED or SEL_DELETED. In each of these cases, a pointer to the item, if any, is passed in the 3rd argument of the message.</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXTreeList to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
@@ -185,7 +185,7 @@
 <p>sent before an item is removed from the list; the message data is a reference to the item (an FXTreeItem instance).</p>
 </dd></dl>
 
-<h3 id="label-Tree+list+styles">Tree list styles</h3>
+<h3 id="tree-list-styles">Tree list styles</h3>
 <dl class="rdoc-list note-list"><dt><code>TREELIST_EXTENDEDSELECT</code></dt>
 <dd>
 <p>Extended selection mode allows for drag-selection of ranges of items</p>
@@ -2146,7 +2146,7 @@
     
 <p>Construct a new, initially empty tree list.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent window for this tree list <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
@@ -5085,7 +5085,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:05 2026 by
+  Generated on Thu Mar 26 09:48:49 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

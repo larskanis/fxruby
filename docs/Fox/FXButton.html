@@ -116,7 +116,7 @@
     
 <p>A button provides a push button, with optional icon and/or text label. When pressed, the button widget sends a <code>SEL_COMMAND</code> to its target. Passing the <code>BUTTON_TOOLBAR</code> style option gives buttons a “flat” look, and causes the edge of the button to be raised when the cursor moves over it. Passing <code>BUTTON_DEFAULT</code> allows the button to become the default button in a dialog, when the focus moves to it.  The default widget in a dialog is the widget which will accept the <em>Return</em> key when it is pressed. The <code>BUTTON_INITIAL</code> flag makes the button the default widget when the focus moves to a widget which can not itself be a default widget. There should be only a single button in the dialog which is the initial default; typically this is the <em>OK</em> or <em>Close</em> button. The option <code>BUTTON_AUTOGRAY</code> (<code>BUTTON_AUTOHIDE</code>) causes the button to be grayed out (hidden) if its handler does not respond to the <code>SEL_UPDATE</code> message. This is useful when messages are delegated, for example when using a multiple document interface, where the ultimate destination of a message can be changed.</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXButton to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
@@ -136,7 +136,7 @@
 <p>sent when the button is clicked.</p>
 </dd></dl>
 
-<h3 id="label-Button+state+bits">Button state bits</h3>
+<h3 id="button-state-bits">Button state bits</h3>
 <dl class="rdoc-list note-list"><dt><code>STATE_UP</code></dt>
 <dd>
 <p>Button is up</p>
@@ -154,7 +154,7 @@
 <p>Same as <code>STATE_ENGAGED</code> (used for check buttons or radio buttons)</p>
 </dd></dl>
 
-<h3 id="label-Button+flags">Button flags</h3>
+<h3 id="button-flags">Button flags</h3>
 <dl class="rdoc-list note-list"><dt><code>BUTTON_AUTOGRAY</code></dt>
 <dd>
 <p>Automatically gray out when not updated</p>
@@ -524,7 +524,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:58:58 2026 by
+  Generated on Thu Mar 26 09:48:31 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

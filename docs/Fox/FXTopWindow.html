@@ -118,7 +118,7 @@
 
 <p>TopWindows are usually managed by a Window Manager under X11 and therefore borders and window-menus and other decorations like resize- handles are subject to the Window Manager’s interpretation of the decoration hints. When a TopWindow is closed, it sends a SEL_CLOSE message to its target.  The target should return 0 in response to this message if there is no objection to proceed with the closing of the window, and return 1 otherwise.  After the SEL_CLOSE message has been sent and no objection was raised, the window will delete itself. When the session is closed, the window will send a SEL_SESSION_NOTIFY message to its target, allowing the application to write any unsaved data to the disk.  If the target returns 0, then the system will proceed to close the session.  Subsequently a SEL_SESSION_CLOSED will be received which causes the window to be closed with prejudice by calling the function close(FALSE). When receiving a SEL_UPDATE, the target can update the title string of the window, so that the title of the window reflects the name of the document, for example. For convenience, TopWindow provides the same layout behavior as the Packer widget, as well as docking and undocking of toolbars. TopWindows can be owned by other windows, or be free-floating. Owned TopWindows will usually remain stacked on top of the owner windows. The lifetime of an owned window should not exceed that of the owner.</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXTopWindow to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_MINIMIZE</code></dt>
@@ -141,7 +141,7 @@
 <p>sent after the session is closed.</p>
 </dd></dl>
 
-<h3 id="label-Title+and+border+decorations">Title and border decorations</h3>
+<h3 id="title-and-border-decorations">Title and border decorations</h3>
 <dl class="rdoc-list note-list"><dt><code>DECOR_NONE</code></dt>
 <dd>
 <p>Borderless window</p>
@@ -177,7 +177,7 @@
 <p>All of the above</p>
 </dd></dl>
 
-<h3 id="label-Initial+window+placement">Initial window placement</h3>
+<h3 id="initial-window-placement">Initial window placement</h3>
 <dl class="rdoc-list note-list"><dt><code>PLACEMENT_DEFAULT</code></dt>
 <dd>
 <p>Place it at the default size and location</p>
@@ -198,7 +198,7 @@
 <p>Place it maximized to the screen size</p>
 </dd></dl>
 
-<h3 id="label-Message+identifiers">Message identifiers</h3>
+<h3 id="message-identifiers">Message identifiers</h3>
 <dl class="rdoc-list note-list"><dt><code>ID_MAXIMIZE</code></dt>
 <dd>
 <p>Maximize the window</p>
@@ -1703,7 +1703,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:12 2026 by
+  Generated on Thu Mar 26 09:49:07 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

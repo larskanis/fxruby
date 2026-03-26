@@ -121,7 +121,7 @@
     
 <p>Header control may be placed over a table or list to provide a resizable captions above a number of columns. Each caption comprises a label and an optional icon; in addition, an arrow may be shown to indicate whether the items in that column are sorted, and if so, whether they are sorted in increasing or decreasing order. Each caption can be interactively resized.  During the resizing, if the HEADER_TRACKING was specified, the header control sends a SEL_CHANGED message to its target, with the message data set to the caption number being resized, of the type FXint. If the HEADER_TRACKING was not specified the SEL_CHANGED message is sent at the end of the resizing operation. Clicking on a caption causes a message of type SEL_COMMAND to be sent to the target, with the message data set to the caption number being clicked. A single click on a split causes a message of type SEL_CLICKED to be sent to the target; a typical response to this message would be to adjust the size of the split to fit the contents displayed underneath it. The contents may be scrolled by calling setPosition().</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXHeader to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_CHANGED</code></dt>
@@ -150,7 +150,7 @@
 <p>sent when a header item is about to be removed; the message data is an Integer indicating the index of the item to be removed.</p>
 </dd></dl>
 
-<h3 id="label-Header+style+options">Header style options</h3>
+<h3 id="header-style-options">Header style options</h3>
 <dl class="rdoc-list note-list"><dt><code>HEADER_BUTTON</code></dt>
 <dd>
 <p>Button style can be clicked</p>
@@ -171,7 +171,7 @@
 <p>Normal options, same as <code>HEADER_HORIZONTAL|FRAME_NORMAL</code></p>
 </dd></dl>
 
-<h3 id="label-Message+identifiers">Message identifiers</h3>
+<h3 id="message-identifiers">Message identifiers</h3>
 <dl class="rdoc-list note-list"><dt><code>ID_TIPTIMER</code></dt>
 <dd>
 <p>x</p>
@@ -3030,7 +3030,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:58:59 2026 by
+  Generated on Thu Mar 26 09:48:32 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

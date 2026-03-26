@@ -112,7 +112,7 @@
     
 <p>An Image is a rectangular array of pixels.  It supports two representations of these pixels: a client-side pixel buffer which is stored as an array of FXColor, and a server-side pixmap which is stored in an organization directly compatible with the screen, for fast drawing onto the device. The server-side representation is not directly accessible from the current process as it lives in the process of the X Server or GDI.</p>
 
-<h3 id="label-Image+rendering+hints">Image rendering hints</h3>
+<h3 id="image-rendering-hints">Image rendering hints</h3>
 <dl class="rdoc-list note-list"><dt><code>IMAGE_KEEP</code></dt>
 <dd>
 <p>Keep pixel data in client. By default, FOX discards of the client-side pixel data for an image after you call create() for that image. When the <code>IMAGE_KEEP</code> option is set for FXImage (or one of its subclasses), the client-side buffer is maintained. You will typically want to set this option if you intend to do repeated re-rendering of the image after it has been created.</p>
@@ -517,30 +517,6 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize_without_data_string-instance_method" title="#initialize_without_data_string (instance method)">#<strong>initialize_without_data_string</strong>  &#x21d2; FXImage </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Create an image.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#loadPixels-instance_method" title="#loadPixels (instance method)">#<strong>loadPixels</strong>(store)  &#x21d2; Object </a>
     
 
@@ -805,30 +781,6 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#setPixels_without_data_string-instance_method" title="#setPixels_without_data_string (instance method)">#<strong>setPixels_without_data_string</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Populate the image with new pixel data of the same size or of a new size.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#vgradient-instance_method" title="#vgradient (instance method)">#<strong>vgradient</strong>(top, bottom)  &#x21d2; Object </a>
     
 
@@ -951,7 +903,7 @@
     
 <p>Create an image.  If a client-side pixel buffer has been specified, the image owns the pixel buffer. If the <code>IMAGE_OWNED</code> flag is set but a <code>nil</code> pixel buffer is passed, a pixel buffer will be automatically created and will be owned by the image. The flags <code>IMAGE_SHMI</code> and <code>IMAGE_SHMP</code> may be specified for large images to instruct <span class='object_link'><a href="#render-instance_method" title="Fox::FXImage#render (method)">#render</a></span> to use shared memory to communicate with the server.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>a</code></dt>
 <dd>
 <p>an application instance <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">Fox::FXApp</a></span></p>
@@ -1196,7 +1148,7 @@
     
 <p>Blend image over uniform color.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>color</code></dt>
 <dd>
 <p>the blended color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
@@ -1239,7 +1191,7 @@
     
 <p>Crop image to given rectangle and then re-render the server-side image from the client-side pixel buffer. This method calls resize() to adjust the client and server side representations.  The new image may be smaller or larger than the old one; blank areas are filled with color. There must be at least one pixel of overlap between the old and the new image.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate for top left corner of the clip rectangle [Integer]</p>
@@ -1294,7 +1246,7 @@
     
 <p>Fade an image to a certain color by a certain factor. The <em>factor</em> is some integer value between 0 and 255 inclusive, where a factor of 255 indicates no fading and a factor of zero indicates that the image is completely faded to the fade <em>color</em>.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>color</code></dt>
 <dd>
 <p>the fade color <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
@@ -1377,7 +1329,7 @@
     
 <p>Return the color of the pixel at (<em>x</em>, <em>y</em>).</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the pixel of interest [Integer]</p>
@@ -1423,7 +1375,7 @@
     
 <p>Fill image using a bilinear gradient.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>topleft</code></dt>
 <dd>
 <p>pixel color for top-left corner <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
@@ -1525,7 +1477,7 @@
     
 <p>Fill image using a horizontal gradient.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>left</code></dt>
 <dd>
 <p>starting color, for leftmost pixels <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
@@ -1558,81 +1510,6 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="initialize_without_data_string-instance_method">
-  
-    #<strong>initialize_without_data_string</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Fox::FXImage (class)">FXImage</a></span></tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Create an image.  If a client-side pixel buffer has been specified, the image owns the pixel buffer. If the <code>IMAGE_OWNED</code> flag is set but a <code>nil</code> pixel buffer is passed, a pixel buffer will be automatically created and will be owned by the image. The flags <code>IMAGE_SHMI</code> and <code>IMAGE_SHMP</code> may be specified for large images to instruct <span class='object_link'><a href="#render-instance_method" title="Fox::FXImage#render (method)">#render</a></span> to use shared memory to communicate with the server.</p>
-
-<h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>a</code></dt>
-<dd>
-<p>an application instance <span class='object_link'><a href="FXApp.html" title="Fox::FXApp (class)">Fox::FXApp</a></span></p>
-</dd><dt><code>pixels</code></dt>
-<dd>
-<p>pixels [Array of FXColor values or string of raw [RGBA] values]</p>
-</dd><dt><code>opts</code></dt>
-<dd>
-<p>image options [Integer]</p>
-</dd><dt><code>width</code></dt>
-<dd>
-<p>image width [Integer]</p>
-</dd><dt><code>height</code></dt>
-<dd>
-<p>image height [Integer]</p>
-</dd></dl>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt><span class='object_link'><a href="" title="Fox::FXImage (class)">FXImage</a></span></tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>a new instance of FXImage</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-693
-694</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 693</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_pixels'>pixels</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># :yields: theImage
-</span><span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <h3 class="signature " id="loadPixels-instance_method">
   
     #<strong>loadPixels</strong>(store)  &#x21d2; <tt>Object</tt> 
@@ -1648,7 +1525,7 @@
 
 <p>Note that the base class version of <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> expects to read the the pixel data in a neutral format (i.e. without any image format specific information). For example, if you have a 1024x768 image without an alpha channel (and thus only the red, green and blue channels), <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> will attempt to read a total of 1024*768*3*8 bytes from the stream. The behavior of <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> is different for subclasses such as FXPNGImage, where <span class='object_link'><a href="#loadPixels-instance_method" title="Fox::FXImage#loadPixels (method)">#loadPixels</a></span> will instead expects to read the image data in a specific image file format (i.e. the PNG file format).</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>store</code></dt>
 <dd>
 <p>opened stream from which to read the pixel data <span class='object_link'><a href="FXStream.html" title="Fox::FXStream (class)">Fox::FXStream</a></span></p>
@@ -1691,7 +1568,7 @@
     
 <p>Mirror image horizontally and/or vertically and then re-render the server-side image from the client-side pixel buffer.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>horizontal</code></dt>
 <dd>
 <p>if <code>true</code>, the image will be flipped from left to right [Boolean]</p>
@@ -1889,7 +1766,7 @@
     
 <p>Rotate image counter-clockwise by some number of degrees and then re-render the server-side image from the client-side pixel buffer.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>degrees</code></dt>
 <dd>
 <p>number of degrees by which to rotate the image [Integer]</p>
@@ -1934,7 +1811,7 @@
 
 <p>Note that the base class version of <span class='object_link'><a href="#savePixels-instance_method" title="Fox::FXImage#savePixels (method)">#savePixels</a></span> saves the pixel data as-is, without any image format specific information. For example, if you have a 1024x768 image without an alpha channel (and thus only the red, green and blue channels) the total number of bytes written to the stream will be 1024*768*3*8. The behavior of <span class='object_link'><a href="#savePixels-instance_method" title="Fox::FXImage#savePixels (method)">#savePixels</a></span> is different for subclasses such as FXPNGImage, where <span class='object_link'><a href="#savePixels-instance_method" title="Fox::FXImage#savePixels (method)">#savePixels</a></span> will instead save the image data in a specific image file format (i.e. the PNG file format).</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>store</code></dt>
 <dd>
 <p>opened stream to which to save the pixel data <span class='object_link'><a href="FXStream.html" title="Fox::FXStream (class)">Fox::FXStream</a></span></p>
@@ -1979,7 +1856,7 @@
 
 <p>The optional third argument specifies the <em>quality</em> of the scaling algorithm used. By default, <span class='object_link'><a href="#scale-instance_method" title="Fox::FXImage#scale (method)">#scale</a></span> uses a fast (but low quality) nearest-neighbor algorithm for scaling the image to its new size. To use the higher-quality scaling algorithm from FOX 1.0, you should pass in a value of 1 as the third argument to <span class='object_link'><a href="#scale-instance_method" title="Fox::FXImage#scale (method)">#scale</a></span>.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>width</code></dt>
 <dd>
 <p>new image width, in pixels [Integer]</p>
@@ -2028,7 +1905,7 @@
     
 <p>Set pixel at (<em>x</em>, <em>y</em>) to <em>clr</em>.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>x</code></dt>
 <dd>
 <p>x-coordinate of the pixel of interest [Integer]</p>
@@ -2081,7 +1958,7 @@
 
 <p>If called with <code>width</code> and <code>height</code>, the size of the serverside representation of the image, if it exists, is adjusted but the contents are not updated yet. This can be done by calling render().</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>pixels</code></dt>
 <dd>
 <p>pixels [Array of FXColor values or string of raw [RGBA] values]</p>
@@ -2122,64 +1999,6 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="setPixels_without_data_string-instance_method">
-  
-    #<strong>setPixels_without_data_string</strong>  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Populate the image with new pixel data of the same size or of a new size</p>
-
-<p>Pixel data is copied when IMAGE_OWNED option is set or when provided as Array. Pixel data is used without copying when IMAGE_OWNED isn’t set and provided as String. In that case the string must be writable and receives modifications to the image.</p>
-
-<p>If called with <code>width</code> and <code>height</code>, the size of the serverside representation of the image, if it exists, is adjusted but the contents are not updated yet. This can be done by calling render().</p>
-
-<h4 id="label-Parameters-3A">Parameters:</h4>
-<dl class="rdoc-list note-list"><dt><code>pixels</code></dt>
-<dd>
-<p>pixels [Array of FXColor values or string of raw [RGBA] values]</p>
-</dd><dt><code>opts</code></dt>
-<dd>
-<p>image options [Integer]</p>
-</dd><dt><code>width</code></dt>
-<dd>
-<p>image width [Integer]</p>
-</dd><dt><code>height</code></dt>
-<dd>
-<p>image height [Integer]</p>
-</dd></dl>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-699
-700</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/fox16/core.rb', line 699</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_setPixels'>setPixels</span><span class='lparen'>(</span><span class='id identifier rubyid_pixels'>pixels</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <h3 class="signature " id="vgradient-instance_method">
   
     #<strong>vgradient</strong>(top, bottom)  &#x21d2; <tt>Object</tt> 
@@ -2193,7 +2012,7 @@
     
 <p>Fill image using a vertical gradient.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>top</code></dt>
 <dd>
 <p>starting color, for topmost pixels <span class='object_link'><a href="FXColor.html" title="Fox::FXColor (class)">Fox::FXColor</a></span></p>
@@ -2239,7 +2058,7 @@
     
 <p>Shear image horizontally and then re-render the server-side image from the client-side pixel buffer. The number of pixels is equal to the <em>shear</em> parameter times 256. The area outside the image is filled with transparent black, unless another <em>color</em> is specified.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>shear</code></dt>
 <dd>
 <p>how far to shear [Integer]</p>
@@ -2285,7 +2104,7 @@
     
 <p>Shear image verticallyand then re-render the server-side image from the client-side pixel buffer. The number of pixels is equal to the <em>shear</em> parameter times 256. The area outside the image is filled with transparent black, unless another <em>color</em> is specified.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>shear</code></dt>
 <dd>
 <p>how far to shear [Integer]</p>
@@ -2322,7 +2141,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:58:57 2026 by
+  Generated on Thu Mar 26 09:48:27 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

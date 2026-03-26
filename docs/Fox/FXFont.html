@@ -108,7 +108,7 @@
     
 <p>Font class</p>
 
-<h3 id="label-Font+pitch+hints">Font pitch hints</h3>
+<h3 id="font-pitch-hints">Font pitch hints</h3>
 <dl class="rdoc-list note-list"><dt><code>Fixed</code></dt>
 <dd>
 <p>Fixed pitch, mono-spaced</p>
@@ -117,7 +117,7 @@
 <p>Variable pitch, proportional spacing</p>
 </dd></dl>
 
-<h3 id="label-Font+style+hints">Font style hints</h3>
+<h3 id="font-style-hints">Font style hints</h3>
 <dl class="rdoc-list note-list"><dt><code>Decorative</code></dt>
 <dd>
 <p>Fancy fonts</p>
@@ -150,7 +150,7 @@
 <p>Rotatable fonts</p>
 </dd></dl>
 
-<h3 id="label-Font+slant+options">Font slant options</h3>
+<h3 id="font-slant-options">Font slant options</h3>
 <dl class="rdoc-list note-list"><dt><code>ReverseOblique</code></dt>
 <dd>
 <p>Reversed oblique</p>
@@ -168,7 +168,7 @@
 <p>Oblique slant</p>
 </dd></dl>
 
-<h3 id="label-Font+weight+options">Font weight options</h3>
+<h3 id="font-weight-options">Font weight options</h3>
 <dl class="rdoc-list note-list"><dt><code>Thin</code></dt>
 <dd>
 <p>Thin</p>
@@ -198,7 +198,7 @@
 <p>Black</p>
 </dd></dl>
 
-<h3 id="label-Condensed+or+expanded+options">Condensed or expanded options</h3>
+<h3 id="condensed-or-expanded-options">Condensed or expanded options</h3>
 <dl class="rdoc-list note-list"><dt><code>UltraCondensed</code></dt>
 <dd>
 <p>Ultra condensed printing</p>
@@ -228,7 +228,7 @@
 <p>Ultra expanded</p>
 </dd></dl>
 
-<h3 id="label-Font+character+set+encoding">Font character set encoding</h3>
+<h3 id="font-character-set-encoding">Font character set encoding</h3>
 <dl class="rdoc-list note-list"><dt><code>FONTENCODING_DEFAULT</code></dt>
 <dd>
 <p>Don’t care character encoding</p>
@@ -1514,11 +1514,11 @@ passed, for example:
       <pre class="lines">
 
 
-258
-259</pre>
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 260</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_fontDesc'>fontDesc</span><span class='rparen'>)</span> <span class='comment'># :yields: theFont
 </span><span class='kw'>end</span></pre>
@@ -1806,6 +1806,8 @@ passed, for example:
     
 <p>Font angle [Integer]</p>
 
+<p>The angle, in degrees*64 relative to positive x axis</p>
+
 
   </div>
 </div>
@@ -1818,12 +1820,12 @@ passed, for example:
       <pre class="lines">
 
 
-221
-222
-223</pre>
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 223</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_angle'>angle</span>
   <span class='ivar'>@angle</span>
@@ -1947,12 +1949,12 @@ passed, for example:
       <pre class="lines">
 
 
-239
-240
-241</pre>
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fontAscent'>fontAscent</span>
   <span class='ivar'>@fontAscent</span>
@@ -2033,12 +2035,12 @@ passed, for example:
       <pre class="lines">
 
 
-242
-243
-244</pre>
+244
+245
+246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 242</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 244</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fontDescent'>fontDescent</span>
   <span class='ivar'>@fontDescent</span>
@@ -2076,12 +2078,12 @@ passed, for example:
       <pre class="lines">
 
 
-236
-237
-238</pre>
+238
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 238</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fontHeight'>fontHeight</span>
   <span class='ivar'>@fontHeight</span>
@@ -2119,12 +2121,12 @@ passed, for example:
       <pre class="lines">
 
 
-245
-246
-247</pre>
+247
+248
+249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 245</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 247</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fontLeading'>fontLeading</span>
   <span class='ivar'>@fontLeading</span>
@@ -2162,12 +2164,12 @@ passed, for example:
       <pre class="lines">
 
 
-248
-249
-250</pre>
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 250</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fontSpacing'>fontSpacing</span>
   <span class='ivar'>@fontSpacing</span>
@@ -2205,12 +2207,12 @@ passed, for example:
       <pre class="lines">
 
 
-233
-234
-235</pre>
+235
+236
+237</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 233</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 235</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fontWidth'>fontWidth</span>
   <span class='ivar'>@fontWidth</span>
@@ -2334,12 +2336,12 @@ passed, for example:
       <pre class="lines">
 
 
-230
-231
-232</pre>
+232
+233
+234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 230</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 232</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_maxChar'>maxChar</span>
   <span class='ivar'>@maxChar</span>
@@ -2597,11 +2599,11 @@ passed, for example:
       <pre class="lines">
 
 
-357
-358</pre>
+359
+360</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 357</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 359</span>
 
 <span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="Fox::FXFont (class)">FXFont</a></span></span><span class='period'>.</span><span class='id identifier rubyid_listFonts'>listFonts</span><span class='lparen'>(</span><span class='id identifier rubyid_face'>face</span><span class='comma'>,</span> <span class='id identifier rubyid_weight'>weight</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_slant'>slant</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_setWidth'>setWidth</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_hints'>hints</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -2655,10 +2657,10 @@ passed, for example:
       <pre class="lines">
 
 
-315</pre>
+317</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 315</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 317</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fontMono?'>fontMono?</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2692,10 +2694,10 @@ passed, for example:
       <pre class="lines">
 
 
-342</pre>
+344</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 342</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 344</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getCharWidth'>getCharWidth</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2729,10 +2731,10 @@ passed, for example:
       <pre class="lines">
 
 
-310</pre>
+312</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 310</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 312</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getFont'>getFont</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2766,10 +2768,10 @@ passed, for example:
       <pre class="lines">
 
 
-352</pre>
+354</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 352</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 354</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getTextHeight'>getTextHeight</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2803,10 +2805,10 @@ passed, for example:
       <pre class="lines">
 
 
-347</pre>
+349</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 347</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 349</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_getTextWidth'>getTextWidth</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2861,10 +2863,10 @@ passed, for example:
       <pre class="lines">
 
 
-327</pre>
+329</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 327</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 329</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hasChar?'>hasChar?</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2898,10 +2900,10 @@ passed, for example:
       <pre class="lines">
 
 
-332</pre>
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 332</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 334</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_leftBearing'>leftBearing</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2935,10 +2937,10 @@ passed, for example:
       <pre class="lines">
 
 
-337</pre>
+339</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 337</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 339</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rightBearing'>rightBearing</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2972,10 +2974,10 @@ passed, for example:
       <pre class="lines">
 
 
-304</pre>
+306</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 304</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXFont.rb', line 306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setFont'>setFont</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2988,7 +2990,7 @@ passed, for example:
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:58:56 2026 by
+  Generated on Thu Mar 26 09:48:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

@@ -111,7 +111,7 @@
     
 <p>The undo list manages a list of undoable (and redoable) commands for a FOX application; it works hand-in-hand with subclasses of FXCommand and is an application of the well-known <em>Command</em> pattern. Your application code should implement any number of command classes and then add then to an FXUndoList instance. For an example of how this works, see the textedit example program from the FXRuby distribution.</p>
 
-<h2 id="label-Class+Constants">Class Constants</h2>
+<h2 id="class-constants">Class Constants</h2>
 
 <p>[FXUndoList::ID_UNDO]	Message identifier for the undo method. 			When a <code>SEL_COMMAND</code> message with this identifier 			is sent to an undo list, it undoes the last command. 			FXUndoList also provides a <code>SEL_UPDATE</code> handler for this 			identifier, that enables or disables the sender 			depending on whether it’s possible to undo.</p>
 
@@ -2550,7 +2550,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:21 2026 by
+  Generated on Thu Mar 26 09:49:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

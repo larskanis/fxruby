@@ -114,7 +114,20 @@
     
 <p>The MDI client window manages a number of MDI child windows in a multiple-document interface (MDI) application. MDI child windows usually receive messages from the GUI controls by delegation via the MDI client.  This is accomplished by making the MDI client window the target for most GUI controls.  The MDI client filters out messages intented for itself, and delegates the remaining messages to its currently active MDI child, if any. If you use the auto-gray or auto-hide feature available in some GUI controls, these controls can be automatically grayed out or hidden when there is no active MDI child. When delegating messages via MDI client to MDI child windows of different types, care should be taken that message ID’s do not overlap, so that all message ID’s only map to the intented handlers no matter which MDI child window type is active. The MDI client sends a SEL_CHANGED message to its target when the active MDI child is switched, with the void  # pointer refering to the new MDI child. A MDI Window selection dialog can be brought up through the ID_MDI_OVER_X messages; a menu button connected to the MDI client with the ID_MDI_OVER_X message will be automatically grayed out if there are less than X MDI child windows.</p>
 
-<h3 id="label-Events">Events</h3>
+<p>MDI client can arrange the MDI child windows in various ways:</p>
+<ul><li>
+<p>it may maximize one of the MDI child windows <span class='object_link'><a href="FXMDIChild.html#maximize-instance_method" title="Fox::FXMDIChild#maximize (method)">Fox::FXMDIChild#maximize</a></span>,</p>
+</li><li>
+<p>arrange them side-by-side <span class='object_link'><a href="#horizontal-instance_method" title="Fox::FXMDIClient#horizontal (method)">#horizontal</a></span>, <span class='object_link'><a href="#vertical-instance_method" title="Fox::FXMDIClient#vertical (method)">#vertical</a></span>,</p>
+</li><li>
+<p>cascade them <span class='object_link'><a href="#cascade-instance_method" title="Fox::FXMDIClient#cascade (method)">#cascade</a></span>,</p>
+</li><li>
+<p>or iconify them.</p>
+</li></ul>
+
+<p>MDI child windows are notified about changes in the active MDI child window by the MDI client.</p>
+
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXMDIClient to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_CHANGED</code></dt>
@@ -247,6 +260,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#cascade-instance_method" title="#cascade (instance method)">#<strong>cascade</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Arrange childs as cascade.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#forallDocuments-instance_method" title="#forallDocuments (instance method)">#<strong>forallDocuments</strong>(sender, sel, ptr)  &#x21d2; Object </a>
     
 
@@ -319,6 +356,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#horizontal-instance_method" title="#horizontal (instance method)">#<strong>horizontal</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Arrange childs horizontal.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(p, opts = 0, x = 0, y = 0, width = 0, height = 0)  &#x21d2; FXMDIClient </a>
     
 
@@ -361,6 +422,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Set active MDI child window for this MDI client to <em>child</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#vertical-instance_method" title="#vertical (instance method)">#<strong>vertical</strong>(notify = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Arrange childs vertical.</p>
 </div></span>
   
 </li>
@@ -464,11 +549,11 @@
       <pre class="lines">
 
 
-38
-39</pre>
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span><span class='rparen'>)</span> <span class='comment'># :yields: theMDIClient
 </span><span class='kw'>end</span></pre>
@@ -510,12 +595,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_activeChild'>activeChild</span>
   <span class='ivar'>@activeChild</span>
@@ -553,12 +638,12 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cascadeX'>cascadeX</span>
   <span class='ivar'>@cascadeX</span>
@@ -596,12 +681,12 @@
       <pre class="lines">
 
 
-35
-36
-37</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cascadeY'>cascadeY</span>
   <span class='ivar'>@cascadeY</span>
@@ -619,7 +704,44 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="forallDocuments-instance_method">
+  <h3 class="signature first" id="cascade-instance_method">
+  
+    #<strong>cascade</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Arrange childs as cascade</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cascade'>cascade</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="forallDocuments-instance_method">
   
     #<strong>forallDocuments</strong>(sender, sel, ptr)  &#x21d2; <tt>Object</tt> 
   
@@ -644,10 +766,10 @@
       <pre class="lines">
 
 
-51</pre>
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_forallDocuments'>forallDocuments</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -681,10 +803,10 @@
       <pre class="lines">
 
 
-57</pre>
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_forallDocWindows'>forallDocWindows</span><span class='lparen'>(</span><span class='id identifier rubyid_document'>document</span><span class='comma'>,</span> <span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -718,12 +840,49 @@
       <pre class="lines">
 
 
-45</pre>
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_forallWindows'>forallWindows</span><span class='lparen'>(</span><span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span> <span class='id identifier rubyid_sel'>sel</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="horizontal-instance_method">
+  
+    #<strong>horizontal</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Arrange childs horizontal</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_horizontal'>horizontal</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -755,12 +914,49 @@
       <pre class="lines">
 
 
-62</pre>
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setActiveChild'>setActiveChild</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="vertical-instance_method">
+  
+    #<strong>vertical</strong>(notify = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Arrange childs vertical</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rdoc-sources/FXMDIClient.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_vertical'>vertical</span><span class='lparen'>(</span><span class='id identifier rubyid_notify'>notify</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -771,7 +967,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:08 2026 by
+  Generated on Thu Mar 26 09:48:56 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

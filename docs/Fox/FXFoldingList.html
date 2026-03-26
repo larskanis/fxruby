@@ -123,7 +123,7 @@
     
 <p>An FXFoldingList widget resembles an FXTreeList, but it supports a header control to provide each item with multiple columns of text. Subtrees can be collapsed or expanded by double-clicking on an item or by clicking on the optional plus button in front of the item. Each item may have a text and optional open-icon as well as a closed-icon. The items may be connected by optional lines to show the hierarchical relationship. When an item’s selected state changes, the folding list emits a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message. If an item is opened or closed, a message of type <code>SEL_OPENED</code> or <code>SEL_CLOSED</code> is sent. When the subtree under an item is expanded, a <code>SEL_EXPANDED</code> or <code>SEL_COLLAPSED</code> message is issued. A change of the current item is signified by the <code>SEL_CHANGED</code> message. In addition, the folding list sends <code>SEL_COMMAND</code> messages when the user clicks on an item, and <code>SEL_CLICKED</code>, <code>SEL_DOUBLECLICKED</code>, and <code>SEL_TRIPLECLICKED</code> when the user clicks once, twice, or thrice, respectively. When items are added or removed, the folding list sends messages of the type <code>SEL_INSERTED</code> or <code>SEL_DELETED</code>. In each of these cases, a pointer to the item, if any, is passed in the 3rd argument of the message.</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXFoldingList to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
@@ -185,7 +185,7 @@
 <p>sent before an item is removed from the list; the message data is a reference to the item (an FXFoldingItem instance).</p>
 </dd></dl>
 
-<h3 id="label-Folding+list+styles">Folding list styles</h3>
+<h3 id="folding-list-styles">Folding list styles</h3>
 <dl class="rdoc-list note-list"><dt><code>FOLDINGLIST_EXTENDEDSELECT</code></dt>
 <dd>
 <p>Extended selection mode allows for drag-selection of ranges of items</p>
@@ -2200,7 +2200,7 @@
     
 <p>Return an initialized FXFoldingList instance; the folding list is initially empty.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent window for this folding list <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
@@ -5179,7 +5179,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:16 2026 by
+  Generated on Thu Mar 26 09:49:18 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

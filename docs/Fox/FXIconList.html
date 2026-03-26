@@ -123,7 +123,7 @@
     
 <p>A Icon List Widget displays a list of items, each with a text and optional icon.  Icon List can display its items in essentially three different ways; in big-icon mode, the bigger of the two icons is used for each item, and the text is placed underneath the icon. In mini- icon mode, the icons are listed in rows and columns, with the smaller icon preceding the text.  Finally, in detail mode the icons are listed in a single column, and all fields of the text are shown under a header control with one button for each subfield. When an item’s selected state changes, the icon list sends a <code>SEL_SELECTED</code> or <code>SEL_DESELECTED</code> message.  A change of the current item is signified by the <code>SEL_CHANGED</code> message. The icon list sends <code>SEL_COMMAND</code> messages when the user clicks on an item, and <code>SEL_CLICKED</code>, <code>SEL_DOUBLECLICKED</code>, and <code>SEL_TRIPLECLICKED</code> when the user clicks once, twice, or thrice, respectively. When items are added, replaced, or removed, the icon list sends messages of the type <code>SEL_INSERTED</code>, <code>SEL_REPLACED</code>, or <code>SEL_DELETED</code>. In each of these cases, the index to the item, if any, is passed in the 3rd argument of the message.</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXIconList to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_CHANGED</code></dt>
@@ -176,7 +176,7 @@
 <p>sent when a list item is about to be removed; the message data is an Integer indicating the index of the item to be removed.</p>
 </dd></dl>
 
-<h3 id="label-Icon+list+styles">Icon list styles</h3>
+<h3 id="icon-list-styles">Icon list styles</h3>
 <dl class="rdoc-list note-list"><dt><code>ICONLIST_EXTENDEDSELECT</code></dt>
 <dd>
 <p>Extended selection mode</p>
@@ -212,7 +212,7 @@
 <p>same as <code>ICONLIST_EXTENDEDSELECT</code></p>
 </dd></dl>
 
-<h3 id="label-Message+identifiers">Message identifiers</h3>
+<h3 id="message-identifiers">Message identifiers</h3>
 <dl class="rdoc-list note-list"><dt><code>ID_SHOW_DETAILS</code></dt>
 <dd>
 <p>x</p>
@@ -4666,7 +4666,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:04 2026 by
+  Generated on Thu Mar 26 09:48:46 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

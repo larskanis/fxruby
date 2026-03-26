@@ -123,7 +123,7 @@
     
 <p>An FXComboBox provides a way to select a string from a list of strings. Unless <code>COMBOBOX_STATIC</code> is passed, it also allows the user to enter a new string into the text field, for example if the desired entry is not in the list of strings.  Passing <code>COMBOBOX_REPLACE</code>, <code>COMBOBOX_INSERT_BEFORE</code>, <code>COMBOBOX_INSERT_AFTER</code>, <code>COMBOBOX_INSERT_FIRST</code>, or <code>COMBOBOX_INSERT_LAST</code> causes a newly entered text to replace the current one in the list, or be added before or after the current entry, or to be added at the beginning or end of the list. FXComboBox is intended to enter text; if you need to enter a choice from a list of options, it is recommended that the FXListBox widget is used instead. When the text in the field is changed, a <code>SEL_COMMAND</code> will be send to the target. The FXComboBox can also receive <code>ID_GETSTRINGVALUE</code> and <code>ID_SETSTRINGVALUE</code> and so on, which will behave similar to FXTextField in that they will retrieve or update the value of the field.</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXComboBox to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_CHANGED</code></dt>
@@ -134,7 +134,7 @@
 <p>sent when a new item is selected from the list, or when a command message is sent from the text field; the message data is a String containing the new text.</p>
 </dd></dl>
 
-<h3 id="label-ComboBox+styles">ComboBox styles</h3>
+<h3 id="combobox-styles">ComboBox styles</h3>
 <dl class="rdoc-list note-list"><dt><code>COMBOBOX_NO_REPLACE</code></dt>
 <dd>
 <p>Leave the list the same</p>
@@ -161,7 +161,7 @@
 <p>Default options for comboboxes</p>
 </dd></dl>
 
-<h3 id="label-Message+identifiers">Message identifiers</h3>
+<h3 id="message-identifiers">Message identifiers</h3>
 <dl class="rdoc-list note-list"><dt><code>ID_LIST</code></dt>
 <dd>
 <p>identifier associated with the embedded FXList instance</p>
@@ -1296,7 +1296,7 @@
     
 <p>Return an initialized FXComboBox instance, with room to display <em>cols</em> columns of text.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>p</code></dt>
 <dd>
 <p>the parent widget for this combo-box <span class='object_link'><a href="FXComposite.html" title="Fox::FXComposite (class)">Fox::FXComposite</a></span></p>
@@ -2929,7 +2929,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:03 2026 by
+  Generated on Thu Mar 26 09:48:42 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

@@ -16,6 +16,14 @@ module Fox
   # a menu button connected to the MDI client with the ID_MDI_OVER_X message will be
   # automatically grayed out if there are less than X MDI child windows.
   #
+  # MDI client can arrange the MDI child windows in various ways:
+  # - it may maximize one of the MDI child windows {FXMDIChild#maximize},
+  # - arrange them side-by-side {#horizontal}, {#vertical},
+  # - cascade them {#cascade},
+  # - or iconify them.
+  #
+  # MDI child windows are notified about changes in the active MDI child window by the MDI client.
+  #
   # === Events
   #
   # The following messages are sent by FXMDIClient to its target:
@@ -60,6 +68,13 @@ module Fox
     # Set active MDI child window for this MDI client to _child_.
     #
     def setActiveChild(child=nil, notify=true); end
+
+    # Arrange childs as cascade
+    def cascade(notify=false); end
+    # Arrange childs horizontal
+    def horizontal(notify=false); end
+    # Arrange childs vertical
+    def vertical(notify=false); end
   end
 end
 

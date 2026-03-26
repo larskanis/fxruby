@@ -108,7 +108,7 @@
     
 <p>Application Object</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The FXApp object itself doesn’t have a designated message target like other FOX objects, but it can send messages to objects for a few special events.</p>
 <dl class="rdoc-list label-list"><dt><strong>Timers</strong></dt>
@@ -125,7 +125,7 @@
 <p>When a signal handler object is registered with the application using the addSignal method, a <code>SEL_SIGNAL</code> message may be sent to the message target.</p>
 </dd></dl>
 
-<h3 id="label-File+input+modes+for+-7B-23addInput-7D">File input modes for <span class='object_link'><a href="#addInput-instance_method" title="Fox::FXApp#addInput (method)">#addInput</a></span></h3>
+<h3 id="file-input-modes-for-addinput">File input modes for <span class='object_link'><a href="#addInput-instance_method" title="Fox::FXApp#addInput (method)">#addInput</a></span></h3>
 <dl class="rdoc-list note-list"><dt><code>INPUT_NONE</code></dt>
 <dd>
 <p>inactive</p>
@@ -140,7 +140,7 @@
 <p>except input fd</p>
 </dd></dl>
 
-<h3 id="label-All+ways+of+being+modal">All ways of being modal</h3>
+<h3 id="all-ways-of-being-modal">All ways of being modal</h3>
 <dl class="rdoc-list note-list"><dt><code>MODAL_FOR_NONE</code></dt>
 <dd>
 <p>Non modal event loop (dispatch normally)</p>
@@ -152,7 +152,7 @@
 <p>Modal for popup (always dispatch to popup)</p>
 </dd></dl>
 
-<h3 id="label-Default+cursors+provided+by+the+application">Default cursors provided by the application</h3>
+<h3 id="default-cursors-provided-by-the-application">Default cursors provided by the application</h3>
 
 <p>These constants symbolically represent the different cursor shapes used in FOX applications, and can be used as the <em>which</em> arguments for <span class='object_link'><a href="#getDefaultCursor-instance_method" title="Fox::FXApp#getDefaultCursor (method)">#getDefaultCursor</a></span> and <span class='object_link'><a href="#setDefaultCursor-instance_method" title="Fox::FXApp#setDefaultCursor (method)">#setDefaultCursor</a></span>.</p>
 <dl class="rdoc-list note-list"><dt><code>DEF_ARROW_CURSOR</code></dt>
@@ -238,7 +238,7 @@
 <p>Wait cursor</p>
 </dd></dl>
 
-<h3 id="label-Messages+identifiers">Messages identifiers</h3>
+<h3 id="messages-identifiers">Messages identifiers</h3>
 <dl class="rdoc-list note-list"><dt><code>ID_QUIT</code></dt>
 <dd>
 <p>Terminate the application normally</p>
@@ -6830,7 +6830,7 @@ getApp().endWaitCursor()
     
 <p>Read a window and its children from the stream store, and append it under father; note it is initially not created yet. Return a reference to the new window.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>store</code></dt>
 <dd>
 <p><span class='object_link'><a href="FXStream.html" title="Fox::FXStream (class)">Fox::FXStream</a></span></p>
@@ -7951,7 +7951,7 @@ time_left = app.remainingTimeout(timeout)
     
 <p>Write a window and its children, and all resources reachable from this window, into the stream <em>store</em> (an FXStream instance).</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>store</code></dt>
 <dd>
 <p><span class='object_link'><a href="FXStream.html" title="Fox::FXStream (class)">Fox::FXStream</a></span></p>
@@ -7988,7 +7988,7 @@ time_left = app.remainingTimeout(timeout)
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:58:56 2026 by
+  Generated on Thu Mar 26 09:48:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

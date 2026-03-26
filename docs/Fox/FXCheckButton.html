@@ -118,7 +118,7 @@
     
 <p>A Check button is a tri-state button.  Normally, it is either <code>TRUE</code> or <code>FALSE</code>, and toggles between <code>TRUE</code> or <code>FALSE</code> whenever it is pressed. A third state <code>MAYBE</code> may be set to indicate that no selection has been made yet by the user, or that the state is ambiguous. When pressed, the Check Button sends a <code>SEL_COMMAND</code> to its target, and the message data represents the state of the check button. The option <code>CHECKBUTTON_AUTOGRAY</code> (<code>CHECKBUTTON_AUTOHIDE</code>) causes the button to be grayed out (hidden) if its handler does not respond to the <code>SEL_UPDATE</code> message. With the <code>CHECKBUTTON_PLUS</code> option, the Check Button will draw a + or - sign instead of a check. You can use this to make collapsible panels, by hooking up a Check Button to a layout manager via the <code>ID_TOGGLE_SHOWN</code> message. This will give a similar visual element as collapsing folders in a Tree List.</p>
 
-<h3 id="label-Events">Events</h3>
+<h3 id="events">Events</h3>
 
 <p>The following messages are sent by FXCheckButton to its target:</p>
 <dl class="rdoc-list note-list"><dt><code>SEL_KEYPRESS</code></dt>
@@ -138,7 +138,7 @@
 <p>sent when the button is clicked.</p>
 </dd></dl>
 
-<h3 id="label-CheckButton+styles">CheckButton styles</h3>
+<h3 id="checkbutton-styles">CheckButton styles</h3>
 <dl class="rdoc-list note-list"><dt><code>CHECKBUTTON_AUTOGRAY</code></dt>
 <dd>
 <p>Automatically gray out when not updated</p>
@@ -939,7 +939,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:15 2026 by
+  Generated on Thu Mar 26 09:49:16 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>

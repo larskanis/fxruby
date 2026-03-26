@@ -116,7 +116,7 @@
     
 <p>The dock site widget is a widget where dock bars can be docked. Dock site widgets are typically embedded inside the main window, placed against those sides where docking of toolbars is to be allowed. Dock bars placed inside a dock site are laid out in horizontal or vertical bands called <em>galleys</em>. A toolbar with the <code>LAYOUT_DOCK_SAME</code> hint is preferentially placed on the same galley as its previous sibling. A dock bar with the <code>LAYOUT_DOCK_NEXT</code> is always placed on the next galley. Each galley will have at least one dock bar shown in it. Several dock bars may be placed side-by-side inside one galley, unless there is insufficient room. If there is insufficient room to place another dock bar, that dock bar will be moved to the next galley, even though its <code>LAYOUT_DOCK_NEXT</code> option is not set. This implies that when the main window is resized, and more room becomes available, it will jump back to its preferred galley. Within a galley, dock bars will be placed from left to right, at the given x and y coordinates, with the constraints that the dock bar will stay within the galley, and do not overlap each other. It is possible to use <code>LAYOUT_FILL_X</code> and/or <code>LAYOUT_FILL_Y</code> to stretch a toolbar to the available space on its galley. The galleys are oriented horizontally if the dock site is placed inside a top level window using <code>LAYOUT_SIDE_TOP</code> or <code>LAYOUT_SIDE_BOTTOM</code>, and vertically oriented if placed with <code>LAYOUT_SIDE_LEFT</code> or <code>LAYOUT_SIDE_RIGHT</code>.</p>
 
-<h3 id="label-Dock+Site+Options">Dock Site Options</h3>
+<h3 id="dock-site-options">Dock Site Options</h3>
 <dl class="rdoc-list note-list"><dt><code>DOCKSITE_WRAP</code></dt>
 <dd>
 <p>Dockbars are wrapped to another galley when not enough space on current galley</p>
@@ -450,7 +450,7 @@
     
 <p>The dock site is informed that the given bar has been docked at the given coordinates.  The default implementation determines where to insert the newly docked bar and adjusts the layout options of the bars accordingly.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>bar</code></dt>
 <dd>
 <p>a reference to the newly docked dockbar <span class='object_link'><a href="FXDockBar.html" title="Fox::FXDockBar (class)">Fox::FXDockBar</a></span><span class='object_link'><a href="FXDockBar.html" title="Fox::FXDockBar (class)">Fox::FXDockBar</a></span></p>
@@ -499,7 +499,7 @@
     
 <p>Move tool bar, changing its options to suit the new position. Used by the toolbar dragging to rearrange the toolbars inside the toolbar dock.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>bar</code></dt>
 <dd>
 <p>a reference to the dockbar that’s being dragged <span class='object_link'><a href="FXDockBar.html" title="Fox::FXDockBar (class)">Fox::FXDockBar</a></span></p>
@@ -547,7 +547,7 @@
     
 <p>The dock site is informed that the given bar has been removed. In the default implementation, the dock site fixes the layout options of the remaining bars so they stay in the same place if possible.</p>
 
-<h4 id="label-Parameters-3A">Parameters:</h4>
+<h4 id="parameters">Parameters:</h4>
 <dl class="rdoc-list note-list"><dt><code>bar</code></dt>
 <dd>
 <p>a reference to the removed dockbar <span class='object_link'><a href="FXDockBar.html" title="Fox::FXDockBar (class)">Fox::FXDockBar</a></span></p>
@@ -668,7 +668,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jan  2 19:59:03 2026 by
+  Generated on Thu Mar 26 09:48:43 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.0).
 </div>
