@@ -218,6 +218,8 @@ module Fox
     attr_accessor :fontDesc
 
     # Font angle [Integer]
+    #
+    # The angle, in degrees*64 relative to positive x axis
     attr_accessor :angle
 
     # Font description as a string [String]
