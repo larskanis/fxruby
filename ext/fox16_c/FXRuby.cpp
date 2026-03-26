@@ -126,7 +126,7 @@ void FXRbUnregisterRubyObj(const void* foxObj){
  * They are free'd by libfox when the owning fox object gets destroyed.
  * Only the ruby wrapper is GC'ed.
  * They are registered in FXRbObjRegistry as borrowed object.
- * They are built per FXGetRubyObj().
+ * They are built per FXRbGetRubyObj().
  *
  * Callback objects :
  * This is the new type.
@@ -135,7 +135,7 @@ void FXRbUnregisterRubyObj(const void* foxObj){
  * They are not registered in FXRbObjRegistry, but stored on the stack only.
  * Therefore callback objects aren't re-used, but newly wrapped for each call.
  * The same goes for arguments to ruby blocks.
- * They are built per FXGetRubyObjCb().
+ * They are built per FXRbGetRubyObjCb().
  */
 
 /**
@@ -232,7 +232,7 @@ void FXRbGcMark(void *obj){
      * is to mark any Ruby reference this object, "borrowed" or not;
      * so the 2nd argument to FXRbGetRubyObj() is now true.
      *
-     * If you feel compelled to change this back to FXGetRubyObj(obj,false),
+     * If you feel compelled to change this back to FXRbGetRubyObj(obj,false),
      * please think about it first. Especially make sure that the shutter.rb
      * example program works if you invoke the GC in ShutterWindow#create;
      * make sure that the shutter items' contents don't get blown away!
@@ -1652,11 +1652,8 @@ FXInputHandle FXRbGetWriteFileHandle(VALUE obj,FXuint mode) {
   if(rb_ivar_defined(obj, vwrite)) obj = rb_ivar_get(obj, vwrite);
   fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
 #else
-  rb_io_t *fptr;
-  GetOpenFile(obj, fptr);
-  VALUE wrio = fptr->tied_io_for_writing;
-  if(wrio) obj = wrio;
-  fd = FIX2INT(rb_funcall(obj, rb_intern("fileno"), 0));
+  VALUE wrio = rb_io_get_write_io(obj);
+  fd = FIX2INT(rb_funcall(wrio, rb_intern("fileno"), 0));
 #endif
 #ifdef WIN32
 #ifdef __CYGWIN__
