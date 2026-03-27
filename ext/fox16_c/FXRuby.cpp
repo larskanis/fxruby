@@ -335,7 +335,7 @@ FXuint FXRbNumberOfFXColors(VALUE string_or_ary){
   }else{
     Check_Type(string_or_ary,T_STRING);
     if(RSTRING_LEN(string_or_ary) % sizeof(FXColor) != 0 )
-      rb_raise( rb_eArgError, "String size is no multiple of %lu", sizeof(FXColor) );
+      rb_raise( rb_eArgError, "String size is no multiple of %zu", sizeof(FXColor) );
     len = RSTRING_LEN(string_or_ary) / sizeof(FXColor);
   }
   return len;
