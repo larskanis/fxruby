@@ -373,6 +373,7 @@ def main
 
 	input = $stdin unless input
 	output = $stdout unless output
+	output.binmode
 
 	parser = IFaceParser.new(input, output)
 	iface = parser.process
