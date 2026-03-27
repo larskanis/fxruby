@@ -363,7 +363,7 @@ end
 # Platform-specific modifications
 do_rake_compiler_setup
 
-if RbConfig::MAKEFILE_CONFIG['CC'] =~ /gcc/
+if RbConfig::MAKEFILE_CONFIG['CXX'] =~ /g++/
   $CXXFLAGS += " -Wno-unused-function"
   $CXXFLAGS += " -Wno-maybe-uninitialized"
   $CXXFLAGS += " -Wno-attribute-warning -Wno-deprecated-declarations"
