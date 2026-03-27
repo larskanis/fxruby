@@ -24,6 +24,7 @@
  * $Id: FXRbApp.cpp 2902 2008-12-11 14:09:20Z lyle $
  ***********************************************************************/
 
+#include "swigruby.h"
 #include "FXRbCommon.h"
 
 #ifdef HAVE_SYS_TIME_H

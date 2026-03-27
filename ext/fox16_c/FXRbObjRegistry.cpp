@@ -20,9 +20,9 @@
  * at "lars@greiz-reinsdorf.de".
  ***********************************************************************/
 
+#include "swigruby.h"
 #include "FXRbCommon.h"
 #include "FXRbObjRegistry.h"
-#include "swigruby.h"
 
 FXRbObjRegistry::FXRbObjRegistry(){
   FXRuby_Objects=st_init_numtable();
@@ -52,7 +52,7 @@ VALUE FXRbObjRegistry::NewBorrowedObj(void *ptr,swig_type_info* ty){
     ObjDesc *desc;
 
     if(FXMALLOC(&desc,ObjDesc,1)){
-      VALUE obj = SWIG_Ruby_NewPointerObj(ptr,ty,1);
+      VALUE obj = SWIG_Ruby_NewPointerObj(ptr,ty,SWIG_POINTER_OWN);
       FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,safe_rb_obj_classname(obj)));
       desc->obj = obj;
       desc->type = borrowed;
@@ -84,7 +84,7 @@ void FXRbObjRegistry::RegisterRubyObj(VALUE rubyObj,const void* foxObj) {
      * To avoid double references to the same foxObj from different Ruby objects,
      * we decouple the foxObj from previoius ruby object and point to the new one.
      */
-    DATA_PTR(desc->obj) = 0;
+    FXRbConvertPtr(desc->obj, NULL, SWIG_POINTER_RELEASE);
     desc->obj = rubyObj;
     desc->type = own;
   } else {
@@ -107,7 +107,14 @@ void FXRbObjRegistry::UnregisterRubyObj(const void* foxObj, bool alsoOwned){
     if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(&desc))!=0){
       if( !alsoOwned && desc->type!=borrowed ) return;
       FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)desc->obj,safe_rb_obj_classname(desc->obj),foxObj));
-      DATA_PTR(desc->obj)=0;
+
+      /* Release unless it's already T_ZOMBIE */
+      if(RB_TYPE_P(desc->obj, RUBY_T_DATA)) {
+        int res = SWIG_ConvertPtr(desc->obj, NULL, NULL, SWIG_POINTER_CLEAR);
+        if (res != SWIG_OK){
+          rb_bug( "UnregisterRubyObj(rubyObj=%p) error: %d", (void*)desc->obj, res);
+        }
+      }
       FXFREE(&desc);
       st_delete(FXRuby_Objects,reinterpret_cast<st_data_t *>(const_cast<void**>(&foxObj)),reinterpret_cast<st_data_t *>(0));
       FXASSERT(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t *>(0))==0);

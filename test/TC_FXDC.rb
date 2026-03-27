@@ -59,9 +59,21 @@ class TC_FXDC < Test::Unit::TestCase
     @dc.drawLinesRel(points)
   end
 
+  def testDrawLinesRel_TypeError
+    points = [ FXPoint.new, FXArc.new ]
+    msg = assert_raises(TypeError) { @dc.drawLinesRel(points) }
+    assert_match(/wrong.* Fox::FXArc.*expected.* Fox::FXPoint/i, msg.to_s)
+  end
+
   def testDrawLineSegments
     segments = [ FXSegment.new, FXSegment.new ]
     @dc.drawLineSegments(segments)
+  end
+
+  def testDrawLineSegments_TypeError
+    segments = [ FXSegment.new, FXPoint.new ]
+    msg = assert_raises(TypeError) { @dc.drawLineSegments(segments) }
+    assert_match(/wrong.* Fox::FXPoint.*expected.* Fox::FXSegment/i, msg.to_s)
   end
 
   def testDrawArc
@@ -74,6 +86,12 @@ class TC_FXDC < Test::Unit::TestCase
     @dc.drawArcs(arcs)
   end
 
+  def testDrawArcs_TypeError
+    arcs = [ FXPoint.new, FXPoint.new ]
+    msg = assert_raises(TypeError) { @dc.drawArcs(arcs) }
+    assert_match(/wrong.* Fox::FXPoint.*expected.* Fox::FXArc/i, msg.to_s)
+  end
+
   def testFillRectangle
     x, y, w, h = 0, 0, 20, 20
     @dc.fillRectangle(x, y, w, h)
@@ -82,6 +100,12 @@ class TC_FXDC < Test::Unit::TestCase
   def testFillRectangles
     rectangles = [ FXRectangle.new, FXRectangle.new ]
     @dc.fillRectangles(rectangles)
+  end
+
+  def testFillRectangles_TypeError
+    rectangles = [ FXRectangle.new, FXPoint.new ]
+    msg = assert_raises(TypeError) { @dc.fillRectangles(rectangles) }
+    assert_match(/wrong.* Fox::FXPoint.*expected.* Fox::FXRectangle/i, msg.to_s)
   end
 
   def testFillArc

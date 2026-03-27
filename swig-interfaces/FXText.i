@@ -722,7 +722,7 @@ public:
           text->styles=new FXHiliteStyle[text->numStyles];
           for (long i=0; i<text->numStyles; i++){
             FXHiliteStyle* ptr;
-	    SWIG_ConvertPtr(rb_ary_entry(styles,i),(void **)&ptr,SWIGTYPE_p_FXHiliteStyle,1);
+	    SWIG_ConvertPtr(rb_ary_entry(styles,i),(void **)&ptr,SWIGTYPE_p_FXHiliteStyle,SWIG_POINTER_DISOWN);
             text->styles[i]=*ptr;
             }
 	  self->setHiliteStyles(text->styles);

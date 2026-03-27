@@ -23,6 +23,7 @@
  * but which have somehow been "exposed" to the Ruby layer.
  */
 
+#include "swigruby.h"
 #include "FXRbCommon.h"
 
 void FXRbHeader::unregisterOwnedObjects(FXHeader *self)

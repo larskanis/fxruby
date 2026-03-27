@@ -24,6 +24,7 @@
  * $Id: FXRbDataTarget.cpp 2713 2007-11-14 15:27:36Z lyle $
  ***********************************************************************/
 
+#include "swigruby.h"
 #include "FXRbCommon.h"
 
 /**

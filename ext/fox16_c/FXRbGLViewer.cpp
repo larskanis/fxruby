@@ -24,6 +24,7 @@
  * $Id: FXRbGLViewer.cpp 2190 2005-08-24 07:58:47Z lyle $
  ***********************************************************************/
 
+#include "swigruby.h"
 #include "FXRbCommon.h"
 
 // Process picks

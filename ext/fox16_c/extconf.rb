@@ -356,6 +356,7 @@ end
 if enable_config("debug")
   $CPPFLAGS += " -ggdb"
   $LDFLAGS += " -ggdb"
+  $CPPFLAGS += " -DRUBY_DEBUG=1" # define RUBY_DEBUG otherwise ruby/assert.h defines NDEBUG
 else
   $CPPFLAGS += " -DNDEBUG"
 end
@@ -366,7 +367,7 @@ do_rake_compiler_setup
 if RbConfig::MAKEFILE_CONFIG['CXX'] =~ /g++/
   $CXXFLAGS += " -Wno-unused-function"
   $CXXFLAGS += " -Wno-maybe-uninitialized"
-  $CXXFLAGS += " -Wno-attribute-warning -Wno-deprecated-declarations"
+  $CXXFLAGS += " -Wno-attribute-warning"
 end
 
 # Last step: build the makefile
