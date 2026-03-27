@@ -108,9 +108,9 @@ void FXRbObjRegistry::UnregisterRubyObj(const void* foxObj, bool alsoOwned){
       if( !alsoOwned && desc->type!=borrowed ) return;
       FXTRACE((1,"FXRbUnregisterRubyObj(rubyObj=%p (%s),foxObj=%p)\n",(void *)desc->obj,safe_rb_obj_classname(desc->obj),foxObj));
 
+      /* Release unless it's already T_ZOMBIE */
       if(RB_TYPE_P(desc->obj, RUBY_T_DATA)) {
-        /* Release unless it's already T_ZOMBIE */
-        int res = SWIG_ConvertPtr(desc->obj, NULL, NULL, desc->type==borrowed ? SWIG_POINTER_CLEAR : SWIG_POINTER_RELEASE);
+        int res = SWIG_ConvertPtr(desc->obj, NULL, NULL, SWIG_POINTER_CLEAR);
         if (res != SWIG_OK){
           rb_bug( "UnregisterRubyObj(rubyObj=%p) error: %d", (void*)desc->obj, res);
         }
