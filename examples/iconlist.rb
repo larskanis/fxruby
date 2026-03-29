@@ -1,4 +1,5 @@
 require 'fox16'
+require 'uri'
 
 include Fox
 
@@ -47,14 +48,23 @@ class IconListWindow < FXMainWindow
     iconlist.appendHeader("User", nil, 50)
     iconlist.appendHeader("Group", nil, 50)
 
-    big_folder = loadIcon("bigfolder.png")
-    mini_folder = loadIcon("minifolder.png")
+    @big_folder = loadIcon("bigfolder.png")
+    @mini_folder = loadIcon("minifolder.png")
 
-    iconlist.appendItem("Really BIG and wide item to test\tDocument\t10000\tJune 13, 1999\tUser\tSoftware", big_folder, mini_folder)
+    iconlist.appendItem("Really BIG and wide item to test\tDocument\t10000\tJune 13, 1999\tUser\tSoftware", @big_folder, @mini_folder)
     1.upto(400) do |i|
-      iconlist.appendItem("Filename_#{i}\tDocument\t10000\tJune 13, 1999\tUser\tSoftware", big_folder, mini_folder)
+      iconlist.appendItem("Filename_#{i}\tDocument\t10000\tJune 13, 1999\tUser\tSoftware", @big_folder, @mini_folder)
     end
     iconlist.currentItem = iconlist.numItems - 1
+    @iconlist = iconlist
+
+    FXMenuPane.new(self) do |menuPane|
+      paste_icon = loadIcon("paste.png")
+      FXMenuCommand.new(menuPane, "&Insert from clipboard\tCtrl-V", paste_icon) do |mc|
+        mc.connect(SEL_COMMAND) { insert_from_clipboard }
+      end
+      FXMenuTitle.new(menubar, "&Edit", nil, menuPane)
+    end
 
     # Arrange menu
     FXMenuPane.new(self) do |menuPane|
@@ -67,12 +77,77 @@ class IconListWindow < FXMainWindow
     end
     # Let's see a tooltip
     FXToolTip.new(getApp())
+
+    # Register the drag types for copy files from the clipboard
+    @dragtype_urilist = app.registerDragType("text/uri-list")
+    @dragtype_filename = app.registerDragType("FileNameW")
+    @dragtype_filegroup = app.registerDragType("FileGroupDescriptorW")
+
   end
 
   # Overrides base class version
   def create
     super
     show(PLACEMENT_SCREEN)
+  end
+
+  def get_clipboard_files
+    # Show the avaliable clipboard formats:
+    puts "Avaliable clipboard formats:"
+    type_ids = inquireDNDTypes(FROM_CLIPBOARD)
+    pp type_ids.map{|id| [id, app.getDragTypeName(id), getDNDData(FROM_CLIPBOARD, id)] }
+
+    # Process copied files with standard uri list (on Linux)
+    paths = getDNDData(FROM_CLIPBOARD, @dragtype_urilist)
+    if paths
+      files = paths.each_line.map do |file|
+        # file.chomp.sub(%r{^file://}, "")
+        URI.decode_uri_component(URI(file.chomp).path)
+      end
+      return files
+    end
+
+    # Process copied data from Windows Explorer
+    # This works for files only, but not for directories.
+    path = getDNDData(FROM_CLIPBOARD, @dragtype_filename)
+    filesdata = getDNDData(FROM_CLIPBOARD, @dragtype_filegroup)
+    if path && filesdata
+      path = path.encode("UTF-8", "UTF-16LE").rstrip("\0")
+      path = File.dirname(path)
+      cnt, rest = filesdata.unpack("Ia*")
+      files = cnt.times.map do
+        # Unpack the FILEGROUPDESCRIPTORW struct
+        #  DWORD    dwFlags;
+        #  CLSID    clsid;
+        #  SIZEL    sizel;
+        #  POINTL   pointl;
+        #  DWORD    dwFileAttributes;
+        #  FILETIME ftCreationTime;
+        #  FILETIME ftLastAccessTime;
+        #  FILETIME ftLastWriteTime;
+        #  DWORD    nFileSizeHigh;
+        #  DWORD    nFileSizeLow;
+        #  CHAR     cFileName[MAX_PATH];
+        dwFlags, clsid, sizel, pointl, dwFileAttributes,
+            ftCreationTime, ftLastAccessTime, ftLastAccessTime,
+            nFileSizeHigh, nFileSizeLow, cFileName, rest =
+            rest.unpack("La16a8a8La8a8a8LLa520a*")
+        fname = cFileName.encode("UTF-8", "UTF-16LE").rstrip("\0")
+        File.join(path, fname)
+      end
+      return files
+    end
+  end
+
+  def insert_from_clipboard
+    files = get_clipboard_files
+
+    files&.each do |file|
+      ftype = File.ftype(file)
+      fsize = File.size(file)
+      mtime = File.mtime(file)
+      @iconlist.prependItem([file, ftype, fsize, mtime].join("\t"), @big_folder, @mini_folder)
+    end
   end
 end
 
