@@ -21,6 +21,18 @@ module Fox
     attr_reader :root_y
 
     # Keyboard/modifier state [Integer]
+    #
+    # Bitmask of these:
+    #   SHIFTMASK        = 0x001,           /// Shift key is down
+    #   CAPSLOCKMASK     = 0x002,           /// Caps Lock key is down
+    #   CONTROLMASK      = 0x004,           /// Ctrl key is down
+    #   ALTMASK          = 0x008,           /// Alt key is down
+    #   METAMASK         = 0x040,           /// Meta key is down
+    #   NUMLOCKMASK      = 0x010,           /// Num Lock key is down
+    #   SCROLLLOCKMASK   = 0x0E0,           /// Scroll Lock key is down (seems to vary)
+    #   LEFTBUTTONMASK   = 0x100,           /// Left mouse button is down
+    #   MIDDLEBUTTONMASK = 0x200,           /// Middle mouse button is down
+    #   RIGHTBUTTONMASK  = 0x400            /// Right mouse button is down
     attr_reader :state
 
     # Button, keysym or mode; DDE source [Integer]
