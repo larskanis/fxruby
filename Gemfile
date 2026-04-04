@@ -14,6 +14,7 @@ group :development do
   gem "bundler", ">= 1.12", "< 5.a"
   gem "rake", "~> 13.0"
   gem 'rdoc'
+  gem 'webrick' # for "yard server"
   gem 'redcarpet', '~> 3.0'
 end
 
