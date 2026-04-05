@@ -158,12 +158,12 @@ module Fox
     #
     def undo
       unless @undolist.empty?
-	command = @undolist.pop
-	@size -= command.size
-	command.undo
-	@redolist.push(command)
-	@marker = @marker - 1 unless @marker.nil?
-	return true
+        command = @undolist.pop
+        @size -= command.size
+        command.undo
+        @redolist.push(command)
+        @marker = @marker - 1 unless @marker.nil?
+        return true
       end
       return false
     end
@@ -173,12 +173,12 @@ module Fox
     #
     def redo
       unless @redolist.empty?
-	command = @redolist.pop
-	command.redo
-	@undolist.push(command)
-	@size += command.size
-	@marker = @marker + 1 unless @marker.nil?
-	return true
+        command = @redolist.pop
+        command.redo
+        @undolist.push(command)
+        @size += command.size
+        @marker = @marker + 1 unless @marker.nil?
+        return true
       end
       return false
     end
@@ -202,9 +202,9 @@ module Fox
     #
     def revert
       unless @marker.nil?
-	undo while (@marker > 0)
-	redo while (@marker < 0)
-	return true
+        undo while (@marker > 0)
+        redo while (@marker < 0)
+        return true
       end
       return false
     end
@@ -293,10 +293,10 @@ module Fox
     #
     def trimCount(nc)
       if @undolist.size > nc
-	numRemoved = @undolist.size - nc
-	@undolist[0, numRemoved].each { |command| @size -= command.size }
-	@undolist[0, numRemoved] = nil
-	@marker = nil if (@marker != nil && @marker > @undolist.size)
+        numRemoved = @undolist.size - nc
+        @undolist[0, numRemoved].each { |command| @size -= command.size }
+        @undolist[0, numRemoved] = nil
+        @marker = nil if (@marker != nil && @marker > @undolist.size)
       end
     end
 
@@ -305,14 +305,14 @@ module Fox
     #
     def trimSize(sz)
       if @size > sz
-	s = 0
-	@undolist.reverse.each_index { |i|
+        s = 0
+        @undolist.reverse.each_index { |i|
           j = @undolist.size - (i + 1)
           s += @undolist[j].size
           @undolist[j] = nil if (s > sz)
-	}
-	@undolist.compact!
-	@marker = nil if (@marker != nil && @marker > @undolist.size)
+        }
+        @undolist.compact!
+        @marker = nil if (@marker != nil && @marker > @undolist.size)
       end
     end
 
@@ -344,9 +344,9 @@ module Fox
 
     def onUpdUndo(sender, sel, ptr) # :nodoc:
       if canUndo?
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
@@ -358,9 +358,9 @@ module Fox
 
     def onUpdRedo(sender, sel, ptr) # :nodoc:
       if canRedo?
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
@@ -372,9 +372,9 @@ module Fox
 
     def onUpdClear(sender, sel, ptr) # :nodoc:
       if canUndo? || canRedo?
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
@@ -386,9 +386,9 @@ module Fox
 
     def onUpdRevert(sender, sel, ptr) # :nodoc:
       if canRevert?
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_ENABLE, SEL_COMMAND), nil)
       else
-	sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
+        sender.handle(self, Fox.MKUINT(FXWindow::ID_DISABLE, SEL_COMMAND), nil)
       end
       return 1
     end
