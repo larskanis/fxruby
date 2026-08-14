@@ -87,12 +87,11 @@ bool FXRbIsBorrowed(void* ptr){
   return FXRbObjRegistry::main.IsBorrowed(ptr);
 }
 
-bool FXRbSetInGC(const void* ptr, bool enabled){
-  return FXRbObjRegistry::main.SetInGC(ptr, enabled);
-}
-
 bool FXRbIsInGC(const void* ptr){
-  return FXRbObjRegistry::main.IsInGC(ptr);
+  if( rb_during_gc() ){
+    return true;
+  }
+  return false;
 }
 
 
@@ -1610,11 +1609,9 @@ void* FXRbConvertPtr(VALUE obj,swig_type_info* ty, int flags){
   void *ptr;
   int res = SWIG_ConvertPtr(obj,&ptr,ty,flags);
   if( res == SWIG_OK ) return ptr;
-#ifdef HAVE_RB_DURING_GC
   if( rb_during_gc() ){
     rb_bug( "FXRbConvertPtr got wrong argument type rubyObj=%p", (void*)obj);
   }
-#endif
   if( res == SWIG_ERROR_RELEASE_NOT_OWNED ){
     rb_raise( rb_eTypeError, "clean and disown of non-owned object is not allowed: %" PRIsVALUE, obj);
   }

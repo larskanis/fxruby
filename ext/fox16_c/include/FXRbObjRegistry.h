@@ -54,7 +54,6 @@ class FXRbObjRegistry {
   struct ObjDesc {
     VALUE obj;
     enum ObjType type;
-    bool in_gc;
   };
 
   const char * safe_rb_obj_classname(VALUE obj);
@@ -88,9 +87,6 @@ public:
   * FOX owns (i.e. it's borrowed).
   */
   bool IsBorrowed(void* ptr);
-
-  bool SetInGC(const void* ptr, bool enabled);
-  bool IsInGC(const void* ptr);
 
   static FXRbObjRegistry main;
 };
