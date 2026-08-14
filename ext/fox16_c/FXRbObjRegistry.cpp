@@ -31,7 +31,7 @@ FXRbObjRegistry::FXRbObjRegistry(){
 const char * FXRbObjRegistry::safe_rb_obj_classname(VALUE obj)
 {
   int tdata = TYPE(obj)==T_DATA;
-  if( (tdata && IsInGC(DATA_PTR(obj)))
+  if( (tdata && IsInGC(FXRbConvertPtr(obj, NULL, 0)))
 #ifdef HAVE_RB_DURING_GC
       || rb_during_gc()
 #endif
