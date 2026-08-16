@@ -6,7 +6,7 @@ class TC_FXSize < Test::Unit::TestCase
   include Fox
 
   def setup
-    @size1 = FXSize.new
+    @size1 = FXSize.new # unintialized / random size
     @size2 = FXSize.new(300, 200)
   end
 
@@ -30,12 +30,16 @@ class TC_FXSize < Test::Unit::TestCase
   end
 
   def test_uminus
-    size1 = -(@size1)
-    assert_equal(size1.w, -(@size1.w))
-    assert_equal(size1.h, -(@size1.h))
     size2 = -(@size2)
     assert_equal(size2.w, -(@size2.w))
     assert_equal(size2.h, -(@size2.h))
+  end
+
+  def test_uminus_uninit
+    omit_if( @size1.w == -32768 || @size1.h == -32768 ) # negating overflows
+    size1 = -(@size1)
+    assert_equal(size1.w, -(@size1.w))
+    assert_equal(size1.h, -(@size1.h))
   end
 
   def test_float
