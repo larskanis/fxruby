@@ -35,9 +35,19 @@ jobs:
       - uses: ruby/setup-ruby-pkgs@v1
         with:
           ruby-version: ${{ matrix.ruby }}      # passed to ruby/setup-ruby
-          apt-get: "xpra xserver-xorg-video-dummy libxrandr-dev libfox-1.6-dev swig" # Ubuntu
-          brew: "fox swig xquartz"     # macOS
+          apt-get: "xpra xserver-xorg-video-dummy libxrandr-dev libfox-1.6-dev" # Ubuntu
+          brew: "fox xquartz"     # macOS
           mingw: "fox swig"   # Windows mingw / mswin /ucrt
+
+      - name: install latest swig
+        if: matrix.os != 'windows'
+        run: |
+          wget http://prdownloads.sourceforge.net/swig/swig-4.5.0.tar.gz
+          tar xf swig-4.5.0.tar.gz
+          cd swig-4.5.0
+          ./configure -without-alllang --with-ruby
+          make -j`nproc`
+          sudo make install
 
       - name: Print tool versions
         run: |

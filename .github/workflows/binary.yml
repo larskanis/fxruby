@@ -25,6 +25,23 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "4.0"
+
+      - name: install latest swig
+        run: |
+          wget http://prdownloads.sourceforge.net/swig/swig-4.5.0.tar.gz
+          tar xf swig-4.5.0.tar.gz
+          cd swig-4.5.0
+          ./configure -without-alllang --with-ruby
+          make -j`nproc`
+          sudo make install
+
+      - name: Print tool versions
+        run: |
+          ruby -v
+          gcc -v
+          swig -version
+          gem env
+
       - run: bundle install
 
       - name: Build binary gem

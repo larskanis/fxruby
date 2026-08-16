@@ -31,11 +31,7 @@ FXRbObjRegistry::FXRbObjRegistry(){
 const char * FXRbObjRegistry::safe_rb_obj_classname(VALUE obj)
 {
   int tdata = TYPE(obj)==T_DATA;
-  if( (tdata && IsInGC(DATA_PTR(obj)))
-#ifdef HAVE_RB_DURING_GC
-      || rb_during_gc()
-#endif
-  ){
+  if (rb_during_gc()) {
     /* It's not safe to call rb_obj_classname() during GC.
     * Return dummy value in this case. */
     return "during GC";
@@ -56,7 +52,6 @@ VALUE FXRbObjRegistry::NewBorrowedObj(void *ptr,swig_type_info* ty){
       FXTRACE((1,"FXRbNewPointerObj(foxObj=%p) => rubyObj=%p (%s)\n",ptr,(void *)obj,safe_rb_obj_classname(obj)));
       desc->obj = obj;
       desc->type = borrowed;
-      desc->in_gc = false;
       int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t>(desc));
       FXASSERT(!overwritten);
       return obj;
@@ -91,7 +86,6 @@ void FXRbObjRegistry::RegisterRubyObj(VALUE rubyObj,const void* foxObj) {
     if(FXMALLOC(&desc,ObjDesc,1)){
       desc->obj = rubyObj;
       desc->type = own;
-      desc->in_gc = false;
       int overwritten = st_insert(FXRuby_Objects,reinterpret_cast<st_data_t>(const_cast<void*>(foxObj)),reinterpret_cast<st_data_t>(desc));
       FXASSERT(!overwritten);
     } else {
@@ -148,29 +142,5 @@ bool FXRbObjRegistry::IsBorrowed(void* ptr){
   }
 }
 
-bool FXRbObjRegistry::SetInGC(const void* ptr, bool enabled){
-  FXASSERT(ptr!=0);
-  ObjDesc *desc;
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
-    desc->in_gc=enabled;
-    return enabled;
-  }
-  return false;
-}
-
-bool FXRbObjRegistry::IsInGC(const void* ptr){
-  FXASSERT(ptr!=0);
-  ObjDesc *desc;
-
-#ifdef HAVE_RB_DURING_GC
-  if( rb_during_gc() ){
-    return true;
-  }
-#endif
-  if(st_lookup(FXRuby_Objects,reinterpret_cast<st_data_t>(ptr),reinterpret_cast<st_data_t *>(&desc))!=0){
-    return desc->in_gc;
-  }
-  return false;
-}
 
 FXRbObjRegistry FXRbObjRegistry::main;
