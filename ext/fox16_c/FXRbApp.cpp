@@ -172,7 +172,7 @@ FXRbApp::~FXRbApp(){
   FXRbDestroyAppSensitiveObjects();
   myRegistry=FXRbGetRubyObj(&(reg()),true);
   if(!NIL_P(myRegistry)){
-    DATA_PTR(myRegistry)=0;
+    FXRbConvertPtr(myRegistry, FXRbTypeQuery("FXApp *"), SWIG_POINTER_RELEASE);
     }
   FXRbUnregisterRubyObj(this);
   }
