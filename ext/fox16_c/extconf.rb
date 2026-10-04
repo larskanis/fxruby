@@ -224,6 +224,7 @@ def do_rake_compiler_setup
         "LDFLAGS=#{"-lclang_rt.builtins-aarch64" if RUBY_PLATFORM=~/aarch64-mingw/}",
         # Avoid gcc error: fxscintilla-FXSCINTILLA-3_5_2/fox/PlatFOX.cxx:1034: undefined reference to `_imp___ZN11FXScintilla11sendMessageEjml'
         "CPPFLAGS=-DFOXDLL_EXPORTS",
+        "CXXFLAGS=-include algorithm", # include is missing for std::fill() in ./SplitVector.h
       ]
       recipe.cook_and_activate
     end
