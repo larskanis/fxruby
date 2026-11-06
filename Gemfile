@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+plugin "rubygems-requirements-system"
+
 # No fxruby gemspec, since "bundle package" fails on bundler-2.7+, if the extension isn't built
 # gemspec
 
