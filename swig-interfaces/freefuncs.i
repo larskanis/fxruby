@@ -54,6 +54,7 @@
 %freefunc FXChore "FXRbUnregisterRubyObj";
 %freefunc FXDC "FXRbUnregisterRubyObj";
 %freefunc FXDCPrint "FXRbUnregisterRubyObj";
+%freefunc FXDCWindow "FXRbUnregisterRubyObj";
 %freefunc FXEvent "FXRbUnregisterRubyObj";
 %freefunc FXExtentd "FXRbUnregisterRubyObj";
 %freefunc FXExtentf "FXRbUnregisterRubyObj";
