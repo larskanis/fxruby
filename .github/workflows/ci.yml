@@ -35,7 +35,7 @@ jobs:
       - uses: ruby/setup-ruby-pkgs@v1
         with:
           ruby-version: ${{ matrix.ruby }}      # passed to ruby/setup-ruby
-          apt-get: "xpra xserver-xorg-video-dummy libxrandr-dev libfox-1.6-dev" # Ubuntu
+          apt-get: "xserver-xorg-video-dummy libxrandr-dev libfox-1.6-dev" # Ubuntu
           brew: "fox xquartz"     # macOS
           mingw: "fox swig"   # Windows mingw / mswin /ucrt
 
@@ -78,6 +78,7 @@ jobs:
       - name: Linux Start xpra to enable GLX
         if: matrix.os == 'ubuntu'
         run: |
+          curl https://xpra.org/get-xpra.sh | bash
           xpra --xvfb="Xorg +extension GLX -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :9
           echo "DISPLAY=:9"  >> $GITHUB_ENV
 
