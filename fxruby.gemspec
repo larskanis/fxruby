@@ -52,6 +52,11 @@ Gem::Specification.new do |spec|
   spec.metadata['msys2_mingw_dependencies'] = 'fox'
   spec.required_ruby_version = ">= 2.7"
 
+  # Automatic apt package installation using rubygems-requirements-system
+  spec.requirements << "system: g++: debian: g++"
+  spec.requirements << "system: libxrandr: debian: libxrandr-dev"
+  spec.requirements << "system: libfox: debian: libfox-1.6-dev"
+
   spec.add_runtime_dependency 'mini_portile2', '~> 2.1'
 
   yardopts = File.read(".yardopts")
