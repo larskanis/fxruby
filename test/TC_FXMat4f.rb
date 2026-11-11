@@ -5,7 +5,8 @@ class TC_FXMat4f < Test::Unit::TestCase
   include Fox
 
   def setup
-    @hmat = FXMat4f.new
+    @hmat = FXMat4f.new 59650271608832.0, 1.52688322114599e+38, 5.170800853465662e-13, 2.0711191302720796e-42, 1.0, 2.2, 2.586273209481682e-13, 1.0355595651360398e-42, 0.0, 0.0, 0.0, 0.0, 0.0, 3.673819216381981e-39, 7.006492321624085e-45, 3.7991997507591117e-35
+    @samples = [-5.412440155462294e+24, 9.504638999570352e+35, 7.158709246972819e+30, 1.0, 2.2, 3.3, 4.4, 1.0819492946742955e+37, 66.6, 777.7, -4.0472602345783137e+31, -33.3, 5.332417885281655e+37, -999.9, 4.4, -0.11]
   end
 
   def test_initialize
@@ -25,9 +26,9 @@ class TC_FXMat4f < Test::Unit::TestCase
     a20, a21, a22, a23 = 0.0, 0.0, 0.0, 0.0
     a30, a31, a32, a33 = 0.0, 0.0, 0.0, 0.0
     h = FXMat4f.new(a00, a01, a02, a03,
-                   a10, a11, a12, a13,
-		   a20, a21, a22, a23,
-		   a30, a31, a32, a33)
+      a10, a11, a12, a13,
+      a20, a21, a22, a23,
+      a30, a31, a32, a33)
     assert_instance_of(FXMat4f, h)
   end
 
@@ -44,16 +45,16 @@ class TC_FXMat4f < Test::Unit::TestCase
     anotherHMat = FXMat4f.new(@hmat)
     assert_instance_of(FXMat4f, anotherHMat)
     assert_not_same(@hmat, anotherHMat)
-#   assert_equal(@hmat, anotherHMat)
+    assert_equal(@hmat, anotherHMat)
   end
 
   def test_add
-    anotherMat = FXMat4f.new
+    anotherMat = FXMat4f.new *@samples
     sum1 = anotherMat + @hmat
     sum2 = @hmat + anotherMat
     assert_instance_of(FXMat4f, sum1)
     assert_instance_of(FXMat4f, sum2)
-#   assert_equal(sum1, sum2)
+    assert_equal(sum1, sum2)
   end
 
   def test_neg
@@ -62,20 +63,20 @@ class TC_FXMat4f < Test::Unit::TestCase
   end
 
   def test_sub
-    anotherMat = FXMat4f.new
+    anotherMat = FXMat4f.new *@samples
     diff1 = anotherMat - @hmat
     diff2 = @hmat - anotherMat
     assert_instance_of(FXMat4f, diff1)
     assert_instance_of(FXMat4f, diff2)
-#   assert_equal(diff1, -diff2)
+    assert_equal(diff1, -diff2)
   end
 
   def test_mul_matrices
-    a = FXMat4f.new
-    b = FXMat4f.new
+    a = FXMat4f.new *@samples
+    b = FXMat4f.new *@samples
     product = a*b
     assert_instance_of(FXMat4f, product)
-#   assert_equal(product, b*a)
+    assert_equal(product, b*a)
   end
 
   def test_mul_by_scalar
@@ -83,10 +84,10 @@ class TC_FXMat4f < Test::Unit::TestCase
     q = FXMat4f.new(4.0, 0.0, 0.0, 0.0,
                     0.0, 4.0, 0.0, 0.0,
                     0.0, 0.0, 4.0, 0.0,
-                    0.0, 0.0, 0.0, 4.0)
+                    0.0, 0.0, 0.0, 1.0)
     r = p*4.0
     assert_instance_of(FXMat4f, r)
-#   assert_equal(q, r)
+    assert_equal(q, r)
   end
 
   def test_div
@@ -224,5 +225,13 @@ class TC_FXMat4f < Test::Unit::TestCase
     v = FXVec3f.new(1.0, 1.0, 1.0)
     scaled = @hmat.scale(v)
     assert_same(@hmat, scaled)
+  end
+
+  def test_to_a
+    assert_equal [[59650271608832.0, 1.52688322114599e+38, 5.170800853465662e-13, 2.0711191302720796e-42], [1.0, 2.200000047683716, 2.586273209481682e-13, 1.0355595651360398e-42], [0.0, 0.0, 0.0, 0.0], [0.0, 3.673819216381981e-39, 7.006492321624085e-45, 3.7991997507591117e-35]], @hmat.to_a
+  end
+
+  def test_inspect
+    assert_equal "[[59650271608832.0, 1.52688322114599e+38, 5.170800853465662e-13, 2.0711191302720796e-42], [1.0, 2.200000047683716, 2.586273209481682e-13, 1.0355595651360398e-42], [0.0, 0.0, 0.0, 0.0], [0.0, 3.673819216381981e-39, 7.006492321624085e-45, 3.7991997507591117e-35]]", @hmat.inspect
   end
 end

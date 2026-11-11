@@ -227,12 +227,7 @@ module Fox
     end
   end
 
-  class FXVec2d
-    # Convert to array
-    def to_a
-      [x, y]
-    end
-
+  module FXVec_to_s
     # Convert to string
     def to_s
       to_a.to_s
@@ -240,55 +235,129 @@ module Fox
 
     def inspect; to_a.inspect; end
   end
+  private_constant :FXVec_to_s
+
+  class FXVec2d
+    include FXVec_to_s
+    # Convert to array
+    def to_a
+      [x, y]
+    end
+  end
 
   class FXVec2f
+    include FXVec_to_s
     # Convert to array
     def to_a; [x, y]; end
-
-    # Convert to string
-    def to_s; to_a.to_s; end
-
-    def inspect; to_a.inspect; end
   end
 
   class FXVec3d
+    include FXVec_to_s
     # Convert to array
     def to_a; [x, y, z]; end
-
-    # Convert to string
-    def to_s; to_a.to_s; end
-
-    def inspect; to_a.inspect; end
   end
 
   class FXVec3f
+    include FXVec_to_s
     # Convert to array
     def to_a; [x, y, z]; end
-
-    # Convert to string
-    def to_s; to_a.to_s; end
-
-    def inspect; to_a.inspect; end
   end
 
   class FXVec4d
+    include FXVec_to_s
     # Convert to array
     def to_a; [x, y, z, w]; end
-
-    # Convert to string
-    def to_s; to_a.to_s; end
-
-    def inspect; to_a.inspect; end
   end
 
   class FXVec4f
+    include FXVec_to_s
     # Convert to array
     def to_a; [x, y, z, w]; end
+  end
 
-    # Convert to string
-    def to_s; to_a.to_s; end
+  class FXVec2d
+    include FXVec_to_s
+    # Convert to array
+    def to_a
+      [x, y]
+    end
+  end
+
+  class FXVec2f
+    include FXVec_to_s
+    # Convert to array
+    def to_a; [x, y]; end
+  end
+
+  class FXVec3d
+    include FXVec_to_s
+    # Convert to array
+    def to_a; [x, y, z]; end
+  end
+
+  class FXVec3f
+    include FXVec_to_s
+    # Convert to array
+    def to_a; [x, y, z]; end
+  end
+
+  class FXVec4d
+    include FXVec_to_s
+    # Convert to array
+    def to_a; [x, y, z, w]; end
+  end
+
+  class FXVec4f
+    include FXVec_to_s
+    # Convert to array
+    def to_a; [x, y, z, w]; end
+  end
+
+  module Equality_to_a
+    def ==(other)
+      other.respond_to?(:to_a) &&
+          to_a == other.to_a
+    end
 
     def inspect; to_a.inspect; end
+  end
+  private_constant :Equality_to_a
+
+  module FXMat3_to_a
+    include Equality_to_a
+    def to_a
+      [self[0].to_a,
+       self[1].to_a,
+       self[2].to_a]
+    end
+  end
+  private_constant :FXMat3_to_a
+
+  module FXMat4_to_a
+    include Equality_to_a
+    def to_a
+      [self[0].to_a,
+       self[1].to_a,
+       self[2].to_a,
+       self[3].to_a]
+    end
+  end
+  private_constant :FXMat4_to_a
+
+  class FXMat3d
+    include FXMat3_to_a
+  end
+
+  class FXMat3f
+    include FXMat3_to_a
+  end
+
+  class FXMat4d
+    include FXMat4_to_a
+  end
+
+  class FXMat4f
+    include FXMat4_to_a
   end
 
   class FXWindow
