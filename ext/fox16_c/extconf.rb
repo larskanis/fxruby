@@ -342,7 +342,7 @@ unless enable_config("win32-cross")
 
     unless $autodetected_fxscintilla
       checking_for "fxscintilla on Ubuntu with missing libfxscintilla.so link" do
-        if find_library(":libfxscintilla.so.19", nil) && (cflags = RUBY_VERSION>="2.1" ? pkg_config("fxscintilla", "cflags") : `pkg-config --cflags fxscintilla`)
+        if find_library(":libfxscintilla.so.19", nil) && (cflags = pkg_config("fxscintilla", "cflags"))
           $CXXFLAGS += " " + cflags
           $autodetected_fxscintilla = true
         end
