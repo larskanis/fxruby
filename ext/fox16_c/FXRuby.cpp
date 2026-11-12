@@ -1602,6 +1602,12 @@ FXbool FXRbGLViewer::sortProc(FXfloat*& buffer,FXint& used,FXint& size){
   return TRUE;
   }
 
+static bool fxrb_vm_exiting = false;
+
+static void fxrb_on_vm_exit(VALUE) {
+  fxrb_vm_exiting = true;
+}
+
 /**
  * FXRbConvertPtr() is just a wrapper around SWIG_ConvertPtr().
  */
@@ -1611,8 +1617,8 @@ void* FXRbConvertPtr(VALUE obj,swig_type_info* ty, int flags){
   int res = SWIG_ConvertPtr(obj,&ptr,ty,flags);
   if( res == SWIG_OK ) return ptr;
 #ifdef HAVE_RB_DURING_GC
-  if( rb_during_gc() ){
-    rb_bug( "FXRbConvertPtr got wrong argument type rubyObj=%p", (void*)obj);
+  if( rb_during_gc() || fxrb_vm_exiting ){
+    rb_bug( "FXRbConvertPtr got wrong argument type rubyObj=%p err: %d", (void*)obj, res);
   }
 #endif
   if( res == SWIG_ERROR_RELEASE_NOT_OWNED ){
@@ -2027,6 +2033,7 @@ Init_fox16_c(void) {
 #ifdef HAVE_RUBY_ENCODING_H
   utf8_enc_idx = rb_enc_find_index("UTF-8");
 #endif
+  rb_set_end_proc(fxrb_on_vm_exit, Qnil);
 
   appSensitiveObjs=st_init_numtable();
   appSensitiveDCs=st_init_numtable();
