@@ -1,3 +1,17 @@
+## 1.6.51 / 2026-11-12
+
+* Update to swig-4.5 which makes use of TypedData structs which is required for ruby-4.1.
+* Replace `DATA_PTR` and `Data_Get_Struct` by `SWIG_ConvertPtr`.
+* Add possibility to enable FXTRACE output by the environment variable "fxTraceLevel" when running "rake test".
+* Add `FXMat[34][fd]#to_a` , `#==` and `#inspect`.
+  They have been available for years in `FXVec` classes already.
+* Fix `Fox::Canvas::Shape` when running without global `include Fox`
+* Fix segfault because of missing object deregister for FXDCWindow.
+* Fix deprecation warnung about `fptr->tied_io_for_writing`
+* Fix type conversions of `Array<FXPoint>`, `Array<FXRectangle>`, `Array<FXSegment>` and `Array<FXArc>` to raise an error on type mismatch.
+  This wasn't checked before and could lead to invalid memory access.
+* Update to libz-1.4, libpng-1.6.59, libjpeg-turbo-3.2.1, libtiff-4.7.2 for Windows binary gems.
+
 ## 1.6.50 / 2026-01-02
 
 * Add binary gem support for ruby-4.0.
