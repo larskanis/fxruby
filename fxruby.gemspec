@@ -50,7 +50,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.extensions = ["ext/fox16_c/extconf.rb"]
   spec.metadata['msys2_mingw_dependencies'] = 'fox'
-  spec.required_ruby_version = ">= 2.7"
+  spec.required_ruby_version = ">= 3.0"
 
   # Automatic apt package installation using rubygems-requirements-system
   spec.requirements << "system: g++: debian: g++"
